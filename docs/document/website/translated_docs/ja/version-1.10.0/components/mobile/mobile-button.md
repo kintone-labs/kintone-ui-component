@@ -1,5 +1,5 @@
 ---
-id: version-1.10.0-button
+id: version-1.10.0-mobile-button
 title: MobileButton
 sidebar_label: MobileButton
 original_id: mobile-button

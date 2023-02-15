@@ -1,5 +1,5 @@
 ---
-id: version-1.10.0-notification
+id: version-1.10.0-mobile-notification
 title: MobileNotification
 sidebar_label: MobileNotification
 original_id: mobile-notification

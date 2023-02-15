@@ -1,5 +1,5 @@
 ---
-id: version-1.10.0-text
+id: version-1.10.0-mobile-text
 title: MobileText
 sidebar_label: MobileText
 original_id: mobile-text

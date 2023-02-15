@@ -1,5 +1,5 @@
 ---
-id: version-1.10.0-checkbox
+id: version-1.10.0-mobile-checkbox
 title: MobileCheckbox
 sidebar_label: MobileCheckbox
 original_id: mobile-checkbox

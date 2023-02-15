@@ -1,5 +1,5 @@
 ---
-id: version-1.10.0-picker
+id: version-1.10.0-mobile-time-picker
 title: MobileTimePicker
 sidebar_label: MobileTimePicker
 original_id: mobile-time-picker

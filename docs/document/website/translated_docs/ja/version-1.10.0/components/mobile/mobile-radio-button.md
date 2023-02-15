@@ -1,5 +1,5 @@
 ---
-id: version-1.10.0-button
+id: version-1.10.0-mobile-radio-button
 title: MobileRadioButton
 sidebar_label: MobileRadioButton
 original_id: mobile-radio-button

@@ -1,5 +1,5 @@
 ---
-id: version-1.10.0-dropdown
+id: version-1.10.0-mobile-dropdown
 title: MobileDropdown
 sidebar_label: MobileDropdown
 original_id: mobile-dropdown

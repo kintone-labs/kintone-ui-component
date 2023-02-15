@@ -1,5 +1,5 @@
 ---
-id: version-1.10.0-multichoice
+id: version-1.10.0-mobile-multichoice
 title: MobileMultiChoice
 sidebar_label: MobileMultiChoice
 original_id: mobile-multichoice

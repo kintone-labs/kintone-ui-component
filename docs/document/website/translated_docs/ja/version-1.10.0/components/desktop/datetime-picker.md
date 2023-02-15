@@ -1,5 +1,5 @@
 ---
-id: version-1.10.0-picker
+id: version-1.10.0-datetime-picker
 title: DateTimePicker
 sidebar_label: DateTimePicker
 original_id: datetime-picker

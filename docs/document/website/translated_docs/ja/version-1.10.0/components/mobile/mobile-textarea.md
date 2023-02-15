@@ -1,5 +1,5 @@
 ---
-id: version-1.10.0-textarea
+id: version-1.10.0-mobile-textarea
 title: MobileTextArea
 sidebar_label: MobileTextArea
 original_id: mobile-textarea
