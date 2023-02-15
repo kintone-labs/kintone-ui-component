@@ -93,3 +93,9 @@ dateTimePicker.addEventListener('change', event => {
   console.log(event);
 });
 ```
+
+---
+## Guide Articles
+
+<ul id="guide_links"></ul>
+<script src="/js/add_guide_links.js"></script>

@@ -97,3 +97,9 @@ dialog.addEventListener('close', event => {
 dialog.open();
 dialog.close();
 ```
+
+---
+## Guide Articles
+
+<ul id="guide_links"></ul>
+<script src="/js/add_guide_links.js"></script>
