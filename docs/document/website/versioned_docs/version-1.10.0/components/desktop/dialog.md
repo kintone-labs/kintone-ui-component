@@ -79,32 +79,35 @@ none
 Here is a sample code when all parameters are specified:
 
 ```javascript
-// Create Ok and Cancel buttons
-const dialogOKButton = new Kuc.Button({
+const Kuc = Kucs['1.x.x'];
+
+// Create OK and Cancel buttons
+const okButton = new Kuc.Button({
   text: 'OK',
   type: 'submit'
 });
-const dialogCancelButton = new Kuc.Button({
+const cancelButton = new Kuc.Button({
   text: 'Cancel',
-  type: 'cancel',
-  id: 'kuc_dialog_cancel_button'
+  type: 'normal',
 });
-dialogOKButton.addEventListener('click', () => {
-    // handle click Ok button
+
+okButton.addEventListener('click', () => {
+    // handle click OK button
 })
-dialogCancelButton.addEventListener('click', () => {
+cancelButton.addEventListener('click', () => {
     // handle click Cancel button
 })
 
-// Wrap Ok and Cancel buttons into a div
+// Wrap OK and Cancel buttons with a div
 const divEl = document.createElement('div');
-divEl.appendChild(dialogOKButton)
-divEl.appendChild(dialogCancelButton)
+divEl.appendChild(okButton)
+divEl.appendChild(cancelButton)
 
 const dialog = new Kuc.Dialog({
   title:  'Title',
   content: '<div>This is Content</div>',
-  footer: divEl
+  footer: divEl,
+  icon: 'info'
 });
 
 dialog.addEventListener('close', event => {
