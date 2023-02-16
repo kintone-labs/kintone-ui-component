@@ -18,7 +18,8 @@ document.addEventListener("kuc:loaded", function () {
     const dialog = new Kuc.Dialog({
       title: "Title",
       content: "<div><p style='margin: 0;'>This is Content</p></div>",
-      footer: footerEl
+      footer: footerEl,
+      icon: "info"
     });
 
     dialog.open();
