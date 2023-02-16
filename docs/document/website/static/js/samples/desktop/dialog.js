@@ -1,20 +1,19 @@
 document.addEventListener("kuc:loaded", function () {
   const script = `
-    const dialogOKButton = new Kuc.Button({
+    const okButton = new Kuc.Button({
       text: "OK",
       type: "submit"
     });
-    const dialogCancelButton = new Kuc.Button({
+    const cancelButton = new Kuc.Button({
       text: "Cancel",
-      type: "cancel",
-      id: "kuc_dialog_cancel_button"
+      type: "normal",
     });
-    dialogCancelButton.style.marginRight = "16px";
+    cancelButton.style.marginRight = "16px";
 
     const footerEl = document.createElement("div");
     footerEl.style.display = "flex";
-    footerEl.appendChild(dialogCancelButton)
-    footerEl.appendChild(dialogOKButton)
+    footerEl.appendChild(cancelButton)
+    footerEl.appendChild(okButton)
 
     const dialog = new Kuc.Dialog({
       title: "Title",
