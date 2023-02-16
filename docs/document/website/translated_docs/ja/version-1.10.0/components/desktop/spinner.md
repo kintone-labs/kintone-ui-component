@@ -78,9 +78,3 @@ const spinner = new Kuc.Spinner({
 spinner.open();
 spinner.close();
 ```
-
----
-## Guide Articles
-
-<ul id="guide_links"></ul>
-<script src="/js/add_guide_links.js"></script>
