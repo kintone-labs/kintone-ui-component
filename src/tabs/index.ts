@@ -73,6 +73,10 @@ let exportTabs;
           return false;
         }
       }
+      if (changedProperties.has("value") && !validateValueString(this.value)) {
+        this.throwErrorAfterUpdateComplete(ERROR_MESSAGE.VALUE.IS_NOT_STRING);
+        return false;
+      }
       return true;
     }
     willUpdate(_changedProperties: PropertyValues): void {
