@@ -117,3 +117,9 @@ checkbox.addEventListener('change', event => {
   console.log(event);
 });
 ```
+
+---
+
+## Related Articles
+
+- [Cleaning check list customization](../../guides/cleaning-check-list-customization.md)

@@ -111,3 +111,9 @@ multiChoice.addEventListener('change', event => {
   console.log(event);
 });
 ```
+
+---
+
+## Related Articles
+
+- [Format setting plug-in](../../guides/format-setting-plugin.md)

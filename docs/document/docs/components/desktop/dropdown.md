@@ -105,3 +105,11 @@ dropdown.addEventListener('change', event => {
   console.log(event);
 });
 ```
+
+---
+
+## Related Articles
+
+- [Cleaning check list customization](../../guides/cleaning-check-list-customization.md)
+- [Format setting plug-in](../../guides/format-setting-plugin.md)
+- [Table and ReadOnlyTable customization](../../guides/table-readonly-table-customization.md)

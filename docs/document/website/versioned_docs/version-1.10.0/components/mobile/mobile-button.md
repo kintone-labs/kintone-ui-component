@@ -77,3 +77,9 @@ mobileButton.addEventListener('click', event => {
   console.log(event);
 });
 ```
+
+---
+
+## Related Articles
+
+- [Mobile timecard customization](../../guides/mobile-timecard-customization.md)

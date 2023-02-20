@@ -134,3 +134,9 @@ table.addEventListener('change', event => {
   console.log(event);
 });
 ```
+
+---
+
+## Related Articles
+
+- [Table and ReadOnlyTable customization](../../guides/table-readonly-table-customization.md)

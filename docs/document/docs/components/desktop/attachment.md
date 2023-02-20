@@ -85,3 +85,9 @@ attachment.addEventListener('change', event => {
   console.log(event);
 });
 ```
+
+---
+
+## Related Articles
+
+- [Attachment customization](../../guides/attachment-customization.md)

@@ -80,12 +80,12 @@ const Kuc = Kucs['1.x.x'];
 const header = kintone.app.getHeaderMenuSpaceElement();
 
 const button = new Kuc.Button({
-    text: 'Submit',
-    type: 'submit',
-    className: 'options-class',
-    id: 'options-id',
-    visible: true,
-    disabled: false
+  text: 'Submit',
+  type: 'submit',
+  className: 'options-class',
+  id: 'options-id',
+  visible: true,
+  disabled: false
 });
 header.appendChild(button);
 
@@ -93,3 +93,13 @@ button.addEventListener('click', event => {
   console.log(event);
 });
 ```
+
+---
+
+## Related Articles
+
+- [Search box customization](../../guides/search-box-customization.md)
+- [Cleaning check list customization](../../guides/cleaning-check-list-customization.md)
+- [Bulk update customization](../../guides/bulk-update-customization.md)
+- [Format setting plug-in](../../guides/format-setting-plugin.md)
+- [Attachment customization](../../guides/attachment-customization.md)

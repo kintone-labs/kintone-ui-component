@@ -98,3 +98,9 @@ dialog.addEventListener('close', event => {
 dialog.open();
 dialog.close();
 ```
+
+---
+
+## Related Articles
+
+- [Format setting plug-in](../../guides/format-setting-plugin.md)
