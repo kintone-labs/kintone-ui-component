@@ -59,15 +59,18 @@ let exportFieldGroup;
 
     render() {
       return html`
-        <div class="kuc-field-group__group">
+        <div
+          class="kuc-field-group__group"
+          role="group"
+          aria-labelledby="${this._GUID}-control"
+        >
           <button
             type="button"
             id="${this._GUID}-control"
             class="kuc-field-group__group__toggle"
             aria-controls="${this._GUID}-body"
             aria-expanded="${this.expanded && !this.disabled}"
-            aria-disabled="${this.disabled}"
-            tabindex="${this.disabled ? -1 : 0}"
+            ?disabled="${this.disabled}"
             @click="${this._handleClickButton}"
           >
             <span class="kuc-field-group__group__toggle__icon"></span>
@@ -78,7 +81,6 @@ let exportFieldGroup;
           <div
             id="${this._GUID}-body"
             class="kuc-field-group__group__body"
-            aria-labelledby="${this._GUID}-control"
             ?hidden="${!this.expanded || this.disabled}"
           >
             ${this._content}
