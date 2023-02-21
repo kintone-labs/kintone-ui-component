@@ -6,8 +6,7 @@
 If you want to use it, please check [this website](https://kintone-ui-component.netlify.app/) for details.
 
 Currently, the mainstream is v1 and we will stop the maintenance of v0 on 31 December 2023.<br>
-Until then, we will continue to mainly fix bugs and update libraries for v0. We don't plan to develop new functions.<br>
-For more details, please check [this announcement](https://kintone.dev/en/news/kintone-ui-component-v0-eol/).
+Until then, we will continue to mainly fix bugs and update libraries for v0. We don't plan to develop new functions.
 
 ⓘ kintone UI Component version 0.x.x library has been migrated from git://github.com/kintone/kintone-ui-component
 
