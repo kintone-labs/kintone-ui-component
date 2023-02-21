@@ -48,11 +48,11 @@ export const FIELD_GROUP_CSS = `
     background-color: inherit;
     line-height: 1.5;
   }
-  .kuc-field-group__group__toggle[aria-disabled='true'] {
+  .kuc-field-group__group__toggle:disabled {
     color: rgba(0,0,0,.25);
     cursor: not-allowed;
   }
-  .kuc-field-group__group__toggle[aria-disabled='true']:focus {
+  .kuc-field-group__group__toggle:disabled:focus {
     outline: 0;
     border: 1px solid transparent;
   }

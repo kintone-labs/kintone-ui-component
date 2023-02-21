@@ -52,8 +52,16 @@ const template = (args) => {
 };
 export const Base = template.bind({});
 Base.args = {
-  label: "Field Group",
+  label: "Field Group normal",
   disabled: false,
+  expanded: false,
+  content: getContent(),
+};
+
+export const BaseDisabled = template.bind({});
+BaseDisabled.args = {
+  label: "Field Group disabled",
+  disabled: true,
   expanded: false,
   content: getContent(),
 };
