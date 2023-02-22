@@ -189,7 +189,7 @@ function uploadFile(file) {
     const blob = new Blob([file], {type: file.type ?? ''});
     formData.append('__REQUEST_TOKEN__', kintone.getRequestToken());
     formData.append('file', blob, file.name);
-    const url = 'https://sdd-demo.cybozu.com//k/v1/file.json';
+    const url = 'https://{domain}//k/v1/file.json';
     const xhr = new XMLHttpRequest();
     xhr.open('POST', url);
     xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
