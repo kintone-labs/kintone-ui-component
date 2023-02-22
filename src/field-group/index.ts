@@ -43,8 +43,10 @@ let exportFieldGroup;
       | DirectiveResult<typeof UnsafeHTMLDirective> = "";
     private _GUID: string;
 
-    @query(".kuc-field-group__group__body")
+    @query(".kuc-field-group__group")
     private _groupEl!: HTMLDivElement;
+    @query(".kuc-field-group__group__body")
+    private _bodyEl!: HTMLDivElement;
 
     constructor(props?: FieldGroupProps) {
       super();
@@ -76,7 +78,7 @@ let exportFieldGroup;
             ?disabled="${this.disabled}"
             @click="${this._handleClickButton}"
           >
-            <span class="kuc-field-group__group__toggle__icon"></span>
+            ${this._getSvgTemplate()}
             <span class="kuc-field-group__group__toggle__label"
               >${this.label}</span
             >
@@ -93,22 +95,57 @@ let exportFieldGroup;
       `;
     }
 
-    updated(): void {
-      if (!this._groupEl) return;
+    firstUpdated(): void {
+      this._updateContainerWidth();
+    }
+
+    private _updateContainerWidth() {
+      if (!this._bodyEl) return;
 
       const DEFAULT_WIDTH = 517;
-      const PADDING = 32;
-      const isBodyHidden = this._groupEl.hasAttribute("hidden");
+      const isBodyHidden = this._bodyEl.hasAttribute("hidden");
       if (isBodyHidden) {
-        this._groupEl.removeAttribute("hidden");
+        this._bodyEl.removeAttribute("hidden");
       }
-      const bodyWidth = this._groupEl.offsetWidth;
+      const bodyWidth = this._bodyEl.offsetWidth;
       if (isBodyHidden) {
-        this._groupEl.setAttribute("hidden", "");
+        this._bodyEl.setAttribute("hidden", "");
       }
+      if (bodyWidth <= DEFAULT_WIDTH) return;
 
-      if (bodyWidth + PADDING <= DEFAULT_WIDTH) return;
-      this.style.minWidth = bodyWidth + PADDING + "px";
+      this._groupEl.style.minWidth = bodyWidth + "px";
+    }
+
+    private _getSvgTemplate() {
+      return this.expanded
+        ? html`<svg
+            width="13"
+            height="8"
+            viewBox="0 0 13 8"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M11.7122 0.5L12.5 1.03608L7.23318 7.11548L5.76682 7.11548L0.5 1.03608L1.2878 0.5L6.26504 6.19318L6.73496 6.19318L11.7122 0.5Z"
+              fill="#939393"
+            />
+          </svg>`
+        : html`<svg
+            width="8"
+            height="13"
+            viewBox="0 0 8 13"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M0.5 1.2878L1.03608 0.5L7.11548 5.76682V7.23318L1.03608 12.5L0.5 11.7122L6.19318 6.73496V6.26504L0.5 1.2878Z"
+              fill="#939393"
+            />
+          </svg> `;
     }
 
     private _handleChangeBody(event: Event) {

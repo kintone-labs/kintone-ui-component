@@ -3,7 +3,7 @@ export const FIELD_GROUP_CSS = `
   kuc-field-group *,
   kuc-field-group:lang(en),
   kuc-field-group:lang(en) * {
-    font-family: "HelveticaNeueW02-45Ligh", Arial,
+    font-family: "HelveticaNeueW02-55Roma", Arial,
       "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
   }
   kuc-field-group:lang(ja),
@@ -23,10 +23,9 @@ export const FIELD_GROUP_CSS = `
   }
   kuc-field-group {
     display: inline-table;
-    min-width: 517px;
   }
   .kuc-field-group__group {
-    margin: 4px 8px;
+    min-width: 517px;
     padding: 0 8px;
     border: 1px solid #e3e7e8;
     background-color: #f5f5f5;
@@ -36,10 +35,13 @@ export const FIELD_GROUP_CSS = `
     padding: 0;
   }
   .kuc-field-group__group__toggle {
+    display: flex;
+    align-items: center;
     border-style: none;
     position: relative;
     outline: none;
-    margin: 12px 0 8px 8px;
+    margin: 12px 0 12px 8px;
+    min-height: 34px;
     padding: 4px 8px 4px 24px;
     color: #333333;
     font-size: 16px;
@@ -64,17 +66,9 @@ export const FIELD_GROUP_CSS = `
     display: block;
     pointer-events: none;
   }
-  .kuc-field-group__group__toggle__icon {
-    border: solid currentcolor;
-    border-width: 0 2px 2px 0;
-    margin-left: 8px;
-    height: 0.5rem;
-    pointer-events: none;
+  .kuc-field-group__group__toggle svg {
     position: absolute;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%) rotate(-45deg);
-    width: 0.5rem;
+    left: 8px;
   }
   .kuc-field-group__group__body {
     padding: 0 8px;
@@ -82,8 +76,5 @@ export const FIELD_GROUP_CSS = `
     white-space: nowrap;
     word-wrap: normal;
     margin-bottom: 12px;
-  }
-  .kuc-field-group__group__toggle[aria-expanded='true'] .kuc-field-group__group__toggle__icon {
-    transform: translateY(-60%) rotate(45deg);
   }
 `;
