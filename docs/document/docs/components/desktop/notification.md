@@ -94,3 +94,11 @@ notification.addEventListener('close', event => {
 notification.open();
 notification.close();
 ```
+
+---
+
+## Related Articles
+
+- [Search box customization](../../guides/search-box-customization.md)
+- [Cleaning check list customization](../../guides/cleaning-check-list-customization.md)
+- [Bulk update customization](../../guides/bulk-update-customization.md)

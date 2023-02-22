@@ -1,19 +1,20 @@
 ---
-id: mobile-notification
-title: MobileNotification
-sidebar_label: MobileNotification
+id: version-1.10.0-notification
+title: Notification
+sidebar_label: Notification
+original_id: notification
 ---
 
 ## Overview
 
-The MobileNotification component allows the user to display pop-up notifications.
+The Notification component allows the user to display pop-up notifications.
 
-<div class="sample-container" id="mobile-notification">
-  <div id="sample-container__components" class="mobile">
-    <iframe id="iframe" title="mobile notification image" width="300px" height="70px"></iframe>
+<div class="sample-container" id="notification">
+  <div id="sample-container__components">
+    <iframe id="iframe" title="notification" width="300px" height="250px"></iframe>
   </div>
 </div>
-<script src="/js/samples/mobile/mobile-notification.js"></script>
+<script src="/js/samples/desktop/notification.js"></script>
 
 ---
 
@@ -27,7 +28,18 @@ Here is a list of properties that can be used for modifying the component:
 | :--- | :--- | :--- | :--- | :--- |
 | className | string | ""  | Component class name | |
 | text | string | ""  | Text to be displayed | |
+| type | string | "danger"  | Background color | Available options:<br>"danger" : Red (#e74c3c)<br>"info" : Blue (#3498db)<br>"success" : Green (#91c36c) |
 | duration | number | -1  | Milliseconds to close component | Unit is milliseconds<br>You can specify 0 or a number larger than 0<br>If you specify invalid value (a number less than 0 or is not a number), component is opened and will not be closed automatically |
+
+### Constructor
+
+Notification(options)<br>
+Here is a list of available constructors:
+
+#### Parameter
+| Name | Type | Default | Description | Remark |
+| :--- | :--- | :--- | :--- | :--- |
+| options | object | {} | Object that includes component properties |  |
 
 ### Event
 
@@ -37,22 +49,12 @@ Here is a list of events that can be specified:
 | :--- | :--- | :--- | :--- |
 | close | function | Event handler when the component has been closed | It will pass the event object as the argument |
 
-### Constructor
-
-MobileNotification(options)<br>
-Here is a list of available constructors:
-
-#### Parameter
-| Name | Type | Default | Description | Remark |
-| :--- | :--- | :--- | :--- | :--- |
-| options | object | {} | Object that includes component properties |  |
-
 ### Method
 
 Here is a list of available methods:
 
 #### open()
-Show the MobileNotification
+Show the Notification
 
 ##### Parameter
 none
@@ -61,7 +63,7 @@ none
 none
 
 #### close()
-Hide the MobileNotification
+Hide the Notification
 
 ##### Parameter
 none
@@ -79,22 +81,25 @@ Here is a sample code when all parameters are specified:
 ```javascript
 const Kuc = Kucs['1.x.x'];
 
-const mobileNotification = new Kuc.MobileNotification({
+const notification = new Kuc.Notification({
   text:  'Error occurred!',
+  type: 'danger',
   className: 'options-class',
   duration: 2000
 });
 
-mobileNotification.addEventListener('close', event => {
+notification.addEventListener('close', event => {
   console.log(event);
 });
 
-mobileNotification.open();
-mobileNotification.close();
+notification.open();
+notification.close();
 ```
 
 ---
 
 ## Related Articles
 
-- [Mobile timecard customization](../../guides/mobile-timecard-customization.md)
+- [Search box customization](../../guides/search-box-customization.md)
+- [Cleaning check list customization](../../guides/cleaning-check-list-customization.md)
+- [Bulk update customization](../../guides/bulk-update-customization.md)
