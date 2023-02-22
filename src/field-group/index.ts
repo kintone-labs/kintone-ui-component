@@ -1,5 +1,5 @@
 import { html, PropertyValues } from "lit";
-import { property } from "lit/decorators.js";
+import { property, query } from "lit/decorators.js";
 import { DirectiveResult } from "lit/directive";
 import { UnsafeHTMLDirective } from "lit/directives/unsafe-html";
 
@@ -43,6 +43,9 @@ let exportFieldGroup;
       | DirectiveResult<typeof UnsafeHTMLDirective> = "";
     private _GUID: string;
 
+    @query(".kuc-field-group__group__body")
+    private _groupEl!: HTMLDivElement;
+
     constructor(props?: FieldGroupProps) {
       super();
       this._GUID = generateGUID();
@@ -82,11 +85,34 @@ let exportFieldGroup;
             id="${this._GUID}-body"
             class="kuc-field-group__group__body"
             ?hidden="${!this.expanded || this.disabled}"
+            @change="${this._handleChangeBody}"
           >
             ${this._content}
           </div>
         </div>
       `;
+    }
+
+    updated(): void {
+      if (!this._groupEl) return;
+
+      const DEFAULT_WIDTH = 517;
+      const PADDING = 32;
+      const isBodyHidden = this._groupEl.hasAttribute("hidden");
+      if (isBodyHidden) {
+        this._groupEl.removeAttribute("hidden");
+      }
+      const bodyWidth = this._groupEl.offsetWidth;
+      if (isBodyHidden) {
+        this._groupEl.setAttribute("hidden", "");
+      }
+
+      if (bodyWidth + PADDING <= DEFAULT_WIDTH) return;
+      this.style.minWidth = bodyWidth + PADDING + "px";
+    }
+
+    private _handleChangeBody(event: Event) {
+      event.stopPropagation();
     }
 
     private _handleClickButton(event: Event) {

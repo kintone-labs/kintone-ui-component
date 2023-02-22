@@ -77,6 +77,7 @@ export const FIELD_GROUP_CSS = `
     width: 0.5rem;
   }
   .kuc-field-group__group__body {
+    padding: 0 8px;
     margin-left: 0;
     white-space: nowrap;
     word-wrap: normal;
