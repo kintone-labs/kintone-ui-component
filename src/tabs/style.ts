@@ -42,18 +42,18 @@ export const TABS_CSS = `
     height: 100%;
     margin: 0;
     padding: 0 24px;
-    background-color: #D4D7D7;
+    background-color: #d4d7d7;
     color: #333333;
     border-style: none;
-    border-top: 1px solid #C7CBCB;
-    border-left: 1px solid #C7CBCB;
-    box-shadow: 1px 0 3px #C7CBCB inset;
+    border-top: 1px solid #c7cbcb;
+    border-left: 1px solid #c7cbcb;
+    box-shadow: 1px 0 3px #c7cbcb inset;
     cursor: pointer;
     line-height: 1.5;
     word-wrap: break-word;
   }
   .kuc-tabs__group__tab-list__tab__button:last-of-type {
-    border-right: 1px solid #C7CBCB;
+    border-right: 1px solid #c7cbcb;
   }
   .kuc-tabs__group__tab-list__tab__button:disabled {
     color: GrayText;
@@ -65,12 +65,12 @@ export const TABS_CSS = `
   }
   .kuc-tabs__group__tab-list__tab__button--click:focus{
     border: none;
-    border-top: 1px solid #C7CBCB;
-    border-left: 1px solid #C7CBCB;
-    border-right: 1px solid #C7CBCB;
+    border-top: 1px solid #c7cbcb;
+    border-left: 1px solid #c7cbcb;
+    border-right: 1px solid #c7cbcb;
   }
   .kuc-tabs__group__tab-list__tab__button[aria-selected="true"] {
-    background-color: #FFFFFF;
+    background-color: #ffffff;
     box-shadow: none;
   }
   .kuc-tabs__group__tab-panel {
