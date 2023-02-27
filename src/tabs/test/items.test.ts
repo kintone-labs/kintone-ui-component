@@ -50,7 +50,7 @@ describe("Tabs", () => {
       fixture(container);
     });
 
-    it("should be throw error when assigned null", (done) => {
+    it("should be throw error when assigned duplicated value in items", (done) => {
       const handleError = (event: any) => {
         const errorMsg = event.reason.message;
         expect(errorMsg).to.equal("'value' property is not unique in items.");
@@ -63,7 +63,7 @@ describe("Tabs", () => {
       fixture(container);
     });
 
-    it("should be throw error when assigned null", (done) => {
+    it("should be throw error when assigned a not string value in items", (done) => {
       const handleError = (event: any) => {
         const errorMsg = event.reason.message;
         expect(errorMsg).to.equal("'value' property is not string.");

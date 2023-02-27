@@ -44,7 +44,7 @@ let exportTabs;
 
     private _GUID: string;
     private _selectedValue: string = "";
-    private _defaultTabIndex = 0;
+
     @state()
     private _isClick = false;
 
@@ -82,9 +82,14 @@ let exportTabs;
     willUpdate(_changedProperties: PropertyValues): void {
       if (this._isValueMatchingItems(this.value)) {
         this._selectedValue = this.value;
-      } else {
-        this._selectedValue =
-          this.items.length > 0 ? this.items[this._defaultTabIndex].value : "";
+      } else if (this.items.length > 0) {
+        this.items.some((item) => {
+          if (item.visible !== false) {
+            this._selectedValue = item.value;
+            return true;
+          }
+          return false;
+        });
       }
     }
 
@@ -116,6 +121,7 @@ let exportTabs;
       >
         <button
           role="tab"
+          ?hidden="${item.visible === false}"
           aria-selected="${isSelected}"
           tabindex="${isSelected ? "" : "-1"}"
           class="kuc-tabs__group__tab-list__tab__button ${this._isClick
@@ -157,6 +163,7 @@ let exportTabs;
     private _handleMouseDown(event: Event) {
       this._isClick = true;
     }
+
     private _handleClickTab(event: Event) {
       const tabEl = event.target as HTMLButtonElement;
       const currentIndex = this._getCurrentTabIndex(tabEl.value);
@@ -188,14 +195,26 @@ let exportTabs;
         case "ArrowLeft": {
           doPreventEvent = true;
           const tabEl = event.target as HTMLButtonElement;
-          this._moveToPreTab(tabEl.value);
+          this._moveToAdjacentTab(tabEl.value, "prev");
           break;
         }
         case "Right":
         case "ArrowRight": {
           doPreventEvent = true;
           const tabEl = event.target as HTMLButtonElement;
-          this._moveToNextTab(tabEl.value);
+          this._moveToAdjacentTab(tabEl.value, "next");
+          break;
+        }
+        case "Home": {
+          doPreventEvent = true;
+          const tabEl = event.target as HTMLButtonElement;
+          this._moveToLastFirstTab(tabEl.value, "first");
+          break;
+        }
+        case "End": {
+          doPreventEvent = true;
+          const tabEl = event.target as HTMLButtonElement;
+          this._moveToLastFirstTab(tabEl.value, "last");
           break;
         }
       }
@@ -216,49 +235,75 @@ let exportTabs;
       return currentIndex;
     }
 
-    private _moveToPreTab(currentValue: string) {
+    private _moveToLastFirstTab(
+      currentValue: string,
+      direction: "first" | "last"
+    ) {
       const currentIndex = this._getCurrentTabIndex(currentValue);
-      for (let preIndex = currentIndex - 1; preIndex >= 0; preIndex--) {
-        if (this.items[preIndex].disabled !== true) {
-          const oldValue = this.value;
-          const newValue = this.items[preIndex].value;
-          this.value = newValue;
-          const eventDetail: TabsChangeEventDetail = {
-            oldValue,
-            value: newValue,
-          };
-          dispatchCustomEvent(this, "change", eventDetail);
-          this._tabButtons[preIndex].focus();
+      const increment = direction === "last" ? -1 : 1;
+      let index = direction === "last" ? this.items.length - 1 : 0;
+      while (index !== currentIndex) {
+        if (
+          this.items[index].visible !== false &&
+          this.items[index].disabled !== true
+        ) {
+          dispatchCustomEvent(
+            this,
+            "change",
+            this._generateEventDetail(this.items[index].value)
+          );
+          this._tabButtons[index].focus();
           break;
         }
+        index += increment;
       }
     }
 
-    private _moveToNextTab(currentValue: string) {
+    private _moveToAdjacentTab(
+      currentValue: string,
+      direction: "next" | "prev"
+    ) {
       const currentIndex = this._getCurrentTabIndex(currentValue);
-      for (
-        let nextIndex = currentIndex + 1;
-        nextIndex < this.items.length;
-        nextIndex++
-      ) {
-        if (this.items[nextIndex].disabled !== true) {
-          const oldValue = this.value;
-          const newValue = this.items[nextIndex].value;
-          this.value = newValue;
-          const eventDetail: TabsChangeEventDetail = {
-            oldValue,
-            value: newValue,
-          };
-          dispatchCustomEvent(this, "change", eventDetail);
-          this._tabButtons[nextIndex].focus();
+      const increment = direction === "next" ? 1 : -1;
+      let index = currentIndex + increment;
+      while (index !== currentIndex) {
+        if (index === this.items.length) {
+          index = 0;
+        } else if (index === -1) {
+          index = this.items.length - 1;
+        }
+        if (index === currentIndex) {
           break;
         }
+        if (
+          this.items[index].visible !== false &&
+          this.items[index].disabled !== true
+        ) {
+          dispatchCustomEvent(
+            this,
+            "change",
+            this._generateEventDetail(this.items[index].value)
+          );
+          this._tabButtons[index].focus();
+          break;
+        }
+        index += increment;
       }
+    }
+
+    private _generateEventDetail(newValue: string) {
+      const oldValue = this.value;
+      this.value = newValue;
+      const eventDetail: TabsChangeEventDetail = {
+        oldValue,
+        value: newValue,
+      };
+      return eventDetail;
     }
 
     private _isValueMatchingItems(value: string): boolean {
       for (let i = 0; i < this.items.length; i++) {
-        if (value === this.items[i].value) {
+        if (value === this.items[i].value && this.items[i].visible !== false) {
           return true;
         }
       }

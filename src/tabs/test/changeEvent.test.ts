@@ -54,5 +54,36 @@ describe("Tabs", () => {
       inputEl.dispatchEvent(new CustomEvent("change"));
       expect(triggeredEvent).to.equal(null);
     });
+
+    it("should not be triggered when press ArrowLeft/ArrowRight key in items with only one tab", async () => {
+      let triggeredEvent: any = null;
+      const container = new Tabs({
+        value: "tab1",
+        items: [
+          {
+            label: "Tab1",
+            value: "tab1",
+            content: new Text({ text: "text" }),
+          },
+        ],
+      });
+      container.addEventListener("change", (event: any) => {
+        triggeredEvent = event;
+        console.log(triggeredEvent);
+      });
+      const el = await fixture(container);
+      const itemButtons = el.querySelectorAll(
+        ".kuc-tabs__group__tab-list__tab__button"
+      );
+      itemButtons[0].dispatchEvent(new Event("click"));
+      itemButtons[0].dispatchEvent(
+        new KeyboardEvent("keydown", { key: "ArrowLeft" })
+      );
+      expect(triggeredEvent).to.equal(null);
+      itemButtons[0].dispatchEvent(
+        new KeyboardEvent("keydown", { key: "ArrowRight" })
+      );
+      expect(triggeredEvent).to.equal(null);
+    });
   });
 });
