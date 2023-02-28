@@ -1,7 +1,6 @@
 document.addEventListener("kuc:loaded", function() {
   const container = document.getElementById("sample-container__components");
   const firstContent = document.createElement("div");
-  firstContent.style = "padding: 16px";
   const textArea = new Kuc.TextArea({
     label: "フルーツ",
     requiredIcon: true,
@@ -14,7 +13,6 @@ document.addEventListener("kuc:loaded", function() {
   firstContent.appendChild(textArea);
 
   const secondContent = document.createElement("div");
-  secondContent.style = "padding: 16px";
   const dialog = new Kuc.Dialog({
     title: "Title",
     content: "Content with Icon",
@@ -25,11 +23,9 @@ document.addEventListener("kuc:loaded", function() {
   button.addEventListener("click", () => {
   dialog.open();
   });
-
   secondContent.appendChild(button);
 
   const thirdContent = document.createElement("div");
-  thirdContent.style = "padding: 16px";
   thirdContent.innerText = "tab3_content"
   const tabs = new Kuc.Tabs({
     borderVisible: true,

@@ -83,3 +83,6 @@ table th[class$="__table__header__cell"] {
 li+li {
   margin-top: 0;
 }
+#tabs div[class$="__group__tab-panel"] {
+  padding: 16px;
+}

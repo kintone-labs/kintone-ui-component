@@ -66,7 +66,6 @@ const Kuc = Kucs['1.x.x'];
 const space = kintone.app.record.getSpaceElement('space');
 
 const firstContent = document.createElement('div');
-firstContent.style = 'padding: 16px';
 const textArea = new Kuc.TextArea({
   label: 'フルーツ',
   requiredIcon: true,
@@ -79,7 +78,6 @@ const textArea = new Kuc.TextArea({
 firstContent.appendChild(textArea);
 
 const secondContent = document.createElement('div');
-secondContent.style = 'padding: 16px';
 const dialog = new Kuc.Dialog({
   title: 'Title',
   content: 'Content with Icon',
@@ -93,7 +91,6 @@ dialog.open();
 secondContent.appendChild(button);
 
 const thirdContent = document.createElement('div');
-thirdContent.style = 'padding: 16px';
 thirdContent.innerText = 'tab3_content';
 const tabs = new Kuc.Tabs({
   borderVisible: true,
