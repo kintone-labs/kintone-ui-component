@@ -5,7 +5,7 @@
 ⓘ We released kintone UI Component v1.0.0 on 04 March 2021 and now it is the mainstream.
 If you want to use it, please check [this website](https://kintone-ui-component.netlify.app/).
 
-ⓘ We will end the maintenance of v0 on 31 December 2023.
+ⓘ We will end the maintenance of kintone UI Component v0 on 31 December 2023.
 Please check [this announcement](https://github.com/kintone-labs/kintone-ui-component/discussions/1280) for details.
 
 ⓘ kintone UI Component v0.x.x library has been migrated from git://github.com/kintone/kintone-ui-component.
@@ -22,7 +22,7 @@ We welcome contributions to kintone UI Component.<br>
 For the details, please check [CONTRIBUTING.md](https://github.com/kintone-labs/kintone-ui-component/blob/v0_dev/CONTRIBUTING.md).
 
 
-If you have a question or feature request, please register [GitHub issue](https://github.com/kintone-labs/kintone-ui-component/issues/new/choose).
+If you have a question or feature request, please register [GitHub issue](https://github.com/kintone-labs/kintone-ui-component/issues/).
 
 ## License
 MIT License
