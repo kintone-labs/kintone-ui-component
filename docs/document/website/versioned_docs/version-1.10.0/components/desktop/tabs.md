@@ -29,11 +29,11 @@ Here is a list of properties that can be used for modifying the component:
 | borderVisible | boolean | true  | Show/Hide the border surrounding the content | |
 | visible | boolean | true | Show/Hide the component | |
 | items | Array\<Item> | [] | List of items for tab will be displayed | If the items is not an array, the error message 'items' property is not array. will throw in window console. |
-| Item.label | string | "" | Tab name | |
-| Item.value | string | "" | Tab key | `Item.value` is unique and required.<br><li>If `Item.value` is duplicated, the error message 'value' property is not unique in items. will throw in window console.<li>If `Item.value` is NOT set, the error message 'value' property is not specified in items. will throw in window console. |
 | Item.content | string/HTMLElement | "" | Tab content | |
-| Item.visible | boolean | true | Show/Hide the tab | |
+| Item.label | string | "" | Tab name | |
+| Item.value | string | "" | Tab key | `Item.value` is unique and required.<br>Will result an error if the `Item.value` is duplicated in `items` or not specified |
 | Item.disabled | boolean | true | Enable/Disable the tab | |
+| Item.visible | boolean | true | Show/Hide the tab | |
 
 ### Event
 
@@ -41,7 +41,7 @@ Here is a list of events that can be specified:
 
 | Name | Type | Description | Remark |
 | :--- | :--- | :--- | :--- |
-| change | function | Event handler of when selected tab is changed |  It will pass the event object as the argument<br><br>You can receive the following values in event.detail<br><li>event.detail.oldValue : “value” before the change<li>event.detail.value : “value” after the change |
+| change | function | Event handler of when selected tab is changed |  It will pass the event object as the argument<br><br>You can receive the following values in event.detail<br><li>event.detail.oldValue : “value” before the change</li><li>event.detail.value : “value” after the change</li> |
 
 ### Constructor
 
@@ -62,6 +62,7 @@ Here is a list of available constructors:
 Here is a sample code when all parameters are specified:
 
 ```javascript
+const Kuc = Kucs['1.x.x'];
 const space = kintone.app.record.getSpaceElement('space');
 const tabs = new Kuc.Tabs({
   value:  'tab-a',
