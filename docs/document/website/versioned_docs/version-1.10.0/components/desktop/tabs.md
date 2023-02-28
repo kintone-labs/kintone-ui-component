@@ -64,35 +64,67 @@ Here is a sample code when all parameters are specified:
 ```javascript
 const Kuc = Kucs['1.x.x'];
 const space = kintone.app.record.getSpaceElement('space');
-const tabs = new Kuc.Tabs({
-  value:  'tab-a',
-  className: 'options-class',
-  id: 'options-id',
+
+const firstContent = document.createElement("div");
+firstContent.style = "padding: 16px";
+const textArea = new Kuc.TextArea({
+  label: "フルーツ",
+  requiredIcon: true,
+  value: "Apple",
+  error: "エラーです",
   visible: true,
+  disabled: false,
+  placeholder: "",
+});
+firstContent.appendChild(textArea);
+
+const secondContent = document.createElement("div");
+secondContent.style = "padding: 16px";
+const dialog = new Kuc.Dialog({
+  title: "Title",
+  content: "Content with Icon",
+  footer: "Footer",
+  icon: "success",
+});
+const button = new Kuc.Button({ text: "Button" });
+button.addEventListener("click", () => {
+dialog.open();
+});
+
+secondContent.appendChild(button);
+
+const thirdContent = document.createElement("div");
+thirdContent.style = "padding: 16px";
+thirdContent.innerText = "tab3_content"
+const tabs = new Kuc.Tabs({
   borderVisible: true,
+  className: "kuc-tabs-class",
+  id: "sample-id",
   items: [
     {
-      label: 'A',
-      value: 'tab-a',
-      content: 'a',
+      label: "Tab1",
+      content: firstContent,
+      value: "tab1",
       disabled: false,
-      visible: true
     },
     {
-      label: 'B',
-      value: 'tab-b',
-      content: 'b',
-      disabled: false,
-      visible: true
+      label: "Tab2",
+      content: secondContent,
+      value: "tab2",
     },
     {
-      label: 'C',
-      value: 'tab-c',
-      content: 'c'
-      disabled: true,
-      visible: true
-    }
-  ]
+      value: "tab3",
+      label: "Tab3",
+      content: thirdContent,
+    },
+  ],
+  value: "tab2",
+  visible: true,
+});
+space.appendChild(tabs);
+
+tabs.addEventListener('change', event => {
+  console.log(event);
 });
 space.appendChild(tabs);
 
