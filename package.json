@@ -36,7 +36,7 @@
     "actionlint": "node-actionlint"
   },
   "devDependencies": {
-    "@babel/core": "^7.20.12",
+    "@babel/core": "^7.21.0",
     "@babel/preset-env": "^7.20.2",
     "@cybozu/eslint-config": "^18.0.0",
     "@open-wc/testing": "^3.1.7",
@@ -48,24 +48,24 @@
     "@storybook/manager-webpack5": "^6.5.16",
     "@storybook/web-components": "^6.5.16",
     "@types/mocha": "^10.0.1",
-    "@web/test-runner": "^0.15.0",
+    "@web/test-runner": "^0.15.1",
     "babel-loader": "^9.1.2",
     "deepmerge": "^4.3.0",
-    "eslint": "^8.33.0",
+    "eslint": "^8.35.0",
     "eslint-import-resolver-typescript": "^3.5.3",
     "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-kuc-v1": "file:eslint-plugin-kuc-v1",
     "node-actionlint": "^1.2.2",
-    "prettier": "^2.8.3",
+    "prettier": "^2.8.4",
     "ts-loader": "^9.4.2",
     "typescript": "^4.9.5",
     "webpack": "^5.75.0",
     "webpack-cli": "^5.0.1"
   },
   "dependencies": {
-    "@types/uuid": "^9.0.0",
+    "@types/uuid": "^9.0.1",
     "@webcomponents/webcomponentsjs": "^2.7.0",
-    "core-js": "^3.27.2",
+    "core-js": "^3.29.0",
     "lit": "^2.6.1",
     "regenerator-runtime": "^0.13.11",
     "uuid": "^9.0.0"
