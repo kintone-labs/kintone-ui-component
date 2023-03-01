@@ -11,7 +11,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@cybozu/eslint-config": "^18.0.0",
+    "@cybozu/eslint-config": "^18.0.1",
     "eslint": "^8.35.0",
     "prettier": "^2.8.4",
     "webpack": "^5.75.0",
