@@ -1,10 +1,11 @@
 # Home
 !!! note
-    We released kintone UI Component version 1.0.0 on 04 March 2021.
-    If you want to use it, please check <a target="_blank" href="https://kintone-ui-component.netlify.app/">this website</a> for details.
+    We released kintone UI Component v1.0.0 on 04 March 2021 and now it is the mainstream.
+    If you want to use it, please check [this website](https://kintone-ui-component.netlify.app/).
 
-    Currently, the mainstream is v1 and we will stop the maintenance of v0 on 31 December 2023.<br>
-    Until then, we will continue to mainly fix bugs and update libraries for v0. We don't plan to develop new functions.
+    We will end the maintenance of kintone UI Component v0 on 31 December 2023. Please check [this announcement](https://github.com/kintone-labs/kintone-ui-component/discussions/1280) for details.
+
+    kintone UI Component v0.x.x library has been migrated from git://github.com/kintone/kintone-ui-component.
 
 ## Quick start
 * [QuickStart Javascript](Getting-Started/QuickStart-Javascript)
