@@ -5,7 +5,6 @@
 
     We will end the maintenance of kintone UI Component v0 on 31 December 2023. Please check [this announcement](https://github.com/kintone-labs/kintone-ui-component/discussions/1280) for details.
 
-    kintone UI Component v0.x.x library has been migrated from git://github.com/kintone/kintone-ui-component.
 
 ## Quick start
 * [QuickStart Javascript](Getting-Started/QuickStart-Javascript)
