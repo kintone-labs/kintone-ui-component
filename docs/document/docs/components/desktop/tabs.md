@@ -31,7 +31,7 @@ Here is a list of properties that can be used for modifying the component:
 | Item.content | string/HTMLElement | "" | Tab content | |
 | Item.label | string | "" | Tab name | |
 | Item.value | string | "" | Tab key | `Item.value` is unique and required.<br>Will result an error if the `Item.value` is duplicated in `items` or not specified |
-| Item.disabled | boolean | true | Enable/Disable the tab | |
+| Item.disabled | boolean | false | Enable/Disable the tab | |
 | Item.visible | boolean | true | Show/Hide the tab | |
 
 ### Event
