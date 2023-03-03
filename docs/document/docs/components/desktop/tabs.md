@@ -27,7 +27,7 @@ Here is a list of properties that can be used for modifying the component:
 | value | string | ""  | Selected value | The first tab will be displayed if the `value` is unspecified or there is no matching value in `items` |
 | borderVisible | boolean | true  | Show/Hide the border surrounding the content | |
 | visible | boolean | true | Show/Hide the component | |
-| items | Array\<Item> | [] | List of items for tab will be displayed | If the items is not an array, the error message 'items' property is not array. will throw in window console. |
+| items | Array\<Item> | [] | List of tabs to display | Will result an error if the value of items is not an array |
 | Item.content | string/HTMLElement | "" | Tab content | |
 | Item.label | string | "" | Tab name | |
 | Item.value | string | "" | Tab key | `Item.value` is unique and required.<br>Will result an error if the `Item.value` is duplicated in `items` or not specified |
