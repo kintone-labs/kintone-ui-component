@@ -40,7 +40,7 @@ Here is a list of events that can be specified:
 
 | Name | Type | Description | Remark |
 | :--- | :--- | :--- | :--- |
-| change | function | Event handler of when selected tab is changed |  It will pass the event object as the argument<br><br>You can receive the following values in event.detail<br><li>event.detail.oldValue : “value” before the change</li><li>event.detail.value : “value” after the change</li> |
+| change | function | Event handler of when selected tab is changed |  It will pass the event object as the argument<br><br>You can receive the following values in event.detail<br><li>event.detail.oldValue : "value" before the change</li><li>event.detail.value : "value" after the change</li> |
 
 ### Constructor
 
