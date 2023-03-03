@@ -21,6 +21,7 @@ Tabs は、複数のタブを表示し、表示内容を切り替えることが
 ### Property
 使用できるプロパティの一覧です。プロパティを指定して値を更新することができます。
 
+#### Tabs
 | Name   | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
 | className | string | "" | コンポーネントの class 名 ||
@@ -66,4 +67,54 @@ Tabs(options)<br>
 全てのパラメータを指定した場合のサンプルコードです。
 
 ```javascript
+const Kuc = Kucs['1.x.x'];
+
+const space = kintone.app.record.getSpaceElement('space');
+
+// Create each Tab content
+const textArea = new Kuc.TextArea({
+  label: "TextArea",
+  requiredIcon: true,
+  value: "This is sample.",
+});
+
+const timePicker = new Kuc.TimePicker({
+  label: "Time"
+  value: "11:30"
+});
+
+const text = "This is sample."
+
+const tabs = new Kuc.Tabs({
+  items: [
+    {
+      label: 'A',
+      content: textArea,
+      value: 'a',
+      disabled: false,
+    },
+    {
+      label: 'B',
+      content: timePicker,
+      value: 'b',
+      disabled: false,
+    },
+    {
+      label: 'C',
+      content: text,
+      value: 'c',
+      disabled: false,
+    },
+  ],
+  value: 'a',
+  className: 'options-class',
+  id: 'options-id',
+  visible: true,
+  borderVisible: true,
+});
+space.appendChild(tabs);
+
+tabs.addEventListener('change', event => {
+  console.log(event);
+});
 ```
