@@ -73,46 +73,46 @@ const Kuc = Kucs['1.x.x'];
 const space = kintone.app.record.getSpaceElement('space');
 
 const firstContent = document.createElement("div");
-  const textArea = new Kuc.TextArea({
-    label: "Fruit",
-    requiredIcon: true,
-    value: "Apple",
-    error: "Error",
-    visible: true,
-    disabled: false,
-    placeholder: "",
-  });
-  firstContent.appendChild(textArea);
+const textArea = new Kuc.TextArea({
+  label: "Fruit",
+  requiredIcon: true,
+  value: "Apple",
+  error: "Error",
+  visible: true,
+  disabled: false,
+  placeholder: "",
+});
+firstContent.appendChild(textArea);
 
-  const secondContent = document.createElement("div");
-  const timePicker = new Kuc.TimePicker({
-    value: "11:30"
-  });
-  secondContent.appendChild(timePicker);
+const secondContent = document.createElement("div");
+const timePicker = new Kuc.TimePicker({
+  value: "11:30"
+});
+secondContent.appendChild(timePicker);
 
-  const thirdContent = document.createElement("div");
-  thirdContent.innerText = "tab3_content"
+const thirdContent = document.createElement("div");
+thirdContent.innerText = "tab3_content";
 
-  const tabs = new Kuc.Tabs({
+const tabs = new Kuc.Tabs({
   borderVisible: true,
   className: 'kuc-tabs-class',
   id: 'sample-id',
   items: [
     {
-      label: 'TextArea With Placeholder',
+      label: 'A',
       content: firstContent,
       value: 'tab-textarea',
       disabled: false,
     },
     {
-      label: 'TimePicker',
+      label: 'B',
       content: secondContent,
       value: 'tab-time-picker',
       disabled: false,
     },
     {
       value: 'tab-string-pattern',
-      label: 'Just String Pattern',
+      label: 'C',
       content: thirdContent,
       disabled: false,
     },

@@ -26,25 +26,25 @@ document.addEventListener("kuc:loaded", function() {
   id: 'sample-id',
   items: [
     {
-      label: 'TextArea With Placeholder',
+      label: 'A',
       content: firstContent,
       value: 'tab-textarea',
       disabled: false,
     },
     {
-      label: 'TimePicker',
+      label: 'B',
       content: secondContent,
       value: 'tab-time-picker',
       disabled: false,
     },
     {
       value: 'tab-string-pattern',
-      label: 'Just String Pattern',
+      label: 'C',
       content: thirdContent,
       disabled: false,
     },
   ],
-  value: 'tab-textareab',
+  value: 'tab-textarea',
   visible: true,
 });
   container.appendChild(tabs);
