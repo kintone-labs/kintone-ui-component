@@ -30,7 +30,7 @@ Here is a list of properties that can be used for modifying the component:
 | items | Array\<Item> | [] | List of tabs to display | Will result an error if the value of items is not an array |
 | Item.content | string/HTMLElement | "" | Tab content | |
 | Item.label | string | "" | Tab name | |
-| Item.value | string | "" | Tab key | `Item.value` is unique and required.<br>Will result an error if the `Item.value` is duplicated in `items` or not specified |
+| Item.value | string | "" | Key of each tab<br>*`Required` and `Unique` | `Item.value` is unique and required.<br>Will result an error if the `Item.value` is duplicated in `items` or not specified |
 | Item.disabled | boolean | false | Enable/Disable the tab | |
 | Item.visible | boolean | true | Show/Hide the tab | |
 
