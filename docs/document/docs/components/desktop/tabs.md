@@ -62,6 +62,7 @@ Here is a sample code when all parameters are specified:
 
 ```javascript
 const Kuc = Kucs['1.x.x'];
+
 const space = kintone.app.record.getSpaceElement('space');
 
 const firstContent = document.createElement('div');
