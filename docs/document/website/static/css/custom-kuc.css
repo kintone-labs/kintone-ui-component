@@ -80,7 +80,7 @@ table th[class$="__table__header__cell"] {
 #attachment div[class$="__group"] {
   display: block;
 }
-li+li {
+#tabs li+li {
   margin-top: 0;
 }
 #tabs div[class$="__group__tab-panel"] {

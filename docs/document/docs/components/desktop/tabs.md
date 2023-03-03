@@ -20,6 +20,8 @@ A multiple tabs component that can switch displaying contents with buttons.
 ### Property
 Here is a list of properties that can be used for modifying the component:
 
+#### Tabs
+
 | Name   | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
 | className | string | ""  | Component class name | |
@@ -27,12 +29,17 @@ Here is a list of properties that can be used for modifying the component:
 | value | string | ""  | Selected value | The first tab will be displayed if the `value` is unspecified or there is no matching value in `items` |
 | borderVisible | boolean | true  | Show/Hide the border surrounding the content | |
 | visible | boolean | true | Show/Hide the component | |
-| items | Array\<Item> | [] | List of tabs to display | Will result an error if the value of items is not an array |
-| Item.content | string/HTMLElement | "" | Tab content | |
-| Item.label | string | "" | Tab name | |
-| Item.value | string | "" | Key of each tab<br>*`Required` and `Unique` | `Item.value` is unique and required.<br>Will result an error if the `Item.value` is duplicated in `items` or not specified |
-| Item.disabled | boolean | false | Enable/Disable the tab | |
-| Item.visible | boolean | true | Show/Hide the tab | |
+| items | Array\<[Item](#item)\> | [] | List of tabs to display | Will result an error if the value of items is not an array |
+
+#### Item
+
+| Name   | Type | Default | Description | Remark |
+| :--- | :--- | :--- | :--- | :--- |
+| content | string/HTMLElement | "" | Tab content | |
+| label | string | "" | Tab name | |
+| value | string | "" | Key of each tab<br>*`Required` and `Unique` | `value` is unique and required.<br>Will result an error if the `value` is duplicated in `items` or not specified |
+| disabled | boolean | false | Enable/Disable the tab | |
+| visible | boolean | true | Show/Hide the tab | |
 
 ### Event
 
@@ -65,56 +72,52 @@ const Kuc = Kucs['1.x.x'];
 
 const space = kintone.app.record.getSpaceElement('space');
 
-const firstContent = document.createElement('div');
-const textArea = new Kuc.TextArea({
-  label: 'フルーツ',
-  requiredIcon: true,
-  value: 'Apple',
-  error: 'エラーです',
-  visible: true,
-  disabled: false,
-  placeholder: '',
-});
-firstContent.appendChild(textArea);
+const firstContent = document.createElement("div");
+  const textArea = new Kuc.TextArea({
+    label: "Fruit",
+    requiredIcon: true,
+    value: "Apple",
+    error: "Error",
+    visible: true,
+    disabled: false,
+    placeholder: "",
+  });
+  firstContent.appendChild(textArea);
 
-const secondContent = document.createElement('div');
-const dialog = new Kuc.Dialog({
-  title: 'Title',
-  content: 'Content with Icon',
-  footer: 'Footer',
-  icon: 'success',
-});
-const button = new Kuc.Button({ text: 'Button' });
-button.addEventListener('click', () => {
-dialog.open();
-});
-secondContent.appendChild(button);
+  const secondContent = document.createElement("div");
+  const timePicker = new Kuc.TimePicker({
+    value: "11:30"
+  });
+  secondContent.appendChild(timePicker);
 
-const thirdContent = document.createElement('div');
-thirdContent.innerText = 'tab3_content';
-const tabs = new Kuc.Tabs({
+  const thirdContent = document.createElement("div");
+  thirdContent.innerText = "tab3_content"
+
+  const tabs = new Kuc.Tabs({
   borderVisible: true,
   className: 'kuc-tabs-class',
   id: 'sample-id',
   items: [
     {
-      label: 'Tab1',
+      label: 'TextArea With Placeholder',
       content: firstContent,
-      value: 'tab1',
+      value: 'tab-textarea',
       disabled: false,
     },
     {
-      label: 'Tab2',
+      label: 'TimePicker',
       content: secondContent,
-      value: 'tab2',
+      value: 'tab-time-picker',
+      disabled: false,
     },
     {
-      value: 'tab3',
-      label: 'Tab3',
+      value: 'tab-string-pattern',
+      label: 'Just String Pattern',
       content: thirdContent,
+      disabled: false,
     },
   ],
-  value: 'tab2',
+  value: 'tab-textarea',
   visible: true,
 });
 space.appendChild(tabs);
