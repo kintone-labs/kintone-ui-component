@@ -1,8 +1,8 @@
 document.addEventListener("kuc:loaded", function() {
   const container = document.getElementById("sample-container__components");
-  const firstContent = document.createElement("div");
+
   const textArea = new Kuc.TextArea({
-    label: "Fruit",
+    label: "TextArea",
     requiredIcon: true,
     value: "Apple",
     error: "Error",
@@ -10,16 +10,14 @@ document.addEventListener("kuc:loaded", function() {
     disabled: false,
     placeholder: "",
   });
-  firstContent.appendChild(textArea);
 
-  const secondContent = document.createElement("div");
   const timePicker = new Kuc.TimePicker({
+    label: "Time",
     value: "11:30"
   });
-  secondContent.appendChild(timePicker);
 
-  const thirdContent = document.createElement("div");
-  thirdContent.innerText = "tab3_content"
+  const contentText = "This is a sample."
+
   const tabs = new Kuc.Tabs({
   borderVisible: true,
   className: 'kuc-tabs-class',
@@ -27,24 +25,24 @@ document.addEventListener("kuc:loaded", function() {
   items: [
     {
       label: 'A',
-      content: firstContent,
-      value: 'tab-textarea',
+      content: textArea,
+      value: 'a',
       disabled: false,
     },
     {
       label: 'B',
-      content: secondContent,
-      value: 'tab-time-picker',
+      content: timePicker,
+      value: 'b',
       disabled: false,
     },
     {
-      value: 'tab-string-pattern',
       label: 'C',
-      content: thirdContent,
+      content: contentText,
+      value: 'c',
       disabled: false,
     },
   ],
-  value: 'tab-textarea',
+  value: 'a',
   visible: true,
 });
   container.appendChild(tabs);

@@ -72,9 +72,9 @@ const Kuc = Kucs['1.x.x'];
 
 const space = kintone.app.record.getSpaceElement('space');
 
-const firstContent = document.createElement("div");
+// Create each Tab content
 const textArea = new Kuc.TextArea({
-  label: "Fruit",
+  label: "TextArea",
   requiredIcon: true,
   value: "Apple",
   error: "Error",
@@ -82,16 +82,13 @@ const textArea = new Kuc.TextArea({
   disabled: false,
   placeholder: "",
 });
-firstContent.appendChild(textArea);
 
-const secondContent = document.createElement("div");
 const timePicker = new Kuc.TimePicker({
+  label: "Time",
   value: "11:30"
 });
-secondContent.appendChild(timePicker);
 
-const thirdContent = document.createElement("div");
-thirdContent.innerText = "tab3_content";
+const contentText = "This is a sample."
 
 const tabs = new Kuc.Tabs({
   borderVisible: true,
@@ -100,24 +97,24 @@ const tabs = new Kuc.Tabs({
   items: [
     {
       label: 'A',
-      content: firstContent,
-      value: 'tab-textarea',
+      content: textArea,
+      value: 'a',
       disabled: false,
     },
     {
       label: 'B',
-      content: secondContent,
-      value: 'tab-time-picker',
+      content: timePicker,
+      value: 'b',
       disabled: false,
     },
     {
-      value: 'tab-string-pattern',
       label: 'C',
-      content: thirdContent,
+      content: contentText,
+      value: 'c',
       disabled: false,
     },
   ],
-  value: 'tab-textarea',
+  value: 'a',
   visible: true,
 });
 space.appendChild(tabs);

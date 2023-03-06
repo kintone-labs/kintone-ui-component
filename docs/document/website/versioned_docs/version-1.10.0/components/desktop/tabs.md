@@ -7,7 +7,7 @@ original_id: tabs
 
 ## Overview
 
-A multiple tabs component that can switch displaying contents with buttons.
+The Tabs component allows the user to display multiple tabs that can switch displaying contents.
 
 <div class="sample-container" id="tabs">
   <div id="sample-container__components"></div>
@@ -30,7 +30,7 @@ Here is a list of properties that can be used for modifying the component:
 | value | string | ""  | Selected value | The first tab will be displayed if the `value` is unspecified or there is no matching value in `items` |
 | borderVisible | boolean | true  | Show/Hide the border surrounding the content | |
 | visible | boolean | true | Show/Hide the component | |
-| items | Array\<[Item](#item)\> | [] | List of tabs to display | Will result an error if the value of items is not an array |
+| items | Array\<[Item](#item)\> | [] | List of tabs to display | Will result an error if the value of `items` is not an array |
 
 #### Item
 
@@ -38,7 +38,7 @@ Here is a list of properties that can be used for modifying the component:
 | :--- | :--- | :--- | :--- | :--- |
 | content | string/HTMLElement | "" | Tab content | |
 | label | string | "" | Tab name | |
-| value | string | "" | Key of each tab<br>*`Required` and `Unique` | `value` is unique and required.<br>Will result an error if the `value` is duplicated in `items` or not specified |
+| value | string | "" | Key of each tab<br>*`Required` and `Unique` | Will result an error if the `value` is duplicated in `items` or not specified |
 | disabled | boolean | false | Enable/Disable the tab | |
 | visible | boolean | true | Show/Hide the tab | |
 
@@ -73,9 +73,9 @@ const Kuc = Kucs['1.x.x'];
 
 const space = kintone.app.record.getSpaceElement('space');
 
-const firstContent = document.createElement("div");
+// Create each Tab content
 const textArea = new Kuc.TextArea({
-  label: "Fruit",
+  label: "TextArea",
   requiredIcon: true,
   value: "Apple",
   error: "Error",
@@ -83,16 +83,13 @@ const textArea = new Kuc.TextArea({
   disabled: false,
   placeholder: "",
 });
-firstContent.appendChild(textArea);
 
-const secondContent = document.createElement("div");
 const timePicker = new Kuc.TimePicker({
+  label: "Time",
   value: "11:30"
 });
-secondContent.appendChild(timePicker);
 
-const thirdContent = document.createElement("div");
-thirdContent.innerText = "tab3_content";
+const contentText = "This is a sample."
 
 const tabs = new Kuc.Tabs({
   borderVisible: true,
@@ -101,24 +98,24 @@ const tabs = new Kuc.Tabs({
   items: [
     {
       label: 'A',
-      content: firstContent,
-      value: 'tab-textarea',
+      content: textArea,
+      value: 'a',
       disabled: false,
     },
     {
       label: 'B',
-      content: secondContent,
-      value: 'tab-time-picker',
+      content: timePicker,
+      value: 'b',
       disabled: false,
     },
     {
-      value: 'tab-string-pattern',
       label: 'C',
-      content: thirdContent,
+      content: contentText,
+      value: 'c',
       disabled: false,
     },
   ],
-  value: 'tab-textarea',
+  value: 'a',
   visible: true,
 });
 space.appendChild(tabs);
