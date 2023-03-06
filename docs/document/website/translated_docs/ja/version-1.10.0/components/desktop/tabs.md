@@ -103,7 +103,7 @@ const tabs = new Kuc.Tabs({
       content: text,
       value: 'c',
       disabled: false
-    },
+    }
   ],
   value: 'a',
   className: 'options-class',

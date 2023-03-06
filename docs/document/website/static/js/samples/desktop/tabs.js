@@ -35,7 +35,7 @@ document.addEventListener("kuc:loaded", function() {
       content: contentText,
       value: 'c',
       disabled: false
-    },
+    }
   ],
   value: 'a',
   visible: true
