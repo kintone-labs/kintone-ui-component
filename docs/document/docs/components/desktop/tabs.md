@@ -37,7 +37,7 @@ Here is a list of properties that can be used for modifying the component:
 | :--- | :--- | :--- | :--- | :--- |
 | content | string/HTMLElement | "" | Tab content | |
 | label | string | "" | Tab name | |
-| value | string | "" | Key of each tab<br>*`Required` and `Unique` | `value` is unique and required.<br>Will result an error if the `value` is duplicated in `items` or not specified |
+| value | string | "" | Key of each tab<br>*`Required` and `Unique` | Will result an error if the `value` is duplicated in `items` or not specified |
 | disabled | boolean | false | Enable/Disable the tab | |
 | visible | boolean | true | Show/Hide the tab | |
 
