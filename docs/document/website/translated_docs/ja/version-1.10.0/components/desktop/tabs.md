@@ -79,11 +79,11 @@ const textArea = new Kuc.TextArea({
 });
 
 const timePicker = new Kuc.TimePicker({
-  label: "Time"
-  value: "11:30"
+  label: "Time",
+  value: "11:30",
 });
 
-const text = "This is sample."
+const text = "This is sample.";
 
 const tabs = new Kuc.Tabs({
   items: [

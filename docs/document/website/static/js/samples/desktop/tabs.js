@@ -4,19 +4,15 @@ document.addEventListener("kuc:loaded", function() {
   const textArea = new Kuc.TextArea({
     label: "TextArea",
     requiredIcon: true,
-    value: "Apple",
-    error: "Error",
-    visible: true,
-    disabled: false,
-    placeholder: "",
+    value: "This is sample.",
   });
 
   const timePicker = new Kuc.TimePicker({
     label: "Time",
-    value: "11:30"
+    value: "11:30",
   });
 
-  const contentText = "This is a sample."
+  const contentText = "This is a sample.";
 
   const tabs = new Kuc.Tabs({
   borderVisible: true,
