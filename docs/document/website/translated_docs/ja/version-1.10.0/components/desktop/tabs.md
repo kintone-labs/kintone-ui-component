@@ -74,13 +74,12 @@ const space = kintone.app.record.getSpaceElement('space');
 // Create each Tab content
 const textArea = new Kuc.TextArea({
   label: "TextArea",
-  requiredIcon: true,
-  value: "This is sample.",
+  value: "This is sample."
 });
 
 const timePicker = new Kuc.TimePicker({
   label: "Time",
-  value: "11:30",
+  value: "11:30"
 });
 
 const text = "This is sample.";
@@ -91,26 +90,26 @@ const tabs = new Kuc.Tabs({
       label: 'A',
       content: textArea,
       value: 'a',
-      disabled: false,
+      disabled: false
     },
     {
       label: 'B',
       content: timePicker,
       value: 'b',
-      disabled: false,
+      disabled: false
     },
     {
       label: 'C',
       content: text,
       value: 'c',
-      disabled: false,
+      disabled: false
     },
   ],
   value: 'a',
   className: 'options-class',
   id: 'options-id',
   visible: true,
-  borderVisible: true,
+  borderVisible: true
 });
 space.appendChild(tabs);
 

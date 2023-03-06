@@ -3,13 +3,12 @@ document.addEventListener("kuc:loaded", function() {
 
   const textArea = new Kuc.TextArea({
     label: "TextArea",
-    requiredIcon: true,
-    value: "This is sample.",
+    value: "This is sample."
   });
 
   const timePicker = new Kuc.TimePicker({
     label: "Time",
-    value: "11:30",
+    value: "11:30"
   });
 
   const contentText = "This is a sample.";
@@ -23,23 +22,23 @@ document.addEventListener("kuc:loaded", function() {
       label: 'A',
       content: textArea,
       value: 'a',
-      disabled: false,
+      disabled: false
     },
     {
       label: 'B',
       content: timePicker,
       value: 'b',
-      disabled: false,
+      disabled: false
     },
     {
       label: 'C',
       content: contentText,
       value: 'c',
-      disabled: false,
+      disabled: false
     },
   ],
   value: 'a',
-  visible: true,
+  visible: true
 });
   container.appendChild(tabs);
 });
