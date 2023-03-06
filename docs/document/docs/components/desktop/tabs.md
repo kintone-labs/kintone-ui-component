@@ -29,7 +29,7 @@ Here is a list of properties that can be used for modifying the component:
 | value | string | ""  | Selected value | The first tab will be displayed if the `value` is unspecified or there is no matching value in `items` |
 | borderVisible | boolean | true  | Show/Hide the border surrounding the content | |
 | visible | boolean | true | Show/Hide the component | |
-| items | Array\<[Item](#item)\> | [] | List of tabs to display | Will result an error if the value of items is not an array |
+| items | Array\<[Item](#item)\> | [] | List of tabs to display | Will result an error if the value of `items` is not an array |
 
 #### Item
 
