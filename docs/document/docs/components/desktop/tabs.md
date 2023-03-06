@@ -6,7 +6,7 @@ sidebar_label: Tabs
 
 ## Overview
 
-A multiple tabs component that can switch displaying contents with buttons.
+The Tabs component allows the user to display multiple tabs that can switch displaying contents.
 
 <div class="sample-container" id="tabs">
   <div id="sample-container__components"></div>
