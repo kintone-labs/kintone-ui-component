@@ -24,6 +24,9 @@ export const FIELD_GROUP_CSS = `
   kuc-field-group {
     display: inline-table;
   }
+  kuc-field-group[hidden] {
+    display: none;
+  }
   .kuc-field-group__group {
     min-width: 517px;
     padding: 0 8px;

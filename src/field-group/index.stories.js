@@ -56,6 +56,7 @@ Base.args = {
   disabled: false,
   expanded: false,
   content: getContent(),
+  visible: true,
 };
 
 export const BaseDisabled = template.bind({});
@@ -64,4 +65,5 @@ BaseDisabled.args = {
   disabled: true,
   expanded: false,
   content: getContent(),
+  visible: true,
 };
