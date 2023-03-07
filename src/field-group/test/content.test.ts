@@ -9,7 +9,7 @@ const getContent = (content: string) => {
   return contentEl;
 };
 
-describe("Dropdown", () => {
+describe("FieldGroup", () => {
   describe("content", () => {
     it("should be display none when not assigned in constructor", async () => {
       const container = new FieldGroup({ content: getContent("") });
