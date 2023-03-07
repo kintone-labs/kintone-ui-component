@@ -77,6 +77,7 @@ let exportFieldGroup;
             aria-expanded="${this.expanded && !this.disabled}"
             ?disabled="${this.disabled}"
             @click="${this._handleClickButton}"
+            @keydown="${this._handleKeyDownButton}"
           >
             ${this._getSvgTemplate()}
             <span class="kuc-field-group__group__toggle__label"
@@ -152,12 +153,14 @@ let exportFieldGroup;
       event.stopPropagation();
     }
 
-    private _handleClickButton(event: Event) {
-      if (this.disabled) {
-        event.preventDefault();
-        return;
+    private _handleKeyDownButton(event: KeyboardEvent) {
+      event.preventDefault();
+      if (event.key === "Enter" || event.key === " ") {
+        this._handleClickButton();
       }
+    }
 
+    private _handleClickButton() {
       this.expanded = !this.expanded;
       const eventDetail: FieldGroupChangeEventDetail = {
         expanded: this.expanded,
