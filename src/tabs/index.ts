@@ -62,7 +62,14 @@ let exportTabs;
           return false;
         }
         for (let index = 0; index < this.items.length; index++) {
-          if (!validateValueString(this.items[index].value)) {
+          const itemValue = this.items[index].value;
+          if (itemValue === undefined) {
+            this.throwErrorAfterUpdateComplete(
+              ERROR_MESSAGE.ITEMS.IS_NOT_SPECIFIED
+            );
+            return false;
+          }
+          if (!validateValueString(itemValue)) {
             this.throwErrorAfterUpdateComplete(
               ERROR_MESSAGE.ITEMS.IS_NOT_STRING
             );
