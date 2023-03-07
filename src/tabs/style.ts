@@ -78,7 +78,7 @@ export const TABS_CSS = `
     padding: 0;
     border-top: 0;
   }
-  .kuc-tabs__group__tab-panel[borderVisible] {
+  .kuc-tabs__group__tab-panel[border-visible] {
     box-shadow: 0 0 8px 2px rgb(0 0 0 / 10%);
   }
   .kuc-tabs__group__tab-panel__content[hidden]{

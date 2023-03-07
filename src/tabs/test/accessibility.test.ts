@@ -1,6 +1,6 @@
 import { expect, fixture } from "@open-wc/testing";
 
-import { Text } from "../../text/index";
+import { Text } from "../../text";
 import { Tabs } from "../index";
 
 const items = [
@@ -38,16 +38,11 @@ describe("Tabs", () => {
       itemButtons[3].addEventListener("focus", (event) => {
         tab3FocusTriggerEvent = event;
       });
-      itemButtons[1].dispatchEvent(new Event("click"));
-      const tabsUl = el.querySelector(
-        ".kuc-tabs__group__tab-list"
-      ) as HTMLUListElement;
-      tabsUl.dispatchEvent(new Event("blur"));
-      itemButtons[1].dispatchEvent(new Event("click"));
-      itemButtons[1].dispatchEvent(
+      itemButtons[3].dispatchEvent(new Event("click"));
+      expect(tab3FocusTriggerEvent.type).to.equal("focus");
+      itemButtons[3].dispatchEvent(
         new KeyboardEvent("keydown", { key: "ArrowLeft" })
       );
-      expect(tab3FocusTriggerEvent.type).to.equal("focus");
       itemButtons[3].dispatchEvent(
         new KeyboardEvent("keydown", { key: "ArrowRight" })
       );
@@ -72,11 +67,11 @@ describe("Tabs", () => {
       itemButtons[1].dispatchEvent(
         new KeyboardEvent("keydown", { key: "End" })
       );
-      expect(tab1FocusTriggerEvent.type).to.equal("focus");
+      expect(tab3FocusTriggerEvent.type).to.equal("focus");
       itemButtons[3].dispatchEvent(
         new KeyboardEvent("keydown", { key: "Home" })
       );
-      expect(tab3FocusTriggerEvent.type).to.equal("focus");
+      expect(tab1FocusTriggerEvent.type).to.equal("focus");
     });
   });
 });

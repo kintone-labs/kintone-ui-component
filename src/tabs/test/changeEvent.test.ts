@@ -1,6 +1,6 @@
 import { expect, fixture } from "@open-wc/testing";
 
-import { Text } from "../../text/index";
+import { Text } from "../../text";
 import { Tabs } from "../index";
 
 const items = [
@@ -69,7 +69,6 @@ describe("Tabs", () => {
       });
       container.addEventListener("change", (event: any) => {
         triggeredEvent = event;
-        console.log(triggeredEvent);
       });
       const el = await fixture(container);
       const itemButtons = el.querySelectorAll(

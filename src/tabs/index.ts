@@ -11,6 +11,7 @@ import {
 } from "../base/kuc-base";
 import {
   validateArrayType,
+  validateDuplicatedValues,
   validateProps,
   validateValueString,
 } from "../base/validator";
@@ -25,12 +26,11 @@ let exportTabs;
     return;
   }
   class KucTabs extends KucBase {
-    @property({ type: Boolean }) borderVisible = true;
     @property({ type: String, reflect: true, attribute: "class" }) className =
       "";
     @property({ type: String, reflect: true, attribute: "id" }) id = "";
-    @property({ type: Array }) items: TabsItem[] = [];
     @property({ type: String }) value = "";
+    @property({ type: Boolean }) borderVisible = true;
     @property({
       type: Boolean,
       attribute: "hidden",
@@ -38,6 +38,7 @@ let exportTabs;
       converter: visiblePropConverter,
     })
     visible = true;
+    @property({ type: Array }) items: TabsItem[] = [];
 
     @queryAll(".kuc-tabs__group__tab-list__tab__button")
     private _tabButtons!: HTMLButtonElement[];
@@ -63,12 +64,13 @@ let exportTabs;
         for (let index = 0; index < this.items.length; index++) {
           if (!validateValueString(this.items[index].value)) {
             this.throwErrorAfterUpdateComplete(
-              ERROR_MESSAGE.VALUE.IS_NOT_STRING
+              ERROR_MESSAGE.ITEMS.IS_NOT_STRING
             );
             return false;
           }
         }
-        if (this._validateItemsHaveDuplicateValue(this.items)) {
+        const valueArray = this.items.map((item) => item.value);
+        if (!validateDuplicatedValues(valueArray)) {
           this.throwErrorAfterUpdateComplete(ERROR_MESSAGE.ITEMS.IS_DUPLICATED);
           return false;
         }
@@ -79,18 +81,16 @@ let exportTabs;
       }
       return true;
     }
-    willUpdate(_changedProperties: PropertyValues): void {
-      if (this._isValueMatchingItems(this.value)) {
-        this._selectedValue = this.value;
-      } else if (this.items.length > 0) {
-        this.items.some((item) => {
-          if (item.visible !== false) {
-            this._selectedValue = item.value;
-            return true;
-          }
-          return false;
-        });
-      }
+    willUpdate(changedProperties: PropertyValues): void {
+      this._selectedValue = "";
+      this.items.forEach((item) => {
+        if (
+          item.visible !== false &&
+          (this.value === item.value || this._selectedValue === "")
+        ) {
+          this._selectedValue = item.value;
+        }
+      });
     }
 
     render() {
@@ -105,7 +105,7 @@ let exportTabs;
           </ul>
           <div
             class="kuc-tabs__group__tab-panel"
-            ?borderVisible="${this.borderVisible}"
+            ?border-visible="${this.borderVisible}"
           >
             ${this.items.map((item) => this._getTabContentTemplate(item))}
           </div>
@@ -154,12 +154,6 @@ let exportTabs;
       </div>`;
     }
 
-    private _validateItemsHaveDuplicateValue(items: TabsItem[]) {
-      const valueArray = items.map((item) => item.value);
-      const valueSet = new Set(valueArray);
-      return valueSet.size !== valueArray.length;
-    }
-
     private _handleMouseDown(event: Event) {
       this._isClick = true;
     }
@@ -169,13 +163,9 @@ let exportTabs;
       const currentIndex = this._getCurrentTabIndex(tabEl.value);
       this._tabButtons[currentIndex].focus();
       if (this.value === tabEl.value) return;
-      const oldValue = this.value;
-      const newValue = tabEl.value;
-      this.value = newValue;
-      const eventDetail: TabsChangeEventDetail = {
-        oldValue,
-        value: newValue,
-      };
+      const eventDetail: TabsChangeEventDetail = this._generateEventDetail(
+        tabEl.value
+      );
       dispatchCustomEvent(this, "change", eventDetail);
     }
 
@@ -299,15 +289,6 @@ let exportTabs;
         value: newValue,
       };
       return eventDetail;
-    }
-
-    private _isValueMatchingItems(value: string): boolean {
-      for (let i = 0; i < this.items.length; i++) {
-        if (value === this.items[i].value && this.items[i].visible !== false) {
-          return true;
-        }
-      }
-      return false;
     }
   }
   window.customElements.define("kuc-tabs", KucTabs);

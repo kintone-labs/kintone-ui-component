@@ -36,7 +36,7 @@ describe("Tabs", () => {
       expect(itemButtons[2].hasAttribute("disabled")).to.equal(true);
     });
 
-    it("should be throw error when assigned duplicated items", (done) => {
+    it("should be throw error when assigned not array", (done) => {
       const handleError = (event: any) => {
         const errorMsg = event.reason.message;
         expect(errorMsg).to.equal("'items' property is not array.");
@@ -66,7 +66,7 @@ describe("Tabs", () => {
     it("should be throw error when assigned a not string value in items", (done) => {
       const handleError = (event: any) => {
         const errorMsg = event.reason.message;
-        expect(errorMsg).to.equal("'value' property is not string.");
+        expect(errorMsg).to.equal("'value' property is not string in items.");
         window.removeEventListener("unhandledrejection", handleError);
         done();
       };
