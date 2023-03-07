@@ -13,10 +13,10 @@ export declare type TabsItem = {
 export declare type TabsProp = {
   className?: string;
   id?: string;
-  value: string;
-  borderVisible: boolean;
+  value?: string;
+  borderVisible?: boolean;
   visible?: boolean;
-  items: TabsItem[];
+  items?: TabsItem[];
 };
 
 export declare type TabsChangeEventDetail = {
