@@ -43,10 +43,12 @@ describe("Tabs", () => {
       itemButtons[3].dispatchEvent(
         new KeyboardEvent("keydown", { key: "ArrowLeft" })
       );
-      itemButtons[3].dispatchEvent(
+      expect(tab1FocusTriggerEvent.type).to.equal("focus");
+      tab3FocusTriggerEvent = null;
+      itemButtons[1].dispatchEvent(
         new KeyboardEvent("keydown", { key: "ArrowRight" })
       );
-      expect(tab1FocusTriggerEvent.type).to.equal("focus");
+      expect(tab3FocusTriggerEvent.type).to.equal("focus");
     });
 
     it("should be move focus when press Home/End key", async () => {
