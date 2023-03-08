@@ -36,9 +36,7 @@ let exportAttachment;
   class KucAttachment extends KucBase {
     @property({ type: String, reflect: true, attribute: "class" }) className =
       "";
-    @property({ type: Boolean }) disabled = false;
     @property({ type: String }) error = "";
-    @property({ type: Array }) files: FileItem[] = [];
     @property({ type: String, reflect: true, attribute: "id" })
     id = "";
     @property({ type: String }) label = "";
@@ -49,6 +47,8 @@ let exportAttachment;
       converter: languagePropConverter,
     })
     language = "auto";
+    @property({ type: String }) message = "";
+    @property({ type: Boolean }) disabled = false;
     @property({ type: Boolean }) requiredIcon = false;
     @property({
       type: Boolean,
@@ -57,6 +57,8 @@ let exportAttachment;
       converter: visiblePropConverter,
     })
     visible = true;
+    @property({ type: Array }) files: FileItem[] = [];
+
     private _GUID: string;
     @state()
     private _isDraging = false;
@@ -155,6 +157,11 @@ let exportAttachment;
               @change="${this._handleChangeFiles}"></input>
             </div>
           </div>
+          <p class="kuc-attachment__group__files__browse-message"
+            ?hidden="${!this.message || this.message === ""}"
+          >
+            ${this.message}
+          </p>
         </div>
         <kuc-base-error
           class="kuc-attachment__error"

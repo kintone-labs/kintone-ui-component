@@ -7,14 +7,15 @@ export declare type FileItem =
   | { name: string; size: string; [key: string]: any };
 export declare type AttachmentProps = {
   className?: string;
-  disabled?: boolean;
   error?: string;
-  files?: FileItem[];
   id?: string;
   label?: string;
-  language?: "ja" | "en" | "zh" | "zh-TW" | "auto";
+  message?: string;
+  disabled?: boolean;
   requiredIcon?: boolean;
   visible?: boolean;
+  files?: FileItem[];
+  language?: "ja" | "en" | "zh" | "zh-TW" | "auto";
 };
 export declare type AttachmentChangeEventDetail = {
   files?: FileItem[];
@@ -24,14 +25,15 @@ export declare type AttachmentChangeEventDetail = {
 };
 export declare class Attachment extends KucBase {
   className: string;
-  disabled: boolean;
   error: string;
-  files: FileItem[];
   id: string;
   label: string;
   language: string;
+  message: string;
+  disabled: boolean;
   requiredIcon: boolean;
   visible: boolean;
+  files: FileItem[];
   constructor(props?: AttachmentProps);
   update(changedProperties: PropertyValues): void;
   render(): import("lit").TemplateResult<1>;
