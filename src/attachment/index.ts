@@ -158,7 +158,7 @@ let exportAttachment;
             </div>
           </div>
           <p class="kuc-attachment__group__files__browse-message"
-            ?hidden="${!this.message || this.message === ""}"
+            ?hidden="${!this.message}"
           >
             ${this.message}
           </p>
