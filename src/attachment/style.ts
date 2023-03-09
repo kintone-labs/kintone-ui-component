@@ -186,11 +186,6 @@ export const ATTACHMENT_CSS = `
     color: #3498db;
     font-size: 14px;
   }
-  .kuc-attachment__group__files__browse-button {
-    display: inline-block;
-    padding: 8px;
-    margin-right: 16px;
-  }
   .kuc-attachment__group__files__browse-message {
     display: inline-block;
     color: #888888;

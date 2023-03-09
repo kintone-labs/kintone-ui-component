@@ -18,6 +18,15 @@ describe("Attachment", () => {
       );
     });
 
+    it("should not be displayed when not assigned on constructor", async () => {
+      const container = new Attachment({});
+      const el = await fixture(container);
+      const messageEl = el.querySelector(
+        ".kuc-attachment__group__files__browse-message"
+      ) as HTMLParagraphElement;
+      expect(messageEl.hasAttribute("hidden")).to.equal(true);
+    });
+
     it('should be display "(Max: 2GB)" when changed to "(Max: 2GB)" by setter', async () => {
       const container = new Attachment({
         message: "(Max: 1GB)",
