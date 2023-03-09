@@ -5,7 +5,10 @@ import { Attachment } from "../index";
 describe("Attachment", () => {
   describe("message", () => {
     it("should be displayed when message assigned on constructor", async () => {
-      const container = new Attachment({ message: "(Max: 1GB)" });
+      const container = new Attachment({
+        message: "(Max: 1GB)",
+        language: "ja",
+      });
       const el = await fixture(container);
       const messageEl = el.querySelector(
         ".kuc-attachment__group__files__browse-message"
