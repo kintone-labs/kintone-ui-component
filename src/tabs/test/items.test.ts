@@ -63,19 +63,6 @@ describe("Tabs", () => {
       fixture(container);
     });
 
-    it("should be throw error when assigned a not string value in items", (done) => {
-      const handleError = (event: any) => {
-        const errorMsg = event.reason.message;
-        expect(errorMsg).to.equal("'value' property is not string in items.");
-        window.removeEventListener("unhandledrejection", handleError);
-        done();
-      };
-      window.addEventListener("unhandledrejection", handleError);
-
-      const container = new Tabs({ items: noStringValueItems });
-      fixture(container);
-    });
-
     it("should be throw error when not assigned value in items", (done) => {
       const handleError = (event: any) => {
         const errorMsg = event.reason.message;

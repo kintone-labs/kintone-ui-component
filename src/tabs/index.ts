@@ -55,6 +55,7 @@ let exportTabs;
       const validProps = validateProps(props);
       Object.assign(this, validProps);
     }
+
     shouldUpdate(changedProperties: PropertyValues): boolean {
       if (changedProperties.has("items")) {
         if (!validateArrayType(this.items)) {
@@ -66,12 +67,6 @@ let exportTabs;
           if (itemValue === undefined) {
             this.throwErrorAfterUpdateComplete(
               ERROR_MESSAGE.ITEMS.IS_NOT_SPECIFIED
-            );
-            return false;
-          }
-          if (!validateValueString(itemValue)) {
-            this.throwErrorAfterUpdateComplete(
-              ERROR_MESSAGE.ITEMS.IS_NOT_STRING
             );
             return false;
           }
@@ -88,6 +83,7 @@ let exportTabs;
       }
       return true;
     }
+
     willUpdate(changedProperties: PropertyValues): void {
       this._selectedValue = "";
       this.items.forEach((item) => {
@@ -108,19 +104,23 @@ let exportTabs;
             role="tablist"
             @blur="${this._handleBlur}"
           >
-            ${this.items.map((item) => this._getTabTemplate(item))}
+            ${this.items.map((item, index) =>
+              this._getTabTemplate(item, index)
+            )}
           </ul>
           <div
             class="kuc-tabs__group__tab-panel"
             ?border-visible="${this.borderVisible}"
           >
-            ${this.items.map((item) => this._getTabContentTemplate(item))}
+            ${this.items.map((item, index) =>
+              this._getTabContentTemplate(item, index)
+            )}
           </div>
         </div>
       `;
     }
 
-    private _getTabTemplate(item: TabsItem) {
+    private _getTabTemplate(item: TabsItem, index: number) {
       const isSelected = item.value === this._selectedValue;
       return html`<li
         role="presentation"
@@ -134,8 +134,8 @@ let exportTabs;
           class="kuc-tabs__group__tab-list__tab__button ${this._isClick
             ? "kuc-tabs__group__tab-list__tab__button--click"
             : ""}"
-          id="${this._GUID}-button-${item.value}"
-          aria-controls="${this._GUID}-tabpanel-${item.value}"
+          id="${this._GUID}-button-${index}"
+          aria-controls="${this._GUID}-tabpanel-${index}"
           value="${item.value}"
           @click="${this._handleClickTab}"
           @mousedown="${this._handleMouseDown}"
@@ -147,13 +147,13 @@ let exportTabs;
       </li>`;
     }
 
-    private _getTabContentTemplate(item: TabsItem) {
+    private _getTabContentTemplate(item: TabsItem, index: number) {
       const isSelected = item.value === this._selectedValue;
       return html`<div
         class="kuc-tabs__group__tab-panel__content"
         role="tabpanel"
-        id="${this._GUID}-tabpanel-${item.value}"
-        aria-labelledby="${this._GUID}-button-${item.value}"
+        id="${this._GUID}-tabpanel-${index}"
+        aria-labelledby="${this._GUID}-button-${index}"
         ?hidden="${!isSelected}"
         @change="${this._handleChangeEvent}"
       >
@@ -167,7 +167,10 @@ let exportTabs;
 
     private _handleClickTab(event: Event) {
       const tabEl = event.target as HTMLButtonElement;
-      const currentIndex = this._getCurrentTabIndex(tabEl.value);
+      tabEl.blur();
+      const currentIndex = this._getCurrentTabIndex(
+        tabEl.getAttribute("value") as string
+      );
       this._tabButtons[currentIndex].focus();
       if (this.value === tabEl.value) return;
       const eventDetail: TabsChangeEventDetail = this._generateEventDetail(
@@ -191,27 +194,23 @@ let exportTabs;
         case "Left":
         case "ArrowLeft": {
           doPreventEvent = true;
-          const tabEl = event.target as HTMLButtonElement;
-          this._moveToAdjacentTab(tabEl.value, "prev");
+          this._moveToAdjacentTab(event.target as HTMLButtonElement, "prev");
           break;
         }
         case "Right":
         case "ArrowRight": {
           doPreventEvent = true;
-          const tabEl = event.target as HTMLButtonElement;
-          this._moveToAdjacentTab(tabEl.value, "next");
+          this._moveToAdjacentTab(event.target as HTMLButtonElement, "next");
           break;
         }
         case "Home": {
           doPreventEvent = true;
-          const tabEl = event.target as HTMLButtonElement;
-          this._moveToLastFirstTab(tabEl.value, "first");
+          this._moveToLastFirstTab(event.target as HTMLButtonElement, "first");
           break;
         }
         case "End": {
           doPreventEvent = true;
-          const tabEl = event.target as HTMLButtonElement;
-          this._moveToLastFirstTab(tabEl.value, "last");
+          this._moveToLastFirstTab(event.target as HTMLButtonElement, "last");
           break;
         }
       }
@@ -222,21 +221,37 @@ let exportTabs;
     }
 
     private _getCurrentTabIndex(currentValue: string) {
-      let currentIndex = 0;
+      let currentIndex = -1;
       for (let index = 0; index < this.items.length; index++) {
         if (this.items[index].value === currentValue) {
           currentIndex = index;
           break;
         }
       }
+      if (currentIndex === -1) {
+        currentIndex = this._getFirstVisibleTabIndex();
+      }
       return currentIndex;
     }
 
+    private _getFirstVisibleTabIndex() {
+      let visibleIndex = 0;
+      while (visibleIndex <= this.items.length) {
+        if (this.items[visibleIndex].visible !== false) {
+          break;
+        }
+        visibleIndex++;
+      }
+      return visibleIndex;
+    }
+
     private _moveToLastFirstTab(
-      currentValue: string,
+      triggerEl: HTMLButtonElement,
       direction: "first" | "last"
     ) {
-      const currentIndex = this._getCurrentTabIndex(currentValue);
+      const currentIndex = this._getCurrentTabIndex(
+        triggerEl.getAttribute("value") as string
+      );
       const increment = direction === "last" ? -1 : 1;
       let index = direction === "last" ? this.items.length - 1 : 0;
       while (index !== currentIndex) {
@@ -244,12 +259,15 @@ let exportTabs;
           this.items[index].visible !== false &&
           this.items[index].disabled !== true
         ) {
+          triggerEl.blur();
           dispatchCustomEvent(
             this,
             "change",
-            this._generateEventDetail(this.items[index].value)
+            this._generateEventDetail(
+              this._tabButtons[index].getAttribute("value") as string
+            )
           );
-          this._tabButtons[index].focus();
+          this._tabButtons[this._getCurrentTabIndex(this.value)].focus();
           break;
         }
         index += increment;
@@ -257,10 +275,12 @@ let exportTabs;
     }
 
     private _moveToAdjacentTab(
-      currentValue: string,
+      triggerEl: HTMLButtonElement,
       direction: "next" | "prev"
     ) {
-      const currentIndex = this._getCurrentTabIndex(currentValue);
+      const currentIndex = this._getCurrentTabIndex(
+        triggerEl.getAttribute("value") as string
+      );
       const increment = direction === "next" ? 1 : -1;
       let index = currentIndex + increment;
       while (index !== currentIndex) {
@@ -276,12 +296,15 @@ let exportTabs;
           this.items[index].visible !== false &&
           this.items[index].disabled !== true
         ) {
+          triggerEl.blur();
           dispatchCustomEvent(
             this,
             "change",
-            this._generateEventDetail(this.items[index].value)
+            this._generateEventDetail(
+              this._tabButtons[index].getAttribute("value") as string
+            )
           );
-          this._tabButtons[index].focus();
+          this._tabButtons[this._getCurrentTabIndex(this.value)].focus();
           break;
         }
         index += increment;
