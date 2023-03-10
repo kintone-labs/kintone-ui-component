@@ -28,7 +28,12 @@ module.exports = {
             const ignoredFunctionList = [
               "_setInitialValue",
               "_checkAndUpdateMaxMinProperty",
-              "_checkAndUpdateTimeStepProperty"
+              "_checkAndUpdateTimeStepProperty",
+              "_handleClickPreviousButton",
+              "_handleClickNextButton",
+              "_getErrorMessageWhenValidateColumns",
+              "_getErrorValidateColumnsAndData",
+              "_getFileSize"
             ];
             if (
               body.kind !== "constructor" &&
