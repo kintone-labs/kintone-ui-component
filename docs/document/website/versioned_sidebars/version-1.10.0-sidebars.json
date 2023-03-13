@@ -24,6 +24,7 @@
           "version-1.10.0-components/desktop/readonly-table",
           "version-1.10.0-components/desktop/spinner",
           "version-1.10.0-components/desktop/table",
+          "version-1.10.0-components/desktop/tabs",
           "version-1.10.0-components/desktop/text",
           "version-1.10.0-components/desktop/textarea",
           "version-1.10.0-components/desktop/time-picker"
