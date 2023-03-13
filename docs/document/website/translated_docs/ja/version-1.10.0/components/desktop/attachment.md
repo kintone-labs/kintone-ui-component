@@ -28,6 +28,7 @@ Attachment は選択もしくはドラッグ&ドロップでファイルをア�
 | id | string | ""  | コンポーネントの id 名 | |
 | label | string | ""  | コンポーネントの説明ラベル | 未指定、あるいは空文字の場合、label は表示されない |
 | language *1 | string | "auto"  | 	言語設定 | 指定できるオプション: "auto", "en", "ja", "zh", "zh-TW"<br>"auto" を指定した場合、HTML の lang 設定に従う（lang 設定が "en"/"zh"/"zh-TW"/"ja" 以外の場合は、言語設定が "en" になる） |
+| message | string | ""  | コンポーネントに表示するメッセージ（file type/size の制限事項など） | |
 | disabled | boolean | false | コンポーネントの選択可/不可設定 | |
 | requiredIcon | boolean | false | コンポーネントの必須アイコン表示/非表示設定 | |
 | visible | boolean | true | コンポーネントの表示/非表示設定 | |
@@ -74,6 +75,7 @@ const attachment = new Kuc.Attachment({
     new File(['foo'], 'foo.txt', { type: 'text/plain' })
   ],
   language: 'auto',
+  message: 'Max size: 50MB',
   error: 'Error occurred!',
   className: 'options-class',
   id: 'options-id',
