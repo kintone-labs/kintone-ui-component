@@ -85,15 +85,11 @@ let exportTabs;
     }
 
     willUpdate(changedProperties: PropertyValues): void {
-      this._selectedValue = "";
-      this.items.forEach((item) => {
-        if (
-          item.visible !== false &&
-          (this.value === item.value || this._selectedValue === "")
-        ) {
-          this._selectedValue = item.value;
-        }
-      });
+      let tabIndex = this._getMatchedTabIndex();
+      if (tabIndex === -1) {
+        tabIndex = this._getFirstVisibleTabIndex();
+      }
+      tabIndex > -1 && (this._selectedValue = this.items[tabIndex].value);
     }
 
     render() {
@@ -154,7 +150,7 @@ let exportTabs;
         role="tabpanel"
         id="${this._GUID}-tabpanel-${index}"
         aria-labelledby="${this._GUID}-button-${index}"
-        ?hidden="${!isSelected}"
+        ?hidden="${!isSelected || item.visible === false}"
         @change="${this._handleChangeEvent}"
       >
         ${item.content ? unsafeHTMLConverter(item.content) : ""}
@@ -235,14 +231,13 @@ let exportTabs;
     }
 
     private _getFirstVisibleTabIndex() {
-      let visibleIndex = 0;
-      while (visibleIndex <= this.items.length) {
-        if (this.items[visibleIndex].visible !== false) {
-          break;
-        }
-        visibleIndex++;
-      }
-      return visibleIndex;
+      return this.items.findIndex((item) => item.visible !== false);
+    }
+
+    private _getMatchedTabIndex() {
+      return this.items.findIndex(
+        (item) => item.visible !== false && item.value === this.value
+      );
     }
 
     private _moveToLastFirstTab(

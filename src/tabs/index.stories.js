@@ -93,18 +93,23 @@ Base.args = {
   items: [
     {
       label: "Tab1",
-      content: firstContent,
       value: "tab1",
-      disabled: false,
+      disabled: true,
+      visible: true,
+      content: firstContent,
     },
     {
       label: "Tab2",
-      content: secondContent,
       value: "tab2",
+      disabled: false,
+      visible: true,
+      content: secondContent,
     },
     {
-      value: "tab3",
       label: "Tab3",
+      value: "tab3",
+      disabled: false,
+      visible: true,
       content: thirdContent,
     },
   ],
