@@ -27,7 +27,6 @@ Tabs は、複数のタブを表示し、表示内容を切り替えることが
 | className | string | "" | コンポーネントの class 名 ||
 | id | string | "" | コンポーネントの id 名 ||
 | value | string | ""  | 選択されているタブ | <li>items 内に一致する value がある場合、disabled でもそのタブが表示される<li>以下の場合は最初の visible タブが表示される<ul><li>items 内に一致する value がない場合<li>items 内に一致する value があるが、そのタブが visible ではない場合</ul><li>value が文字列以外の場合、エラーを出力する |
-| value | string | ""  | Selected value | <li>items 内に一致する value がある場合、disabled でもそのタブが表示される<li>以下の場合は最初の visible タブが表示される<ul><li>items 内に一致する value がない場合<li>items 内に一致する value があるが、そのタブが visible ではない場合</ul><li>value が文字列以外の場合、エラーを出力する |
 | borderVisible | boolean | true  | 表示内容を囲う枠線の表示/非表示設定 | |
 | visible | boolean | true | コンポーネントの表示/非表示設定 | |
 | items | Array\<[Item](#item)\> | [] | 表示するタブのリスト | items が配列以外の場合、エラーを出力する |
