@@ -12,6 +12,7 @@ export * from "./radio-button";
 export * from "./readonly-table";
 export * from "./spinner";
 export * from "./table";
+export * from "./tabs";
 export * from "./text";
 export * from "./textarea";
 export * from "./time-picker";
