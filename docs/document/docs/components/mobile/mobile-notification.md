@@ -92,3 +92,9 @@ mobileNotification.addEventListener('close', event => {
 mobileNotification.open();
 mobileNotification.close();
 ```
+
+---
+
+## Related Articles
+
+- [Mobile timecard customization](../../guides/mobile-timecard-customization.md)

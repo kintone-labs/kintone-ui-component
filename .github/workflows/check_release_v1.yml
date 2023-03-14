@@ -22,7 +22,7 @@ jobs:
     - name: Install dependencies
       run: |
         npm ci
-        npm i @actions/core
+        npm i @actions/core --no-save
     - name: Check version
       id: check_version
       uses: ./.github/actions/check_version

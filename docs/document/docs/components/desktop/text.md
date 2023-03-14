@@ -110,3 +110,10 @@ text.addEventListener('input', event => {
   console.log(event);
 });
 ```
+
+---
+
+## Related Articles
+
+- [Search box customization](../../guides/search-box-customization.md)
+- [Table and ReadOnlyTable customization](../../guides/table-readonly-table-customization.md)
