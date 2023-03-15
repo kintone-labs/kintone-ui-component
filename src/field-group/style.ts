@@ -29,13 +29,13 @@ export const FIELD_GROUP_CSS = `
   }
   .kuc-field-group__group {
     min-width: 517px;
-    padding: 0 8px;
+    padding: 0px 8px;
     border: 1px solid #e3e7e8;
     background-color: #f5f5f5;
   }
   .kuc-field-group__group h3 {
-    margin: 0;
-    padding: 0;
+    margin: 0px;
+    padding: 0px;
   }
   .kuc-field-group__group__toggle {
     display: flex;
@@ -43,7 +43,7 @@ export const FIELD_GROUP_CSS = `
     border-style: none;
     position: relative;
     outline: none;
-    margin: 12px 0 12px 8px;
+    margin: 12px 0px 12px 8px;
     min-height: 34px;
     padding: 4px 8px 4px 24px;
     color: #333333;
@@ -54,7 +54,7 @@ export const FIELD_GROUP_CSS = `
     line-height: 1.5;
   }
   .kuc-field-group__group__toggle:disabled {
-    color: rgba(0,0,0,.25);
+    color: rgba(0, 0, 0, 0.25);
     cursor: not-allowed;
   }
   .kuc-field-group__group__toggle:disabled:focus {
@@ -74,8 +74,8 @@ export const FIELD_GROUP_CSS = `
     left: 8px;
   }
   .kuc-field-group__group__body {
-    padding: 0 8px;
-    margin-left: 0;
+    padding: 0px 8px;
+    margin-left: 0px;
     white-space: nowrap;
     word-wrap: normal;
     margin-bottom: 12px;
