@@ -5,10 +5,10 @@
     "es-lint": "node_modules/.bin/eslint website --ext .js"
   },
   "devDependencies": {
-    "@cybozu/eslint-config": "^18.0.0",
+    "@cybozu/eslint-config": "^18.0.1",
     "dictionary-en": "^3.0.1",
-    "eslint": "^8.33.0",
-    "prettier": "^2.8.3",
+    "eslint": "^8.35.0",
+    "prettier": "^2.8.4",
     "remark-cli": "^11.0.0",
     "remark-frontmatter": "^4.0.1",
     "remark-lint": "^9.1.1",

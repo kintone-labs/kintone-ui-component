@@ -83,10 +83,32 @@ Here is a sample code when all parameters are specified:
 ```javascript
 const Kuc = Kucs['1.x.x'];
 
+// Create OK and Cancel buttons
+const okButton = new Kuc.Button({
+  text: 'OK',
+  type: 'submit'
+});
+const cancelButton = new Kuc.Button({
+  text: 'Cancel',
+  type: 'normal',
+});
+
+okButton.addEventListener('click', () => {
+    // handle click OK button
+})
+cancelButton.addEventListener('click', () => {
+    // handle click Cancel button
+})
+
+// Wrap OK and Cancel buttons with a div
+const divEl = document.createElement('div');
+divEl.appendChild(okButton)
+divEl.appendChild(cancelButton)
+
 const dialog = new Kuc.Dialog({
   title:  'Title',
   content: '<div>This is Content</div>',
-  footer: 'Footer',
+  footer: divEl,
   icon: 'info'
 });
 
@@ -97,3 +119,9 @@ dialog.addEventListener('close', event => {
 dialog.open();
 dialog.close();
 ```
+
+---
+
+## Related Articles
+
+- [Format setting plug-in](../../guides/format-setting-plugin.md)
