@@ -1,7 +1,8 @@
 ---
-id: format-setting-plugin
+id: version-1.11.0-format-setting-plugin
 title: Format setting plug-in
 sidebar_label: Format setting plug-in
+original_id: format-setting-plugin
 ---
 
 ## Overview

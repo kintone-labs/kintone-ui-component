@@ -1,43 +1,43 @@
 ---
-id: format-setting-plugin
+id: version-1.11.0-format-setting-plugin
 title: Format setting plug-in
 sidebar_label: Format setting plug-in
+original_id: format-setting-plugin
 ---
 
-## Overview
+## 概要
 
-By using Kintone UI Component, the user can expand the range of utilization not only on the Kintone app page but also on the plug-in settings page.<br>
-This article explains how to use Kintone UI Component on the plug-in settings page.
-The creation of a simple Conditional Format Plug-in is used as an example.
+kintone のアプリ画面だけでなく、プラグインの設定画面でも kintone UI Component を使うことで活用の幅を広げることができます。<br>
+今回は簡易的な条件書式プラグインの作成を例に、プラグイン設定画面での kintone UI Component の使い方を説明します。
 
-### Components to use
+### 使用するコンポーネント
 - [Button](../components/desktop/button.md)
 - [DatePicker](../components/desktop/date-picker.md)
 - [Dialog](../components/desktop/dialog.md)
 - [Dropdown](../components/desktop/dropdown.md)
 - [MultiChoice](../components/desktop/multichoice.md)
 
-## Completed image
+## 完成イメージ
 
-The implementation scenarios and the completed image of the customized page are as follows:
+以下が、実装シナリオと画面の完成イメージです。
 
-Set the account closing date of your company on the plug-in settings page and implement a customization as a plug-in that colors red the target field of a record when today's date is before the closing date.
+会社の決算日をプラグイン設定画面で設定し、本日の日付が決算日以前のレコードの特定フィールドを赤くするカスタマイズをプラグイン化します。
 
 ![Plugin setting](assets/plugin_setting.png)
-This is the plug-in settings page.<br>
-When the set conditions match (if today's date is before or after the reference date), the color of the set field changes to red on the Record Details page.
+プラグイン設定画面です。<br>
+設定した条件（本日の日付が基準日付より前、または基準日付より後）を満たすと、設定したフィールドの色がレコード詳細画面で赤色に変わります。
 
 ![Confirmation](assets/dialog.png)
-A confirmation dialog is displayed when saving the settings.
+設定を保存する際に、確認ダイアログを表示します。
 
 ![App image](assets/payment_management_app.png)
-This is an app that manages deposits.<br>
-The background color of the field changes according to the conditions set on the plug-in settings page.
+入金を管理するアプリです。<br>
+プラグイン設定画面で設定した条件に応じてフィールドの背景色が変わります。
 
-## What you will need to have ready
+## 事前準備
 
-Prepare the files with the following folder structure in creating this Kintone plug-in.<br>
-The folder structure and file names are examples.
+kintone プラグインの作成にあたり、今回は以下のフォルダ構成で、ファイルを用意します。<br>
+フォルダ構成、ファイル名などは一例です。
 
 ```
 src/
@@ -57,9 +57,9 @@ src/
 ├── manifest.json
 ```
 
-## Create a manifest file
+## マニフェストファイルの作成
 
-Create a manifest file like the one below.
+以下のようなマニフェストファイルを作成します。
 
 ```json
 {
@@ -94,14 +94,14 @@ Create a manifest file like the one below.
 }
 ```
 
-Kintone UI Component will be used for this customization on the plug-in settings page, so describe the path of the UMD file in the config object.<br>
-See [Quick Start](../getting-started/quick-start.md) for how to upload a UMD file.
+今回はプラグイン設定画面のカスタマイズで kintone UI Component を使用するので、config オブジェクトの中に UMD ファイルのパスを記載します。<br>
+UMD ファイルの導入方法は、[Quick Start](../getting-started/quick-start.md) をご覧ください。
 
 
-## HTML customization
+## HTMLカスタマイズ
 
-Create an HTML file for the plug-in settings page.<br>
-Create a file like the one below. Place each part of Kintone UI Component by using the id set in the div element.
+プラグイン設定画面用の HTML ファイルを作成します。<br>
+今回は以下の様に作成します。div 要素に設定した id を利用して、kintone UI Component の各パーツを配置していきます。
 
 ```html
 <section class="settings">
@@ -129,10 +129,10 @@ Create a file like the one below. Place each part of Kintone UI Component by usi
 </section>
 ```
 
-## JavaScript and CSS customization (Settings page)
+## JavaScript/CSS カスタマイズ（設定画面）
 
-This section will explain the implementation code of the settings page.<br>
-Place the JavaScript file (config.js) described below in the js folder.<br>
+設定画面の実装コードを解説します。<br>
+以下の様な JavaScript ファイル（config.js）を js フォルダに配置します。<br>
 
 ***config.js***
 
@@ -142,14 +142,14 @@ Place the JavaScript file (config.js) described below in the js folder.<br>
 })(kintone.$PLUGIN_ID);
 ```
 ---
-### Create components
+### 各種コンポーネントの作成
 ---
 
-Create various components.<br>
-Place the following as fields.<br>
-Reference Date: Sets the reference date.<br>
-Condition: Sets the condition for the reference date<br>
-Fields: Set fields (Multiple selectable)
+各種コンポーネントを作成します。<br>
+フィールドとしては、以下を配置します。<br>
+Reference Date: 基準日付を設定します<br>
+Condition: 基準日付に対する条件を設定します<br>
+Fields：フィールド設定します（複数選択可）<br>
 
 ```javascript
 // Specify what version to use
@@ -220,9 +220,10 @@ const dialog = new Kuc.Dialog({
 });
 ```
 
-The following function is called in order to retrieve the field name to be displayed as a choice of the MultiChoice component.<br>
-Since the data structure of the items property is an array consisting of objects whose keys are label and value, the value returned by the function is also in the corresponding form.<br>
-It is an asynchronous process, so be careful about how you call it.
+MultiChoice コンポーネントの選択肢として表示するフィールド名を取得するため、
+以下のような関数を呼び出しています。<br>
+items プロパティのデータ構造が、label と value をキーとするオブジェクトからなる配列なので関数で返却する値も、それに対応する形にしているのがポイントです。<br>
+非同期処理になっているため、呼び出し方にはご注意ください。
 
 ```javascript
 // Get field info of tha app
@@ -265,10 +266,11 @@ function getFields() {
 ```
 
 ---
-### Display the last saved value
+### 前回保存時の値表示
 ---
 
-Retrieve the plug-in settings when you open the plug-in settings page and display the value when saved last time, if any.
+プラグイン設定画面を開いたとき、プラグインの設定値を取得し、
+前回保存したときの値があればそれらを表示するようにします。
 
 ```javascript
 // Display the value when saved last time
@@ -281,10 +283,11 @@ if (Object.keys(config).length) {
 ```
 
 ---
-### Place components
+### コンポーネントの配置
 ---
 
-Retrieve the element where you want to place the component using id in config.html and add the element for each component there.
+コンポーネントを配置する場所の要素を config.html 内の id を使って取得し、
+そこに各コンポーネントの要素を追加していきます。
 
 ```javascript
 // Display components
@@ -300,12 +303,12 @@ buttonSpaceEl.appendChild(saveButton);
 ```
 
 ---
-### When clicking on buttons
+### ボタンクリック時の挙動
 ---
 
-When the Save button is clicked, the required items are checked.<br>
-If at least one item has not been filled in, an error label will be displayed.<br>
-If there is no problem with the set items, a confirmation dialog will be displayed.
+保存ボタンを押した時に、必須項目のチェックをしています。<br>
+ひとつでも未入力の項目があるとエラーラベルを表示します。<br>
+設定項目に問題がない場合は、確認ダイアログを表示します。
 
 ```javascript
 // When the Save button is clicked
@@ -340,14 +343,14 @@ cancelButton.addEventListener('click', event => {
 ```
 
 ---
-### When clicking on dialog buttons
+### ダイアログ内のボタンクリック時の挙動
 ---
 
-To avoid saving unintended settings, insert a confirmation dialog that displays after the save button is clicked.<br>
+意図しない設定の保存を避けるため、保存ボタンクリックの後に確認ダイアログを挟みます。<br>
 
 ![Confirmation](assets/dialog.png)
 
-When the OK button is clicked, the information you want the plug-in to have as a setting value is stored in the object and saved in the plug-in.
+OK ボタンを押すと、プラグインに設定値として持たせたい情報をオブジェクトに格納し、プラグインに保存します。
 
 ```javascript
 // When the OK button in Dialog is clicked
@@ -368,13 +371,14 @@ dialogCancelButton.addEventListener('click', event => {
 });
 ```
 
-## JavaScript and CSS customization (Kintone app page)
+## JavaScript/CSS カスタマイズ（アプリ画面）
 
-This section will explain the implementation code of the Kintone app page.<br>
-Place the JavaScript file (desktop.js) described below in the js folder.<br>
-The value is inherited from the component of the plug-in settings page and used for the customization on the Kintone app page. <br>
-Since the value of the DatePicker component is in yyyy-mm-dd format, today's date is also retrieved in yyyy-mm-dd format for easy comparison.<br>
-An external date library called luxon.js is used for this customization.
+アプリ画面の実装コードを解説します。<br>
+以下の様なJavaScript ファイル（desktop.js）を js フォルダに配置します。<br>
+プラグイン設定画面のコンポーネントから値を引き継いで、アプリのカスタマイズで利用しているのがポイントです。<br>
+DatePicker コンポーネントの value が yyyy-mm-dd 形式のため、
+比較しやすいように本日の日付も yyyy-mm-dd 形式で取得しています。<br>
+今回は luxon.js という外部の日付ライブラリを利用しています。
 
 ***desktop.js***
 
@@ -407,10 +411,10 @@ An external date library called luxon.js is used for this customization.
 })(kintone.$PLUGIN_ID);
 ```
 
-## Conclusion
+## おわりに
 
-This article introduced a simple plug-in implementation as an example.<br>
-Depending on the customization, it is possible to divide the conditions more finely and to apply conditional formatting to the Record List page. Please try adjusting it according to your actual operations.<br>
+今回は、簡易的なプラグインの実装例をご紹介しました。<br>
+カスタマイズ次第で、より細かい条件分けができるようになったり一覧画面にも条件書式設定を適用できるようになったりしますので、実際の運用に合わせてお試しください。<br>
 
-> This article was reviewed using Kintone and Google Chrome as of August 2022.<br>
-> The version of Kintone UI Component used in this customization is v1.4.0.
+> 本記事は、 2022 年 8 月時点の kintone と Google Chrome で確認したものになります。<br>
+> また、カスタマイズに使用した kintone UI Component のバージョンは、v1.4.0 です。

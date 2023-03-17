@@ -1,7 +1,8 @@
 ---
-id: attachment-customization
+id: version-1.11.0-attachment-customization
 title: Attachment customization
 sidebar_label: Attachment customization
+original_id: attachment-customization
 ---
 
 ## Overview
@@ -90,12 +91,12 @@ function initCustomFiles() {
 }
 
 function arrayBufferToFile(buffer, filename, type) {
-  const blob = new Blob([buffer], { type: type });
-  return new File([blob], filename, { type: type });
+  const blob = new Blob([buffer], {type: type});
+  return new File([blob], filename, {type: type});
 }
 
 function blobToFile(blob, filename) {
-  return new File([blob], filename, { type: blob.type });
+  return new File([blob], filename, {type: blob.type});
 }
 ```
 ### Get the files info selected by a user and validate the type and size of them

@@ -1,7 +1,8 @@
 ---
-id: mobile-date-picker
+id: version-1.11.0-mobile-date-picker
 title: MobileDatePicker
 sidebar_label: MobileDatePicker
+original_id: mobile-date-picker
 ---
 
 ## Overview

@@ -1,7 +1,8 @@
 ---
-id: table
+id: version-1.11.0-table
 title: Table
 sidebar_label: Table
+original_id: table
 ---
 
 ## Overview
@@ -133,9 +134,3 @@ table.addEventListener('change', event => {
   console.log(event);
 });
 ```
-
----
-
-## Related Articles
-
-- [Table and ReadOnlyTable customization](../../guides/table-readonly-table-customization.md)

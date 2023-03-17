@@ -1,7 +1,8 @@
 ---
-id: search-box-customization
+id: version-1.11.0-search-box-customization
 title: Search box customization
 sidebar_label: Search box customization
+original_id: search-box-customization
 ---
 
 ## Overview

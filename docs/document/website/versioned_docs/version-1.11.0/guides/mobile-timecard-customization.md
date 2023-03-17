@@ -1,7 +1,8 @@
 ---
-id: mobile-timecard-customization
+id: version-1.11.0-mobile-timecard-customization
 title: Mobile timecard customization
 sidebar_label: Mobile timecard customization
+original_id: mobile-timecard-customization
 ---
 
 ## Overview
@@ -126,7 +127,7 @@ punchInButton.addEventListener('click', async () => {
         text: 'You have already punched-in!'
       });
       info.open();
-      return;
+      return
     }
 ```
 
