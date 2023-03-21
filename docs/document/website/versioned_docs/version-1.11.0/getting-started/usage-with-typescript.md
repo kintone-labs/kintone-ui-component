@@ -1,7 +1,8 @@
 ---
-id: usage-with-typescript
+id: version-1.11.0-usage-with-typescript
 title: Usage with TypeScript
 sidebar_label: Usage with TypeScript
+original_id: usage-with-typescript
 ---
 ## Overview
 
