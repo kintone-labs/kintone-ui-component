@@ -1,7 +1,8 @@
 ---
-id: version
+id: version-1.11.0-version
 title: version
 sidebar_label: version
+original_id: version
 ---
 
 ## Overview
