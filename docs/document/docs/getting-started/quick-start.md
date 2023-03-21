@@ -138,7 +138,6 @@ kintone.events.on('app.record.index.show', event => {
 3. Add the following `webpack.config.js` file into the root:
 
 ```js
-// webpack.config.js
 const path = require('path');
 module.exports = (env = {}) => {
   return {

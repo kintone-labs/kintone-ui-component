@@ -32,10 +32,19 @@ Kintone UI Component supports installation via a UMD, a CDN, or a npm package.<b
 You can choose to import or implement the library according to the environment such as the browser environment or Node.js environment.<br>
 In this article, we will show you how to install and implement using each approach.
 
+> We recommend that you should upgrade Kintone UI Component to the latest version for your projects.
+
 > See the Components section in the sidebar for more details on each component.<br>
 > (Additional components will be added in order.)
 
 ### Use the UMD
+
+> When using a version on and after v1.4.0, please use `Kucs["1.x.x"]` instead of Kuc and specify your expected version (ex. `new Kucs["1.4.0"].Button()`).<br>
+> The rendered components' tags and class names will include the version number.<br>
+> You may still use `Kuc` as a global variable but **note that it may be conflicting when adding two or more `kuc.min.js` files** on Kintone customization or plug-in. In this case, the `Kuc` object refers to the last loaded `kuc.min.js` file.<br>
+> In case that there is only one `kuc.min.js` file in the Kintone system or there is no problem with using last loaded `kuc.min.js` file, you can use Kuc object. Please remove `const Kuc = Kucs['1.x.x'];` line.
+> When using a version before v1.4.0, please use `Kuc` as a global variable but **note that it may be conflicting when adding two or more `kuc.min.js` files** on Kintone customization or plug-in.<br>
+> Please read this [Version conflicts issue and solution](../guides/version-conflicts-issue-solution) article for more information!
 
 1. Download the file located inside Kintone UI Component repository's [each version Release field](https://github.com/kintone-labs/kintone-ui-component/releases). Unzip the attached archives folder (kintone-ui-component-{version} .tgz). Upload the following file to the `JavaScript and CSS Customization` inside Kintone's app setting.
 
@@ -44,6 +53,8 @@ In this article, we will show you how to install and implement using each approa
 ```
 
 2. Create a `index.js` file.
+
+>If you only have one `kuc.min.js` file in your system, or you are okay with using the `kuc.min.js` file loaded last, you can remove the "`const Kuc = Kucs['1.x.x']`" line.
 
 ```js
 const Kuc = Kucs['1.x.x'];
@@ -69,18 +80,19 @@ kintone.events.on('app.record.index.show', event => {
 ![button customize](assets/button_customize.png)
 
 ### Use the CDN
+> See the guidance and sample code at [Use UMD](#use-the-umd) section.
 
 1. Add the following CDN URL into the `JavaScript and CSS Customization` of a deployed Kintone app. ([Customizing an App with JavaScript and CSS](https://get.kintone.help/k/en/user/app_settings/js_customize.html))<br>
 Once the CDN is being imported to the app, you will have access to the global object of `Kuc`.
 
    - For the latest version of Kintone UI Component:
     ```text
-    https://unpkg.com/browse/kintone-ui-component/umd/kuc.min.js
+    https://unpkg.com/kintone-ui-component/umd/kuc.min.js
     ```
 
    - If you want to import a particular version, specify the version number after the project name.
     ```text
-    https://unpkg.com/browse/kintone-ui-component@1.0.0/umd/kuc.min.js
+    https://unpkg.com/kintone-ui-component@1.0.0/umd/kuc.min.js
     ```
 
 2. The following is the same as the UMD.
@@ -90,12 +102,16 @@ Once the CDN is being imported to the app, you will have access to the global ob
 
 ### Use the npm package
 
-1. Create a folder name `my-customization`, and move your root into the folder, then execute the following command:
+> When using on and after v1.4.0, rendered components' tags and class names will include the version number.<br>
+> Please read this [Version conflicts issue and solution](../guides/version-conflicts-issue-solution) article for more information! <br>
+
+1. Create a folder name `customization`, and move your root into the folder, then execute the following command:
 
 ```sh
-mkdir my-customization && cd my-customization
+mkdir customization && cd customization
+npm init -y
 npm install kintone-ui-component
-npm install webpack
+npm install webpack webpack-cli --save-dev
 ```
 
 > If necessary, install `babel-loader` and `css-loader`.
@@ -123,7 +139,6 @@ kintone.events.on('app.record.index.show', event => {
 3. Add the following `webpack.config.js` file into the root:
 
 ```js
-// webpack.config.js
 const path = require('path');
 module.exports = (env = {}) => {
   return {
@@ -142,7 +157,7 @@ module.exports = (env = {}) => {
 
 ```json
 "scripts": {
-  "build:webpack": "cross-env NODE_ENV=production webpack",
+  "build:webpack": "webpack --mode production",
   ...
 }
 ```
@@ -155,7 +170,7 @@ npm run build:webpack
 
 ```text
 Output Result：
-./dist/my-customization.min.js
+./dist/customization.min.js
 ```
 
 6. Upload the bundled file created in the previous step to the `JavaScript and CSS Customization` option inside Kintone app settings. ([Customizing an App with JavaScript and CSS](https://get.kintone.help/k/en/user/app_settings/js_customize.html))
@@ -170,19 +185,15 @@ Output Result：
     <th>Safari</th>
     <th>Firefox</th>
     <th>Edge</th>
-    <th>IE11</th>
   </tr>
   <tr>
     <td>○</td>
     <td>○</td>
     <td>○</td>
     <td>○</td>
-    <td>△</td>
   </tr>
 </table>
 
-> The components have been tested in the latest version of each supported browser.<br>
-> Kintone UI Component v1 does not work properly in IE11 due to the balance with the library currently used by Kintone.
+> The components have been tested in the latest version of each supported browser.
 
-> You can preview the components in the Overview section in each component's reference page.<br>
-> Please be noted that it is not supported in IE11.
+> You can preview the components in the Overview section in each component's reference page.
