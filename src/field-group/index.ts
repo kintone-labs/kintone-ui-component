@@ -15,6 +15,8 @@ import { validateProps } from "../base/validator";
 import { FIELD_GROUP_CSS } from "./style";
 import { FieldGroupChangeEventDetail, FieldGroupProps } from "./type";
 
+import "../base/label";
+
 let exportFieldGroup;
 (() => {
   exportFieldGroup = window.customElements.get("kuc-field-group");
@@ -47,6 +49,8 @@ let exportFieldGroup;
     private _groupEl!: HTMLDivElement;
     @query(".kuc-field-group__group__body")
     private _bodyEl!: HTMLDivElement;
+    @query(".kuc-field-group__group__toggle")
+    private _toggle!: HTMLButtonElement;
 
     constructor(props?: FieldGroupProps) {
       super();
@@ -80,9 +84,10 @@ let exportFieldGroup;
             @keydown="${this._handleKeyDownButton}"
           >
             ${this._getSvgTemplate()}
-            <span class="kuc-field-group__group__toggle__label"
-              >${this.label}</span
-            >
+            <kuc-base-label
+              .text="${this.label}"
+              .requiredIcon="${false}"
+            ></kuc-base-label>
           </button>
           <div
             id="${this._GUID}-body"
@@ -158,11 +163,14 @@ let exportFieldGroup;
 
       event.preventDefault();
       if (event.key === "Enter" || event.key === " ") {
-        this._handleClickButton();
+        this._handleClickButton(event);
       }
     }
 
-    private _handleClickButton() {
+    private _handleClickButton(event: Event) {
+      if (event.target !== document.activeElement) {
+        this._toggle.focus();
+      }
       this.expanded = !this.expanded;
       const eventDetail: FieldGroupChangeEventDetail = {
         expanded: this.expanded,

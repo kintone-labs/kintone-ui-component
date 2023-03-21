@@ -57,6 +57,13 @@ export const FIELD_GROUP_CSS = `
     color: rgba(0, 0, 0, 0.25);
     cursor: not-allowed;
   }
+  .kuc-field-group__group__toggle:disabled .kuc-base-label__text {
+    color: rgba(0, 0, 0, 0.25);
+    cursor: not-allowed;
+  }
+  .kuc-field-group__group__toggle .kuc-base-label__text {
+    font-size: 16px;
+  }
   .kuc-field-group__group__toggle:disabled:focus {
     outline: 0;
     border: 1px solid transparent;
@@ -64,10 +71,6 @@ export const FIELD_GROUP_CSS = `
   .kuc-field-group__group__toggle:focus {
     outline: 0;
     border: 1px solid #3498db;
-  }
-  .kuc-field-group__group__toggle__label {
-    display: block;
-    pointer-events: none;
   }
   .kuc-field-group__group__toggle svg {
     position: absolute;
