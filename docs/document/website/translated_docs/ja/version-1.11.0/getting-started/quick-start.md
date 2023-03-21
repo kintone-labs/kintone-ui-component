@@ -138,15 +138,17 @@ kintone.events.on('app.record.index.show', event => {
 
 ```js
 const path = require('path');
-module.exports = {
-  entry: {
-    "customization": './src/index.js'
-  },
-  output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: '[name].min.js',
-  }
-}
+module.exports = (env = {}) => {
+  return {
+    entry: {
+      customization: './src/index.js'
+    },
+    output: {
+      path: path.resolve(__dirname, 'dist'),
+      filename: '[name].min.js'
+    }
+  };
+};
 ```
 
 4. `package.json` に webpack でビルドするためのスクリプトを追加します。

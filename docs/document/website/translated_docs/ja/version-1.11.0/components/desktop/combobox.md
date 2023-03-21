@@ -56,6 +56,7 @@ Combobox(options)<br>
 | options | object | {} | コンポーネントのプロパティを含むオブジェクト | |
 
 ---
+
 ## Sample Code
 
 >[導入と実装方法](../../getting-started/quick-start.md#導入と実装方法) をご確認ください。
@@ -74,7 +75,7 @@ const combobox = new Kuc.Combobox({
     { label: 'Orange', value: 'orange' },
     { label: 'Apple', value: 'apple' }
   ],
-  value:  'orange',
+  value: 'orange',
   requiredIcon: true,
   error: 'Error occurred!',
   className: 'options-class',

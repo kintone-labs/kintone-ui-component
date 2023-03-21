@@ -278,7 +278,7 @@ const checkbox = new Kuc.Checkbox({
     {
       value: 'orange'
     }
-  ],
+  ]
 });
 ```
 

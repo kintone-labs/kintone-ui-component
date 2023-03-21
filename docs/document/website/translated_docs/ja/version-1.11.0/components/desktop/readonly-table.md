@@ -117,3 +117,9 @@ const readOnlyTable = new Kuc.ReadOnlyTable({
 });
 space.appendChild(readOnlyTable);
 ```
+
+---
+
+## Related Articles
+
+- [Table and ReadOnlyTable customization](../../guides/table-readonly-table-customization.md)

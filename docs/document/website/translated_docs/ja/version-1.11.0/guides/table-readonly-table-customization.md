@@ -102,42 +102,42 @@ const renderName = cellData => {
   <summary>Show code</summary>
 
   ```js
-const columns = [
-  {
-    title: 'Name',
-    field: 'name'
-  },
-  {
-    title: 'Gender',
-    field: 'gender'
-  },
-  {
-    title: 'Address',
-    field: 'address'
-  }
-];
+  const columns = [
+    {
+      title: 'Name',
+      field: 'name'
+    },
+    {
+      title: 'Gender',
+      field: 'gender'
+    },
+    {
+      title: 'Address',
+      field: 'address'
+    }
+  ];
 
-const data = [
-  {
-    name: 'John Brown',
-    gender: 'male',
-    address: 'osaka-japan'
-  },
-  {
-    name: 'Jim Green',
-    gender: 'female',
-    address: 'tokyo-japan'
-  },
-  {
-    name: 'Joe Black',
-    gender: 'male',
-    address: 'hochiminh-vietnam'
-  }
-];
+  const data = [
+    {
+      name: 'John Brown',
+      gender: 'male',
+      address: 'osaka-japan'
+    },
+    {
+      name: 'Jim Green',
+      gender: 'female',
+      address: 'tokyo-japan'
+    },
+    {
+      name: 'Joe Black',
+      gender: 'male',
+      address: 'hochiminh-vietnam'
+    }
+  ];
 
-const readOnlyTable = new Kuc.ReadOnlyTable({ columns, data });
-const space = kintone.app.record.getSpaceElement('space');
-space.appendChild(readOnlyTable);
+  const readOnlyTable = new Kuc.ReadOnlyTable({ columns, data });
+  const space = kintone.app.record.getSpaceElement('space');
+  space.appendChild(readOnlyTable);
   ```
 </details>
 
@@ -151,84 +151,84 @@ space.appendChild(readOnlyTable);
   <summary>Show code</summary>
 
   ```js
-// render gender column with dropdown
-const renderGender = cellData => {
-  const radioButton = new Kuc.RadioButton({
-    items: [
-      {
-        label: 'Male',
-        value: 'male'
-      },
-      {
-        label: 'Female',
-        value: 'female'
-      }
-    ],
-    itemLayout: 'vertical',
-    value: cellData
-  });
+  // render gender column with dropdown
+  const renderGender = cellData => {
+    const radioButton = new Kuc.RadioButton({
+      items: [
+        {
+          label: 'Male',
+          value: 'male'
+        },
+        {
+          label: 'Female',
+          value: 'female'
+        }
+      ],
+      itemLayout: 'vertical',
+      value: cellData
+    });
 
-  return radioButton;
-};
+    return radioButton;
+  };
 
-// render address column with dropdown
-const renderAddress = cellData => {
-  const country = cellData.split('-')[1];
-  const dropdownCountry = new Kuc.Dropdown({
-    items: [
-      {
-        label: 'Viet Nam',
-        value: 'vietnam'
-      },
-      {
-        label: 'Japan',
-        value: 'japan'
-      }
-    ],
-    value: country
-  });
+  // render address column with dropdown
+  const renderAddress = cellData => {
+    const country = cellData.split('-')[1];
+    const dropdownCountry = new Kuc.Dropdown({
+      items: [
+        {
+          label: 'Viet Nam',
+          value: 'vietnam'
+        },
+        {
+          label: 'Japan',
+          value: 'japan'
+        }
+      ],
+      value: country
+    });
 
-  return dropdownCountry;
-};
+    return dropdownCountry;
+  };
 
-const columns = [
-  {
-    title: 'Name',
-    field: 'name'
-  },
-  {
-    title: 'Gender',
-    field: 'gender',
-    render: renderGender
-  },
-  {
-    title: 'Address',
-    field: 'address',
-    render: renderAddress
-  }
-];
+  const columns = [
+    {
+      title: 'Name',
+      field: 'name'
+    },
+    {
+      title: 'Gender',
+      field: 'gender',
+      render: renderGender
+    },
+    {
+      title: 'Address',
+      field: 'address',
+      render: renderAddress
+    }
+  ];
 
-const data = [
-  {
-    name: 'John Brown',
-    gender: 'male',
-    address: 'osaka-japan'
-  },
-  {
-    name: 'Jim Green',
-    gender: 'female',
-    address: 'tokyo-japan'
-  },
-  {
-    name: 'Joe Black',
-    gender: 'male',
-    address: 'hochiminh-vietnam'
-  }
-];
+  const data = [
+    {
+      name: 'John Brown',
+      gender: 'male',
+      address: 'osaka-japan'
+    },
+    {
+      name: 'Jim Green',
+      gender: 'female',
+      address: 'tokyo-japan'
+    },
+    {
+      name: 'Joe Black',
+      gender: 'male',
+      address: 'hochiminh-vietnam'
+    }
+  ];
 
-const table = new Kuc.Table({ columns, data });
-const space = kintone.app.record.getSpaceElement('space');
-space.appendChild(table);
+  const table = new Kuc.Table({ columns, data });
+  const space = kintone.app.record.getSpaceElement('space');
+  space.appendChild(table);
   ```
 </details>
 
@@ -242,92 +242,92 @@ space.appendChild(table);
   <summary>Show code</summary>
 
   ```js
-const renderAddress = (cellData, rowData) => {
-  // the format of cellData: 'city-country'
-  const city = cellData.split('-')[0];
-  const country = cellData.split('-')[1];
+  const renderAddress = (cellData, rowData) => {
+    // the format of cellData: 'city-country'
+    const city = cellData.split('-')[0];
+    const country = cellData.split('-')[1];
 
-  const dropdownCity = new Kuc.Dropdown({
-    items: [
-      {
-        label: 'Tokyo',
-        value: 'tokyo'
-      },
-      {
-        label: 'Osaka',
-        value: 'osaka'
-      },
-      {
-        label: 'Ho Chi Minh',
-        value: 'hochiminh'
-      }
-    ],
-    value: city
-  });
-  dropdownCity.addEventListener('change', event => {
-    const _country = rowData.address.split('-')[1];
-    event.detail.value = `${event.detail.value}-${_country}`;
-  });
+    const dropdownCity = new Kuc.Dropdown({
+      items: [
+        {
+          label: 'Tokyo',
+          value: 'tokyo'
+        },
+        {
+          label: 'Osaka',
+          value: 'osaka'
+        },
+        {
+          label: 'Ho Chi Minh',
+          value: 'hochiminh'
+        }
+      ],
+      value: city
+    });
+    dropdownCity.addEventListener('change', event => {
+      const _country = rowData.address.split('-')[1];
+      event.detail.value = `${event.detail.value}-${_country}`;
+    });
 
-  const dropdownCountry = new Kuc.Dropdown({
-    items: [
-      {
-        label: 'Viet Nam',
-        value: 'vietnam'
-      },
-      {
-        label: 'Japan',
-        value: 'japan'
-      }
-    ],
-    value: country
-  });
-  dropdownCountry.addEventListener('change', event => {
-    const _city = rowData.address.split('-')[0];
-    event.detail.value = `${_city}-${event.detail.value}`;
-  });
+    const dropdownCountry = new Kuc.Dropdown({
+      items: [
+        {
+          label: 'Viet Nam',
+          value: 'vietnam'
+        },
+        {
+          label: 'Japan',
+          value: 'japan'
+        }
+      ],
+      value: country
+    });
+    dropdownCountry.addEventListener('change', event => {
+      const _city = rowData.address.split('-')[0];
+      event.detail.value = `${_city}-${event.detail.value}`;
+    });
 
-  const container = document.createElement('div');
-  container.style.display = 'flex';
-  container.appendChild(dropdownCountry);
-  container.appendChild(dropdownCity);
+    const container = document.createElement('div');
+    container.style.display = 'flex';
+    container.appendChild(dropdownCountry);
+    container.appendChild(dropdownCity);
 
-  return container;
-};
+    return container;
+  };
 
-const data = [
-  {
-    name: 'John Brown',
-    gender: 'male',
-    address: 'osaka-japan'
-  },
-  {
-    name: 'Jim Green',
-    gender: 'female',
-    address: 'tokyo-japan'
-  },
-  {
-    name: 'Joe Black',
-    gender: 'male',
-    address: 'hochiminh-vietnam'
-  }
-];
+  const data = [
+    {
+      name: 'John Brown',
+      gender: 'male',
+      address: 'osaka-japan'
+    },
+    {
+      name: 'Jim Green',
+      gender: 'female',
+      address: 'tokyo-japan'
+    },
+    {
+      name: 'Joe Black',
+      gender: 'male',
+      address: 'hochiminh-vietnam'
+    }
+  ];
 
-const columns = [
-  {
-    title: 'Name',
-    field: 'name'
-  },
-  {
-    title: 'Address',
-    field: 'address',
-    render: renderAddress
-  }
-];
+  const columns = [
+    {
+      title: 'Name',
+      field: 'name'
+    },
+    {
+      title: 'Address',
+      field: 'address',
+      render: renderAddress
+    }
+  ];
 
-const table = new Kuc.Table({ columns, data });
-const space = kintone.app.record.getSpaceElement('space');
-space.appendChild(table);
+  const table = new Kuc.Table({ columns, data });
+  const space = kintone.app.record.getSpaceElement('space');
+  space.appendChild(table);
   ```
 </details>
 

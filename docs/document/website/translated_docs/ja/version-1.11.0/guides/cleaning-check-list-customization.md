@@ -189,14 +189,16 @@ const postParam = {
 };
 
 // Register record
-kintone.api(kintone.api.url('/k/v1/record', true), 'POST', postParam).then((resp) => {
-  // Display success message
-  const success = new Kuc.Notification({
-    text: 'Registered check items',
-    type: 'success'
+kintone
+  .api(kintone.api.url('/k/v1/record', true), 'POST', postParam)
+  .then(resp => {
+    // Display success message
+    const success = new Kuc.Notification({
+      text: 'Registered check items',
+      type: 'success'
+    });
+    success.open();
   });
-  success.open();
-})
 ```
 
 ### エラーメッセージの表示
@@ -204,7 +206,7 @@ kintone.api(kintone.api.url('/k/v1/record', true), 'POST', postParam).then((resp
 処理中にエラーが発生した場合、Notification コンポーネントを使ってメッセージを表示しています。
 
 ```javascript
-.catch((error) => {
+.catch(error => {
   console.log(error);
 
   // Display error message

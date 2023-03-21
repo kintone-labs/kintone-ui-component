@@ -3,7 +3,6 @@ id: version-1.11.0-cleaning-check-list-customization
 title: Cleaning check list customization
 sidebar_label: Cleaning check list customization
 original_id: cleaning-check-list-customization
-
 ---
 
 ## Overview
@@ -208,7 +207,7 @@ kintone
 The Notification component displays an error message when an error occurs during the process.
 
 ```javascript
-.catch((error) => {
+.catch(error => {
   console.log(error);
 
   // Display error message

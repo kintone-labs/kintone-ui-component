@@ -127,7 +127,7 @@ punchInButton.addEventListener('click', async () => {
         text: 'You have already punched-in!'
       });
       info.open();
-      return
+      return;
     }
 ```
 

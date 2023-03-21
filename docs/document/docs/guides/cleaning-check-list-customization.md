@@ -206,7 +206,7 @@ kintone
 The Notification component displays an error message when an error occurs during the process.
 
 ```javascript
-.catch((error) => {
+.catch(error => {
   console.log(error);
 
   // Display error message

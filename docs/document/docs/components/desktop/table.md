@@ -94,21 +94,21 @@ const renderName = cellData => {
 const table = new Kuc.Table({
   label: 'Table',
   columns: [
-      {
-        title: 'Name',
-        field: 'name',
-        render: renderName
-      },
-      {
-        title: 'Address',
-        field: 'address'
-      },
-      {
-        title: 'Age',
-        field: 'age',
-        render: renderAge
-      }
-    ],
+    {
+      title: 'Name',
+      field: 'name',
+      render: renderName
+    },
+    {
+      title: 'Address',
+      field: 'address'
+    },
+    {
+      title: 'Age',
+      field: 'age',
+      render: renderAge
+    }
+  ],
   data: [
     {
       name: 'john',

@@ -94,12 +94,12 @@ function initCustomFiles() {
 }
 
 function arrayBufferToFile(buffer, filename, type) {
-  const blob = new Blob([buffer], {type: type});
-  return new File([blob], filename, {type: type});
+  const blob = new Blob([buffer], { type: type });
+  return new File([blob], filename, { type: type });
 }
 
 function blobToFile(blob, filename) {
-  return new File([blob], filename, {type: blob.type});
+  return new File([blob], filename, { type: blob.type });
 }
 ```
 ### ユーザーが添付したファイル情報の取得と type/size の検証
