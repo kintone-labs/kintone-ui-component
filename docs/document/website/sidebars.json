@@ -20,6 +20,7 @@
           "components/desktop/readonly-table",
           "components/desktop/spinner",
           "components/desktop/table",
+          "components/desktop/tabs",
           "components/desktop/text",
           "components/desktop/textarea",
           "components/desktop/time-picker"

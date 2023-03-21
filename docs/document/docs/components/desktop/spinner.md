@@ -77,3 +77,10 @@ const spinner = new Kuc.Spinner({
 spinner.open();
 spinner.close();
 ```
+
+---
+
+## Related Articles
+
+- [Bulk update customization](../../guides/bulk-update-customization.md)
+- [Attachment customization](../../guides/attachment-customization.md)

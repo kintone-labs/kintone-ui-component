@@ -3,6 +3,7 @@ import { Attachment } from "./index.ts";
 export default {
   title: "desktop/attachment",
   argTypes: {
+    message: { name: "message" },
     className: { name: "className" },
     error: { name: "error" },
     id: { name: "id" },
@@ -34,6 +35,7 @@ const Template = (args) => {
 };
 export const BaseLanguageEN = Template.bind({});
 BaseLanguageEN.args = {
+  message: "max-size: (1GB)",
   className: "attachment-class",
   error: "Error",
   id: "attachment-id",

@@ -33,7 +33,7 @@ jobs:
         run: npm run build:storybook
         working-directory: ./
       - name: Install Netlify
-        run: npm i netlify-cli@9 --save-dev
+        run: npm i netlify-cli@9 --no-save
       - name: Deploy
         run: netlify deploy --dir=./docs/storybook --alias=staging --auth=${{ secrets.NETLIFY_AUTH_TOKEN }} --site=${{ secrets.NETLIFY_STORYBOOK_ID }}
       - name: Status check

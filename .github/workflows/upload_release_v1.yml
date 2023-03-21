@@ -22,7 +22,7 @@ jobs:
     - name: Install dependencies
       run: |
         npm ci
-        npm i @actions/core
+        npm i @actions/core --no-save
     - name: Check version
       id: check_version
       uses: ./.github/actions/check_version
@@ -38,12 +38,6 @@ jobs:
       with:
         name: v${{ steps.check_version.outputs.version }}-integrity
         path: ./${{ steps.generate_binary.outputs.integrity }}
-    - uses: fregante/setup-git-user@v1
-    - name: Commit package-lock.json and push to remote
-      run: |
-          git add ./package-lock.json
-          git commit -m "update package-lock.json after release"
-          git push origin :refs/tags/refs/heads/master
     - name: Upload package to release[binaries]
       uses: svenstaro/upload-release-action@v1-release
       with:
