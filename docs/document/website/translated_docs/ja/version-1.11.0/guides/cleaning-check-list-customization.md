@@ -176,13 +176,13 @@ button.addEventListener('click', () => {
 const postParam = {
   app,
   record: {
-    'status': {
+    status: {
       value: radiobutton.value
-      },
-    'item': {
+    },
+    item: {
       value: checkbox.value
     },
-    'cleaning': {
+    cleaning: {
       value: dropdown.value
     }
   }
@@ -204,7 +204,7 @@ kintone.api(kintone.api.url('/k/v1/record', true), 'POST', postParam).then((resp
 処理中にエラーが発生した場合、Notification コンポーネントを使ってメッセージを表示しています。
 
 ```javascript
-}).catch((error) => {
+.catch((error) => {
   console.log(error);
 
   // Display error message

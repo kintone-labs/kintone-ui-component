@@ -178,13 +178,13 @@ The Notification component displays a message if the record is successfully crea
 const postParam = {
   app,
   record: {
-    'status': {
+    status: {
       value: radiobutton.value
-      },
-    'item': {
+    },
+    item: {
       value: checkbox.value
     },
-    'cleaning': {
+    cleaning: {
       value: dropdown.value
     }
   }
@@ -208,7 +208,7 @@ kintone
 The Notification component displays an error message when an error occurs during the process.
 
 ```javascript
-}).catch((error) => {
+.catch((error) => {
   console.log(error);
 
   // Display error message

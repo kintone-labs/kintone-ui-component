@@ -146,7 +146,11 @@ if (!resp.records.length) {
       }
     }
   };
-  await kintone.api(kintone.api.url('/k/v1/record', true), 'POST', postParams);
+  await kintone.api(
+    kintone.api.url('/k/v1/record', true),
+    'POST',
+    postParams
+  );
 
   // Display the message when punch-in
   const info = new Kuc.MobileNotification({

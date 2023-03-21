@@ -117,7 +117,7 @@ kintone
   .then(resp => {
     if (resp.records.length !== 0) {
       // Process of displaying record retrieval result
-      const url = '?view=' + id + '&q=f6054049%20like%20' + '"' + keyword + '"';
+      const url = '?view=' + id + '&q=f6054049%20like%20"' + keyword + '"';
       window.location.replace(url);
     } else if (resp.records.length === 0) {
       // Process when no record is found

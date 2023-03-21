@@ -52,7 +52,7 @@ const renderName = cellData => {
 const columns = [{ title: 'Username', field: 'username', render: renderName }];
 const data = [{ username: 'user1' }, { username: 'user2' }];
 
-const table = new Kuc.Table({columns, data});
+const table = new Kuc.Table({ columns, data });
 const space = kintone.app.record.getSpaceElement('space');
 space.appendChild(table);
 ```
@@ -79,7 +79,7 @@ const renderName = cellData => {
 
   // Modify the value before it bubble to table cell
   text.addEventListener('change', event => {
-    event.detail.value = 'modified value' // add any value you want set to username;
+    event.detail.value = 'modified value'; // add any value you want set to username;
   });
   return text;
 };
@@ -341,12 +341,12 @@ The city dropdown will be updated when the country dropdown is changed.
   // Each country will have corresponding cities
   const relatedData = {
     japan: [
-      {label: 'Tokyo', value: 'tokyo'},
-      {label: 'Osaka', value: 'osaka'}
+      { label: 'Tokyo', value: 'tokyo' },
+      { label: 'Osaka', value: 'osaka' }
     ],
     vietnam: [
-      {label: 'Ha Noi', value: 'hanoi'},
-      {label: 'Ho Chi Minh', value: 'hochiminh'}
+      { label: 'Ha Noi', value: 'hanoi' },
+      { label: 'Ho Chi Minh', value: 'hochiminh' }
     ]
   };
 
@@ -385,7 +385,7 @@ The city dropdown will be updated when the country dropdown is changed.
         {
           label: 'Japan',
           value: 'japan'
-        },
+        }
       ],
       value: cellData
     });
