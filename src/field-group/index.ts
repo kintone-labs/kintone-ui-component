@@ -154,6 +154,8 @@ let exportFieldGroup;
     }
 
     private _handleKeyDownButton(event: KeyboardEvent) {
+      if (event.key === "Tab") return;
+
       event.preventDefault();
       if (event.key === "Enter" || event.key === " ") {
         this._handleClickButton();
