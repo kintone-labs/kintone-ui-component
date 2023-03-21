@@ -232,14 +232,15 @@ function getFields() {
   return kintone
     .api(kintone.api.url('/k/v1/preview/app/form/fields', true), 'GET', param)
     .then(resp => {
-      const items = [];
+      const fieldItems = [];
       for (const key in resp.properties) {
-        if (!resp.properties.hasOwnProperty(key)) {
+        if (!Object.properties.hasOwnProperty.call(resp, key)) {
           continue;
         }
         const prop = resp.properties[key];
         const label = prop.label;
         const code = prop.code;
+
         switch (prop.type) {
           case 'SINGLE_LINE_TEXT':
           case 'NUMBER':
@@ -254,13 +255,14 @@ function getFields() {
           case 'DATETIME':
           case 'CREATED_TIME':
           case 'UPDATED_TIME':
-            items.push({ label: label, value: code });
+            fieldItems.push({ label: label, value: code });
             break;
+
           default:
             break;
         }
       }
-      return items;
+      return fieldItems;
     });
 }
 ```
@@ -358,13 +360,15 @@ dialogOKButton.addEventListener('click', event => {
   const selectedFields = JSON.stringify(multiChoice.value);
   const date = datePicker.value;
   const condition = dropdown.value;
-  const config = {
+
+  const newConfig = {
     date: date,
     condition: condition,
     targetFields: selectedFields
   };
-  kintone.plugin.app.setConfig(config);
+  kintone.plugin.app.setConfig(newConfig);
 });
+
 // When the Cancel button in Dialog is clicked
 dialogCancelButton.addEventListener('click', event => {
   dialog.close();

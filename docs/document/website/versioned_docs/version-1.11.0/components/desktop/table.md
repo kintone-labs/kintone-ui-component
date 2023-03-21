@@ -82,7 +82,7 @@ const renderAge = dataCell => {
 };
 
 const renderName = cellData => {
-  const dropdown = new Dropdown({
+  const dropdown = new Kuc.Dropdown({
     items: [
       { label: 'John Brown', value: 'john' },
       { label: 'Steven Gerrard', value: 'steven' }

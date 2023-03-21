@@ -184,7 +184,7 @@ async function uploadFiles(files) {
   const fileKeys = [];
   for (const file of files) {
     if (!file.fileKey) {
-      const response = await uploadFile({ name: file.name, data: file });
+      const response = await uploadFile(file);
       file.fileKey = response.fileKey;
     }
     fileKeys.push({ fileKey: file.fileKey });
@@ -216,7 +216,11 @@ function uploadFile(file) {
 }
 
 function updateRecord(params) {
-  return kintone.api(kintone.api.url('/k/v1/record.json', true), 'PUT', params);
+  return kintone.api(
+    kintone.api.url('/k/v1/record.json', true),
+    'PUT',
+    params
+  );
 }
 ```
 

@@ -1,7 +1,8 @@
 ---
-id: bulk-update-customization
+id: version-1.11.0-bulk-update-customization
 title: Bulk update customization
 sidebar_label: Bulk update customization
+original_id: bulk-update-customization
 ---
 
 ## Overview

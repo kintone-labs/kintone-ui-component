@@ -1,7 +1,8 @@
 ---
-id: comparison-v0-v1
+id: version-1.11.0-comparison-v0-v1
 title: A commentary on the difference between v0 and v1
 sidebar_label: A commentary on the difference between v0 and v1
+original_id: comparison-v0-v1
 ---
 
 ## Overview
@@ -89,7 +90,7 @@ The main difference is as follows:
 - Improved DOM positioning
 - Restructured the component property
 - Included additional properties for Alert and Label
-- Auto-completion of Item.value
+- Auto-completion of Item.label
 
 The following section will explain in further detail.
 
@@ -277,10 +278,9 @@ const checkbox = new Kuc.Checkbox({
     {
       value: 'orange'
     }
-  ]
+  ],
 });
 ```
-
 
 ## Conclusion
 
