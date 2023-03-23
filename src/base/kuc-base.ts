@@ -42,9 +42,14 @@ export const dispatchCustomEvent = (
 };
 
 export const createStyleOnHeader = (styleText: string) => {
-  const styleTag = document.createElement("style") as HTMLStyleElement;
-  styleTag.appendChild(document.createTextNode(styleText));
-  document.head.appendChild(styleTag);
+  const kucStyleTagId = "kuc-style";
+  let kucStyleTag = document.getElementById(kucStyleTagId);
+  if (!kucStyleTag) {
+    kucStyleTag = document.createElement("style") as HTMLStyleElement;
+    kucStyleTag.id = kucStyleTagId;
+    document.head.appendChild(kucStyleTag);
+  }
+  kucStyleTag.appendChild(document.createTextNode(styleText));
 };
 
 export { CustomEventDetail };
