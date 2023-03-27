@@ -1,18 +1,18 @@
 ---
-id: version-1.10.0-radio-button
-title: RadioButton
-sidebar_label: RadioButton
-original_id: radio-button
+id: version-1.10.0-mobile-radio-button
+title: MobileRadioButton
+sidebar_label: MobileRadioButton
+original_id: mobile-radio-button
 ---
 
 ## Overview
 
-RadioButton は、複数選択肢の中から一つの値を選択することができます。
+MobileRadioButton は、複数選択肢の中から一つの値を選択することができます。
 
-<div class="sample-container" id="radio-button">
-  <div id="sample-container__components"></div>
+<div class="sample-container" id="mobile-radio-button">
+  <div id="sample-container__components" class="mobile"></div>
 </div>
-<script src="/js/samples/desktop/radio-button.js"></script>
+<script src="/js/samples/mobile/mobile-radio-button.js"></script>
 
 ---
 
@@ -27,7 +27,6 @@ RadioButton は、複数選択肢の中から一つの値を選択すること�
 | className | string | "" | コンポーネントの class 名 ||
 | error | string | "" | エラーに表示するテキスト | 未指定、あるいは空文字の場合、error は表示されない |
 | id | string | "" | コンポーネントの id 名 ||
-| itemLayout | string | "horizontal" | 選択肢の並べ方 | 以下を指定できる<br>"horizontal" : 横並び<br>"vertical" : 縦並び |
 | label | string | "" | コンポーネントの説明ラベル | 未指定、あるいは空文字の場合、label は表示されない |
 | value *1 | string | "" | 選択されている値 | value と selectedIndex が未指定の場合、何も選択されない<br>重複する value を指定し、selectedIndex を指定しない場合、Item.value で最初にマッピングされた value の項目が選択され、selectedIndex にはその選択肢のインデックス番号が入る<br>value が文字列以外の場合、エラーを出力する |
 | selectedIndex *1 | number | -1 | 選択されている値のインデックス番号 | items 内に重複する Item.value がある場合、どの Item.value が選択されるか指定するためのプロパティ<br>value が未指定で、selectedIndex に有効な値が指定されている場合、 そのインデックス番号の選択肢が選択される<br>value に重複した Item.value が指定され、selectedIndex の値が value 内の重複した Item.value とマッピングした場合、そのインデックス番号の選択肢が選択される<br>selectedIndex が数値以外の場合、エラーを出力する |
@@ -59,7 +58,7 @@ RadioButton は、複数選択肢の中から一つの値を選択すること�
 
 ### Constructor
 
-RadioButton(options)<br>
+MobileRadioButton(options)<br>
 使用できるコンストラクタの一覧です。
 
 #### Parameter
@@ -78,9 +77,9 @@ RadioButton(options)<br>
 ```javascript
 const Kuc = Kucs['1.x.x'];
 
-const space = kintone.app.record.getSpaceElement('space');
+const space = kintone.mobile.app.record.getSpaceElement('space');
 
-const radioButton = new Kuc.RadioButton({
+const mobileRadioButton = new Kuc.MobileRadioButton({
   label: 'Fruit',
   requiredIcon: true,
   items: [
@@ -95,7 +94,6 @@ const radioButton = new Kuc.RadioButton({
   ],
   value: 'Orange',
   selectedIndex: 0,
-  itemLayout: 'horizontal',
   error: 'Error occurred!',
   className: 'options-class',
   id: 'options-id',
@@ -103,16 +101,9 @@ const radioButton = new Kuc.RadioButton({
   disabled: false,
   borderVisible: true
 });
-space.appendChild(radioButton);
+space.appendChild(mobileRadioButton);
 
-radioButton.addEventListener('change', event => {
+mobileRadioButton.addEventListener('change', event => {
   console.log(event);
 });
 ```
-
----
-
-## Related Articles
-
-- [Cleaning check list customization](../../guides/cleaning-check-list-customization.md)
-- [Table and ReadOnlyTable customization](../../guides/table-readonly-table-customization.md)

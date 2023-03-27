@@ -1,18 +1,18 @@
 ---
-id: version-1.10.0-radio-button
-title: RadioButton
-sidebar_label: RadioButton
-original_id: radio-button
+id: version-1.10.0-mobile-dropdown
+title: MobileDropdown
+sidebar_label: MobileDropdown
+original_id: mobile-dropdown
 ---
 
 ## Overview
 
-RadioButton は、複数選択肢の中から一つの値を選択することができます。
+MobileDropdown は複数選択肢の中から一つの値を選択することができます。
 
-<div class="sample-container" id="radio-button">
-  <div id="sample-container__components"></div>
+<div class="sample-container" id="mobile-dropdown">
+  <div id="sample-container__components" class="mobile"></div>
 </div>
-<script src="/js/samples/desktop/radio-button.js"></script>
+<script src="/js/samples/mobile/mobile-dropdown.js"></script>
 
 ---
 
@@ -27,11 +27,9 @@ RadioButton は、複数選択肢の中から一つの値を選択すること�
 | className | string | "" | コンポーネントの class 名 ||
 | error | string | "" | エラーに表示するテキスト | 未指定、あるいは空文字の場合、error は表示されない |
 | id | string | "" | コンポーネントの id 名 ||
-| itemLayout | string | "horizontal" | 選択肢の並べ方 | 以下を指定できる<br>"horizontal" : 横並び<br>"vertical" : 縦並び |
 | label | string | "" | コンポーネントの説明ラベル | 未指定、あるいは空文字の場合、label は表示されない |
 | value *1 | string | "" | 選択されている値 | value と selectedIndex が未指定の場合、何も選択されない<br>重複する value を指定し、selectedIndex を指定しない場合、Item.value で最初にマッピングされた value の項目が選択され、selectedIndex にはその選択肢のインデックス番号が入る<br>value が文字列以外の場合、エラーを出力する |
 | selectedIndex *1 | number | -1 | 選択されている値のインデックス番号 | items 内に重複する Item.value がある場合、どの Item.value が選択されるか指定するためのプロパティ<br>value が未指定で、selectedIndex に有効な値が指定されている場合、 そのインデックス番号の選択肢が選択される<br>value に重複した Item.value が指定され、selectedIndex の値が value 内の重複した Item.value とマッピングした場合、そのインデックス番号の選択肢が選択される<br>selectedIndex が数値以外の場合、エラーを出力する |
-| borderVisible | boolean | true | 選択肢を囲う枠線の表示/非表示設定 ||
 | disabled | boolean | false | コンポーネントの編集可/不可設定 ||
 | requiredIcon | boolean | false | コンポーネントの必須アイコン表示/非表示設定 ||
 | visible | boolean | true | コンポーネントの表示/非表示設定 ||
@@ -51,6 +49,7 @@ RadioButton は、複数選択肢の中から一つの値を選択すること�
 >   - selectedIndex = 99: 何も選択されない。
 
 ### Event
+
 指定できるイベントの一覧です。
 
 | Name | Type | Description | Remark |
@@ -59,7 +58,7 @@ RadioButton は、複数選択肢の中から一つの値を選択すること�
 
 ### Constructor
 
-RadioButton(options)<br>
+MobileDropdown(options)<br>
 使用できるコンストラクタの一覧です。
 
 #### Parameter
@@ -78,9 +77,9 @@ RadioButton(options)<br>
 ```javascript
 const Kuc = Kucs['1.x.x'];
 
-const space = kintone.app.record.getSpaceElement('space');
+const space = kintone.mobile.app.record.getSpaceElement('space');
 
-const radioButton = new Kuc.RadioButton({
+const mobileDropdown = new Kuc.MobileDropdown({
   label: 'Fruit',
   requiredIcon: true,
   items: [
@@ -95,24 +94,15 @@ const radioButton = new Kuc.RadioButton({
   ],
   value: 'Orange',
   selectedIndex: 0,
-  itemLayout: 'horizontal',
   error: 'Error occurred!',
   className: 'options-class',
   id: 'options-id',
   visible: true,
-  disabled: false,
-  borderVisible: true
+  disabled: false
 });
-space.appendChild(radioButton);
+space.appendChild(mobileDropdown);
 
-radioButton.addEventListener('change', event => {
+mobileDropdown.addEventListener('change', event => {
   console.log(event);
 });
 ```
-
----
-
-## Related Articles
-
-- [Cleaning check list customization](../../guides/cleaning-check-list-customization.md)
-- [Table and ReadOnlyTable customization](../../guides/table-readonly-table-customization.md)

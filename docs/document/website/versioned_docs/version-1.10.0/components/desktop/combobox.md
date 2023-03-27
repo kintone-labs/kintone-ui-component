@@ -1,7 +1,8 @@
 ---
-id: combobox
+id: version-1.10.0-combobox
 title: Combobox
 sidebar_label: Combobox
+original_id: combobox
 ---
 
 ## Overview
