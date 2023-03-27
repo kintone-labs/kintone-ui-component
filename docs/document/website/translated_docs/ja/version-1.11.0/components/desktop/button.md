@@ -1,12 +1,13 @@
 ---
-id: button
+id: version-1.11.0-button
 title: Button
 sidebar_label: Button
+original_id: button
 ---
 
 ## Overview
 
-The Button component allows the user to create and display buttons.
+Button は、ボタンを表示します。
 
 <div class="sample-container" id="button">
   <div id="sample-container__components"></div>
@@ -19,40 +20,40 @@ The Button component allows the user to create and display buttons.
 
 ### Property
 
-Here is a list of properties that can be used for modifying the component:
+使用できるプロパティの一覧です。プロパティを指定して値を更新することができます。
 
 | Name | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
-| className | string | ""  | Component class name |  |
-| id | string | ""  | Component id name |  |
-| text | string | ""  | Text to be displayed inside the button | |
-| type | string | "normal"  | Button design type | Available options:<br>"normal" : Gray (#f7f9fA)<br>"submit" : Blue (#3498db)<br>"alert" : Red (#e74c3c) |
-| disabled | boolean | false | Enable/Disable the component | |
-| visible | boolean | true | Show/Hide the component | |
+| className | string | "" | コンポーネントの class 名 |  |
+| id | string | "" | コンポーネントの id 名 |  |
+| text | string | "" | ボタンに表示するテキスト ||
+| type | string | "normal" | ボタンのデザインタイプ | 以下を指定できる<br>"normal" : Gray(#f7f9fA)<br>"submit" : Blue(#3498db)<br>"alert" : Red(#e74c3c) |
+| disabled | boolean | false | コンポーネントの編集可/不可設定 ||
+| visible | boolean | true | コンポーネントの表示/非表示設定 ||
 
 ### Event
 
-Here is a list of events that can be specified:
+指定できるイベントの一覧です。
 
 | Name | Type | Description | Remark |
 | :--- | :--- | :--- | :--- |
-| click | function | Event handler when clicked | It will pass the event object as the argument |
+| click | function | クリックされた時のイベントハンドラ | 引数には Event の event オブジェクトをとる |
 
 ### Constructor
 
 Button(options)<br>
-Here is a list of available constructors:
+使用できるコンストラクタの一覧です。
 
 #### Parameter
 
 | Name | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
-| options | object | {} | Object that includes component properties | |
+| options | object | {} | コンポーネントのプロパティを含むオブジェクト | |
 
 ### Custom CSS
-> Please check [Custom CSS feature guide](../../getting-started/custom-css.md) at first.
+> [Custom CSS](../../getting-started/custom-css.md) をご確認ください。
 
-Here is a list of properties that can be used for modifying component style:
+コンポーネントのスタイルを変更するために使用できるプロパティの一覧です。
 #### Property
 | Name |
 | :--- |
@@ -69,9 +70,9 @@ Here is a list of properties that can be used for modifying component style:
 
 ## Sample Code
 
-> Please check the [package installation](../../getting-started/quick-start.md#installation) method first.
+>[導入と実装方法](../../getting-started/quick-start.md#導入と実装方法) をご確認ください。
 
-Here is a sample code when all parameters are specified:
+全てのパラメータを指定した場合のサンプルコードです。
 
 ```javascript
 const Kuc = Kucs['1.x.x'];
