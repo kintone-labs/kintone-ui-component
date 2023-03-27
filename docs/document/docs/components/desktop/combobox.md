@@ -72,9 +72,9 @@ const combobox = new Kuc.Combobox({
   items: [
     { label: 'Banana', value: 'banana' },
     { label: 'Orange', value: 'orange' },
-    { label: 'Apple', value: 'apple' },
+    { label: 'Apple', value: 'apple' }
   ],
-  value:  'orange',
+  value: 'orange',
   requiredIcon: true,
   error: 'Error occurred!',
   className: 'options-class',

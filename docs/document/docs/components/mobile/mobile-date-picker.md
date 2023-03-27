@@ -83,7 +83,7 @@ const mobileDatePicker = new Kuc.MobileDatePicker({
 });
 space.appendChild(mobileDatePicker);
 
-mobileDatePicker.addEventListener('change', (event) => {
+mobileDatePicker.addEventListener('change', event => {
   console.log(event);
 });
 ```

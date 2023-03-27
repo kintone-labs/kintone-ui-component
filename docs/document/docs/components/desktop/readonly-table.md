@@ -61,28 +61,28 @@ const Kuc = Kucs['1.x.x'];
 
 const space = kintone.app.record.getSpaceElement('space');
 
-const readOnlyTable = new ReadOnlyTable({
+const readOnlyTable = new Kuc.ReadOnlyTable({
   label: 'ReadOnlyTable',
   columns: [
     {
       title: 'Number',
-      field: 'index',
+      field: 'index'
     },
     {
       title: 'City',
-      field: 'name',
+      field: 'name'
     },
     {
       title: 'Country',
-      field: 'country',
+      field: 'country'
     },
     {
       title: 'Population',
-      field: 'population',
+      field: 'population'
     },
     {
       title: 'Coordinates',
-      field: 'coordinates',
+      field: 'coordinates'
     }
   ],
   data: [
@@ -91,28 +91,28 @@ const readOnlyTable = new ReadOnlyTable({
       name: 'HoChiMinh',
       country: 'Vietnam',
       population: '8,371,000',
-      coordinates: '10.762622, 106.660172',
+      coordinates: '10.762622, 106.660172'
     },
     {
       index: '2',
       name: 'Tokyo',
       country: 'Japan',
       population: '14,000,000',
-      coordinates: '35.689487, 139.691711',
+      coordinates: '35.689487, 139.691711'
     },
     {
       index: '3',
       name: 'New York',
       country: 'USA',
       population: '8,400,000',
-      coordinates: '40.712776, -74.005974',
+      coordinates: '40.712776, -74.005974'
     }
   ],
   className: 'sample-class',
   id: 'sample-id',
   visible: true,
   pagination: true,
-  rowsPerPage: 3,
+  rowsPerPage: 3
 });
 space.appendChild(readOnlyTable);
 ```
