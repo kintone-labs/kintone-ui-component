@@ -137,6 +137,15 @@ const main = async () => {
         }
       });
       addTypeFiles(componentDirectories);
+
+      let kucBaseData = fs
+        .readFileSync(path.resolve(__dirname, `../lib/base/kuc-base.js`))
+        .toString();
+      kucBaseData = replaceAllByPattern(kucBaseData, classNamePattern, classNameVersion);
+      fs.writeFileSync(
+        path.resolve(__dirname, `../lib/base/kuc-base.js`),
+        kucBaseData
+      );
     }
   });
 };
