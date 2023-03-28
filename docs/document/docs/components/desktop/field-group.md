@@ -25,7 +25,7 @@ Here is a list of properties that can be used for modifying the component:
 | className | string | "" | Component class name |  |
 | id | string | "" | Component id name |  |
 | label | string | "" | Label of the component | |
-| content *1 | string/HTMLElement | "" | FieldGroup content | If a string with HTML is set, it will be automatically converted to HTML and displayed as it is |
+| content *1 | string/HTMLElement | "" | DOM inside content | If a string with HTML is set, it will be automatically converted to HTML and displayed as it is |
 | disabled | boolean | false | Enable/Disable the component | |
 | expanded | boolean | false | The state collapse or expand the component by default | |
 | visible | boolean | true | Show/Hide the component | |
