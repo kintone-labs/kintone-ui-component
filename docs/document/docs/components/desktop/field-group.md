@@ -38,7 +38,7 @@ Here is a list of events that can be specified:
 
 | Name | Type | Description | Remark |
 | :--- | :--- | :--- | :--- |
-| change | function | Event handler when the component collapses or expands | It will pass the event object as the argument <br><br>You can receive the following values when used in event.detail<br>event.detail.expanded: The status after the change (boolean) |
+| change | function | Event handler when the component is collapsed or expanded | It will pass the event object as the argument <br><br>You can receive the following values when used in event.detail<br>event.detail.expanded : The status of "expanded" after the change (boolean) |
 
 ### Constructor
 
