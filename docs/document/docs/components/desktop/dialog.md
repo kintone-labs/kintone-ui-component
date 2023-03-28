@@ -73,6 +73,16 @@ none
 ##### Return
 none
 
+### Custom CSS
+> Please check [Custom CSS feature guide](../../getting-started/custom-css.md) at first.
+
+Here is a list of properties that can be used for modifying component style:
+#### Property
+| Name |
+| :--- |
+| --kuc-dialog-header-font-size |
+| --kuc-dialog-header-color |
+
 ---
 ## Sample Code
 
