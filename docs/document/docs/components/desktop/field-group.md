@@ -5,7 +5,7 @@ sidebar_label: FieldGroup
 ---
 
 ## Overview
-The FieldGroup component allows the user to create a content area that can be collapsed and expanded
+The FieldGroup component allows the user to create a content area that can be collapsed and expanded.
 
 <div class="sample-container" id="field-group">
   <div id="sample-container__components"></div>
