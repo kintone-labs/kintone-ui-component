@@ -3,7 +3,6 @@ document.addEventListener('kuc:loaded', function () {
 
     const text = new Kuc.Text({
         label: 'Text',
-        error: 'Error occurred!',
         value: 'orange',
     });
     const fieldGroup = new Kuc.FieldGroup({
