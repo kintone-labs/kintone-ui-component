@@ -6,7 +6,7 @@ original_id: field-group
 ---
 
 ## Overview
-The FieldGroup component allows the user to create a content area that can be collapsed and expanded
+The FieldGroup component allows the user to create a content area that can be collapsed and expanded.
 
 <div class="sample-container" id="field-group">
   <div id="sample-container__components"></div>
@@ -26,9 +26,9 @@ Here is a list of properties that can be used for modifying the component:
 | className | string | "" | Component class name |  |
 | id | string | "" | Component id name |  |
 | label | string | "" | Label of the component | |
-| content *1 | string/HTMLElement | "" | FieldGroup content | If a string with HTML is set, it will be automatically converted to HTML and displayed as it is |
+| content *1 | string/HTMLElement | "" | DOM inside content | If a string with HTML is set, it will be automatically converted to HTML and displayed as it is |
 | disabled | boolean | false | Enable/Disable the component | |
-| expanded | boolean | false | The state collapse or expand the component by default | |
+| expanded | boolean | false | Collapsed/Expanded the component by default | |
 | visible | boolean | true | Show/Hide the component | |
 
 > *1: [Security] Kintone UI Component does NOT sanitize this property value. It is the developer's responsibility to escape any user input when using this option so that XSS attacks would be prevented.
@@ -39,7 +39,7 @@ Here is a list of events that can be specified:
 
 | Name | Type | Description | Remark |
 | :--- | :--- | :--- | :--- |
-| change | function | Event handler when the component collapses or expands | It will pass the event object as the argument <br><br>You can receive the following values when used in event.detail<br>event.detail.expanded: The status after the change (boolean) |
+| change | function | Event handler when the component is collapsed or expanded | It will pass the event object as the argument <br><br>You can receive the following values when used in event.detail<br>event.detail.expanded : The status of "expanded" after the change (boolean) |
 
 ### Constructor
 
@@ -65,7 +65,6 @@ const space = kintone.app.record.getSpaceElement('space');
 
 const text = new Kuc.Text({
   label: 'Text',
-  error: 'Error occurred!',
   value: 'orange'
 });
 const fieldGroup = new Kuc.FieldGroup({

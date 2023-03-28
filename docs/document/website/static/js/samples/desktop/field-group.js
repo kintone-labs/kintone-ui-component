@@ -3,7 +3,7 @@ document.addEventListener('kuc:loaded', function () {
 
     const text = new Kuc.Text({
         label: 'Text',
-        value: 'orange',
+        value: 'orange'
     });
     const fieldGroup = new Kuc.FieldGroup({
         className: 'options-class',
@@ -12,7 +12,7 @@ document.addEventListener('kuc:loaded', function () {
         disabled: false,
         expanded: false,
         visible: true,
-        content: text,
+        content: text
     });
 
     fieldGroup.addEventListener('change', event => {
