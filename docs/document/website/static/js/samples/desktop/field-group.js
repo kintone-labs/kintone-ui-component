@@ -8,7 +8,7 @@ document.addEventListener('kuc:loaded', function () {
     const fieldGroup = new Kuc.FieldGroup({
         className: 'options-class',
         id: 'options-id',
-        label: 'Field Group',
+        label: 'FieldGroup',
         disabled: false,
         expanded: false,
         visible: true,
