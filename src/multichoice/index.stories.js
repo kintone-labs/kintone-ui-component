@@ -73,6 +73,18 @@ Base.args = {
       label: "Item 3",
       value: "item-3",
     },
+    {
+      label: "Item 3",
+      value: "item-4",
+    },
+    {
+      label: "Item 3",
+      value: "item-5",
+    },
+    {
+      label: "Item 3",
+      value: "item-6",
+    },
   ],
   value: ["item-1", "item-2"],
   selectedIndex: [0, 1],
