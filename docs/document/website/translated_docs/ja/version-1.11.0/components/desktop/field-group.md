@@ -70,7 +70,7 @@ const text = new Kuc.Text({
 const fieldGroup = new Kuc.FieldGroup({
   className: 'options-class',
   id: 'options-id',
-  label: 'Field Group',
+  label: 'FieldGroup',
   disabled: false,
   expanded: false,
   visible: true,
