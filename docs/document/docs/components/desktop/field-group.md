@@ -27,7 +27,7 @@ Here is a list of properties that can be used for modifying the component:
 | label | string | "" | Label of the component | |
 | content *1 | string/HTMLElement | "" | DOM inside content | If a string with HTML is set, it will be automatically converted to HTML and displayed as it is |
 | disabled | boolean | false | Enable/Disable the component | |
-| expanded | boolean | false | Collapsed/Expanded the component by default | |
+| expanded | boolean | false | Collapsed/Expanded the component | |
 | visible | boolean | true | Show/Hide the component | |
 
 > *1: [Security] Kintone UI Component does NOT sanitize this property value. It is the developer's responsibility to escape any user input when using this option so that XSS attacks would be prevented.
