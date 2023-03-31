@@ -9,7 +9,7 @@ original_id: tabs-customization
 This article explains how to utilize and customize the Tabs component.<br>
 We assume the following scenario:
 1. Append KUC components to Tabs content.
-2. Append kintone native field to Tabs content.
+2. Append Kintone native field to Tabs content.
 
 ### Components to use
 - [Tabs](../components/desktop/tabs.md)
@@ -23,7 +23,7 @@ The completed image of the customized page is as follows:
 
 ## What you will need to have ready
 
-Create an application that includes two blank fields with IDs 'space', 'spas' and add three table fields below them with IDs 'sales_record_table', 'task_management_table', 'sales_order_table'.
+Create an application that includes two blank fields with IDs 'space' and 'spas', and add three table fields below them with IDs 'sales_record_table' and 'task_management_table', 'sales_order_table'.
 
 ## JavaScript and CSS Customization
 
@@ -32,7 +32,7 @@ You can see how to upload a file in the [Quick Start](../getting-started/quick-s
 
 ### Defining Constants
 
-We use constants to refer to important identifiers and values such as the version number of Kintone, different space IDs, kintone fields, etc.
+We use constants to refer to important identifiers and values, such as the version number of Kintone, different space IDs, kintone fields, etc.
 
 ```javascript
 const Kuc = Kucs['1.x.x'];
@@ -44,7 +44,7 @@ const SALES_RECORD_TABLE_ID = 'sales_record_table';
 const TASK_MANAGEMENT_ID = 'task_management_table';
 const SALES_ORDER_ID = 'sales_order_table';
 
-// A set of kintone fields that need to be shown/hidden on each tab.
+// A set of Kintone fields that need to be shown/hidden on each tab.
 const salesRecordTabFields = [SALES_RECORD_TABLE_ID];
 const taskManagementTabFields = [TASK_MANAGEMENT_ID];
 const salesOrderTabFields = [SALES_ORDER_ID];
@@ -53,10 +53,10 @@ let currentTabFields;
 
 ### Initialize Custom Component Tabs
 
-We use the "Read-only Table" component from the Kintone UI Component Library to create the tab content.
+We utilize the ReadOnlyTable component from the Kintone UI Component library to create the tab content.
 We create three read-only tables: Sales Records, Task Management, and Sales Orders.
-We also define a createContent() function that takes an array of components and adds them to a container with inner padding.
-Finally, we call the createTabs() function to create the tabs and add them to the specified space.
+We also define a `createContent()` function that takes an array of components and adds them to a container with inner padding.
+Finally, we call the `createTabs()` function to create the tabs and add them to the specified space.
 
 ```javascript
 function initCustomComponentTabs() {
@@ -69,11 +69,11 @@ function initCustomComponentTabs() {
     ],
     data: [
       {
-          date: 'Feb 28, 2023',
-          account: 'Howard',
-          communication:
-          'Discussed the new product launch strategy with the client and received positive feedback.' +
-          'The client agreed to place an order for 500 units of the new product. They also requested a 10% discount on the total order value.'
+        date: 'Feb 28, 2023',
+        account: 'Howard',
+        communication:
+        'Discussed the new product launch strategy with the client and received positive feedback.' +
+        'The client agreed to place an order for 500 units of the new product. They also requested a 10% discount on the total order value.'
       }
     ]
   });
@@ -89,11 +89,11 @@ function initCustomComponentTabs() {
     ],
     data: [
       {
-          status: 'In Progress',
-          executor: 'Mike',
-          requirements:
-          'Conduct market research on the latest trends and consumer behavior in the target market.',
-          reporting: 'Report due by March 15th.'
+        status: 'In Progress',
+        executor: 'Mike',
+        requirements:
+        'Conduct market research on the latest trends and consumer behavior in the target market.',
+        reporting: 'Report due by March 15th.'
       }
     ]
   });
@@ -139,7 +139,7 @@ function createTabs(contents, isBorderVisible) {
     }
   ];
   const tabs = new Kuc.Tabs({
-    value: 'tab1',
+    value: 'salesRecordTab',
     borderVisible: isBorderVisible,
     items
   });
@@ -155,8 +155,8 @@ function addTabsToDOM(tabs, space_id) {
 ### Initialize Kintone Native Tabs
 
 We use the Kintone native tab feature to display different record fields.
-We define three constants in the initNativeKintoneTabs() function, each representing a tab.
-We use the setFieldsShown() function to hide and show the fields associated with the current tab and use the addTabsChangeEventListener() function to update the field.
+We define three constants in the `initNativeKintoneTabs()` function, each representing a tab.
+We use the `setFieldsShown()` function to hide and show the fields associated with the current tab and use the `addTabsChangeEventListener()` function to update the field.
 
 ```javascript
 function initNativeKintoneTabs() {
