@@ -51,16 +51,19 @@ export const COMBOBOX_CSS = `
   }
   .kuc-combobox__group__toggle {
     position: relative;
+    width: var(--kuc-combobox-toggle-width);
+    display: flex;
+    align-items: start;
   }
   input[type=text].kuc-combobox__group__toggle__input {
     width: 100%;
-    height: 40px;
+    height: var(--kuc-combobox-toggle-height, 40px);
     box-sizing: border-box;
     box-shadow: 2px 2px 4px #f5f5f5 inset, -2px -2px 4px #f5f5f5 inset;
     border: 1px solid #e3e7e8;
     background-color: #ffffff;
-    color: #000000;
-    font-size: 14px;
+    color: var(--kuc-combobox-toggle-color, #000000);
+    font-size: var(--kuc-combobox-font-size, 14px);
     line-height: 1.5;
     padding: 0 40px 0 8px;
     margin: 0;
@@ -86,7 +89,7 @@ export const COMBOBOX_CSS = `
   }
   .kuc-combobox__group__toggle__icon__button {
     width: 40px;
-    height: 36px;
+    height: calc(var(--kuc-combobox-toggle-height, 40px) - 4px);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -98,6 +101,8 @@ export const COMBOBOX_CSS = `
   }
   .kuc-combobox__group__select-menu {
     min-width: 280px;
+    width: var(--kuc-combobox-toggle-width);
+    color: var(--kuc-combobox-menu-color);
     padding: 8px 0;
     border: 1px solid #e3e7e8;
     box-sizing: border-box;
@@ -133,8 +138,11 @@ export const COMBOBOX_CSS = `
     left: 6px;
     margin-top: -5px;
   }
+  .kuc-combobox__group__select-menu__item__icon path {
+    fill: var(--kuc-combobox-menu-color-selected, #3498db);
+  }
   .kuc-combobox__group__select-menu__item[aria-selected="true"] {
-    color: #3498db;
+    color: var(--kuc-combobox-menu-color-selected, #3498db);
   }
   .kuc-combobox__group__select-menu__highlight[role="option"] {
     background-color: #e2f2fe;

@@ -55,6 +55,20 @@ Combobox(options)<br>
 | :--- | :--- | :--- | :--- | :--- |
 | options | object | {} | コンポーネントのプロパティを含むオブジェクト | |
 
+### Custom CSS
+> [Custom CSS](../../getting-started/custom-css.md) をご確認ください。
+
+コンポーネントのスタイルを変更するために使用できるプロパティの一覧です。
+#### Property
+| Name |
+| :--- |
+| --kuc-combobox-toggle-width |
+| --kuc-combobox-toggle-height |
+| --kuc-combobox-font-size |
+| --kuc-combobox-toggle-color |
+| --kuc-combobox-menu-color |
+| --kuc-combobox-menu-color-selected |
+
 ---
 
 ## Sample Code
