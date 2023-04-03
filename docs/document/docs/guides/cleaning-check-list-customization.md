@@ -39,11 +39,15 @@ Notes:
   - For this customization, specify 'Done' for value of the RadioButton component and '-----' for value of the Dropdown component as their initial values.
 
 ```javascript
-kintone.events.on('app.record.index.show', (event) => {
+kintone.events.on('app.record.index.show', event => {
 
   // Prevent components duplication bug
-  if (document.getElementById('kuc_radiobutton') || document.getElementById('kuc_checkbox') || document.getElementById('kuc_dropdown')
-    || document.getElementById('kuc_button')) {
+  if (
+    document.getElementById('kuc_radiobutton') ||
+    document.getElementById('kuc_checkbox') ||
+    document.getElementById('kuc_dropdown') ||
+    document.getElementById('kuc_button')
+  ) {
     return event;
   }
 
@@ -172,27 +176,29 @@ The Notification component displays a message if the record is successfully crea
 const postParam = {
   app,
   record: {
-    'status': {
+    status: {
       value: radiobutton.value
-      },
-    'item': {
+    },
+    item: {
       value: checkbox.value
     },
-    'cleaning': {
+    cleaning: {
       value: dropdown.value
     }
   }
 };
 
 // Register record
-kintone.api(kintone.api.url('/k/v1/record', true), 'POST', postParam).then((resp) => {
-  // Display success message
-  const success = new Kuc.Notification({
-    text: 'Registered check items',
-    type: 'success'
+kintone
+  .api(kintone.api.url('/k/v1/record', true), 'POST', postParam)
+  .then(resp => {
+    // Display success message
+    const success = new Kuc.Notification({
+      text: 'Registered check items',
+      type: 'success'
+    });
+    success.open();
   });
-  success.open();
-})
 ```
 
 ### Display error message
@@ -200,7 +206,7 @@ kintone.api(kintone.api.url('/k/v1/record', true), 'POST', postParam).then((resp
 The Notification component displays an error message when an error occurs during the process.
 
 ```javascript
-}).catch((error) => {
+.catch(error => {
   console.log(error);
 
   // Display error message

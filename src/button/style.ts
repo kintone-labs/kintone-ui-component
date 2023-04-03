@@ -49,13 +49,13 @@ export const BUTTON_CSS = `
     cursor: pointer;
   }
   .kuc-button__button--normal:hover {
-    background-color: var(--kuc-button-background-hover, #c8d6dd);
+    background-color: var(--kuc-button-background-color-hover, #c8d6dd);
   }
   .kuc-button__button--normal:focus-visible {
-    background-color: var(--kuc-button-background-focus, #c8d6dd);
+    background-color: var(--kuc-button-background-color-focus, #c8d6dd);
   }
   .kuc-button__button--normal:active {
-    background-color: var(--kuc-button-background-active, #c8d6dd);
+    background-color: var(--kuc-button-background-color-active, #c8d6dd);
   }
   .kuc-button__button--submit {
     background-color: var(--kuc-button-background-color, #3498db);
@@ -68,13 +68,13 @@ export const BUTTON_CSS = `
     cursor: pointer;
   }
   .kuc-button__button--submit:hover {
-    background-color: var(--kuc-button-background-hover, #1d6fa5);
+    background-color: var(--kuc-button-background-color-hover, #1d6fa5);
   }
   .kuc-button__button--submit:focus-visible {
-    background-color: var(--kuc-button-background-focus, #1d6fa5);
+    background-color: var(--kuc-button-background-color-focus, #1d6fa5);
   }
   .kuc-button__button--submit:active {
-    background-color: var(--kuc-button-background-active, #1d6fa5);
+    background-color: var(--kuc-button-background-color-active, #1d6fa5);
   }
   .kuc-button__button--alert {
     background-color: var(--kuc-button-background-color, #e74c3c);
@@ -87,13 +87,13 @@ export const BUTTON_CSS = `
     cursor: pointer;
   }
   .kuc-button__button--alert:hover {
-    background-color: var(--kuc-button-background-hover, #bf2718);
+    background-color: var(--kuc-button-background-color-hover, #bf2718);
   }
   .kuc-button__button--alert:focus-visible {
-    background-color: var(--kuc-button-background-focus, #bf2718);
+    background-color: var(--kuc-button-background-color-focus, #bf2718);
   }
   .kuc-button__button--alert:active {
-    background-color: var(--kuc-button-background-active, #bf2718);
+    background-color: var(--kuc-button-background-color-active, #bf2718);
   }
   .kuc-button__button:disabled {
     background-color: var(--kuc-button-background-color, #d4d7d7);
