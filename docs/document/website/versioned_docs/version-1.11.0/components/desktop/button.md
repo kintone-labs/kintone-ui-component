@@ -27,6 +27,7 @@ Here is a list of properties that can be used for modifying the component:
 | className | string | ""  | Component class name |  |
 | id | string | ""  | Component id name |  |
 | text | string | ""  | Text to be displayed inside the button | |
+| content | string/HTMLElement | ""  | The DOM inside button | If a string with HTML is set, it will be automatically converted to HTML and displayed as it is<br>The value of `text` will be displayed when the `content` is as follows: <ul><li>undefined</li><li>null</li><li>Empty string</li></ul>In other cases, the `text` property will be ignored |
 | type | string | "normal"  | Button design type | Available options:<br>"normal" : Gray (#f7f9fA)<br>"submit" : Blue (#3498db)<br>"alert" : Red (#e74c3c) |
 | disabled | boolean | false | Enable/Disable the component | |
 | visible | boolean | true | Show/Hide the component | |
