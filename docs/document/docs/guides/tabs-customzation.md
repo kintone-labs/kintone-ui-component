@@ -53,7 +53,7 @@ let currentTabFields;
 ### Initialize Custom Component Tabs
 
 We utilize the ReadOnlyTable component from the Kintone UI Component library to create the tab content.
-We create three read-only tables: Sales Records, Task Management, and Sales Orders.
+We create three ReadOnlyTable components: Sales Records, Task Management, and Sales Orders.
 We also define a `createContent()` function that takes an array of components and adds them to a container with inner padding.
 Finally, we call the `createTabs()` function to create the tabs and add them to the specified space.
 
