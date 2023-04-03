@@ -81,7 +81,7 @@ Here is a sample code when all parameters are specified:
 const Kuc = Kucs['1.x.x'];
 
 const notification = new Kuc.Notification({
-  text:  'Error occurred!',
+  text: 'Error occurred!',
   type: 'danger',
   className: 'options-class',
   duration: 2000

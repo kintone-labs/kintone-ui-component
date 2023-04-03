@@ -186,4 +186,13 @@ export const ATTACHMENT_CSS = `
     color: #3498db;
     font-size: 14px;
   }
+  .kuc-attachment__group__files__browse-message {
+    display: inline-block;
+    color: #888888;
+    margin: 3px 0 0;
+    word-break: break-all;
+  }
+  .kuc-attachment__group__files__browse-message[hidden] {
+    display: none;
+  }
 `;
