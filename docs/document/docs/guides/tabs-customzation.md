@@ -94,7 +94,7 @@ function addTabsToDOM(tabs, space_id) {
 ```
 
 
-### Initialize Tabs for custom component
+### Initialize Tabs for custom components
 
 We utilize the ReadOnlyTable component from the Kintone UI Component library to create the Tabs content.<br>
 We create three ReadOnlyTable components: Sales Records, Task Management, and Sales Orders.<br>
