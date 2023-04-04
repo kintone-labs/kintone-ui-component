@@ -31,7 +31,7 @@ Create an application that includes the fields as follows:
 When you import the UMD file of Kintone UI Component to the app, you can upload the JavaScript files by following these steps:<br>
 You can see how to upload a file in the [Quick Start](../getting-started/quick-start.md).
 
-### Defining constants
+### Define constants
 
 We use constants to refer to important identifiers and values, such as the version number of Kintone UI Components, space IDs, Kintone fields, etc.
 
