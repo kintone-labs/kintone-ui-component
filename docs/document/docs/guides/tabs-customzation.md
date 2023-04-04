@@ -60,7 +60,6 @@ You can set Kintone native fields to Tabs content without DOM manipulation setti
 - Function `addTabsToDom` to append the Tabs to the specified space.
 
 ```javascript
-//You can set Kintone native fields to Tabs content without DOM manipulation setting the borderVisible: false option.
 function createTabs(contents, isBorderVisible) {
   const items = [
     {
