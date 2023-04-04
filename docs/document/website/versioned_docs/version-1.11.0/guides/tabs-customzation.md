@@ -32,7 +32,7 @@ Create an application that includes the fields as follows:
 When you import the UMD file of Kintone UI Component to the app, you can upload the JavaScript files by following these steps:<br>
 You can see how to upload a file in the [Quick Start](../getting-started/quick-start.md).
 
-### Defining constants
+### Define constants
 
 We use constants to refer to important identifiers and values, such as the version number of Kintone UI Components, space IDs, Kintone fields, etc.
 
@@ -56,12 +56,11 @@ let currentTabFields;
 ### Create some common functions
 
 We create two common functions
-- Function `createContent()` to create a KUC Tabs. And for preventing DOM manipulations, we created the `isborderVisible` option.
-You can set Kintone native fields to Tabs content without DOM manipulation setting the `isborderVisible: false` option.
-- Function `addTabsToDom` to append the Tabs to the specified space.
+- Function `createContent()` to create a KUC Tabs. And for preventing DOM manipulations, we created the `isBorderVisible` option.
+You can set Kintone native fields to Tabs content without DOM manipulation setting the `isBorderVisible: false`.
+- Function `addTabsToDom()` to append the Tabs to the specified space.
 
 ```javascript
-//You can set Kintone native fields to Tabs content without DOM manipulation setting the borderVisible: false option.
 function createTabs(contents, isBorderVisible) {
   const items = [
     {
@@ -95,11 +94,11 @@ function addTabsToDOM(tabs, space_id) {
 ```
 
 
-### Initialize Tabs for custom component
+### Initialize Tabs for custom components
 
-We utilize the ReadOnlyTable component from the Kintone UI Component library to create the Tabs content.<br>
-We create three ReadOnlyTable components: Sales Records, Task Management, and Sales Orders.<br>
-We also define a `createContent()` function that takes an array of components and adds them to a container with inner padding.<br>
+We use the Tabs component feature to display different custom tables(create with ReadOnlyTable component from the Kintone UI Component library) depending on the tab.<br>
+When the tab is clicked, the Tabs component will automatically show the corresponding custom table and hide the rest of the tables.<br>
+We use the `createContent()` function that takes an array of components and adds them to a container with inner padding.<br>
 Finally, we call the `createTabs()` function to create the tabs and call the `addTabsToDOM()` function to add them to the specified space.
 
 ```javascript
@@ -169,9 +168,9 @@ function createContent(components) {
 
 We use the Tabs component feature to display different Kintone native fields depending on the tab.<br>
 When a tab is clicked, we show the corresponding Kintone native fields and hide the rest of the fields.<br>
-We use the `setFieldsShown()` function to hide and show the fields associated with the current tab and use the `addTabsChangeEventListener()` function to handle the click event and update the fields.<br>
-We also create the tabs using the `createTabs()` function , but this time we set `isBorderVisible: false` to make it more compatible with the Kintone native field.
-Finally, we call `addTabsToDom` function to append the Tabs to the specified space.
+In the "setFieldsShown" function, the fields are shown or hidden by using the [kintone.app.record.setFieldShown()](https://kintone.dev/en/docs/kintone/js-api/other/show-or-hide-a-field/) api and use the `addTabsChangeEventListener()` function to handle the click event and update the fields.<br>
+We also create the tabs using the `createTabs()` function , but this time we set `isBorderVisible: false` to make it more compatible with the Kintone native field.<br>
+Finally, we call `addTabsToDom()` function to append the Tabs to the specified space.
 
 ```javascript
 function initNativeKintoneTabs() {
