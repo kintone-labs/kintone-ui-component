@@ -53,12 +53,54 @@ const salesOrderTabFields = [SALES_ORDER_ID];
 let currentTabFields;
 ```
 
+### Create some common functions
+
+We create two common functions
+- Function `createContent()` to create a KUC Tabs. And for preventing DOM manipulations, we created the `isborderVisible` option.
+You can set Kintone native fields to Tabs content without DOM manipulation setting the `isborderVisible: false` option.
+- Function `addTabsToDom` to append the Tabs to the specified space.
+
+```javascript
+//You can set Kintone native fields to Tabs content without DOM manipulation setting the borderVisible: false option.
+function createTabs(contents, isBorderVisible) {
+  const items = [
+    {
+      label: 'Sales Record',
+      value: 'salesRecordTab',
+      content: contents ? contents[0] : ''
+    },
+    {
+      label: 'Task Management',
+      value: 'taskManagementTab',
+      content: contents ? contents[1] : ''
+    },
+    {
+      label: 'Sales Order',
+      value: 'salesOrderTab',
+      content: contents ? contents[2] : ''
+    }
+  ];
+  const tabs = new Kuc.Tabs({
+    value: 'salesRecordTab',
+    borderVisible: isBorderVisible,
+    items
+  });
+  return tabs;
+}
+
+function addTabsToDOM(tabs, space_id) {
+  const spaceElement = kintone.app.record.getSpaceElement(space_id);
+  spaceElement.appendChild(tabs);
+}
+```
+
+
 ### Initialize Tabs for custom component
 
 We utilize the ReadOnlyTable component from the Kintone UI Component library to create the Tabs content.<br>
 We create three ReadOnlyTable components: Sales Records, Task Management, and Sales Orders.<br>
 We also define a `createContent()` function that takes an array of components and adds them to a container with inner padding.<br>
-Finally, we call the `createTabs()` function to create the tabs and add them to the specified space.
+Finally, we call the `createTabs()` function to create the tabs and call the `addTabsToDOM()` function to add them to the specified space.
 
 ```javascript
 function initCustomComponentTabs() {
@@ -121,38 +163,6 @@ function createContent(components) {
   components.map(component => content.appendChild(component));
   return content;
 }
-
-//You can set Kintone native fields to Tabs content without DOM manipulation setting the borderVisible: false option.
-function createTabs(contents, isBorderVisible) {
-  const items = [
-    {
-      label: 'Sales Record',
-      value: 'salesRecordTab',
-      content: contents ? contents[0] : ''
-    },
-    {
-      label: 'Task Management',
-      value: 'taskManagementTab',
-      content: contents ? contents[1] : ''
-    },
-    {
-      label: 'Sales Order',
-      value: 'salesOrderTab',
-      content: contents ? contents[2] : ''
-    }
-  ];
-  const tabs = new Kuc.Tabs({
-    value: 'salesRecordTab',
-    borderVisible: isBorderVisible,
-    items
-  });
-  return tabs;
-}
-
-function addTabsToDOM(tabs, space_id) {
-  const spaceElement = kintone.app.record.getSpaceElement(space_id);
-  spaceElement.appendChild(tabs);
-}
 ```
 
 ### Initialize Tabs for kintone native fields
@@ -160,7 +170,8 @@ function addTabsToDOM(tabs, space_id) {
 We use the Tabs component feature to display different Kintone native fields depending on the tab.<br>
 When a tab is clicked, we show the corresponding Kintone native fields and hide the rest of the fields.<br>
 We use the `setFieldsShown()` function to hide and show the fields associated with the current tab and use the `addTabsChangeEventListener()` function to handle the click event and update the fields.<br>
-We also create the tabs using the `createTabs()` function , but this time we hide the tab-content border to make it more compatible with the Kintone native field.
+We also create the tabs using the `createTabs()` function , but this time we set `isBorderVisible: false` to make it more compatible with the Kintone native field.
+Finally, we call `addTabsToDom` function to append the Tabs to the specified space.
 
 ```javascript
 function initNativeKintoneTabs() {
@@ -198,33 +209,6 @@ function setFieldsShown(fields, isShown) {
   fields.forEach(field => {
     kintone.app.record.setFieldShown(field, isShown);
   });
-}
-
-//You can set Kintone native fields to Tabs content without DOM manipulation setting the borderVisible: false option.
-function createTabs(contents, isBorderVisible) {
-  const items = [
-    {
-      label: 'Sales Record',
-      value: 'salesRecordTab',
-      content: contents ? contents[0] : ''
-    },
-    {
-      label: 'Task Management',
-      value: 'taskManagementTab',
-      content: contents ? contents[1] : ''
-    },
-    {
-      label: 'Sales Order',
-      value: 'salesOrderTab',
-      content: contents ? contents[2] : ''
-    }
-  ];
-  const tabs = new Kuc.Tabs({
-    value: 'salesRecordTab',
-    borderVisible: isBorderVisible,
-    items
-  });
-  return tabs;
 }
 ```
 
