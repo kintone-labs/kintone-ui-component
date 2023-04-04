@@ -96,7 +96,7 @@ function addTabsToDOM(tabs, space_id) {
 
 ### Initialize Tabs for custom components
 
-We use the Tabs component feature to display different custom tables(create with ReadOnlyTable component from the Kintone UI Component library) depending on the tab.<br>
+We use the Tabs component feature to display different custom tables (create with ReadOnlyTable component from the Kintone UI Component library) depending on the tab.<br>
 When the tab is clicked, the Tabs component will automatically show the corresponding custom table and hide the rest of the tables.<br>
 We use the `createContent()` function that takes an array of components and adds them to a container with inner padding.<br>
 Finally, we call the `createTabs()` function to create the tabs and call the `addTabsToDOM()` function to add them to the specified space.
