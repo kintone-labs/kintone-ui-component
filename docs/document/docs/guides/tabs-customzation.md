@@ -167,7 +167,7 @@ function createContent(components) {
 
 We use the Tabs component feature to display different Kintone native fields depending on the tab.<br>
 When a tab is clicked, we show the corresponding Kintone native fields and hide the rest of the fields.<br>
-In the "setFieldsShown" function, the fields are shown or hidden by using the [kintone.app.record.setFieldShown()](https://kintone.dev/en/docs/kintone/js-api/other/show-or-hide-a-field/) api and use the `addTabsChangeEventListener()` function to handle the click event and update the fields.<br>
+In the "setFieldsShown()" function, the fields are shown or hidden by using the [kintone.app.record.setFieldShown()](https://kintone.dev/en/docs/kintone/js-api/other/show-or-hide-a-field/) API and use the `addTabsChangeEventListener()` function to handle the click event and update the fields.<br>
 We also create the tabs using the `createTabs()` function , but this time we set `isBorderVisible: false` to make it more compatible with the Kintone native field.<br>
 Finally, we call `addTabsToDom()` function to append the Tabs to the specified space.
 
