@@ -27,8 +27,8 @@ Here is a list of properties that can be used for modifying the component:
 | className | string | ""  | Component class name |  |
 | id | string | ""  | Component id name |  |
 | text | string | ""  | Text to be displayed inside the button | If `content` is unspecified, the value of `text` will be displayed<br>In other cases, the `text` will be ignored |
-| content *1 | string/HTMLElement | ""  | The DOM inside button | If a string with HTML is set, it will be automatically converted to HTML and displayed as it is |
 | type | string | "normal"  | Button design type | Available options:<br>"normal" : Gray (#f7f9fA)<br>"submit" : Blue (#3498db)<br>"alert" : Red (#e74c3c) |
+| content *1 | string/HTMLElement | ""  | The DOM inside button | If a string with HTML is set, it will be automatically converted to HTML and displayed as it is |
 | disabled | boolean | false | Enable/Disable the component | |
 | visible | boolean | true | Show/Hide the component | |
 
