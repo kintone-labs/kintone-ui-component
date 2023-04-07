@@ -61,9 +61,6 @@ let exportCombobox;
     @queryAll(".kuc-combobox__group__select-menu__item")
     private _itemsEl!: HTMLLIElement[];
 
-    @query(".kuc-combobox__group__label")
-    private _labelEl!: HTMLDivElement;
-
     @query(".kuc-combobox__group__select-menu__item")
     private _firstItemEl!: HTMLLIElement;
 
