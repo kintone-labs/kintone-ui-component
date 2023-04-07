@@ -52,9 +52,6 @@ let exportDropdown;
     @state()
     private _selectorVisible = false;
 
-    @query(".kuc-dropdown__group")
-    private _groupEl!: HTMLDivElement;
-
     @query(".kuc-dropdown__group__select-menu")
     private _menuEl!: HTMLUListElement;
 
@@ -63,9 +60,6 @@ let exportDropdown;
 
     @query("button.kuc-dropdown__group__toggle")
     private _buttonEl!: HTMLButtonElement;
-
-    @query(".kuc-dropdown__group__label")
-    private _labelEl!: HTMLDivElement;
 
     @query(".kuc-dropdown__group__select-menu__item")
     private _firstItemEl!: HTMLLIElement;
