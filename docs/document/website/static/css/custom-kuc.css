@@ -24,12 +24,10 @@ td[class^="kuc"] {
   max-width: 116px;
 }
 #button .kuc_normal_button,
-#button .kuc_submit_button,
-#button .kuc_alert_button {
+#button .kuc_submit_button {
   margin: 0px 5px 0px 0px;
 }
-#mobile-button .kuc_normal_button,
-#mobile-button .kuc_submit_button {
+#mobile-button .kuc_normal_button {
   margin: 0px 5px 0px 0px;
 }
 #mobile-time-picker {
