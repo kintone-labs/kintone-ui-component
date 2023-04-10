@@ -1,18 +1,18 @@
 ---
-id: version-1.11.0-button
-title: Button
-sidebar_label: Button
-original_id: button
+id: version-1.11.0-mobile-button
+title: MobileButton
+sidebar_label: MobileButton
+original_id: mobile-button
 ---
 
 ## Overview
 
-Button は、ボタンを表示します。
+MobileButton は、ボタンを表示します。
 
-<div class="sample-container" id="button">
-  <div id="sample-container__components"></div>
+<div class="sample-container" id="mobile-button">
+  <div id="sample-container__components" class="mobile"></div>
 </div>
-<script src="/js/samples/desktop/button.js"></script>
+<script src="/js/samples/mobile/mobile-button.js"></script>
 
 ---
 
@@ -27,7 +27,7 @@ Button は、ボタンを表示します。
 | className | string | "" | コンポーネントの class 名 |  |
 | id | string | "" | コンポーネントの id 名 |  |
 | text | string | "" | ボタンに表示するテキスト | content が未指定の場合、text が表示される<br>その他の場合、text は無視される |
-| type | string | "normal" | ボタンのデザインタイプ | 以下を指定できる<br>"normal" : Gray(#f7f9fA)<br>"submit" : Blue(#3498db)<br>"alert" : Red(#e74c3c) |
+| type | string | "normal" | ボタンのデザインタイプ | 以下を指定できる<br>"normal" : White(#ffffff)<br>"submit" : Blue(#206694) |
 | content *1 | string/HTMLElement | ""  | ボタン内の DOM | HTML が記載された string を指定した場合、自動的に HTML に変換してそのまま表示される |
 | disabled | boolean | false | コンポーネントの編集可/不可設定 ||
 | visible | boolean | true | コンポーネントの表示/非表示設定 ||
@@ -44,7 +44,7 @@ Button は、ボタンを表示します。
 
 ### Constructor
 
-Button(options)<br>
+MobileButton(options)<br>
 使用できるコンストラクタの一覧です。
 
 #### Parameter
@@ -52,22 +52,6 @@ Button(options)<br>
 | Name | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
 | options | object | {} | コンポーネントのプロパティを含むオブジェクト | |
-
-### Custom CSS
-> [Custom CSS](../../getting-started/custom-css.md) をご確認ください。
-
-コンポーネントのスタイルを変更するために使用できるプロパティの一覧です。
-#### Property
-| Name |
-| :--- |
-| --kuc-button-width |
-| --kuc-button-height |
-| --kuc-button-background-color |
-| --kuc-button-background-color-hover |
-| --kuc-button-background-color-active |
-| --kuc-button-background-color-focus |
-| --kuc-button-font-size |
-| --kuc-button-text-color |
 
 ---
 
@@ -80,9 +64,9 @@ Button(options)<br>
 ```javascript
 const Kuc = Kucs['1.x.x'];
 
-const header = kintone.app.getHeaderMenuSpaceElement();
+const header = kintone.mobile.app.getHeaderMenuSpaceElement();
 
-const button = new Kuc.Button({
+const mobileButton = new Kuc.MobileButton({
   text: 'Submit',
   type: 'submit',
   content: `<div>
@@ -94,9 +78,9 @@ const button = new Kuc.Button({
   visible: true,
   disabled: false
 });
-header.appendChild(button);
+header.appendChild(mobileButton);
 
-button.addEventListener('click', event => {
+mobileButton.addEventListener('click', event => {
   console.log(event);
 });
 ```
@@ -105,8 +89,4 @@ button.addEventListener('click', event => {
 
 ## Related Articles
 
-- [Search box customization](../../guides/search-box-customization.md)
-- [Cleaning check list customization](../../guides/cleaning-check-list-customization.md)
-- [Bulk update customization](../../guides/bulk-update-customization.md)
-- [Format setting plug-in](../../guides/format-setting-plugin.md)
-- [Attachment customization](../../guides/attachment-customization.md)
+- [Mobile timecard customization](../../guides/mobile-timecard-customization.md)
