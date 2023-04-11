@@ -74,6 +74,16 @@ none
 ##### Return
 none
 
+### Custom CSS
+> [Custom CSS](../../getting-started/custom-css.md) をご確認ください。
+
+コンポーネントのスタイルを変更するために使用できるプロパティの一覧です。
+#### Property
+| Name |
+| :--- |
+| --kuc-dialog-header-font-size |
+| --kuc-dialog-header-color |
+
 ---
 ## Sample Code
 

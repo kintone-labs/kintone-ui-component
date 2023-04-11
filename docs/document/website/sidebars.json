@@ -14,6 +14,7 @@
           "components/desktop/datetime-picker",
           "components/desktop/dialog",
           "components/desktop/dropdown",
+          "components/desktop/field-group",
           "components/desktop/multichoice",
           "components/desktop/notification",
           "components/desktop/radio-button",
