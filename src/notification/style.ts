@@ -55,21 +55,22 @@ export const NOTIFICATION_CSS = `
     display: inline-block;
     text-align: left;
     padding: 16px 56px 16px 24px;
-    background-color: #e74c3c;
+    background-color: var(--kuc-notification-background-color, #e74c3c);
   }
   .kuc-notification__notification--info {
-    background-color: #3498db;
+    background-color: var(--kuc-notification-background-color, #3498db);
   }
   .kuc-notification__notification--success {
-    background-color: #91c36c;
+    background-color: var(--kuc-notification-background-color, #91c36c);
   }
   .kuc-notification__notification--danger {
-    background-color: #e74c3c;
+    background-color: var(--kuc-notification-background-color, #e74c3c);
   }
   .kuc-notification__notification__title {
     display: block;
     margin: 0px;
-    font-size: 16px;
+    font-size: var(--kuc-notification-font-size, 16px);
+    color: var(--kuc-notification-text-color, #ffffff);
     max-width: 500px;
     min-height: 24px;
     word-break: break-word;
@@ -87,6 +88,15 @@ export const NOTIFICATION_CSS = `
     border: none;
     pointer-events: auto;
     cursor: pointer;
+  }
+  .kuc-notification__notification__close-button__icon-background--danger {
+    fill: var(--kuc-notification-close-button-background-color, #c65040);
+  }
+  .kuc-notification__notification__close-button__icon-background--info {
+    fill: var(--kuc-notification-close-button-background-color, #448aca);
+  }
+  .kuc-notification__notification__close-button__icon-background--success {
+    fill: var(--kuc-notification-close-button-background-color, #9bbc65);
   }
   @keyframes kuc-notification-fade-in {
     0% {
