@@ -77,17 +77,17 @@ export const NOTIFICATION_CSS = `
     white-space: pre-wrap;
   }
   .kuc-notification__notification__close-button {
-    line-height: normal;
     position: absolute;
-    top: 5px;
+    top: calc(var(--kuc-notification-font-size, 16px) * 0.75 - 1px);
     right: 0px;
     width: 48px;
-    height: 48px;
     background-color: transparent;
     outline: none;
     border: none;
     pointer-events: auto;
     cursor: pointer;
+    display: flex;
+    justify-content: center;
   }
   .kuc-notification__notification__close-button__icon-background--danger {
     fill: var(--kuc-notification-close-button-background-color, #c65040);
