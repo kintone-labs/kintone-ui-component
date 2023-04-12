@@ -79,7 +79,7 @@ Here is a list of properties that can be used for modifying component style:
 | Name |
 | :--- |
 | --kuc-notification-font-size |
-| --kuc-notification-text-color |
+| --kuc-notification-color |
 | --kuc-notification-background-color |
 | --kuc-notification-close-button-background-color |
 
