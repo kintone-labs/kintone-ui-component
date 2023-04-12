@@ -59,13 +59,13 @@ Combobox(options)<br>
 > [Custom CSS](../../getting-started/custom-css.md) をご確認ください。
 
 コンポーネントのスタイルを変更するために使用できるプロパティの一覧です。<br>
-"toggle" means the area of the input box and arrow down icon.
+toggle は、Combobox の入力欄とボタンの領域を示します。
 #### Property
 | Name |
 | :--- |
+| --kuc-combobox-font-size |
 | --kuc-combobox-toggle-width |
 | --kuc-combobox-toggle-height |
-| --kuc-combobox-font-size |
 | --kuc-combobox-toggle-color |
 | --kuc-combobox-menu-color |
 | --kuc-combobox-menu-color-selected |
