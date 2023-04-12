@@ -43,7 +43,7 @@ export const TOOLTIP_CSS = `
     min-width: 32px;
     min-height: 32px;
     padding: 6px 8px;
-    color: #fff;
+    color: #ffffff;
     text-align: start;
     text-decoration: none;
     word-wrap: break-word;

@@ -10,36 +10,20 @@ export declare type PointerFunction = (event: PointerEvent) => void;
 
 export declare type TooltipProps = {
   className?: string;
-  error?: string;
+  container?: string | HTMLElement;
   id?: string;
-  label?: string;
-  value?: string;
-  selectedIndex?: number;
-  disabled?: boolean;
-  requiredIcon?: boolean;
-  visible?: boolean;
+  placement?: TooltipPlacement;
+  title?: string;
 };
 
-export declare type DropdownChangeEventDetail = {
-  oldValue: string | undefined;
-  value: string | undefined;
-};
-
-export declare class Dropdown extends KucBase {
+export declare class Tooltip extends KucBase {
   className: string;
-  error: string;
+  container: string | HTMLElement;
   id: string;
-  label: string;
-  value: string;
-  selectedIndex: number;
-  disabled: boolean;
-  requiredIcon: boolean;
-  visible: boolean;
+  placement: TooltipPlacement;
+  title: string;
   constructor(props?: TooltipProps);
-  shouldUpdate(changedProperties: PropertyValues): boolean;
-  willUpdate(changedProperties: PropertyValues): void;
   update(changedProperties: PropertyValues): void;
   render(): import("lit").TemplateResult<1>;
   firstUpdated(): void;
-  updated(): Promise<void>;
 }

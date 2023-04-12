@@ -25,23 +25,23 @@ const Template = (args) => {
   button4.innerText = "bottom";
 
   const tooltip1 = new Tooltip({
-    content: button1,
-    text: "left",
+    container: button1,
+    title: "left",
     placement: "left",
   });
   const tooltip2 = new Tooltip({
-    content: button2,
-    text: "top",
+    container: button2,
+    title: "top",
     placement: "top",
   });
   const tooltip3 = new Tooltip({
-    content: button3,
-    text: "right",
+    container: button3,
+    title: "right",
     placement: "right",
   });
   const tooltip4 = new Tooltip({
-    content: button4,
-    text: "bottom",
+    container: button4,
+    title: "bottom",
     placement: "bottom",
   });
 
@@ -54,7 +54,7 @@ const Template = (args) => {
 
 export const base = Template.bind({});
 base.args = {
-  content: "right",
-  text: "right",
+  container: "right",
+  title: "right",
   placement: "right",
 };

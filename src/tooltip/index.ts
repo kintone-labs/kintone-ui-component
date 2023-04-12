@@ -25,14 +25,14 @@ let exportTooltip;
   class KucTooltip extends KucBase {
     @property({ type: String, reflect: true, attribute: "class" }) className =
       "";
-    @property() content: string | HTMLElement = "";
+    @property() container: string | HTMLElement = "";
     @property({ type: String, reflect: true, attribute: "id" }) id = "";
     @property({ type: String }) placement: TooltipPlacement = "bottom";
-    @property() text: string | HTMLElement = "";
-    private _content:
+    @property() title: string = "";
+    private _container:
       | HTMLElement
       | DirectiveResult<typeof UnsafeHTMLDirective> = "";
-    private _text: HTMLElement | DirectiveResult<typeof UnsafeHTMLDirective> =
+    private _title: HTMLElement | DirectiveResult<typeof UnsafeHTMLDirective> =
       "";
 
     private _GUID: string;
@@ -40,7 +40,7 @@ let exportTooltip;
     private _globalPointerDownBound: PointerFunction;
 
     @query(".kuc-tooltip__container")
-    private _container!: HTMLDivElement;
+    private _containerEl!: HTMLDivElement;
 
     @query(".kuc-tooltip__tooltip")
     private _tooltip!: HTMLDivElement;
@@ -58,11 +58,11 @@ let exportTooltip;
     }
 
     update(changedProperties: PropertyValues) {
-      if (changedProperties.has("content")) {
-        this._content = unsafeHTMLConverter(this.content);
+      if (changedProperties.has("container")) {
+        this._container = unsafeHTMLConverter(this.container);
       }
-      if (changedProperties.has("text")) {
-        this._text = unsafeHTMLConverter(this.text);
+      if (changedProperties.has("title")) {
+        this._title = unsafeHTMLConverter(this.title);
       }
       super.update(changedProperties);
     }
@@ -75,12 +75,12 @@ let exportTooltip;
             class="kuc-tooltip__trigger"
             aria-labelledby="${this._GUID}-control"
           >
-            ${this._content}
+            ${this._container}
           </div>
           <div class="kuc-tooltip__tooltip tooltip-hidden" role="tooltip">
             <div class="kuc-tooltip__tooltip--wrapper">
               <div class="kuc-tooltip__tooltip--arrow"></div>
-              <div class="kuc-tooltip__tooltip--text">${this._text}</div>
+              <div class="kuc-tooltip__tooltip--text">${this._title}</div>
             </div>
           </div>
         </div>
@@ -104,27 +104,27 @@ let exportTooltip;
     }
 
     private _showTooltip() {
-      this._container.classList.add("tooltip-visible");
+      this._containerEl.classList.add("tooltip-visible");
       this._tooltip.classList.remove("tooltip-hidden");
     }
 
     private _hideTooltip() {
-      this._container.classList.remove("tooltip-visible");
+      this._containerEl.classList.remove("tooltip-visible");
       this._tooltip.classList.add("tooltip-hidden");
     }
 
     private _bindEvents() {
       const _contentElement = this._trigger.childNodes[2];
 
-      this._container.addEventListener(
+      this._containerEl.addEventListener(
         "mouseenter",
         this._openTooltip.bind(this)
       );
-      this._container.addEventListener(
+      this._containerEl.addEventListener(
         "touchstart",
         this._openTooltip.bind(this)
       );
-      this._container.addEventListener(
+      this._containerEl.addEventListener(
         "mouseleave",
         this._closeTooltip.bind(this)
       );
