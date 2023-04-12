@@ -60,8 +60,8 @@ export const TOOLTIP_CSS = `
     margin: 0;
     border-radius: 0.25em;
     color: white;
-    min-width: max-content;
-    max-width: 10em;
+    width: max-content;
+    max-width: 250px;
     z-index: 1000;
   }
   .kuc-tooltip__container.top [role="tooltip"] {

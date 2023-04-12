@@ -12,8 +12,8 @@ export default {
 
 const Template = (args) => {
   const wrapper = document.createElement("div");
-  wrapper.style.marginTop = "50px";
-  wrapper.style.marginLeft = "50px";
+  wrapper.style.marginTop = "150px";
+  wrapper.style.marginLeft = "100px";
 
   const button1 = document.createElement("button");
   button1.innerText = "left";
