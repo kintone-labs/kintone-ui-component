@@ -57,7 +57,8 @@ Here is a list of available constructors:
 ### Custom CSS
 > Please check [Custom CSS feature guide](../../getting-started/custom-css.md) at first.
 
-Here is a list of properties that can be used for modifying component style:
+Here is a list of properties that can be used for modifying component style:<br>
+"toggle" means the area of the input box and arrow down icon.
 #### Property
 | Name |
 | :--- |

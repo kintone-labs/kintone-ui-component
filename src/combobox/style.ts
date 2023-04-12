@@ -25,7 +25,7 @@ export const COMBOBOX_CSS = `
     display: inline-table;
     font-size: 14px;
     color: #333333;
-    width: 180px;
+    width: var(--kuc-combobox-toggle-width, 180px);
     vertical-align: top;
     line-height: 1.5;
   }
@@ -52,8 +52,6 @@ export const COMBOBOX_CSS = `
   .kuc-combobox__group__toggle {
     position: relative;
     width: var(--kuc-combobox-toggle-width);
-    display: flex;
-    align-items: start;
   }
   input[type=text].kuc-combobox__group__toggle__input {
     width: 100%;
@@ -101,7 +99,6 @@ export const COMBOBOX_CSS = `
   }
   .kuc-combobox__group__select-menu {
     min-width: 280px;
-    width: var(--kuc-combobox-toggle-width);
     color: var(--kuc-combobox-menu-color);
     padding: 8px 0;
     border: 1px solid #e3e7e8;
@@ -117,6 +114,7 @@ export const COMBOBOX_CSS = `
     display: none;
   }
   .kuc-combobox__group__select-menu__item {
+    font-size: var(--kuc-combobox-font-size, 14px);
     padding: 8px 16px 8px 24px;
     line-height: 1;
     position: relative;
