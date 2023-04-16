@@ -61,18 +61,21 @@ export const TOOLTIP_CSS = `
     border-radius: 0.25em;
     color: white;
     width: max-content;
-    max-width: 250px;
     z-index: 1000;
+  }
+  [role="tooltip"] .kuc-tooltip__tooltip--text {
+    max-width: 250px;
   }
   .kuc-tooltip__container.top [role="tooltip"] {
     top: unset;
     bottom: 100%;
   }
   .kuc-tooltip__container.bottom [role="tooltip"] {
+    width: max-content;
     top: auto;
   }
   .kuc-tooltip__container.left [role="tooltip"] {
-    width: fit-content;
+    width: max-content;
     height: fit-content;
     margin: auto 0;
     right: 100%;
@@ -82,7 +85,7 @@ export const TOOLTIP_CSS = `
     transform: translateX(0);
   }
   .kuc-tooltip__container.right [role="tooltip"] {
-    width: fit-content;
+    width: max-content;
     height: fit-content;
     margin: auto 0;
     left: 100%;
