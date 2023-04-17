@@ -13,17 +13,18 @@ const _handleItemClick = (data: item, onChange?: (value: string) => void) => {
 };
 
 const _hasDuplicatedItems = (listItems?: items) => {
-  const unique = {};
-  let isUnique = true;
-  if (listItems) {
-    listItems.forEach((val: item) => {
-      if (val.value && typeof (unique[val.value]) !== 'undefined') {
-        isUnique = false;
-      }
-      val.value && (unique[val.value] = 0);
-    });
+  if (!listItems) {
+    return false;
   }
-  return !isUnique;
+  const uniqueMap = new Map();
+  for (const val of listItems) {
+    const key = JSON.stringify(val);
+    if (uniqueMap.has(key)) {
+      return true;
+    }
+    uniqueMap.set(key, true);
+  }
+  return false;
 };
 
 

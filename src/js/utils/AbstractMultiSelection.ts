@@ -4,19 +4,19 @@ type ItemData = {
   isDisabled?: boolean;
 }
 
-const _hasDuplicatedItems = (items?: ItemData[]) => {
-  const unique = {};
-  let isUnique = true;
-  if (items) {
-    items.forEach((val) => {
-      if (val.value && typeof (unique[val.value]) !== 'undefined') {
-        isUnique = false;
-      }
-      val.value && (unique[val.value] = 0);
-    });
+const _hasDuplicatedItems = (listItems?: ItemData[]) => {
+  if (!listItems) {
+    return false;
   }
-
-  return !isUnique;
+  const uniqueMap = new Map();
+  for (const val of listItems) {
+    const key = JSON.stringify(val);
+    if (uniqueMap.has(key)) {
+      return true;
+    }
+    uniqueMap.set(key, true);
+  }
+  return false;
 };
 
 const _hasCheckedItemListDuplicated = (value?: string[]) => {

@@ -7,18 +7,18 @@ type item = {
 type items = item[]
 
 const _hasDuplicatedItems = (listItems: items) => {
-  const unique = {};
-  let isUnique = true;
-  if (listItems) {
-    listItems.forEach((val) => {
-      if (typeof (unique[val.value]) !== 'undefined') {
-        isUnique = false;
-      }
-      unique[val.value] = 0;
-    });
+  if (!listItems) {
+    return false;
   }
-
-  return !isUnique;
+  const uniqueMap = new Map();
+  for (const val of listItems) {
+    const key = JSON.stringify(val);
+    if (uniqueMap.has(key)) {
+      return true;
+    }
+    uniqueMap.set(key, true);
+  }
+  return false;
 };
 
 const _hasCheckedItemListDuplicated = (value?: string[]) => {
