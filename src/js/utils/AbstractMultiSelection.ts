@@ -8,15 +8,16 @@ const _hasDuplicatedItems = (listItems?: ItemData[]) => {
   if (!listItems) {
     return false;
   }
-  const uniqueMap = new Map();
-  for (const val of listItems) {
-    const key = JSON.stringify(val);
-    if (uniqueMap.has(key)) {
-      return true;
+  const values: string[] = [];
+  let isDuplicated = false;
+  for (let i = 0; i < listItems.length; i++) {
+    if (values.indexOf(listItems[i].value) >= 0) {
+      isDuplicated = true;
+      break;
     }
-    uniqueMap.set(key, true);
+    values.push(listItems[i].value);
   }
-  return false;
+  return isDuplicated;
 };
 
 const _hasCheckedItemListDuplicated = (value?: string[]) => {
