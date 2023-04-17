@@ -51,6 +51,7 @@ export const COMBOBOX_CSS = `
   }
   .kuc-combobox__group__toggle {
     position: relative;
+    display: flex;
     width: var(--kuc-combobox-toggle-width);
   }
   input[type=text].kuc-combobox__group__toggle__input {
