@@ -2,7 +2,19 @@ import { Tooltip } from "./index.ts";
 
 export default {
   title: "desktop/tooltip",
-  argTypes: {},
+  argTypes: {
+    className: { name: "className" },
+    id: { name: "id" },
+    container: { name: "container" },
+    title: { name: "title" },
+    placement: {
+      name: "placement",
+      options: ["top", "bottom", "left", "right"],
+      control: {
+        type: "select",
+      },
+    },
+  },
   parameters: {
     actions: {
       handles: ["change"],
@@ -28,6 +40,8 @@ const Template = (args) => {
 
 export const baseBottom = Template.bind({});
 baseBottom.args = {
+  className: "tooltip-class",
+  id: "tooltip-id",
   container: "bottom",
   title: "bottom",
   placement: "bottom",
@@ -35,6 +49,8 @@ baseBottom.args = {
 
 export const baseTop = Template.bind({});
 baseTop.args = {
+  className: "tooltip-class",
+  id: "tooltip-id",
   container: "top",
   title: "top",
   placement: "top",
@@ -42,6 +58,8 @@ baseTop.args = {
 
 export const baseRight = Template.bind({});
 baseRight.args = {
+  className: "tooltip-class",
+  id: "tooltip-id",
   container: "right",
   title: "right",
   placement: "right",
@@ -49,6 +67,8 @@ baseRight.args = {
 
 export const baseLeft = Template.bind({});
 baseLeft.args = {
+  className: "tooltip-class",
+  id: "tooltip-id",
   container: "left",
   title: "left",
   placement: "left",

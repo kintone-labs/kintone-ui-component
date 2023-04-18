@@ -24,7 +24,7 @@ export const TOOLTIP_CSS = `
   :root {
     --tooltip-thingy-height: .5em;
   }
-  .tooltip-hidden {
+  .kuc-tooltip__tooltip--hidden {
     display: none;
   }
   .kuc-tooltip__container {
@@ -39,7 +39,7 @@ export const TOOLTIP_CSS = `
     display: block;
     height: calc(var(--tooltip-thingy-height) * 2);
   }
-  .kuc-tooltip__tooltip .kuc-tooltip__tooltip--text {
+  .kuc-tooltip__tooltip .kuc-tooltip__tooltip__text {
     min-width: 32px;
     min-height: 32px;
     padding: 6px 8px;
@@ -52,7 +52,7 @@ export const TOOLTIP_CSS = `
     box-shadow: 0 6px 16px 0 rgb(0 0 0 / 8%), 0 3px 6px -4px rgb(0 0 0 / 12%), 0 9px 28px 8px rgb(0 0 0 / 5%);
     box-sizing: border-box;
   }
-  [role="tooltip"] {
+  .kuc-tooltip__tooltip {
     position: absolute;
     top: calc(100% + calc(var(--tooltip-thingy-height) * 2));
     left: 50%;
@@ -63,18 +63,18 @@ export const TOOLTIP_CSS = `
     width: max-content;
     z-index: 1000;
   }
-  [role="tooltip"] .kuc-tooltip__tooltip--text {
+  .kuc-tooltip__tooltip .kuc-tooltip__tooltip__text {
     max-width: 250px;
   }
-  .kuc-tooltip__container.top [role="tooltip"] {
+  .kuc-tooltip__container.kuc-tooltip__container--top .kuc-tooltip__tooltip {
     top: unset;
     bottom: 100%;
   }
-  .kuc-tooltip__container.bottom [role="tooltip"] {
+  .kuc-tooltip__container.kuc-tooltip__container--bottom .kuc-tooltip__tooltip {
     width: max-content;
     top: auto;
   }
-  .kuc-tooltip__container.left [role="tooltip"] {
+  .kuc-tooltip__container.kuc-tooltip__container--left .kuc-tooltip__tooltip {
     width: max-content;
     height: fit-content;
     margin: auto 0;
@@ -84,7 +84,7 @@ export const TOOLTIP_CSS = `
     bottom: 0;
     transform: translateX(0);
   }
-  .kuc-tooltip__container.right [role="tooltip"] {
+  .kuc-tooltip__container.kuc-tooltip__container--right .kuc-tooltip__tooltip {
     width: max-content;
     height: fit-content;
     margin: auto 0;
@@ -93,23 +93,21 @@ export const TOOLTIP_CSS = `
     bottom: 0;
     transform: translateX(0);
   }
-  .kuc-tooltip__container .kuc-tooltip__tooltip--arrow {
+  .kuc-tooltip__container .kuc-tooltip__tooltip__arrow {
     border: var(--tooltip-thingy-height) solid transparent;
     border-bottom-color: #000000;
   }
-  .kuc-tooltip__container.top .kuc-tooltip__tooltip--arrow {
+  .kuc-tooltip__container.kuc-tooltip__container--top .kuc-tooltip__tooltip__arrow {
     border-top-color: #000000;
     border-right-color: transparent;
     border-bottom-color: transparent;
     margin: auto 0;
   }
-  .kuc-tooltip__container.bottom .kuc-tooltip__tooltip--arrow {
-  }
-  .kuc-tooltip__container.left .kuc-tooltip__tooltip--arrow {
+  .kuc-tooltip__container.kuc-tooltip__container--left .kuc-tooltip__tooltip__arrow {
     border-left-color: #000000;
     border-bottom-color: transparent;
   }
-  .kuc-tooltip__container.right .kuc-tooltip__tooltip--arrow {
+  .kuc-tooltip__container.kuc-tooltip__container--right .kuc-tooltip__tooltip__arrow {
     border-right-color: #000000;
     border-bottom-color: transparent;
     width: fit-content;
@@ -120,19 +118,19 @@ export const TOOLTIP_CSS = `
     right: 100%;
     left: auto;
   }
-  .kuc-tooltip__container .kuc-tooltip__tooltip--wrapper {
+  .kuc-tooltip__container .kuc-tooltip__tooltip__wrapper {
     display: flex;
     align-items: center;
   }
-  .kuc-tooltip__container.top .kuc-tooltip__tooltip--wrapper {
+  .kuc-tooltip__container.kuc-tooltip__container--top .kuc-tooltip__tooltip__wrapper {
     flex-direction: column-reverse;
   }
-  .kuc-tooltip__container.bottom .kuc-tooltip__tooltip--wrapper {
+  .kuc-tooltip__container.kuc-tooltip__container--bottom .kuc-tooltip__tooltip__wrapper {
     flex-direction: column;
   }
-  .kuc-tooltip__container.left .kuc-tooltip__tooltip--wrapper {
+  .kuc-tooltip__container.kuc-tooltip__container--left .kuc-tooltip__tooltip__wrapper {
     flex-direction: row-reverse;
   }
-  .kuc-tooltip__container.right .kuc-tooltip__tooltip--wrapper {
+  .kuc-tooltip__container.kuc-tooltip__container--right .kuc-tooltip__tooltip__wrapper {
   }
 `;
