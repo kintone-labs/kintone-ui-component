@@ -212,4 +212,4 @@ function setFieldsShown(fields, isShown) {
 ```
 
 > 本記事は、 2023 年 5 月時点の kintone と Google Chrome で確認したものになります。<br>
-> また、カスタマイズに使用した kintone UI Component のバージョンは、v1.11.0 です.
+> また、カスタマイズに使用した kintone UI Component のバージョンは、v1.11.0 です。
