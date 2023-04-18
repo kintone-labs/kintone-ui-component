@@ -80,18 +80,19 @@ class Dropdown extends Control<DropdownProps> {
   private _showItems(e: any) {
     this.isListVisible = true;
     this.listOuterEl.setAttribute('style', 'display: block');
-    this.listOuterEl.setAttribute('style', `margin-top: ${this._caclListOuterPosition()}px`);
+    this.listOuterEl.setAttribute('style', `margin-top: ${this._calcListOuterPosition()}px`);
 
     this._props.listItemsShown && this._props.listItemsShown(e);
   }
 
-  private _caclListOuterPosition() {
-    let position = -6;
-    const currentPosition = this.listOuterEl.offsetTop + this.listOuterEl.offsetHeight;
+  private _calcListOuterPosition() {
+    let startPosition = -5;
+    const currentPosition = this.listOuterEl.getBoundingClientRect().top + this.listOuterEl.getBoundingClientRect().height;
+    console.log(currentPosition, window.innerHeight);
     if (currentPosition >= window.innerHeight) {
-      position -= (this.listOuterEl.offsetHeight + this.element.offsetHeight);
+      startPosition -= (this.listOuterEl.getBoundingClientRect().height + this.element.getBoundingClientRect().height);
     }
-    return position;
+    return startPosition;
   }
 
   private _hideItems() {
