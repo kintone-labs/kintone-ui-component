@@ -1,4 +1,5 @@
 import React from 'react';
+import '../../js/deprecate';
 import {mdiPlus, mdiMinus, mdiClose, mdiFile, mdiChevronRight, mdiChevronLeft} from '@mdi/js';
 import '../../css/IconButton.css';
 

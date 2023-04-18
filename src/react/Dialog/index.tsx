@@ -1,4 +1,5 @@
 import React, {ReactElement} from 'react';
+import '../../js/deprecate';
 import IconButton from '../IconButton';
 import '../../css/font.css';
 import '../../css/Dialog.css';

@@ -1,4 +1,5 @@
 import React, {useState, useEffect, useRef} from 'react';
+import '../../js/deprecate';
 import ColorPickerStyle from './ColorPickerStyle';
 import Picker from './components/Picker';
 import {invertColor, isHexString} from './components/utils';

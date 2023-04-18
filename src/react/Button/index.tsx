@@ -1,4 +1,5 @@
 import React, {CSSProperties} from 'react';
+import '../../js/deprecate';
 import '../../css/font.css';
 import '../../css/Button.css';
 

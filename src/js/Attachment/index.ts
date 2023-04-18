@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable @typescript-eslint/no-empty-function */
 import '../polyfill';
+import '../deprecate';
 import Control, {ControlProps} from '../Control';
 import AttachmentFileItem from './AttachmentFileItem';
 import '../../css/Attachment.css';

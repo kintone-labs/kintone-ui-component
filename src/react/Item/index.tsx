@@ -1,4 +1,5 @@
 import React from 'react';
+import '../../js/deprecate';
 import {mdiCheckBold} from '@mdi/js';
 import '../../css/font.css';
 import '../../css/Item.css';

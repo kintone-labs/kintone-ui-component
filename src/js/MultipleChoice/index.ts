@@ -1,4 +1,5 @@
 import '../polyfill';
+import '../deprecate';
 import Control, {ControlProps} from '../Control';
 import Item, {ItemData} from './Item';
 import AbstractMultiSelection from '../utils/AbstractMultiSelection';

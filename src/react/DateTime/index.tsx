@@ -1,3 +1,4 @@
+import '../../js/deprecate';
 import '../../css/DateTime.css';
 import '../../css/Text.css';
 import React, {useState, createRef, useEffect, useMemo} from 'react';

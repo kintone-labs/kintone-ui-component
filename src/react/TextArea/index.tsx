@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import '../../js/deprecate';
 import '../../css/font.css';
 import '../../css/TextArea.css';
 

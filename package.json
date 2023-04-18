@@ -12,7 +12,9 @@
 		"esm/css/*.css",
 		"src/css/*.css",
 		"src/js/polyfill.ts",
-		"esm/js/polyfill.js"
+		"esm/js/polyfill.js",
+		"src/js/deprecate.ts",
+		"esm/js/deprecate.js"
 	],
 	"files": [
 		"dist",

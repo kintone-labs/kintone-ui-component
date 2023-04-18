@@ -1,4 +1,5 @@
 import React, {useState, useEffect, useRef} from 'react';
+import '../../js/deprecate';
 import Message from '../constant/Message';
 import {Item, AbstractSingleSelection} from '../index';
 import {mdilChevronDown} from '@mdi/light-js';
