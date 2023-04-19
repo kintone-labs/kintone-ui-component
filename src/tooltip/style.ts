@@ -21,9 +21,6 @@ export const TOOLTIP_CSS = `
     font-family: "微軟正黑體","Microsoft JhengHei","新宋体",NSimSun,STHeiti,
       Hei,"Heiti SC",sans-serif;
   }
-  :root {
-    --tooltip-thingy-height: .5em;
-  }
   .kuc-tooltip__tooltip--hidden {
     display: none;
   }
@@ -37,10 +34,9 @@ export const TOOLTIP_CSS = `
     top: 100%;
     left: -20%;
     display: block;
-    height: calc(var(--tooltip-thingy-height) * 2);
+    height: calc(0.5em * 2);
   }
   .kuc-tooltip__tooltip .kuc-tooltip__tooltip__text {
-    min-width: 32px;
     min-height: 32px;
     padding: 6px 8px;
     color: #ffffff;
@@ -54,7 +50,7 @@ export const TOOLTIP_CSS = `
   }
   .kuc-tooltip__tooltip {
     position: absolute;
-    top: calc(100% + calc(var(--tooltip-thingy-height) * 2));
+    top: calc(100% + calc(0.5em * 2));
     left: 50%;
     transform: translateX(-50%);
     margin: 0;
@@ -94,7 +90,7 @@ export const TOOLTIP_CSS = `
     transform: translateX(0);
   }
   .kuc-tooltip__container .kuc-tooltip__tooltip__arrow {
-    border: var(--tooltip-thingy-height) solid transparent;
+    border: 0.5em solid transparent;
     border-bottom-color: #000000;
   }
   .kuc-tooltip__container.kuc-tooltip__container--top .kuc-tooltip__tooltip__arrow {
@@ -130,7 +126,5 @@ export const TOOLTIP_CSS = `
   }
   .kuc-tooltip__container.kuc-tooltip__container--left .kuc-tooltip__tooltip__wrapper {
     flex-direction: row-reverse;
-  }
-  .kuc-tooltip__container.kuc-tooltip__container--right .kuc-tooltip__tooltip__wrapper {
   }
 `;
