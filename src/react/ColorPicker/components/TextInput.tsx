@@ -45,7 +45,7 @@ function RGBInput({rgb, onChange}: RGBObj) {
       if (isNaN(value as any) || intValue < 0 || intValue > 255) {
         throw new Error(Message.colorPicker.INVALID_COLOR);
       }
-      rgb[objectKey.toLowerCase()] = intValue;
+      (rgb as any)[objectKey.toLowerCase()] = intValue;
       onChange(rgbToHex(rgb.r, rgb.g, rgb.b));
     } catch (error) {
       console.error(error);
@@ -76,7 +76,7 @@ function HSVInput({hsv, onChange}: HSVObj) {
       if (isNaN(value as any) || floatValue < 0 || floatValue > 1) {
         throw new Error(Message.colorPicker.INVALID_COLOR);
       }
-      hsv[objectKey.toLowerCase()] = floatValue;
+      (hsv as any)[objectKey.toLowerCase()] = floatValue;
       const rgb = hsvToRgb(hsv.h, hsv.s, hsv.v);
       onChange(rgbToHex(rgb.r, rgb.g, rgb.b));
     } catch (error) {

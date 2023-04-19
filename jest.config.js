@@ -5,7 +5,7 @@ module.exports = {
     '^.+\\.tsx?$': 'ts-jest',
     '.+\\.(css|style)$': 'jest-transform-css'
   },
-
+  preset: 'ts-jest',
   globals: {
     'ts-jest': {
       diagnostics: {
