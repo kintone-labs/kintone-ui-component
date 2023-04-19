@@ -28,6 +28,8 @@ const Template = (args) => {
   wrapper.style.marginLeft = "100px";
 
   const tooltip = new Tooltip({
+    className: args.className,
+    id: args.id,
     container: args.container,
     title: args.title,
     placement: args.placement,
