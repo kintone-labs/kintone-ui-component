@@ -24,15 +24,15 @@ const Dropdown = ({value, items, isVisible, isDisabled, onChange}: DropdownProps
   const {_hasDuplicatedItems, _hasValidItems, _handleItemClick} = AbstractSingleSelection;
 
   const _calcListOuterPosition = (listItemEl: HTMLDivElement) => {
-    let startPosition = -6;
+    let position = -6;
     const aboveGapWidth = 1;
     const currentPosition = listItemEl.getBoundingClientRect().top + listItemEl.getBoundingClientRect().height;
 
     const parentEl = ref.current || document.createElement('div');
     if (currentPosition >= window.innerHeight) {
-      startPosition -= (listItemEl.getBoundingClientRect().height + parentEl.getBoundingClientRect().height - aboveGapWidth);
+      position -= (listItemEl.getBoundingClientRect().height + parentEl.getBoundingClientRect().height - aboveGapWidth);
     }
-    return startPosition;
+    return position;
   };
 
   const _showItems = () => {
