@@ -86,11 +86,11 @@ class Dropdown extends Control<DropdownProps> {
   }
 
   private _calcListOuterPosition() {
-    let startPosition = -5;
+    let startPosition = -6;
+    const aboveGapWidth = 1;
     const currentPosition = this.listOuterEl.getBoundingClientRect().top + this.listOuterEl.getBoundingClientRect().height;
-    console.log(currentPosition, window.innerHeight);
     if (currentPosition >= window.innerHeight) {
-      startPosition -= (this.listOuterEl.getBoundingClientRect().height + this.element.getBoundingClientRect().height);
+      startPosition -= (this.listOuterEl.getBoundingClientRect().height + this.element.getBoundingClientRect().height - aboveGapWidth);
     }
     return startPosition;
   }
