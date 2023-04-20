@@ -30,6 +30,7 @@ export const BUTTON_CSS = `
   .kuc-button__button {
     display: grid;
     align-items: center;
+    align-content: center;
     font-size: var(--kuc-button-font-size, 16px);
     width: var(--kuc-button-width, "auto");
     height: var(--kuc-button-height, 48px);
