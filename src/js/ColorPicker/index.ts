@@ -1,4 +1,5 @@
 import '../polyfill';
+import '../deprecate';
 import Control, {ControlProps} from '../Control';
 import ColorPickerStyle from './ColorPickerStyle';
 import {invertColor, isHexString} from './components/utils';

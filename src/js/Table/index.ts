@@ -1,4 +1,5 @@
 import '../polyfill';
+import '../deprecate';
 import Control, {ControlProps} from '../Control';
 import TableCell from './TableCell';
 import Message from '../../constant/Message';

@@ -1,4 +1,5 @@
 import '../polyfill';
+import '../deprecate';
 import Control, {ControlProps} from '../Control';
 import '../../css/FieldGroup.css';
 type FieldGroupProps = ControlProps & {

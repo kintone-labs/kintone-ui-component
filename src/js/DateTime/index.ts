@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 import '../polyfill';
+import '../deprecate';
 import Control, {ControlProps} from '../Control';
 import '../../css/DateTime.css';
 import '../../css/Text.css';

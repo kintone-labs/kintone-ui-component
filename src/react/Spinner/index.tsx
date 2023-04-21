@@ -1,4 +1,5 @@
 import React from 'react';
+import '../../js/deprecate';
 import '../../css/Spinner.css';
 
 type SpinnerProps = {
