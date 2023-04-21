@@ -1,4 +1,5 @@
 import React from 'react';
+import '../../js/deprecate';
 import Message from '../constant/Message';
 import {Item, AbstractSingleSelection} from '../index';
 import '../../css/font.css';

@@ -6,19 +6,20 @@ type item = {
 
 type items = item[]
 
-const _hasDuplicatedItems = (listItems: items) => {
-  const unique = {};
-  let isUnique = true;
-  if (listItems) {
-    listItems.forEach((val) => {
-      if (typeof (unique[val.value]) !== 'undefined') {
-        isUnique = false;
-      }
-      unique[val.value] = 0;
-    });
+const _hasDuplicatedItems = (listItems?: items) => {
+  if (!listItems) {
+    return false;
   }
-
-  return !isUnique;
+  const values: string[] = [];
+  let isDuplicated = false;
+  for (let i = 0; i < listItems.length; i++) {
+    if (values.indexOf(listItems[i].value) >= 0) {
+      isDuplicated = true;
+      break;
+    }
+    values.push(listItems[i].value);
+  }
+  return isDuplicated;
 };
 
 const _hasCheckedItemListDuplicated = (value?: string[]) => {

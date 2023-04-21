@@ -1,4 +1,5 @@
 import React from 'react';
+import '../../js/deprecate';
 import '../../css/font.css';
 import '../../css/NotifyPopup.css';
 import IconButton from '../IconButton/index';

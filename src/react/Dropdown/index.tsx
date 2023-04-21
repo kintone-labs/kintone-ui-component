@@ -1,4 +1,5 @@
 import React, {useState, useEffect, useRef} from 'react';
+import '../../js/deprecate';
 import Message from '../constant/Message';
 import {Item, AbstractSingleSelection} from '../index';
 import {mdilChevronDown} from '@mdi/light-js';
@@ -23,13 +24,14 @@ const Dropdown = ({value, items, isVisible, isDisabled, onChange}: DropdownProps
   const ref = useRef<HTMLDivElement>(null);
   const {_hasDuplicatedItems, _hasValidItems, _handleItemClick} = AbstractSingleSelection;
 
-  const _caclListOuterPosition = (listItemEl: HTMLDivElement) => {
+  const _calcListOuterPosition = (listItemEl: HTMLDivElement) => {
     let position = -6;
-    const currentPosition = listItemEl.offsetTop + listItemEl.offsetHeight;
+    const aboveGapWidth = 1;
+    const currentPosition = listItemEl.getBoundingClientRect().top + listItemEl.getBoundingClientRect().height;
 
     const parentEl = ref.current || document.createElement('div');
     if (currentPosition >= window.innerHeight) {
-      position -= (listItemEl.offsetHeight + parentEl.offsetHeight);
+      position -= (listItemEl.getBoundingClientRect().height + parentEl.getBoundingClientRect().height - aboveGapWidth);
     }
     return position;
   };
@@ -39,7 +41,7 @@ const Dropdown = ({value, items, isVisible, isDisabled, onChange}: DropdownProps
     const element = ref.current || document.createElement('div');
     const listItemEl = element.getElementsByClassName('kuc-list-outer')[0] as HTMLDivElement;
     listItemEl.setAttribute('style', `display: block;`);
-    listItemEl.setAttribute('style', `margin-top: ${_caclListOuterPosition(listItemEl)}px;`);
+    listItemEl.setAttribute('style', `margin-top: ${_calcListOuterPosition(listItemEl)}px;`);
   };
 
   const _hideItems = () => {

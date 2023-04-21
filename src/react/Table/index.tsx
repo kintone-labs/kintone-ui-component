@@ -1,5 +1,6 @@
 /* eslint-disable react/jsx-key */
 import React from 'react';
+import '../../js/deprecate';
 import IconButton from '../IconButton';
 import '../../css/font.css';
 import '../../css/Table.css';

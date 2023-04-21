@@ -1,4 +1,5 @@
 import '../polyfill';
+import '../deprecate';
 import Control, {ControlProps} from '../Control';
 import TableCell from './TableCell';
 import Message from '../../constant/Message';
@@ -354,7 +355,17 @@ export default class Table extends Control<TableProps> {
     if (!validEventNames.some(event => event === eventName)) {
       throw new Error(Message.control.INVALID_EVENT + ' ' + validEventNames.join(','));
     }
-    this._props['on' + eventName.charAt(0).toUpperCase() + eventName.slice(1)] = callback;
+    switch (eventName) {
+      case 'rowAdd':
+        this._props.onRowAdd = callback;
+        break;
+      case 'rowRemove':
+        this._props.onRowRemove = callback;
+        break;
+      case 'cellChange':
+        this._props.onCellChange = callback;
+        break;
+    }
   }
 }
 

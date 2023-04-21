@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import React from 'react';
+import '../../js/deprecate';
 import AttachmentFileItem from './AttachmentFileItem';
 import '../../css/font.css';
 import '../../css/Attachment.css';

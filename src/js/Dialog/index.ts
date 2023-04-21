@@ -1,4 +1,5 @@
 import '../polyfill';
+import '../deprecate';
 import Control, {ControlProps} from '../Control';
 import IconButton from '../IconButton';
 import Message from '../../constant/Message';
