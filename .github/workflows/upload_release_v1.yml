@@ -39,7 +39,7 @@ jobs:
         name: v${{ steps.check_version.outputs.version }}-integrity
         path: ./${{ steps.generate_binary.outputs.integrity }}
     - name: Upload package to release[binaries]
-      uses: svenstaro/upload-release-action@v1-release
+      uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{ secrets.WORKFLOW_TOKEN }}
         file: kintone-ui-component-${{ steps.check_version.outputs.version }}.tgz
