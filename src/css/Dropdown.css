@@ -8,6 +8,9 @@
     -ms-user-select: none;
     user-select: none;
 }
+.kuc-dropdown-container {
+    position: relative;
+}
 .kuc-dropdown {
     position: relative;
     display: inline-block;
