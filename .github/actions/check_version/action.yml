@@ -4,5 +4,5 @@ outputs:
   version:
     description: 'The lastest version'
 runs: 
-  using: 'node12'
+  using: 'node16'
   main: 'index.js'

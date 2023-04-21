@@ -28,7 +28,7 @@ jobs:
     - name: Run ESLint
       run: npm run eslint
     - name: Trigger run upload release workflows
-      uses: peter-evans/repository-dispatch@v1
+      uses: peter-evans/repository-dispatch@v2
       with:
         token: ${{secrets.WORKFLOW_TOKEN}}
         event-type: release_dispatch_v0
