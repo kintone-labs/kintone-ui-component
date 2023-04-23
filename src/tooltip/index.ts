@@ -70,7 +70,7 @@ let exportTooltip;
           <div
             id="${this._GUID}-body"
             class="kuc-tooltip__group__trigger"
-            aria-labelledby="${this._GUID}-control"
+            aria-labelledby="${this._GUID}-title"
           >
             ${this._container}
           </div>
@@ -84,6 +84,7 @@ let exportTooltip;
 
       return html`
         <div
+          id="${this._GUID}-title"
           class="kuc-tooltip__group__title kuc-tooltip__group__title--hidden"
           role="tooltip"
         >
