@@ -21,14 +21,14 @@ export const TOOLTIP_CSS = `
     font-family: "微軟正黑體","Microsoft JhengHei","新宋体",NSimSun,STHeiti,
       Hei,"Heiti SC",sans-serif;
   }
-  .kuc-tooltip__tooltip--hidden {
+  .kuc-tooltip__group__title--hidden {
     display: none;
   }
-  .kuc-tooltip__container {
+  .kuc-tooltip__group {
     position: relative;
     display: inline-block;
   }
-  .kuc-tooltip__container::after {
+  .kuc-tooltip__group::after {
     position: absolute;
     right: -20%;
     top: 100%;
@@ -36,7 +36,7 @@ export const TOOLTIP_CSS = `
     display: block;
     height: calc(0.5em * 2);
   }
-  .kuc-tooltip__tooltip .kuc-tooltip__tooltip__text {
+  .kuc-tooltip__group__title .kuc-tooltip__group__title__wrapper__text {
     min-height: 32px;
     padding: 6px 8px;
     color: #ffffff;
@@ -48,7 +48,7 @@ export const TOOLTIP_CSS = `
     box-shadow: 0 6px 16px 0 rgb(0 0 0 / 8%), 0 3px 6px -4px rgb(0 0 0 / 12%), 0 9px 28px 8px rgb(0 0 0 / 5%);
     box-sizing: border-box;
   }
-  .kuc-tooltip__tooltip {
+  .kuc-tooltip__group__title {
     position: absolute;
     top: calc(100% + calc(0.5em * 2));
     left: 50%;
@@ -59,18 +59,18 @@ export const TOOLTIP_CSS = `
     width: max-content;
     z-index: 1000;
   }
-  .kuc-tooltip__tooltip .kuc-tooltip__tooltip__text {
+  .kuc-tooltip__group__title .kuc-tooltip__group__title__wrapper__text {
     max-width: 250px;
   }
-  .kuc-tooltip__container.kuc-tooltip__container--top .kuc-tooltip__tooltip {
+  .kuc-tooltip__group.kuc-tooltip__group--top .kuc-tooltip__group__title {
     top: unset;
     bottom: 100%;
   }
-  .kuc-tooltip__container.kuc-tooltip__container--bottom .kuc-tooltip__tooltip {
+  .kuc-tooltip__group.kuc-tooltip__group--bottom .kuc-tooltip__group__title {
     width: max-content;
     top: auto;
   }
-  .kuc-tooltip__container.kuc-tooltip__container--left .kuc-tooltip__tooltip {
+  .kuc-tooltip__group.kuc-tooltip__group--left .kuc-tooltip__group__title {
     width: max-content;
     height: fit-content;
     margin: auto 0;
@@ -80,7 +80,7 @@ export const TOOLTIP_CSS = `
     bottom: 0;
     transform: translateX(0);
   }
-  .kuc-tooltip__container.kuc-tooltip__container--right .kuc-tooltip__tooltip {
+  .kuc-tooltip__group.kuc-tooltip__group--right .kuc-tooltip__group__title {
     width: max-content;
     height: fit-content;
     margin: auto 0;
@@ -89,21 +89,21 @@ export const TOOLTIP_CSS = `
     bottom: 0;
     transform: translateX(0);
   }
-  .kuc-tooltip__container .kuc-tooltip__tooltip__arrow {
+  .kuc-tooltip__group .kuc-tooltip__group__title__wrapper__arrow {
     border: 0.5em solid transparent;
     border-bottom-color: #000000;
   }
-  .kuc-tooltip__container.kuc-tooltip__container--top .kuc-tooltip__tooltip__arrow {
+  .kuc-tooltip__group.kuc-tooltip__group--top .kuc-tooltip__group__title__wrapper__arrow {
     border-top-color: #000000;
     border-right-color: transparent;
     border-bottom-color: transparent;
     margin: auto 0;
   }
-  .kuc-tooltip__container.kuc-tooltip__container--left .kuc-tooltip__tooltip__arrow {
+  .kuc-tooltip__group.kuc-tooltip__group--left .kuc-tooltip__group__title__wrapper__arrow {
     border-left-color: #000000;
     border-bottom-color: transparent;
   }
-  .kuc-tooltip__container.kuc-tooltip__container--right .kuc-tooltip__tooltip__arrow {
+  .kuc-tooltip__group.kuc-tooltip__group--right .kuc-tooltip__group__title__wrapper__arrow {
     border-right-color: #000000;
     border-bottom-color: transparent;
     width: fit-content;
@@ -114,17 +114,17 @@ export const TOOLTIP_CSS = `
     right: 100%;
     left: auto;
   }
-  .kuc-tooltip__container .kuc-tooltip__tooltip__wrapper {
+  .kuc-tooltip__group .kuc-tooltip__group__title__wrapper {
     display: flex;
     align-items: center;
   }
-  .kuc-tooltip__container.kuc-tooltip__container--top .kuc-tooltip__tooltip__wrapper {
+  .kuc-tooltip__group.kuc-tooltip__group--top .kuc-tooltip__group__title__wrapper {
     flex-direction: column-reverse;
   }
-  .kuc-tooltip__container.kuc-tooltip__container--bottom .kuc-tooltip__tooltip__wrapper {
+  .kuc-tooltip__group.kuc-tooltip__group--bottom .kuc-tooltip__group__title__wrapper {
     flex-direction: column;
   }
-  .kuc-tooltip__container.kuc-tooltip__container--left .kuc-tooltip__tooltip__wrapper {
+  .kuc-tooltip__group.kuc-tooltip__group--left .kuc-tooltip__group__title__wrapper {
     flex-direction: row-reverse;
   }
 `;

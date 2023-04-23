@@ -37,13 +37,13 @@ let exportTooltip;
     private _globalEscapeBound: KeyBoardFunction;
     private _globalPointerDownBound: PointerFunction;
 
-    @query(".kuc-tooltip__container")
+    @query(".kuc-tooltip__group")
     private _containerEl!: HTMLDivElement;
 
-    @query(".kuc-tooltip__tooltip")
+    @query(".kuc-tooltip__group__title")
     private _tooltip!: HTMLDivElement;
 
-    @query(".kuc-tooltip__trigger")
+    @query(".kuc-tooltip__group__trigger")
     private _trigger!: HTMLDivElement;
 
     constructor(props?: TooltipProps) {
@@ -65,11 +65,11 @@ let exportTooltip;
     render() {
       return html`
         <div
-          class="kuc-tooltip__container kuc-tooltip__container--${this._getPlacement()}"
+          class="kuc-tooltip__group kuc-tooltip__group--${this._getPlacement()}"
         >
           <div
             id="${this._GUID}-body"
-            class="kuc-tooltip__trigger"
+            class="kuc-tooltip__group__trigger"
             aria-labelledby="${this._GUID}-control"
           >
             ${this._container}
@@ -84,12 +84,14 @@ let exportTooltip;
 
       return html`
         <div
-          class="kuc-tooltip__tooltip kuc-tooltip__tooltip--hidden"
+          class="kuc-tooltip__group__title kuc-tooltip__group__title--hidden"
           role="tooltip"
         >
-          <div class="kuc-tooltip__tooltip__wrapper">
-            <div class="kuc-tooltip__tooltip__arrow"></div>
-            <div class="kuc-tooltip__tooltip__text">${this.title}</div>
+          <div class="kuc-tooltip__group__title__wrapper">
+            <div class="kuc-tooltip__group__title__wrapper__arrow"></div>
+            <div class="kuc-tooltip__group__title__wrapper__text">
+              ${this.title}
+            </div>
           </div>
         </div>
       `;
@@ -112,11 +114,11 @@ let exportTooltip;
     }
 
     private _showTooltip() {
-      this._tooltip.classList.remove("kuc-tooltip__tooltip--hidden");
+      this._tooltip.classList.remove("kuc-tooltip__group__title--hidden");
     }
 
     private _hideTooltip() {
-      this._tooltip.classList.add("kuc-tooltip__tooltip--hidden");
+      this._tooltip.classList.add("kuc-tooltip__group__title--hidden");
     }
 
     private _bindEvents() {
@@ -159,7 +161,7 @@ let exportTooltip;
 
     private _globalPointerDown(event: PointerEvent) {
       const target = event.target as HTMLElement;
-      const tooltipEl = target.closest(".kuc-tooltip__tooltip");
+      const tooltipEl = target.closest(".kuc-tooltip__group__title");
       if (tooltipEl) return;
 
       switch (event.target) {
