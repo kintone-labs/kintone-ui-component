@@ -34,5 +34,18 @@ describe("Tabs", () => {
       );
       expect(tabPanels[2].hasAttribute("hidden")).to.equal(false);
     });
+
+    it("should be throw error when assigned a not string value", (done) => {
+      const handleError = (event: any) => {
+        const errorMsg = event.reason.message;
+        expect(errorMsg).to.equal("'value' property is not string.");
+        window.removeEventListener("unhandledrejection", handleError);
+        done();
+      };
+      window.addEventListener("unhandledrejection", handleError);
+
+      const container = new Tabs({ value: null, items: initItems });
+      fixture(container);
+    });
   });
 });

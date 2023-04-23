@@ -3,20 +3,20 @@ import { PropertyValues } from "lit";
 import { KucBase } from "../base/kuc-base";
 
 export declare type TabsItem = {
-  content?: HTMLElement | string;
-  disabled?: boolean;
   label?: string;
-  visible?: boolean;
   value: string;
+  disabled?: boolean;
+  visible?: boolean;
+  content?: HTMLElement | string;
 };
 
 export declare type TabsProp = {
-  borderVisible: boolean;
   className?: string;
   id?: string;
-  items: TabsItem[];
   value?: string;
+  borderVisible?: boolean;
   visible?: boolean;
+  items?: TabsItem[];
 };
 
 export declare type TabsChangeEventDetail = {
@@ -27,12 +27,12 @@ export declare type TabsChangeEventDetail = {
 export declare class Tabs extends KucBase {
   className: string;
   id: string;
-  items: TabsItem[];
-  value?: string | undefined;
+  value: string;
+  borderVisible: boolean;
   visible: boolean;
+  items: TabsItem[];
   constructor(props?: TabsProp);
-  protected shouldUpdate(_changedProperties: PropertyValues): boolean;
-  update(changedProperties: PropertyValues): void;
+  shouldUpdate(changedProperties: PropertyValues): boolean;
+  willUpdate(changedProperties: PropertyValues): void;
   render(): import("lit").TemplateResult<1>;
-  updated(): void;
 }

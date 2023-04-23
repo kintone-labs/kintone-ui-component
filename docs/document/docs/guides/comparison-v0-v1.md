@@ -89,7 +89,7 @@ The main difference is as follows:
 - Improved DOM positioning
 - Restructured the component property
 - Included additional properties for Alert and Label
-- Auto-completion of Item.value
+- Auto-completion of Item.label
 
 The following section will explain in further detail.
 
@@ -275,12 +275,11 @@ You can abbreviate the coding as follows:
 const checkbox = new Kuc.Checkbox({
   items: [
     {
-      value: "orange"
+      value: 'orange'
     }
-  ],
+  ]
 });
 ```
-
 
 ## Conclusion
 

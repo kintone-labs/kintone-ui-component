@@ -81,7 +81,7 @@ Here is a sample code when all parameters are specified:
 const Kuc = Kucs['1.x.x'];
 
 const notification = new Kuc.Notification({
-  text:  'Error occurred!',
+  text: 'Error occurred!',
   type: 'danger',
   className: 'options-class',
   duration: 2000
@@ -94,3 +94,11 @@ notification.addEventListener('close', event => {
 notification.open();
 notification.close();
 ```
+
+---
+
+## Related Articles
+
+- [Search box customization](../../guides/search-box-customization.md)
+- [Cleaning check list customization](../../guides/cleaning-check-list-customization.md)
+- [Bulk update customization](../../guides/bulk-update-customization.md)

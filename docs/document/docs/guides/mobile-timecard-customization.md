@@ -26,10 +26,12 @@ See [Quick Start](../getting-started/quick-start.md) for how to upload a file.
 Use the MobileButton component to display the punch-in and punch-out buttons.
 
 ```javascript
-kintone.events.on('mobile.app.record.index.show', (event) => {
-
+kintone.events.on('mobile.app.record.index.show', event => {
   // Prevent button duplication bug
-  if (document.getElementById('kuc_punch_in_button') || document.getElementById('kuc_punch_out_button')) {
+  if (
+    document.getElementById('kuc_punch_in_button') ||
+    document.getElementById('kuc_punch_out_button')
+  ) {
     return event;
   }
 
@@ -85,7 +87,7 @@ After the timecard is stamped, the process of updating the screen takes place.
 
 ```javascript
 // Reload function
-const reload = (waitSeconds) => {
+const reload = waitSeconds => {
   return new Promise(resolve => {
     setTimeout(() => {
       resolve(document.location.reload());
@@ -109,9 +111,14 @@ punchInButton.addEventListener('click', async () => {
     // Check for records on the day
     const getParams = {
       app,
-      query: 'date = TODAY() and creator in (LOGINUSER()) order by $id desc limit 1 offset 0'
+      query:
+        'date = TODAY() and creator in (LOGINUSER()) order by $id desc limit 1 offset 0'
     };
-    const resp = await kintone.api(kintone.api.url('/k/v1/records', true), 'GET', getParams);
+    const resp = await kintone.api(
+      kintone.api.url('/k/v1/records', true),
+      'GET',
+      getParams
+    );
 
     // Display the message if there are any records on the day
     if (resp.records.length) {
@@ -133,17 +140,21 @@ After checking for the presence or absence of records, the following process is 
 if (!resp.records.length) {
   const postParams = {
     app,
-    'record': {
-    　'start': {
-        'value': getTime()
+    record: {
+      start: {
+        value: getTime()
       }
     }
   };
-  await kintone.api(kintone.api.url('/k/v1/record', true), 'POST', postParams);
+  await kintone.api(
+    kintone.api.url('/k/v1/record', true),
+    'POST',
+    postParams
+  );
 
   // Display the message when punch-in
   const info = new Kuc.MobileNotification({
-      text: 'Registered a punch-in time!'
+    text: 'Registered a punch-in time!'
   });
   info.open();
   await reload(5);

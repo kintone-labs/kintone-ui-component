@@ -10,6 +10,7 @@ export * from "./date-picker";
 export * from "./datetime-picker";
 export * from "./dialog";
 export * from "./dropdown";
+export * from "./field-group";
 export * from "./multichoice";
 export * from "./notification";
 export * from "./radio-button";

@@ -36,7 +36,7 @@ describe("Tabs", () => {
       expect(itemButtons[2].hasAttribute("disabled")).to.equal(true);
     });
 
-    it("should be throw error when assigned duplicated items", (done) => {
+    it("should be throw error when assigned not array", (done) => {
       const handleError = (event: any) => {
         const errorMsg = event.reason.message;
         expect(errorMsg).to.equal("'items' property is not array.");
@@ -50,7 +50,7 @@ describe("Tabs", () => {
       fixture(container);
     });
 
-    it("should be throw error when assigned null", (done) => {
+    it("should be throw error when assigned duplicated value in items", (done) => {
       const handleError = (event: any) => {
         const errorMsg = event.reason.message;
         expect(errorMsg).to.equal("'value' property is not unique in items.");
@@ -63,16 +63,18 @@ describe("Tabs", () => {
       fixture(container);
     });
 
-    it("should be throw error when assigned null", (done) => {
+    it("should be throw error when not assigned value in items", (done) => {
       const handleError = (event: any) => {
         const errorMsg = event.reason.message;
-        expect(errorMsg).to.equal("'value' property is not string.");
+        expect(errorMsg).to.equal(
+          "'value' property is not specified in items."
+        );
         window.removeEventListener("unhandledrejection", handleError);
         done();
       };
       window.addEventListener("unhandledrejection", handleError);
 
-      const container = new Tabs({ items: noStringValueItems });
+      const container = new Tabs({ items: [{ label: "tab" }] });
       fixture(container);
     });
   });

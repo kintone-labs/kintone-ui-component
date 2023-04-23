@@ -54,7 +54,8 @@ export const DIALOG_CSS = `
   }
 
   .kuc-dialog__dialog__header__title {
-    font-size: 24px;
+    font-size: var(--kuc-dialog-header-font-size, 24px);
+    color: var(--kuc-dialog-header-color);
     padding: 0 24px;
     align-self: center;
     font-weight: 400;
