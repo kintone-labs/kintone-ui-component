@@ -175,10 +175,9 @@ let exportTooltip;
     }
 
     private _getPlacement() {
-      const isOfTypePlacement = ["top", "bottom", "left", "right"].includes(
-        this.placement
-      );
-      return isOfTypePlacement ? this.placement : "bottom";
+      const placement: TooltipPlacement[] = ["top", "bottom", "left", "right"];
+      const isOfTypePlacement = placement.includes(this.placement);
+      return isOfTypePlacement ? this.placement : "top";
     }
   }
   window.customElements.define("kuc-tooltip", KucTooltip);
