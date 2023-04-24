@@ -75,9 +75,9 @@ toggle は、Dropdown ボタンの領域を示します。
 #### Property
 | Name |
 | :--- |
+| --kuc-dropdown-font-size |
 | --kuc-dropdown-toggle-width |
 | --kuc-dropdown-toggle-height |
-| --kuc-dropdown-font-size |
 | --kuc-dropdown-toggle-color |
 | --kuc-dropdown-menu-color |
 | --kuc-dropdown-menu-color-selected |

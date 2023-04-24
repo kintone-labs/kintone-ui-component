@@ -75,9 +75,9 @@ Here is a list of properties that can be used for modifying component style:<br>
 #### Property
 | Name |
 | :--- |
+| --kuc-dropdown-font-size |
 | --kuc-dropdown-toggle-width |
 | --kuc-dropdown-toggle-height |
-| --kuc-dropdown-font-size |
 | --kuc-dropdown-toggle-color |
 | --kuc-dropdown-menu-color |
 | --kuc-dropdown-menu-color-selected |
