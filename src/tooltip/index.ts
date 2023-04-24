@@ -43,7 +43,7 @@ let exportTooltip;
     @query(".kuc-tooltip__group__title")
     private _tooltip!: HTMLDivElement;
 
-    @query(".kuc-tooltip__group__trigger")
+    @query(".kuc-tooltip__group__container")
     private _trigger!: HTMLDivElement;
 
     constructor(props?: TooltipProps) {
@@ -69,7 +69,7 @@ let exportTooltip;
         >
           <div
             id="${this._GUID}-body"
-            class="kuc-tooltip__group__trigger"
+            class="kuc-tooltip__group__container"
             aria-labelledby="${this._GUID}-title"
           >
             ${this._container}
