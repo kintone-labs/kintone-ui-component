@@ -29,10 +29,7 @@ jobs:
       - name: Build storybook
         run: npm run build:storybook
         working-directory: ./
+      - name: Install Netlify
+        run: npm i netlify-cli --no-save
       - name: Deploying on Netlify Storybook Production Environment
-        uses: South-Paw/action-netlify-deploy@v1.2.0
-        with:
-          github-token: ${{ secrets.WORKFLOW_TOKEN }}
-          netlify-auth-token: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          netlify-site-id: ${{ secrets.NETLIFY_STORYBOOK_ID }}
-          build-dir: './docs/storybook'
+        run: netlify deploy --prod --dir=./docs/storybook --auth=${{ secrets.NETLIFY_AUTH_TOKEN }} --site=${{ secrets.NETLIFY_STORYBOOK_ID }}
