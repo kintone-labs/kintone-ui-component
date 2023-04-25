@@ -72,7 +72,6 @@ export const NOTIFICATION_CSS = `
     font-size: var(--kuc-notification-font-size, 16px);
     color: var(--kuc-notification-color, #ffffff);
     max-width: 500px;
-    min-height: 24px;
     word-break: break-word;
     white-space: pre-wrap;
   }
