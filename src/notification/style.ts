@@ -68,7 +68,7 @@ export const NOTIFICATION_CSS = `
   }
   .kuc-notification__notification__title {
     display: block;
-    margin: 0px;
+    margin: 0;
     font-size: var(--kuc-notification-font-size, 16px);
     color: var(--kuc-notification-color, #ffffff);
     max-width: 500px;
@@ -77,8 +77,8 @@ export const NOTIFICATION_CSS = `
   }
   .kuc-notification__notification__close-button {
     position: absolute;
-    top: calc(var(--kuc-notification-font-size, 16px) * 0.75 - 1px);
-    right: 0px;
+    top: calc(var(--kuc-notification-font-size, 16px) * 0.75);
+    right: 0;
     width: 48px;
     background-color: transparent;
     outline: none;
@@ -87,6 +87,7 @@ export const NOTIFICATION_CSS = `
     cursor: pointer;
     display: flex;
     justify-content: center;
+    padding: 0;
   }
   .kuc-notification__notification__close-button__icon-background--danger {
     fill: var(--kuc-notification-close-button-background-color, #c65040);
