@@ -67,19 +67,22 @@ export const NOTIFICATION_CSS = `
     background-color: var(--kuc-notification-background-color, #e74c3c);
   }
   .kuc-notification__notification__title {
-    display: block;
+    display: flex;
+    align-items: center;
     margin: 0;
     font-size: var(--kuc-notification-font-size, 16px);
     color: var(--kuc-notification-color, #ffffff);
     max-width: 500px;
+    min-height: 24px;
     word-break: break-word;
     white-space: pre-wrap;
   }
   .kuc-notification__notification__close-button {
     position: absolute;
-    top: calc(var(--kuc-notification-font-size, 16px) * 0.75);
+    top: 4px;
     right: 0;
     width: 48px;
+    height: 48px;
     background-color: transparent;
     outline: none;
     border: none;
@@ -87,6 +90,7 @@ export const NOTIFICATION_CSS = `
     cursor: pointer;
     display: flex;
     justify-content: center;
+    align-items: center;
     padding: 0;
   }
   .kuc-notification__notification__close-button__icon-background--danger {
