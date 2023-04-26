@@ -33,13 +33,6 @@ jobs:
         run: npm run build:storybook
         working-directory: ./
       - name: Install Netlify
-        run: npm i netlify-cli@9 --no-save
+        run: npm i netlify-cli --no-save
       - name: Deploy
         run: netlify deploy --dir=./docs/storybook --alias=staging --auth=${{ secrets.NETLIFY_AUTH_TOKEN }} --site=${{ secrets.NETLIFY_STORYBOOK_ID }}
-      - name: Status check
-        uses: Sibz/github-status-action@v1.1.1
-        with:
-          authToken: ${{ secrets.WORKFLOW_TOKEN }}
-          context: Netlify preview
-          state: success
-          target_url: https://staging--kuc-storybook.netlify.app
