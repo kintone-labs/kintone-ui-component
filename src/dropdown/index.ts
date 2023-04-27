@@ -287,14 +287,18 @@ let exportDropdown;
     }
 
     private _handleMouseDownDropdownItem(event: MouseEvent) {
-      const itemEl = event.target as HTMLLIElement;
+      const itemEl = this._getItemElementWhenMouseOverDown(
+        event.target as HTMLElement
+      );
       const value = itemEl.getAttribute("value") as string;
       const selectedIndex = itemEl.dataset.index || "0";
       this._actionUpdateValue(value, selectedIndex);
     }
 
     private _handleMouseOverDropdownItem(event: Event) {
-      const itemEl = event.target as HTMLLIElement;
+      const itemEl = this._getItemElementWhenMouseOverDown(
+        event.target as HTMLElement
+      );
       this._actionHighlightMenuItem(itemEl);
     }
 
@@ -669,6 +673,22 @@ let exportDropdown;
         </svg>`
           : ""
       }`;
+    }
+
+    private _getItemElementWhenMouseOverDown(
+      eventTarget: HTMLElement
+    ): HTMLLIElement {
+      if (
+        eventTarget.classList.value
+          .split(" ")
+          .includes("kuc-dropdown__group__select-menu__item")
+      ) {
+        return eventTarget as HTMLLIElement;
+      }
+
+      return this._getItemElementWhenMouseOverDown(
+        eventTarget.parentElement as HTMLElement
+      );
     }
   }
   window.customElements.define("kuc-dropdown", KucDropdown);
