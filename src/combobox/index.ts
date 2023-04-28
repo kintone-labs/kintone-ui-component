@@ -303,13 +303,17 @@ let exportCombobox;
     }
 
     private _handleMouseDownComboboxItem(event: MouseEvent) {
-      const itemEl = event.target as HTMLLIElement;
+      const itemEl = this._getItemElementWhenMouseOverDown(
+        event.target as HTMLElement
+      );
       const value = itemEl.getAttribute("value") as string;
       this._actionUpdateValue(value);
     }
 
     private _handleMouseOverComboboxItem(event: Event) {
-      const itemEl = event.target as HTMLLIElement;
+      const itemEl = this._getItemElementWhenMouseOverDown(
+        event.target as HTMLElement
+      );
       this._actionHighlightMenuItem(itemEl);
     }
 
@@ -690,6 +694,22 @@ let exportCombobox;
       }
 
       this._query = "";
+    }
+
+    private _getItemElementWhenMouseOverDown(
+      eventTarget: HTMLElement
+    ): HTMLLIElement {
+      if (
+        eventTarget.classList.value
+          .split(" ")
+          .includes("kuc-combobox__group__select-menu__item")
+      ) {
+        return eventTarget as HTMLLIElement;
+      }
+
+      return this._getItemElementWhenMouseOverDown(
+        eventTarget.parentElement as HTMLElement
+      );
     }
   }
   window.customElements.define("kuc-combobox", KucCombobox);
