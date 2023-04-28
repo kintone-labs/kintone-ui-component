@@ -60,6 +60,7 @@ kuc-text[hidden] {
   white-space: nowrap;
 }
 .kuc-text__group__input-form__input-outer {
+  display: flex;
   min-width: var(--kuc-text-input-width, 26px);
   width: var(--kuc-text-input-width, 100%);
 }

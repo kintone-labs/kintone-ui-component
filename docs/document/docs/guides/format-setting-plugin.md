@@ -153,63 +153,63 @@ Fields: Set fields (Multiple selectable)
 
 ```javascript
 // Specify what version to use
-const Kuc = Kucs["1.x.x"];
+const Kuc = Kucs['1.x.x'];
 
 // Create DatePicker component
 const datePicker = new Kuc.DatePicker({
-  label: "Reference Date",
+  label: 'Reference Date',
   requiredIcon: true,
-  language: "auto"
+  language: 'auto'
 });
 // Create Dropdown component
 const dropdown = new Kuc.Dropdown({
-  label: "Condition",
+  label: 'Condition',
   requiredIcon: true,
   items: [
     {
-      label: "-----",
-      value: "-----"
+      label: '-----',
+      value: '-----'
     },
     {
-      label: "Before reference date",
-      value: "before"
+      label: 'Before reference date',
+      value: 'before'
     },
     {
-      label: "After reference date",
-      value: "after"
+      label: 'After reference date',
+      value: 'after'
     }
   ],
-  value: "-----"
+  value: '-----'
 });
 // Get field info to display in MultiChoice component
 const items = await getFields();
 // Create MultiChoice component
 const multiChoice = new Kuc.MultiChoice({
-  label: "Fields",
+  label: 'Fields',
   requiredIcon: true,
   items: items
 });
 // Create Button component
 const saveButton = new Kuc.Button({
-  text: "Save",
-  type: "submit"
+  text: 'Save',
+  type: 'submit'
 });
 const cancelButton = new Kuc.Button({
-  text: "Cancel",
-  type: "cancel",
-  id: "kuc_cancel_button"
+  text: 'Cancel',
+  type: 'cancel',
+  id: 'kuc_cancel_button'
 });
 const dialogOKButton = new Kuc.Button({
-  text: "OK",
-  type: "submit"
+  text: 'OK',
+  type: 'submit'
 });
 const dialogCancelButton = new Kuc.Button({
-  text: "Cancel",
-  type: "cancel",
-  id: "kuc_dialog_cancel_button"
+  text: 'Cancel',
+  type: 'cancel',
+  id: 'kuc_dialog_cancel_button'
 });
-const divEl = document.createElement("div");
-divEl.setAttribute("id", "kuc_dialog_footer");
+const divEl = document.createElement('div');
+divEl.setAttribute('id', 'kuc_dialog_footer');
 // Create Dialog component
 const dialog = new Kuc.Dialog({
   content: `<div style="text-align: center; padding: 48px 24px">
@@ -229,37 +229,39 @@ It is an asynchronous process, so be careful about how you call it.
 function getFields() {
   const param = { app: kintone.app.getId() };
   return kintone
-    .api(kintone.api.url("/k/v1/preview/app/form/fields", true), "GET", param)
+    .api(kintone.api.url('/k/v1/preview/app/form/fields', true), 'GET', param)
     .then(resp => {
-      const items = [];
+      const fieldItems = [];
       for (const key in resp.properties) {
-        if (!resp.properties.hasOwnProperty(key)) {
+        if (!Object.properties.hasOwnProperty.call(resp, key)) {
           continue;
         }
         const prop = resp.properties[key];
         const label = prop.label;
         const code = prop.code;
+
         switch (prop.type) {
-          case "SINGLE_LINE_TEXT":
-          case "NUMBER":
-          case "CALC":
-          case "RADIO_BUTTON":
-          case "DROP_DOWN":
-          case "RECORD_NUMBER":
-          case "MULTI_LINE_TEXT":
-          case "CHECK_BOX":
-          case "MULTI_SELECT":
-          case "DATE":
-          case "DATETIME":
-          case "CREATED_TIME":
-          case "UPDATED_TIME":
-            items.push({ label: label, value: code });
+          case 'SINGLE_LINE_TEXT':
+          case 'NUMBER':
+          case 'CALC':
+          case 'RADIO_BUTTON':
+          case 'DROP_DOWN':
+          case 'RECORD_NUMBER':
+          case 'MULTI_LINE_TEXT':
+          case 'CHECK_BOX':
+          case 'MULTI_SELECT':
+          case 'DATE':
+          case 'DATETIME':
+          case 'CREATED_TIME':
+          case 'UPDATED_TIME':
+            fieldItems.push({ label: label, value: code });
             break;
+
           default:
             break;
         }
       }
-      return items;
+      return fieldItems;
     });
 }
 ```
@@ -288,13 +290,13 @@ Retrieve the element where you want to place the component using id in config.ht
 
 ```javascript
 // Display components
-const dateSpaceEl = document.getElementById("date_space");
+const dateSpaceEl = document.getElementById('date_space');
 dateSpaceEl.appendChild(datePicker);
-const dropdownSpaceEl = document.getElementById("dropdown_space");
+const dropdownSpaceEl = document.getElementById('dropdown_space');
 dropdownSpaceEl.appendChild(dropdown);
-const multiChoiceSpaceEl = document.getElementById("multichoice_space");
+const multiChoiceSpaceEl = document.getElementById('multichoice_space');
 multiChoiceSpaceEl.appendChild(multiChoice);
-const buttonSpaceEl = document.getElementById("button_space");
+const buttonSpaceEl = document.getElementById('button_space');
 buttonSpaceEl.appendChild(cancelButton);
 buttonSpaceEl.appendChild(saveButton);
 ```
@@ -309,23 +311,23 @@ If there is no problem with the set items, a confirmation dialog will be display
 
 ```javascript
 // When the Save button is clicked
-saveButton.addEventListener("click", event => {
+saveButton.addEventListener('click', event => {
   // Reset error messages
-  datePicker.error = "";
-  dropdown.error = "";
-  multiChoice.error = "";
+  datePicker.error = '';
+  dropdown.error = '';
+  multiChoice.error = '';
   // Check required itmes
   let requiredFlag = false;
   if (!datePicker.value) {
-    datePicker.error = "Please enter";
+    datePicker.error = 'Please enter';
     requiredFlag = true;
   }
-  if (dropdown.value === "-----") {
-    dropdown.error = "Please select";
+  if (dropdown.value === '-----') {
+    dropdown.error = 'Please select';
     requiredFlag = true;
   }
   if (!multiChoice.value.length) {
-    multiChoice.error = "Please select";
+    multiChoice.error = 'Please select';
     requiredFlag = true;
   }
   if (requiredFlag) return;
@@ -334,7 +336,7 @@ saveButton.addEventListener("click", event => {
   divEl.appendChild(dialogOKButton);
 });
 // When the Cancel button is clicked
-cancelButton.addEventListener("click", event => {
+cancelButton.addEventListener('click', event => {
   history.back();
 });
 ```
@@ -351,19 +353,21 @@ When the OK button is clicked, the information you want the plug-in to have as a
 
 ```javascript
 // When the OK button in Dialog is clicked
-dialogOKButton.addEventListener("click", event => {
+dialogOKButton.addEventListener('click', event => {
   const selectedFields = JSON.stringify(multiChoice.value);
   const date = datePicker.value;
   const condition = dropdown.value;
-  const config = {
+
+  const newConfig = {
     date: date,
     condition: condition,
     targetFields: selectedFields
   };
-  kintone.plugin.app.setConfig(config);
+  kintone.plugin.app.setConfig(newConfig);
 });
+
 // When the Cancel button in Dialog is clicked
-dialogCancelButton.addEventListener("click", event => {
+dialogCancelButton.addEventListener('click', event => {
   dialog.close();
 });
 ```
@@ -380,22 +384,22 @@ An external date library called luxon.js is used for this customization.
 
 ```javascript
 (PLUGIN_ID => {
-  kintone.events.on("app.record.detail.show", event => {
+  kintone.events.on('app.record.detail.show', event => {
     const CONFIG = kintone.plugin.app.getConfig(PLUGIN_ID);
     // Get today's date with yyyy-mm-dd
     const currentDate = luxon.DateTime.local().toISODate();
     const referenceDate = CONFIG.date;
     const condition = CONFIG.condition;
     const targetFields = JSON.parse(CONFIG.targetFields);
-    const fieldColor = "#e74c3c";
+    const fieldColor = '#e74c3c';
     let isBefore = false;
     if (currentDate < referenceDate) {
       isBefore = true;
     }
     // Change the fields' color to red depending on the conditions set in the plug-in
     if (
-      (isBefore && condition === "before") ||
-      (!isBefore && condition === "after")
+      (isBefore && condition === 'before') ||
+      (!isBefore && condition === 'after')
     ) {
       targetFields.forEach(targetField => {
         const fieldElement = kintone.app.record.getFieldElement(targetField);

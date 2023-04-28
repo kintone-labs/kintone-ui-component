@@ -22,7 +22,7 @@ jobs:
     - name: Install dependencies
       run: |
         npm ci
-        npm i @actions/core
+        npm i @actions/core --no-save
     - name: Check version
       id: check_version
       uses: ./.github/actions/check_version
@@ -31,7 +31,7 @@ jobs:
     - name: Run unit test
       run: npm test
     - name: Trigger run upload release workflows
-      uses: peter-evans/repository-dispatch@v1
+      uses: peter-evans/repository-dispatch@v2
       with:
         token: ${{secrets.WORKFLOW_TOKEN}}
         event-type: release_dispatch_v1

@@ -63,6 +63,9 @@ export const READ_ONLY_TABLE_CSS = `
   .kuc-readonly-table__table__header__cell[hidden] {
     display: none;
   }
+  .kuc-readonly-table__table__body {
+    vertical-align: top;
+  }
   .kuc-readonly-table__table__body__row__cell-data {
     overflow: hidden;
     box-sizing: border-box;
