@@ -176,7 +176,7 @@ export class BaseDateTimeCalendarBody extends KucBase {
     const { day } = this._separateDateValue(selectedValue);
     value = `${this._year}-${padStart(this._month)}-${day}`;
 
-    const date = new Date(value || this._getValueItemFocused());
+    const date = new Date(`${value || this._getValueItemFocused()}T00:00:00`);
     if (isNaN(date.getTime())) return;
     date.setDate(date.getDate() + days);
 
@@ -244,7 +244,7 @@ export class BaseDateTimeCalendarBody extends KucBase {
     const currentDay = this.value.split("-")[2];
     if (!currentDay) return false;
 
-    if (this.value) dateFocused = new Date(this.value).getDate();
+    if (this.value) dateFocused = new Date(`${this.value}T00:00:00`).getDate();
     if (dateFocused === day && month === this._month) return true;
     const lastDayOfMonth = new Date(year, this._month, 0).getDate();
     if (
