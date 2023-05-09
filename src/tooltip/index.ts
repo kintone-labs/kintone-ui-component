@@ -70,7 +70,9 @@ let exportTooltip;
           <div
             id="${this._GUID}-body"
             class="kuc-tooltip__group__container"
-            aria-labelledby="${this._GUID}-title"
+            aria-describedby="${this._GUID}-title"
+            @focusin="${this._handleFocusinContainer}"
+            @focusout="${this._handleFocusoutContainer}"
           >
             ${this._container}
           </div>
@@ -96,6 +98,14 @@ let exportTooltip;
           </div>
         </div>
       `;
+    }
+
+    private _handleFocusinContainer() {
+      this._openTooltip();
+    }
+
+    private _handleFocusoutContainer() {
+      this._closeTooltip();
     }
 
     protected firstUpdated(): void {

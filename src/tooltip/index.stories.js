@@ -1,3 +1,5 @@
+import { Button } from "../button/index.ts";
+
 import { Tooltip } from "./index.ts";
 
 export default {
@@ -22,6 +24,14 @@ export default {
   },
 };
 
+const getButtonContainer = (text) => {
+  const div = document.createElement("div");
+  const button = new Button({ text: text });
+  div.appendChild(button);
+
+  return div;
+};
+
 const Template = (args) => {
   const wrapper = document.createElement("div");
   wrapper.style.marginTop = "150px";
@@ -44,7 +54,7 @@ export const baseBottom = Template.bind({});
 baseBottom.args = {
   className: "tooltip-class",
   id: "tooltip-id",
-  container: "bottom",
+  container: getButtonContainer("Bottom"),
   title: "bottom",
   placement: "bottom",
 };
@@ -53,7 +63,7 @@ export const baseTop = Template.bind({});
 baseTop.args = {
   className: "tooltip-class",
   id: "tooltip-id",
-  container: "top",
+  container: getButtonContainer("Top"),
   title: "top",
   placement: "top",
 };
@@ -62,7 +72,7 @@ export const baseRight = Template.bind({});
 baseRight.args = {
   className: "tooltip-class",
   id: "tooltip-id",
-  container: "right",
+  container: getButtonContainer("Right"),
   title: "right",
   placement: "right",
 };
@@ -71,7 +81,16 @@ export const baseLeft = Template.bind({});
 baseLeft.args = {
   className: "tooltip-class",
   id: "tooltip-id",
-  container: "left",
+  container: getButtonContainer("Left"),
   title: "left",
   placement: "left",
+};
+
+export const baseText = Template.bind({});
+baseText.args = {
+  className: "tooltip-class",
+  id: "tooltip-id",
+  container: "normal string",
+  title: "Tooltip",
+  placement: "top",
 };
