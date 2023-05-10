@@ -4,7 +4,7 @@ import { DirectiveResult } from "lit/directive";
 import { UnsafeHTMLDirective } from "lit/directives/unsafe-html";
 
 import { unsafeHTMLConverter } from "../base/converter";
-import { createStyleOnHeader, generateGUID, KucBase } from "../base/kuc-base";
+import { createStyleOnHeader, KucBase } from "../base/kuc-base";
 import { validateProps } from "../base/validator";
 
 import { TOOLTIP_CSS } from "./style";
@@ -33,7 +33,6 @@ let exportTooltip;
       | HTMLElement
       | DirectiveResult<typeof UnsafeHTMLDirective> = "";
 
-    private _GUID: string;
     private _globalEscapeBound: KeyBoardFunction;
     private _globalPointerDownBound: PointerFunction;
 
@@ -48,7 +47,6 @@ let exportTooltip;
 
     constructor(props?: TooltipProps) {
       super();
-      this._GUID = generateGUID();
       const validProps = validateProps(props);
       Object.assign(this, validProps);
       this._globalEscapeBound = this._globalEscape.bind(this);
@@ -68,9 +66,7 @@ let exportTooltip;
           class="kuc-tooltip__group kuc-tooltip__group--${this._getPlacement()}"
         >
           <div
-            id="${this._GUID}-body"
             class="kuc-tooltip__group__container"
-            aria-describedby="${this._GUID}-title"
             @focusin="${this._handleFocusinContainer}"
             @focusout="${this._handleFocusoutContainer}"
           >
@@ -86,7 +82,6 @@ let exportTooltip;
 
       return html`
         <div
-          id="${this._GUID}-title"
           class="kuc-tooltip__group__title kuc-tooltip__group__title--hidden"
           role="tooltip"
         >
