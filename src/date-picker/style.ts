@@ -26,8 +26,8 @@ kuc-date-picker {
   color: #333333;
   display: inline-table;
   vertical-align: top;
-  max-width: 100px;
-  width: 100px;
+  max-width: var(--kuc-date-picker-input-width, 100px);
+  width: var(--kuc-date-picker-input-width, 100px);
   line-height: 1.5;
 }
 kuc-date-picker[hidden] {
@@ -50,13 +50,14 @@ kuc-date-picker[hidden] {
   display: none;
 }
 .kuc-date-picker__group input.kuc-base-date__input {
-  width: 100px;
-  height: 40px;
+  width: var(--kuc-date-picker-input-width, 100px);
+  height: var(--kuc-date-picker-input-height, 40px);
   padding: 0px;
   text-align: center;
+  color: var(--kuc-date-picker-input-color);
   border: 1px solid #e3e7e8;
   box-sizing: border-box;
-  font-size: 14px;
+  font-size: var(--kuc-date-picker-input-font-size, 14px);
   box-shadow: 2px 2px 4px #f5f5f5 inset, -2px -2px 4px #f5f5f5 inset;
 }
 
