@@ -26,8 +26,8 @@ export const CHECKBOX_CSS = `
     color: #333333;
     display: inline-table;
     vertical-align: top;
-    width: 239px;
-    min-width: 239px;
+    width: var(--kuc-checkbox-menu-width, 239px);
+    min-width: var(--kuc-checkbox-menu-width, 239px);
    line-height: 1.5;
   }
   kuc-checkbox[hidden] {
@@ -43,6 +43,17 @@ export const CHECKBOX_CSS = `
   }
   .kuc-checkbox__group__select-menu {
     white-space: nowrap;
+    min-width: var(--kuc-checkbox-menu-width, 239px);
+    width: var(--kuc-checkbox-menu-width, auto);
+    height: var(--kuc-checkbox-menu-height, auto);
+  }
+  .kuc-checkbox__group__select-menu[itemLayout="horizontal"] {
+    display: flex;
+  }
+  .kuc-checkbox__group__select-menu[itemLayout="vertical"] {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
   .kuc-checkbox__group__label {
     display: inline-block;
@@ -66,12 +77,13 @@ export const CHECKBOX_CSS = `
     position: relative;
     white-space: normal;
     word-wrap: normal;
-    display: inline-block;
-    height: 24px;
-    line-height: 24px;
+    display: inline-flex;
+    font-size: var(--kuc-checkbox-menu-font-size, 14px);
+    min-height: 24px;
+    line-height: 1;
   }
   .kuc-checkbox__group__select-menu__item[itemLayout="vertical"] {
-    display: block;
+    display: flex;
   }
   .kuc-checkbox__group__select-menu__item[focused] {
     border: 1px solid #3498db;
@@ -83,14 +95,14 @@ export const CHECKBOX_CSS = `
   }
   .kuc-checkbox__group__select-menu__item__input:hover
     + .kuc-checkbox__group__select-menu__item__label {
-    color: #666666;
+    color: var(--kuc-checkbox-menu-color-hover, #666666);
   }
   .kuc-checkbox__group__select-menu__item__label__icon {
     position: absolute;
     top: 50%;
     left: -30px;
     box-sizing: border-box;
-    margin-top: -11px;
+    margin-top: -10.5px;
     width: 21px;
     height: 21px;
     box-shadow: 1px 1px 3px #f5f5f5 inset, -1px -1px 3px #f5f5f5 inset;
@@ -105,7 +117,9 @@ export const CHECKBOX_CSS = `
     cursor: pointer;
     position: relative;
     margin-left: 32px;
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    color: var(--kuc-checkbox-menu-color, #333333);
     vertical-align: middle;
     white-space: nowrap;
   }`;
