@@ -30,7 +30,6 @@ describe("BaseDateTimeCalendarBody", () => {
         ".kuc-base-datetime-calendar-body__table__date"
       );
       (itemsEl[ItemForTest.index] as HTMLTableCellElement).click();
-      console.log(container.value);
       expect(triggeredEvent.type).to.equal("kuc:calendar-body-click-date");
       expect(triggeredEvent.detail.value).to.equal(ItemForTest.value);
     });
