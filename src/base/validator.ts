@@ -46,7 +46,7 @@ export function validateTimeStep(timeStep: number, max: string, min: string) {
 
 export function isValidDate(date: string) {
   const [year, month, day] = date.split("-");
-  const dateObj = new Date(date);
+  const dateObj = new Date(`${date}T00:00:00`);
   const newYear = dateObj.getFullYear();
   const newMonth = dateObj.getMonth();
   const newDay = dateObj.getDate();
