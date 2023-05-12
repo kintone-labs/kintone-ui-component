@@ -1,8 +1,7 @@
 import { html, PropertyValues, svg } from "lit";
-import { property, query } from "lit/decorators.js";
+import { property } from "lit/decorators.js";
 
 import { ERROR_MESSAGE } from "../base/constant";
-import { getWidthElmByContext } from "../base/context";
 import { visiblePropConverter } from "../base/converter";
 import { BaseError } from "../base/error";
 import {
