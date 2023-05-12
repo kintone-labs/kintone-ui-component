@@ -132,7 +132,7 @@ export const RADIOBUTTON_CSS = `
     align-items: center;
     vertical-align: middle;
     white-space: nowrap;
-    line-height: 1;
+    line-height: 1.2;
     min-height: 24px;
   }
 `;
