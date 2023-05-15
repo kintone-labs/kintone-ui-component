@@ -23,10 +23,10 @@ export const MULTICHOICE_CSS = `
   }
   kuc-multi-choice {
     display: inline-table;
-    font-size: var(--kuc-multi-choice-menu-font-size, 14px);
+    font-size: 14px;
     color: var(--kuc-multi-choice-menu-color, #333333);
     width: var(--kuc-multi-choice-menu-width, 180px);
-    min-width: 180px;
+    min-width: var(--kuc-multi-choice-menu-width, 180px);
     line-height: 1.5;
   }
   kuc-multi-choice[hidden] {
@@ -60,7 +60,8 @@ export const MULTICHOICE_CSS = `
     overflow-x: hidden;
     height: var(--kuc-multi-choice-menu-height, auto);
     max-height: var(--kuc-multi-choice-menu-height, 134px);
-    width: 100%;
+    width: var(--kuc-multi-choice-menu-width, auto);
+    font-size: var(--kuc-multi-choice-menu-font-size, 14px);
   }
   .kuc-multi-choice__group__menu:not([disabled]):focus {
     outline: none;
