@@ -376,7 +376,7 @@ dialogCancelButton.addEventListener('click', event => {
 ```
 
 
-Place the CSS file (config.css) described below in the css folder.<br>
+After the JavaScript customization, place the CSS file (config.css) described below in the css folder.<br>
 
 ***config.css***
 
