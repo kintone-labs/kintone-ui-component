@@ -40,7 +40,7 @@ export const BUTTON_CSS = `
     white-space: nowrap;
   }
   .kuc-button__button--normal {
-    background-color: green;
+    background-color: var(--kuc-button-background-color, #f7f9fa);
     color: var(--kuc-button-text-color, #3498db);
     border: 1px solid #e3e7e8;
   }
