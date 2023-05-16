@@ -23,10 +23,7 @@ jobs:
       - name: Build document
         run: npm run build
         working-directory: docs/document/website
+      - name: Install Netlify
+        run: npm i netlify-cli --no-save
       - name: Deploying on Netlify Production Environment
-        uses: South-Paw/action-netlify-deploy@v1.2.0
-        with:
-          github-token: ${{ secrets.WORKFLOW_TOKEN }}
-          netlify-auth-token: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          netlify-site-id: ${{ secrets.NETLIFY_DOCUMENT_ID }}
-          build-dir: './docs/document/website/build/kintone-ui-component'
+        run: netlify deploy --prod --dir=./docs/document/website/build/kintone-ui-component --auth=${{ secrets.NETLIFY_AUTH_TOKEN }} --site=${{ secrets.NETLIFY_DOCUMENT_ID }}

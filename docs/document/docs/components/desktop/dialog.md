@@ -73,6 +73,16 @@ none
 ##### Return
 none
 
+### Custom CSS
+> Please check [Custom CSS feature guide](../../getting-started/custom-css.md) at first.
+
+Here is a list of properties that can be used for modifying component style:
+#### Property
+| Name |
+| :--- |
+| --kuc-dialog-header-font-size |
+| --kuc-dialog-header-color |
+
 ---
 ## Sample Code
 
@@ -90,23 +100,23 @@ const okButton = new Kuc.Button({
 });
 const cancelButton = new Kuc.Button({
   text: 'Cancel',
-  type: 'normal',
+  type: 'normal'
 });
 
 okButton.addEventListener('click', () => {
-    // handle click OK button
-})
+  // handle click OK button
+});
 cancelButton.addEventListener('click', () => {
-    // handle click Cancel button
-})
+  // handle click Cancel button
+});
 
 // Wrap OK and Cancel buttons with a div
 const divEl = document.createElement('div');
-divEl.appendChild(okButton)
-divEl.appendChild(cancelButton)
+divEl.appendChild(okButton);
+divEl.appendChild(cancelButton);
 
 const dialog = new Kuc.Dialog({
-  title:  'Title',
+  title: 'Title',
   content: '<div>This is Content</div>',
   footer: divEl,
   icon: 'info'

@@ -121,7 +121,7 @@ export class BaseMobileDateTimeCalendarBody extends KucBase {
     const currentDay = this.value.split("-")[2];
     if (!currentDay) return false;
 
-    if (this.value) dateFocused = new Date(this.value).getDate();
+    if (this.value) dateFocused = new Date(`${this.value}T00:00:00`).getDate();
     if (dateFocused === day && month === this._month) return true;
     const lastDayOfMonth = new Date(year, this._month, 0).getDate();
     if (

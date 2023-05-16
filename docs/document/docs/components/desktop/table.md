@@ -74,19 +74,19 @@ const Kuc = Kucs['1.x.x'];
 
 const space = kintone.app.record.getSpaceElement('space');
 
-const renderAge = (dataCell) => {
-  const spanElement = document.createElement("span");
+const renderAge = dataCell => {
+  const spanElement = document.createElement('span');
   spanElement.innerText = `The age is ${dataCell}`;
   return spanElement;
 };
 
-const renderName = (cellData) => {
-  const dropdown = new Dropdown({
+const renderName = cellData => {
+  const dropdown = new Kuc.Dropdown({
     items: [
       { label: 'John Brown', value: 'john' },
-      { label: 'Steven Gerrard', value: 'steven' },
+      { label: 'Steven Gerrard', value: 'steven' }
     ],
-    value: cellData,
+    value: cellData
   });
   return dropdown;
 };
@@ -94,21 +94,21 @@ const renderName = (cellData) => {
 const table = new Kuc.Table({
   label: 'Table',
   columns: [
-      {
-        title: 'Name',
-        field: 'name',
-        render: renderName
-      },
-      {
-        title: 'Address',
-        field: 'address'
-      },
-      {
-        title: 'Age',
-        field: 'age',
-        render: renderAge
-      }
-    ],
+    {
+      title: 'Name',
+      field: 'name',
+      render: renderName
+    },
+    {
+      title: 'Address',
+      field: 'address'
+    },
+    {
+      title: 'Age',
+      field: 'age',
+      render: renderAge
+    }
+  ],
   data: [
     {
       name: 'john',
