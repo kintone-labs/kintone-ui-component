@@ -57,37 +57,6 @@ src/
 ├── manifest.json
 ```
 
-## Create a Plug-in Icon
-- The icon image for the Plug-in.
-- This file is required.
-- Use the following file types: png, jpg, gif, bmp
-- The maximum file size is 20MB.
-- Please add icon file into folder ``image/icon.png``
-
-## Create a config.css file
-- The stylesheet initiated on the Plug-in.
-- You can follow the Kintone stylesheet if you want to use the Kintone design.
-- The maximum file size is 20MB.
-- This is optional, and can be ignored. But following the example below, You can create a file ``css/config.css``
-
-```css
-.kuc-dropdown__group > .kuc-dropdown__group__toggle {
-  width: 200px;
-}
-
-#kuc_cancel_button {
-  margin-right: 16px;
-}
-
-#kuc_dialog_footer {
-  text-align: center;
-}
-
-#kuc_dialog_cancel_button {
-  margin-right: 16px;
-}
-```
-
 ## Create a manifest file
 
 Create a manifest file like the one below.
@@ -128,6 +97,9 @@ Create a manifest file like the one below.
 Kintone UI Component will be used for this customization on the plug-in settings page, so describe the path of the UMD file in the config object.<br>
 See [Quick Start](../getting-started/quick-start.md) for how to upload a UMD file.
 
+## Create a Plug-in Icon
+- Create a plug-in icon following the [guide](https://kintone.dev/en/plugins/introduction-to-plug-ins/steps-for-plug-in-development/#creating-each-file).<br>
+- Place the icon file (icon.png) in the image folder.
 
 ## HTML customization
 
@@ -171,6 +143,24 @@ Place the JavaScript file (config.js) described below in the js folder.<br>
 (async PLUGIN_ID => {
   // Write the process here
 })(kintone.$PLUGIN_ID);
+```
+
+Place the CSS file (config.css) described below in the css folder.<br>
+
+***config.css***
+
+```css
+#kuc_cancel_button {
+  margin-right: 16px;
+}
+
+#kuc_dialog_footer {
+  text-align: center;
+}
+
+#kuc_dialog_cancel_button {
+  margin-right: 16px;
+}
 ```
 ---
 ### Create components
