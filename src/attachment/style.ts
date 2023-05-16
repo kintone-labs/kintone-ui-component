@@ -101,6 +101,7 @@ export const ATTACHMENT_CSS = `
     list-style-type: disc;
     margin-block-start: 0em;
     margin-block-end: 0em;
+    color: yellow;
   }
   .kuc-attachment__group__files__display-area__item {
     position: relative;
