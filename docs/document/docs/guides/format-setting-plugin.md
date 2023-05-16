@@ -57,6 +57,37 @@ src/
 ├── manifest.json
 ```
 
+## Create a Plug-in Icon
+- The icon image for the Plug-in.
+- This file is required.
+- Use the following file types: png, jpg, gif, bmp
+- The maximum file size is 20MB.
+- Please add icon file into folder ``image/icon.png``
+
+## Create a config.css file
+- The stylesheet initiated on the Plug-in.
+- You can follow the Kintone stylesheet if you want to use the Kintone design.
+- The maximum file size is 20MB.
+- This is optional, and can be ignored. But following the example below, You can create a file ``css/config.css``
+
+```css
+.kuc-dropdown__group > .kuc-dropdown__group__toggle {
+  width: 200px;
+}
+
+#kuc_cancel_button {
+  margin-right: 16px;
+}
+
+#kuc_dialog_footer {
+  text-align: center;
+}
+
+#kuc_dialog_cancel_button {
+  margin-right: 16px;
+}
+```
+
 ## Create a manifest file
 
 Create a manifest file like the one below.
