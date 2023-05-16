@@ -97,9 +97,9 @@ Create a manifest file like the one below.
 Kintone UI Component will be used for this customization on the plug-in settings page, so describe the path of the UMD file in the config object.<br>
 See [Quick Start](../getting-started/quick-start.md) for how to upload a UMD file.
 
-## Create a Plug-in Icon
-- Create a plug-in icon following the [guide](https://kintone.dev/en/plugins/introduction-to-plug-ins/steps-for-plug-in-development/#creating-each-file).<br>
-- Place the icon file (icon.png) in the image folder.
+## Create a plug-in icon
+Create a plug-in icon following the [guide](https://kintone.dev/en/plugins/introduction-to-plug-ins/steps-for-plug-in-development/#creating-each-file).<br>
+Place the icon file (icon.png) in the image folder.
 
 ## HTML customization
 
@@ -143,24 +143,6 @@ Place the JavaScript file (config.js) described below in the js folder.<br>
 (async PLUGIN_ID => {
   // Write the process here
 })(kintone.$PLUGIN_ID);
-```
-
-Place the CSS file (config.css) described below in the css folder.<br>
-
-***config.css***
-
-```css
-#kuc_cancel_button {
-  margin-right: 16px;
-}
-
-#kuc_dialog_footer {
-  text-align: center;
-}
-
-#kuc_dialog_cancel_button {
-  margin-right: 16px;
-}
 ```
 ---
 ### Create components
@@ -391,6 +373,25 @@ dialogOKButton.addEventListener('click', event => {
 dialogCancelButton.addEventListener('click', event => {
   dialog.close();
 });
+```
+
+
+Place the CSS file (config.css) described below in the css folder.<br>
+
+***config.css***
+
+```css
+#kuc_cancel_button {
+  margin-right: 16px;
+}
+
+#kuc_dialog_footer {
+  text-align: center;
+}
+
+#kuc_dialog_cancel_button {
+  margin-right: 16px;
+}
 ```
 
 ## JavaScript and CSS customization (Kintone app page)
