@@ -28,7 +28,7 @@ export const CHECKBOX_CSS = `
     vertical-align: top;
     width: var(--kuc-checkbox-menu-width, 239px);
     min-width: var(--kuc-checkbox-menu-width, 239px);
-   line-height: 1.5;
+    line-height: 1.5;
   }
   kuc-checkbox[hidden] {
     display: none;
@@ -46,14 +46,16 @@ export const CHECKBOX_CSS = `
     min-width: var(--kuc-checkbox-menu-width, 239px);
     width: var(--kuc-checkbox-menu-width, auto);
     height: var(--kuc-checkbox-menu-height, auto);
+    color: var(--kuc-checkbox-menu-color, #333333);
+    font-size: var(--kuc-checkbox-menu-font-size, 14px);
+    display: flex;
+    align-items: flex-start;
   }
   .kuc-checkbox__group__select-menu[itemLayout="horizontal"] {
-    display: flex;
+    flex-direction: row;
   }
   .kuc-checkbox__group__select-menu[itemLayout="vertical"] {
-    display: flex;
     flex-direction: column;
-    justify-content: center;
   }
   .kuc-checkbox__group__label {
     display: inline-block;
@@ -78,9 +80,9 @@ export const CHECKBOX_CSS = `
     white-space: normal;
     word-wrap: normal;
     display: inline-flex;
-    font-size: var(--kuc-checkbox-menu-font-size, 14px);
+    item-aligns: center;
     min-height: 24px;
-    line-height: 1;
+    line-height: 1.2;
   }
   .kuc-checkbox__group__select-menu__item[itemLayout="vertical"] {
     display: flex;
@@ -99,10 +101,8 @@ export const CHECKBOX_CSS = `
   }
   .kuc-checkbox__group__select-menu__item__label__icon {
     position: absolute;
-    top: 50%;
     left: -30px;
     box-sizing: border-box;
-    margin-top: -10.5px;
     width: 21px;
     height: 21px;
     box-shadow: 1px 1px 3px #f5f5f5 inset, -1px -1px 3px #f5f5f5 inset;
@@ -117,9 +117,8 @@ export const CHECKBOX_CSS = `
     cursor: pointer;
     position: relative;
     margin-left: 32px;
-    display: inline-flex;
+    display: flex;
     align-items: center;
-    color: var(--kuc-checkbox-menu-color, #333333);
     vertical-align: middle;
     white-space: nowrap;
   }`;
