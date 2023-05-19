@@ -17,6 +17,8 @@ import { FieldGroupChangeEventDetail, FieldGroupProps } from "./type";
 
 import "../base/label";
 
+const DEFAULT_BODY_WIDTH = 517;
+
 let exportFieldGroup;
 (() => {
   exportFieldGroup = window.customElements.get("kuc-field-group");
@@ -101,16 +103,18 @@ let exportFieldGroup;
       `;
     }
 
-    firstUpdated(): void {
-      requestAnimationFrame(() => {
-        this._updateContainerWidth();
-      });
+    updated(changedProperties: PropertyValues): void {
+      if (changedProperties.has("content")) {
+        this._groupEl.style.minWidth = DEFAULT_BODY_WIDTH + "px";
+        requestAnimationFrame(() => {
+          this._updateContainerWidth();
+        });
+      }
     }
 
     private _updateContainerWidth() {
       if (!this._bodyEl) return;
 
-      const DEFAULT_WIDTH = 517;
       const isBodyHidden = this._bodyEl.hasAttribute("hidden");
       if (isBodyHidden) {
         this._bodyEl.removeAttribute("hidden");
@@ -119,7 +123,7 @@ let exportFieldGroup;
       if (isBodyHidden) {
         this._bodyEl.setAttribute("hidden", "");
       }
-      if (bodyWidth <= DEFAULT_WIDTH) return;
+      if (bodyWidth <= DEFAULT_BODY_WIDTH) return;
 
       this._groupEl.style.minWidth = bodyWidth + "px";
     }
