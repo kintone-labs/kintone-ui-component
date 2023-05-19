@@ -102,7 +102,9 @@ let exportFieldGroup;
     }
 
     firstUpdated(): void {
-      this._updateContainerWidth();
+      requestAnimationFrame(() => {
+        this._updateContainerWidth();
+      });
     }
 
     private _updateContainerWidth() {
