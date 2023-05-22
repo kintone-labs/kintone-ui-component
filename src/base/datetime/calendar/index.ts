@@ -115,10 +115,12 @@ export class BaseDateTimeCalendar extends KucBase {
     type: string
   ) {
     if (!this.parentElement) return;
-
+    const input = this.parentElement.getElementsByClassName(
+      "kuc-base-date__input"
+    )[0];
     const calendarWidth = 336;
-    const inputHeight = 40;
-    const inputWidth = 100;
+    const inputHeight = input.getBoundingClientRect().height;
+    const inputWidth = input.getBoundingClientRect().width;
     if (inputToRight < calendarWidth && inputToRight < inputToLeft) {
       const parentWidth = this.parentElement.getBoundingClientRect().width;
       const top = type === "bottom" ? inputHeight : "auto";
