@@ -431,9 +431,11 @@ export const calculateDistanceInput = (_this: HTMLElement) => {
       inputToRight: 0,
       inputToLeft: 0,
     };
-  const inputDate = _this.parentElement.getElementsByClassName(
-    "kuc-base-date__input"
-  )[0];
+  const inputDate =
+    _this.parentElement.getElementsByClassName("kuc-base-date__input")[0] ??
+    _this.parentElement.getElementsByClassName(
+      "kuc-mobile-base-date__group"
+    )[0];
   const inputDateWidth = inputDate.getBoundingClientRect().width;
   const inputToBottom =
     window.innerHeight - _this.parentElement.getBoundingClientRect().bottom;

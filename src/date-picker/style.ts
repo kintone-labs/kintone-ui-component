@@ -49,7 +49,7 @@ kuc-date-picker[hidden] {
 .kuc-date-picker__group__label[hidden] {
   display: none;
 }
-.kuc-date-picker__group input.kuc-base-date__input {
+.kuc-date-picker__group input[type=text].kuc-base-date__input {
   width: var(--kuc-date-picker-input-width, 100px);
   height: var(--kuc-date-picker-input-height, 40px);
   padding: 0px;
