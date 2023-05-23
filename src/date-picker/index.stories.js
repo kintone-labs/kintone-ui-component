@@ -4,6 +4,7 @@ export default {
   title: "desktop/date-picker",
   argTypes: {
     className: { name: "className" },
+    disabled: { name: "disabled" },
     error: { name: "error" },
     id: { name: "id" },
     label: { name: "label" },
@@ -36,6 +37,7 @@ const template = (args) => {
 export const Base = template.bind({});
 Base.args = {
   className: "date-picker-class",
+  disabled: false,
   error: "Error occured",
   id: "date-picker-id",
   label: "Date Picker Label",
