@@ -11,6 +11,7 @@ export declare type PointerFunction = (event: PointerEvent) => void;
 export declare type TooltipProps = {
   className?: string;
   container?: string | HTMLElement;
+  describeChild?: boolean;
   id?: string;
   placement?: TooltipPlacement;
   title?: string;
@@ -19,6 +20,7 @@ export declare type TooltipProps = {
 export declare class Tooltip extends KucBase {
   className: string;
   container: string | HTMLElement;
+  describeChild: boolean;
   id: string;
   placement: TooltipPlacement;
   title: string;
