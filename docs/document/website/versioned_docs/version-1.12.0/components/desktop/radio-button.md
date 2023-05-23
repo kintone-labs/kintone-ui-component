@@ -1,5 +1,5 @@
 ---
-id: version-1.11.0-radio-button
+id: version-1.12.0-radio-button
 title: RadioButton
 sidebar_label: RadioButton
 original_id: radio-button
