@@ -1,4 +1,5 @@
 export const FIELD_GROUP_CSS = `
+  kuc-field-group .kuc-field-group__group__toggle .kuc-base-label__text,
   kuc-field-group:lang(en) .kuc-field-group__group__toggle .kuc-base-label__text {
     font-family: "HelveticaNeueW02-55Roma", Arial,
       "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
