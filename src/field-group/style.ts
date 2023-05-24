@@ -1,11 +1,4 @@
 export const FIELD_GROUP_CSS = `
-  kuc-field-group,
-  kuc-field-group *,
-  kuc-field-group:lang(en),
-  kuc-field-group:lang(en) * {
-    font-family: "HelveticaNeueW02-55Roma", Arial,
-      "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
-  }
   kuc-field-group:lang(ja),
   kuc-field-group:lang(ja) * {
     font-family: "メイリオ", "Hiragino Kaku Gothic ProN", Meiryo,
@@ -52,6 +45,10 @@ export const FIELD_GROUP_CSS = `
     border: 1px solid transparent;
     background-color: inherit;
     line-height: 1.5;
+  }
+  .kuc-field-group__group__toggle .kuc-base-label__text {
+    font-family: "HelveticaNeueW02-55Roma", Arial,
+      "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
   }
   .kuc-field-group__group__toggle:disabled {
     color: rgba(0, 0, 0, 0.25);
