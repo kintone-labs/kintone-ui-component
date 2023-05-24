@@ -43,8 +43,7 @@ export const CHECKBOX_CSS = `
   }
   .kuc-checkbox__group__select-menu {
     white-space: nowrap;
-    min-width: var(--kuc-checkbox-menu-width, 239px);
-    width: var(--kuc-checkbox-menu-width, auto);
+    width: var(--kuc-checkbox-menu-width, 100%);
     height: var(--kuc-checkbox-menu-height, auto);
     color: var(--kuc-checkbox-menu-color, #333333);
     font-size: var(--kuc-checkbox-menu-font-size, 14px);
@@ -79,13 +78,8 @@ export const CHECKBOX_CSS = `
     position: relative;
     white-space: normal;
     word-wrap: normal;
-    display: inline-flex;
-    item-aligns: center;
-    min-height: 24px;
-    line-height: 1.2;
-  }
-  .kuc-checkbox__group__select-menu__item[itemLayout="vertical"] {
     display: flex;
+    item-aligns: center;
   }
   .kuc-checkbox__group__select-menu__item[focused] {
     border: 1px solid #3498db;
@@ -121,4 +115,6 @@ export const CHECKBOX_CSS = `
     align-items: center;
     vertical-align: middle;
     white-space: nowrap;
+    min-height: 24px;
+    line-height: 1.2;
   }`;
