@@ -1,16 +1,17 @@
 export const FIELD_GROUP_CSS = `
-  kuc-field-group:lang(ja),
-  kuc-field-group:lang(ja) * {
+  kuc-field-group:lang(en) .kuc-field-group__group__toggle .kuc-base-label__text {
+    font-family: "HelveticaNeueW02-55Roma", Arial,
+      "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+  }
+  kuc-field-group:lang(ja) .kuc-field-group__group__toggle .kuc-base-label__text {
     font-family: "メイリオ", "Hiragino Kaku Gothic ProN", Meiryo,
       sans-serif;
   }
-  kuc-field-group:lang(zh),
-  kuc-field-group:lang(zh) * {
+  kuc-field-group:lang(zh) .kuc-field-group__group__toggle .kuc-base-label__text {
     font-family: "微软雅黑", "Microsoft YaHei", "新宋体", NSimSun, STHeiti,
       Hei, "Heiti SC", sans-serif;
   }
-  kuc-field-group:lang(zh-TW),
-  kuc-field-group:lang(zh-TW) * {
+  kuc-field-group:lang(zh-TW) .kuc-field-group__group__toggle .kuc-base-label__text {
     font-family: "微軟正黑體","Microsoft JhengHei","新宋体",NSimSun,STHeiti,
       Hei,"Heiti SC",sans-serif;
   }
@@ -45,10 +46,6 @@ export const FIELD_GROUP_CSS = `
     border: 1px solid transparent;
     background-color: inherit;
     line-height: 1.5;
-  }
-  .kuc-field-group__group__toggle .kuc-base-label__text {
-    font-family: "HelveticaNeueW02-55Roma", Arial,
-      "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
   }
   .kuc-field-group__group__toggle:disabled {
     color: rgba(0, 0, 0, 0.25);
