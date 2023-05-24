@@ -43,7 +43,7 @@ export const CHECKBOX_CSS = `
   }
   .kuc-checkbox__group__select-menu {
     white-space: nowrap;
-    width: var(--kuc-checkbox-menu-width, 100%);
+    width: var(--kuc-checkbox-menu-width, auto);
     height: var(--kuc-checkbox-menu-height, auto);
     color: var(--kuc-checkbox-menu-color, #333333);
     font-size: var(--kuc-checkbox-menu-font-size, 14px);
@@ -79,7 +79,7 @@ export const CHECKBOX_CSS = `
     white-space: normal;
     word-wrap: normal;
     display: flex;
-    item-aligns: center;
+    align-items: center;
   }
   .kuc-checkbox__group__select-menu__item[focused] {
     border: 1px solid #3498db;
