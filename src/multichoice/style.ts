@@ -24,9 +24,9 @@ export const MULTICHOICE_CSS = `
   kuc-multi-choice {
     display: inline-table;
     font-size: 14px;
-    color: #333333;
-    width: 180px;
-    min-width: 180px;
+    color: var(--kuc-multi-choice-menu-color, #333333);
+    width: var(--kuc-multi-choice-menu-width, 180px);
+    min-width: var(--kuc-multi-choice-menu-width, 180px);
     line-height: 1.5;
   }
   kuc-multi-choice[hidden] {
@@ -58,8 +58,10 @@ export const MULTICHOICE_CSS = `
     padding: 6px 0;
     overflow-y: auto;
     overflow-x: hidden;
-    max-height: 134px;
-    width: 100%;
+    height: var(--kuc-multi-choice-menu-height, auto);
+    max-height: var(--kuc-multi-choice-menu-height, 134px);
+    width: var(--kuc-multi-choice-menu-width, auto);
+    font-size: var(--kuc-multi-choice-menu-font-size, 14px);
   }
   .kuc-multi-choice__group__menu:not([disabled]):focus {
     outline: none;
@@ -87,7 +89,7 @@ export const MULTICHOICE_CSS = `
     pointer-events: none;
   }
   .kuc-multi-choice__group__menu__item[aria-selected="true"] {
-    color: #3498db;
+    color: var(--kuc-multi-choice-menu-color-selected, #3498db);
     padding-left: 32px;
   }
   .kuc-multi-choice__group__menu[disabled]
@@ -95,7 +97,7 @@ export const MULTICHOICE_CSS = `
     color: #888888;
   }
   .kuc-multi-choice__group__menu__highlight[role="option"] {
-    background-color: #e2f2fe;
+    background-color: var(--kuc-multi-choice-menu-background-color-hover, #e2f2fe);
     cursor: pointer;
   }
 `;

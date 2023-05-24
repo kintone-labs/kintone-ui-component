@@ -8,27 +8,27 @@ export declare type Column = {
   visible?: boolean;
 };
 
-export declare type ReadOnlyTableProps = {
+export declare type ReadOnlyTableProps<T extends object = object> = {
   className?: string;
   id?: string;
   label?: string;
   columns?: Column[];
-  data?: object[];
+  data?: T[];
   pagination?: boolean;
   rowsPerPage?: number;
   visible?: boolean;
 };
 
-export declare class ReadOnlyTable extends KucBase {
+export declare class ReadOnlyTable<T extends object = object> extends KucBase {
   className: string;
   id: string;
   label: string;
   columns: Column[];
-  data: object[];
+  data: T[];
   pagination: boolean;
   rowsPerPage: number;
   visible: boolean;
-  constructor(props?: ReadOnlyTableProps);
+  constructor(props?: ReadOnlyTableProps<T>);
   shouldUpdate(changedProperties: PropertyValues): boolean;
   render(): import("lit-html").TemplateResult<1>;
   updated(): void;
