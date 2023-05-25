@@ -37,13 +37,13 @@ let exportTable;
   if (exportTable) {
     return;
   }
-  class KucTable extends KucBase {
+  class KucTable<T extends object = object> extends KucBase {
     @property({ type: String, reflect: true, attribute: "class" }) className =
       "";
     @property({ type: String, reflect: true, attribute: "id" }) id = "";
     @property({ type: String }) label = "";
     @property({ type: Array }) columns: Column[] = [];
-    @property({ type: Array }) data: object[] = [];
+    @property({ type: Array }) data: T[] = [];
     @property({ type: Boolean }) actionButton = true;
     @property({ type: Boolean }) headerVisible = true;
     @property({
@@ -60,7 +60,7 @@ let exportTable;
     @query(".kuc-table__table__body")
     private _tBody!: HTMLTableSectionElement;
 
-    constructor(props?: TableProps) {
+    constructor(props?: TableProps<T>) {
       super();
       if (!props) return;
 

@@ -25,7 +25,8 @@ export const RADIOBUTTON_CSS = `
     font-size: 14px;
     color: #333333;
     display: inline-table;
-    min-width: 239px;
+    width: var(--kuc-radio-button-menu-width, 239px);
+    min-width: var(--kuc-radio-button-menu-width, 239px);
     vertical-align: top;
     line-height: 1.5;
   }
@@ -54,11 +55,22 @@ export const RADIOBUTTON_CSS = `
   }
 
   .kuc-radio-button__group__select-menu {
-    display: block;
-    min-width: 239px;
-    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    width: var(--kuc-radio-button-menu-width, 100%);
+    height: var(--kuc-radio-button-menu-height);
+    color: var(--kuc-radio-button-menu-color, #333333);
+    font-size: var(--kuc-radio-button-menu-font-size, 14px);
   }
 
+  .kuc-radio-button__group__select-menu[itemlayout="horizontal"] {
+    flex-direction: row;
+  }
+
+  .kuc-radio-button__group__select-menu[itemlayout="vertical"] {
+    flex-direction: column;
+  }
+  
   .kuc-radio-button__group__select-menu[bordervisible] {
     border-color: #e3e7e8;
     border-width: 1px;
@@ -76,13 +88,8 @@ export const RADIOBUTTON_CSS = `
     position: relative;
     white-space: normal;
     word-wrap: normal;
-    display: inline-block;
-    height: 24px;
-    line-height: 24px;
-  }
-
-  .kuc-radio-button__group__select-menu__item[itemlayout="vertical"] {
-    display: block;
+    display: flex;
+    align-items: center;
   }
 
   .kuc-radio-button__group__select-menu__item[focused] {
@@ -97,15 +104,13 @@ export const RADIOBUTTON_CSS = `
 
   .kuc-radio-button__group__select-menu__item__input:hover
     + .kuc-radio-button__group__select-menu__item__label {
-    color: #666666;
+    color: var(--kuc-radio-button-menu-color-hover, #666666);
   }
 
   .kuc-radio-button__group__select-menu__item__label__icon {
     position: absolute;
-    top: 50%;
     left: -30px;
     box-sizing: border-box;
-    margin-top: -11px;
     width: 21px;
     height: 21px;
     box-shadow: 1px 1px 3px #f5f5f5 inset, -1px -1px 3px #f5f5f5 inset;
@@ -123,8 +128,11 @@ export const RADIOBUTTON_CSS = `
     cursor: pointer;
     position: relative;
     margin-left: 32px;
-    display: inline-block;
+    display: flex;
+    align-items: center;
     vertical-align: middle;
     white-space: nowrap;
+    line-height: 1.2;
+    min-height: 24px;
   }
 `;
