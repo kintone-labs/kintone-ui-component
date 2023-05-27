@@ -1,7 +1,7 @@
 import { html } from "lit";
 import { property } from "lit/decorators.js";
 
-import { visiblePropConverter } from "../base/converter";
+import { unsafeHTMLConverter, visiblePropConverter } from "../base/converter";
 import {
   createStyleOnHeader,
   dispatchCustomEvent,
@@ -25,6 +25,7 @@ let exportButton;
     @property({ type: String, reflect: true, attribute: "id" }) id = "";
     @property({ type: String }) text = "";
     @property({ type: String }) type = "normal";
+    @property() content: string | HTMLElement = "";
     @property({ type: Boolean }) disabled = false;
     @property({
       type: Boolean,
@@ -64,7 +65,7 @@ let exportButton;
           ?disabled="${this.disabled}"
           @click="${this._handleClickButton}"
         >
-          ${this.text}
+          ${this.content ? unsafeHTMLConverter(this.content) : this.text}
         </button>
       `;
     }

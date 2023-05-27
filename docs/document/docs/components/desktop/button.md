@@ -25,10 +25,13 @@ Here is a list of properties that can be used for modifying the component:
 | :--- | :--- | :--- | :--- | :--- |
 | className | string | ""  | Component class name |  |
 | id | string | ""  | Component id name |  |
-| text | string | ""  | Text to be displayed inside the button | |
+| text | string | ""  | Text to be displayed inside the button | If `content` is unspecified, the value of `text` will be displayed<br>In other cases, the `text` will be ignored |
 | type | string | "normal"  | Button design type | Available options:<br>"normal" : Gray (#f7f9fA)<br>"submit" : Blue (#3498db)<br>"alert" : Red (#e74c3c) |
+| content *1 | string/HTMLElement | ""  | The DOM inside button | If a string with HTML is set, it will be automatically converted to HTML and displayed as it is |
 | disabled | boolean | false | Enable/Disable the component | |
 | visible | boolean | true | Show/Hide the component | |
+
+> *1: [Security] Kintone UI Component does NOT sanitize this property value. It is the developer's responsibility to escape any user input when using this option so that XSS attacks would be prevented.
 
 ### Event
 
@@ -59,9 +62,9 @@ Here is a list of properties that can be used for modifying component style:
 | --kuc-button-width |
 | --kuc-button-height |
 | --kuc-button-background-color |
-| --kuc-button-background-hover |
-| --kuc-button-background-active |
-| --kuc-button-background-focus |
+| --kuc-button-background-color-hover |
+| --kuc-button-background-color-active |
+| --kuc-button-background-color-focus |
 | --kuc-button-font-size |
 | --kuc-button-text-color |
 
@@ -81,6 +84,10 @@ const header = kintone.app.getHeaderMenuSpaceElement();
 const button = new Kuc.Button({
   text: 'Submit',
   type: 'submit',
+  content: `<div>
+              <svg>...</svg>
+              <span>Search</span>
+            </div>;`,
   className: 'options-class',
   id: 'options-id',
   visible: true,

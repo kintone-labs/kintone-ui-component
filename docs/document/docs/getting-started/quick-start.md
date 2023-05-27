@@ -56,7 +56,7 @@ In this article, we will show you how to install and implement using each approa
 >If you only have one `kuc.min.js` file in your system, or you are okay with using the `kuc.min.js` file loaded last, you can remove the "`const Kuc = Kucs['1.x.x']`" line.
 
 ```js
-const Kuc = Kucs["1.x.x"];
+const Kuc = Kucs['1.x.x'];
 
 kintone.events.on('app.record.index.show', event => {
   const header = kintone.app.getHeaderMenuSpaceElement();
@@ -65,8 +65,8 @@ kintone.events.on('app.record.index.show', event => {
     text: 'Submit',
     type: 'submit'
   });
-  button.addEventListener('click', event => {
-    console.log(event);
+  button.addEventListener('click', clickEvent => {
+    console.log(clickEvent);
   });
 
   header.appendChild(button);
@@ -127,14 +127,13 @@ kintone.events.on('app.record.index.show', event => {
     text: 'Submit',
     type: 'submit'
   });
-  button.addEventListener('click', event => {
-    console.log(event);
+  button.addEventListener('click', clickEvent => {
+    console.log(clickEvent);
   });
 
   header.appendChild(button);
   return event;
 });
-
 ```
 3. Add the following `webpack.config.js` file into the root:
 
@@ -143,14 +142,14 @@ const path = require('path');
 module.exports = (env = {}) => {
   return {
     entry: {
-      "customization": './src/index.js'
+      customization: './src/index.js'
     },
     output: {
       path: path.resolve(__dirname, 'dist'),
-      filename: '[name].min.js',
+      filename: '[name].min.js'
     }
-  }
-}
+  };
+};
 ```
 
 4. Add webpack build script into `package.json`.

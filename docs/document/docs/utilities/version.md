@@ -26,6 +26,6 @@ console.log(Kuc.version);
 ### Use the npm package
 
 ```javescript
-import { version } from "kintone-ui-component/lib/version";
+import { version } from 'kintone-ui-component/lib/version';
 console.log(version);
 ```
