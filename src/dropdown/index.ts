@@ -2,6 +2,7 @@ import { html, PropertyValues, svg } from "lit";
 import { property, query, queryAll, state } from "lit/decorators.js";
 
 import { ERROR_MESSAGE } from "../base/constant";
+import { getWidthElmByContext } from "../base/context";
 import { visiblePropConverter } from "../base/converter";
 import { BaseError } from "../base/error";
 import {
@@ -52,6 +53,9 @@ let exportDropdown;
     @state()
     private _selectorVisible = false;
 
+    @query(".kuc-dropdown__group")
+    private _groupEl!: HTMLDivElement;
+
     @query(".kuc-dropdown__group__select-menu")
     private _menuEl!: HTMLUListElement;
 
@@ -60,6 +64,9 @@ let exportDropdown;
 
     @query("button.kuc-dropdown__group__toggle")
     private _buttonEl!: HTMLButtonElement;
+
+    @query(".kuc-dropdown__group__label")
+    private _labelEl!: HTMLDivElement;
 
     @query(".kuc-dropdown__group__select-menu__item")
     private _firstItemEl!: HTMLLIElement;
@@ -269,6 +276,7 @@ let exportDropdown;
 
     async updated() {
       await this.updateComplete;
+      this._updateContainerWidth();
       if (this._selectorVisible) {
         this._setMenuPosition();
         this._scrollToView();
@@ -516,6 +524,14 @@ let exportDropdown;
 
     private _actionRemoveActiveDescendant() {
       this._buttonEl.removeAttribute("aria-activedescendant");
+    }
+
+    private _updateContainerWidth() {
+      const MIN_WIDTH = 180;
+      let labelWidth = this._labelEl.getBoundingClientRect().width;
+      if (labelWidth === 0) labelWidth = getWidthElmByContext(this._labelEl);
+      labelWidth = labelWidth > MIN_WIDTH ? labelWidth : MIN_WIDTH;
+      this._groupEl.style.width = labelWidth + "px";
     }
 
     private _getScrollbarWidthHeight() {

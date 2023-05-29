@@ -1,23 +1,18 @@
 export const FIELD_GROUP_CSS = `
-  kuc-field-group,
-  kuc-field-group *,
-  kuc-field-group:lang(en),
-  kuc-field-group:lang(en) * {
+  kuc-field-group .kuc-field-group__group__toggle .kuc-base-label__text,
+  kuc-field-group:lang(en) .kuc-field-group__group__toggle .kuc-base-label__text {
     font-family: "HelveticaNeueW02-55Roma", Arial,
       "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
   }
-  kuc-field-group:lang(ja),
-  kuc-field-group:lang(ja) * {
+  kuc-field-group:lang(ja) .kuc-field-group__group__toggle .kuc-base-label__text {
     font-family: "メイリオ", "Hiragino Kaku Gothic ProN", Meiryo,
       sans-serif;
   }
-  kuc-field-group:lang(zh),
-  kuc-field-group:lang(zh) * {
+  kuc-field-group:lang(zh) .kuc-field-group__group__toggle .kuc-base-label__text {
     font-family: "微软雅黑", "Microsoft YaHei", "新宋体", NSimSun, STHeiti,
       Hei, "Heiti SC", sans-serif;
   }
-  kuc-field-group:lang(zh-TW),
-  kuc-field-group:lang(zh-TW) * {
+  kuc-field-group:lang(zh-TW) .kuc-field-group__group__toggle .kuc-base-label__text {
     font-family: "微軟正黑體","Microsoft JhengHei","新宋体",NSimSun,STHeiti,
       Hei,"Heiti SC",sans-serif;
   }

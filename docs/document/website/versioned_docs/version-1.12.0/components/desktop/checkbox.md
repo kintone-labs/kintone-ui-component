@@ -1,17 +1,18 @@
 ---
-id: multichoice
-title: MultiChoice
-sidebar_label: MultiChoice
+id: version-1.12.0-checkbox
+title: Checkbox
+sidebar_label: Checkbox
+original_id: checkbox
 ---
 
 ## Overview
 
-The MultiChoice component allows the user to select multiple values from multiple options.
+The Checkbox component displays a checkbox element for multiple selections.
 
-<div class="sample-container" id= "multichoice">
+<div class="sample-container" id="checkbox">
   <div id="sample-container__components"></div>
 </div>
-<script src="/js/samples/desktop/multichoice.js"></script>
+<script src="/js/samples/desktop/checkbox.js"></script>
 
 ---
 
@@ -21,20 +22,22 @@ The MultiChoice component allows the user to select multiple values from multipl
 
 Here is a list of properties that can be used for modifying the component:
 
-| Name  | Type | Default | Description | Remark |
+| Name   | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
 | className | string | ""  | Component class name | |
-| error | string | ""  | Text to be displayed in error | Error will not be displayed if unspecified or empty |
+| error | string | ""  | Text to be displayed in error | Error will not be displayed if unspecified or left empty |
 | id | string | ""  | Component id name | |
-| label | string | ""  | Label for the component | Label is not displayed if unspecified or emptied |
+| itemLayout | string | "horizontal"  | Orientation for displaying the options | Available options:<br>"horizontal" : Horizontal<br>"vertical" : Vertical |
+| label | string | ""  | Label for the component | Label will not be displayed if unspecified or left empty |
+| borderVisible | boolean | true | Show/Hide the border | |
 | disabled | boolean | false | Enable/Disable the component | |
 | requiredIcon | boolean | false | Show/Hide the required icon | |
 | visible | boolean | true | Show/Hide the component | |
 | items | Array\<Item\> | []  | List of options to display | Will result an error if the value of `items` is not an array |
-| Item.label | string | null | Label text for each option | If `Item.label` is unspecified, the value of `Item.value` is displayed on the UI |
+| Item.label | string | null | Text label for each option | If `Item.label` is unspecified, the value of `Item.value` is displayed on the UI |
 | Item.value | string | null | Value of each option | Can set duplicated value in `Item.value` |
 | value *1 | Array\<string\> | []  | Selected value | No option will be selected if the `value` and `selectedIndex` are unspecified<br>If setting duplicated value and not setting `selectedIndex`, the first mapped value item in `Item.value` will be selected and `selectedIndex` will be the index number<br>Will result an error if the value is not an array |
-| selectedIndex *1 | Array\<Number\> | []  | List of index of selected item | It supports specifying which duplicated Item.value will be selected if there is duplicated `Item.value` in `items`<br>If `value` is not set and `selectedIndex` is valid, item that has the index number will be selected<br>If `value` is set with duplicated Item.value and `selectedIndex` value maps with duplicated `Item.value` specified in `value`, item that has the index number will be selected<br>Will result an error if the value of `selectedIndex` is not an array |
+| selectedIndex *1 | Array\<Number\> | []  | List of index of selected item | It supports specifying which duplicated `Item.value` will be selected if there is duplicated `Item.value` in `items`<br>If `value` is not set and `selectedIndex` is valid, item that has the index number will be selected<br>If `value` is set with duplicated `Item.value` and `selectedIndex` value maps with duplicated `Item.value` specified in `value`, item that has the index number will be selected<br>Will result an error if the value of `selectedIndex` is not an array |
 
 > *1: You can set duplicated value in `value` and `Item.value`. In case setting duplicated value, you can handle selected item using `value` and `selectedIndex` property.<br>
 > Example: When setting `items = [{label: 'Orange', value: 'fruit'}, {label: 'Apple', value: 'fruit'}, {label: 'Carrot', value: 'vegetable'}, {label: 'Lemon', value: 'fruit'}]`
@@ -54,15 +57,16 @@ Here is a list of properties that can be used for modifying the component:
 > ※ If both `value` and `selectedIndex` are set at the same time, the priority of `value` will be higher. Therefore, in the first and third examples above, the item corresponding to 3 of selectedIndex will not be selected.
 
 ### Event
+
 Here is a list of events that can be specified:
 
 | Name | Type | Description | Remark |
 | :--- | :--- | :--- | :--- |
-| change | function | Event handler when the value has been changed | It will pass the event object as the argument.<br><br>You can receive the following values in event.detail<br>event.detail.oldValue : Value before the change<br>event.detail.value : Value after changing |
+| change | function | Event handler when the value has been changed | It will pass the event object as the argument<br><br>You can receive the following values when used in event.detail<br>event.detail.oldValue : Value before the change<br>event.detail.value : Value after the change |
 
 ### Constructor
 
-MultiChoice(options)<br>
+Checkbox(options)<br>
 Here is a list of available constructors:
 
 #### Parameter
@@ -73,18 +77,19 @@ Here is a list of available constructors:
 
 ### Custom CSS
 > Please check [Custom CSS feature guide](../../getting-started/custom-css.md) at first.
+
 Here is a list of properties that can be used for modifying component style:
 #### Property
 | Name |
 | :--- |
-| --kuc-multi-choice-menu-width |
-| --kuc-multi-choice-menu-height |
-| --kuc-multi-choice-menu-font-size |
-| --kuc-multi-choice-menu-color |
-| --kuc-multi-choice-menu-color-selected |
-| --kuc-multi-choice-menu-background-color-hover |
+| --kuc-checkbox-menu-width |
+| --kuc-checkbox-menu-height |
+| --kuc-checkbox-menu-font-size |
+| --kuc-checkbox-menu-color |
+| --kuc-checkbox-menu-color-hover |
 
 ---
+
 ## Sample Code
 
 > Please check the [package installation](../../getting-started/quick-start.md#installation) method first.
@@ -96,7 +101,7 @@ const Kuc = Kucs['1.x.x'];
 
 const space = kintone.app.record.getSpaceElement('space');
 
-const multiChoice = new Kuc.MultiChoice({
+const checkbox = new Kuc.Checkbox({
   label: 'Fruit',
   requiredIcon: true,
   items: [
@@ -111,15 +116,17 @@ const multiChoice = new Kuc.MultiChoice({
   ],
   value: ['Orange'],
   selectedIndex: [0],
+  itemLayout: 'horizontal',
   error: 'Error occurred!',
   className: 'options-class',
   id: 'options-id',
   visible: true,
-  disabled: false
+  disabled: false,
+  borderVisible: true
 });
-space.appendChild(multiChoice);
+space.appendChild(checkbox);
 
-multiChoice.addEventListener('change', event => {
+checkbox.addEventListener('change', event => {
   console.log(event);
 });
 ```
@@ -128,4 +135,4 @@ multiChoice.addEventListener('change', event => {
 
 ## Related Articles
 
-- [Format setting plug-in](../../guides/format-setting-plugin.md)
+- [Cleaning check list customization](../../guides/cleaning-check-list-customization.md)

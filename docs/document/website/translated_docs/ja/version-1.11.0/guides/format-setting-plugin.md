@@ -97,11 +97,15 @@ src/
 今回はプラグイン設定画面のカスタマイズで kintone UI Component を使用するので、config オブジェクトの中に UMD ファイルのパスを記載します。<br>
 UMD ファイルの導入方法は、[Quick Start](../getting-started/quick-start.md) をご覧ください。
 
+## プラグインアイコンの作成
+
+[こちらのガイド記事](https://cybozudev.zendesk.com/hc/ja/articles/203455680)に沿ってプラグインのアイコンを作成します。<br>
+アイコンファイル（icon.png）を image フォルダに配置します。
 
 ## HTMLカスタマイズ
 
 プラグイン設定画面用の HTML ファイルを作成します。<br>
-今回は以下の様に作成します。div 要素に設定した id を利用して、kintone UI Component の各パーツを配置していきます。
+今回は以下のように作成します。div 要素に設定した id を利用して、kintone UI Component の各パーツを配置していきます。
 
 ```html
 <section class="settings">
@@ -132,7 +136,7 @@ UMD ファイルの導入方法は、[Quick Start](../getting-started/quick-star
 ## JavaScript/CSS カスタマイズ（設定画面）
 
 設定画面の実装コードを解説します。<br>
-以下の様な JavaScript ファイル（config.js）を js フォルダに配置します。<br>
+以下のような JavaScript ファイル（config.js）を js フォルダに配置します。<br>
 
 ***config.js***
 
@@ -375,10 +379,26 @@ dialogCancelButton.addEventListener('click', event => {
 });
 ```
 
+JavaScript の実装が完了したら、以下のような CSS ファイル（config.css）を css フォルダに配置します。<br>
+
+***config.css***
+
+```css
+#kuc_cancel_button {
+  margin-right: 16px;
+}
+#kuc_dialog_footer {
+  text-align: center;
+}
+#kuc_dialog_cancel_button {
+  margin-right: 16px;
+}
+```
+
 ## JavaScript/CSS カスタマイズ（アプリ画面）
 
 アプリ画面の実装コードを解説します。<br>
-以下の様なJavaScript ファイル（desktop.js）を js フォルダに配置します。<br>
+以下のようなJavaScript ファイル（desktop.js）を js フォルダに配置します。<br>
 プラグイン設定画面のコンポーネントから値を引き継いで、アプリのカスタマイズで利用しているのがポイントです。<br>
 DatePicker コンポーネントの value が yyyy-mm-dd 形式のため、
 比較しやすいように本日の日付も yyyy-mm-dd 形式で取得しています。<br>
