@@ -1,5 +1,5 @@
 ---
-id: version-1.11.0-date-picker
+id: version-1.12.0-date-picker
 title: DatePicker
 sidebar_label: DatePicker
 original_id: date-picker
