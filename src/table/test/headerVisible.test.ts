@@ -53,10 +53,10 @@ describe("Table", () => {
     it("should be displayed when not assigned in constructor", async () => {
       const container = new Table({ columns: [...columns], data: [...data] });
       const el = await fixture(container);
-      const header = el.querySelector(
+      const tableHeader = el.querySelector(
         ".kuc-table__table__header"
       ) as HTMLDivElement;
-      expect(header.hasAttribute("hidden")).to.equal(false);
+      expect(tableHeader.hasAttribute("hidden")).to.equal(false);
     });
     it("should be displayed none when assigned false in constructor", async () => {
       const container = new Table({
@@ -65,11 +65,11 @@ describe("Table", () => {
         headerVisible: false,
       });
       const el = await fixture(container);
-      const header = el.querySelector(
+      const tableHeader = el.querySelector(
         ".kuc-table__table__header"
       ) as HTMLDivElement;
-      expect(header.hasAttribute("hidden")).to.equal(true);
-      const computedStyle = window.getComputedStyle(header);
+      expect(tableHeader.hasAttribute("hidden")).to.equal(true);
+      const computedStyle = window.getComputedStyle(tableHeader);
       expect(computedStyle.display).to.equal("none");
     });
     it("should be displayed when changed to true by setter", async () => {
@@ -80,10 +80,10 @@ describe("Table", () => {
       });
       container.headerVisible = true;
       const el = await fixture(container);
-      const header = el.querySelector(
+      const tableHeader = el.querySelector(
         ".kuc-table__table__header"
       ) as HTMLDivElement;
-      expect(header.hasAttribute("hidden")).to.equal(false);
+      expect(tableHeader.hasAttribute("hidden")).to.equal(false);
     });
     it("should be displayed none when changed to false by setter", async () => {
       const container = new Table({
@@ -93,11 +93,11 @@ describe("Table", () => {
       });
       container.headerVisible = false;
       const el = await fixture(container);
-      const header = el.querySelector(
+      const tableHeader = el.querySelector(
         ".kuc-table__table__header"
       ) as HTMLDivElement;
-      expect(header.hasAttribute("hidden")).to.equal(true);
-      const computedStyle = window.getComputedStyle(header);
+      expect(tableHeader.hasAttribute("hidden")).to.equal(true);
+      const computedStyle = window.getComputedStyle(tableHeader);
       expect(computedStyle.display).to.equal("none");
     });
   });
