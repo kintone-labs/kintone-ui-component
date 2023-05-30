@@ -29,7 +29,7 @@ Table は編集可能なテーブルを表示します。
 | id | string | ""  | コンポーネントの id 名 | |
 | label | string | ""  | コンポーネントの説明ラベル | 未指定、あるいは空文字の場合、label は表示されない |
 | actionButton | boolean | true | 行追加/削除ボタンの表示/非表示設定 | |
-| headerVisible | boolean | true | テーブルヘッドの表示/非表示設定 | |
+| headerVisible | boolean | true | ヘッダーの表示/非表示設定 | |
 | visible | boolean | true | コンポーネントの表示/非表示設定 | |
 | columns | Array\<[Column](#column)\> | []  | コンポーネントの列データ | columns が配列以外の場合、エラーを出力する |
 | data | Array\<object\> | []  | コンポーネントの行データ | data が配列以外の場合、エラーを出力する |
