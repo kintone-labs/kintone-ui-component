@@ -28,7 +28,7 @@ Here is a list of properties that can be used for modifying the component:
 | id | string | "" | Component id name | |
 | label | string | ""  | Label for the component | Label is not displayed if unspecified or empty |
 | actionButton | boolean | true | Show/Hide the add/remove row button | |
-| headerVisible | boolean | true | Show/Hide the table header | |
+| headerVisible | boolean | true | Show/Hide the header | |
 | visible | boolean | true | Show/Hide the component | |
 | columns | Array\<[Column](#column)\> |  []  | Column data of the component | Will result an error if the value of `columns` is not an array|
 | data | Array\<object\> | []  | Row data of the component | Will result an error if the value of `data` is not an array |
