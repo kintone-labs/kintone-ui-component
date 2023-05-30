@@ -33,8 +33,7 @@
     "storybook": "start-storybook",
     "test": "rm -rf ./unit_test && tsc -p tsconfig.test.json && web-test-runner",
     "es-lint": "node_modules/.bin/eslint \"src/**\"",
-    "actionlint": "node-actionlint",
-    "chromatic": "npx chromatic --project-token=141e2a8401fe"
+    "actionlint": "node-actionlint"
   },
   "devDependencies": {
     "@babel/core": "^7.21.8",
