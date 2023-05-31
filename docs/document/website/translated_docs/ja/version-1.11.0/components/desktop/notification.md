@@ -71,6 +71,18 @@ none
 ##### Return
 none
 
+### Custom CSS
+> [Custom CSS](../../getting-started/custom-css.md) をご確認ください。
+
+コンポーネントのスタイルを変更するために使用できるプロパティの一覧です。
+#### Property
+| Name |
+| :--- |
+| --kuc-notification-font-size |
+| --kuc-notification-color |
+| --kuc-notification-background-color |
+| --kuc-notification-close-button-background-color |
+
 ---
 ## Sample Code
 

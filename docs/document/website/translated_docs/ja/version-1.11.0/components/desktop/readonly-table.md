@@ -123,3 +123,4 @@ space.appendChild(readOnlyTable);
 ## Related Articles
 
 - [Table and ReadOnlyTable customization](../../guides/table-readonly-table-customization.md)
+- [Tabs customization](../../guides/tabs-customization.md)

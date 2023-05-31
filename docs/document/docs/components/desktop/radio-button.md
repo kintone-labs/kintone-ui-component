@@ -67,6 +67,19 @@ Here is a list of available constructors:
 | :--- | :--- | :--- | :--- | :--- |
 | options | object | {} | Object that includes component properties |  |
 
+### Custom CSS
+> Please check [Custom CSS feature guide](../../getting-started/custom-css.md) at first.
+
+Here is a list of properties that can be used for modifying component style:
+#### Property
+| Name |
+| :--- |
+| --kuc-radio-button-menu-width |
+| --kuc-radio-button-menu-height |
+| --kuc-radio-button-menu-font-size |
+| --kuc-radio-button-menu-color |
+| --kuc-radio-button-menu-color-hover |
+
 ---
 ## Sample Code
 

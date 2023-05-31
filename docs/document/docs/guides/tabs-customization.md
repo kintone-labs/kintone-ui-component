@@ -23,7 +23,7 @@ The completed image of the customized page is as follows:
 ## What you will need to have ready
 
 Create an application that includes the fields as follows:
-- Two blank fields with id "space_for_native_kintone" and "space_for_custom_components"
+- Two blank fields with id "space_for_native_kintone" and "space_for_custom_components".
 - Three table fields with id "sales_record_table", "task_management_table", and "sales_order_table".
 
 ## JavaScript and CSS Customization
