@@ -48,10 +48,6 @@ export const FIELD_GROUP_CSS = `
     background-color: inherit;
     line-height: 1.5;
   }
-  .kuc-field-group__group__toggle .kuc-base-label__text {
-    font-family: "HelveticaNeueW02-55Roma", Arial,
-      "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
-  }
   .kuc-field-group__group__toggle:disabled {
     color: rgba(0, 0, 0, 0.25);
     cursor: not-allowed;
