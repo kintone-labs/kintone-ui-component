@@ -23,7 +23,7 @@ kuc-time-picker:lang(zh-TW) * {
 }
 kuc-time-picker {
   font-size: 14px;
-  color: #333333;
+  color: var(--kuc-time-picker-input-color, #333333);
   display: inline-block;
   vertical-align: top;
   line-height: 1.5;
@@ -41,6 +41,18 @@ kuc-time-picker[hidden] {
   padding: 0px;
   height: auto;
   margin: 0px;
+}
+.kuc-time-picker__group .kuc-base-time__group {
+  max-width: var(--kuc-time-picker-input-width, 85px);
+  width: var(--kuc-time-picker-input-width, 85px);
+  font-size: var(--kuc-time-picker-input-font-size, 14px);
+  height: var(--kuc-time-picker-input-height, 40px);
+  color: var(--kuc-time-picker-input-color, #333333);
+}
+.kuc-time-picker__group .kuc-base-time__group input[type=text].kuc-base-time__group__hours,
+.kuc-time-picker__group .kuc-base-time__group input[type=text].kuc-base-time__group__minutes,
+.kuc-time-picker__group .kuc-base-time__group--focus  {
+  color: var(--kuc-time-picker-input-color, #333333);
 }
 .kuc-time-picker__group__label {
   padding: 4px 0px 8px 0px;
