@@ -65,17 +65,17 @@ kuc-date-picker[hidden] {
   display: inline-flex;
 }
 
-.kuc-date-picker__group input.kuc-base-date__input:focus {
+.kuc-date-picker__group input[type=text].kuc-base-date__input:focus {
   outline: none;
   border: 1px solid #3498db;
 }
-.kuc-date-picker__group input.kuc-base-date__input--focus {
+.kuc-date-picker__group input[type=text].kuc-base-date__input--focus {
   box-shadow: 2px 2px 4px #f5f5f5 inset, -2px -2px 4px #f5f5f5 inset;
   border: 1px solid #3498db;
   background-color: #ffffff;
   color: var(--kuc-date-picker-input-color, #333333);
 }
-.kuc-date-picker__group input.kuc-base-date__input:disabled {
+.kuc-date-picker__group input[type=text].kuc-base-date__input:disabled {
   color: #888888;
   background-color: #d4d7d7;
   box-shadow: none;
