@@ -29,10 +29,10 @@ let exportTooltip;
       | HTMLElement
       | DirectiveResult<typeof UnsafeHTMLDirective> = "";
 
-    @query(".kuc-tooltip__group")
-    private _containerEl!: HTMLDivElement;
     @query(".kuc-tooltip__group__container")
     private _groupContainerEL!: HTMLDivElement;
+    @query(".kuc-tooltip__group__title__wrapper")
+    private _titleWrapper!: HTMLDivElement;
     @query(".kuc-tooltip__group__title")
     private _tooltip!: HTMLDivElement;
 
@@ -64,9 +64,9 @@ let exportTooltip;
             class="kuc-tooltip__group__container"
             @focusin="${this._handleFocusinContainer}"
             @focusout="${this._handleFocusoutContainer}"
-            @mouseenter="${this._handleMouseEnter}"
-            @touchstart="${this._handleTouchStart}"
-            @mouseleave="${this._handleMouseLeave}"
+            @mouseenter="${this._handleMouseEnterContainer}"
+            @mouseleave="${this._handleMouseLeaveContainer}"
+            @touchstart="${this._handleTouchStartContainer}"
           >
             ${this._container}
           </div>
@@ -84,15 +84,18 @@ let exportTooltip;
       }
     }
 
-    private _handleMouseEnter() {
+    private _handleMouseEnterContainer() {
       this._openTooltip();
     }
 
-    private _handleTouchStart() {
+    private _handleTouchStartContainer() {
       this._openTooltip();
     }
 
-    private _handleMouseLeave() {
+    private _handleMouseLeaveContainer(event: MouseEvent) {
+      const relatedTargetEl = event.relatedTarget as HTMLElement;
+      if (this._titleWrapper.contains(relatedTargetEl)) return;
+
       this._closeTooltip();
     }
 
@@ -132,6 +135,7 @@ let exportTooltip;
           id="${this._GUID}-title"
           class="kuc-tooltip__group__title kuc-tooltip__group__title--hidden"
           role="tooltip"
+          @mouseleave="${this._handleMouseLeaveTitle}"
         >
           <div class="kuc-tooltip__group__title__wrapper">
             <div class="kuc-tooltip__group__title__wrapper__arrow"></div>
@@ -141,6 +145,13 @@ let exportTooltip;
           </div>
         </div>
       `;
+    }
+
+    private _handleMouseLeaveTitle(event: MouseEvent) {
+      const relatedTargetEl = event.relatedTarget as HTMLElement;
+      if (this._groupContainerEL.contains(relatedTargetEl)) return;
+
+      this._closeTooltip();
     }
 
     private _handleFocusinContainer() {
