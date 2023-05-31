@@ -20,13 +20,13 @@ let exportReadOnlyTable;
   if (exportReadOnlyTable) {
     return;
   }
-  class KucReadOnlyTable extends KucBase {
+  class KucReadOnlyTable<T extends object = object> extends KucBase {
     @property({ type: String, reflect: true, attribute: "class" }) className =
       "";
     @property({ type: String, reflect: true, attribute: "id" }) id = "";
     @property({ type: String }) label = "";
     @property({ type: Array }) columns: Column[] = [];
-    @property({ type: Array }) data: object[] = [];
+    @property({ type: Array }) data: T[] = [];
     @property({ type: Boolean }) pagination = true;
     @property({ type: Number }) rowsPerPage = 5;
     @property({
@@ -41,7 +41,7 @@ let exportReadOnlyTable;
     @state()
     private _columnOrder: string[] = [];
 
-    constructor(props?: ReadOnlyTableProps) {
+    constructor(props?: ReadOnlyTableProps<T>) {
       super();
       if (!props) return;
       const validProps = validateProps(props);

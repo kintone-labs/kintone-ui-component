@@ -36,13 +36,6 @@ jobs:
         run: npm run build
         working-directory: docs/document/website
       - name: Install Netlify
-        run: npm i netlify-cli@9 --no-save
+        run: npm i netlify-cli --no-save
       - name: Deploy
         run: netlify deploy --dir=./docs/document/website/build/kintone-ui-component --alias=staging --auth=${{ secrets.NETLIFY_AUTH_TOKEN }} --site=${{ secrets.NETLIFY_DOCUMENT_ID }}
-      - name: Status check
-        uses: Sibz/github-status-action@v1.1.1
-        with:
-          authToken: ${{ secrets.WORKFLOW_TOKEN }}
-          context: Netlify preview
-          state: success
-          target_url: https://staging--kintone-ui-component.netlify.app

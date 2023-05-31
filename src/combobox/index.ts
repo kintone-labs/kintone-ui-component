@@ -2,6 +2,7 @@ import { html, PropertyValues, svg } from "lit";
 import { property, query, queryAll, state } from "lit/decorators.js";
 
 import { ERROR_MESSAGE } from "../base/constant";
+import { getWidthElmByContext } from "../base/context";
 import { visiblePropConverter } from "../base/converter";
 import {
   createStyleOnHeader,
@@ -49,6 +50,9 @@ let exportCombobox;
     @state()
     private _selectorVisible = false;
 
+    @query(".kuc-combobox__group")
+    private _groupEl!: HTMLDivElement;
+
     @query(".kuc-combobox__group__toggle")
     private _toggleEl!: HTMLDivElement;
 
@@ -60,6 +64,9 @@ let exportCombobox;
 
     @queryAll(".kuc-combobox__group__select-menu__item")
     private _itemsEl!: HTMLLIElement[];
+
+    @query(".kuc-combobox__group__label")
+    private _labelEl!: HTMLDivElement;
 
     @query(".kuc-combobox__group__select-menu__item")
     private _firstItemEl!: HTMLLIElement;
@@ -208,6 +215,7 @@ let exportCombobox;
       super.updated(changedProperties);
 
       await this.updateComplete;
+      this._updateContainerWidth();
       if (this._selectorVisible) {
         this._setMenuPosition();
         this._scrollToView();
@@ -303,13 +311,17 @@ let exportCombobox;
     }
 
     private _handleMouseDownComboboxItem(event: MouseEvent) {
-      const itemEl = event.target as HTMLLIElement;
+      const itemEl = this._getItemElementWhenMouseOverDown(
+        event.target as HTMLElement
+      );
       const value = itemEl.getAttribute("value") as string;
       this._actionUpdateValue(value);
     }
 
     private _handleMouseOverComboboxItem(event: Event) {
-      const itemEl = event.target as HTMLLIElement;
+      const itemEl = this._getItemElementWhenMouseOverDown(
+        event.target as HTMLElement
+      );
       this._actionHighlightMenuItem(itemEl);
     }
 
@@ -568,6 +580,14 @@ let exportCombobox;
       }
     }
 
+    private _updateContainerWidth() {
+      const MIN_WIDTH = 180;
+      let labelWidth = this._labelEl.getBoundingClientRect().width;
+      if (labelWidth === 0) labelWidth = getWidthElmByContext(this._labelEl);
+      labelWidth = labelWidth > MIN_WIDTH ? labelWidth : MIN_WIDTH;
+      this._groupEl.style.width = labelWidth + "px";
+    }
+
     private _getScrollbarWidthHeight() {
       const scrollDiv = document.createElement("div");
       scrollDiv.style.cssText =
@@ -690,6 +710,22 @@ let exportCombobox;
       }
 
       this._query = "";
+    }
+
+    private _getItemElementWhenMouseOverDown(
+      eventTarget: HTMLElement
+    ): HTMLLIElement {
+      if (
+        eventTarget.classList.value
+          .split(" ")
+          .includes("kuc-combobox__group__select-menu__item")
+      ) {
+        return eventTarget as HTMLLIElement;
+      }
+
+      return this._getItemElementWhenMouseOverDown(
+        eventTarget.parentElement as HTMLElement
+      );
     }
   }
   window.customElements.define("kuc-combobox", KucCombobox);

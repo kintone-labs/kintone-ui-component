@@ -40,14 +40,13 @@ let exportNotification;
       this.close();
     }
 
-    private _getCloseButtonColor() {
+    private _getCloseButtonColorType() {
       switch (this.type) {
         case "info":
-          return "#448aca";
         case "success":
-          return "#9bbc65";
+          return this.type;
         default:
-          return "#c65040";
+          return "danger";
       }
     }
 
@@ -62,10 +61,10 @@ let exportNotification;
         >
           <title>close button</title>
           <path
+            class="kuc-notification__notification__close-button__icon-background--${this._getCloseButtonColorType()}"
             fill-rule="evenodd"
             clip-rule="evenodd"
             d="M16 32C24.8366 32 32 24.8366 32 16C32 7.16344 24.8366 0 16 0C7.16344 0 0 7.16344 0 16C0 24.8366 7.16344 32 16 32Z"
-            fill="${this._getCloseButtonColor()}"
           />
           <path
             fill-rule="evenodd"

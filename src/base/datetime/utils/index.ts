@@ -251,7 +251,7 @@ export const isValidDateFormat = (language: string, dateString?: string) => {
   if (dateString && !isStringValueEmpty(dateString)) {
     const isEnLanguage = language === "en";
     const splitStr = isEnLanguage ? "/" : "-";
-    const dateObj = new Date(dateString);
+    const dateObj = new Date(`${dateString}${isEnLanguage ? "" : "T00:00:00"}`);
     const notExistedDate =
       dateObj.getDate() !==
       parseInt(dateString.split(splitStr)[isEnLanguage ? 1 : 2], 10);

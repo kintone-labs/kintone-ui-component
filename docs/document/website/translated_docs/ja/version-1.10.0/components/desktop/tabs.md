@@ -117,9 +117,3 @@ tabs.addEventListener('change', event => {
   console.log(event);
 });
 ```
-
----
-
-## Related Articles
-
-- [Tabs customization](../../guides/tabs-customzation.md)

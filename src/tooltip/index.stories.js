@@ -42,7 +42,7 @@ const Template = (args) => {
     container: args.container,
     title: args.title,
     placement: args.placement,
-    describeChild: args.describeChild
+    describeChild: args.describeChild,
   });
 
   wrapper.appendChild(tooltip);

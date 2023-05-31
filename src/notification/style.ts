@@ -55,31 +55,32 @@ export const NOTIFICATION_CSS = `
     display: inline-block;
     text-align: left;
     padding: 16px 56px 16px 24px;
-    background-color: #e74c3c;
+    background-color: var(--kuc-notification-background-color, #e74c3c);
   }
   .kuc-notification__notification--info {
-    background-color: #3498db;
+    background-color: var(--kuc-notification-background-color, #3498db);
   }
   .kuc-notification__notification--success {
-    background-color: #91c36c;
+    background-color: var(--kuc-notification-background-color, #91c36c);
   }
   .kuc-notification__notification--danger {
-    background-color: #e74c3c;
+    background-color: var(--kuc-notification-background-color, #e74c3c);
   }
   .kuc-notification__notification__title {
-    display: block;
-    margin: 0px;
-    font-size: 16px;
+    display: flex;
+    align-items: center;
+    margin: 0;
+    font-size: var(--kuc-notification-font-size, 16px);
+    color: var(--kuc-notification-color, #ffffff);
     max-width: 500px;
     min-height: 24px;
     word-break: break-word;
     white-space: pre-wrap;
   }
   .kuc-notification__notification__close-button {
-    line-height: normal;
     position: absolute;
-    top: 5px;
-    right: 0px;
+    top: 4px;
+    right: 0;
     width: 48px;
     height: 48px;
     background-color: transparent;
@@ -87,6 +88,19 @@ export const NOTIFICATION_CSS = `
     border: none;
     pointer-events: auto;
     cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+  }
+  .kuc-notification__notification__close-button__icon-background--danger {
+    fill: var(--kuc-notification-close-button-background-color, #c65040);
+  }
+  .kuc-notification__notification__close-button__icon-background--info {
+    fill: var(--kuc-notification-close-button-background-color, #448aca);
+  }
+  .kuc-notification__notification__close-button__icon-background--success {
+    fill: var(--kuc-notification-close-button-background-color, #9bbc65);
   }
   @keyframes kuc-notification-fade-in {
     0% {

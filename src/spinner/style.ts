@@ -38,13 +38,15 @@ export const SPINNER_CSS = `
     align-items: center;
   }
   .kuc-spinner__spinner__loader {
-    width: 50px;
-    height: 50px;
+    width: var(--kuc-spinner-loader-width, 50px);
+    height: var(--kuc-spinner-loader-height, 50px);
     animation: rotate-loading 1s steps(12) infinite;
-    fill: #99ccff;
+    fill: var(--kuc-spinner-loader-color, #99ccff);
   }
   .kuc-spinner__spinner__text {
     margin: 10px 0;
+    font-size: var(--kuc-spinner-text-font-size, 14px);
+    color: var(--kuc-spinner-text-color, #333333);
   }
   .visually-hidden {
     position: absolute;

@@ -71,6 +71,19 @@ Here is a list of available constructors:
 | :--- | :--- | :--- | :--- | :--- |
 | options | object | {} | Object that includes component properties | |
 
+### Custom CSS
+> Please check [Custom CSS feature guide](../../getting-started/custom-css.md) at first.
+Here is a list of properties that can be used for modifying component style:
+#### Property
+| Name |
+| :--- |
+| --kuc-multi-choice-menu-width |
+| --kuc-multi-choice-menu-height |
+| --kuc-multi-choice-menu-font-size |
+| --kuc-multi-choice-menu-color |
+| --kuc-multi-choice-menu-color-selected |
+| --kuc-multi-choice-menu-background-color-hover |
+
 ---
 ## Sample Code
 
