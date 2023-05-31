@@ -100,5 +100,33 @@ describe("Tooltip", () => {
         "none"
       );
     });
+    it("should close the tooltip when mouseleave the title element", async () => {
+      const container = new Tooltip({
+        describeChild: true,
+        container: getButtonElement(),
+        title: "sample-title",
+      });
+      const el = await fixture(container);
+      const containerEl = el.querySelector(
+        ".kuc-tooltip__group__container"
+      ) as HTMLDivElement;
+
+      const eventMouseEnter = new MouseEvent("mouseenter");
+      containerEl.dispatchEvent(eventMouseEnter);
+
+      const titleEl = el.querySelector(
+        ".kuc-tooltip__group__title"
+      ) as HTMLDivElement;
+      expect(getComputedStyle(titleEl).getPropertyValue("display")).to.be.equal(
+        "block"
+      );
+
+      const eventMouseLeave = new MouseEvent("mouseleave");
+      titleEl.dispatchEvent(eventMouseLeave);
+      await elementUpdated(el);
+      expect(getComputedStyle(titleEl).getPropertyValue("display")).to.be.equal(
+        "none"
+      );
+    });
   });
 });
