@@ -25,11 +25,10 @@ export default {
 };
 
 const getButtonContainer = (text) => {
-  const div = document.createElement("div");
-  const button = new Button({ text: text });
-  div.appendChild(button);
+  const buttonEl = document.createElement("button");
+  buttonEl.innerText = text;
 
-  return div;
+  return buttonEl;
 };
 
 const Template = (args) => {
@@ -43,6 +42,7 @@ const Template = (args) => {
     container: args.container,
     title: args.title,
     placement: args.placement,
+    describeChild: args.describeChild
   });
 
   wrapper.appendChild(tooltip);
@@ -53,9 +53,10 @@ const Template = (args) => {
 export const baseBottom = Template.bind({});
 baseBottom.args = {
   className: "tooltip-class",
+  describeChild: true,
   id: "tooltip-id",
   container: getButtonContainer("Bottom"),
-  title: "bottom",
+  title: "Does not add if it already exists.",
   placement: "bottom",
 };
 
@@ -63,6 +64,7 @@ export const baseTop = Template.bind({});
 baseTop.args = {
   className: "tooltip-class",
   id: "tooltip-id",
+  describeChild: true,
   container: getButtonContainer("Top"),
   title: "top",
   placement: "top",
@@ -72,6 +74,7 @@ export const baseRight = Template.bind({});
 baseRight.args = {
   className: "tooltip-class",
   id: "tooltip-id",
+  describeChild: true,
   container: getButtonContainer("Right"),
   title: "right",
   placement: "right",
@@ -81,6 +84,7 @@ export const baseLeft = Template.bind({});
 baseLeft.args = {
   className: "tooltip-class",
   id: "tooltip-id",
+  describeChild: true,
   container: getButtonContainer("Left"),
   title: "left",
   placement: "left",

@@ -4,16 +4,11 @@ import { DirectiveResult } from "lit/directive";
 import { UnsafeHTMLDirective } from "lit/directives/unsafe-html";
 
 import { unsafeHTMLConverter } from "../base/converter";
-import { createStyleOnHeader, KucBase } from "../base/kuc-base";
+import { createStyleOnHeader, generateGUID, KucBase } from "../base/kuc-base";
 import { validateProps } from "../base/validator";
 
 import { TOOLTIP_CSS } from "./style";
-import {
-  KeyBoardFunction,
-  PointerFunction,
-  TooltipPlacement,
-  TooltipProps,
-} from "./type";
+import { KeyBoardFunction, TooltipPlacement, TooltipProps } from "./type";
 
 let exportTooltip;
 (() => {
@@ -26,6 +21,7 @@ let exportTooltip;
     @property({ type: String, reflect: true, attribute: "class" }) className =
       "";
     @property() container: string | HTMLElement = "";
+    @property({ type: Boolean }) describeChild = false;
     @property({ type: String, reflect: true, attribute: "id" }) id = "";
     @property({ type: String }) placement: TooltipPlacement = "top";
     @property({ type: String }) title = "";
@@ -33,24 +29,23 @@ let exportTooltip;
       | HTMLElement
       | DirectiveResult<typeof UnsafeHTMLDirective> = "";
 
-    private _globalEscapeBound: KeyBoardFunction;
-    private _globalPointerDownBound: PointerFunction;
-
     @query(".kuc-tooltip__group")
     private _containerEl!: HTMLDivElement;
-
+    @query(".kuc-tooltip__group__container")
+    private _groupContainerEL!: HTMLDivElement;
     @query(".kuc-tooltip__group__title")
     private _tooltip!: HTMLDivElement;
 
-    @query(".kuc-tooltip__group__container")
-    private _trigger!: HTMLDivElement;
+    private _firstChildEl!: HTMLElement;
+    private _GUID: string;
+    private _globalEscapeBound: KeyBoardFunction;
 
     constructor(props?: TooltipProps) {
       super();
+      this._GUID = generateGUID();
       const validProps = validateProps(props);
       Object.assign(this, validProps);
       this._globalEscapeBound = this._globalEscape.bind(this);
-      this._globalPointerDownBound = this._globalPointerDown.bind(this);
     }
 
     update(changedProperties: PropertyValues) {
@@ -77,11 +72,49 @@ let exportTooltip;
       `;
     }
 
+    protected firstUpdated(): void {
+      this._bindEvents();
+    }
+
+    protected updated() {
+      this._initializeFirstChildElement();
+      if (this.describeChild) {
+        this._setChildTitleAttribute();
+      } else {
+        this._setChildAriaLabelAttribute();
+      }
+    }
+
+    private _initializeFirstChildElement() {
+      if (typeof this._container !== "string") {
+        const firstChildElement = this._groupContainerEL
+          .firstElementChild as HTMLElement;
+
+        if (
+          firstChildElement &&
+          !firstChildElement.getAttribute("aria-describedby")
+        ) {
+          this._firstChildEl = firstChildElement;
+        }
+      }
+    }
+
+    private _setChildTitleAttribute() {
+      this._firstChildEl.setAttribute("title", this.title);
+      this._firstChildEl.removeAttribute("aria-label");
+    }
+
+    private _setChildAriaLabelAttribute() {
+      this._firstChildEl.setAttribute("aria-label", this.title);
+      this._firstChildEl.removeAttribute("title");
+    }
+
     private _getTitleTemplate() {
       if (!this.title) return html``;
 
       return html`
         <div
+          id="${this._GUID}-title"
           class="kuc-tooltip__group__title kuc-tooltip__group__title--hidden"
           role="tooltip"
         >
@@ -103,20 +136,30 @@ let exportTooltip;
       this._closeTooltip();
     }
 
-    protected firstUpdated(): void {
-      this._bindEvents();
-    }
-
     private _openTooltip() {
+      this._updateChildElementAttributes(true);
       this._showTooltip();
-      // this.checkBoundingBox();
       this._attachGlobalListener();
     }
 
     private _closeTooltip() {
+      this._updateChildElementAttributes(false);
       this._hideTooltip();
-      // this.resetBoundingBox();
       this._removeGlobalListener();
+    }
+
+    private _updateChildElementAttributes(open: boolean) {
+      if (!this._firstChildEl || !this.describeChild) return;
+      if (open) {
+        this._firstChildEl.removeAttribute("title");
+        this._firstChildEl.setAttribute(
+          "aria-describedby",
+          `${this._GUID}-title`
+        );
+        return;
+      }
+      this._firstChildEl.removeAttribute("aria-describedby");
+      this._firstChildEl.setAttribute("title", this.title);
     }
 
     private _showTooltip() {
@@ -130,8 +173,6 @@ let exportTooltip;
     private _bindEvents() {
       if (!this.title) return;
 
-      const _contentElement = this._trigger.childNodes[2];
-
       this._containerEl.addEventListener(
         "mouseenter",
         this._openTooltip.bind(this)
@@ -144,41 +185,19 @@ let exportTooltip;
         "mouseleave",
         this._closeTooltip.bind(this)
       );
-
-      _contentElement.addEventListener("focus", this._openTooltip.bind(this));
-      _contentElement.addEventListener("blur", this._closeTooltip.bind(this));
     }
 
     private _attachGlobalListener() {
       document.addEventListener("keydown", this._globalEscapeBound);
-      document.addEventListener("pointerdown", this._globalPointerDownBound);
     }
 
     private _removeGlobalListener() {
       document.removeEventListener("keydown", this._globalEscapeBound);
-      document.removeEventListener("pointerdown", this._globalPointerDownBound);
     }
 
     private _globalEscape(event: KeyboardEvent) {
       if (event.key === "Escape" || event.key === "Esc") {
         this._closeTooltip();
-      }
-    }
-
-    private _globalPointerDown(event: PointerEvent) {
-      const target = event.target as HTMLElement;
-      const tooltipEl = target.closest(".kuc-tooltip__group__title");
-      if (tooltipEl) return;
-
-      switch (event.target) {
-        case this._container:
-        case this._trigger:
-        case this._tooltip:
-          event.preventDefault();
-          break;
-        default:
-          this._closeTooltip();
-          this._trigger.blur();
       }
     }
 
