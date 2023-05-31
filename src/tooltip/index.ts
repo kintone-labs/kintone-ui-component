@@ -58,22 +58,21 @@ let exportTooltip;
     render() {
       return html`
         <div
-          class="kuc-tooltip__group kuc-tooltip__group--${this._getPlacement()}"
+          class="kuc-tooltip__group  kuc-tooltip__group--${this._getPlacement()}"
         >
           <div
             class="kuc-tooltip__group__container"
             @focusin="${this._handleFocusinContainer}"
             @focusout="${this._handleFocusoutContainer}"
+            @mouseenter="${this._handleMouseEnter}"
+            @touchstart="${this._handleTouchStart}"
+            @mouseleave="${this._handleMouseLeave}"
           >
             ${this._container}
           </div>
           ${this._getTitleTemplate()}
         </div>
       `;
-    }
-
-    protected firstUpdated(): void {
-      this._bindEvents();
     }
 
     protected updated() {
@@ -83,6 +82,18 @@ let exportTooltip;
       } else {
         this._setChildAriaLabelAttribute();
       }
+    }
+
+    private _handleMouseEnter() {
+      this._openTooltip();
+    }
+
+    private _handleTouchStart() {
+      this._openTooltip();
+    }
+
+    private _handleMouseLeave() {
+      this._closeTooltip();
     }
 
     private _initializeFirstChildElement() {
@@ -100,11 +111,15 @@ let exportTooltip;
     }
 
     private _setChildTitleAttribute() {
+      if (!this._firstChildEl) return;
+
       this._firstChildEl.setAttribute("title", this.title);
       this._firstChildEl.removeAttribute("aria-label");
     }
 
     private _setChildAriaLabelAttribute() {
+      if (!this._firstChildEl) return;
+
       this._firstChildEl.setAttribute("aria-label", this.title);
       this._firstChildEl.removeAttribute("title");
     }
@@ -168,23 +183,6 @@ let exportTooltip;
 
     private _hideTooltip() {
       this._tooltip.classList.add("kuc-tooltip__group__title--hidden");
-    }
-
-    private _bindEvents() {
-      if (!this.title) return;
-
-      this._containerEl.addEventListener(
-        "mouseenter",
-        this._openTooltip.bind(this)
-      );
-      this._containerEl.addEventListener(
-        "touchstart",
-        this._openTooltip.bind(this)
-      );
-      this._containerEl.addEventListener(
-        "mouseleave",
-        this._closeTooltip.bind(this)
-      );
     }
 
     private _attachGlobalListener() {
