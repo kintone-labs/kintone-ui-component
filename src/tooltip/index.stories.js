@@ -53,7 +53,7 @@ const Template = (args) => {
 export const baseBottom = Template.bind({});
 baseBottom.args = {
   className: "tooltip-class",
-  describeChild: true,
+  describeChild: false,
   id: "tooltip-id",
   container: getButtonContainer("Bottom"),
   title: "Does not add if it already exists.",
@@ -64,7 +64,7 @@ export const baseTop = Template.bind({});
 baseTop.args = {
   className: "tooltip-class",
   id: "tooltip-id",
-  describeChild: true,
+  describeChild: false,
   container: getButtonContainer("Top"),
   title: "top",
   placement: "top",
@@ -74,7 +74,7 @@ export const baseRight = Template.bind({});
 baseRight.args = {
   className: "tooltip-class",
   id: "tooltip-id",
-  describeChild: true,
+  describeChild: false,
   container: getButtonContainer("Right"),
   title: "right",
   placement: "right",
@@ -84,16 +84,17 @@ export const baseLeft = Template.bind({});
 baseLeft.args = {
   className: "tooltip-class",
   id: "tooltip-id",
-  describeChild: true,
+  describeChild: false,
   container: getButtonContainer("Left"),
   title: "left",
   placement: "left",
 };
 
-export const baseText = Template.bind({});
-baseText.args = {
+export const baseString = Template.bind({});
+baseString.args = {
   className: "tooltip-class",
   id: "tooltip-id",
+  describeChild: false,
   container: "normal string",
   title: "Tooltip",
   placement: "top",
