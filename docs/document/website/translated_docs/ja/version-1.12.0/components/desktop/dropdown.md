@@ -70,7 +70,8 @@ Dropdown(options)<br>
 ### Custom CSS
 > [Custom CSS](../../getting-started/custom-css.md) をご確認ください。
 
-コンポーネントのスタイルを変更するために使用できるプロパティの一覧です。
+コンポーネントのスタイルを変更するために使用できるプロパティの一覧です。<br>
+toggle は、Dropdown ボタンの領域を示します。
 #### Property
 | Name |
 | :--- |
