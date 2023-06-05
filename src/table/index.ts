@@ -45,6 +45,7 @@ let exportTable;
     @property({ type: Array }) columns: Column[] = [];
     @property({ type: Array }) data: T[] = [];
     @property({ type: Boolean }) actionButton = true;
+    @property({ type: Boolean }) headerVisible = true;
     @property({
       type: Boolean,
       attribute: "hidden",
@@ -108,7 +109,10 @@ let exportTable;
               <caption class="kuc-table__table__label" ?hidden="${!this.label}">
                 ${this.label}
               </caption>
-              <thead class="kuc-table__table__header">
+              <thead
+                class="kuc-table__table__header"
+                ?hidden="${!this.headerVisible}"
+              >
                 ${this._getTableHeaderTemplate()}
               </thead>
               <tbody class="kuc-table__table__body"></tbody>

@@ -1,5 +1,5 @@
 ---
-id: version-1.11.0-multichoice
+id: version-1.12.0-multichoice
 title: MultiChoice
 sidebar_label: MultiChoice
 original_id: multichoice
