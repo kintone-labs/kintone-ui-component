@@ -16,6 +16,7 @@ export default {
     label: { name: "label" },
     data: { name: "data" },
     columns: { name: "columns" },
+    headerVisible: { name: "headerVisible" },
     visible: { name: "visible" },
   },
   parameters: {
@@ -173,6 +174,7 @@ const data = [
 export const Base = Template.bind({});
 Base.args = {
   label: "Table component",
+  headerVisible: true,
   visible: true,
   columns: columns,
   data: data,
