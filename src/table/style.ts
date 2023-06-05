@@ -41,6 +41,9 @@ export const TABLE_CSS = `
         border-style: solid;
         border-right: 0;
     }
+    .kuc-table__table__header[hidden] {
+        display: none;
+    }
     .kuc-table__table__header__cell {
         box-sizing: border-box;
         font-size: 12px;

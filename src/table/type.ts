@@ -23,6 +23,7 @@ export declare type TableProps<T extends object = object> = {
   data?: T[];
   columns?: Column[];
   actionButton?: boolean;
+  headerVisible?: boolean;
   visible?: boolean;
 };
 
@@ -41,6 +42,7 @@ export declare class Table<T extends object = object> extends KucBase {
   columns: Column[];
   data: T[];
   actionButton: boolean;
+  headerVisible: boolean;
   visible: boolean;
   constructor(props?: TableProps<T>);
   update(changedProperties: PropertyValues): void;
