@@ -138,15 +138,20 @@ const main = async () => {
         }
       });
       addTypeFiles(componentDirectories);
-
-      let kucBaseData = fs
-        .readFileSync(path.resolve(__dirname, `../lib/base/kuc-base.js`))
-        .toString();
-      kucBaseData = replaceAllByPattern(kucBaseData, classNamePattern, classNameVersion);
-      fs.writeFileSync(
-        path.resolve(__dirname, `../lib/base/kuc-base.js`),
-        kucBaseData
-      );
+      const forcedReplaceFiles = [
+        "base/kuc-base.js",
+        "base/datetime/utils/index.js"
+      ];
+      forcedReplaceFiles.forEach((file) => {
+        let forcedReplaceFileData = fs
+          .readFileSync(path.resolve(__dirname, `../lib/${file}`))
+          .toString();
+        forcedReplaceFileData = replaceAllByPattern(forcedReplaceFileData, classNamePattern, classNameVersion);
+        fs.writeFileSync(
+          path.resolve(__dirname, `../lib/${file}`),
+          forcedReplaceFileData
+        );
+      });
     }
   });
 };
