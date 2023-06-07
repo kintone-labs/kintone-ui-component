@@ -7,4 +7,4 @@ umd/
 /test
 /unit_test
 .DS_Store
-.vscode
+build-storybook.log
