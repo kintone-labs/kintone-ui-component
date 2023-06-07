@@ -36,7 +36,6 @@ function getComponentDirectories(source, ignoreList) {
 }
 
 function hasIndexAndStyle(path) {
-  if(path === "src/base/datetime/utils") return true;
   const listOfFiles = fs.readdirSync(path);
   if(!listOfFiles.includes("index.ts")) return false;
   if(!listOfFiles.includes("style.ts")) return false;
