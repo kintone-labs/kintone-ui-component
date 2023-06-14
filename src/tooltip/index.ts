@@ -96,7 +96,9 @@ let exportTooltip;
 
     private _handleMouseLeaveContainer(event: MouseEvent) {
       const relatedTargetEl = event.relatedTarget as HTMLElement;
-      if (this._titleWrapper.contains(relatedTargetEl)) return;
+      const isHoverTitle =
+        this._titleWrapper && this._titleWrapper.contains(relatedTargetEl);
+      if (isHoverTitle) return;
 
       this._closeTooltip();
     }
@@ -191,10 +193,12 @@ let exportTooltip;
     }
 
     private _showTooltip() {
+      if (!this._tooltip) return;
       this._tooltip.classList.remove("kuc-tooltip__group__title--hidden");
     }
 
     private _hideTooltip() {
+      if (!this._tooltip) return;
       this._tooltip.classList.add("kuc-tooltip__group__title--hidden");
     }
 
