@@ -4,7 +4,7 @@ import { Tooltip } from "../index";
 
 describe("Tooltip", () => {
   describe("container", () => {
-    it("should not empty when not assigning", async () => {
+    it("should be empty when not assigning", async () => {
       const container = new Tooltip();
       const el = await fixture(container);
       const containerEl = el.querySelector(
