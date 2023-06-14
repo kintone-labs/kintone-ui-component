@@ -16,6 +16,7 @@ export default {
         type: "select",
       },
     },
+    describeChild: { name: "describeChild", type: "boolean" },
   },
   parameters: {
     actions: {
