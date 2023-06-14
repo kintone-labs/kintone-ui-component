@@ -20,14 +20,11 @@ let exportTooltip;
   class KucTooltip extends KucBase {
     @property({ type: String, reflect: true, attribute: "class" }) className =
       "";
-    @property() container: string | HTMLElement = "";
-    @property({ type: Boolean }) describeChild = false;
     @property({ type: String, reflect: true, attribute: "id" }) id = "";
     @property({ type: String }) placement: TooltipPlacement = "top";
     @property({ type: String }) title = "";
-    private _container:
-      | HTMLElement
-      | DirectiveResult<typeof UnsafeHTMLDirective> = "";
+    @property() container: string | HTMLElement = "";
+    @property({ type: Boolean }) describeChild = false;
 
     @query(".kuc-tooltip__group__container")
     private _groupContainerEL!: HTMLDivElement;
@@ -36,6 +33,9 @@ let exportTooltip;
     @query(".kuc-tooltip__group__title")
     private _tooltip!: HTMLDivElement;
 
+    private _container:
+      | HTMLElement
+      | DirectiveResult<typeof UnsafeHTMLDirective> = "";
     private _firstChildEl!: HTMLElement;
     private _GUID: string;
     private _globalEscapeBound: KeyBoardFunction;
