@@ -37,6 +37,7 @@ export const TOOLTIP_CSS = `
     height: calc(0.5em * 2);
   }
   .kuc-tooltip__group__title .kuc-tooltip__group__title__wrapper__text {
+    max-width: 250px;
     min-height: 32px;
     padding: 6px 8px;
     color: #ffffff;
@@ -58,9 +59,6 @@ export const TOOLTIP_CSS = `
     color: white;
     width: max-content;
     z-index: 1000;
-  }
-  .kuc-tooltip__group__title .kuc-tooltip__group__title__wrapper__text {
-    max-width: 250px;
   }
   .kuc-tooltip__group.kuc-tooltip__group--top .kuc-tooltip__group__title {
     top: unset;

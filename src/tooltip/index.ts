@@ -8,7 +8,9 @@ import { createStyleOnHeader, generateGUID, KucBase } from "../base/kuc-base";
 import { validateProps } from "../base/validator";
 
 import { TOOLTIP_CSS } from "./style";
-import { KeyBoardFunction, TooltipPlacement, TooltipProps } from "./type";
+import { TooltipPlacement, TooltipProps } from "./type";
+
+type KeyBoardFunction = (event: KeyboardEvent) => void;
 
 let exportTooltip;
 (() => {
@@ -58,7 +60,7 @@ let exportTooltip;
     render() {
       return html`
         <div
-          class="kuc-tooltip__group  kuc-tooltip__group--${this._getPlacement()}"
+          class="kuc-tooltip__group kuc-tooltip__group--${this._getPlacement()}"
         >
           <div
             class="kuc-tooltip__group__container"

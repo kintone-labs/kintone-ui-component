@@ -1,5 +1,3 @@
-import { Button } from "../button/index.ts";
-
 import { Tooltip } from "./index.ts";
 
 export default {
@@ -7,8 +5,6 @@ export default {
   argTypes: {
     className: { name: "className" },
     id: { name: "id" },
-    container: { name: "container" },
-    title: { name: "title" },
     placement: {
       name: "placement",
       options: ["top", "bottom", "left", "right"],
@@ -16,6 +12,8 @@ export default {
         type: "select",
       },
     },
+    title: { name: "title" },
+    container: { name: "container" },
     describeChild: { name: "describeChild", type: "boolean" },
   },
   parameters: {
@@ -40,9 +38,9 @@ const Template = (args) => {
   const tooltip = new Tooltip({
     className: args.className,
     id: args.id,
-    container: args.container,
-    title: args.title,
     placement: args.placement,
+    title: args.title,
+    container: args.container,
     describeChild: args.describeChild,
   });
 
@@ -54,49 +52,49 @@ const Template = (args) => {
 export const baseBottom = Template.bind({});
 baseBottom.args = {
   className: "tooltip-class",
-  describeChild: false,
   id: "tooltip-id",
-  container: getButtonContainer("Bottom"),
-  title: "Does not add if it already exists.",
   placement: "bottom",
+  title: "Does not add if it already exists.",
+  container: getButtonContainer("Bottom"),
+  describeChild: false,
 };
 
 export const baseTop = Template.bind({});
 baseTop.args = {
   className: "tooltip-class",
   id: "tooltip-id",
-  describeChild: false,
-  container: getButtonContainer("Top"),
-  title: "top",
   placement: "top",
+  title: "top",
+  container: getButtonContainer("Top"),
+  describeChild: false,
 };
 
 export const baseRight = Template.bind({});
 baseRight.args = {
   className: "tooltip-class",
   id: "tooltip-id",
-  describeChild: false,
-  container: getButtonContainer("Right"),
-  title: "right",
   placement: "right",
+  title: "right",
+  container: getButtonContainer("Right"),
+  describeChild: false,
 };
 
 export const baseLeft = Template.bind({});
 baseLeft.args = {
   className: "tooltip-class",
   id: "tooltip-id",
-  describeChild: false,
-  container: getButtonContainer("Left"),
-  title: "left",
   placement: "left",
+  title: "left",
+  container: getButtonContainer("Left"),
+  describeChild: false,
 };
 
 export const baseString = Template.bind({});
 baseString.args = {
   className: "tooltip-class",
   id: "tooltip-id",
-  describeChild: false,
-  container: "normal string",
-  title: "Tooltip",
   placement: "top",
+  title: "Tooltip",
+  container: "normal string",
+  describeChild: false,
 };
