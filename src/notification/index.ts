@@ -24,6 +24,7 @@ let exportNotification;
     @property({ type: String }) text = "";
     @property({ type: String }) type: "info" | "danger" | "success" = "danger";
     @property({ type: Number }) duration = -1;
+    @property() container: HTMLElement = document.body;
 
     @state()
     private _isOpened = false;
@@ -91,7 +92,10 @@ let exportNotification;
     }
 
     open() {
-      document.body.appendChild(this);
+      const isValidContainer =
+        this.container && this.container instanceof HTMLElement;
+      const _container = isValidContainer ? this.container : document.body;
+      _container.appendChild(this);
       this.performUpdate();
       this.classList.remove("kuc-notification-fadeout");
       this.classList.add("kuc-notification-fadein");

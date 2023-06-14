@@ -12,6 +12,7 @@ export default {
         type: "select",
       },
     },
+    container: { name: "container" },
   },
 };
 const template = (args) => {
@@ -31,17 +32,25 @@ const template = (args) => {
     notification.close();
   });
 
+  const buttonFullScreen = document.createElement("button");
+  buttonFullScreen.innerText = "full screen mode";
+  buttonFullScreen.addEventListener("click", () => {
+    document.getElementById("root").requestFullscreen();
+  });
+
   root.appendChild(openButton);
   root.appendChild(closeButton);
+  root.appendChild(buttonFullScreen);
   return root;
 };
-export const Base = template.bind({});
-Base.args = {
+export const BaseContainer = template.bind({});
+BaseContainer.args = {
   text: "不正です!!",
   type: "info",
+  container: document.getElementById("root"),
 };
-export const Base1 = template.bind({});
-Base1.args = {
+export const BaseBody = template.bind({});
+BaseBody.args = {
   text: "Duration 3 seconds",
   type: "info",
   duration: 3000,
