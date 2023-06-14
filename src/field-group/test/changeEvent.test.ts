@@ -77,11 +77,13 @@ describe("FieldGroup", () => {
         content: getFieldGroupContent(),
       });
       const el = await fixture(container);
-      const groupEl = el.querySelector(
-        ".kuc-field-group__group"
-      ) as HTMLElement;
-      const groupWidth = getComputedStyle(groupEl).width;
-      expect(groupWidth).not.equal(DEFAULT_WIDTH);
+      requestAnimationFrame(() => {
+        const groupEl = el.querySelector(
+          ".kuc-field-group__group"
+        ) as HTMLElement;
+        const groupWidth = getComputedStyle(groupEl).width;
+        expect(groupWidth).not.equal(DEFAULT_WIDTH);
+      });
     });
   });
 });

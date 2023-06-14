@@ -1,5 +1,5 @@
 ---
-id: version-1.11.0-combobox
+id: version-1.12.0-combobox
 title: Combobox
 sidebar_label: Combobox
 original_id: combobox
@@ -54,6 +54,21 @@ Combobox(options)<br>
 | Name | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
 | options | object | {} | コンポーネントのプロパティを含むオブジェクト | |
+
+### Custom CSS
+> [Custom CSS](../../getting-started/custom-css.md) をご確認ください。
+
+コンポーネントのスタイルを変更するために使用できるプロパティの一覧です。<br>
+toggle は、Combobox の入力欄とボタンの領域を示します。
+#### Property
+| Name |
+| :--- |
+| --kuc-combobox-font-size |
+| --kuc-combobox-toggle-width |
+| --kuc-combobox-toggle-height |
+| --kuc-combobox-toggle-color |
+| --kuc-combobox-menu-color |
+| --kuc-combobox-menu-color-selected |
 
 ---
 

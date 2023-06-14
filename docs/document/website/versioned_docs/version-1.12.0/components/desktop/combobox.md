@@ -1,5 +1,5 @@
 ---
-id: version-1.11.0-combobox
+id: version-1.12.0-combobox
 title: Combobox
 sidebar_label: Combobox
 original_id: combobox
@@ -54,6 +54,21 @@ Here is a list of available constructors:
 | Name | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
 | options | object | {} | Object that includes component properties | |
+
+### Custom CSS
+> Please check [Custom CSS feature guide](../../getting-started/custom-css.md) at first.
+
+Here is a list of properties that can be used for modifying component style:<br>
+"toggle" means the area of the Combobox input box and button.
+#### Property
+| Name |
+| :--- |
+| --kuc-combobox-font-size |
+| --kuc-combobox-toggle-width |
+| --kuc-combobox-toggle-height |
+| --kuc-combobox-toggle-color |
+| --kuc-combobox-menu-color |
+| --kuc-combobox-menu-color-selected |
 
 ---
 
