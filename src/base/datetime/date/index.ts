@@ -9,7 +9,7 @@ import {
 } from "../../kuc-base";
 import { isValidDate } from "../../validator";
 import { BaseDateTimeCalendar } from "../calendar";
-import { BaseDateTimeListBox } from "../listbox";
+import "../listbox";
 import {
   formatInputValueToValue,
   formatValueToInputValue,
@@ -20,7 +20,6 @@ import {
 
 import { BASE_DATE_CSS } from "./style";
 export { BaseDateTimeCalendar };
-export { BaseDateTimeListBox };
 
 export class BaseDate extends KucBase {
   @property({ type: String }) inputAriaLabel = "";
