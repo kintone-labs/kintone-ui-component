@@ -1,7 +1,7 @@
 export const BASE_TIME_CSS = `
 :lang(ja) .kuc-base-time__group input.kuc-base-time__group__hours,
 :lang(ja) .kuc-base-time__group input.kuc-base-time__group__minutes {
-  width: 18px;
+  width: 2ch;
 }
 .kuc-base-time__group {
   display: inline-flex;
@@ -18,6 +18,7 @@ export const BASE_TIME_CSS = `
   padding: 0px 8px;
   box-shadow: 2px 2px 4px #f5f5f5 inset, -2px -2px 4px #f5f5f5 inset;
   background-color: #ffffff;
+  overflow: hidden;
 }
 .kuc-base-time__group input.kuc-base-time__group__hours {
   border: 0px;

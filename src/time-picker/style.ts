@@ -24,7 +24,9 @@ kuc-time-picker:lang(zh-TW) * {
 kuc-time-picker {
   font-size: 14px;
   color: var(--kuc-time-picker-input-color, #333333);
-  display: inline-block;
+  display: inline-table;
+  max-width: var(--kuc-time-picker-input-width, 85px);
+  width: var(--kuc-time-picker-input-width, 85px);
   vertical-align: top;
   line-height: 1.5;
 }
@@ -42,6 +44,11 @@ kuc-time-picker[hidden] {
   height: auto;
   margin: 0px;
 }
+
+.kuc-time-picker__group kuc-base-time {
+  display: inline-flex;
+}
+
 .kuc-time-picker__group .kuc-base-time__group {
   max-width: var(--kuc-time-picker-input-width, 85px);
   width: var(--kuc-time-picker-input-width, 85px);
@@ -53,6 +60,7 @@ kuc-time-picker[hidden] {
 .kuc-time-picker__group .kuc-base-time__group input[type=text].kuc-base-time__group__minutes,
 .kuc-time-picker__group .kuc-base-time__group--focus  {
   color: var(--kuc-time-picker-input-color, #333333);
+  height: var(--kuc-time-picker-input-height, 40px);
 }
 .kuc-time-picker__group__label {
   padding: 4px 0px 8px 0px;
