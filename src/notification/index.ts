@@ -92,9 +92,10 @@ let exportNotification;
     }
 
     open() {
+      const DEFAULT_CONTAINER = document.body;
       const isValidContainer =
         this.container && this.container instanceof HTMLElement;
-      const _container = isValidContainer ? this.container : document.body;
+      const _container = isValidContainer ? this.container : DEFAULT_CONTAINER;
       _container.appendChild(this);
       this.performUpdate();
       this.classList.remove("kuc-notification-fadeout");
