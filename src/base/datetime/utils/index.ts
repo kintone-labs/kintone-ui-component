@@ -395,7 +395,7 @@ export function setListBoxPosition(_this: HTMLElement, position: string) {
   const listBoxMonthHeight = 360;
   const listBoxYearHeight = 300;
   const listBoxHeight =
-    _this.tagName === "KUC-BASE-DATETIME-HEADER-MONTH"
+    _this.tagName.toLowerCase() === "kuc-base-datetime-header-month"
       ? listBoxMonthHeight
       : listBoxYearHeight;
   const paddingListBox = 18;
