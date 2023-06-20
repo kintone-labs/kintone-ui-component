@@ -31,7 +31,8 @@ export const DIALOG_CSS = `
   }
 
   .kuc-dialog__dialog {
-    min-width: 320px;
+    min-width: 400px;
+    max-width: 600px;
     font-size: 20px;
     background-color: #ffffff;
     position: fixed;
@@ -58,6 +59,8 @@ export const DIALOG_CSS = `
     color: var(--kuc-dialog-header-color);
     padding: 0 24px;
     align-self: center;
+    overflow-wrap: break-word;
+    max-width: 492px;
     font-weight: 400;
   }
 
@@ -88,6 +91,8 @@ export const DIALOG_CSS = `
 
   .kuc-dialog__dialog__content__content {
     line-height: 1.2;
+    max-width: 512px;
+    overflow-wrap: break-word;
   }
 
   .kuc-dialog__dialog__content__icon-info,
@@ -102,6 +107,7 @@ export const DIALOG_CSS = `
 
   .kuc-dialog__dialog__footer {
     padding: 24px;
+    overflow-wrap: break-word;
   }
 
   .kuc-dialog__mask {
