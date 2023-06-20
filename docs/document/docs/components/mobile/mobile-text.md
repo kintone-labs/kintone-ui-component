@@ -8,10 +8,10 @@ sidebar_label: MobileText
 
 The MobileText component allows the user to display a single line text element.
 
-<div class="sample-container" id="mobile-text">
-  <div id="sample-container__components" class="mobile"></div>
-</div>
-<script src="/js/samples/mobile/mobile-text.js"></script>
+import { MobileTextComponent } from "@site/static/js/samples/mobile/text.js"
+
+<MobileTextComponent />
+
 
 ---
 
@@ -30,7 +30,7 @@ Here is a list of properties that can be used for modifying the component:
 | placeholder | string | ""  | Placeholder text for entry example | |
 | prefix | string | ""  | Text to be displayed before the input text | |
 | suffix | string | ""  | Text to be displayed after the input text | |
-| textAlign | string | "left"  | Text alignments | Available options:<br>"left" : Justified to the left<br>"right" : Justified to the right |
+| textAlign | string | "left"  | Text alignments | Available options:<br/>"left" : Justified to the left<br/>"right" : Justified to the right |
 | value | string | ""  | Text to be displayed | |
 | disabled | boolean | false | Enable/Disable the component | |
 | requiredIcon | boolean | false | Show/Hide the required icon | |
@@ -42,13 +42,13 @@ Here is a list of events that can be specified:
 
 | Name | Type | Description | Remark |
 | :--- | :--- | :--- | :--- |
-| change | function | Event handler when the value has been changed | It will pass the event object as the argument<br><br>You can receive the following values in event.detail<br>event.detail.oldValue : Value before the change<br>event.detail.value : Value after the change |
-| focus | function | Event handler for the focused time | It will pass the event object as the argument<br><br>You can receive the following values in event.detail<br>event.detail.value : Value at the time of focus |
-| input | function | Event handler when the value has been inputting | It will pass the event object as the argument<br><br>You can receive the following values in event.detail<br>event.detail.data : Value of inserted characters<br>event.detail.value : Value of target element<br><br>*Notes on the value of "event.detail.data"<br>It is inserted characters when inserting text<br>It will be "null" when inserting by "Paste" or "Drag and Drop" or pressing "Enter", "Delete", or "Backspace" |
+| change | function | Event handler when the value has been changed | It will pass the event object as the argument<br/><br/>You can receive the following values in event.detail<br/>event.detail.oldValue : Value before the change<br/>event.detail.value : Value after the change |
+| focus | function | Event handler for the focused time | It will pass the event object as the argument<br/><br/>You can receive the following values in event.detail<br/>event.detail.value : Value at the time of focus |
+| input | function | Event handler when the value has been inputting | It will pass the event object as the argument<br/><br/>You can receive the following values in event.detail<br/>event.detail.data : Value of inserted characters<br/>event.detail.value : Value of target element<br/><br/>*Notes on the value of "event.detail.data"<br/>It is inserted characters when inserting text<br/>It will be "null" when inserting by "Paste" or "Drag and Drop" or pressing "Enter", "Delete", or "Backspace" |
 
 ### Constructor
 
-MobileText(options)<br>
+MobileText(options)<br/>
 Here is a list of available constructors:
 
 #### Parameter
@@ -59,7 +59,9 @@ Here is a list of available constructors:
 ---
 ## Sample Code
 
-> Please check the [package installation](../../getting-started/quick-start.md#installation) method first.
+:::tip
+Please check the [package installation](../../getting-started/quick-start#installation) method first.
+:::
 
 Here is a sample code when all parameters are specified:
 

@@ -6,7 +6,7 @@ sidebar_label: v1.0.5 Release Notes
 
 ## Overview
 
-Here are the [kintone UI Component v1.0.5](https://github.com/kintone-labs/kintone-ui-component/releases/tag/v1.0.5) Release Notes.<br>
+Here are the [kintone UI Component v1.0.5](https://github.com/kintone-labs/kintone-ui-component/releases/tag/v1.0.5) Release Notes.<br/>
 Bug fixes, maintenances, and new article have been made.
 
 ## Update details

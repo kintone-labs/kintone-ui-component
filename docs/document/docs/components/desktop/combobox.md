@@ -8,10 +8,9 @@ sidebar_label: Combobox
 
 The Combobox component allows the user to find an item among many choices.
 
-<div class="sample-container" id="combobox">
-  <div id="sample-container__components"></div>
-</div>
-<script src="/js/samples/desktop/combobox.js"></script>
+import { ComboboxComponent } from "@site/static/js/samples/desktop/combobox.js"
+
+<ComboboxComponent />
 
 ---
 
@@ -27,11 +26,11 @@ Here is a list of properties that can be used for modifying the component:
 | error | string | ""  | Text to be displayed in error | Error will not be displayed if unspecified or empty |
 | id | string | ""  | Component id name | |
 | label | string | ""  | Label for the component | Label is not displayed if unspecified or empty |
-| value | string | ""  | Component value | No option will be selected if the value is unspecified<br>Will result an error if the value is not a string |
+| value | string | ""  | Component value | No option will be selected if the value is unspecified<br/>Will result an error if the value is not a string |
 | disabled | boolean | false | Enable/Disable the component | |
 | requiredIcon | boolean | false | Show/Hide the required icon | |
 | visible | boolean | true | Show/Hide the component | |
-| items | Array\<Item\> | []  | List of options to display | Will result an error if the value of items is not an array |
+| items | Array<Item\> | []  | List of options to display | Will result an error if the value of items is not an array |
 | Item.label | string | null | Text label for each option | If `Item.label` is unspecified, the value of `Item.value` is displayed on the UI |
 | Item.value | string | null | Value of each option | Will result an error if setting duplicated value in `Item.value` |
 
@@ -41,11 +40,11 @@ Here is a list of events that can be specified:
 
 | Name | Type | Description | Remark |
 | :--- | :--- | :--- | :--- |
-| change | function | Event handler when the value has been changed | It will pass the event object as the argument<br><br>You can receive the following values when used in event.detail<br>event.detail.oldValue : Value before the change<br>event.detail.value : Value after the change |
+| change | function | Event handler when the value has been changed | It will pass the event object as the argument<br/><br/>You can receive the following values when used in event.detail<br/>event.detail.oldValue : Value before the change<br/>event.detail.value : Value after the change |
 
 ### Constructor
 
-Combobox(options)<br>
+Combobox(options)<br/>
 Here is a list of available constructors:
 
 #### Parameter
@@ -55,9 +54,11 @@ Here is a list of available constructors:
 | options | object | {} | Object that includes component properties | |
 
 ### Custom CSS
-> Please check [Custom CSS feature guide](../../getting-started/custom-css.md) at first.
+:::tip
+Please check [Custom CSS feature guide](../../getting-started/custom-css.md) at first.
+:::
 
-Here is a list of properties that can be used for modifying component style:<br>
+Here is a list of properties that can be used for modifying component style:<br/>
 "toggle" means the area of the Combobox input box and button.
 #### Property
 | Name |
@@ -73,7 +74,9 @@ Here is a list of properties that can be used for modifying component style:<br>
 
 ## Sample Code
 
-> Please check the [package installation](../../getting-started/quick-start.md#installation) method first.
+:::tip
+Please check the [package installation](../../getting-started/quick-start#installation) method first.
+:::
 
 Here is a sample code when all parameters are specified:
 

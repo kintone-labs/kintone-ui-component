@@ -1,5 +1,0 @@
-.DS_Store
-node_modules
-yarn.lock
-website/build/
-website/i18n/*

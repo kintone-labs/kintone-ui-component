@@ -8,10 +8,9 @@ sidebar_label: Button
 
 The Button component allows the user to create and display buttons.
 
-<div class="sample-container" id="button">
-  <div id="sample-container__components"></div>
-</div>
-<script src="/js/samples/desktop/button.js"></script>
+import { ButtonComponent } from "@site/static/js/samples/desktop/button.js"
+
+<ButtonComponent />
 
 ---
 
@@ -25,14 +24,15 @@ Here is a list of properties that can be used for modifying the component:
 | :--- | :--- | :--- | :--- | :--- |
 | className | string | ""  | Component class name |  |
 | id | string | ""  | Component id name |  |
-| text | string | ""  | Text to be displayed inside the button | If `content` is unspecified, the value of `text` will be displayed<br>In other cases, the `text` will be ignored |
-| type | string | "normal"  | Button design type | Available options:<br>"normal" : Gray (#f7f9fA)<br>"submit" : Blue (#3498db)<br>"alert" : Red (#e74c3c) |
+| text | string | ""  | Text to be displayed inside the button | If `content` is unspecified, the value of `text` will be displayed<br/>In other cases, the `text` will be ignored |
+| type | string | "normal"  | Button design type | Available options:<br/>"normal" : Gray (#f7f9fA)<br/>"submit" : Blue (#3498db)<br/>"alert" : Red (#e74c3c) |
 | content *1 | string/HTMLElement | ""  | The DOM inside button | If a string with HTML is set, it will be automatically converted to HTML and displayed as it is |
 | disabled | boolean | false | Enable/Disable the component | |
 | visible | boolean | true | Show/Hide the component | |
 
-> *1: [Security] Kintone UI Component does NOT sanitize this property value. It is the developer's responsibility to escape any user input when using this option so that XSS attacks would be prevented.
-
+:::caution
+*1: [Security] Kintone UI Component does NOT sanitize this property value. It is the developer's responsibility to escape any user input when using this option so that XSS attacks would be prevented.
+:::
 ### Event
 
 Here is a list of events that can be specified:
@@ -43,7 +43,7 @@ Here is a list of events that can be specified:
 
 ### Constructor
 
-Button(options)<br>
+Button(options)<br/>
 Here is a list of available constructors:
 
 #### Parameter
@@ -53,7 +53,9 @@ Here is a list of available constructors:
 | options | object | {} | Object that includes component properties | |
 
 ### Custom CSS
-> Please check [Custom CSS feature guide](../../getting-started/custom-css.md) at first.
+:::tip
+Please check [Custom CSS feature guide](../../getting-started/custom-css.md) at first.
+:::
 
 Here is a list of properties that can be used for modifying component style:
 #### Property
@@ -72,7 +74,9 @@ Here is a list of properties that can be used for modifying component style:
 
 ## Sample Code
 
-> Please check the [package installation](../../getting-started/quick-start.md#installation) method first.
+:::tip
+Please check the [package installation](../../getting-started/quick-start#installation) method first.
+:::
 
 Here is a sample code when all parameters are specified:
 

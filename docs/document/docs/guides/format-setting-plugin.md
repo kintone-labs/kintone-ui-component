@@ -6,7 +6,7 @@ sidebar_label: Format setting plug-in
 
 ## Overview
 
-By using Kintone UI Component, the user can expand the range of utilization not only on the Kintone app page but also on the plug-in settings page.<br>
+By using Kintone UI Component, the user can expand the range of utilization not only on the Kintone app page but also on the plug-in settings page.<br/>
 This article explains how to use Kintone UI Component on the plug-in settings page.
 The creation of a simple Conditional Format Plug-in is used as an example.
 
@@ -23,20 +23,20 @@ The implementation scenarios and the completed image of the customized page are 
 
 Set the account closing date of your company on the plug-in settings page and implement a customization as a plug-in that colors red the target field of a record when today's date is before the closing date.
 
-![Plugin setting](assets/plugin_setting.png)
-This is the plug-in settings page.<br>
+![Plugin setting](/img/plugin_setting.png)
+This is the plug-in settings page.<br/>
 When the set conditions match (if today's date is before or after the reference date), the color of the set field changes to red on the Record Details page.
 
-![Confirmation](assets/dialog.png)
+![Confirmation](/img/dialog.png)
 A confirmation dialog is displayed when saving the settings.
 
-![App image](assets/payment_management_app.png)
-This is an app that manages deposits.<br>
+![App image](/img/payment_management_app.png)
+This is an app that manages deposits.<br/>
 The background color of the field changes according to the conditions set on the plug-in settings page.
 
 ## What you will need to have ready
 
-Prepare the files with the following folder structure in creating this Kintone plug-in.<br>
+Prepare the files with the following folder structure in creating this Kintone plug-in.<br/>
 The folder structure and file names are examples.
 
 ```
@@ -94,38 +94,38 @@ Create a manifest file like the one below.
 }
 ```
 
-Kintone UI Component will be used for this customization on the plug-in settings page, so describe the path of the UMD file in the config object.<br>
+Kintone UI Component will be used for this customization on the plug-in settings page, so describe the path of the UMD file in the config object.<br/>
 See [Quick Start](../getting-started/quick-start.md) for how to upload a UMD file.
 
 ## Create a plug-in icon
-Create a plug-in icon following the [guide](https://kintone.dev/en/plugins/introduction-to-plug-ins/steps-for-plug-in-development/#creating-each-file).<br>
+Create a plug-in icon following the [guide](https://kintone.dev/en/plugins/introduction-to-plug-ins/steps-for-plug-in-development/#creating-each-file).<br/>
 Place the icon file (icon.png) in the image folder.
 
 ## HTML customization
 
-Create an HTML file for the plug-in settings page.<br>
+Create an HTML file for the plug-in settings page.<br/>
 Create a file like the one below. Place each part of Kintone UI Component by using the id set in the div element.
 
 ```html
 <section class="settings">
   <h2 class="settings-heading">Format Setting Plug-in</h2>
   <p>If the conditions match, the background color of the target fields will be changed to red.</p>
-  <br>
+  <br/>
     <h3 class="kintoneplugin-desc">Set the reference date.</h3>
     <p class="kintoneplugin-row">
       <div id="date_space"></div>
     </p>
-    <br>
+    <br/>
     <h3 class="kintoneplugin-desc">Set the condition to color the fields. The default date is today.</h3>
     <p class="kintoneplugin-row">
       <div id="dropdown_space"></div>
     </p>
-    <br>
+    <br/>
     <h3 class="kintoneplugin-desc">Select the fields to color.</h3>
     <p class="kintoneplugin-row">
       <div id="multichoice_space"></div>
     </p>
-    <br>
+    <br/>
     <p class="kintoneplugin-row">
       <div id="button_space"></div>
     </p>
@@ -134,8 +134,8 @@ Create a file like the one below. Place each part of Kintone UI Component by usi
 
 ## JavaScript and CSS customization (Settings page)
 
-This section will explain the implementation code of the settings page.<br>
-Place the JavaScript file (config.js) described below in the js folder.<br>
+This section will explain the implementation code of the settings page.<br/>
+Place the JavaScript file (config.js) described below in the js folder.<br/>
 
 ***config.js***
 
@@ -148,10 +148,10 @@ Place the JavaScript file (config.js) described below in the js folder.<br>
 ### Create components
 ---
 
-Create various components.<br>
-Place the following as fields.<br>
-Reference Date: Sets the reference date.<br>
-Condition: Sets the condition for the reference date<br>
+Create various components.<br/>
+Place the following as fields.<br/>
+Reference Date: Sets the reference date.<br/>
+Condition: Sets the condition for the reference date<br/>
 Fields: Set fields (Multiple selectable)
 
 ```javascript
@@ -223,8 +223,8 @@ const dialog = new Kuc.Dialog({
 });
 ```
 
-The following function is called in order to retrieve the field name to be displayed as a choice of the MultiChoice component.<br>
-Since the data structure of the items property is an array consisting of objects whose keys are label and value, the value returned by the function is also in the corresponding form.<br>
+The following function is called in order to retrieve the field name to be displayed as a choice of the MultiChoice component.<br/>
+Since the data structure of the items property is an array consisting of objects whose keys are label and value, the value returned by the function is also in the corresponding form.<br/>
 It is an asynchronous process, so be careful about how you call it.
 
 ```javascript
@@ -308,8 +308,8 @@ buttonSpaceEl.appendChild(saveButton);
 ### When clicking on buttons
 ---
 
-When the Save button is clicked, the required items are checked.<br>
-If at least one item has not been filled in, an error label will be displayed.<br>
+When the Save button is clicked, the required items are checked.<br/>
+If at least one item has not been filled in, an error label will be displayed.<br/>
 If there is no problem with the set items, a confirmation dialog will be displayed.
 
 ```javascript
@@ -348,9 +348,9 @@ cancelButton.addEventListener('click', event => {
 ### When clicking on dialog buttons
 ---
 
-To avoid saving unintended settings, insert a confirmation dialog that displays after the save button is clicked.<br>
+To avoid saving unintended settings, insert a confirmation dialog that displays after the save button is clicked.<br/>
 
-![Confirmation](assets/dialog.png)
+![Confirmation](/img/dialog.png)
 
 When the OK button is clicked, the information you want the plug-in to have as a setting value is stored in the object and saved in the plug-in.
 
@@ -375,11 +375,9 @@ dialogCancelButton.addEventListener('click', event => {
 });
 ```
 
-
-After the JavaScript customization, place the CSS file (config.css) described below in the css folder.<br>
+After the JavaScript customization, place the CSS file (config.css) described below in the css folder.<br/>
 
 ***config.css***
-
 ```css
 #kuc_cancel_button {
   margin-right: 16px;
@@ -396,10 +394,10 @@ After the JavaScript customization, place the CSS file (config.css) described be
 
 ## JavaScript and CSS customization (Kintone app page)
 
-This section will explain the implementation code of the Kintone app page.<br>
-Place the JavaScript file (desktop.js) described below in the js folder.<br>
-The value is inherited from the component of the plug-in settings page and used for the customization on the Kintone app page. <br>
-Since the value of the DatePicker component is in yyyy-mm-dd format, today's date is also retrieved in yyyy-mm-dd format for easy comparison.<br>
+This section will explain the implementation code of the Kintone app page.<br/>
+Place the JavaScript file (desktop.js) described below in the js folder.<br/>
+The value is inherited from the component of the plug-in settings page and used for the customization on the Kintone app page. <br/>
+Since the value of the DatePicker component is in yyyy-mm-dd format, today's date is also retrieved in yyyy-mm-dd format for easy comparison.<br/>
 An external date library called luxon.js is used for this customization.
 
 ***desktop.js***
@@ -435,8 +433,10 @@ An external date library called luxon.js is used for this customization.
 
 ## Conclusion
 
-This article introduced a simple plug-in implementation as an example.<br>
-Depending on the customization, it is possible to divide the conditions more finely and to apply conditional formatting to the Record List page. Please try adjusting it according to your actual operations.<br>
+This article introduced a simple plug-in implementation as an example.<br/>
+Depending on the customization, it is possible to divide the conditions more finely and to apply conditional formatting to the Record List page. Please try adjusting it according to your actual operations.<br/>
 
-> This article was reviewed using Kintone and Google Chrome as of August 2022.<br>
-> The version of Kintone UI Component used in this customization is v1.4.0.
+:::info
+This article was reviewed using Kintone and Google Chrome as of August 2022.<br/>
+The version of Kintone UI Component used in this customization is v1.4.0.
+:::

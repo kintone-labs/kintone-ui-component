@@ -8,12 +8,9 @@ sidebar_label: Dialog
 
 The Dialog component displays a dialog box.
 
-<div class="sample-container" id="dialog">
-  <div id="sample-container__components">
-    <iframe id="iframe" title="dialog image" width="700px" height="300px"></iframe>
-  </div>
-</div>
-<script src="/js/samples/desktop/dialog.js"></script>
+import { DialogComponent } from "@site/static/js/samples/desktop/dialog.js"
+
+<DialogComponent />
 
 ---
 
@@ -25,12 +22,14 @@ Here is a list of properties that can be used for modifying the component:
 
 | Name | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
-| icon | string | "" | The icon displayed in upper left of content area | Available options:<li>"info" : ![info](assets/icon-info.png)</li><li>"success" : ![success](assets/icon-success.png)</li><li>"error" : ![error](assets/icon-error.png)</li><li>"warning" : ![warning](assets/icon-warning.png)</li><li>"question" : ![question](assets/icon-question.png)</li><li>"" : No icon</li> |
+| icon | string | "" | The icon displayed in upper left of content area | Available options:<li>"info" : ![info](/img/icon-info.png)</li><li>"success" : ![success](/img/icon-success.png)</li><li>"error" : ![error](/img/icon-error.png)</li><li>"warning" : ![warning](/img/icon-warning.png)</li><li>"question" : ![question](/img/icon-question.png)</li><li>"" : No icon</li> |
 | title | string | ""  | Header Title | |
 | content *1 | string/HTMLElement | ""  | DOM inside content | If a string with HTML is set, it will be automatically converted to HTML and displayed as it is |
 | footer *1 | string/HTMLElement | ""  | DOM inside footer | If a string with HTML is set, it will be automatically converted to HTML and displayed as it is |
 
-> *1: [Security] Kintone UI Component does NOT sanitize this property value. It is the developer's responsibility to escape any user input when using this option so that XSS attacks would be prevented.
+:::caution
+*1: [Security] Kintone UI Component does NOT sanitize this property value. It is the developer's responsibility to escape any user input when using this option so that XSS attacks would be prevented.
+:::
 
 ### Event
 
@@ -42,7 +41,7 @@ Here is a list of events that can be specified:
 
 ### Constructor
 
-Dialog(options)<br>
+Dialog(options)<br/>
 Here is a list of available constructors:
 
 #### Parameter
@@ -74,7 +73,9 @@ none
 none
 
 ### Custom CSS
-> Please check [Custom CSS feature guide](../../getting-started/custom-css.md) at first.
+:::tip
+Please check [Custom CSS feature guide](../../getting-started/custom-css.md) at first.
+:::
 
 Here is a list of properties that can be used for modifying component style:
 #### Property
@@ -86,7 +87,9 @@ Here is a list of properties that can be used for modifying component style:
 ---
 ## Sample Code
 
-> Please check the [package installation](../../getting-started/quick-start.md#installation) method first.
+:::tip
+Please check the [package installation](../../getting-started/quick-start#installation) method first.
+:::
 
 Here is a sample code when all parameters are specified:
 

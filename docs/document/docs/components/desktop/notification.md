@@ -8,12 +8,9 @@ sidebar_label: Notification
 
 The Notification component allows the user to display pop-up notifications.
 
-<div class="sample-container" id="notification">
-  <div id="sample-container__components">
-    <iframe id="iframe" title="notification" width="300px" height="250px"></iframe>
-  </div>
-</div>
-<script src="/js/samples/desktop/notification.js"></script>
+import { NotificationComponent } from "@site/static/js/samples/desktop/notification.js"
+
+<NotificationComponent />
 
 ---
 
@@ -27,12 +24,12 @@ Here is a list of properties that can be used for modifying the component:
 | :--- | :--- | :--- | :--- | :--- |
 | className | string | ""  | Component class name | |
 | text | string | ""  | Text to be displayed | |
-| type | string | "danger"  | Background color | Available options:<br>"danger" : Red (#e74c3c)<br>"info" : Blue (#3498db)<br>"success" : Green (#91c36c) |
-| duration | number | -1  | Milliseconds to close component | Unit is milliseconds<br>You can specify 0 or a number larger than 0<br>If you specify invalid value (a number less than 0 or is not a number), component is opened and will not be closed automatically |
+| type | string | "danger"  | Background color | Available options:<br/>"danger" : Red (#e74c3c)<br/>"info" : Blue (#3498db)<br/>"success" : Green (#91c36c) |
+| duration | number | -1  | Milliseconds to close component | Unit is milliseconds<br/>You can specify 0 or a number larger than 0<br/>If you specify invalid value (a number less than 0 or is not a number), component is opened and will not be closed automatically |
 
 ### Constructor
 
-Notification(options)<br>
+Notification(options)<br/>
 Here is a list of available constructors:
 
 #### Parameter
@@ -85,7 +82,9 @@ Here is a list of properties that can be used for modifying component style:
 ---
 ## Sample Code
 
-> Please check the [package installation](../../getting-started/quick-start.md#installation) method first.
+:::tip
+Please check the [package installation](../../getting-started/quick-start#installation) method first.
+:::
 
 Here is a sample code when all parameters are specified:
 
@@ -93,7 +92,7 @@ Here is a sample code when all parameters are specified:
 const Kuc = Kucs['1.x.x'];
 
 const notification = new Kuc.Notification({
-  text: 'Error occurred!',
+  text:  'Error occurred!',
   type: 'danger',
   className: 'options-class',
   duration: 2000

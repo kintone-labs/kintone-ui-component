@@ -10,15 +10,15 @@ sidebar_label: A commentary on the difference between v0 and v1
 This section explains the differences between the code written in v0 and v1, as well as the key advantages when using v1 for customizing the Kintone app.
 
 ## Completed image
-For example, you can use the Kintone UI Component to create a search button on the Record List page.<br>
+For example, you can use the Kintone UI Component to create a search button on the Record List page.<br/>
 Here is the image for example:
 
-![Search box](assets/v1_search_box.png)
+![Search box](/img/v1_search_box.png)
 
 ## JavaScript and CSS Customization
 
-Let's start by looking at the code.<br>
-The Kintone UI Component UMD file is used here.<br>
+Let's start by looking at the code.<br/>
+The Kintone UI Component UMD file is used here.<br/>
 You can see how to upload a file in the [Quick Start](../getting-started/quick-start.md).
 
 ### When v0 is used
@@ -117,7 +117,7 @@ In addition, there is no risk that one of them will be overwritten when both v0 
 ---
 #### render() method is no longer required
 ---
-In v0, the element of the component must be returned by using the render() method along with appendChild() for internal implementation reasons.<br>
+In v0, the element of the component must be returned by using the render() method along with appendChild() for internal implementation reasons.<br/>
 In v1, render() is no longer required, and the components can be displayed easier.
 
 - v0 Code
@@ -133,7 +133,7 @@ header.appendChild(text);
 ---
 #### Property can now be used to update values
 ---
-In v0, when a value is updated, a method must be called separately.<br>
+In v0, when a value is updated, a method must be called separately.<br/>
 In v1, you can use properties to update values.
 
 - v0 Code
@@ -164,7 +164,7 @@ button.text = 'Register';
 ---
 In v0, the specifications of each part are lined up vertically by default, and CSS is required to be adjusted in the same order.
 
-![v0](assets/v0_search_box.png)
+![v0](/img/v0_search_box.png)
 
 - style must be adjusted
 ```
@@ -173,17 +173,17 @@ text.element.style.float = 'left';
 button.element.style.float = 'right';
 ```
 
-In v1, the internal specifications are being restructured, and most of the components are side by side by default, so no additional adjustment is required.<br>
+In v1, the internal specifications are being restructured, and most of the components are side by side by default, so no additional adjustment is required.<br/>
 (For some components, the default value is set to vertical for convenience.)
 
-![Search box](assets/v1_search_box.png)
+![Search box](/img/v1_search_box.png)
 
 ---
 #### Restructured the component property
 ---
 In v1, the properties of each component have been reviewed and updated.
 
-For example, you can add an id to the component by using `id` property that is newly added in v1.<br>
+For example, you can add an id to the component by using `id` property that is newly added in v1.<br/>
 You can then use the id to retrieve the element.
 
 - v0 Code
@@ -219,7 +219,7 @@ const text = new Kuc.Text({
 ---
 In v0, when you want to display an error message in a component, or when you want to display a label, you need to implement it in another component such as Alert or Label.
 
-In v1, you can assign values to the `error` and the `label` property in a component.<br>
+In v1, you can assign values to the `error` and the `label` property in a component.<br/>
 Let's take a look at the Text component `error` property for example:
 
 In the beginning, I have introduced a code to use KUC to create the search box, but there is no response when you click the button.
@@ -253,21 +253,21 @@ button.addEventListener('click', event => {
 });
 ```
 
-In the above code, inside the `click` event, the value is retrieved from text.value, and is checked using regular expressions.<br>
+In the above code, inside the `click` event, the value is retrieved from text.value, and is checked using regular expressions.<br/>
 If the result of the check is not a full-width, the error message is displayed and the process is interrupted.
 
 The `error` property is used to display the error message.
 
 When you initialize the message (hide the error message), you will only need to assign an empty string to text.error property.
 
-![search_box_error](assets/v1_search_box_error.png)
+![search_box_error](/img/v1_search_box_error.png)
 
 ---
 #### Auto-completion of Item.label
 ---
 When creating multiple choice components in v0, the developer had to specify both `Item.label` and `Item.value`.
 
-However, when using v1, only `Item.value` is required. If `Item.label` is not specified, only the value of `Item.value` will be set.<br>
+However, when using v1, only `Item.value` is required. If `Item.label` is not specified, only the value of `Item.value` will be set.<br/>
 This means that the coding will be more concise when the backend value and the label displayed in the UI are the same.
 
 You can abbreviate the coding as follows:
@@ -283,10 +283,14 @@ const checkbox = new Kuc.Checkbox({
 
 ## Conclusion
 
-How is it working out for you?<br>
+How is it working out for you?<br/>
 We hope you will experience a better Kintone development than ever before using the new Kintone UI Component library.
 
-> This article was reviewed by Kintone and Google Chrome as of February, 2021.<br>
-> In addition, the version of Kintone UI Component that is used for customizations is v0.7.4 and v1.0.0.
+:::info
+This article was reviewed by Kintone and Google Chrome as of February, 2021.<br/>
+In addition, the version of Kintone UI Component that is used for customizations is v0.7.4 and v1.0.0.
+:::
 
-> The documentation for v0 is a separate site.Please check [here](https://kintone-labs.github.io/kintone-ui-component/latest/).
+:::info
+The documentation for v0 is a separate site.Please check [here](https://kintone-labs.github.io/kintone-ui-component/latest/).
+:::

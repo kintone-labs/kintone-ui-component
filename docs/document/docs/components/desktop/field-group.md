@@ -7,10 +7,9 @@ sidebar_label: FieldGroup
 ## Overview
 The FieldGroup component allows the user to create a content area that can be collapsed and expanded.
 
-<div class="sample-container" id="field-group">
-  <div id="sample-container__components"></div>
-</div>
-<script src="/js/samples/desktop/field-group.js"></script>
+import { FieldGroupComponent } from "@site/static/js/samples/desktop/field-group.js"
+
+<FieldGroupComponent />
 
 ---
 
@@ -30,7 +29,9 @@ Here is a list of properties that can be used for modifying the component:
 | expanded | boolean | false | Collapsed/Expanded the component | |
 | visible | boolean | true | Show/Hide the component | |
 
-> *1: [Security] Kintone UI Component does NOT sanitize this property value. It is the developer's responsibility to escape any user input when using this option so that XSS attacks would be prevented.
+:::caution
+*1: [Security] Kintone UI Component does NOT sanitize this property value. It is the developer's responsibility to escape any user input when using this option so that XSS attacks would be prevented.
+:::
 
 ### Event
 
@@ -38,11 +39,11 @@ Here is a list of events that can be specified:
 
 | Name | Type | Description | Remark |
 | :--- | :--- | :--- | :--- |
-| change | function | Event handler when the component is collapsed or expanded | It will pass the event object as the argument <br><br>You can receive the following values when used in event.detail<br>event.detail.expanded : The status of "expanded" after the change (boolean) |
+| change | function | Event handler when the component is collapsed or expanded | It will pass the event object as the argument <br/><br/>You can receive the following values when used in event.detail<br/>event.detail.expanded : The status of "expanded" after the change (boolean) |
 
 ### Constructor
 
-FieldGroup(options)<br>
+FieldGroup(options)<br/>
 Here is a list of available constructors:
 
 #### Parameter

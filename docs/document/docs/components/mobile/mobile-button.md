@@ -8,10 +8,9 @@ sidebar_label: MobileButton
 
 The MobileButton component allows the user to create and displays buttons.
 
-<div class="sample-container" id="mobile-button">
-  <div id="sample-container__components" class="mobile"></div>
-</div>
-<script src="/js/samples/mobile/mobile-button.js"></script>
+import { MobileButtonComponent } from "@site/static/js/samples/mobile/button.js"
+
+<MobileButtonComponent />
 
 ---
 
@@ -25,14 +24,14 @@ Here is a list of properties that can be used for modifying the component:
 | :--- | :--- | :--- | :--- | :--- |
 | className | string | ""  | Component class name |  |
 | id | string | ""  | Component id name |  |
-| text | string | ""  | Text to be displayed in buttons | If `content` is unspecified, the value of `text` will be displayed<br>In other cases, the `text` will be ignored |
-| type | string | "normal"  | Button design type | Available options:<br>"normal" : White (#ffffff)<br>"submit" : Blue (#206694) |
-| content *1 | string/HTMLElement | ""  | The DOM inside button | If a string with HTML is set, it will be automatically converted to HTML and displayed as it is |
+| text | string | ""  | Text to be displayed in buttons | |
+| type | string | "normal"  | Button design type | Available options:<br/>"normal" : White (#ffffff)<br/>"submit" : Blue (#206694) |
 | disabled | boolean | false | Enable/Disable the component | |
 | visible | boolean | true | Show/Hide the component | |
 
-> *1: [Security] Kintone UI Component does NOT sanitize this property value. It is the developer's responsibility to escape any user input when using this option so that XSS attacks would be prevented.
-
+:::caution
+*1: [Security] Kintone UI Component does NOT sanitize this property value. It is the developer's responsibility to escape any user input when using this option so that XSS attacks would be prevented.
+:::
 ### Event
 
 Here is a list of events that can be specified:
@@ -43,7 +42,7 @@ Here is a list of events that can be specified:
 
 ### Constructor
 
-MobileButton(options)<br>
+MobileButton(options)<br/>
 Here is a list of available constructors:
 
 #### Parameter
@@ -56,7 +55,9 @@ Here is a list of available constructors:
 
 ## Sample Code
 
-> Please check the [package installation](../../getting-started/quick-start.md#installation) method first.
+:::tip
+Please check the [package installation](../../getting-started/quick-start#installation) method first.
+:::
 
 Here is a sample code when all parameters are specified:
 

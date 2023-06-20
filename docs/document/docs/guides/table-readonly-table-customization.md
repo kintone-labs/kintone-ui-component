@@ -5,7 +5,7 @@ sidebar_label: Table and ReadOnlyTable customization
 ---
 
 ## Overview
-This article explains how to utilize and customize the Table, and ReadOnlyTable components and the usage difference between them.<br>
+This article explains how to utilize and customize the Table, and ReadOnlyTable components and the usage difference between them.<br/>
 We assume the following scenario:
 1. Basic Usage (*Table and ReadOnlyTable*)
 2. Multiple components in one cell (*Table*)
@@ -36,7 +36,7 @@ It will be easier for you to customize the table when you understand the `change
 Create an app that includes a blank space field with the id "space".
 
 ### JavaScript and CSS Customization
-When you import the UMD file of Kintone UI Component to the app, you can upload the JavaScript files by following these steps:<br>
+When you import the UMD file of Kintone UI Component to the app, you can upload the JavaScript files by following these steps:<br/>
 You can see how to upload a file in the [Quick Start](../getting-started/quick-start.md).
 
 ### Prepare basic table
@@ -57,7 +57,7 @@ space.appendChild(table);
 ```
 
 ### The display on UI
-![render](assets/table-edit-text.gif)
+![render](/img/table-edit-text.gif)
 
 When you edit the input in the first cell, the Text component will trigger `change` event with `detail.value = 'user1 edited'`.
 The table then catches that value and assigns it back to the `username` field.
@@ -90,11 +90,11 @@ When you edit the input in the first cell, the value received by the table will 
 ## Examples
 ### Basic Usage
 #### ReadOnlyTable
-![readonly-table](assets/readonly-table.png)
+![readonly-table](/img/readonly-table.png)
 
 Display a read-only mode table.
 
-<details>
+<details className="toggle-panel">
   <summary>Show code</summary>
 
   ```js
@@ -138,12 +138,12 @@ Display a read-only mode table.
 </details>
 
 #### Table
-![table](assets/table.png)
+![table](/img/table.png)
 
-Display a table that can manipulate the components displayed in it.<br>
+Display a table that can manipulate the components displayed in it.<br/>
 Use the `columns.render` function to specify the component to be displayed in the cell. Please check the `renderGender` and the `renderAddress` functions in the following code example:
 
-<details>
+<details className="toggle-panel">
   <summary>Show code</summary>
 
   ```js
@@ -229,12 +229,12 @@ Use the `columns.render` function to specify the component to be displayed in th
 </details>
 
 ### Multiple components in one cell (Table)
-![multi-components](assets/two-component-in-cell.png)
+![multi-components](/img/two-component-in-cell.png)
 
-Put multiple components in one table cell using the `columns.render` function.<br>
+Put multiple components in one table cell using the `columns.render` function.<br/>
 You can display two dropdowns (city and country) in the same cell.
 
-<details>
+<details className="toggle-panel">
   <summary>Show code</summary>
 
   ```js
@@ -328,12 +328,12 @@ You can display two dropdowns (city and country) in the same cell.
 </details>
 
 ### Dependent columns (Table)
-![dependent-columns](assets/dependent-columns.gif)
+![dependent-columns](/img/dependent-columns.gif)
 
-Develop the dependent columns.<br>
+Develop the dependent columns.<br/>
 The city dropdown will be updated when the country dropdown is changed.
 
-<details>
+<details className="toggle-panel">
   <summary>Show code</summary>
 
   ```js
@@ -423,11 +423,11 @@ The city dropdown will be updated when the country dropdown is changed.
 </details>
 
 ### Nested tables (Table)
-![table-in-table](assets/table-in-table.png)
+![table-in-table](/img/table-in-table.png)
 
 Show more detailed info on every row with nested tables.
 
-<details>
+<details className="toggle-panel">
   <summary>Show code</summary>
 
   ```js
@@ -516,5 +516,7 @@ Show more detailed info on every row with nested tables.
   ```
 </details>
 
-> This article was reviewed by Kintone and Google Chrome as of February 2023.<br>
-> In addition, the version of Kintone UI Component that is used for customizations is v1.9.0.
+:::info
+This article was reviewed by Kintone and Google Chrome as of February 2023.<br/>
+In addition, the version of Kintone UI Component that is used for customizations is v1.9.0.
+:::

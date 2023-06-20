@@ -6,7 +6,7 @@ sidebar_label: v1.3.0 Release Notes
 
 ## Overview
 
-Here are the [kintone UI Component v1.3.0](https://github.com/kintone-labs/kintone-ui-component/releases/tag/v1.3.0) Release Notes.<br>
+Here are the [kintone UI Component v1.3.0](https://github.com/kintone-labs/kintone-ui-component/releases/tag/v1.3.0) Release Notes.<br/>
 New components, features, maintenances, document updates, and security updates have been made.
 
 ## Update details
@@ -15,7 +15,7 @@ New components, features, maintenances, document updates, and security updates h
 - Added Dialog component.
 
 ### New Features
-- Updated to accept duplicated value in `value` and `Item.value` properties and newly added `selectedIndex` property on choice components (MultiChoice, Checkbox, Dropdown, RadioButton, MobileMultiChoice, MobileCheckbox, MobileDropdown, and MobileRadioButton).<br>
+- Updated to accept duplicated value in `value` and `Item.value` properties and newly added `selectedIndex` property on choice components (MultiChoice, Checkbox, Dropdown, RadioButton, MobileMultiChoice, MobileCheckbox, MobileDropdown, and MobileRadioButton).<br/>
   *Please check the detail on each component's document page.
 
 ### Maintenance
@@ -39,14 +39,14 @@ New components, features, maintenances, document updates, and security updates h
 ## Topics to share!
 
 ### Release new components
-We added several new components together this time!<br>
+We added several new components together this time!<br/>
 About Date/Time series components, we considered it will be useful to provide each separately for property setting and leaning cost reasons.
 
 About Dialog, we set the default size small, so you can utilize it on both desktop and mobile screens.
 
 ### Accept duplicated value
-For choice components, we updated the specification to accept duplicated value in `value` and `Item.value` properties. (We used to throw error if it is duplicated.)<br>
-And for that, we newly added the `selectedIndex` property to distinguish which duplicated value item will be selected.<br>
+For choice components, we updated the specification to accept duplicated value in `value` and `Item.value` properties. (We used to throw error if it is duplicated.)<br/>
+And for that, we newly added the `selectedIndex` property to distinguish which duplicated value item will be selected.<br/>
 You can utilize the feature for example when you want to categorize by value and switch the display.
 
 If you have any feedback or ideas, please feel free to post on GitHub issue!

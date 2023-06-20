@@ -5,7 +5,7 @@ sidebar_label: Attachment customization
 ---
 
 ## Overview
-This article explains how to utilize and customize the Attachment component.<br>
+This article explains how to utilize and customize the Attachment component.<br/>
 We assume the following scenario:
 1. Create a file object (Blob/ArrayBuffer pattern and simple object pattern) and add it to the KUC (Kintone UI Component) Attachment component
 2. Get the file info that the user attached
@@ -20,7 +20,7 @@ We assume the following scenario:
 ## Completed image
 
 The completed image of the customized page is as follows:
-![attachment customize](assets/attachment_customize.gif)
+![attachment customize](/img/attachment_customize.gif)
 
 ## What you will need to have ready
 
@@ -28,7 +28,7 @@ Create an app that includes an attachment field with the id "Attachment" and a b
 
 ## JavaScript and CSS Customization
 
-When you import the UMD file of Kintone UI Component to the app, you can upload the JavaScript files by following these steps:<br>
+When you import the UMD file of Kintone UI Component to the app, you can upload the JavaScript files by following these steps:<br/>
 You can see how to upload a file in the [Quick Start](../getting-started/quick-start.md).
 
 ### Display custom attachment area
@@ -65,7 +65,7 @@ kintone.events.on('app.record.detail.show', async event => {
 });
 ```
 ### Create some file objects and apply them to the KUC Attachment component
-Add a click event listener for `addCustomFilesButton`.<br>
+Add a click event listener for `addCustomFilesButton`.<br/>
 When the button is clicked, it will create three types of file objects as follows:
 - Blob/ArrayBuffer files modified to [File object](https://developer.mozilla.org/en-US/docs/Web/API/File)
 - Simple object (`{name: "xx", size: "xx"}`)
@@ -99,8 +99,8 @@ function blobToFile(blob, filename) {
 }
 ```
 ### Get the files info selected by a user and validate the type and size of them
-Add a change event listener for `attachment`.<br>
-When a user selects/deletes any files, we can get the file info by the callback of the change event.<br>
+Add a change event listener for `attachment`.<br/>
+When a user selects/deletes any files, we can get the file info by the callback of the change event.<br/>
 Validate the type/size("text/50MB") of the files and get the index of invalid files.
 
 ```javascript
@@ -150,11 +150,11 @@ function validateAttachmentFiles(files) {
 }
 ```
 ### Upload KUC Attachment component files into the native Kintone Attachment field
-Add a click event listener for `uploadButton`.<br>
-When the button is clicked, show the KUC Spinner component.<br>
-Use the `uploadFile` method of KintoneRestApiClient to upload files to Kintone.<br>
-Then use the fileKeys returned by the upload method to update the Kintone record.<br>
-Finally, close the KUC Spinner component and refresh the page.<br>
+Add a click event listener for `uploadButton`.<br/>
+When the button is clicked, show the KUC Spinner component.<br/>
+Use the `uploadFile` method of KintoneRestApiClient to upload files to Kintone.<br/>
+Then use the fileKeys returned by the upload method to update the Kintone record.<br/>
+Finally, close the KUC Spinner component and refresh the page.<br/>
 All API calls use [XMLHttpRequest](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest) or [kintone REST API](https://kintone.dev/en/docs/kintone/rest-api/).
 
 ```javascript
@@ -224,5 +224,7 @@ function updateRecord(params) {
 }
 ```
 
-> This article was reviewed by Kintone and Google Chrome as of February, 2023.<br>
-> In addition, the version of Kintone UI Component that is used for customizations is v1.9.0.
+:::info
+This article was reviewed by Kintone and Google Chrome as of February, 2023.<br/>
+In addition, the version of Kintone UI Component that is used for customizations is v1.9.0.
+:::

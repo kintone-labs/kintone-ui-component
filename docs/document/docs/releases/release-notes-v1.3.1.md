@@ -6,7 +6,7 @@ sidebar_label: v1.3.1 Release Notes
 
 ## Overview
 
-Here are the [kintone UI Component v1.3.1](https://github.com/kintone-labs/kintone-ui-component/releases/tag/v1.3.1) Release Notes.<br>
+Here are the [kintone UI Component v1.3.1](https://github.com/kintone-labs/kintone-ui-component/releases/tag/v1.3.1) Release Notes.<br/>
 Maintenances, document updates, and security updates have been made.
 
 ## Update details

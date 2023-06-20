@@ -22,7 +22,7 @@ KUC will publish some properties for each element and based on that, users can e
 
 You can set the value for `--my-background` by using the CSS selectors:
 
-```javascript
+```markup
 <style>
   my-element {
     --my-background: #d9092f;
@@ -38,14 +38,15 @@ You can set the value for `--my-background` by using the CSS selectors:
 <my-element class="sample-class"></my-element>
 <my-element id="sample-id"></my-element>
 ```
-
-> You can find a list of the CSS custom properties in the **Custom CSS** section on each component page.
+:::tip
+You can find a list of the CSS custom properties in the **Custom CSS** section on each component page.
+:::
 
 ## Sample code
 
 Here is a sample code when customizing some CSS properties for `Text` component:
 
-```javascript
+```markup
 <style>
   kuc-text {
     --kuc-text-input-width: 200px;

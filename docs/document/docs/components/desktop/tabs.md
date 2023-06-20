@@ -8,10 +8,9 @@ sidebar_label: Tabs
 
 The Tabs component allows the user to display multiple tabs that can switch displaying contents.
 
-<div class="sample-container" id="tabs">
-  <div id="sample-container__components"></div>
-</div>
-<script src="/js/samples/desktop/tabs.js"></script>
+import { TabsComponent } from "@site/static/js/samples/desktop/tabs.js"
+
+<TabsComponent />
 
 ---
 
@@ -26,10 +25,10 @@ Here is a list of properties that can be used for modifying the component:
 | :--- | :--- | :--- | :--- | :--- |
 | className | string | ""  | Component class name | |
 | id | string | ""  | Component id name | |
-| value | string | ""  | Selected value | <li>If the `value` is matched in the `items`, the tab will be displayed even if it’s disabled<li>The first visible tab will be displayed in the following cases:<ul><li>If the `value` is not matched in the `items`<li>If the `value` is matched in the `items`, but the tab is not visible</ul><li>Will result an error if the `value` is not string type |
+| value | string | ""  | Selected value | <li>If the `value` is matched in the `items`, the tab will be displayed even if it’s disabled</li><li>The first visible tab will be displayed in the following cases:<ul><li>If the `value` is not matched in the `items`</li><li>If the `value` is matched in the `items`, but the tab is not visible</li></ul></li><li>Will result an error if the `value` is not string type</li> |
 | borderVisible | boolean | true  | Show/Hide the border surrounding the content | |
 | visible | boolean | true | Show/Hide the component | |
-| items | Array\<[Item](#item)\> | [] | List of tabs to display | Will result an error if the value of `items` is not an array |
+| items | Array<[Item](#item)\> | [] | List of tabs to display | Will result an error if the value of `items` is not an array |
 
 #### Item
 
@@ -37,7 +36,7 @@ Here is a list of properties that can be used for modifying the component:
 | :--- | :--- | :--- | :--- | :--- |
 | content | string/HTMLElement | "" | Tab content | |
 | label | string | "" | Tab name | |
-| value | string | "" | Key of each tab<br>*`Required` and `Unique` | Will result an error if the `value` is duplicated in `items` or not specified |
+| value | string | "" | Key of each tab<br/>*`Required` and `Unique` | Will result an error if the `value` is duplicated in `items` or not specified |
 | disabled | boolean | false | Enable/Disable the tab | |
 | visible | boolean | true | Show/Hide the tab | |
 
@@ -47,11 +46,11 @@ Here is a list of events that can be specified:
 
 | Name | Type | Description | Remark |
 | :--- | :--- | :--- | :--- |
-| change | function | Event handler of when selected tab is changed |  It will pass the event object as the argument<br><br>You can receive the following values in event.detail<br><li>event.detail.oldValue : "value" before the change</li><li>event.detail.value : "value" after the change</li> |
+| change | function | Event handler of when selected tab is changed |  It will pass the event object as the argument<br/><br/>You can receive the following values in event.detail<br/><li>event.detail.oldValue : "value" before the change</li><li>event.detail.value : "value" after the change</li> |
 
 ### Constructor
 
-Tabs(options)<br>
+Tabs(options)<br/>
 Here is a list of available constructors:
 
 #### Parameter
@@ -63,7 +62,9 @@ Here is a list of available constructors:
 ---
 ## Sample Code
 
-> Please check the [package installation](../../getting-started/quick-start.md#installation) method first.
+:::tip
+Please check the [package installation](../../getting-started/quick-start#installation) method first.
+:::
 
 Here is a sample code when all parameters are specified:
 
@@ -118,9 +119,3 @@ tabs.addEventListener('change', event => {
   console.log(event);
 });
 ```
-
----
-
-## Related Articles
-
-- [Tabs customization](../../guides/tabs-customization.md)

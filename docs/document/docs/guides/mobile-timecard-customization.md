@@ -12,13 +12,13 @@ This section describes how to use the MobileButton component and the MobileNotif
 
 The completed image of the timecard customization is as follows:
 
-![Timecard](assets/timecard.png)
-<br>
-![Stamp message](assets/timecard_notification.png)
+![Timecard](/img/timecard.png)
+<br/>
+![Stamp message](/img/timecard_notification.png)
 
 ## JavaScript and CSS Customization
 
-When you import the Kintone UI Component UMD file to the app, you can upload the JavaScript files by following the steps described below.<br>
+When you import the Kintone UI Component UMD file to the app, you can upload the JavaScript files by following the steps described below.<br/>
 See [Quick Start](../getting-started/quick-start.md) for how to upload a file.
 
 ### Show punch-in and punch-out buttons
@@ -69,7 +69,7 @@ To adjust the spacing of the buttons in CSS, assign a value to the `id` property
 
 ### Create a time stamp
 
-The following function is used to retrieve the current time when you click the punch-in button and the punch-out button:<br>
+The following function is used to retrieve the current time when you click the punch-in button and the punch-out button:<br/>
 Creates a value for the Time field format (HH: MM).
 
 ```javascript
@@ -98,7 +98,7 @@ const reload = waitSeconds => {
 
 ### What happens when the punch-in button is clicked?
 
-The MobileButton component can specify a click event.<br>
+The MobileButton component can specify a click event.<br/>
 When you click the "punch-in" button, the following process is added.
 
 - Judge whether or not there is a record of the user logging in on the day.
@@ -170,7 +170,7 @@ When you click the punch-out button, the following process takes place in the sa
 - Stamp the punch-out time if there is a record.
 - Show the notification when the punch-out time stamping is completed.
 
-*The code is omitted because there are a lot of parts that are similar to the punch-in process.<br>
+*The code is omitted because there are a lot of parts that are similar to the punch-in process.<br/>
 *The same process is performed when an error message is displayed.
 
 ### Show error messages
@@ -191,5 +191,7 @@ If an error occurs during the process, use the MobileNotification component to d
 }
 ```
 
-> This article was reviewed by Kintone and Google Chrome as of August, 2021.<br>
-> In addition, the version of Kintone UI Component that is used for customization is v1.0.5.
+:::info
+This article was reviewed by Kintone and Google Chrome as of August, 2021.<br/>
+In addition, the version of Kintone UI Component that is used for customization is v1.0.5.
+:::

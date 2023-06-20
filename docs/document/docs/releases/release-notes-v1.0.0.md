@@ -6,7 +6,7 @@ sidebar_label: v1.0.0 Release Notes
 
 ## Overview
 
-Here are the [kintone UI Component v1.0.0](https://github.com/kintone-labs/kintone-ui-component/releases/tag/v1.0.0) Release Notes.<br>
+Here are the [kintone UI Component v1.0.0](https://github.com/kintone-labs/kintone-ui-component/releases/tag/v1.0.0) Release Notes.<br/>
 You can find the background of the update from v0 to v1 and the future plans of v1.
 
 ## Background
@@ -38,7 +38,7 @@ The major updates are as follows:
   - Inherit the interface from v0. This is for v0 users who don't want to experience a significant change for v1.
 
 1. v1.0.0
-```JavaScript
+```js
     const button = new Kuc.Button({
       type: 'submit',
       text: 'Search',
@@ -47,7 +47,7 @@ The major updates are as follows:
     header.appendChild(button);　// Show button
 ```
 2. v0.7.4
-```JavaScript
+```js
     const button = new kintoneUIComponent.Button({
       type: 'submit',
       text: 'Search',
@@ -59,7 +59,7 @@ The major updates are as follows:
   - Property can be directly accessed without using a method.
 
 1. v1.0.0
-```JavaScript
+```js
     const button = new Kuc.Button({
       type: 'submit',
       text: 'Search',
@@ -69,7 +69,7 @@ The major updates are as follows:
     button.text = 'Register'; // Update text property
 ```
 2. v0.7.4
-```JavaScript
+```js
     const button = new kintoneUIComponent.Button({
       type: 'submit',
       text: 'Search',
@@ -87,7 +87,7 @@ The major updates are as follows:
   - Implemented with the LitElement of the Web Components framework to improve readability of internal code.
   - The Web Components interface will be considered in the future.
 
-With the above, we aimed to provide components that developers use easily and are aligned with the actual needs from developers.<br>
+With the above, we aimed to provide components that developers use easily and are aligned with the actual needs from developers.<br/>
 Please refer to the [link](../guides/comparison-v0-v1.md) for the details of differences between v0 and v1.
 
 ## Future plans
@@ -99,13 +99,15 @@ The following are the plans for the upcoming releases:
 - Mobile components
 - Improvement of documentation
 
-> As for v0, we will continue to fix bugs and update the dependent libraries. However, we are not planning to add new features to v0 as of now.
+:::info
+As for v0, we will continue to fix bugs and update the dependent libraries. However, we are not planning to add new features to v0 as of now.
+:::
 
 ## Conclusion
 
-Thank you for reading the release notes.<br>
-Kintone UI Component v1 is a library designed to provide convenience for engineers who are involved in Kintone customization and plug-in development.<br>
+Thank you for reading the release notes.<br/>
+Kintone UI Component v1 is a library designed to provide convenience for engineers who are involved in Kintone customization and plug-in development.<br/>
 Please stay tuned for further releases.
 
-We always appreciate your feedbacks. Please submit questions and requests on [GitHub issue](https://github.com/kintone-labs/kintone-ui-component/issues/new/choose).<br>
+We always appreciate your feedbacks. Please submit questions and requests on [GitHub issue](https://github.com/kintone-labs/kintone-ui-component/issues/new/choose).<br/>
 Best regards,
