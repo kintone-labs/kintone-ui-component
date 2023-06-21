@@ -9,3 +9,4 @@ umd/
 .DS_Store
 build-storybook.log
 docs/document/.docusaurus/
+docs/document/build/

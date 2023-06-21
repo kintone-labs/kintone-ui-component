@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 
-export const DropdownComponent = () =>  {
+export const FieldGroupComponent = () =>  {
   const divEl = useRef();
   useEffect(() => {
     const text = new Kuc.Text({

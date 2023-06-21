@@ -13,8 +13,8 @@ function getLatestVersionName() {
 const config = {
   title: 'kintone UI Component · Be a smart kintone developer.',
   tagline: 'It will support your UI customization project.',
-  url: 'https://cybozu-sd.github.io/',
-  baseUrl: '/kuc-docusaurus-v2/',
+  url: 'https://kintone-ui-component.netlify.app',
+  baseUrl: '/',
   onBrokenLinks: 'warn', // throw
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/kuc_box_yellow.png',
@@ -22,8 +22,8 @@ const config = {
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'Cybozu-SD', // Usually your GitHub org/user name.
-  projectName: 'kuc-docusaurus-v2', // Usually your repo name.
+  organizationName: 'kintone-ui-component', // Usually your GitHub org/user name.
+  projectName: 'kintone-labs', // Usually your repo name.
 
   // Even if you don't use internalization, you can use this field to set useful
   // metadata like html lang. For example, if your site is Chinese, you may want
