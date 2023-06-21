@@ -47,6 +47,7 @@ kuc-time-picker[hidden] {
 
 .kuc-time-picker__group kuc-base-time {
   display: inline-flex;
+  flex-direction: column;
 }
 
 .kuc-time-picker__group .kuc-base-time__group {
