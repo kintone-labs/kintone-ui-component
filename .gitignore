@@ -8,5 +8,6 @@ umd/
 /unit_test
 .DS_Store
 build-storybook.log
+.vscode/
 docs/document/.docusaurus/
 docs/document/build/
