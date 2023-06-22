@@ -231,3 +231,12 @@ table th[class$="__table__header__cell"] {
 #attachment div[class$="__group"] {
   display: block;
 }
+
+.sample-container .mobile-notification{
+  position: relative;
+  width: 300px;
+}
+
+.sample-container .mobile-notification pre{
+  background-color: transparent;
+}
