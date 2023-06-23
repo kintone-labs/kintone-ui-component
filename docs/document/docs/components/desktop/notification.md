@@ -96,7 +96,8 @@ const notification = new Kuc.Notification({
   text: 'Error occurred!',
   type: 'danger',
   className: 'options-class',
-  duration: 2000
+  duration: 2000,
+  container: document.getElementById('root')
 });
 
 notification.addEventListener('close', event => {
