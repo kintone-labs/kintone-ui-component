@@ -61,7 +61,6 @@ kuc-time-picker[hidden] {
 .kuc-time-picker__group .kuc-base-time__group input[type=text].kuc-base-time__group__minutes,
 .kuc-time-picker__group .kuc-base-time__group--focus  {
   color: var(--kuc-time-picker-input-color, #333333);
-  height: var(--kuc-time-picker-input-height, 40px);
 }
 .kuc-time-picker__group__label {
   padding: 4px 0px 8px 0px;
