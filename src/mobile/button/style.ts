@@ -1,7 +1,6 @@
 export const MOBILE_BUTTON_CSS = `
   kuc-mobile-button,
   kuc-mobile-button * {
-    font-size: 14px;
     font-family: "メイリオ", Meiryo, "Hiragino Kaku Gothic ProN",
       "ヒラギノ角ゴ ProN W3", "ＭＳ Ｐゴシック", "Lucida Grande",
       "Lucida Sans Unicode", Arial, Verdana, sans-serif;
@@ -31,6 +30,7 @@ export const MOBILE_BUTTON_CSS = `
     padding: 12px 12px;
     user-select: none;
     font-weight: 700;
+    font-size: 14px;
     line-height: 1;
   }
   .kuc-mobile-button__button:focus {
