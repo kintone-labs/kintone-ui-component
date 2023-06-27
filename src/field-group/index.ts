@@ -177,6 +177,17 @@ let exportFieldGroup;
       if (event.target !== document.activeElement) {
         this._toggle.focus();
       }
+      if (this.expanded) {
+        const width = this._groupEl.getBoundingClientRect().width;
+        const GROUP_PADDING_WIDTH = 8;
+        const BORDER_WIDTH = 1;
+        if (width > DEFAULT_BODY_WIDTH) {
+          this._groupEl.style.minWidth =
+            width - 2 * (GROUP_PADDING_WIDTH + BORDER_WIDTH) + "px";
+        }
+      } else {
+        this._groupEl.style.minWidth = DEFAULT_BODY_WIDTH + "px";
+      }
       this.expanded = !this.expanded;
       const eventDetail: FieldGroupChangeEventDetail = {
         expanded: this.expanded,
