@@ -29,4 +29,7 @@ export const ERROR_MESSAGE = {
   DATA_TABLE: {
     IS_NOT_ARRAY: "'data' property is not array.",
   },
+  CONTAINER_NOTIFICATION: {
+    INVALID: "'container' property is not HTMLElement.",
+  },
 };

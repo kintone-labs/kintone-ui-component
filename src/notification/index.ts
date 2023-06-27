@@ -1,6 +1,7 @@
-import { html, svg } from "lit";
+import { html, PropertyValues, svg } from "lit";
 import { property, state } from "lit/decorators.js";
 
+import { ERROR_MESSAGE } from "../base/constant";
 import {
   createStyleOnHeader,
   dispatchCustomEvent,
@@ -35,6 +36,38 @@ let exportNotification;
       super();
       const validProps = validateProps(props);
       Object.assign(this, validProps);
+    }
+
+    shouldUpdate(changedProperties: PropertyValues): boolean {
+      if (changedProperties.has("container")) {
+        if (this.container === undefined) return true;
+        const isValidContainer = this._isValidContainerElement();
+        const shouldClose =
+          !isValidContainer || !document.contains(this.container);
+        if (this._isOpened && shouldClose) {
+          this.close();
+        }
+        if (!isValidContainer) {
+          this.throwErrorAfterUpdateComplete(
+            ERROR_MESSAGE.CONTAINER_NOTIFICATION.INVALID
+          );
+          return false;
+        }
+        return true;
+      }
+      return true;
+    }
+
+    protected willUpdate(changedProperties: PropertyValues): void {
+      if (changedProperties.has("container")) {
+        if (this.container === undefined) {
+          this.close();
+        }
+      }
+    }
+
+    private _isValidContainerElement() {
+      return this.container instanceof HTMLElement;
     }
 
     private _handleClickCloseButton(event: MouseEvent) {
@@ -92,11 +125,16 @@ let exportNotification;
     }
 
     open() {
-      const DEFAULT_CONTAINER = document.body;
-      const isValidContainer =
-        this.container && this.container instanceof HTMLElement;
-      const _container = isValidContainer ? this.container : DEFAULT_CONTAINER;
-      _container.appendChild(this);
+      const isValidContainer = this._isValidContainerElement();
+      if (!isValidContainer) {
+        document.body.appendChild(this);
+        requestAnimationFrame(() => {
+          document.body.removeChild(this);
+        });
+        this.performUpdate();
+        return;
+      }
+      this.container.appendChild(this);
       this.performUpdate();
       this.classList.remove("kuc-notification-fadeout");
       this.classList.add("kuc-notification-fadein");
