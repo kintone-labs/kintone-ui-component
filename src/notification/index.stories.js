@@ -68,6 +68,12 @@ const template = (args) => {
     notification.container = getNonExistElement();
   });
 
+  const buttonInvalidValue = document.createElement("button");
+  buttonInvalidValue.innerText = "Set invalid value";
+  buttonInvalidValue.addEventListener("click", () => {
+    notification.container = 12;
+  });
+
   const buttonGetter = document.createElement("button");
   buttonGetter.innerText = "GETTER";
   buttonGetter.addEventListener("click", () => {
@@ -82,7 +88,9 @@ const template = (args) => {
   root.appendChild(buttonSetUndefined);
   root.appendChild(buttonSetNull);
   root.appendChild(buttonSetNonExistELement);
+  root.appendChild(buttonInvalidValue);
   root.appendChild(buttonGetter);
+
   return root;
 };
 
@@ -103,7 +111,7 @@ BaseContainer.args = {
   id: "notification-id",
   text: "不正です!!",
   type: "info",
-  container: getNonExistElement(),
+  container: null,
 };
 export const BaseBody = template.bind({});
 BaseBody.args = {
