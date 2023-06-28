@@ -31,14 +31,85 @@ const template = (args) => {
     dialog.close();
   });
 
+  const buttonFullScreen = document.createElement("button");
+  buttonFullScreen.innerText = "full screen mode";
+  buttonFullScreen.addEventListener("click", () => {
+    document.getElementById("root").requestFullscreen();
+  });
+
+  const buttonSetRoot = document.createElement("button");
+  buttonSetRoot.innerText = "Set Root element";
+  buttonSetRoot.addEventListener("click", () => {
+    console.log(getRootElement(), 'root')
+    dialog.container = getRootElement();
+  });
+
+  const buttonSetBody = document.createElement("button");
+  buttonSetBody.innerText = "Set Body element";
+  buttonSetBody.addEventListener("click", () => {
+    dialog.container = getBodyElement();
+  });
+
+  const buttonSetUndefined = document.createElement("button");
+  buttonSetUndefined.innerText = "Set undefined";
+  buttonSetUndefined.addEventListener("click", () => {
+    dialog.container = undefined;
+  });
+
+  const buttonSetNull = document.createElement("button");
+  buttonSetNull.innerText = "Set null";
+  buttonSetNull.addEventListener("click", () => {
+    dialog.container = null;
+  });
+
+  const buttonSetNonExistELement = document.createElement("button");
+  buttonSetNonExistELement.innerText = "Set non exist element";
+  buttonSetNonExistELement.addEventListener("click", () => {
+    dialog.container = getNonExistElement();
+  });
+
+  const buttonInvalidValue = document.createElement("button");
+  buttonInvalidValue.innerText = "Set invalid value";
+  buttonInvalidValue.addEventListener("click", () => {
+    dialog.container = 12;
+  });
+
+  const buttonGetter = document.createElement("button");
+  buttonGetter.innerText = "GETTER";
+  buttonGetter.addEventListener("click", () => {
+    console.log("container value:", dialog.container);
+  });
+
   root.appendChild(openButton);
   root.appendChild(closeButton);
+  root.appendChild(buttonFullScreen);
+  root.appendChild(buttonSetRoot);
+  root.appendChild(buttonSetBody);
+  root.appendChild(buttonSetUndefined);
+  root.appendChild(buttonSetNull);
+  root.appendChild(buttonSetNonExistELement);
+  root.appendChild(buttonInvalidValue);
+  root.appendChild(buttonGetter);
+
   return root;
 };
+const getNonExistElement = () => {
+  return document.createElement("div");
+};
+
+const getBodyElement = () => {
+  return document.body;
+};
+
+const getRootElement = () => {
+  return document.getElementById("root");
+};
+
 export const Base = template.bind({});
 Base.args = {
   title: "Title",
   content: "Content with Icon",
   footer: "Footer",
   icon: "success",
+  container: getRootElement(),
 };
