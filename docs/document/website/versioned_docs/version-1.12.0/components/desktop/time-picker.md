@@ -1,7 +1,8 @@
 ---
-id: time-picker
+id: version-1.12.0-time-picker
 title: TimePicker
 sidebar_label: TimePicker
+original_id: time-picker
 ---
 
 ## Overview
