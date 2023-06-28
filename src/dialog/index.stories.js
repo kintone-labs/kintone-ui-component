@@ -40,7 +40,6 @@ const template = (args) => {
   const buttonSetRoot = document.createElement("button");
   buttonSetRoot.innerText = "Set Root element";
   buttonSetRoot.addEventListener("click", () => {
-    console.log(getRootElement(), 'root')
     dialog.container = getRootElement();
   });
 
@@ -93,6 +92,7 @@ const template = (args) => {
 
   return root;
 };
+
 const getNonExistElement = () => {
   return document.createElement("div");
 };

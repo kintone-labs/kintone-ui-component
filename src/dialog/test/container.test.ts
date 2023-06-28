@@ -44,25 +44,25 @@ describe("Dialog", () => {
       expect(container.hasAttribute("opened")).to.equal(false);
     });
 
-		it("should not display when setting to null by setter", async () => {
+    it("should not display when setting to null by setter", async () => {
       const container = new Dialog();
       container.open();
       await elementUpdated(container);
       expect(container.hasAttribute("opened")).to.equal(true);
 
-			container.container = null;
-			await elementUpdated(container);
+      container.container = null;
+      await elementUpdated(container);
       expect(container.hasAttribute("opened")).to.equal(false);
     });
 
-		it("should not display when setting to undefined by setter", async () => {
+    it("should not display when setting to undefined by setter", async () => {
       const container = new Dialog();
       container.open();
       await elementUpdated(container);
       expect(container.hasAttribute("opened")).to.equal(true);
 
-			container.container = undefined;
-			await elementUpdated(container);
+      container.container = undefined;
+      await elementUpdated(container);
       expect(container.hasAttribute("opened")).to.equal(false);
     });
 
@@ -78,7 +78,7 @@ describe("Dialog", () => {
       fixture(container);
     });
 
-		it("should throw error when assign invalid value by setter", (done) => {
+    it("should throw error when assign invalid value by setter", (done) => {
       const handleError = (event: any) => {
         const errorMsg = event.reason.message;
         expect(errorMsg).to.equal("'container' property is not HTMLElement.");
@@ -88,8 +88,8 @@ describe("Dialog", () => {
       window.addEventListener("unhandledrejection", handleError);
       const container = new Dialog();
       fixture(container);
-			container.container = "container";
-			container.open();
+      container.container = "container";
+      container.open();
     });
   });
 });
