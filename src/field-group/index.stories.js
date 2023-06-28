@@ -46,11 +46,13 @@ const getContent = () => {
   const datePicker = new DatePicker({ value: "2012-12-12" });
   const timePicker = new TimePicker({ value: "12:12" });
   const textArea = new TextArea({ value: "text area" });
+
   wrapper.appendChild(textArea);
   wrapper.appendChild(text);
   wrapper.appendChild(dropdown);
   wrapper.appendChild(datePicker);
   wrapper.appendChild(timePicker);
+
   return wrapper;
 };
 const template = (args) => {
