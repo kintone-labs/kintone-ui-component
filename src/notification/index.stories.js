@@ -111,7 +111,7 @@ BaseContainer.args = {
   id: "notification-id",
   text: "不正です!!",
   type: "info",
-  container: null,
+  container: getRootElement(),
 };
 export const BaseBody = template.bind({});
 BaseBody.args = {

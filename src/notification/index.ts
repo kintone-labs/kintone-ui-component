@@ -42,7 +42,7 @@ let exportNotification;
       if (changedProperties.has("container")) {
         if (this.container === undefined) return true;
         if (this.container === null) {
-          this.close();
+          this._close();
           return false;
         }
 
@@ -50,7 +50,7 @@ let exportNotification;
         const shouldClose =
           !isValidContainer || !document.contains(this.container);
         if (this._isOpened && shouldClose) {
-          this.close();
+          this._close();
         }
         if (!isValidContainer) {
           this.throwErrorAfterUpdateComplete(
@@ -66,7 +66,7 @@ let exportNotification;
     protected willUpdate(changedProperties: PropertyValues): void {
       if (changedProperties.has("container")) {
         if (this.container === undefined) {
-          this.close();
+          this._close();
         }
       }
     }
@@ -147,11 +147,15 @@ let exportNotification;
       this._setAutoCloseTimer();
     }
 
-    close() {
+    private _close() {
       this._isOpened = false;
       this.classList.remove("kuc-notification-fadein");
       this.classList.add("kuc-notification-fadeout");
       this._clearAutoCloseTimer();
+    }
+
+    close() {
+      this._close();
       dispatchCustomEvent(this, "close");
     }
 
