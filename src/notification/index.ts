@@ -40,15 +40,10 @@ let exportNotification;
 
     shouldUpdate(changedProperties: PropertyValues): boolean {
       if (changedProperties.has("container")) {
-        if (this.container === undefined) {
-          this._close();
-          return true;
-        }
-        if (this.container === null) {
+        if (this.container === undefined || this.container === null) {
           this._close();
           return false;
         }
-
         const isValidContainer = this._isValidContainerElement();
         const shouldClose =
           !isValidContainer || !document.contains(this.container);

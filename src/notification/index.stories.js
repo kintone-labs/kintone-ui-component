@@ -15,68 +15,46 @@ export default {
     container: { name: "container" },
   },
 };
+
 const template = (args) => {
   const notification = new Notification({ ...args });
   notification.addEventListener("close", (event) => {
     console.log(event);
   });
   const root = document.createElement("div");
-  const openButton = document.createElement("button");
-  openButton.textContent = "OPEN";
-  openButton.addEventListener("click", (event) => {
+  const openButton = createButton("OPEN", () => {
     notification.open();
   });
-  const closeButton = document.createElement("button");
-  closeButton.textContent = "CLOSE";
-  closeButton.addEventListener("click", (event) => {
+  const closeButton = createButton("CLOSE", () => {
     notification.close();
   });
-
-  const buttonFullScreen = document.createElement("button");
-  buttonFullScreen.innerText = "full screen mode";
-  buttonFullScreen.addEventListener("click", () => {
+  const buttonFullScreen = createButton("full screen mode", () => {
     document.getElementById("root").requestFullscreen();
   });
-
-  const buttonSetRoot = document.createElement("button");
-  buttonSetRoot.innerText = "Set Root element";
-  buttonSetRoot.addEventListener("click", () => {
+  const buttonSetRoot = createButton("Set Root element", () => {
     notification.container = getRootElement();
   });
-
-  const buttonSetBody = document.createElement("button");
-  buttonSetBody.innerText = "Set Body element";
-  buttonSetBody.addEventListener("click", () => {
+  const buttonSetBody = createButton("Set Body element", () => {
     notification.container = getBodyElement();
   });
 
-  const buttonSetUndefined = document.createElement("button");
-  buttonSetUndefined.innerText = "Set undefined";
-  buttonSetUndefined.addEventListener("click", () => {
+  const buttonSetUndefined = createButton("Set undefined", () => {
     notification.container = undefined;
   });
 
-  const buttonSetNull = document.createElement("button");
-  buttonSetNull.innerText = "Set null";
-  buttonSetNull.addEventListener("click", () => {
+  const buttonSetNull = createButton("Set null", () => {
     notification.container = null;
   });
 
-  const buttonSetNonExistELement = document.createElement("button");
-  buttonSetNonExistELement.innerText = "Set non exist element";
-  buttonSetNonExistELement.addEventListener("click", () => {
+  const buttonSetNonExistELement = createButton("Set non exist element", () => {
     notification.container = getNonExistElement();
   });
 
-  const buttonInvalidValue = document.createElement("button");
-  buttonInvalidValue.innerText = "Set invalid value";
-  buttonInvalidValue.addEventListener("click", () => {
+  const buttonInvalidValue = createButton("Set invalid value", () => {
     notification.container = 12;
   });
 
-  const buttonGetter = document.createElement("button");
-  buttonGetter.innerText = "GETTER";
-  buttonGetter.addEventListener("click", () => {
+  const buttonGetter = createButton("GETTER", () => {
     console.log("container value:", notification.container);
   });
 
@@ -92,6 +70,13 @@ const template = (args) => {
   root.appendChild(buttonGetter);
 
   return root;
+};
+
+const createButton = (text, onClick) => {
+  const button = document.createElement("button");
+  button.textContent = text;
+  button.addEventListener("click", onClick);
+  return button;
 };
 
 const getNonExistElement = () => {
@@ -111,7 +96,7 @@ BaseContainer.args = {
   id: "notification-id",
   text: "不正です!!",
   type: "info",
-  container: getRootElement(),
+  container: undefined,
 };
 export const BaseBody = template.bind({});
 BaseBody.args = {
