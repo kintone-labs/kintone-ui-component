@@ -22,6 +22,7 @@ const template = (args) => {
     console.log(event);
   });
   const root = document.createElement("div");
+
   const openButton = createButton("OPEN", () => {
     notification.open();
   });
