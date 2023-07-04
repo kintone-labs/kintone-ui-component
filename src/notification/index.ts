@@ -40,7 +40,10 @@ let exportNotification;
 
     shouldUpdate(changedProperties: PropertyValues): boolean {
       if (changedProperties.has("container")) {
-        if (this.container === undefined) return true;
+        if (this.container === undefined) {
+          this._close();
+          return true;
+        }
         if (this.container === null) {
           this._close();
           return false;
@@ -58,17 +61,8 @@ let exportNotification;
           );
           return false;
         }
-        return true;
       }
       return true;
-    }
-
-    protected willUpdate(changedProperties: PropertyValues): void {
-      if (changedProperties.has("container")) {
-        if (this.container === undefined) {
-          this._close();
-        }
-      }
     }
 
     private _isValidContainerElement() {
