@@ -26,7 +26,7 @@ import { MobileDropdownComponent } from "@site/static/js/samples/mobile/dropdown
 | error | string | "" | エラーに表示するテキスト | 未指定、あるいは空文字の場合、error は表示されない |
 | id | string | "" | コンポーネントの id 名 ||
 | label | string | "" | コンポーネントの説明ラベル | 未指定、あるいは空文字の場合、label は表示されない |
-| value *1 | string | "" | 選択されている値 | value と selectedIndex が未指定の場合、何も選択されない<br/>重複する value を指定し、selectedIndex を指定しない場合、Item.value で最初にマッピングされた value の項目が選択され、selectedIndex にはその選択肢のインデックス番号が入る |
+| value *1 | string | "" | 選択されている値 | value と selectedIndex が未指定の場合、何も選択されない<br/>重複する value を指定し、selectedIndex を指定しない場合、Item.value で最初にマッピングされた value の項目が選択され、selectedIndex にはその選択肢のインデックス番号が入る<br/>value が文字列以外の場合、エラーを出力する |
 | selectedIndex *1 | number | -1 | 選択されている値のインデックス番号 | items 内に重複する Item.value がある場合、どの Item.value が選択されるか指定するためのプロパティ<br/>value が未指定で、selectedIndex に有効な値が指定されている場合、 そのインデックス番号の選択肢が選択される<br/>value に重複した Item.value が指定され、selectedIndex の値が value 内の重複した Item.value とマッピングした場合、そのインデックス番号の選択肢が選択される<br/>selectedIndex が数値以外の場合、エラーを出力する |
 | disabled | boolean | false | コンポーネントの編集可/不可設定 ||
 | requiredIcon | boolean | false | コンポーネントの必須アイコン表示/非表示設定 ||

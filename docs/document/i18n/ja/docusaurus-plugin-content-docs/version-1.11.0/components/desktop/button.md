@@ -54,7 +54,9 @@ Button(options)<br/>
 | options | object | {} | コンポーネントのプロパティを含むオブジェクト | |
 
 ### Custom CSS
-> [Custom CSS](../../getting-started/custom-css.md) をご確認ください。
+:::tip
+[Custom CSS](../../getting-started/custom-css.md) をご確認ください。
+:::
 
 コンポーネントのスタイルを変更するために使用できるプロパティの一覧です。
 #### Property

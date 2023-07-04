@@ -102,6 +102,10 @@ details.toggle-panel summary{
   display: none;
 }
 
+#button .kuc_normal_button, #button .kuc_submit_button, #mobile-button .kuc_normal_button {
+ margin: 0px 5px 0px 0px;
+}
+
 #notification {
   display: block;
 }
@@ -186,12 +190,24 @@ details.toggle-panel summary{
   height: 300px;
 }
 
+#dialog #sample-container__components .dialog {
+  z-index: 1;
+}
+
 #dialog #sample-container__components .dialog div[class$=__dialog] {
   position: absolute;
 }
 
 #dialog #sample-container__components .dialog div[class$=__mask] {
   position: absolute;
+}
+
+#dialog #sample-container__components .dialog h2 {
+  margin: 0px;
+}
+
+table img.img_node_modules-\@docusaurus-theme-classic-lib-theme-MDXComponents-Img-styles-module {
+  display: inline;
 }
 
 #table tr{
@@ -228,15 +244,37 @@ table th[class$="__table__header__cell"] {
 #attachment div[class$="__group__files"], #attachment div[class$="__group__files__droppable__text"] {
   box-sizing: content-box;
 }
+
 #attachment div[class$="__group"] {
   display: block;
 }
 
-.sample-container .mobile-notification{
+#mobile-notification .mobile-notification {
   position: relative;
   width: 300px;
 }
 
-.sample-container .mobile-notification pre{
+#mobile-notification pre {
   background-color: transparent;
+}
+
+.sample-container.block, .sample-container.display-block-mobile {
+  display: block;
+  margin-left: 300px;
+}
+
+.sample-container .mobile {
+  max-width: 375px;
+}
+
+.sample-container .mobile .mobile-textarea {
+  width: 100%;
+}
+
+.sample-container.block #sample-container__components {
+  display: block;
+}
+
+#mobile-text .cus-mobile-text {
+  min-width: 250px;
 }

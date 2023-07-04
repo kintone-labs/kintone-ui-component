@@ -12,7 +12,7 @@ export const MobileNotificationComponent = () => {
   }, []);
 
   return (
-    <div className="sample-container">
+    <div className="sample-container" id="mobile-notification">
       <div id="sample-container__components" ref={divEl}></div>
     </div>
   );

@@ -33,7 +33,7 @@ Here is a list of properties that can be used for modifying the component:
 | items | Array<Item\> | []  | List of options to display | Will result an error if the value of `items` is not an array |
 | Item.label | string | null | Text label for each option | If `Item.label` is unspecified, the value of `Item.value` is displayed on the UI |
 | Item.value | string | null | Value of each option | Can set duplicated value in `Item.value` |
-| value *1 | Array<string\> | []  | Selected value | No option will be selected if the `value` and `selectedIndex` are unspecified<br/>If setting duplicated value and not setting `selectedIndex`, the first mapped value item in `Item.value` will be selected and `selectedIndex` will be the index number<br/>Will result an error if the value of `items` is not an array |
+| value *1 | Array<string\> | []  | Selected value | No option will be selected if the `value` and `selectedIndex` are unspecified<br/>If setting duplicated value and not setting `selectedIndex`, the first mapped value item in `Item.value` will be selected and `selectedIndex` will be the index number<br/>Will result an error if the value is not an array |
 | selectedIndex *1 | Array<Number\> | []  | List of index of selected item | It supports specifying which duplicated `Item.value` will be selected if there is duplicated `Item.value` in `items`<br/>If `value` is not set and `selectedIndex` is valid, item that has the index number will be selected<br/>If `value` is set with duplicated `Item.value` and `selectedIndex` value maps with duplicated `Item.value` specified in `value`, item that has the index number will be selected<br/>Will result an error if the value of `selectedIndex` is not an array |
 
 :::info

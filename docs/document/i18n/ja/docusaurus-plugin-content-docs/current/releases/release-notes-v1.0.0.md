@@ -83,7 +83,7 @@ v0 では様々ご要望をいただき、対応コンポーネントや機能�
 ​
 - kintone カスタマイズで実際に使う機能に絞って実装。​
   - 具体的なユースケースがあるコンポーネントや機能を実装しました。（kintone 標準機能にないものも含む）
-  - 一方ユースケースが乏しいと判断したコンポーネントの開発を見送りました。（もしユースケースがあれば対応検討します。[GitHub issue](https://github.com/kintone-labs/kintone-ui-component/issues/new/choose) でのフィードバックもお待ちしております。）
+  - 一方ユースケースが乏しいと判断したコンポーネントの開発を見送りました。（もしユースケースがあれば対応検討します。[GitHub issue](https://github.com/kintone-labs/kintone-ui-component/issues) でのフィードバックもお待ちしております。）
     - Attachment, ColorPicker, FieldGroup, IconButton, Tab, React ver.
 
 - Web Components フレームワークの LitElement で実装し、内部コードの可読性向上。​
@@ -103,7 +103,9 @@ v0 と v1 の書き方の違いについては[こちら](../guides/comparison-v
 - より実践的な使い方のサンプルやチュートリアルの整備
   - ユースケースに沿ったサンプルコードやチュートリアル記事を増やしていきます。
 
-> v0 については、主に不具合改修とライブラリアップデートを継続します。新規の機能開発は現在予定しておりません。
+:::caution
+v0 については、主に不具合改修とライブラリアップデートを継続します。新規の機能開発は現在予定しておりません。
+:::
 
 ## おわりに
 
@@ -111,5 +113,5 @@ v0 と v1 の書き方の違いについては[こちら](../guides/comparison-v
 kintone UI Component v1 は、kintone カスタマイズやプラグイン開発に関わるエンジニアにとって使いやすい、便利なライブラリを目指して改良していきます。<br/>
 今後ともご期待ください。
 
-フィードバックや改善リクエストにつきましては [GitHub issue](https://github.com/kintone-labs/kintone-ui-component/issues/new/choose) へコメントいただけると幸いです。<br/>
+フィードバックや改善リクエストにつきましては [GitHub issue](https://github.com/kintone-labs/kintone-ui-component/issues) へコメントいただけると幸いです。<br/>
 よろしくお願いいたします。

@@ -194,18 +194,20 @@ Output Result：
 ## Browser support status
 
 <table>
-  <tr>
-    <th>Chrome</th>
-    <th>Safari</th>
-    <th>Firefox</th>
-    <th>Edge</th>
-  </tr>
-  <tr>
-    <td>○</td>
-    <td>○</td>
-    <td>○</td>
-    <td>○</td>
-  </tr>
+  <tbody>
+    <tr>
+      <th>Chrome</th>
+      <th>Safari</th>
+      <th>Firefox</th>
+      <th>Edge</th>
+    </tr>
+    <tr>
+      <td>○</td>
+      <td>○</td>
+      <td>○</td>
+      <td>○</td>
+    </tr>
+  </tbody>
 </table>
 
 :::info

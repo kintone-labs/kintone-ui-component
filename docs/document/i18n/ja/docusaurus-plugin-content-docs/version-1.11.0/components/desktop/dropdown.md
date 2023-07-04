@@ -66,21 +66,6 @@ Dropdown(options)<br/>
 | :--- | :--- | :--- | :--- | :--- |
 | options | object | {} | コンポーネントのプロパティを含むオブジェクト | |
 
-### Custom CSS
-> [Custom CSS](../../getting-started/custom-css.md) をご確認ください。
-
-コンポーネントのスタイルを変更するために使用できるプロパティの一覧です。<br/>
-toggle は、Dropdown ボタンの領域を示します。
-#### Property
-| Name |
-| :--- |
-| --kuc-dropdown-font-size |
-| --kuc-dropdown-toggle-width |
-| --kuc-dropdown-toggle-height |
-| --kuc-dropdown-toggle-color |
-| --kuc-dropdown-menu-color |
-| --kuc-dropdown-menu-color-selected |
-
 ---
 ## Sample Code
 

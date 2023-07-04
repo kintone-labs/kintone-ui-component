@@ -68,7 +68,9 @@ none
 none
 
 ### Custom CSS
-> Please check [Custom CSS feature guide](../../getting-started/custom-css.md) at first.
+:::tip
+Please check [Custom CSS feature guide](../../getting-started/custom-css.md) at first.
+:::
 
 Here is a list of properties that can be used for modifying component style:
 #### Property
@@ -92,7 +94,7 @@ Here is a sample code when all parameters are specified:
 const Kuc = Kucs['1.x.x'];
 
 const notification = new Kuc.Notification({
-  text:  'Error occurred!',
+  text: 'Error occurred!',
   type: 'danger',
   className: 'options-class',
   duration: 2000

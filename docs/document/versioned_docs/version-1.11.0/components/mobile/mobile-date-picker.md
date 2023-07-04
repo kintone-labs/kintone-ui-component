@@ -32,11 +32,11 @@ Here is a list of properties that can be used for modifying the component:
 | requiredIcon | boolean | false | Show/Hide the required icon | |
 | visible | boolean | true | Show/Hide the component | |
 
-> \*1: The displayed date format is automatically switched depending on the `language` property setting as follows:
->
-> - "en": MM/DD/YYYY
-> - "ja", "zh", "zh-TW": YYYY-MM-DD
-
+:::info
+*1: The displayed date format is automatically switched depending on the `language` property setting as follows:
+- "en": MM/DD/YYYY
+- "ja", "zh", "zh-TW": YYYY-MM-DD
+:::
 ### Event
 
 Here is a list of events that can be specified:

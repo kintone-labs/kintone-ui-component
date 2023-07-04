@@ -81,7 +81,7 @@ The major updates are as follows:
 
 - Component prioritization
   - We prioritized components which can be used very frequently.
-  - We have excluded the components such as Attachment, ColorPicker, FieldGroup, IconButton, and Tab at this moment since there are not so many use cases with the components. Of course, we will consider to implement new components if we get many requests. Please give us your feedbacks on [GitHub issue](https://github.com/kintone-labs/kintone-ui-component/issues/new/choose).
+  - We have excluded the components such as Attachment, ColorPicker, FieldGroup, IconButton, and Tab at this moment since there are not so many use cases with the components. Of course, we will consider to implement new components if we get many requests. Please give us your feedbacks on [GitHub issue](https://github.com/kintone-labs/kintone-ui-component/issues).
 
 - Framework
   - Implemented with the LitElement of the Web Components framework to improve readability of internal code.
@@ -109,5 +109,5 @@ Thank you for reading the release notes.<br/>
 Kintone UI Component v1 is a library designed to provide convenience for engineers who are involved in Kintone customization and plug-in development.<br/>
 Please stay tuned for further releases.
 
-We always appreciate your feedbacks. Please submit questions and requests on [GitHub issue](https://github.com/kintone-labs/kintone-ui-component/issues/new/choose).<br/>
+We always appreciate your feedbacks. Please submit questions and requests on [GitHub issue](https://github.com/kintone-labs/kintone-ui-component/issues).<br/>
 Best regards,

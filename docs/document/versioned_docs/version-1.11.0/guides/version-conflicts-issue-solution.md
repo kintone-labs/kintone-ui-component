@@ -89,4 +89,4 @@ When there are both versions before and on/after v1.4.0, you need to be careful.
 
 In summary, when using the `Kuc` object, it will occur an error in case that the last loaded `kuc.min.js` is the version before v1.4.0.
 
-If you have any questions, please submit on [GitHub issue](https://github.com/kintone-labs/kintone-ui-component/issues/new/choose).
+If you have any questions, please submit on [GitHub issue](https://github.com/kintone-labs/kintone-ui-component/issues).

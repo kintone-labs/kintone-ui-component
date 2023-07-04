@@ -73,7 +73,9 @@ none
 none
 
 ### Custom CSS
-> [Custom CSS](../../getting-started/custom-css.md) をご確認ください。
+:::tip
+[Custom CSS](../../getting-started/custom-css.md) をご確認ください。
+:::
 
 コンポーネントのスタイルを変更するために使用できるプロパティの一覧です。
 #### Property
@@ -84,8 +86,9 @@ none
 
 ---
 ## Sample Code
-
->[導入と実装方法](../../getting-started/quick-start.md#導入と実装方法) をご確認ください。
+:::tip
+[導入と実装方法](../../getting-started/quick-start.md#導入と実装方法) をご確認ください。
+:::
 
 全てのパラメータを指定した場合のサンプルコードです。
 

@@ -17,9 +17,9 @@ import { TabsComponent } from "@site/static/js/samples/desktop/tabs.js"
 ## Specification
 
 ### Property
+
 使用できるプロパティの一覧です。プロパティを指定して値を更新することができます。
 
-#### Tabs
 | Name   | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
 | className | string | "" | コンポーネントの class 名 ||
@@ -59,8 +59,9 @@ Tabs(options)<br/>
 
 ---
 ## Sample Code
-
->[導入と実装方法](../../getting-started/quick-start.md#導入と実装方法) をご確認ください。
+:::tip
+[導入と実装方法](../../getting-started/quick-start.md#導入と実装方法) をご確認ください。
+:::
 
 全てのパラメータを指定した場合のサンプルコードです。
 
@@ -115,3 +116,8 @@ tabs.addEventListener('change', event => {
   console.log(event);
 });
 ```
+
+---
+
+## Related Articles
+- [Tabs customization](../../guides/tabs-customization)

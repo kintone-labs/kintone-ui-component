@@ -99,14 +99,14 @@ The following section will explain in further detail.
 In v1, you can call the instance from new kintoneUIComponent to **new Kuc** in order to write a concise code.
 
 - v0 Code
-```
+```javascript
 const text = new kintoneUIComponent.Text({
   placeholder: 'Enter keywords'
 });
 ```
 
 - v1 Code
-```
+```javascript
 const text = new Kuc.Text({
   placeholder: 'Enter keywords'
 });
@@ -121,12 +121,12 @@ In v0, the element of the component must be returned by using the render() metho
 In v1, render() is no longer required, and the components can be displayed easier.
 
 - v0 Code
-```
+```javascript
 header.appendChild(text.render());
 ```
 
 - v1 Code
-```
+```javascript
 header.appendChild(text);
 ```
 
@@ -137,7 +137,7 @@ In v0, when a value is updated, a method must be called separately.<br/>
 In v1, you can use properties to update values.
 
 - v0 Code
-```
+```javascript
 const button = new kintoneUIComponent.Button({
   type: 'submit',
   text: 'Search'
@@ -148,7 +148,7 @@ button.setText('Register');
 ```
 
 - v1 Code
-```
+```javascript
 const button = new Kuc.Button({
   type: 'submit',
   text: 'Search',
@@ -167,7 +167,7 @@ In v0, the specifications of each part are lined up vertically by default, and C
 ![v0](/img/v0_search_box.png)
 
 - style must be adjusted
-```
+```javascript
 // Use text and button side by side
 text.element.style.float = 'left';
 button.element.style.float = 'right';
@@ -202,7 +202,7 @@ text.element.id = 'my_index_text';
 ```
 
 - v1 Code
-```
+```javascript
 // Process to prevent component duplication bug (ID name granted by the property is available)
 if (document.getElementById('kuc_text') !== null) {
   return event;
@@ -228,7 +228,7 @@ After adding additional handler, when the button is clicked, the text input valu
 
 Here is a sample code.
 
-```
+```javascript
 const button = new Kuc.Button({
   type: 'submit',
   text: 'Search',
@@ -271,7 +271,7 @@ However, when using v1, only `Item.value` is required. If `Item.label` is not sp
 This means that the coding will be more concise when the backend value and the label displayed in the UI are the same.
 
 You can abbreviate the coding as follows:
-```
+```javascript
 const checkbox = new Kuc.Checkbox({
   items: [
     {

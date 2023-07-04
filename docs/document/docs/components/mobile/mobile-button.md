@@ -26,6 +26,7 @@ Here is a list of properties that can be used for modifying the component:
 | id | string | ""  | Component id name |  |
 | text | string | ""  | Text to be displayed in buttons | |
 | type | string | "normal"  | Button design type | Available options:<br/>"normal" : White (#ffffff)<br/>"submit" : Blue (#206694) |
+| content *1 | string/HTMLElement | ""  | The DOM inside button | If a string with HTML is set, it will be automatically converted to HTML and displayed as it is |
 | disabled | boolean | false | Enable/Disable the component | |
 | visible | boolean | true | Show/Hide the component | |
 

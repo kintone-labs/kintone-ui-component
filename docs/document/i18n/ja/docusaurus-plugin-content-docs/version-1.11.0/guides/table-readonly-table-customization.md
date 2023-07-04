@@ -30,7 +30,9 @@ ReadOnlyTable コンポーネントは、読み取り専用のテーブルを表
 
 ## change イベント の理解
 Table の `change` イベントの流れを理解すると、カスタマイズがしやすくなります。
-> テーブルのセルは、セルの中のコンポーネントの `change` イベントをリッスンして、新しい値をそれに対応する `field` の値に登録します。
+:::info
+テーブルのセルは、セルの中のコンポーネントの `change` イベントをリッスンして、新しい値をそれに対応する `field` の値に登録します。
+:::
 
 ### アプリの作成
 以下のフィールドを含むアプリを作成します。
@@ -97,7 +99,7 @@ const renderName = cellData => {
 
 読み取り専用のテーブルを表示します。
 
-<details>
+<details className="toggle-panel">
   <summary>Show code</summary>
 
   ```js
@@ -146,7 +148,7 @@ const renderName = cellData => {
 表示されているコンポーネントを操作できるテーブルを表示します。<br/>
 `columns.render` 関数を使って、セルに表示されるコンポーネントを設定します。以下のサンプルコードの `renderGender` と `renderAddress` 関数を確認してください。
 
-<details>
+<details className="toggle-panel">
   <summary>Show code</summary>
 
   ```js
@@ -237,7 +239,7 @@ const renderName = cellData => {
 `columns.render` 関数を使って、一つのセルに複数のコンポーネントを表示します。<br/>
 以下のサンプルコードでは、同じセル内に 2つの Dropdown（city と country）を表示します。
 
-<details>
+<details className="toggle-panel">
   <summary>Show code</summary>
 
   ```js
@@ -337,7 +339,7 @@ const renderName = cellData => {
 依存列を作ります。<br/>
 country Dropdown の値が変更されたら city Dropdown の値が変更されます。
 
-<details>
+<details className="toggle-panel">
   <summary>Show code</summary>
 
   ```js
@@ -431,7 +433,7 @@ country Dropdown の値が変更されたら city Dropdown の値が変更され
 
 入れ子テーブルを作って各行にさらに詳細な情報を表示します。
 
-<details>
+<details className="toggle-panel">
   <summary>Show code</summary>
 
   ```js

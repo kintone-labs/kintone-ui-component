@@ -9,7 +9,7 @@ export const TextAreaComponent = () =>  {
   }, []);
 
   return (
-    <div className="sample-container" id="textarea">
+    <div className="sample-container block" id="textarea">
       <div id="sample-container__components" ref={divEl}></div>
     </div>
   );

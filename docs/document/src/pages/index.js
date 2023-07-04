@@ -21,7 +21,7 @@ function HomepageHeader() {
     return (
       <header className={clsx('hero hero--primary', styles.heroBanner)}>
         <div className="container">
-          <h1 className="hero__title">Be a smart Kintone developer with <span class="title-text">Kintone UI Component</span>.</h1>
+          <h1 className="hero__title">Be a smart Kintone developer with <span className="title-text">Kintone UI Component</span>.</h1>
           <p className="hero__subtitle">{siteConfig.tagline}</p>
           <div className={styles.buttons}>
             <Link
@@ -37,8 +37,8 @@ function HomepageHeader() {
     return (
       <header className={clsx('hero hero--primary', styles.heroBanner)}>
         <div className="container">
-          <h1 className="hero__title">Be a smart kintone developer with <span class="title-text">kintone UI Component</span>.</h1>
-          <p className="hero__subtitle">{siteConfig.taglineJP}</p>
+          <h1 className="hero__title">Be a smart kintone developer with <span className="title-text">kintone UI Component</span>.</h1>
+          <p className="hero__subtitle">{siteConfig.tagline}</p>
           <div className={styles.buttons}>
             <Link
               className="button button--secondary button--md button-top"
@@ -56,14 +56,14 @@ function HomepagePolicy () {
   const currentLanguage = getCurrentLanguage();
   if(currentLanguage === "en") {
     return (
-      <div class="support-policy">
-        <div class="container">
-          <div class="title">Support Policy</div>
-          <div class="github-infomation">
+      <div className="support-policy">
+        <div className="container">
+          <div className="title">Support Policy</div>
+          <div className="github-infomation">
             You can ask questions and/or submit requests on
-            <a href="https://github.com/kintone-labs/kintone-ui-component/issues/new/choose" target="_blank" rel="noreferrer"> GitHub Issue</a>.
+            <a href="https://github.com/kintone-labs/kintone-ui-component/issues" target="_blank" rel="noreferrer"> GitHub Issue</a>.
           </div>
-          <div class="more-infomation">
+          <div className="more-infomation">
             You are allowed to change the source code, redistribute it, and use it in accordance with the license.<br/>
             For more details of the license type please refer to the GitHub repository.
           </div>
@@ -72,19 +72,19 @@ function HomepagePolicy () {
     );
   } else {
     return (
-      <div class="support-policy">
-        <div class="container">
-          <div class="title">Support Policy</div>
-          <div class="github-infomation">
+      <div className="support-policy">
+        <div className="container">
+          <div className="title">Support Policy</div>
+          <div className="github-infomation">
             kintone UI Component の仕様については、テクニカルサポートへお問い合わせいただけます。<br/>
             <a href="https://faq.cybozu.info/alphascope/cybozu/web/kintone/Detail.aspx?id=1763" target="_blank" rel="noreferrer"> サポートへのお問い合わせ方法</a>
             をご確認の上、お問合せください。
           </div>
-          <div class="github-infomation">
-            その他 <a href="https://github.com/kintone-labs/kintone-ui-component/issues/new/choose" target="_blank" rel="noreferrer"> GitHub Issue</a>.
+          <div className="github-infomation">
+            その他 <a href="https://github.com/kintone-labs/kintone-ui-component/issues" target="_blank" rel="noreferrer"> GitHub Issue</a>.
             にてご質問や機能リクエストを受け付けております。
           </div>
-          <div class="more-infomation">
+          <div className="more-infomation">
             ソースコードの変更、再配布および商用利用等は、ライセンスに従ってご利用可能です。<br/>
             ライセンスの種別は GitHub のリポジトリでご確認ください。
           </div>
@@ -97,9 +97,7 @@ function HomepagePolicy () {
 export default function Home() {
   const {siteConfig} = useDocusaurusContext();
   return (
-    <Layout
-      title={`${siteConfig.title}`}
-      description="Description will go into a meta tag in <head />">
+    <Layout>
       <HomepageHeader />
       <main>
         <HomepageFeatures />

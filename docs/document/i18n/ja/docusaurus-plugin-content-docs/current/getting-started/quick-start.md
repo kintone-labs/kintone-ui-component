@@ -191,18 +191,20 @@ npm run build:webpack
 ## ブラウザ対応状況
 
 <table>
-  <tr>
-    <th>Chrome</th>
-    <th>Safari</th>
-    <th>Firefox</th>
-    <th>Edge</th>
-  </tr>
-  <tr>
-    <td>○</td>
-    <td>○</td>
-    <td>○</td>
-    <td>○</td>
-  </tr>
+  <tbody>
+    <tr>
+      <th>Chrome</th>
+      <th>Safari</th>
+      <th>Firefox</th>
+      <th>Edge</th>
+    </tr>
+    <tr>
+      <td>○</td>
+      <td>○</td>
+      <td>○</td>
+      <td>○</td>
+    </tr>
+  </tbody>
 </table>
 
 :::info

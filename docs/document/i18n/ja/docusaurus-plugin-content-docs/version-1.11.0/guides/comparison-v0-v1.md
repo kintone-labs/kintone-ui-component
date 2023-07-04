@@ -99,14 +99,14 @@ header.appendChild(button);
 v1 では、インスタンスの呼び出し方が new kintoneUIComponent から **new Kuc** となり、より簡潔なコードが書けるようになりました。
 
 - v0 のコード
-```
+```javascript
 const text = new kintoneUIComponent.Text({
   placeholder: 'Enter keywords'
 });
 ```
 
 - v1 のコード
-```
+```javascript
 const text = new Kuc.Text({
   placeholder: 'Enter keywords'
 });
@@ -121,12 +121,12 @@ v0 では、内部実装の都合上、appendChild する際に render() メソ�
 v1 では、設計を見直したことで render() が不要となり、よりシンプルな書き方でコンポーネントを描画できるようになりました。
 
 - v0 のコード
-```
+```javascript
 header.appendChild(text.render());
 ```
 
 - v1 のコード
-```
+```javascript
 header.appendChild(text);
 ```
 
@@ -137,7 +137,7 @@ v0 では、値を更新する場合、メソッドを別途呼び出す必要�
 v1 では、プロパティを利用して値を更新することができます。
 
 - v0 のコード
-```
+```javascript
 const button = new kintoneUIComponent.Button({
   type: 'submit',
   text: 'Search'
@@ -148,7 +148,7 @@ button.setText('Register');
 ```
 
 - v1 のコード
-```
+```javascript
 const button = new Kuc.Button({
   type: 'submit',
   text: 'Search',
@@ -167,7 +167,7 @@ v0 では、デフォルトではパーツが縦に並ぶ仕様になってお�
 ![v0](/img/v0_search_box.png)
 
 - style を調整する必要がある
-```
+```javascript
 // Use text and button side by side
 text.element.style.float = 'left';
 button.element.style.float = 'right';
@@ -187,7 +187,7 @@ v1 では各コンポーネントのプロパティについても精査し、�
 付与した id を使って、要素を取得するといったことが可能になります。
 
 - v0 のコード
-```
+```javascript
 // Process to prevent component duplication bug
 if (document.getElementById('my_index_text') !== null) {
   return event;
@@ -202,7 +202,7 @@ text.element.id = 'my_index_text';
 ```
 
 - v1 のコード
-```
+```javascript
 // Process to prevent component duplication bug (ID name granted by the property is available)
 if (document.getElementById('kuc_text') !== null) {
   return event;
@@ -228,7 +228,7 @@ v1 ではプロパティとして  `error` や `label` が用意され、各コ�
 
 以下がコードです。
 
-```
+```javascript
 const button = new Kuc.Button({
   type: 'submit',
   text: 'Search',
@@ -272,7 +272,7 @@ UI で表示するラベルと内部的に持つ値が一緒の場合の書き�
 
 以下のように省略して書くことができます。
 
-```
+```javascript
 const checkbox = new Kuc.Checkbox({
   items: [
     {

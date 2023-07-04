@@ -1,8 +1,8 @@
 // @ts-check
 // Note: type annotations allow type checking and IDEs autocompletion
 
-const lightCodeTheme = require('prism-react-renderer/themes/okaidia');
-const darkCodeTheme = require('prism-react-renderer/themes/dracula');
+const lightCodeTheme = require('prism-react-renderer/themes/palenight');
+const darkCodeTheme = require('prism-react-renderer/themes/palenight');
 const versions = require('./versions.json');
 
 function getLatestVersionName() {
@@ -12,6 +12,15 @@ function getLatestVersionName() {
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'kintone UI Component · Be a smart kintone developer.',
+  headTags: [
+    {
+      tagName: 'meta',
+      attributes: {
+        name: 'description',
+        content: 'Be a smart kintone developer'
+      },
+    },
+  ],
   tagline: 'It will support your UI customization project.',
   url: 'https://kintone-ui-component.netlify.app',
   baseUrl: '/',
@@ -22,8 +31,8 @@ const config = {
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'kintone-ui-component', // Usually your GitHub org/user name.
-  projectName: 'kintone-labs', // Usually your repo name.
+  organizationName: 'kintone-labs', // Usually your GitHub org/user name.
+  projectName: 'kintone-ui-component', // Usually your repo name.
 
   // Even if you don't use internalization, you can use this field to set useful
   // metadata like html lang. For example, if your site is Chinese, you may want
@@ -140,7 +149,7 @@ const config = {
       },
       colorMode: {
         defaultMode: 'light',
-        disableSwitch: true,
+        disableSwitch: false,
         respectPrefersColorScheme: false,
       },
       algolia: {
