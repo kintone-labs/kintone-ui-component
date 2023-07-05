@@ -40,7 +40,7 @@ let exportNotification;
 
     shouldUpdate(changedProperties: PropertyValues): boolean {
       if (changedProperties.has("container")) {
-        if (this.container === undefined || this.container === null) {
+        if (!this.container && this._isOpened) {
           this._close();
           return false;
         }
