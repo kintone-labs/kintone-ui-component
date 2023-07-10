@@ -34,7 +34,7 @@ Here is a list of properties that can be used for modifying the component:
 > *1: Please use **focusable elements** as much as possible and avoid abusing unfocusable elements for accessibility.
 
 > *2: By understanding how to use the describeChild property, you can effectively improve the accessibility and usability of your application.
-> - Set `describeChild` to `false` if the Tooltip represents the purpose of the element itself
+> - Set `describeChild` to `false` if the Tooltip represents the purpose of the element itself.
 >   - When the Tooltip is used to provide a brief explanation or label for the element it is attached to, you can set `describeChild` to `false`
 >   - For example, if you have a button with a Tooltip that says "Save", the Tooltip represents the purpose of the button itself. In this case, set `describeChild` to `false` to indicate that the Tooltip explains the button's purpose
 > - Set `describeChild` to `true` if the Tooltip represents a description of the element
