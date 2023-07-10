@@ -86,6 +86,7 @@ Base.args = {
   text: "Duration 3 seconds",
   duration: 3000,
 };
+
 export const BaseContainer = template.bind({});
 BaseContainer.args = {
   text: "不正です!!",
