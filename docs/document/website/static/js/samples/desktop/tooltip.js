@@ -9,7 +9,7 @@ document.addEventListener("kuc:loaded", function () {
         className: "tooltip-class",
         id: "tooltip-id",
         placement: "bottom",
-        title: "Does not add if it already exists.",
+        title: "Do not add if exists.",
         container: getButtonContainer("Add"),
         describeChild: false,
     });
