@@ -30,7 +30,8 @@ Here is a list of properties that can be used for modifying the component:
 | title | string | ""  | The text shown in the component | |
 | container *1 | string/HTMLElement | "" | The target element to display the component | The `title` value will be displayed in the situation below<ul><li>When the container element is hovered</li><li>When the container element is focused</li></ul> |
 | describeChild *2 | boolean | false  | Provide additional information for assistive technologies to describe the contents of the Tooltip | It is used to control how the Tooltip interacts with the child element and provides additional accessibility information|
-> *1: Please use **focusable elements** as much as possible and avoid abusing none-focusable elements
+
+> *1: Please use **focusable elements** as much as possible and avoid abusing unfocusable elements for accessibility.
 
 > *2: Understanding how to use the `describeChild` property of the Tooltip allows you to effectively enhance the accessibility and usability of your application
 > - Set `describeChild` to `false` if the Tooltip represents the purpose of the element itself
