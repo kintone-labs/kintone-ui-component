@@ -51,9 +51,7 @@ let exportNotification;
           this._close();
         }
         if (!isValidContainer) {
-          this.throwErrorAfterUpdateComplete(
-            ERROR_MESSAGE.CONTAINER_NOTIFICATION.INVALID
-          );
+          this.throwErrorAfterUpdateComplete(ERROR_MESSAGE.CONTAINER.INVALID);
           return false;
         }
       }
