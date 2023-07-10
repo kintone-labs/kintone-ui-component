@@ -7,7 +7,7 @@ original_id: tooltip
 
 ## Overview
 
-Tooltip component allows the user to display a short explanation of the target element when hovering or focusing on the element
+Tooltip component allows the user to display a short explanation of the target element when hovering or focusing on the element.
 
 <div class="sample-container" id="tooltip">
   <div id="sample-container__components"></div>
