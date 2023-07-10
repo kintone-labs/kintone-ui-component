@@ -37,7 +37,7 @@ Here is a list of properties that can be used for modifying the component:
 > - Set `describeChild` to `false` if the Tooltip represents the purpose of the element itself.
 >   - When the Tooltip is used to provide a brief explanation or label for the element it is attached to, you can set `describeChild` to `false`
 >   - For example, if you have a button with a Tooltip that says "Save", the Tooltip represents the purpose of the button itself. In this case, set `describeChild` to `false` to indicate that the Tooltip explains the button's purpose
-> - Set `describeChild` to `true` if the Tooltip represents a description of the element
+> - Set `describeChild` to `true` if the Tooltip represents the description of the element.
 >   - When the Tooltip provides additional information or a description about the element it is attached to, set `describeChild` to `true`
 >   - For example, if you have an icon representing a question mark, and the Tooltip provides a description or explanation of what the icon represents, set `describeChild` to `true` to indicate that the Tooltip serves as a description of the icon
 
