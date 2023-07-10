@@ -99,7 +99,7 @@ const notification = new Kuc.Notification({
   type: 'danger',
   className: 'options-class',
   duration: 2000,
-  container: document.getElementById('root')
+  container: document.body
 });
 
 notification.addEventListener('close', event => {
