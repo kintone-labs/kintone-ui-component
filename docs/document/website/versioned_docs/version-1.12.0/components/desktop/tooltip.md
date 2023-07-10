@@ -26,7 +26,7 @@ Here is a list of properties that can be used for modifying the component:
 | :--- | :--- | :--- | :--- | :--- |
 | className | string | ""  | Component class name | |
 | id | string | ""  | Component id name | |
-| placement | string | top  | There are 4 placement options available: `top`, `left`, `right`, `bottom` | |
+| placement | string | top  | The position of the component relative to the target element | Available options: `top`, `left`, `right`, `bottom` |
 | title | string | ""  | The text shown in the component | |
 | container *1 | string/HTMLElement | "" | The target element to display the component | The `title` value will be displayed on the situation below <ul><li>When hovering the container element</li><li>When container has focused</li></ul> |
 | describeChild *2 | boolean | false  | Provide additional information for assistive technologies to describe the contents of the Tooltip | It is used to control how the Tooltip interacts with the child element and provides additional accessibility information|
