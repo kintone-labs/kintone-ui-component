@@ -2,7 +2,6 @@
 id: tabs-customization
 title: Tabs customization
 sidebar_label: Tabs customization
-original_id: tabs-customization
 ---
 
 ## Overview
@@ -12,8 +11,8 @@ We assume the following scenario:
 2. Append Kintone native fields to Tabs content.
 
 ### Components to use
-- [Tabs](../components/desktop/tabs)
-- [ReadOnlyTable](../components/desktop/readonly-table)
+- [Tabs](../components/desktop/tabs.md)
+- [ReadOnlyTable](../components/desktop/readonly-table.md)
 
 ## Completed image
 
@@ -24,13 +23,13 @@ The completed image of the customized page is as follows:
 ## What you will need to have ready
 
 Create an application that includes the fields as follows:
-- Two blank fields with id "space_for_native_kintone" and "space_for_custom_components"
+- Two blank fields with id "space_for_native_kintone" and "space_for_custom_components".
 - Three table fields with id "sales_record_table", "task_management_table", and "sales_order_table".
 
 ## JavaScript and CSS Customization
 
 When you import the UMD file of Kintone UI Component to the app, you can upload the JavaScript files by following these steps:<br/>
-You can see how to upload a file in the [Quick Start](../getting-started/quick-start).
+You can see how to upload a file in the [Quick Start](../getting-started/quick-start.md).
 
 ### Define constants
 

@@ -14,7 +14,7 @@ sidebar_label: v1.0.4 Release Notes
 詳細は以下になります。
 
 ### 不具合修正
-- Issue 対応："Dropdown display collapses on group field" [#512](https://github.com/kintone-labs/kintone-ui-component/issues/512) @juridon<br/>
+- Issue "Dropdown display collapses on group field" [#512](https://github.com/kintone-labs/kintone-ui-component/issues/512) @juridon<br/>
   グループフィールド内でも Desktop コンポーネントが正しく表示されるように修正
 - TextArea コンポーネントに "background-color: #ffffff;" の設定を追加
 

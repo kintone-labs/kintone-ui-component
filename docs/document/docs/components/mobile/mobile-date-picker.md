@@ -37,6 +37,7 @@ Here is a list of properties that can be used for modifying the component:
 - "en": MM/DD/YYYY
 - "ja", "zh", "zh-TW": YYYY-MM-DD
 :::
+
 ### Event
 
 Here is a list of events that can be specified:

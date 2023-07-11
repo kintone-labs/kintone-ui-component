@@ -60,6 +60,9 @@ const config = {
             require.resolve('./src/css/kuc-custom.css')
           ],
         },
+        googleTagManager: {
+          containerId: 'GTM-5N49D3',
+        },
       }),
     ],
   ],
@@ -159,14 +162,6 @@ const config = {
         contextualSearch: true,
       },
     }),
-  plugins: [
-    [
-      '@docusaurus/plugin-google-tag-manager',
-      {
-        containerId: 'GTM-5N49D3',
-      },
-    ],
-  ],
 };
 
 module.exports = config;

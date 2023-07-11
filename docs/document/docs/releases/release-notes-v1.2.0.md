@@ -48,7 +48,7 @@ Now you can get the version information of the package using version property of
 In UMD, you can use version property of Kuc.<br/>
 Example:
 
-```js
+```javascript
 console.log(Kuc.version);
 ```
 <br/>

@@ -17,10 +17,6 @@ export const FieldGroupComponent = () =>  {
         content: text
     });
 
-    fieldGroup.addEventListener('change', event => {
-        console.log(event);
-    });
-
     divEl.current.appendChild(fieldGroup)
   }, []);
 

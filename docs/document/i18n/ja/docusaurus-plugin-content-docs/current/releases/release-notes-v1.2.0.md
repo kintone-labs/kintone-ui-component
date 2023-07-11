@@ -50,7 +50,7 @@ Kuc の version プロパティを使用して、パッケージのバージョ�
 UMD では、Kuc の version プロパティを使用できます。<br/>
 例:
 
-```js
+```javascript
 console.log(Kuc.version);
 ```
 <br/>
@@ -58,7 +58,7 @@ console.log(Kuc.version);
 ESM では、kintone-ui-componentから "version" をインポートできます。<br/>
 例:
 
-```JavaScript
+```javascript
 import { version } from "kintone-ui-component/lib/version";
 console.log(version);
 ```

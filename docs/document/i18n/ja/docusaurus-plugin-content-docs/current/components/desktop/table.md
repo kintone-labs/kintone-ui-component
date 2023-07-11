@@ -19,8 +19,6 @@ import { TableComponent } from "@site/static/js/samples/desktop/table.js"
 
 使用できるプロパティの一覧です。プロパティを指定して値を更新することができます。
 
-#### Table
-
 | Name | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
 | className | string | ""  | コンポーネントの class 名 | |

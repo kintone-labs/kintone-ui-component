@@ -19,13 +19,13 @@ package.json の version プロパティ値のパッケージバージョン情�
 
 ### UMD を利用する
 
-```javescript
+```javascript
 console.log(Kuc.version);
 ```
 
 ### npm パッケージを利用する
 
-```javescript
+```javascript
 import { version } from 'kintone-ui-component/lib/version';
 console.log(version);
 ```

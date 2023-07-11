@@ -19,13 +19,13 @@ Here is a sample code when accessing the version information:
 
 ### Use the UMD
 
-```javescript
+```javascript
 console.log(Kuc.version);
 ```
 
 ### Use the npm package
 
-```javescript
+```javascript
 import { version } from 'kintone-ui-component/lib/version';
 console.log(version);
 ```

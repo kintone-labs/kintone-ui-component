@@ -81,7 +81,7 @@ function HomepagePolicy () {
             をご確認の上、お問合せください。
           </div>
           <div className="github-infomation">
-            その他 <a href="https://github.com/kintone-labs/kintone-ui-component/issues" target="_blank" rel="noreferrer"> GitHub Issue</a>.
+            その他 <a href="https://github.com/kintone-labs/kintone-ui-component/issues" target="_blank" rel="noreferrer"> GitHub Issue</a>{" "}
             にてご質問や機能リクエストを受け付けております。
           </div>
           <div className="more-infomation">

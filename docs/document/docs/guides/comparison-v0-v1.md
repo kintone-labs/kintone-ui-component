@@ -187,7 +187,7 @@ For example, you can add an id to the component by using `id` property that is n
 You can then use the id to retrieve the element.
 
 - v0 Code
-```
+```javascript
 // Process to prevent component duplication bug
 if (document.getElementById('my_index_text') !== null) {
   return event;

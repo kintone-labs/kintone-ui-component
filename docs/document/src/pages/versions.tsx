@@ -79,12 +79,14 @@ export default function Version(): JSX.Element {
   const currentLanguage = getCurrentLanguage();
   if (currentLanguage === "en") {
     return (
-      <Layout title={title} description={tagline}>
+      <Layout>
         <main className="container margin-vert--lg">
           <Heading as="h1">
             <div id="versionsPage.title">Kintone UI Component versions</div>
           </Heading>
-
+          <div className="margin-bottom--lg">
+            A new version of this project will be released on a regular basis.
+          </div>
           <div className="margin-bottom--lg">
             <Heading as="h3" id="next" style={{ display: "flex" }}>
               <div id="versionsPage.current.title">
@@ -149,7 +151,7 @@ export default function Version(): JSX.Element {
     );
   }
   return (
-    <Layout title={title} description={tagline}>
+    <Layout>
       <main className="container margin-vert--lg">
         <Heading as="h1">
           <div id="versionsPage.title">kintone UI Component versions</div>

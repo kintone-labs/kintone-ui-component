@@ -27,7 +27,7 @@ import { RadioButtonComponent } from "@site/static/js/samples/desktop/radio-butt
 | id | string | "" | コンポーネントの id 名 ||
 | itemLayout | string | "horizontal" | 選択肢の並べ方 | 以下を指定できる<br/>"horizontal" : 横並び<br/>"vertical" : 縦並び |
 | label | string | "" | コンポーネントの説明ラベル | 未指定、あるいは空文字の場合、label は表示されない |
-| value *1 | string | "" | 選択されている値 | value と selectedIndex が未指定の場合、何も選択されない<br/>重複する value を指定し、selectedIndex を指定しない場合、Item.value で最初にマッピングされた value の項目が選択され、selectedIndex にはその選択肢のインデックス番号が入る |
+| value *1 | string | "" | 選択されている値 | value と selectedIndex が未指定の場合、何も選択されない<br/>重複する value を指定し、selectedIndex を指定しない場合、Item.value で最初にマッピングされた value の項目が選択され、selectedIndex にはその選択肢のインデックス番号が入る<br/>value が文字列以外の場合、エラーを出力する |
 | selectedIndex *1 | number | -1 | 選択されている値のインデックス番号 | items 内に重複する Item.value がある場合、どの Item.value が選択されるか指定するためのプロパティ<br/>value が未指定で、selectedIndex に有効な値が指定されている場合、 そのインデックス番号の選択肢が選択される<br/>value に重複した Item.value が指定され、selectedIndex の値が value 内の重複した Item.value とマッピングした場合、そのインデックス番号の選択肢が選択される<br/>selectedIndex が数値以外の場合、エラーを出力する |
 | borderVisible | boolean | true | 選択肢を囲う枠線の表示/非表示設定 ||
 | disabled | boolean | false | コンポーネントの編集可/不可設定 ||
@@ -41,13 +41,13 @@ import { RadioButtonComponent } from "@site/static/js/samples/desktop/radio-butt
 *1: Item.value に重複した値を指定できる。重複した値を指定する場合、value と selectedIndex プロパティを使って制御することができる。<br/>
  例: `items = [{label: 'Orange', value: 'fruit'}, {label: 'Apple', value: 'fruit'}, {label: 'Carrot', value: 'vegetable'}]` を指定する
 
- - 以下のように value を指定、selectedIndex を未指定の場合:
-   - value = 'fruit': 最初の値が選択される。
-   - value = 'other': 何も選択されない。
+- 以下のように value を指定、selectedIndex を未指定の場合:
+  - value = 'fruit': 最初の値が選択される。
+  - value = 'other': 何も選択されない。
 
- - 以下のように value を未指定、selectedIndex を指定する場合:
-   - selectedIndex = 1: 2番目の値が選択される。
-   - selectedIndex = 99: 何も選択されない。
+- 以下のように value を未指定、selectedIndex を指定する場合:
+  - selectedIndex = 1: 2番目の値が選択される。
+  - selectedIndex = 99: 何も選択されない。
 :::
 
 ### Event

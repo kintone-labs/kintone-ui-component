@@ -9,8 +9,11 @@ sidebar_label: v1.4.0 Release Notes
 [kintone UI Component v1.4.0](https://github.com/kintone-labs/kintone-ui-component/releases/tag/v1.4.0) のリリースノートです。<br/>
 新コンポーネントや機能開発, メンテナンス対応, ドキュメントのアップデート, セキュリティアップデートを行いました。
 
-> このバージョンでは、バージョンコンフリクトの問題を解決するためにコーディング方法・コンポーネントタグとクラス名において後方互換のある大きな変更があるのでご注意ください。
-> 詳しくは [Version conflicts issue and solution](../guides/version-conflicts-issue-solution) と新しい [Quick Start](../getting-started/quick-start) 記事をご確認ください。
+::info
+このバージョンでは、バージョンコンフリクトの問題を解決するためにコーディング方法・コンポーネントタグとクラス名において後方互換のある大きな変更があるのでご注意ください。
+詳しくは [Version conflicts issue and solution](../guides/version-conflicts-issue-solution) と新しい [Quick Start](../getting-started/quick-start) 記事をご確認ください。
+:::
+
 ## アップデート内容
 ### 新コンポーネント
 - Mobile Date/Time シリーズコンポーネントの追加（MobileDatePicker, MobileTimePicker, and MobileDateTimePicker）

@@ -12,8 +12,7 @@ sidebar_label: Mobile timecard customization
 
 以下が、画面の完成イメージです。
 
-![タイムカード](/img/timecard.png)
-<br/>
+![タイムカード](/img/timecard.png)<br/>
 ![打刻メッセージ](/img/timecard_notification.png)
 
 ## JavaScript/CSS カスタマイズ

@@ -51,28 +51,33 @@ npm install kintone-ui-component
 
 2. `src/index.ts` を編集します。
 ```js
-import { Dropdown, DropdownProps, DropdownItem, DropdownChangeEventDetail } from 'kintone-ui-component';
+import {
+  Dropdown,
+  DropdownChangeEventDetail,
+  DropdownItem,
+  DropdownProps,
+} from 'kintone-ui-component';
 
 const root = document.getElementById('root');
 const items: DropdownItem[] = [
   {
     label: '-----',
-    value: '-----',
+    value: '-----'
   },
   {
     label: 'Orange',
-    value: 'orange',
+    value: 'orange'
   },
   {
     label: 'Banana',
-    value: 'banana',
-  },
+    value: 'banana'
+  }
 ];
 const dropdownProps: DropdownProps = {
   items: items,
   value: '-----',
   label: 'Fruit',
-  error: 'Error occurred!',
+  error: 'Error occurred!'
 };
 const dropdown = new Dropdown(dropdownProps);
 dropdown.addEventListener('change', ((event: CustomEvent) => {

@@ -135,7 +135,7 @@ UMD ファイルの導入方法は、[Quick Start](../getting-started/quick-star
 ## JavaScript/CSS カスタマイズ（設定画面）
 
 設定画面の実装コードを解説します。<br/>
-以下の様な JavaScript ファイル（config.js）を js フォルダに配置します。<br/>
+以下のような JavaScript ファイル（config.js）を js フォルダに配置します。<br/>
 
 ***config.js***
 

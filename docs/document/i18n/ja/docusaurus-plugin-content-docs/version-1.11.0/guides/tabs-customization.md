@@ -18,7 +18,7 @@ sidebar_label: Tabs customization
 
 以下が画面の完成イメージです。
 
-![tabs customize](assets/tabs_customize.gif)
+![tabs customize](/img/tabs_customize.gif)
 
 ## 事前準備
 
@@ -210,7 +210,7 @@ function setFieldsShown(fields, isShown) {
 }
 ```
 
-:::caution
+:::info
 本記事は、 2023 年 5 月時点の kintone と Google Chrome で確認したものになります。<br/>
 また、カスタマイズに使用した kintone UI Component のバージョンは、v1.11.0 です。
 :::

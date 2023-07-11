@@ -6,7 +6,7 @@ sidebar_label: ReadOnlyTable
 
 ## Overview
 
-ReadOnlyTable は、kintone 詳細画面の読み取りテーブルを表示します。
+ReadOnlyTable は読み取り専用のテーブルを表示します。
 
 import { ReadOnlyTableComponent } from "@site/static/js/samples/desktop/readonly-table.js"
 
@@ -123,3 +123,4 @@ space.appendChild(readOnlyTable);
 ## Related Articles
 
 - [Table and ReadOnlyTable customization](../../guides/table-readonly-table-customization.md)
+- [Tabs customization](../../guides/tabs-customization.md)

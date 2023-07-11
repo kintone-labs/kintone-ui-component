@@ -188,7 +188,7 @@ You can then use the id to retrieve the element.
 
 - v0 Code
 
-```js
+```javascript
 // Process to prevent component duplication bug
 if (document.getElementById('my_index_text') !== null) {
   return event;
