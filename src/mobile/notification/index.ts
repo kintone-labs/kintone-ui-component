@@ -98,7 +98,7 @@ let exportMobileNotification;
       dispatchCustomEvent(this, "close");
     }
 
-    _close() {
+    private _close() {
       this._isOpened = false;
       this.classList.remove("kuc-mobile-notification-fadein");
       this.classList.add("kuc-mobile-notification-fadeout");

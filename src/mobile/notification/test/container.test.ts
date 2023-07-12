@@ -1,23 +1,14 @@
-import { elementUpdated, expect, fixture } from "@open-wc/testing";
+import { elementUpdated, expect, fixture, nextFrame } from "@open-wc/testing";
 
 import { MobileNotification } from "../index";
 
 const CLASS_OUT = "kuc-mobile-notification-fadeout";
 const CLASS_IN = "kuc-mobile-notification-fadein";
 
-describe("Notification", () => {
+describe("MobileNotification", () => {
   describe("container", () => {
     it("should be append to body when not assign on constructor", async () => {
       const container = new MobileNotification();
-      container.open();
-      await elementUpdated(container);
-
-      const parentEl = container.parentNode as HTMLElement;
-      expect(parentEl.nodeName).to.equal("BODY");
-    });
-
-    it("should be append to body when null on constructor", async () => {
-      const container = new MobileNotification(null);
       container.open();
       await elementUpdated(container);
 
@@ -38,11 +29,10 @@ describe("Notification", () => {
     });
 
     it("should not display when assign null on constructor", async () => {
-      const container = new MobileNotification(null);
+      const container = new MobileNotification({ container: null });
       container.open();
-      await elementUpdated(container);
-
-      expect(container.hasAttribute("opened")).to.equal(false);
+      await nextFrame();
+      expect(document.body.contains(container)).to.equal(false);
     });
 
     it("should not display when setting to null by setter", async () => {
@@ -52,6 +42,16 @@ describe("Notification", () => {
       expect(container.classList.contains(CLASS_IN)).to.equal(true);
 
       container.container = null;
+      await elementUpdated(container);
+      expect(container.classList.contains(CLASS_OUT)).to.equal(true);
+    });
+
+    it("should not display when setting to undefined by setter", async () => {
+      const container = new MobileNotification();
+      container.open();
+      await elementUpdated(container);
+      expect(container.classList.contains(CLASS_IN)).to.equal(true);
+      container.container = undefined;
       await elementUpdated(container);
       expect(container.classList.contains(CLASS_OUT)).to.equal(true);
     });
