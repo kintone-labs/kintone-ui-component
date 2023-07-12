@@ -80,18 +80,16 @@ Here is a sample code when all parameters are specified:
 const Kuc = Kucs['1.x.x'];
 
 const space = kintone.app.record.getSpaceElement('space');
-const getButtonContainer = (text) => {
-  const buttonEl = document.createElement("button");
-  buttonEl.innerText = text;
-  return buttonEl;
-};
+const buttonEl = document.createElement('button');
+buttonEl.innerText ='Add';
+
 const tooltip = new Kuc.Tooltip({
-  className: "tooltip-class",
-  id: "tooltip-id",
-  placement: "bottom",
-  title: "Does not add if it already exists.",
-  container: getButtonContainer("Add"),
+  title: "Do not add if it exists.",
+  container: buttonEl,
+  placement: 'bottom',
   describeChild: false,
+  className: 'tooltip-class',
+  id: 'tooltip-id',
 });
 space.appendChild(tooltip);
 ```
