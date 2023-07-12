@@ -86,6 +86,7 @@ none
 
 ---
 ## Sample Code
+
 :::tip
 [導入と実装方法](../../getting-started/quick-start.md#導入と実装方法) をご確認ください。
 :::

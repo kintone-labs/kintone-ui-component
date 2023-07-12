@@ -397,7 +397,7 @@ JavaScript の実装が完了したら、以下のような CSS ファイル（c
 ## JavaScript/CSS カスタマイズ（アプリ画面）
 
 アプリ画面の実装コードを解説します。<br/>
-以下の様なJavaScript ファイル（desktop.js）を js フォルダに配置します。<br/>
+以下のようなJavaScript ファイル（desktop.js）を js フォルダに配置します。<br/>
 プラグイン設定画面のコンポーネントから値を引き継いで、アプリのカスタマイズで利用しているのがポイントです。<br/>
 DatePicker コンポーネントの value が yyyy-mm-dd 形式のため、
 比較しやすいように本日の日付も yyyy-mm-dd 形式で取得しています。<br/>
