@@ -1,7 +1,8 @@
 ---
-id: notification
+id: version-1.12.0-notification
 title: Notification
 sidebar_label: Notification
+original_id: notification
 ---
 
 ## Overview
