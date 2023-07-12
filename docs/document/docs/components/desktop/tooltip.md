@@ -1,8 +1,7 @@
 ---
-id: version-1.12.0-tooltip
+id: tooltip
 title: Tooltip
 sidebar_label: Tooltip
-original_id: tooltip
 ---
 
 ## Overview
