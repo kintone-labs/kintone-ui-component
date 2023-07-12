@@ -35,9 +35,9 @@ Here is a list of properties that can be used for modifying the component:
 
 > *2: By understanding how to use the describeChild property, you can effectively improve the accessibility and usability of your application.
 > - Set `describeChild` to `false` if the Tooltip represents the purpose of the element itself.
->   - When the Tooltip is used to provide a brief explanation or label for the element it is attached to, you can set `describeChild` to `false`.
+>   - If the Tooltip is used to provide a brief explanation or label for the element it is attached to, you can set `describeChild` to `false`.
 >   - The `aria-label` attribute will be added to the `button` element with the value of the `title` property.
->   - For example, if you have a button with a Tooltip that says "Save", the Tooltip represents the purpose of the button itself. In this case, set `describeChild` to `false` to indicate that the Tooltip explains the button's purpose.
+>   - For example, if you have a button with a Tooltip that says "Save", the Tooltip represents the purpose of the button itself. In this case, set `describeChild` to `false` to indicate that the Tooltip explains the purpose of the button.
 >     ```javascript
 >       <kuc-tooltip>
 >         <button aria-label=“Save”>Save</button>
@@ -46,9 +46,9 @@ Here is a list of properties that can be used for modifying the component:
 >     ```
 >    - You can learn more about [aria-label](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-label)
 > - Set `describeChild` to `true` if the Tooltip represents the description of the element.
->   - When the Tooltip provides additional information or a description about the element it is attached to, set `describeChild` to `true`.
+>   - If the Tooltip provides additional information or a description about the element it is attached to, set `describeChild` to `true`.
 >   - The `aria-describedby` attribute will be added to the `button` element with the value of the ID of the tooltip wrapper element.
->   - For example, if you have an icon representing a question mark, and the Tooltip provides a description or explanation of what the icon represents, set `describeChild` to `true` to indicate that the Tooltip serves as a description of the icon.
+>   - For example, if you have an icon that represents a question mark, and the Tooltip provides a description or explanation of what the icon represents, set `describeChild` to `true` to indicate that the Tooltip serves as a description of the icon.
 >     ```javascript
 >       <kuc-tooltip>
 >         <button aria-describedby=“tooltip-ID”>
