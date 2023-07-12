@@ -35,7 +35,7 @@ Here is a list of properties that can be used for modifying the component:
 
 > *2: By understanding how to use the describeChild property, you can effectively improve the accessibility and usability of your application.
 > - Set `describeChild` to `false` if the Tooltip represents the purpose of the element itself (provides a brief explanation or label for the element it is attached to).
->   - The `aria-label` attribute will be added to the `button` element with the value of the `title` property.
+>   - The `aria-label` attribute will be added to the first child element of the Tooltip component with the value of the `title` property.
 >   - For example, if you have a button with a Tooltip that says "Save", the Tooltip represents the purpose of the button itself. In this case, set `describeChild` to `false` to indicate that the Tooltip explains the purpose of the button.
 >     ```javascript
 >       <kuc-tooltip>
