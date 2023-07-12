@@ -56,7 +56,8 @@ Here is a list of properties that can be used for modifying the component:
 >         <div id="tooltip-ID">This is a help icon. Click for more information</div>
 >       </kuc-tooltip>
 >     ```
->   - You can learn more about [aria-describedby](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-describedby)
+>   - You can learn more about [aria-describedby](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-describedby).
+
 ### Constructor
 
 Tooltip(options)<br>
