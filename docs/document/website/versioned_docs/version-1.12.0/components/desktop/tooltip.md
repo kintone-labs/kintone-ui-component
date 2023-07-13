@@ -39,8 +39,8 @@ Here is a list of properties that can be used for modifying the component:
 >   - For example, if you have a button with a Tooltip that says "Save", the Tooltip represents the purpose of the button itself. In this case, set `describeChild` to `false` to indicate that the Tooltip explains the purpose of the button.
 >     ```javascript
 >       <kuc-tooltip>
->         <button aria-label=“Save”>Save</button>
->         <div id="tooltip-ID">Save</div>
+>         <button aria-label='Save'>Save</button>
+>         <div id='tooltip-ID'>Save</div>
 >       </kuc-tooltip>
 >     ```
 >    - You can learn more about [aria-label](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-label).
