@@ -49,10 +49,10 @@ Here is a list of properties that can be used for modifying the component:
 >   - For example, if you have an icon that represents a question mark, and the Tooltip provides a description or explanation of what the icon represents. In this case, set `describeChild` to `true` to indicate that the Tooltip serves as a description of the icon.
 >     ```javascript
 >       <kuc-tooltip>
->         <button aria-describedby=“tooltip-ID”>
->           <span class="icon-question-mark"></span>
+>         <button aria-describedby='tooltip-ID'>
+>           <span class='icon-question-mark'></span>
 >         </button>
->         <div id="tooltip-ID">This is a help icon. Click for more information</div>
+>         <div id='tooltip-ID'>This is a help icon. Click for more information</div>
 >       </kuc-tooltip>
 >     ```
 >   - You can learn more about [aria-describedby](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-describedby).
