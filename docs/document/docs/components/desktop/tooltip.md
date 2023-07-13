@@ -38,8 +38,8 @@ Here is a list of properties that can be used for modifying the component:
 >   - For example, if you have a button with a Tooltip that says "Save", the Tooltip represents the purpose of the button itself. In this case, set `describeChild` to `false` to indicate that the Tooltip explains the purpose of the button.
 >     ```javascript
 >       <kuc-tooltip>
->         <button aria-label=“Save”>Save</button>
->         <div id="tooltip-ID">Save</div>
+>         <button aria-label='Save'>Save</button>
+>         <div id='tooltip-ID'>Save</div>
 >       </kuc-tooltip>
 >     ```
 >    - You can learn more about [aria-label](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-label).
@@ -48,10 +48,10 @@ Here is a list of properties that can be used for modifying the component:
 >   - For example, if you have an icon that represents a question mark, and the Tooltip provides a description or explanation of what the icon represents. In this case, set `describeChild` to `true` to indicate that the Tooltip serves as a description of the icon.
 >     ```javascript
 >       <kuc-tooltip>
->         <button aria-describedby=“tooltip-ID”>
->           <span class="icon-question-mark"></span>
+>         <button aria-describedby='tooltip-ID'>
+>           <span class='icon-question-mark'></span>
 >         </button>
->         <div id="tooltip-ID">This is a help icon. Click for more information</div>
+>         <div id='tooltip-ID'>This is a help icon. Click for more information</div>
 >       </kuc-tooltip>
 >     ```
 >   - You can learn more about [aria-describedby](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-describedby).
@@ -82,10 +82,10 @@ const buttonEl = document.createElement('button');
 buttonEl.innerText ='Add';
 
 const tooltip = new Kuc.Tooltip({
-  title: "Do not add if it exists.",
+  title: 'Do not add if it exists.',
   container: buttonEl,
   placement: 'bottom',
-  describeChild: false,
+  describeChild: true,
   className: 'tooltip-class',
   id: 'tooltip-id',
 });

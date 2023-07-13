@@ -86,7 +86,7 @@ const tooltip = new Kuc.Tooltip({
   title: 'Do not add if it exists.',
   container: buttonEl,
   placement: 'bottom',
-  describeChild: false,
+  describeChild: true,
   className: 'tooltip-class',
   id: 'tooltip-id',
 });

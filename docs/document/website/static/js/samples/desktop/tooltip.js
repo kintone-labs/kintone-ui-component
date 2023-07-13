@@ -11,7 +11,7 @@ document.addEventListener("kuc:loaded", function () {
         placement: "bottom",
         title: "Do not add if exists.",
         container: getButtonContainer("Add"),
-        describeChild: false,
+        describeChild: true,
     });
     container.appendChild(tooltip);
   });
