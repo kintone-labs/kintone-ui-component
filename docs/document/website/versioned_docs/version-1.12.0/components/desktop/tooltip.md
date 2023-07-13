@@ -83,7 +83,7 @@ const buttonEl = document.createElement('button');
 buttonEl.innerText ='Add';
 
 const tooltip = new Kuc.Tooltip({
-  title: "Do not add if it exists.",
+  title: 'Do not add if it exists.',
   container: buttonEl,
   placement: 'bottom',
   describeChild: false,
