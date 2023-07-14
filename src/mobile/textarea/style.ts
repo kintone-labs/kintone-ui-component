@@ -1,7 +1,6 @@
 export const MOBILE_TEXTAREA_CSS = `
   kuc-mobile-textarea,  
   kuc-mobile-textarea * {
-    display: block;
     font-size: 13px;
     font-family: "メイリオ", Meiryo, "Hiragino Kaku Gothic ProN",
       "ヒラギノ角ゴ ProN W3", "ＭＳ Ｐゴシック", "Lucida Grande",
@@ -18,6 +17,9 @@ export const MOBILE_TEXTAREA_CSS = `
       font-family: "微軟正黒體","Microsoft JhengHei","新宋体",NSimSun,STHeiti,
       Hei,"Heiti SC","Lucida Grande","Lucida Sans Unicode",Arial,
       Verdana,sans-serif
+  }
+  kuc-mobile-textarea {
+    display: block;
   }
   kuc-mobile-textarea[hidden] {
     display: none;
