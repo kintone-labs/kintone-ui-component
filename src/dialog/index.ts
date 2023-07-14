@@ -1,5 +1,5 @@
 import { html, PropertyValues, svg } from "lit";
-import { property, query, queryAll } from "lit/decorators.js";
+import { property, query, queryAll, state } from "lit/decorators.js";
 import { DirectiveResult } from "lit/directive.js";
 import { UnsafeHTMLDirective } from "lit/directives/unsafe-html.js";
 
@@ -35,6 +35,9 @@ let exportDialog;
     @property() content: string | HTMLElement = "";
     @property() footer: string | HTMLElement = "";
     @property() container: HTMLElement = document.body;
+
+    @state()
+    private _isOpened = false;
 
     @query(".kuc-dialog__dialog") private _dialogEl!: HTMLDivElement;
     @queryAll(
@@ -236,16 +239,15 @@ let exportDialog;
 
     shouldUpdate(changedProperties: PropertyValues): boolean {
       if (changedProperties.has("container")) {
-        if (this.container === undefined) return true;
-        if (this.container === null) {
-          this.close();
+        if (this.container === null || this.container === undefined) {
+          this._isOpened && this.close();
           return false;
         }
 
         const isValidContainer = this._isValidContainerElement();
         const shouldClose =
           !isValidContainer || !document.contains(this.container);
-        if (shouldClose) {
+        if (this._isOpened && shouldClose) {
           this.close();
         }
         if (!isValidContainer) {
@@ -254,17 +256,8 @@ let exportDialog;
           );
           return false;
         }
-        return true;
       }
       return true;
-    }
-
-    protected willUpdate(changedProperties: PropertyValues): void {
-      if (changedProperties.has("container")) {
-        if (this.container === undefined) {
-          this.close();
-        }
-      }
     }
 
     update(changedProperties: PropertyValues) {
@@ -296,11 +289,13 @@ let exportDialog;
       this.performUpdate();
 
       this.setAttribute("opened", "");
+      this._isOpened = true;
       this._triggeredElement = document.activeElement;
       this._dialogEl && this._dialogEl.focus();
     }
 
     close() {
+      this._isOpened = false;
       const body = document.getElementsByTagName("body")[0];
       body.classList.remove("kuc--has-dialog");
       this.removeAttribute("opened");

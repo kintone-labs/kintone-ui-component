@@ -13,17 +13,6 @@ describe("Dialog", () => {
       expect(parrentEl.nodeName).to.equal("BODY");
     });
 
-    it("should be append to body when assign invalid element on constructor", async () => {
-      const container = new Dialog({
-        container: document.getElementById("some-id"),
-      });
-      container.open();
-      await elementUpdated(container);
-
-      const parrentEl = container.parentNode as HTMLElement;
-      expect(parrentEl.nodeName).to.equal("BODY");
-    });
-
     it("should be append to container when assign on constructor", async () => {
       const rootElement = document.createElement("div");
       rootElement.id = "root";
@@ -62,6 +51,17 @@ describe("Dialog", () => {
       expect(container.hasAttribute("opened")).to.equal(true);
 
       container.container = undefined;
+      await elementUpdated(container);
+      expect(container.hasAttribute("opened")).to.equal(false);
+    });
+
+    it("should close component when assign invalid value while open by setter", async () => {
+      const container = new Dialog();
+      container.open();
+      await elementUpdated(container);
+      expect(container.hasAttribute("opened")).to.equal(true);
+
+      container.container = "invalid value";
       await elementUpdated(container);
       expect(container.hasAttribute("opened")).to.equal(false);
     });

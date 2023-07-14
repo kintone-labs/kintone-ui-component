@@ -14,68 +14,47 @@ export default {
     },
   },
 };
+
 const template = (args) => {
   const dialog = new Dialog({ ...args });
   dialog.addEventListener("close", (event) => {
     console.log(event);
   });
   const root = document.createElement("div");
-  const openButton = document.createElement("button");
-  openButton.textContent = "open!!";
-  openButton.addEventListener("click", (event) => {
+
+  const openButton = createButton("OPEN", () => {
     dialog.open();
   });
-  const closeButton = document.createElement("button");
-  closeButton.textContent = "close!!";
-  closeButton.addEventListener("click", (event) => {
+  const closeButton = createButton("CLOSE", () => {
     dialog.close();
   });
-
-  const buttonFullScreen = document.createElement("button");
-  buttonFullScreen.innerText = "full screen mode";
-  buttonFullScreen.addEventListener("click", () => {
+  const buttonFullScreen = createButton("full screen mode", () => {
     document.getElementById("root").requestFullscreen();
   });
-
-  const buttonSetRoot = document.createElement("button");
-  buttonSetRoot.innerText = "Set Root element";
-  buttonSetRoot.addEventListener("click", () => {
-    dialog.container = getRootElement();
+  const buttonSetRoot = createButton("Set Root element", () => {
+    dialog.container = rootElement;
+  });
+  const buttonSetBody = createButton("Set Body element", () => {
+    dialog.container = bodyElement;
   });
 
-  const buttonSetBody = document.createElement("button");
-  buttonSetBody.innerText = "Set Body element";
-  buttonSetBody.addEventListener("click", () => {
-    dialog.container = getBodyElement();
-  });
-
-  const buttonSetUndefined = document.createElement("button");
-  buttonSetUndefined.innerText = "Set undefined";
-  buttonSetUndefined.addEventListener("click", () => {
+  const buttonSetUndefined = createButton("Set undefined", () => {
     dialog.container = undefined;
   });
 
-  const buttonSetNull = document.createElement("button");
-  buttonSetNull.innerText = "Set null";
-  buttonSetNull.addEventListener("click", () => {
+  const buttonSetNull = createButton("Set null", () => {
     dialog.container = null;
   });
 
-  const buttonSetNonExistELement = document.createElement("button");
-  buttonSetNonExistELement.innerText = "Set non exist element";
-  buttonSetNonExistELement.addEventListener("click", () => {
-    dialog.container = getNonExistElement();
+  const buttonSetNonExistELement = createButton("Set non exist element", () => {
+    dialog.container = nonExistElement;
   });
 
-  const buttonInvalidValue = document.createElement("button");
-  buttonInvalidValue.innerText = "Set invalid value";
-  buttonInvalidValue.addEventListener("click", () => {
+  const buttonInvalidValue = createButton("Set invalid value", () => {
     dialog.container = 12;
   });
 
-  const buttonGetter = document.createElement("button");
-  buttonGetter.innerText = "GETTER";
-  buttonGetter.addEventListener("click", () => {
+  const buttonGetter = createButton("GETTER", () => {
     console.log("container value:", dialog.container);
   });
 
@@ -93,17 +72,16 @@ const template = (args) => {
   return root;
 };
 
-const getNonExistElement = () => {
-  return document.createElement("div");
+const createButton = (text, onClick) => {
+  const button = document.createElement("button");
+  button.textContent = text;
+  button.addEventListener("click", onClick);
+  return button;
 };
 
-const getBodyElement = () => {
-  return document.body;
-};
-
-const getRootElement = () => {
-  return document.getElementById("root");
-};
+const nonExistElement = document.createElement("div");
+const bodyElement = document.body;
+const rootElement = document.getElementById("root");
 
 export const Base = template.bind({});
 Base.args = {
@@ -111,5 +89,5 @@ Base.args = {
   content: "Content with Icon",
   footer: "Footer",
   icon: "success",
-  container: getRootElement(),
+  container: rootElement,
 };
