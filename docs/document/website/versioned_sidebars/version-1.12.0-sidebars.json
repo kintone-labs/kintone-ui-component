@@ -28,7 +28,8 @@
           "version-1.12.0-components/desktop/tabs",
           "version-1.12.0-components/desktop/text",
           "version-1.12.0-components/desktop/textarea",
-          "version-1.12.0-components/desktop/time-picker"
+          "version-1.12.0-components/desktop/time-picker",
+          "version-1.12.0-components/desktop/tooltip"
         ]
       },
       {
