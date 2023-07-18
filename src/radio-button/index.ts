@@ -1,8 +1,7 @@
 import { html, PropertyValues, svg } from "lit";
-import { property, query } from "lit/decorators.js";
+import { property } from "lit/decorators.js";
 
 import { ERROR_MESSAGE } from "../base/constant";
-import { getWidthElmByContext } from "../base/context";
 import { visiblePropConverter } from "../base/converter";
 import { BaseError } from "../base/error";
 import {
@@ -56,15 +55,6 @@ let exportRadioButton;
     })
     visible = true;
     @property({ type: Array }) items: RadioButtonItem[] = [];
-
-    @query(".kuc-radio-button__group__label")
-    private _labelEl!: HTMLDivElement;
-
-    @query(".kuc-base-error__error")
-    private _errorEl!: HTMLDivElement;
-
-    @query(".kuc-radio-button__group__select-menu")
-    private _selectMenuEl!: HTMLDivElement;
 
     private _GUID: string;
 
@@ -278,11 +268,6 @@ let exportRadioButton;
       `;
     }
 
-    async updated() {
-      await this.updateComplete;
-      this._updateErrorWidth();
-    }
-
     private _getSelectedIndex() {
       if (!this.value) {
         if (this.items[this.selectedIndex]) return this.selectedIndex;
@@ -309,16 +294,6 @@ let exportRadioButton;
       const item = _items[_selectedIndex];
       if (!item) return "";
       return item.value;
-    }
-
-    private _updateErrorWidth() {
-      const MIN_WIDTH = 239;
-      const labelWidth = getWidthElmByContext(this._labelEl);
-      const menuWidth = getWidthElmByContext(this._selectMenuEl);
-
-      let errorWidth = labelWidth > MIN_WIDTH ? labelWidth : MIN_WIDTH;
-      if (menuWidth > errorWidth) errorWidth = menuWidth;
-      this._errorEl.style.width = errorWidth + "px";
     }
   }
   window.customElements.define("kuc-radio-button", KucRadioButton);

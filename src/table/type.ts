@@ -16,33 +16,35 @@ export declare type Render = (
   rowIndex: number
 ) => HTMLElement;
 
-export declare type TableProps = {
+export declare type TableProps<T extends object = object> = {
   className?: string;
   id?: string;
   label?: string;
-  data?: object[];
+  data?: T[];
   columns?: Column[];
   actionButton?: boolean;
+  headerVisible?: boolean;
   visible?: boolean;
 };
 
-export declare type TableChangeEventDetail = {
+export declare type TableChangeEventDetail<T extends object = object> = {
   rowIndex: number;
-  data: object[] | undefined;
-  oldData: object[] | undefined;
+  data: T[] | undefined;
+  oldData: T[] | undefined;
   field?: string;
   type: string;
 };
 
-export declare class Table extends KucBase {
+export declare class Table<T extends object = object> extends KucBase {
   className: string;
   id: string;
   label: string;
   columns: Column[];
-  data: object[];
+  data: T[];
   actionButton: boolean;
+  headerVisible: boolean;
   visible: boolean;
-  constructor(props?: TableProps);
+  constructor(props?: TableProps<T>);
   update(changedProperties: PropertyValues): void;
   render(): import("lit-html").TemplateResult<1>;
 }

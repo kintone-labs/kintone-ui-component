@@ -395,7 +395,7 @@ export function setListBoxPosition(_this: HTMLElement, position: string) {
   const listBoxMonthHeight = 360;
   const listBoxYearHeight = 300;
   const listBoxHeight =
-    _this.tagName === "KUC-BASE-DATETIME-HEADER-MONTH"
+    _this.tagName.toLowerCase() === "kuc-base-datetime-header-month"
       ? listBoxMonthHeight
       : listBoxYearHeight;
   const paddingListBox = 18;
@@ -431,7 +431,16 @@ export const calculateDistanceInput = (_this: HTMLElement) => {
       inputToRight: 0,
       inputToLeft: 0,
     };
-  const inputDateWidth = 100;
+  const inputParentElement =
+    _this.closest("kuc-base-date") ?? _this.closest("kuc-mobile-base-date");
+  const inputDate =
+    (inputParentElement as HTMLElement).getElementsByClassName(
+      "kuc-base-date__input"
+    )[0] ??
+    (inputParentElement as HTMLElement).getElementsByClassName(
+      "kuc-mobile-base-date__group"
+    )[0];
+  const inputDateWidth = inputDate.getBoundingClientRect().width;
   const inputToBottom =
     window.innerHeight - _this.parentElement.getBoundingClientRect().bottom;
   const inputToTop = _this.parentElement.getBoundingClientRect().top;

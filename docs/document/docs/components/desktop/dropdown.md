@@ -66,6 +66,21 @@ Here is a list of available constructors:
 | :--- | :--- | :--- | :--- | :--- |
 | options | object | {} | Object that includes component properties | |
 
+### Custom CSS
+> Please check [Custom CSS feature guide](../../getting-started/custom-css.md) at first.
+
+Here is a list of properties that can be used for modifying component style:<br>
+"toggle" means the area of the Dropdown button.
+#### Property
+| Name |
+| :--- |
+| --kuc-dropdown-font-size |
+| --kuc-dropdown-toggle-width |
+| --kuc-dropdown-toggle-height |
+| --kuc-dropdown-toggle-color |
+| --kuc-dropdown-menu-color |
+| --kuc-dropdown-menu-color-selected |
+
 ---
 ## Sample Code
 

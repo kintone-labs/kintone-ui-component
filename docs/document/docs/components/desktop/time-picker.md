@@ -55,6 +55,18 @@ Here is a list of available constructors:
 | :--- | :--- | :--- | :--- | :--- |
 | options  | object | {} | Object that includes component properties |  |
 
+### Custom CSS
+> Please check [Custom CSS feature guide](../../getting-started/custom-css.md) at first.
+
+Here is a list of properties that can be used for modifying component style:
+#### Property
+| Name |
+| :--- |
+| --kuc-time-picker-input-width |
+| --kuc-time-picker-input-height |
+| --kuc-time-picker-input-font-size |
+| --kuc-time-picker-input-color |
+
 ---
 ## Sample Code
 

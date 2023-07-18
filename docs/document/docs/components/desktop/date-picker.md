@@ -55,6 +55,18 @@ Here is a list of available constructors:
 | :--- | :--- | :--- | :--- | :--- |
 | options  | object | {} | Object that includes component properties |  |
 
+### Custom CSS
+> Please check [Custom CSS feature guide](../../getting-started/custom-css.md) at first.
+
+Here is a list of properties that can be used for modifying component style:
+#### Property
+| Name |
+| :--- |
+| --kuc-date-picker-input-width |
+| --kuc-date-picker-input-height |
+| --kuc-date-picker-input-color |
+| --kuc-date-picker-input-font-size |
+
 ---
 ## Sample Code
 
