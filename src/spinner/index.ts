@@ -1,6 +1,7 @@
-import { html, svg } from "lit";
+import { html, PropertyValues, svg } from "lit";
 import { property } from "lit/decorators.js";
 
+import { ERROR_MESSAGE } from "../base/constant";
 import { createStyleOnHeader, KucBase } from "../base/kuc-base";
 import { validateProps } from "../base/validator";
 
@@ -17,8 +18,9 @@ let exportSpinner;
 
   class KucSpinner extends KucBase {
     @property({ type: String }) text = "";
+    @property() container: HTMLElement = document.body;
 
-    private _body: Element = document.getElementsByTagName("BODY")[0];
+    private _isOpened = false;
 
     constructor(props?: SpinnerProps) {
       super();
@@ -49,16 +51,59 @@ let exportSpinner;
       `;
     }
 
+    private _isValidContainerElement() {
+      return this.container instanceof HTMLElement;
+    }
+
     open() {
-      if (this._body.classList.contains("kuc--has-spinner") === false) {
-        this._body.classList.add("kuc--has-spinner");
+      const isValidContainer = this._isValidContainerElement();
+      if (!isValidContainer) {
+        document.body.appendChild(this);
+        requestAnimationFrame(() => {
+          document.body.removeChild(this);
+        });
+        this.performUpdate();
+        return;
       }
-      this._body.appendChild(this);
+
+      this.parentElement &&
+        this.parentElement.classList.remove("kuc--has-spinner");
+      this.container.appendChild(this);
+      this.performUpdate();
+
+      if (!this.container.classList.contains("kuc--has-spinner")) {
+        this.container.classList.add("kuc--has-spinner");
+      }
+      this._isOpened = true;
     }
 
     close() {
-      this._body.classList.remove("kuc--has-spinner");
+      this.parentElement &&
+        this.parentElement.classList.remove("kuc--has-spinner");
+      this._isOpened = false;
       this.parentNode && this.parentNode.removeChild(this);
+    }
+
+    shouldUpdate(changedProperties: PropertyValues): boolean {
+      if (changedProperties.has("container")) {
+        if (this.container === null || this.container === undefined) {
+          this._isOpened && this.close();
+          return false;
+        }
+
+        const isValidContainer = this._isValidContainerElement();
+        const shouldClose =
+          !isValidContainer || !document.contains(this.container);
+        if (this._isOpened && shouldClose) {
+          this.close();
+        }
+
+        if (!isValidContainer) {
+          this.throwErrorAfterUpdateComplete(ERROR_MESSAGE.CONTAINER.INVALID);
+          return false;
+        }
+      }
+      return true;
     }
 
     render() {
