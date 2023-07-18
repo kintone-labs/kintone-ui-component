@@ -1,5 +1,5 @@
 export const MOBILE_TEXTAREA_CSS = `
-  kuc-mobile-textarea,  
+  kuc-mobile-textarea,
   kuc-mobile-textarea * {
     font-size: 13px;
     font-family: "メイリオ", Meiryo, "Hiragino Kaku Gothic ProN",
