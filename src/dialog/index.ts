@@ -240,7 +240,7 @@ let exportDialog;
     shouldUpdate(changedProperties: PropertyValues): boolean {
       if (changedProperties.has("container")) {
         if (this.container === null || this.container === undefined) {
-          this._isOpened && this.close();
+          this._isOpened && this._close();
           return false;
         }
 
@@ -248,12 +248,10 @@ let exportDialog;
         const shouldClose =
           !isValidContainer || !document.contains(this.container);
         if (this._isOpened && shouldClose) {
-          this.close();
+          this._close();
         }
         if (!isValidContainer) {
-          this.throwErrorAfterUpdateComplete(
-            ERROR_MESSAGE.CONTAINER.INVALID
-          );
+          this.throwErrorAfterUpdateComplete(ERROR_MESSAGE.CONTAINER.INVALID);
           return false;
         }
       }
@@ -295,6 +293,11 @@ let exportDialog;
     }
 
     close() {
+      this._close();
+      dispatchCustomEvent(this, "close");
+    }
+
+    private _close() {
       this._isOpened = false;
       const body = document.getElementsByTagName("body")[0];
       body.classList.remove("kuc--has-dialog");
@@ -302,8 +305,6 @@ let exportDialog;
       if (this._triggeredElement instanceof HTMLElement) {
         this._triggeredElement.focus();
       }
-
-      dispatchCustomEvent(this, "close");
     }
 
     render() {
