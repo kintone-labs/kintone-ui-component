@@ -19,8 +19,16 @@
   --ifm-font-family-base: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
 
+a.hash-link {
+  color: #000000;
+}
+
 .sample-container {
   -webkit-font-smoothing: auto !important;
+}
+
+.collapsibleContent_i85q {
+  border-top: none !important;
 }
 
 .footer--dark {
@@ -65,7 +73,7 @@
 }
 /* For readability concerns, you should choose a lighter palette in dark mode. */
 [data-theme='dark'] {
-  --ifm-color-primary: #25c2a0;
+  --ifm-color-primary: rgb(3, 169, 244);
   --ifm-color-primary-dark: #21af90;
   --ifm-color-primary-darker: #1fa588;
   --ifm-color-primary-darkest: #1a8870;
@@ -73,6 +81,37 @@
   --ifm-color-primary-lighter: #32d8b4;
   --ifm-color-primary-lightest: #4fddbf;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+  --ifm-menu-color-active: rgb(3, 169, 244);
+  --ifm-breadcrumb-color-active: rgb(3, 169, 244);
+}
+
+[data-theme='dark'] .hero--primary {
+  --ifm-hero-background-color: #090a11;
+}
+
+[data-theme='dark'] .container .hero__title,
+[data-theme='dark'] .container .hero__subtitle,
+[data-theme='dark'] #table tr td {
+  color: #ffffff;
+}
+
+[data-theme='dark'] .sample-container#dialog {
+  color: #000000;
+}
+
+[data-theme='dark'] .sample-container select,
+[data-theme='dark'] .sample-container input,
+[data-theme='dark'] .sample-container#mobile-textarea textarea {
+  background-color: #ffffff !important;
+}
+
+[data-theme='dark'] .hash-link,
+[data-theme='dark'] .sample-container label,
+[data-theme='dark'] .sample-container label:hover,
+[data-theme='dark'] #tabs label span,
+[data-theme='dark'] #tabs legend span,
+[data-theme='dark'] #mobile-checkbox fieldset div[class$="__group__select-menu__item__label"]{
+  color: #ffffff;
 }
 
 [data-theme='light'] .DocSearch {

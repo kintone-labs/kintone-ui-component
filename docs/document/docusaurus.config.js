@@ -141,6 +141,10 @@ const config = {
                 label: 'Privacy Policy',
                 href: 'https://cybozu.co.jp/privacy/',
               },
+              {
+                label: 'License',
+                href: 'https://github.com/kintone-labs/kintone-ui-component/blob/master/docs/document/LICENSE',
+              },
             ],
           },
         ],

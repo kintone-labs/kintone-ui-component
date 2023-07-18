@@ -206,7 +206,7 @@ details.toggle-panel summary{
   margin: 0px;
 }
 
-table img.img_node_modules-\@docusaurus-theme-classic-lib-theme-MDXComponents-Img-styles-module {
+table td li img {
   display: inline;
 }
 
@@ -260,7 +260,7 @@ table th[class$="__table__header__cell"] {
 
 .sample-container.block, .sample-container.display-block-mobile {
   display: block;
-  margin-left: 300px;
+  text-align: center;
 }
 
 .sample-container .mobile {
@@ -277,4 +277,18 @@ table th[class$="__table__header__cell"] {
 
 #mobile-text .cus-mobile-text {
   min-width: 250px;
+}
+
+.navbar__inner .navbar__items--right .lightToggleIcon_pyhR,
+.navbar__inner .navbar__items--right button.clean-btn {
+  color: #ffffff !important;
+}
+
+.navbar__inner .navbar__items--right .lightToggleIcon_pyhR:hover,
+.navbar__inner .navbar__items--right button.clean-btn:hover {
+  background-color: #444950;
+}
+
+#mobile-textarea #sample-container__components {
+  margin: 0 auto;
 }

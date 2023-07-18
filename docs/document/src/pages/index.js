@@ -77,7 +77,7 @@ function HomepagePolicy () {
           <div className="title">Support Policy</div>
           <div className="github-infomation">
             kintone UI Component の仕様については、テクニカルサポートへお問い合わせいただけます。<br/>
-            <a href="https://faq.cybozu.info/alphascope/cybozu/web/kintone/Detail.aspx?id=1763" target="_blank" rel="noreferrer"> サポートへのお問い合わせ方法</a>
+            <a href="https://jp.cybozu.help/k/ja/trouble_shooting/general/support_inquiry.html" target="_blank" rel="noreferrer"> サポートへのお問い合わせ方法</a>
             をご確認の上、お問合せください。
           </div>
           <div className="github-infomation">
