@@ -252,7 +252,7 @@ let exportDialog;
         }
         if (!isValidContainer) {
           this.throwErrorAfterUpdateComplete(
-            ERROR_MESSAGE.CONTAINER_DIALOG.INVALID
+            ERROR_MESSAGE.CONTAINER.INVALID
           );
           return false;
         }
