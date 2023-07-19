@@ -260,7 +260,6 @@ table th[class$="__table__header__cell"] {
 
 .sample-container.block {
   display: block;
-  margin-left: 330px;
 }
 
 .sample-container.display-block-mobile {
@@ -278,6 +277,12 @@ table th[class$="__table__header__cell"] {
 
 .sample-container.block #sample-container__components {
   display: block;
+}
+
+#textarea #sample-container__components {
+  position: relative;
+  left: 50%;
+  margin-left: -150px;
 }
 
 #mobile-text .cus-mobile-text {
