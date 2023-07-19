@@ -119,7 +119,7 @@ kintone UI Component v0 を使用する場合は、こちらのリンクをご�
 v0 と v1 の仕様とインターフェースには違いがあるので、更新時には十分な確認をしてください。<br />
 詳細は下記の記事をご参照ください。
 - [A commentary on the difference between v0 and v1](https://kintone-ui-component.netlify.app/docs/ja/guides/comparison-v0-v1)
-- [v1.0.0 Release Notes](https://kintone-ui-component.netlify.app/docs/ja/releases/release-notes-v1-0-0)
+- [v1.0.0 Release Notes](https://kintone-ui-component.netlify.app/docs/ja/releases/release-notes-v1.0.0)
 
 > v0 で提供していた React 版については、現在 v1 では対応を見送っています。
 
