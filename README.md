@@ -121,7 +121,7 @@ There are differences in specifications and interfaces between v0 and v1.<br />
 Please be sure to verify enough when you updating.<br />
 For more details, please refer to the articles below.
 - [The difference of the way to code between v0 and v1](https://kintone-ui-component.netlify.app/docs/en/guides/comparison-v0-v1)
-- [v1.0.0 Release Notes](https://kintone-ui-component.netlify.app/docs/en/releases/release-notes-v1.0.0)
+- [v1.0.0 Release Notes](https://kintone-ui-component.netlify.app/docs/en/releases/release-notes-v1-0-0)
 
 > About the React version provided in v0, we haven't supported it in v1 now.
 

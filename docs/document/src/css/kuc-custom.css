@@ -258,9 +258,14 @@ table th[class$="__table__header__cell"] {
   background-color: transparent;
 }
 
-.sample-container.block, .sample-container.display-block-mobile {
+.sample-container.block {
   display: block;
-  text-align: center;
+  margin-left: 330px;
+}
+
+.sample-container.display-block-mobile {
+  display: block;
+  margin-left: 0px;
 }
 
 .sample-container .mobile {

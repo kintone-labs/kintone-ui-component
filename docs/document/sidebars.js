@@ -86,19 +86,19 @@ const sidebars = {
   "release-notes": {
     "Releases": [
       "releases/release-notes",
-      "releases/release-notes-v1.4.0",
-      "releases/release-notes-v1.3.2",
-      "releases/release-notes-v1.3.1",
-      "releases/release-notes-v1.3.0",
-      "releases/release-notes-v1.2.0",
-      "releases/release-notes-v1.1.1",
-      "releases/release-notes-v1.1.0",
-      "releases/release-notes-v1.0.5",
-      "releases/release-notes-v1.0.4",
-      "releases/release-notes-v1.0.3",
-      "releases/release-notes-v1.0.2",
-      "releases/release-notes-v1.0.1",
-      "releases/release-notes-v1.0.0"
+      "releases/release-notes-v1-4-0",
+      "releases/release-notes-v1-3-2",
+      "releases/release-notes-v1-3-1",
+      "releases/release-notes-v1-3-0",
+      "releases/release-notes-v1-2-0",
+      "releases/release-notes-v1-1-1",
+      "releases/release-notes-v1-1-0",
+      "releases/release-notes-v1-0-5",
+      "releases/release-notes-v1-0-4",
+      "releases/release-notes-v1-0-3",
+      "releases/release-notes-v1-0-2",
+      "releases/release-notes-v1-0-1",
+      "releases/release-notes-v1-0-0"
     ]
   }
 };
