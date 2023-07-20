@@ -1,5 +1,5 @@
 ---
-id: version-1.12.0-spinner
+id: version-1.13.0-spinner
 title: Spinner
 sidebar_label: Spinner
 original_id: spinner
