@@ -1,4 +1,4 @@
-import '../js/deprecate'
+import '../js/deprecate';
 import DateTime, {Calendar} from './DateTime';
 import Tabs from './Tabs';
 import Text from './Text';
