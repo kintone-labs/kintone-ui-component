@@ -1,5 +1,5 @@
 ---
-id: version-1.12.0-dialog
+id: version-1.13.0-dialog
 title: Dialog
 sidebar_label: Dialog
 original_id: dialog
