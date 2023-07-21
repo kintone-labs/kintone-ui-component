@@ -104,6 +104,37 @@ describe("Dropdown", () => {
       ).to.equal(false);
     });
 
+    it("should not highlight when mouseover the disabled item", async () => {
+      const container = new Dropdown({
+        items: [
+          ...initItems,
+          { label: "Apple", value: "apple", disabled: true },
+        ],
+        value: initItems[0].value,
+      });
+      const el = await fixture(container);
+      const toggleEl = el.querySelector(
+        ".kuc-dropdown__group__toggle"
+      ) as HTMLButtonElement;
+      toggleEl.click();
+      const itemsEl = el.querySelectorAll(
+        ".kuc-dropdown__group__select-menu__item"
+      );
+
+      itemsEl[3].dispatchEvent(new Event("mouseover"));
+      await expect(
+        itemsEl[3].classList.contains(
+          "kuc-dropdown__group__select-menu__highlight"
+        )
+      ).to.equal(false);
+
+      await expect(
+        itemsEl[0].classList.contains(
+          "kuc-dropdown__group__select-menu__highlight"
+        )
+      ).to.equal(true);
+    });
+
     it("should do nothing when mouseup/mousedown toggle", async () => {
       const container = new Dropdown({
         items: initItems,
@@ -239,6 +270,66 @@ describe("Dropdown", () => {
       ).to.equal(true);
     });
 
+    it('should not be highlight disabled prev item when triggered "ArrowUp" keyboard event', async () => {
+      const container = new Dropdown({
+        items: [
+          ...initItems,
+          { label: "Apple", value: "apple", disabled: true },
+        ],
+        value: initItems[0].value,
+      });
+      const el = await fixture(container);
+      const toggleEl = el.querySelector(
+        ".kuc-dropdown__group__toggle"
+      ) as HTMLButtonElement;
+      toggleEl.click();
+      toggleEl.dispatchEvent(new KeyboardEvent("keydown", { key: "ArrowUp" }));
+
+      const itemsEl = el.querySelectorAll(
+        ".kuc-dropdown__group__select-menu__item"
+      );
+      await expect(
+        itemsEl[2].classList.contains(
+          "kuc-dropdown__group__select-menu__highlight"
+        )
+      ).to.equal(true);
+      await expect(
+        itemsEl[3].classList.contains(
+          "kuc-dropdown__group__select-menu__highlight"
+        )
+      ).to.equal(false);
+    });
+
+    it('should not be highlight disabled prev item when triggered "Up" keyboard event for IE', async () => {
+      const container = new Dropdown({
+        items: [
+          ...initItems,
+          { label: "Apple", value: "apple", disabled: true },
+        ],
+        value: initItems[0].value,
+      });
+      const el = await fixture(container);
+      const toggleEl = el.querySelector(
+        ".kuc-dropdown__group__toggle"
+      ) as HTMLButtonElement;
+      toggleEl.click();
+      toggleEl.dispatchEvent(new KeyboardEvent("keydown", { key: "Up" }));
+
+      const itemsEl = el.querySelectorAll(
+        ".kuc-dropdown__group__select-menu__item"
+      );
+      await expect(
+        itemsEl[2].classList.contains(
+          "kuc-dropdown__group__select-menu__highlight"
+        )
+      ).to.equal(true);
+      await expect(
+        itemsEl[3].classList.contains(
+          "kuc-dropdown__group__select-menu__highlight"
+        )
+      ).to.equal(false);
+    });
+
     it('should be highlight next item when triggered "ArrowDown" keyboard event', async () => {
       const container = new Dropdown({
         items: initItems,
@@ -285,6 +376,68 @@ describe("Dropdown", () => {
       ).to.equal(true);
     });
 
+    it('should not highlight the disabled next item when triggered "ArrowDown" keyboard event', async () => {
+      const container = new Dropdown({
+        items: [
+          ...initItems,
+          { label: "Apple", value: "apple", disabled: true },
+        ],
+        value: initItems[2].value,
+      });
+      const el = await fixture(container);
+      const toggleEl = el.querySelector(
+        ".kuc-dropdown__group__toggle"
+      ) as HTMLButtonElement;
+      toggleEl.click();
+      toggleEl.dispatchEvent(
+        new KeyboardEvent("keydown", { key: "ArrowDown" })
+      );
+
+      const itemsEl = el.querySelectorAll(
+        ".kuc-dropdown__group__select-menu__item"
+      );
+      await expect(
+        itemsEl[0].classList.contains(
+          "kuc-dropdown__group__select-menu__highlight"
+        )
+      ).to.equal(true);
+      await expect(
+        itemsEl[3].classList.contains(
+          "kuc-dropdown__group__select-menu__highlight"
+        )
+      ).to.equal(false);
+    });
+
+    it('should not highlight the disabled next item when triggered "Down" keyboard event for IE', async () => {
+      const container = new Dropdown({
+        items: [
+          ...initItems,
+          { label: "Apple", value: "apple", disabled: true },
+        ],
+        value: initItems[2].value,
+      });
+      const el = await fixture(container);
+      const toggleEl = el.querySelector(
+        ".kuc-dropdown__group__toggle"
+      ) as HTMLButtonElement;
+      toggleEl.click();
+      toggleEl.dispatchEvent(new KeyboardEvent("keydown", { key: "Down" }));
+
+      const itemsEl = el.querySelectorAll(
+        ".kuc-dropdown__group__select-menu__item"
+      );
+      await expect(
+        itemsEl[0].classList.contains(
+          "kuc-dropdown__group__select-menu__highlight"
+        )
+      ).to.equal(true);
+      await expect(
+        itemsEl[3].classList.contains(
+          "kuc-dropdown__group__select-menu__highlight"
+        )
+      ).to.equal(false);
+    });
+
     it('should highlight first item when pressing "Home" key', async () => {
       const container = new Dropdown({
         items: initItems,
@@ -310,6 +463,39 @@ describe("Dropdown", () => {
       ).to.equal(true);
     });
 
+    it('should not highlight the disabled first item when pressing "Home" key', async () => {
+      const container = new Dropdown({
+        items: [
+          { label: "Apple", value: "apple", disabled: true },
+          ...initItems,
+        ],
+        value: initItems[2].value,
+      });
+      const el = await fixture(container);
+      const toggleEl = el.querySelector(
+        ".kuc-dropdown__group__toggle"
+      ) as HTMLButtonElement;
+      toggleEl.dispatchEvent(new KeyboardEvent("keydown", { key: "Enter" }));
+      await elementUpdated(el);
+
+      toggleEl.dispatchEvent(new KeyboardEvent("keydown", { key: "Home" }));
+      await elementUpdated(el);
+
+      const itemsEl = el.querySelectorAll(
+        ".kuc-dropdown__group__select-menu__item"
+      );
+      await expect(
+        itemsEl[1].classList.contains(
+          "kuc-dropdown__group__select-menu__highlight"
+        )
+      ).to.equal(true);
+      await expect(
+        itemsEl[0].classList.contains(
+          "kuc-dropdown__group__select-menu__highlight"
+        )
+      ).to.equal(false);
+    });
+
     it('should highlight last item when pressing "End" key', async () => {
       const container = new Dropdown({
         items: initItems,
@@ -333,6 +519,39 @@ describe("Dropdown", () => {
           "kuc-dropdown__group__select-menu__highlight"
         )
       ).to.equal(true);
+    });
+
+    it('should not highlight the disabled last item when pressing "End" key', async () => {
+      const container = new Dropdown({
+        items: [
+          ...initItems,
+          { label: "Apple", value: "apple", disabled: true },
+        ],
+        value: initItems[0].value,
+      });
+      const el = await fixture(container);
+      const toggleEl = el.querySelector(
+        ".kuc-dropdown__group__toggle"
+      ) as HTMLButtonElement;
+      toggleEl.dispatchEvent(new KeyboardEvent("keydown", { key: "Enter" }));
+      await elementUpdated(el);
+
+      toggleEl.dispatchEvent(new KeyboardEvent("keydown", { key: "End" }));
+      await elementUpdated(el);
+
+      const itemsEl = el.querySelectorAll(
+        ".kuc-dropdown__group__select-menu__item"
+      );
+      await expect(
+        itemsEl[2].classList.contains(
+          "kuc-dropdown__group__select-menu__highlight"
+        )
+      ).to.equal(true);
+      await expect(
+        itemsEl[3].classList.contains(
+          "kuc-dropdown__group__select-menu__highlight"
+        )
+      ).to.equal(false);
     });
 
     it("should do nothing when pressing not handled key", async () => {
