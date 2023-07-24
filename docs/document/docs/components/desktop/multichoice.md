@@ -39,19 +39,19 @@ Here is a list of properties that can be used for modifying the component:
 *1: You can set duplicated value in `value` and `Item.value`. In case setting duplicated value, you can handle selected item using `value` and `selectedIndex` property.<br/>
 Example: When setting `items = [{label: 'Orange', value: 'fruit'}, {label: 'Apple', value: 'fruit'}, {label: 'Carrot', value: 'vegetable'}, {label: 'Lemon', value: 'fruit'}]`
 
- - If setting `value` and not setting `selectedIndex` as follows:
-   - value = ['fruit', 'vegetable']: The first and third items will be selected.
-   - value = ['meat', 'other']: No item will be selected.
+- If setting `value` and not setting `selectedIndex` as follows:
+  - value = ['fruit', 'vegetable']: The first and third items will be selected.
+  - value = ['meat', 'other']: No item will be selected.
 
- - If not setting `value` and setting `selectedIndex` as follows:
-   - selectedIndex = [0, 1]: The first and second items will be selected.
-   - selectedIndex = [98, 99]: No item will be selected.
+- If not setting `value` and setting `selectedIndex` as follows:
+  - selectedIndex = [0, 1]: The first and second items will be selected.
+  - selectedIndex = [98, 99]: No item will be selected.
 
  - If setting `value` and `selectedIndex` as follows:
-   - value = ['fruit', 'vegetable'], selectedIndex = [1, 3]: The second and third items will be selected.
-   - value = ['fruit', 'fruit', 'vegetable'], selectedIndex = [1, 3]: The second, third, and fourth items will be selected.
-   - value = ['fruit', 'fruit'], selectedIndex = [1, 2, 3]: The first and second items will be selected.<br/>
- ※ If both `value` and `selectedIndex` are set at the same time, the priority of `value` will be higher. Therefore, in the first and third examples above, the item corresponding to 3 of selectedIndex will not be selected.
+  - value = ['fruit', 'vegetable'], selectedIndex = [1, 3]: The second and third items will be selected.
+  - value = ['fruit', 'fruit', 'vegetable'], selectedIndex = [1, 3]: The second, third, and fourth items will be selected.
+  - value = ['fruit', 'fruit'], selectedIndex = [1, 2, 3]: The first and second items will be selected.<br/>
+  ※ If both `value` and `selectedIndex` are set at the same time, the priority of `value` will be higher. Therefore, in the first and third examples above, the item corresponding to 3 of selectedIndex will not be selected.
 :::
 
 ### Event
@@ -72,11 +72,27 @@ Here is a list of available constructors:
 | :--- | :--- | :--- | :--- | :--- |
 | options | object | {} | Object that includes component properties | |
 
+### Custom CSS
+:::tip
+Please check [Custom CSS feature guide](../../getting-started/custom-css.md) at first.
+:::
+
+Here is a list of properties that can be used for modifying component style:
+#### Property
+| Name |
+| :--- |
+| --kuc-multi-choice-menu-width |
+| --kuc-multi-choice-menu-height |
+| --kuc-multi-choice-menu-font-size |
+| --kuc-multi-choice-menu-color |
+| --kuc-multi-choice-menu-color-selected |
+| --kuc-multi-choice-menu-background-color-hover |
+
 ---
 ## Sample Code
 
 :::tip
-Please check the [package installation](../../getting-started/quick-start#installation) method first.
+Please check the [package installation](../../getting-started/quick-start.md#installation) method first.
 :::
 
 Here is a sample code when all parameters are specified:

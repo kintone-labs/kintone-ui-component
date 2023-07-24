@@ -44,7 +44,8 @@ const sidebars = {
           "components/desktop/tabs",
           "components/desktop/text",
           "components/desktop/textarea",
-          "components/desktop/time-picker"
+          "components/desktop/time-picker",
+          "components/desktop/tooltip"
         ]
       },
       {

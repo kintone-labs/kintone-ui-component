@@ -33,9 +33,9 @@ Here is a list of properties that can be used for modifying the component:
 | visible | boolean | true | Show/Hide the component | |
 
 :::info
- *1: The displayed date format is automatically switched depending on the `language` property setting as follows:
- - "en": MM/DD/YYYY
- - "ja", "zh", "zh-TW": YYYY-MM-DD
+*1: The displayed date format is automatically switched depending on the `language` property setting as follows:
+- "en": MM/DD/YYYY
+- "ja", "zh", "zh-TW": YYYY-MM-DD
 :::
 
 ### Event
@@ -56,11 +56,25 @@ Here is a list of available constructors:
 | :--- | :--- | :--- | :--- | :--- |
 | options  | object | {} | Object that includes component properties |  |
 
+### Custom CSS
+:::tip
+Please check [Custom CSS feature guide](../../getting-started/custom-css.md) at first.
+:::
+
+Here is a list of properties that can be used for modifying component style:
+#### Property
+| Name |
+| :--- |
+| --kuc-date-picker-input-width |
+| --kuc-date-picker-input-height |
+| --kuc-date-picker-input-color |
+| --kuc-date-picker-input-font-size |
+
 ---
 ## Sample Code
 
 :::tip
-Please check the [package installation](../../getting-started/quick-start#installation) method first.
+Please check the [package installation](../../getting-started/quick-start.md#installation) method first.
 :::
 
 Here is a sample code when all parameters are specified:
