@@ -383,8 +383,7 @@ let exportTable;
       const errorColumns = this._getErrorMessageWhenValidateColumns();
       if (errorColumns) return errorColumns;
 
-      if (!validateArrayType(this.data))
-        return ERROR_MESSAGE.DATA_TABLE.IS_NOT_ARRAY;
+      if (!validateArrayType(this.data)) return ERROR_MESSAGE.DATA.IS_NOT_ARRAY;
 
       return "";
     }
