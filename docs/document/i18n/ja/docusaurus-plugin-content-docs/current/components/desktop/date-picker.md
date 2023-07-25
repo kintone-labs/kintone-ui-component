@@ -34,8 +34,8 @@ import { DatePickerComponent } from "@site/static/js/samples/desktop/date-picker
 
 :::info
 *1: 表示される日付のフォーマットは、language プロパティの設定に応じて以下のように自動的に切り替わる。
- - "en" の場合: MM/DD/YYYY
- - "ja", "zh", "zh-TW" の場合: YYYY-MM-DD
+- "en" の場合: MM/DD/YYYY
+- "ja", "zh", "zh-TW" の場合: YYYY-MM-DD
 :::
 
 ### Event
@@ -55,6 +55,20 @@ DatePicker(options)<br/>
 | Name | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
 | options  | object | {} | コンポーネントのプロパティを含むオブジェクト |  |
+
+### Custom CSS
+:::tip
+[Custom CSS](../../getting-started/custom-css.md) をご確認ください。
+:::
+
+コンポーネントのスタイルを変更するために使用できるプロパティの一覧です。
+#### Property
+| Name |
+| :--- |
+| --kuc-date-picker-input-width |
+| --kuc-date-picker-input-height |
+| --kuc-date-picker-input-color |
+| --kuc-date-picker-input-font-size |
 
 ---
 ## Sample Code

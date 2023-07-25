@@ -19,12 +19,15 @@ import { TableComponent } from "@site/static/js/samples/desktop/table.js"
 
 使用できるプロパティの一覧です。プロパティを指定して値を更新することができます。
 
+#### Table
+
 | Name | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
 | className | string | ""  | コンポーネントの class 名 | |
 | id | string | ""  | コンポーネントの id 名 | |
 | label | string | ""  | コンポーネントの説明ラベル | 未指定、あるいは空文字の場合、label は表示されない |
 | actionButton | boolean | true | 行追加/削除ボタンの表示/非表示設定 | |
+| headerVisible | boolean | true | ヘッダーの表示/非表示設定 | |
 | visible | boolean | true | コンポーネントの表示/非表示設定 | |
 | columns | Array<[Column](#column)\> | []  | コンポーネントの列データ | columns が配列以外の場合、エラーを出力する |
 | data | Array<object\> | []  | コンポーネントの行データ | data が配列以外の場合、エラーを出力する |
@@ -123,6 +126,7 @@ const table = new Kuc.Table({
   className: 'options-class',
   id: 'options-id',
   actionButton: true,
+  headerVisible: true,
   visible: true
 });
 

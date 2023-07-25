@@ -41,19 +41,19 @@ import { CheckboxComponent } from "@site/static/js/samples/desktop/checkbox.js"
 *1: value と Item.value に重複した値を指定できる。重複した値を指定する場合、value と selectedIndex プロパティを使って制御することができる。<br/>
 例: `items = [{label: 'Orange', value: 'fruit'}, {label: 'Apple', value: 'fruit'}, {label: 'Carrot', value: 'vegetable'}, {label: 'Lemon', value: 'fruit'}]` を指定する
 
- - 以下のように value を指定、selectedIndex を未指定の場合:
-   - value = ['fruit', 'vegetable']: 最初と 3番目の値が選択される。
-   - value = ['meat', 'other']: 何も選択されない。
+- 以下のように value を指定、selectedIndex を未指定の場合:
+  - value = ['fruit', 'vegetable']: 最初と 3番目の値が選択される。
+  - value = ['meat', 'other']: 何も選択されない。
 
- - 以下のように value を未指定、selectedIndex を指定する場合:
-   - selectedIndex = [0, 1]: 最初と 2番目の値が選択される。
-   - selectedIndex = [98, 99]: 何も選択されない。
+- 以下のように value を未指定、selectedIndex を指定する場合:
+  - selectedIndex = [0, 1]: 最初と 2番目の値が選択される。
+  - selectedIndex = [98, 99]: 何も選択されない。
 
- - 以下のように value と selectedIndex を指定する場合:
-   - value = ['fruit', 'vegetable'], selectedIndex = [1, 3]: 2番目と 3番目の値が選択される。
-   - value = ['fruit', 'fruit', 'vegetable'], selectedIndex = [1, 3]: 2番目と 3番目と 4番目の値が選択される。
-   - value = ['fruit', 'fruit'], selectedIndex = [1, 2, 3]: 最初と 2番目の値が選択される。<br/>
- ※ value と selectedIndex が同時に指定された場合、value の値が優先される。よって、上記の 1つ目と 3つ目の例において selectedIndex の 3 に当たる item は選択されない。
+- 以下のように value と selectedIndex を指定する場合:
+  - value = ['fruit', 'vegetable'], selectedIndex = [1, 3]: 2番目と 3番目の値が選択される。
+  - value = ['fruit', 'fruit', 'vegetable'], selectedIndex = [1, 3]: 2番目と 3番目と 4番目の値が選択される。
+  - value = ['fruit', 'fruit'], selectedIndex = [1, 2, 3]: 最初と 2番目の値が選択される。<br/>
+※ value と selectedIndex が同時に指定された場合、value の値が優先される。よって、上記の 1つ目と 3つ目の例において selectedIndex の 3 に当たる item は選択されない。
 :::
 
 ### Event
@@ -74,6 +74,21 @@ Checkbox(options)<br/>
 | Name | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
 | options | object | {} | コンポーネントのプロパティを含むオブジェクト | |
+
+### Custom CSS
+:::tip
+[Custom CSS](../../getting-started/custom-css.md) をご確認ください。
+:::
+
+コンポーネントのスタイルを変更するために使用できるプロパティの一覧です。
+#### Property
+| Name |
+| :--- |
+| --kuc-checkbox-menu-width |
+| --kuc-checkbox-menu-height |
+| --kuc-checkbox-menu-font-size |
+| --kuc-checkbox-menu-color |
+| --kuc-checkbox-menu-color-hover |
 
 ---
 

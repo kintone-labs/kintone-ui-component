@@ -39,7 +39,7 @@ import { RadioButtonComponent } from "@site/static/js/samples/desktop/radio-butt
 
 :::info
 *1: Item.value に重複した値を指定できる。重複した値を指定する場合、value と selectedIndex プロパティを使って制御することができる。<br/>
- 例: `items = [{label: 'Orange', value: 'fruit'}, {label: 'Apple', value: 'fruit'}, {label: 'Carrot', value: 'vegetable'}]` を指定する
+例: `items = [{label: 'Orange', value: 'fruit'}, {label: 'Apple', value: 'fruit'}, {label: 'Carrot', value: 'vegetable'}]` を指定する
 
 - 以下のように value を指定、selectedIndex を未指定の場合:
   - value = 'fruit': 最初の値が選択される。
@@ -67,6 +67,21 @@ RadioButton(options)<br/>
 | Name | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
 | options | object | {} | コンポーネントのプロパティを含むオブジェクト | |
+
+### Custom CSS
+:::tip
+[Custom CSS](../../getting-started/custom-css.md) をご確認ください。
+:::
+
+コンポーネントのスタイルを変更するために使用できるプロパティの一覧です。
+#### Property
+| Name |
+| :--- |
+| --kuc-radio-button-menu-width |
+| --kuc-radio-button-menu-height |
+| --kuc-radio-button-menu-font-size |
+| --kuc-radio-button-menu-color |
+| --kuc-radio-button-menu-color-hover |
 
 ---
 ## Sample Code

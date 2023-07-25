@@ -54,6 +54,20 @@ TimePicker(options)<br/>
 | :--- | :--- | :--- | :--- | :--- |
 | options  | object | {} | コンポーネントのプロパティを含むオブジェクト |  |
 
+### Custom CSS
+:::tip
+[Custom CSS](../../getting-started/custom-css.md) をご確認ください。
+:::
+
+コンポーネントのスタイルを変更するために使用できるプロパティの一覧です。
+#### Property
+| Name |
+| :--- |
+| --kuc-time-picker-input-width |
+| --kuc-time-picker-input-height |
+| --kuc-time-picker-input-font-size |
+| --kuc-time-picker-input-color |
+
 ---
 ## Sample Code
 

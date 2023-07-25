@@ -34,29 +34,29 @@ Here is a list of properties that can be used for modifying the component:
 
 *2: By understanding how to use the describeChild property, you can effectively improve the accessibility and usability of your application.
 - Set `describeChild` to `false` if the Tooltip represents the purpose of the element itself (provides a label for the element it is attached to).
-    - The `aria-label` attribute will be added to the first child element of the Tooltip component with the value of the `title` property.
-    - For example, the case you have an icon that represents a save mark, and the Tooltip provides a label of the button itself.
+  - The `aria-label` attribute will be added to the first child element of the Tooltip component with the value of the `title` property.
+  - For example, the case you have an icon that represents a save mark, and the Tooltip provides a label of the button itself.
     ```javascript
-        <kuc-tooltip>
-            <button aria-label='Save'>
-                <span class='icon-save'></span>
-            </button>
-            <div id='tooltip-ID'>Save</div>
-       </kuc-tooltip>
-     ```
-    - You can learn more about [aria-label](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-label).
-- Set `describeChild` to `true` if the Tooltip represents the description of the element (provides additional information or a supplementary description about the element it is attached to).
-    - The `aria-describedby` attribute will be added to the first child element of the Tooltip component with the value of the ID of the tooltip wrapper element.
-    - For example, the case you have an icon that represents a question mark, and the Tooltip provides a description or explanation of what the icon represents.
-    ```javascript
-        <kuc-tooltip>
-            <button aria-describedby='tooltip-ID'>
-                <span class='icon-question-mark'></span>
-            </button>
-            <div id='tooltip-ID'>This is a help icon. Click for more information</div>
-        </kuc-tooltip>
+      <kuc-tooltip>
+        <button aria-label='Save'>
+          <span class='icon-save'></span>
+        </button>
+        <div id='tooltip-ID'>Save</div>
+      </kuc-tooltip>
     ```
-   - You can learn more about [aria-describedby](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-describedby).
+  - You can learn more about [aria-label](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-label).
+- Set `describeChild` to `true` if the Tooltip represents the description of the element (provides additional information or a supplementary description about the element it is attached to).
+  - The `aria-describedby` attribute will be added to the first child element of the Tooltip component with the value of the ID of the tooltip wrapper element.
+  - For example, the case you have an icon that represents a question mark, and the Tooltip provides a description or explanation of what the icon represents.
+    ```javascript
+      <kuc-tooltip>
+          <button aria-describedby='tooltip-ID'>
+            <span class='icon-question-mark'></span>
+          </button>
+          <div id='tooltip-ID'>This is a help icon. Click for more information</div>
+      </kuc-tooltip>
+    ```
+  - You can learn more about [aria-describedby](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-describedby).
 :::
 
 ### Constructor
