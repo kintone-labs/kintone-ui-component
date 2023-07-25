@@ -1,6 +1,7 @@
-import { html, svg } from "lit";
+import { html, PropertyValues, svg } from "lit";
 import { property, state } from "lit/decorators.js";
 
+import { ERROR_MESSAGE } from "../base/constant";
 import {
   createStyleOnHeader,
   dispatchCustomEvent,
@@ -24,6 +25,7 @@ let exportNotification;
     @property({ type: String }) text = "";
     @property({ type: String }) type: "info" | "danger" | "success" = "danger";
     @property({ type: Number }) duration = -1;
+    @property() container: HTMLElement = document.body;
 
     @state()
     private _isOpened = false;
@@ -34,6 +36,30 @@ let exportNotification;
       super();
       const validProps = validateProps(props);
       Object.assign(this, validProps);
+    }
+
+    shouldUpdate(changedProperties: PropertyValues): boolean {
+      if (changedProperties.has("container")) {
+        if (this.container === null || this.container === undefined) {
+          this._isOpened && this._close();
+          return false;
+        }
+        const isValidContainer = this._isValidContainerElement();
+        const shouldClose =
+          !isValidContainer || !document.contains(this.container);
+        if (this._isOpened && shouldClose) {
+          this._close();
+        }
+        if (!isValidContainer) {
+          this.throwErrorAfterUpdateComplete(ERROR_MESSAGE.CONTAINER.INVALID);
+          return false;
+        }
+      }
+      return true;
+    }
+
+    private _isValidContainerElement() {
+      return this.container instanceof HTMLElement;
     }
 
     private _handleClickCloseButton(event: MouseEvent) {
@@ -91,7 +117,16 @@ let exportNotification;
     }
 
     open() {
-      document.body.appendChild(this);
+      const isValidContainer = this._isValidContainerElement();
+      if (!isValidContainer) {
+        document.body.appendChild(this);
+        requestAnimationFrame(() => {
+          document.body.removeChild(this);
+        });
+        this.performUpdate();
+        return;
+      }
+      this.container.appendChild(this);
       this.performUpdate();
       this.classList.remove("kuc-notification-fadeout");
       this.classList.add("kuc-notification-fadein");
@@ -99,11 +134,15 @@ let exportNotification;
       this._setAutoCloseTimer();
     }
 
-    close() {
+    private _close() {
       this._isOpened = false;
       this.classList.remove("kuc-notification-fadein");
       this.classList.add("kuc-notification-fadeout");
       this._clearAutoCloseTimer();
+    }
+
+    close() {
+      this._close();
       dispatchCustomEvent(this, "close");
     }
 

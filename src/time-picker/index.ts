@@ -1,7 +1,6 @@
 import { html, PropertyValues } from "lit";
-import { property, query } from "lit/decorators.js";
+import { property } from "lit/decorators.js";
 
-import { getWidthElmByContext } from "../base/context";
 import {
   languagePropConverter,
   timeValueConverter,
@@ -69,12 +68,6 @@ let exportTimePicker;
     })
     visible = true;
     @property({ type: Number }) timeStep = 30;
-
-    @query("kuc-base-label")
-    private _baseLabelEl!: BaseLabel;
-
-    @query("kuc-base-error")
-    private _baseErrorEl!: BaseError;
 
     private _errorText = "";
 
@@ -221,22 +214,6 @@ let exportTimePicker;
           ></kuc-base-error>
         </fieldset>
       `;
-    }
-
-    updated() {
-      this._baseLabelEl.updateComplete.then((_) => {
-        this._updateErrorWidth();
-      });
-    }
-
-    private _updateErrorWidth() {
-      const labelWidth = getWidthElmByContext(this._baseLabelEl);
-      const inputGroupWitdh = 85;
-      if (labelWidth > inputGroupWitdh) {
-        this._baseErrorEl.style.width = labelWidth + "px";
-        return;
-      }
-      this._baseErrorEl.style.width = inputGroupWitdh + "px";
     }
 
     private _handleTimeChange(event: CustomEvent) {

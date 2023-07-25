@@ -5,6 +5,7 @@ export declare type NotificationProps = {
   text?: string;
   type?: "info" | "danger" | "success";
   duration?: number;
+  container?: HTMLElement;
 };
 
 export declare class Notification extends KucBase {
@@ -12,6 +13,7 @@ export declare class Notification extends KucBase {
   text: string;
   type: "info" | "danger" | "success";
   duration: number;
+  container: HTMLElement;
   constructor(props?: NotificationProps);
   open(): void;
   close(): void;

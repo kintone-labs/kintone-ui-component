@@ -1,19 +1,20 @@
 ---
-id: notification
-title: Notification
-sidebar_label: Notification
+id: version-1.12.0-mobile-notification
+title: MobileNotification
+sidebar_label: MobileNotification
+original_id: mobile-notification
 ---
 
 ## Overview
 
-The Notification component allows the user to display pop-up notifications.
+The MobileNotification component allows the user to display pop-up notifications.
 
-<div class="sample-container" id="notification">
-  <div id="sample-container__components">
-    <iframe id="iframe" title="notification" width="300px" height="250px"></iframe>
+<div class="sample-container" id="mobile-notification">
+  <div id="sample-container__components" class="mobile">
+    <iframe id="iframe" title="mobile notification image" width="300px" height="70px"></iframe>
   </div>
 </div>
-<script src="/js/samples/desktop/notification.js"></script>
+<script src="/js/samples/mobile/mobile-notification.js"></script>
 
 ---
 
@@ -27,19 +28,8 @@ Here is a list of properties that can be used for modifying the component:
 | :--- | :--- | :--- | :--- | :--- |
 | className | string | ""  | Component class name | |
 | text | string | ""  | Text to be displayed | |
-| type | string | "danger"  | Background color | Available options:<br>"danger" : Red (#e74c3c)<br>"info" : Blue (#3498db)<br>"success" : Green (#91c36c) |
 | duration | number | -1  | Milliseconds to close component | Unit is milliseconds<br>You can specify 0 or a number larger than 0<br>If you specify invalid value (a number less than 0 or is not a number), component is opened and will not be closed automatically |
 | container | HTMLElement | document.body | Target element to append the component | By default, it uses the body of the top-level document object, so it's simply `document.body` most of the time<br>Will result an error if the value of `container` is not an HTMLElement |
-
-### Constructor
-
-Notification(options)<br>
-Here is a list of available constructors:
-
-#### Parameter
-| Name | Type | Default | Description | Remark |
-| :--- | :--- | :--- | :--- | :--- |
-| options | object | {} | Object that includes component properties |  |
 
 ### Event
 
@@ -49,12 +39,22 @@ Here is a list of events that can be specified:
 | :--- | :--- | :--- | :--- |
 | close | function | Event handler when the component has been closed | It will pass the event object as the argument |
 
+### Constructor
+
+MobileNotification(options)<br>
+Here is a list of available constructors:
+
+#### Parameter
+| Name | Type | Default | Description | Remark |
+| :--- | :--- | :--- | :--- | :--- |
+| options | object | {} | Object that includes component properties |  |
+
 ### Method
 
 Here is a list of available methods:
 
 #### open()
-Show the Notification
+Show the MobileNotification
 
 ##### Parameter
 none
@@ -63,25 +63,13 @@ none
 none
 
 #### close()
-Hide the Notification
+Hide the MobileNotification
 
 ##### Parameter
 none
 
 ##### Return
 none
-
-### Custom CSS
-> Please check [Custom CSS feature guide](../../getting-started/custom-css.md) at first.
-
-Here is a list of properties that can be used for modifying component style:
-#### Property
-| Name |
-| :--- |
-| --kuc-notification-font-size |
-| --kuc-notification-color |
-| --kuc-notification-background-color |
-| --kuc-notification-close-button-background-color |
 
 ---
 ## Sample Code
@@ -93,26 +81,23 @@ Here is a sample code when all parameters are specified:
 ```javascript
 const Kuc = Kucs['1.x.x'];
 
-const notification = new Kuc.Notification({
+const mobileNotification = new Kuc.MobileNotification({
   text: 'Error occurred!',
-  type: 'danger',
   className: 'options-class',
   duration: 2000,
   container: document.body
 });
 
-notification.addEventListener('close', event => {
+mobileNotification.addEventListener('close', event => {
   console.log(event);
 });
 
-notification.open();
-notification.close();
+mobileNotification.open();
+mobileNotification.close();
 ```
 
 ---
 
 ## Related Articles
 
-- [Search box customization](../../guides/search-box-customization.md)
-- [Cleaning check list customization](../../guides/cleaning-check-list-customization.md)
-- [Bulk update customization](../../guides/bulk-update-customization.md)
+- [Mobile timecard customization](../../guides/mobile-timecard-customization.md)

@@ -1,6 +1,7 @@
 import { DatePicker } from "../date-picker";
 import { Dropdown } from "../dropdown/index.ts";
 import { Text } from "../text/index.ts";
+import { TextArea } from "../textarea";
 import { TimePicker } from "../time-picker";
 
 import { FieldGroup } from "./index.ts";
@@ -44,7 +45,9 @@ const getContent = () => {
   });
   const datePicker = new DatePicker({ value: "2012-12-12" });
   const timePicker = new TimePicker({ value: "12:12" });
+  const textArea = new TextArea({ value: "text area" });
 
+  wrapper.appendChild(textArea);
   wrapper.appendChild(text);
   wrapper.appendChild(dropdown);
   wrapper.appendChild(datePicker);

@@ -1,7 +1,7 @@
 export const BASE_TIME_CSS = `
 :lang(ja) .kuc-base-time__group input.kuc-base-time__group__hours,
 :lang(ja) .kuc-base-time__group input.kuc-base-time__group__minutes {
-  width: 18px;
+  width: 2ch;
 }
 .kuc-base-time__group {
   display: inline-flex;
@@ -18,12 +18,13 @@ export const BASE_TIME_CSS = `
   padding: 0px 8px;
   box-shadow: 2px 2px 4px #f5f5f5 inset, -2px -2px 4px #f5f5f5 inset;
   background-color: #ffffff;
+  overflow: hidden;
 }
 .kuc-base-time__group input.kuc-base-time__group__hours {
   border: 0px;
   padding: 0px;
-  width: 16px;
-  font-size: 14px;
+  width: 2ch;
+  font-size: inherit;
   outline: none;
   background-color: transparent;
   color: #333333;
@@ -33,8 +34,8 @@ export const BASE_TIME_CSS = `
 .kuc-base-time__group input.kuc-base-time__group__minutes {
   border: 0px;
   padding: 0px;
-  width: 16px;
-  font-size: 14px;
+  width: 2ch;
+  font-size: inherit;
   outline: none;
   background-color: transparent;
   color: #333333;
@@ -48,14 +49,14 @@ export const BASE_TIME_CSS = `
   border: 0px;
 }
 .kuc-base-time__group__colon {
-  width: 4px;
+  width: auto;
   text-align: center;
 }
 .kuc-base-time__group input.kuc-base-time__group__suffix {
   border: 0px;
-  width: 24px;
+  width: 3ch;
   text-align: right;
-  font-size: 14px;
+  font-size: inherit;
   outline: none;
   appearance: none;
   margin-left: 1px;
