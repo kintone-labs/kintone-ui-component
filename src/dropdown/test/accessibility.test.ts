@@ -1,4 +1,4 @@
-import { elementUpdated, expect, fixture } from "@open-wc/testing";
+import { aTimeout, elementUpdated, expect, fixture } from "@open-wc/testing";
 
 import { Dropdown } from "../index";
 
@@ -52,14 +52,45 @@ describe("Dropdown", () => {
       ) as HTMLDivElement;
       expect(menuEl).not.has.attribute("hidden");
 
-      setTimeout(async () => {
-        document.body.click();
-        await elementUpdated(container);
-        menuEl = el.querySelector(
-          ".kuc-dropdown__group__select-menu"
-        ) as HTMLDivElement;
-        expect(menuEl).has.attribute("hidden");
-      }, 10);
+      await aTimeout(10);
+      document.body.click();
+      await elementUpdated(container);
+      menuEl = el.querySelector(
+        ".kuc-dropdown__group__select-menu"
+      ) as HTMLDivElement;
+      expect(menuEl).has.attribute("hidden");
+    });
+
+    it("should not hide menu element when clicking the disabled item", async () => {
+      const container = new Dropdown({
+        items: [
+          ...initItems,
+          { label: "Apple", value: "apple", disabled: true },
+        ],
+        value: initItems[0].value,
+      });
+      const el = await fixture(container);
+      const toggle = el.querySelector(
+        ".kuc-dropdown__group__toggle"
+      ) as HTMLButtonElement;
+
+      toggle.click();
+      await elementUpdated(container);
+      let menuEl = el.querySelector(
+        ".kuc-dropdown__group__select-menu"
+      ) as HTMLDivElement;
+      expect(menuEl).not.has.attribute("hidden");
+
+      await aTimeout(10);
+      const itemsEl = el.querySelectorAll(
+        ".kuc-dropdown__group__select-menu__item"
+      );
+      (itemsEl[3] as HTMLLIElement).click();
+      await elementUpdated(container);
+      menuEl = el.querySelector(
+        ".kuc-dropdown__group__select-menu"
+      ) as HTMLDivElement;
+      expect(menuEl).not.has.attribute("hidden");
     });
 
     it("should be highlight/not highlight when mouseover/mouseleave the item", async () => {
