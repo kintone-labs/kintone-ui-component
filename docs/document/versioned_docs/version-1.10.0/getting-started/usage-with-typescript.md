@@ -50,7 +50,7 @@ npm install kintone-ui-component
 ```
 
 2. Modify `src/index.ts`.
-```js title="/src/index.ts"
+```js
 import { Dropdown, DropdownProps, DropdownItem, DropdownChangeEventDetail } from 'kintone-ui-component';
 
 const root = document.getElementById('root');
