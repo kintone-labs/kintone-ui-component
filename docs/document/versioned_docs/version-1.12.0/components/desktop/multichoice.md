@@ -1,16 +1,16 @@
 ---
-id: mobile-multichoice
-title: MobileMultiChoice
-sidebar_label: MobileMultiChoice
+id: multichoice
+title: MultiChoice
+sidebar_label: MultiChoice
 ---
 
 ## Overview
 
-The MobileMultiChoice component allows the user to select multiple values from multiple options.
+The MultiChoice component allows the user to select multiple values from multiple options.
 
-import { MobilMultichoiceComponent } from "@site/static/js/samples/mobile/multichoice.js"
+import { MultichoiceComponent } from "@site/static/js/samples/desktop/multichoice.js"
 
-<MobilMultichoiceComponent />
+<MultichoiceComponent />
 
 ---
 
@@ -63,7 +63,7 @@ Here is a list of events that can be specified:
 
 ### Constructor
 
-MobileMultiChoice(options)<br/>
+MultiChoice(options)<br/>
 Here is a list of available constructors:
 
 #### Parameter
@@ -72,11 +72,27 @@ Here is a list of available constructors:
 | :--- | :--- | :--- | :--- | :--- |
 | options | object | {} | Object that includes component properties | |
 
+### Custom CSS
+:::tip
+Please check [Custom CSS feature guide](../../getting-started/custom-css.md) at first.
+:::
+
+Here is a list of properties that can be used for modifying component style:
+#### Property
+| Name |
+| :--- |
+| --kuc-multi-choice-menu-width |
+| --kuc-multi-choice-menu-height |
+| --kuc-multi-choice-menu-font-size |
+| --kuc-multi-choice-menu-color |
+| --kuc-multi-choice-menu-color-selected |
+| --kuc-multi-choice-menu-background-color-hover |
+
 ---
 ## Sample Code
 
 :::tip
-Please check the [package installation](../../getting-started/quick-start#installation) method first.
+Please check the [package installation](../../getting-started/quick-start.md#installation) method first.
 :::
 
 Here is a sample code when all parameters are specified:
@@ -84,9 +100,9 @@ Here is a sample code when all parameters are specified:
 ```javascript
 const Kuc = Kucs['1.x.x'];
 
-const space = kintone.mobile.app.record.getSpaceElement('space');
+const space = kintone.app.record.getSpaceElement('space');
 
-const mobileMultiChoice = new Kuc.MobileMultiChoice({
+const multiChoice = new Kuc.MultiChoice({
   label: 'Fruit',
   requiredIcon: true,
   items: [
@@ -107,9 +123,15 @@ const mobileMultiChoice = new Kuc.MobileMultiChoice({
   visible: true,
   disabled: false
 });
-space.appendChild(mobileMultiChoice);
+space.appendChild(multiChoice);
 
-mobileMultiChoice.addEventListener('change', event => {
+multiChoice.addEventListener('change', event => {
   console.log(event);
 });
 ```
+
+---
+
+## Related Articles
+
+- [Format setting plug-in](../../guides/format-setting-plugin.md)
