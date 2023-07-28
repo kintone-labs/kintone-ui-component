@@ -66,6 +66,7 @@ Base.args = {
     {
       label: "item-3",
       value: "item-3",
+      disabled: true,
     },
   ],
   itemLayout: "vertical",

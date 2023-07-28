@@ -138,7 +138,10 @@ let exportRadioButton;
       menuEl.removeAttribute("focused");
     }
 
-    private _getRadioIconSvgTemplate(disabled: boolean, checked: boolean) {
+    private _getRadioIconSvgTemplate(
+      disabled: boolean | undefined,
+      checked: boolean
+    ) {
       return svg`
     <svg
       class="kuc-radio-button__group__select-menu__item__label__icon"
@@ -172,6 +175,7 @@ let exportRadioButton;
 
     private _getItemTemplate(item: RadioButtonItem, index: number) {
       const isCheckedItem = this._isCheckedItem(item, index);
+      const itemDisabled = this.disabled || item.disabled;
       return html`
         <div
           class="kuc-radio-button__group__select-menu__item"
@@ -188,7 +192,7 @@ let exportRadioButton;
             value="${item.value !== undefined ? item.value : ""}"
             tabindex="${this._getTabIndex(index, item, this.items)}"
             aria-required="${this.requiredIcon}"
-            ?disabled="${this.disabled}"
+            ?disabled="${itemDisabled}"
             @change="${this._handleChangeInput}"
             @focus="${this._handleFocusInput}"
             @blur="${this._handleBlurInput}"
@@ -197,7 +201,7 @@ let exportRadioButton;
             class="kuc-radio-button__group__select-menu__item__label"
             for="${this._GUID}-item-${index}"
             >${this._getRadioIconSvgTemplate(
-              this.disabled,
+              itemDisabled,
               isCheckedItem
             )}${item.label === undefined ? item.value : item.label}
           </label>
