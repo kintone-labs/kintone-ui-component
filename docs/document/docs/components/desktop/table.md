@@ -19,8 +19,6 @@ import { TableComponent } from "@site/static/js/samples/desktop/table.js"
 
 Here is a list of properties that can be used for modifying the component:
 
-#### Table
-
 | Name | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
 | className | string | ""  | Component class name | |

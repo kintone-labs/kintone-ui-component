@@ -47,7 +47,7 @@ Example: When setting `items = [{label: 'Orange', value: 'fruit'}, {label: 'Appl
   - selectedIndex = [0, 1]: The first and second items will be selected.
   - selectedIndex = [98, 99]: No item will be selected.
 
- - If setting `value` and `selectedIndex` as follows:
+- If setting `value` and `selectedIndex` as follows:
   - value = ['fruit', 'vegetable'], selectedIndex = [1, 3]: The second and third items will be selected.
   - value = ['fruit', 'fruit', 'vegetable'], selectedIndex = [1, 3]: The second, third, and fourth items will be selected.
   - value = ['fruit', 'fruit'], selectedIndex = [1, 2, 3]: The first and second items will be selected.<br/>
