@@ -100,7 +100,7 @@ UMD ファイルの導入方法は、[Quick Start](../getting-started/quick-star
 ## HTMLカスタマイズ
 
 プラグイン設定画面用の HTML ファイルを作成します。<br/>
-今回は以下の様に作成します。div 要素に設定した id を利用して、kintone UI Component の各パーツを配置していきます。
+今回は以下のように作成します。div 要素に設定した id を利用して、kintone UI Component の各パーツを配置していきます。
 
 ```html
 <section class="settings">
