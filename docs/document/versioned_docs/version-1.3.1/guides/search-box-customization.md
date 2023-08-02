@@ -47,7 +47,7 @@ header.appendChild(button);
 
 ### Search character check
 
-The Button component can specify a click event.<br//>
+The Button component can specify a click event.<br/>
 In this case, the following process is added.
 
 - When you click a button, check if there is a value in the text box.
@@ -128,7 +128,7 @@ kintone.api(kintone.api.url('/k/v1/records', true), 'GET', params).then(resp => 
   // Process when REST API error occurs
   let errmsg = 'An error occurred while retrieving the record.';
   if (error.message !== undefined) {
-    errmsg += '\n' + error.message;
+    errmsg += ' ' + error.message;
   }
   const alert = new Kuc.Notification({
     text: errmsg

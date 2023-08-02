@@ -134,8 +134,9 @@ Create a file like the one below. Place each part of Kintone UI Component by usi
 This section will explain the implementation code of the settings page.<br/>
 Place the JavaScript file (config.js) described below in the js folder.<br/>
 
+***config.js***
 
-```javascript title="config.js"
+```javascript
 (async PLUGIN_ID => {
   // Write the process here
 })(kintone.$PLUGIN_ID);
@@ -375,8 +376,9 @@ The value is inherited from the component of the plug-in settings page and used 
 Since the value of the DatePicker component is in yyyy-mm-dd format, today's date is also retrieved in yyyy-mm-dd format for easy comparison.<br/>
 An external date library called luxon.js is used for this customization.
 
+***desktop.js***
 
-```javascript title="desktop.js"
+```javascript
 (PLUGIN_ID => {
   kintone.events.on("app.record.detail.show", event => {
     const CONFIG = kintone.plugin.app.getConfig(PLUGIN_ID);

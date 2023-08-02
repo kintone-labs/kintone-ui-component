@@ -47,7 +47,7 @@ header.appendChild(button);
 
 ### Search character check
 
-The Button component can specify a click event.<br//>
+The Button component can specify a click event.<br/>
 In this case, the following process is added.
 
 - When you click a button, check if there is a value in the text box.
