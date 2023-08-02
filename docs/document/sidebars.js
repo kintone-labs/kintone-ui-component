@@ -13,19 +13,19 @@
 
 /** @type {import('@docusaurus/plugin-content-docs').SidebarsConfig} */
 const sidebars = {
-  "docs": {
+  docs: {
     "Getting Started": [
       "getting-started/quick-start",
       "getting-started/custom-css",
-      "getting-started/usage-with-typescript"
+      "getting-started/usage-with-typescript",
     ],
-    "Components": [
+    Components: [
       {
-        "type": "category",
-        "collapsible": true,
-        "collapsed": false,
-        "label": "Desktop",
-        "items": [
+        type: "category",
+        collapsible: true,
+        collapsed: false,
+        label: "Desktop",
+        items: [
           "components/desktop/attachment",
           "components/desktop/button",
           "components/desktop/checkbox",
@@ -44,15 +44,15 @@ const sidebars = {
           "components/desktop/tabs",
           "components/desktop/text",
           "components/desktop/textarea",
-          "components/desktop/time-picker"
-        ]
+          "components/desktop/time-picker",
+        ],
       },
       {
-        "type": "category",
-        "collapsible": true,
-        "collapsed": false,
-        "label": "Mobile",
-        "items": [
+        type: "category",
+        collapsible: true,
+        collapsed: false,
+        label: "Mobile",
+        items: [
           "components/mobile/mobile-button",
           "components/mobile/mobile-checkbox",
           "components/mobile/mobile-date-picker",
@@ -63,14 +63,12 @@ const sidebars = {
           "components/mobile/mobile-radio-button",
           "components/mobile/mobile-text",
           "components/mobile/mobile-textarea",
-          "components/mobile/mobile-time-picker"
-        ]
-      }
+          "components/mobile/mobile-time-picker",
+        ],
+      },
     ],
-    "Utilities": [
-      "utilities/version"
-    ],
-    "Guides": [
+    Utilities: ["utilities/version"],
+    Guides: [
       "guides/comparison-v0-v1",
       "guides/search-box-customization",
       "guides/mobile-timecard-customization",
@@ -80,11 +78,11 @@ const sidebars = {
       "guides/version-conflicts-issue-solution",
       "guides/attachment-customization",
       "guides/table-readonly-table-customization",
-      "guides/tabs-customization"
-    ]
+      "guides/tabs-customization",
+    ],
   },
   "release-notes": {
-    "Releases": [
+    Releases: [
       "releases/release-notes",
       "releases/release-notes-v1.4.0",
       "releases/release-notes-v1.3.2",
@@ -98,9 +96,9 @@ const sidebars = {
       "releases/release-notes-v1.0.3",
       "releases/release-notes-v1.0.2",
       "releases/release-notes-v1.0.1",
-      "releases/release-notes-v1.0.0"
-    ]
-  }
+      "releases/release-notes-v1.0.0",
+    ],
+  },
 };
 
 module.exports = sidebars;
