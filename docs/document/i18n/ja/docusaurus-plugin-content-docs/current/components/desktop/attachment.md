@@ -44,7 +44,7 @@ import { AttachmentComponent } from "@site/static/js/samples/desktop/attachment.
 
 | Name | Type | Description | Remark |
 | :--- | :--- | :--- | :--- |
-| change | function | ファイルが変更された時のイベントハンドラ | 引数には Event の event オブジェクトをとる<br/>event.detail で以下の値を受け取ることができる<li>add-file（ファイル追加された時にトリガーされる）<ul><li>event.detail.type: "add-file"</li><li>event.detail.oldFiles: 追加前のファイルリスト</li><li>event.detail.files: 追加後のファイルリスト</li><li>event.detail.fileIndex: 追加されたファイルの配列番号（Type: Array<number/>）<ul><li>"event.detail.files[event.detail.fileIndex[x]]" で追加されたファイルを取得できる</li></ul></li></ul></li><li>remove-file（ファイル削除された時にトリガーされる）<ul><li>event.detail.type: "remove-file"</li><li>event.detail.oldFiles: 削除前のファイルリスト</li><li>event.detail.files: 削除後のファイルリスト</li><li>event.detail.fileIndex: 削除されたファイルの配列番号（Type: Array<number/>）<ul><li>"event.detail.oldFiles[event.detail.fileIndex[x]]" で削除されたファイルを取得できる</li></ul></li></ul></li> |
+| change | function | ファイルが変更された時のイベントハンドラ | 引数には Event の event オブジェクトをとる<br/>event.detail で以下の値を受け取ることができる<li>add-file（ファイル追加された時にトリガーされる）<ul><li>event.detail.type: "add-file"</li><li>event.detail.oldFiles: 追加前のファイルリスト</li><li>event.detail.files: 追加後のファイルリスト</li><li>event.detail.fileIndex: 追加されたファイルの配列番号（Type: Array<number\>）<ul><li>"event.detail.files[event.detail.fileIndex[x]]" で追加されたファイルを取得できる</li></ul></li></ul></li><li>remove-file（ファイル削除された時にトリガーされる）<ul><li>event.detail.type: "remove-file"</li><li>event.detail.oldFiles: 削除前のファイルリスト</li><li>event.detail.files: 削除後のファイルリスト</li><li>event.detail.fileIndex: 削除されたファイルの配列番号（Type: Array<number\>）<ul><li>"event.detail.oldFiles[event.detail.fileIndex[x]]" で削除されたファイルを取得できる</li></ul></li></ul></li> |
 
 ### Constructor
 

@@ -100,7 +100,7 @@ UMD ファイルの導入方法は、[Quick Start](../getting-started/quick-star
 ## HTMLカスタマイズ
 
 プラグイン設定画面用の HTML ファイルを作成します。<br/>
-今回は以下の様に作成します。div 要素に設定した id を利用して、kintone UI Component の各パーツを配置していきます。
+今回は以下のように作成します。div 要素に設定した id を利用して、kintone UI Component の各パーツを配置していきます。
 
 ```html
 <section class="settings">
@@ -133,8 +133,9 @@ UMD ファイルの導入方法は、[Quick Start](../getting-started/quick-star
 設定画面の実装コードを解説します。<br/>
 以下のような JavaScript ファイル（config.js）を js フォルダに配置します。<br/>
 
+***config.js***
 
-```javascript title="config.js"
+```javascript
 (async PLUGIN_ID => {
   // Write the process here
 })(kintone.$PLUGIN_ID);
@@ -375,8 +376,9 @@ DatePicker コンポーネントの value が yyyy-mm-dd 形式のため、
 比較しやすいように本日の日付も yyyy-mm-dd 形式で取得しています。<br/>
 今回は luxon.js という外部の日付ライブラリを利用しています。
 
+***desktop.js***
 
-```javascript title="desktop.js"
+```javascript
 (PLUGIN_ID => {
   kintone.events.on("app.record.detail.show", event => {
     const CONFIG = kintone.plugin.app.getConfig(PLUGIN_ID);
