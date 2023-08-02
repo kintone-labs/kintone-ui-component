@@ -19,11 +19,11 @@ jobs:
           node-version: 16
       - name: Install dependencies
         run: npm ci
-        working-directory: docs/document/website
+        working-directory: docs/document
       - name: Build document
         run: npm run build
-        working-directory: docs/document/website
+        working-directory: docs/document
       - name: Install Netlify
         run: npm i netlify-cli --no-save
       - name: Deploying on Netlify Production Environment
-        run: netlify deploy --prod --dir=./docs/document/website/build/kintone-ui-component --auth=${{ secrets.NETLIFY_AUTH_TOKEN }} --site=${{ secrets.NETLIFY_DOCUMENT_ID }}
+        run: netlify deploy --prod --dir=./docs/document/build --auth=${{ secrets.NETLIFY_AUTH_TOKEN }} --site=${{ secrets.NETLIFY_DOCUMENT_ID }}
