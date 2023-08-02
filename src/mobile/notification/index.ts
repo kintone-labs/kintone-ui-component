@@ -1,6 +1,7 @@
-import { html, svg } from "lit";
+import { html, PropertyValues, svg } from "lit";
 import { property, state } from "lit/decorators.js";
 
+import { ERROR_MESSAGE } from "../../base/constant";
 import {
   createStyleOnHeader,
   dispatchCustomEvent,
@@ -25,6 +26,7 @@ let exportMobileNotification;
       "";
     @property({ type: String }) text = "";
     @property({ type: Number }) duration = -1;
+    @property() container: HTMLElement = document.body;
 
     @state()
     private _isOpened = false;
@@ -72,7 +74,16 @@ let exportMobileNotification;
     }
 
     open() {
-      document.body.appendChild(this);
+      const isValidContainer = this._isValidContainerElement();
+      if (!isValidContainer) {
+        document.body.appendChild(this);
+        requestAnimationFrame(() => {
+          document.body.removeChild(this);
+        });
+        this.performUpdate();
+        return;
+      }
+      this.container.appendChild(this);
       this.performUpdate();
 
       this.classList.remove("kuc-mobile-notification-fadeout");
@@ -83,13 +94,40 @@ let exportMobileNotification;
     }
 
     close() {
+      this._close();
+      dispatchCustomEvent(this, "close");
+    }
+
+    private _close() {
       this._isOpened = false;
       this.classList.remove("kuc-mobile-notification-fadein");
       this.classList.add("kuc-mobile-notification-fadeout");
 
       this._clearAutoCloseTimer();
+    }
 
-      dispatchCustomEvent(this, "close");
+    shouldUpdate(changedProperties: PropertyValues): boolean {
+      if (changedProperties.has("container")) {
+        if (this.container === null || this.container === undefined) {
+          this._isOpened && this._close();
+          return false;
+        }
+        const isValidContainer = this._isValidContainerElement();
+        const shouldClose =
+          !isValidContainer || !document.contains(this.container);
+        if (this._isOpened && shouldClose) {
+          this._close();
+        }
+        if (!isValidContainer) {
+          this.throwErrorAfterUpdateComplete(ERROR_MESSAGE.CONTAINER.INVALID);
+          return false;
+        }
+      }
+      return true;
+    }
+
+    private _isValidContainerElement() {
+      return this.container instanceof HTMLElement;
     }
 
     render() {

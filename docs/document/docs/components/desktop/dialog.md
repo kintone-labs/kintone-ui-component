@@ -26,6 +26,7 @@ Here is a list of properties that can be used for modifying the component:
 | title | string | ""  | Header Title | |
 | content *1 | string/HTMLElement | ""  | DOM inside content | If a string with HTML is set, it will be automatically converted to HTML and displayed as it is |
 | footer *1 | string/HTMLElement | ""  | DOM inside footer | If a string with HTML is set, it will be automatically converted to HTML and displayed as it is |
+| container | HTMLElement | document.body | Target element to append the component | By default, it uses the body of the top-level document object, so it's simply `document.body` most of the time<br>Will result an error if the value of `container` is not an HTMLElement |
 
 :::caution
 *1: [Security] Kintone UI Component does NOT sanitize this property value. It is the developer's responsibility to escape any user input when using this option so that XSS attacks would be prevented.
@@ -122,7 +123,8 @@ const dialog = new Kuc.Dialog({
   title: 'Title',
   content: '<div>This is Content</div>',
   footer: divEl,
-  icon: 'info'
+  icon: 'info',
+  container: document.body
 });
 
 dialog.addEventListener('close', event => {
