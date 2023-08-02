@@ -174,8 +174,11 @@ let exportRadioButton;
     }
 
     private _getItemTemplate(item: RadioButtonItem, index: number) {
-      const isCheckedItem = this._isCheckedItem(item, index);
-      const itemDisabled = this.disabled || item.disabled;
+      const isCheckedItem = !item.disabled && this._isCheckedItem(item, index);
+      const isDisabledItem = item.disabled || this.disabled;
+      const itemValue =
+        item.value !== undefined && !item.disabled ? item.value : "";
+
       return html`
         <div
           class="kuc-radio-button__group__select-menu__item"
@@ -189,10 +192,10 @@ let exportRadioButton;
             id="${this._GUID}-item-${index}"
             class="kuc-radio-button__group__select-menu__item__input"
             name="${this._GUID}-group"
-            value="${item.value !== undefined ? item.value : ""}"
+            value="${itemValue}"
             tabindex="${this._getTabIndex(index, item, this.items)}"
             aria-required="${this.requiredIcon}"
-            ?disabled="${itemDisabled}"
+            ?disabled="${isDisabledItem}"
             @change="${this._handleChangeInput}"
             @focus="${this._handleFocusInput}"
             @blur="${this._handleBlurInput}"
@@ -201,7 +204,7 @@ let exportRadioButton;
             class="kuc-radio-button__group__select-menu__item__label"
             for="${this._GUID}-item-${index}"
             >${this._getRadioIconSvgTemplate(
-              itemDisabled,
+              isDisabledItem,
               isCheckedItem
             )}${item.label === undefined ? item.value : item.label}
           </label>
