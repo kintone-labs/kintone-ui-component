@@ -57,6 +57,7 @@ let exportRadioButton;
     @property({ type: Array }) items: RadioButtonItem[] = [];
 
     private _GUID: string;
+    private _selectedTabIndex = 0;
 
     constructor(props?: RadioButtonProps) {
       super();
@@ -102,6 +103,14 @@ let exportRadioButton;
     }
 
     willUpdate(changedProperties: PropertyValues): void {
+      if (changedProperties.has("items")) {
+        for (const [index, item] of this.items.entries()) {
+          if (!item.disabled) {
+            this._selectedTabIndex = index;
+            break;
+          }
+        }
+      }
       if (changedProperties.has("value")) {
         if (this.value !== "") return;
 
@@ -174,10 +183,9 @@ let exportRadioButton;
     }
 
     private _getItemTemplate(item: RadioButtonItem, index: number) {
-      const isCheckedItem = !item.disabled && this._isCheckedItem(item, index);
+      const isCheckedItem = this._isCheckedItem(item, index);
       const isDisabledItem = item.disabled || this.disabled;
-      const itemValue =
-        item.value !== undefined && !item.disabled ? item.value : "";
+      const itemValue = item.value !== undefined ? item.value : "";
 
       return html`
         <div
@@ -216,13 +224,20 @@ let exportRadioButton;
       index: number,
       currentItem: RadioButtonItem,
       items: RadioButtonItem[]
-    ) {
+    ): string {
+      const valueExists = items.some((item) => item.value === this.value);
+
+      if (!valueExists) {
+        return index === this._selectedTabIndex ? "0" : "-1";
+      }
+
       if (
-        index === 0 &&
-        items.filter((item) => item.value === this.value).length === 0
-      )
+        index === this._selectedTabIndex ||
+        (currentItem.value === this.value && !currentItem.disabled)
+      ) {
         return "0";
-      if (currentItem.value === this.value) return "0";
+      }
+
       return "-1";
     }
 
