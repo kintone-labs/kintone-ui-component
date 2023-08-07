@@ -43,5 +43,25 @@ describe("Checkbox", () => {
       ]);
       expect(triggeredEvent.detail.value).to.deep.equal([initItems[1].value]);
     });
+
+    it("should not be triggered when mousedown on the disabled item", async () => {
+      let triggeredEvent: any = null;
+      const disabledItem = { label: "Banana", value: "banana", disabled: true };
+      const container = new Checkbox({
+        items: [...initItems, disabledItem],
+        value: [disabledItem.value],
+      });
+      container.addEventListener("change", (event: any) => {
+        triggeredEvent = event;
+      });
+
+      const el = await fixture(container);
+      const inputsEls = el.querySelectorAll(
+        ".kuc-checkbox__group__select-menu__item__input"
+      );
+      await expect(inputsEls.length).equal(4);
+      inputsEls[3].dispatchEvent(new Event("mousedown"));
+      await expect(triggeredEvent).to.equal(null);
+    });
   });
 });
