@@ -1,18 +1,18 @@
 ---
-id: version-1.13.0-checkbox
-title: Checkbox
-sidebar_label: Checkbox
-original_id: checkbox
+id: version-1.13.0-mobile-checkbox
+title: MobileCheckbox
+sidebar_label: MobileCheckbox
+original_id: mobile-checkbox
 ---
 
 ## Overview
 
-Checkbox は、複数選択のチェックボックスを表示します。
+MobileCheckbox は、複数選択のチェックボックスを表示します。
 
-<div class="sample-container" id="checkbox">
-  <div id="sample-container__components"></div>
+<div class="sample-container" id="mobile-checkbox">
+  <div id="sample-container__components" class="mobile"></div>
 </div>
-<script src="/js/samples/desktop/checkbox.js"></script>
+<script src="/js/samples/mobile/mobile-checkbox.js"></script>
 
 ---
 
@@ -27,7 +27,6 @@ Checkbox は、複数選択のチェックボックスを表示します。
 | className | string | "" | コンポーネントの class 名 ||
 | error | string | "" | エラーに表示するテキスト | 未指定、あるいは空文字の場合、error は表示されない |
 | id | string | "" | コンポーネントの id 名 ||
-| itemLayout | string | "horizontal" | 選択肢の並べ方 | 以下を指定できる<br>"horizontal" : 横並び<br>"vertical" : 縦並び |
 | label | string | "" | コンポーネントの説明ラベル | 未指定、あるいは空文字の場合、label は表示されない |
 | borderVisible | boolean | true | 選択肢を囲う枠線の表示/非表示設定 ||
 | disabled | boolean | false | コンポーネントの選択可/不可設定 ||
@@ -36,7 +35,6 @@ Checkbox は、複数選択のチェックボックスを表示します。
 | items | Array\<Item\> | [] | 表示する選択肢一覧 | items が配列以外の場合、エラーを出力する |
 | Item.label | string | null | 各選択肢のテキスト | Item.label が未指定の場合、UI 上は Item.value の値が表示される |
 | Item.value | string | null | 各選択肢の値 | Item.value に重複の値を指定できる |
-| Item.disabled | boolean | false | 各オプションの選択可/不可設定 | The disabled option will be checked if the value of the disable option is set to the component value |
 | value *1 | Array\<string\> | [] | 選択されている値 | value と selectedIndex が未指定の場合、何も選択されない<br>重複する value を指定し、selectedIndex を指定しない場合、Item.value で最初にマッピングされた value の項目が選択され、selectedIndex にはその選択肢のインデックス番号が入る<br>value が配列以外の場合、エラーを出力する |
 | selectedIndex *1 | Array\<Number\> | [] | 選択されている値のインデックス番号 | items 内に重複する Item.value がある場合、どの Item.value が選択されるか指定するためのプロパティ<br>value が未指定で、selectedIndex に有効な値が指定されている場合、 そのインデックス番号の選択肢が選択される<br>value に重複した Item.value が指定され、selectedIndex の値が value 内の重複した Item.value とマッピングした場合、そのインデックス番号の選択肢が選択される<br>selectedIndex が配列以外の場合、エラーを出力する |
 
@@ -67,7 +65,7 @@ Checkbox は、複数選択のチェックボックスを表示します。
 
 ### Constructor
 
-Checkbox(options)<br>
+MobileCheckbox(options)<br>
 使用できるコンストラクタの一覧です。
 
 #### Parameter
@@ -75,19 +73,6 @@ Checkbox(options)<br>
 | Name | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
 | options | object | {} | コンポーネントのプロパティを含むオブジェクト | |
-
-### Custom CSS
-> [Custom CSS](../../getting-started/custom-css.md) をご確認ください。
-
-コンポーネントのスタイルを変更するために使用できるプロパティの一覧です。
-#### Property
-| Name |
-| :--- |
-| --kuc-checkbox-menu-width |
-| --kuc-checkbox-menu-height |
-| --kuc-checkbox-menu-font-size |
-| --kuc-checkbox-menu-color |
-| --kuc-checkbox-menu-color-hover |
 
 ---
 
@@ -100,9 +85,9 @@ Checkbox(options)<br>
 ```javascript
 const Kuc = Kucs['1.x.x'];
 
-const space = kintone.app.record.getSpaceElement('space');
+const space = kintone.mobile.app.record.getSpaceElement('space');
 
-const checkbox = new Kuc.Checkbox({
+const mobileCheckbox = new Kuc.MobileCheckbox({
   label: 'Fruit',
   requiredIcon: true,
   items: [
@@ -117,7 +102,6 @@ const checkbox = new Kuc.Checkbox({
   ],
   value: ['Orange'],
   selectedIndex: [0],
-  itemLayout: 'horizontal',
   error: 'Error occurred!',
   className: 'options-class',
   id: 'options-id',
@@ -125,15 +109,9 @@ const checkbox = new Kuc.Checkbox({
   disabled: false,
   borderVisible: true
 });
-space.appendChild(checkbox);
+space.appendChild(mobileCheckbox);
 
-checkbox.addEventListener('change', event => {
+mobileCheckbox.addEventListener('change', event => {
   console.log(event);
 });
 ```
-
----
-
-## Related Articles
-
-- [Cleaning check list customization](../../guides/cleaning-check-list-customization.md)
