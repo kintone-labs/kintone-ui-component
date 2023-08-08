@@ -61,4 +61,30 @@ describe("Combobox", () => {
     (itemsEl[1] as HTMLDivElement).dispatchEvent(new Event("mousedown"));
     expect(triggeredEvent).to.equal(null);
   });
+
+  it("should not be triggered when mousedown on the disabled item", async () => {
+    let triggeredEvent: any = null;
+    const container = new Combobox({
+      items: [
+        ...initItems,
+        { label: "Banana", value: "banana", disabled: true },
+      ],
+    });
+
+    container.addEventListener("change", (event: any) => {
+      triggeredEvent = event;
+    });
+
+    const el = await fixture(container);
+    const toggleEl = el.querySelector(
+      ".kuc-combobox__group__toggle__icon__button"
+    ) as HTMLDivElement;
+    toggleEl.click();
+    await elementUpdated(container);
+    const itemsEl = el.querySelectorAll(
+      ".kuc-combobox__group__select-menu__item"
+    );
+    (itemsEl[3] as HTMLDivElement).dispatchEvent(new Event("mousedown"));
+    expect(triggeredEvent).to.equal(null);
+  });
 });

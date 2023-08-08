@@ -137,6 +137,11 @@ export const COMBOBOX_CSS = `
     left: 6px;
     margin-top: -5px;
   }
+  .kuc-combobox__group__select-menu__item--disabled {
+    background-color: #d4d7d7;
+    cursor: not-allowed;
+    color: #888888;
+  }
   .kuc-combobox__group__select-menu__item[aria-selected="true"] {
     color: var(--kuc-combobox-menu-color-selected, #3498db);
   }
