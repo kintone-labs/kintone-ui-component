@@ -260,75 +260,79 @@ let exportMultiChoice;
         case "ArrowUp": {
           event.preventDefault();
           if (this.items.length === 0) break;
-          this._itemsEl.forEach((itemEl: HTMLDivElement, number: number) => {
-            if (
-              itemEl.classList.contains(
-                "kuc-multi-choice__group__menu__highlight"
-              )
-            ) {
-              itemEl.classList.remove(
-                "kuc-multi-choice__group__menu__highlight"
-              );
-              highLightNumber = number - 1;
-            }
-          });
-          highLightNumber =
-            highLightNumber <= -1 ? this._itemsEl.length - 1 : highLightNumber;
-
-          const currentItemEl = this._itemsEl[highLightNumber];
-          currentItemEl.classList.add(
-            "kuc-multi-choice__group__menu__highlight"
-          );
-
-          this._setActiveDescendant(currentItemEl.id);
+          highLightNumber = this._actionHighlightPrevMenuItem(highLightNumber);
           break;
         }
         case "Down": // IE/Edge specific value
         case "ArrowDown": {
           event.preventDefault();
           if (this.items.length === 0) break;
-          this._itemsEl.forEach((itemEl: HTMLDivElement, number: number) => {
-            if (
-              itemEl.classList.contains(
-                "kuc-multi-choice__group__menu__highlight"
-              )
-            ) {
-              itemEl.classList.remove(
-                "kuc-multi-choice__group__menu__highlight"
-              );
-              highLightNumber = number + 1;
-            }
-          });
-          highLightNumber =
-            highLightNumber >= this._itemsEl.length ? 0 : highLightNumber;
-
-          const currentItemEl = this._itemsEl[highLightNumber];
-          currentItemEl.classList.add(
-            "kuc-multi-choice__group__menu__highlight"
-          );
-
-          this._setActiveDescendant(currentItemEl.id);
+          highLightNumber = this._actionHighlightNextMenuItem(highLightNumber);
           break;
         }
         case "Spacebar": // IE/Edge specific value
         case " ": {
           event.preventDefault();
-          this._itemsEl.forEach((itemEl: HTMLDivElement) => {
-            if (
-              itemEl.classList.contains(
-                "kuc-multi-choice__group__menu__highlight"
-              )
-            ) {
-              const value = itemEl.getAttribute("value") as string;
-              const selectedIndex = itemEl.dataset.index || "0";
-              this._handleChangeValue(value, selectedIndex);
-            }
-          });
+          this._actionUpdateValue();
           break;
         }
         default:
           break;
       }
+    }
+
+    private _actionHighlightPrevMenuItem(highLightNumber: number) {
+      let highLightIdx = highLightNumber;
+      this._itemsEl.forEach((itemEl: HTMLDivElement, number: number) => {
+        if (
+          itemEl.classList.contains("kuc-multi-choice__group__menu__highlight")
+        ) {
+          itemEl.classList.remove("kuc-multi-choice__group__menu__highlight");
+          highLightIdx = number - 1;
+        }
+      });
+      highLightIdx =
+        highLightIdx <= -1 ? this._itemsEl.length - 1 : highLightIdx;
+
+      const currentItemEl = this._itemsEl[highLightIdx];
+      currentItemEl.classList.add("kuc-multi-choice__group__menu__highlight");
+
+      this._setActiveDescendant(currentItemEl.id);
+      return highLightIdx;
+    }
+
+    private _actionHighlightNextMenuItem(highLightNumber: number) {
+      let highLightIdx = highLightNumber;
+      this._itemsEl.forEach((itemEl: HTMLDivElement, number: number) => {
+        if (
+          itemEl.classList.contains(
+            "kuc-multi-choice__group__menu__highlight"
+          ) ||
+          itemEl.classList.contains("kuc-multi-choice__group__menu__highlight")
+        ) {
+          itemEl.classList.remove("kuc-multi-choice__group__menu__highlight");
+          highLightIdx = number + 1;
+        }
+      });
+      highLightIdx = highLightIdx >= this._itemsEl.length ? 0 : highLightIdx;
+
+      const currentItemEl = this._itemsEl[highLightIdx];
+      currentItemEl.classList.add("kuc-multi-choice__group__menu__highlight");
+
+      this._setActiveDescendant(currentItemEl.id);
+      return highLightIdx;
+    }
+
+    private _actionUpdateValue() {
+      this._itemsEl.forEach((itemEl: HTMLDivElement) => {
+        if (
+          itemEl.classList.contains("kuc-multi-choice__group__menu__highlight")
+        ) {
+          const value = itemEl.getAttribute("value") as string;
+          const selectedIndex = itemEl.dataset.index || "0";
+          this._handleChangeValue(value, selectedIndex);
+        }
+      });
     }
 
     private _getMultiChoiceCheckedIconSvgTemplate(
