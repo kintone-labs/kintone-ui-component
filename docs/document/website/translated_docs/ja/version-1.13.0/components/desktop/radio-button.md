@@ -38,7 +38,7 @@ RadioButton は、複数選択肢の中から一つの値を選択すること�
 | items | Array\<Item\> | [] | 表示する選択肢一覧 | items が配列以外の場合、エラーを出力する |
 | Item.label | string | null | 各選択肢のテキスト | Item.label が未指定の場合、UI 上は Item.value の値が表示される |
 | Item.value | string | null | 各選択肢の値 | Item.value に重複の値を指定できる |
-| Item.disabled | boolean | false | 各オプションの選択可/不可設定 | The disabled option will be checked if the value of the disable option is set to the component value |
+| Item.disabled | boolean | false | 各オプションの選択可/不可設定 | |
 
 > *1: Item.value に重複した値を指定できる。重複した値を指定する場合、value と selectedIndex プロパティを使って制御することができる。<br>
 > 例: `items = [{label: 'Orange', value: 'fruit'}, {label: 'Apple', value: 'fruit'}, {label: 'Carrot', value: 'vegetable'}]` を指定する

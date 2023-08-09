@@ -37,7 +37,7 @@ Here is a list of properties that can be used for modifying the component:
 | items | Array\<Item\> | []  | List of options to select from | Will result an error if the value of items is not an array |
 | Item.label | string | null | Text for each option | If `Item.label` is unspecified, the value of `Item.value` is displayed on the UI |
 | Item.value | string | null | Value of each option | Can set duplicated value in `Item.value` |
-| Item.disabled | boolean | false | Enable/Disable each option | The disabled option will be selected if the value of the disable option is set to the component value |
+| Item.disabled | boolean | false | Enable/Disable each option | |
 
 > *1: You can set duplicated value in `Item.value`. In case setting duplicated value, you can handle selected item using `value` and `selectedIndex` property.<br>
 > Example: When setting `items = [{label: 'Orange', value: 'fruit'}, {label: 'Apple', value: 'fruit'}, {label: 'Carrot', value: 'vegetable'}]`
