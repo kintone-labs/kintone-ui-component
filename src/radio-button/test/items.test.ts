@@ -21,9 +21,7 @@ const replacedItems = [
   { label: "Apple", value: "apple" },
 ];
 
-const dupplicatedItems = [{ value: "apple" }, { value: "apple" }];
-
-describe("MobileRadioButton", () => {
+describe("RadioButton", () => {
   describe("items", () => {
     it("should not have item when not assigned on constructor", async () => {
       const container = new RadioButton();
