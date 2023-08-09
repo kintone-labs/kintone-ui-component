@@ -489,7 +489,7 @@ let exportCombobox;
     private _actionHighlightFirstMenuItem() {
       let firstItem = this._firstItemEl;
       let itemIsDisabled = false;
-      for (let i = 0; i < this.items.length; i++) {
+      for (let i = 0; i < this._matchingItems.length; i++) {
         itemIsDisabled = firstItem.classList.contains(this._DISABLED_CLASS);
         if (itemIsDisabled) {
           firstItem = firstItem.nextElementSibling as HTMLLIElement;
@@ -504,7 +504,7 @@ let exportCombobox;
     private _actionHighlightLastMenuItem() {
       let lastItem = this._lastItemEl;
       let itemIsDisabled = false;
-      for (let i = 0; i < this.items.length; i++) {
+      for (let i = 0; i < this._matchingItems.length; i++) {
         itemIsDisabled = lastItem.classList.contains(this._DISABLED_CLASS);
         if (itemIsDisabled) {
           lastItem = lastItem.previousElementSibling as HTMLLIElement;
@@ -528,7 +528,7 @@ let exportCombobox;
       }
 
       let prevItemIsDisabled = false;
-      for (let i = 0; i < this.items.length; i++) {
+      for (let i = 0; i < this._matchingItems.length; i++) {
         prevItemIsDisabled = prevItem.classList.contains(this._DISABLED_CLASS);
         if (prevItemIsDisabled) {
           prevItem = prevItem.previousElementSibling as HTMLLIElement;
@@ -555,7 +555,7 @@ let exportCombobox;
       }
 
       let nextItemIsDisabled = false;
-      for (let i = 0; i < this.items.length; i++) {
+      for (let i = 0; i < this._matchingItems.length; i++) {
         nextItemIsDisabled = nextItem.classList.contains(this._DISABLED_CLASS);
         if (nextItemIsDisabled) {
           nextItem = nextItem.nextElementSibling as HTMLLIElement;
