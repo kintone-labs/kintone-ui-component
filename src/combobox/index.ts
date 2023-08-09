@@ -376,7 +376,9 @@ let exportCombobox;
 
       if (
         Array.from(this._disabledItemsEl).some(
-          (disabledItemEl: HTMLLIElement) => disabledItemEl === event.target
+          (disabledItemEl: HTMLLIElement) =>
+            disabledItemEl === event.target ||
+            disabledItemEl.contains(event.target as HTMLElement)
         )
       ) {
         return;
