@@ -432,7 +432,11 @@ let exportDropdown;
       if (this.items.length === 0) return;
       this._selectorVisible = true;
 
-      if (this._selectedItemEl === null) return;
+      if (
+        this._selectedItemEl === null ||
+        this._selectedItemEl.classList.contains(this._DISABLED_CLASS)
+      )
+        return;
       this._setHighlightAndActiveDescendantMenu(this._selectedItemEl);
     }
 
@@ -702,7 +706,7 @@ let exportDropdown;
             : ""}"
           role="option"
           tabindex="${!item.disabled && isCheckedItem ? "0" : "-1"}"
-          aria-selected="${!item.disabled && isCheckedItem ? "true" : "false"}"
+          aria-selected="${isCheckedItem ? "true" : "false"}"
           data-index="${index}"
           value="${item.value !== undefined ? item.value : ""}"
           id="${this._GUID}-menuitem-${index}"
