@@ -57,7 +57,7 @@ let exportRadioButton;
     @property({ type: Array }) items: RadioButtonItem[] = [];
 
     private _GUID: string;
-    private _selectedTabIndex = 0;
+    private _indexItemFocus = -1;
 
     constructor(props?: RadioButtonProps) {
       super();
@@ -102,14 +102,26 @@ let exportRadioButton;
       return true;
     }
 
-    willUpdate(changedProperties: PropertyValues): void {
-      if (changedProperties.has("items")) {
-        for (const [index, item] of this.items.entries()) {
-          if (!item.disabled) {
-            this._selectedTabIndex = index;
-            break;
+    private _findItemToFocus() {
+      let index = -1;
+
+      for (let i = 0; i < this.items.length; i++) {
+        if (!this.items[i].disabled) {
+          if (this.value !== undefined && this.items[i].value === this.value) {
+            return i;
+          }
+          if (index === -1) {
+            index = i;
           }
         }
+      }
+
+      return index;
+    }
+
+    willUpdate(changedProperties: PropertyValues): void {
+      if (changedProperties.has("items")) {
+        this._indexItemFocus = this._findItemToFocus();
       }
       if (changedProperties.has("value")) {
         if (this.value !== "") return;
@@ -186,6 +198,7 @@ let exportRadioButton;
       const isCheckedItem = this._isCheckedItem(item, index);
       const isDisabledItem = item.disabled || this.disabled;
       const itemValue = item.value !== undefined ? item.value : "";
+      const tabIndex = index === this._indexItemFocus ? "0" : "-1";
 
       return html`
         <div
@@ -201,7 +214,7 @@ let exportRadioButton;
             class="kuc-radio-button__group__select-menu__item__input"
             name="${this._GUID}-group"
             value="${itemValue}"
-            tabindex="${this._getTabIndex(index, item, this.items)}"
+            tabindex="${tabIndex}}"
             aria-required="${this.requiredIcon}"
             ?disabled="${isDisabledItem}"
             @change="${this._handleChangeInput}"
@@ -218,27 +231,6 @@ let exportRadioButton;
           </label>
         </div>
       `;
-    }
-
-    private _getTabIndex(
-      index: number,
-      currentItem: RadioButtonItem,
-      items: RadioButtonItem[]
-    ): string {
-      const valueExists = items.some((item) => item.value === this.value);
-
-      if (!valueExists) {
-        return index === this._selectedTabIndex ? "0" : "-1";
-      }
-
-      if (
-        index === this._selectedTabIndex ||
-        (currentItem.value === this.value && !currentItem.disabled)
-      ) {
-        return "0";
-      }
-
-      return "-1";
     }
 
     update(changedProperties: PropertyValues) {
