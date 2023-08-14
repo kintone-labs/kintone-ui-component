@@ -50,11 +50,8 @@ export const CHECKBOX_CSS = `
     display: flex;
     align-items: flex-start;
   }
-  .kuc-checkbox__group__select-menu[itemLayout="horizontal"] {
-    flex-direction: row;
-  }
   .kuc-checkbox__group__select-menu[itemLayout="vertical"] {
-    flex-direction: column;
+    display: block;
   }
   .kuc-checkbox__group__label {
     display: inline-block;
