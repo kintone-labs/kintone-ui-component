@@ -75,11 +75,9 @@ describe("Spinner", () => {
       };
       window.addEventListener("unhandledrejection", handleError);
       const container = new Spinner();
-      container.open();
-
       fixture(container);
+
       container.container = "container";
-      container.open();
     });
   });
 });
