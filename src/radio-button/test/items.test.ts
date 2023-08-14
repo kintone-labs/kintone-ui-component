@@ -25,7 +25,7 @@ const dupplicatedItems = [{ value: "apple" }, { value: "apple" }];
 
 describe("MobileRadioButton", () => {
   describe("items", () => {
-    it("should not have item when not asigned on constuctor", async () => {
+    it("should not have item when not assigned on constructor", async () => {
       const container = new RadioButton();
       const el = await fixture(container);
       const itemsEl = el.querySelectorAll(
@@ -95,7 +95,7 @@ describe("MobileRadioButton", () => {
       const circlesEl2 = itemsEl[2].querySelectorAll("circle");
       expect(circlesEl2.length).to.equal(1);
     });
-    it('should set item value "" when asigned item value undefined on constuctor', async () => {
+    it('should set item value "" when assigned item value undefined on constructor', async () => {
       const container = new RadioButton({
         items: initItemsWithoutValue,
       });

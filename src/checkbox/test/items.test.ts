@@ -24,7 +24,7 @@ const dupplicatedItems = [{ value: "apple" }, { value: "apple" }];
 
 describe("Checkbox", () => {
   describe("items", () => {
-    it("should not have item when not asigned on constuctor", async () => {
+    it("should not have item when not assigned on constructor", async () => {
       const container = new Checkbox();
       const el = await fixture(container);
       const itemsEl = el.querySelectorAll(
@@ -171,7 +171,7 @@ describe("Checkbox", () => {
       fixture(container);
     });
 
-    it('should set item value "" when asigned item value undefined on constuctor', async () => {
+    it('should set item value "" when assigned item value undefined on constructor', async () => {
       const container = new Checkbox({
         items: initItemsWithoutValue,
       });
@@ -181,6 +181,26 @@ describe("Checkbox", () => {
       );
       const inputEl0 = itemsEl[0].querySelector("input") as HTMLInputElement;
       expect(inputEl0.value).to.equal("");
+    });
+
+    it("should set items when assigned disabled items on constructor", async () => {
+      const disabledItem = { label: "Banana", value: "banana", disabled: true };
+      const container = new Checkbox({
+        items: [...initItems, disabledItem],
+      });
+      const el = await fixture(container);
+      const inputEls = el.querySelectorAll(
+        ".kuc-checkbox__group__select-menu__item"
+      );
+
+      expect(inputEls.length).to.equal(4);
+
+      const inputEl = inputEls[3].querySelector("input") as HTMLInputElement;
+      expect(inputEl.checked).to.equal(false);
+      expect(inputEl.value).to.equal(disabledItem.value);
+      const labelEl = inputEls[3].querySelector("label") as HTMLLabelElement;
+      expect(labelEl.innerText).to.equal(disabledItem.label);
+      expect(inputEl.hasAttribute("disabled")).to.equal(true);
     });
   });
 });
