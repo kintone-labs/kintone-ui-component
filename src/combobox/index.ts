@@ -217,7 +217,10 @@ let exportCombobox;
       if (this._selectorVisible) {
         this._setMenuPosition();
         this._scrollToView();
-        if (this._selectedItemEl === null) {
+        if (
+          this._selectedItemEl === null ||
+          this._selectedItemEl.classList.contains(this._DISABLED_CLASS)
+        ) {
           this._actionClearAllHighlightMenuItem();
         } else {
           this._setHighlightAndActiveDescendantMenu(this._selectedItemEl);
