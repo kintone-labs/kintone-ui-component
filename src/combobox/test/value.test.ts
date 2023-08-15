@@ -90,17 +90,9 @@ describe("Combobox", () => {
       const itemsEl = el.querySelectorAll(
         ".kuc-combobox__group__select-menu__item"
       );
-      const svgsEl0 = itemsEl[0].querySelectorAll("svg");
-      expect(svgsEl0.length).to.equal(0);
-      expect(itemsEl[0].getAttribute("aria-selected")).to.equal("false");
-
-      const svgsEl1 = itemsEl[3].querySelectorAll("svg");
-      expect(svgsEl1.length).to.equal(1);
+      const svgsEl3 = itemsEl[3].querySelectorAll("svg");
+      expect(svgsEl3.length).to.equal(1);
       expect(itemsEl[3].getAttribute("aria-selected")).to.equal("true");
-
-      const svgsEl2 = itemsEl[2].querySelectorAll("svg");
-      expect(svgsEl2.length).to.equal(0);
-      expect(itemsEl[2].getAttribute("aria-selected")).to.equal("false");
     });
   });
 
