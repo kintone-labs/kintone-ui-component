@@ -57,7 +57,6 @@ let exportRadioButton;
     @property({ type: Array }) items: RadioButtonItem[] = [];
 
     private _GUID: string;
-    private _indexItemFocus = -1;
 
     constructor(props?: RadioButtonProps) {
       super();
@@ -120,9 +119,6 @@ let exportRadioButton;
     }
 
     willUpdate(changedProperties: PropertyValues): void {
-      if (changedProperties.has("items")) {
-        this._indexItemFocus = this._findItemToFocus();
-      }
       if (changedProperties.has("value")) {
         if (this.value !== "") return;
 
@@ -198,7 +194,7 @@ let exportRadioButton;
       const isCheckedItem = this._isCheckedItem(item, index);
       const isDisabledItem = item.disabled || this.disabled;
       const itemValue = item.value !== undefined ? item.value : "";
-      const tabIndex = index === this._indexItemFocus ? "0" : "-1";
+      const tabIndex = index === this._findItemToFocus() ? "0" : "-1";
 
       return html`
         <div
