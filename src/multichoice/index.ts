@@ -54,12 +54,25 @@ let exportMultiChoice;
 
     @query(".kuc-multi-choice__group__menu")
     private _menuEl!: HTMLDivElement;
+
     @queryAll(".kuc-multi-choice__group__menu__item")
     private _itemsEl!: HTMLDivElement[];
+
+    @query(".kuc-multi-choice__group__menu__item")
+    private _firstItemEl!: HTMLDivElement;
+
+    @query(".kuc-multi-choice__group__menu__item:last-child")
+    private _lastItemEl!: HTMLDivElement;
+
+    @query(".kuc-multi-choice__group__menu__highlight")
+    private _highlightItemEl!: HTMLDivElement;
+
     private _GUID: string;
 
     @state()
     private _valueMapping: ValueMapping = {};
+
+    private _DISABLED_CLASS = "kuc-multi-choice__group__menu__item--disabled";
 
     constructor(props?: MultiChoiceProps) {
       super();
@@ -254,20 +267,19 @@ let exportMultiChoice;
 
     private _handleKeyDownMultiChoice(event: KeyboardEvent) {
       if (this.disabled) return;
-      let highLightNumber = 0;
       switch (event.key) {
         case "Up": // IE/Edge specific value
         case "ArrowUp": {
           event.preventDefault();
           if (this.items.length === 0) break;
-          highLightNumber = this._actionHighlightPrevMenuItem(highLightNumber);
+          this._actionHighlightPrevMenuItem();
           break;
         }
         case "Down": // IE/Edge specific value
         case "ArrowDown": {
           event.preventDefault();
           if (this.items.length === 0) break;
-          highLightNumber = this._actionHighlightNextMenuItem(highLightNumber);
+          this._actionHighlightNextMenuItem();
           break;
         }
         case "Spacebar": // IE/Edge specific value
@@ -281,46 +293,63 @@ let exportMultiChoice;
       }
     }
 
-    private _actionHighlightPrevMenuItem(highLightNumber: number) {
-      let highLightIdx = highLightNumber;
-      this._itemsEl.forEach((itemEl: HTMLDivElement, number: number) => {
-        if (
-          itemEl.classList.contains("kuc-multi-choice__group__menu__highlight")
-        ) {
-          itemEl.classList.remove("kuc-multi-choice__group__menu__highlight");
-          highLightIdx = number - 1;
+    private _actionHighlightPrevMenuItem() {
+      let prevItem: any = null;
+      if (this._highlightItemEl !== null) {
+        prevItem = this._highlightItemEl
+          .previousElementSibling as HTMLDivElement;
+      }
+      if (prevItem === null) {
+        prevItem = this._lastItemEl;
+        if (this._highlightItemEl === null) prevItem = this._firstItemEl;
+      }
+      let prevItemIsDisabled = false;
+      this._actionClearAllHighlightMenuItem();
+      for (let index = 0; index < this._itemsEl.length; index++) {
+        prevItemIsDisabled = prevItem.classList.contains(this._DISABLED_CLASS);
+        if (prevItemIsDisabled) {
+          prevItem = prevItem.previousElementSibling as HTMLLIElement;
+          if (prevItem === null) {
+            prevItem = this._lastItemEl;
+          }
+        } else {
+          break;
         }
-      });
-      highLightIdx =
-        highLightIdx <= -1 ? this._itemsEl.length - 1 : highLightIdx;
-
-      const currentItemEl = this._itemsEl[highLightIdx];
-      currentItemEl.classList.add("kuc-multi-choice__group__menu__highlight");
-
-      this._setActiveDescendant(currentItemEl.id);
-      return highLightIdx;
+      }
+      if (prevItemIsDisabled) return;
+      prevItem.classList.add("kuc-multi-choice__group__menu__highlight");
+      this._setActiveDescendant(prevItem.id);
     }
 
-    private _actionHighlightNextMenuItem(highLightNumber: number) {
-      let highLightIdx = highLightNumber;
-      this._itemsEl.forEach((itemEl: HTMLDivElement, number: number) => {
-        if (
-          itemEl.classList.contains(
-            "kuc-multi-choice__group__menu__highlight"
-          ) ||
-          itemEl.classList.contains("kuc-multi-choice__group__menu__highlight")
-        ) {
-          itemEl.classList.remove("kuc-multi-choice__group__menu__highlight");
-          highLightIdx = number + 1;
+    private _actionHighlightNextMenuItem() {
+      let nextItem: any = null;
+      if (this._highlightItemEl !== null) {
+        nextItem = this._highlightItemEl.nextElementSibling as HTMLDivElement;
+      }
+      if (nextItem === null) nextItem = this._firstItemEl;
+
+      let nextItemIsDisabled = false;
+      this._actionClearAllHighlightMenuItem();
+      for (let index = 0; index < this._itemsEl.length; index++) {
+        nextItemIsDisabled = nextItem.classList.contains(this._DISABLED_CLASS);
+        if (nextItemIsDisabled) {
+          nextItem = nextItem.nextElementSibling as HTMLDivElement;
+          if (nextItem === null) {
+            nextItem = this._firstItemEl;
+          }
+        } else {
+          break;
         }
+      }
+      if (nextItemIsDisabled) return;
+      nextItem.classList.add("kuc-multi-choice__group__menu__highlight");
+      this._setActiveDescendant(nextItem.id);
+    }
+
+    private _actionClearAllHighlightMenuItem() {
+      this._itemsEl.forEach((itemEl: HTMLDivElement) => {
+        itemEl.classList.remove("kuc-multi-choice__group__menu__highlight");
       });
-      highLightIdx = highLightIdx >= this._itemsEl.length ? 0 : highLightIdx;
-
-      const currentItemEl = this._itemsEl[highLightIdx];
-      currentItemEl.classList.add("kuc-multi-choice__group__menu__highlight");
-
-      this._setActiveDescendant(currentItemEl.id);
-      return highLightIdx;
     }
 
     private _actionUpdateValue() {
@@ -373,21 +402,30 @@ let exportMultiChoice;
 
     private _getMenuItemTemplate(item: MultiChoiceItem, index: number) {
       const isCheckedItem = this._isCheckedItem(item, index);
+      const isDisabledItem = item.disabled || this.disabled;
       return html`
         <div
-          class="kuc-multi-choice__group__menu__item"
+          class="kuc-multi-choice__group__menu__item ${isDisabledItem
+            ? this._DISABLED_CLASS
+            : ""}"
           role="option"
           aria-selected="${isCheckedItem}"
           aria-required="${this.requiredIcon}"
           data-index="${index}"
           value="${item.value !== undefined ? item.value : ""}"
           id="${this._GUID}-menuitem-${index}"
-          @mousedown="${this._handleMouseDownMultiChoiceItem}"
-          @mouseover="${this._handleMouseOverMultiChoiceItem}"
-          @mouseleave="${this._handleMouseLeaveMultiChoiceItem}"
+          @mousedown="${!isDisabledItem
+            ? this._handleMouseDownMultiChoiceItem
+            : null}"
+          @mouseover="${!isDisabledItem
+            ? this._handleMouseOverMultiChoiceItem
+            : null}"
+          @mouseleave="${!isDisabledItem
+            ? this._handleMouseLeaveMultiChoiceItem
+            : null}"
         >
           ${this._getMultiChoiceCheckedIconSvgTemplate(
-            this.disabled,
+            isDisabledItem,
             isCheckedItem
           )}
           ${item.label === undefined ? item.value : item.label}
