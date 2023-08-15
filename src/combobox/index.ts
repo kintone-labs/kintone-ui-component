@@ -278,7 +278,7 @@ let exportCombobox;
             ? this._DISABLED_CLASS
             : ""}"
           role="option"
-          aria-selected="${isCheckedItem && !isDisabled ? "true" : "false"}"
+          aria-selected="${isCheckedItem ? "true" : "false"}"
           value="${item.value !== undefined ? item.value : ""}"
           id="${this._GUID}-menuitem-${index}"
           @mousedown="${!isDisabled ? this._handleMouseDownComboboxItem : null}"

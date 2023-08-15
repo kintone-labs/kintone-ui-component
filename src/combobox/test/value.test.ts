@@ -68,6 +68,40 @@ describe("Combobox", () => {
       expect(svgsEl2.length).to.equal(0);
       expect(itemsEl[2].getAttribute("aria-selected")).to.equal("false");
     });
+
+    it("should be set to selected item label when assigned a disabled item value on constructor", async () => {
+      const container = new Combobox({
+        items: [
+          ...initItems,
+          { label: "Banana", value: "banana", disabled: true },
+        ],
+        value: "banana",
+      });
+      const el = await fixture(container);
+      expect(container.value).to.be.equal("banana");
+
+      const toggleInput = el.querySelector(
+        ".kuc-combobox__group__toggle__input"
+      ) as HTMLInputElement;
+      toggleInput.click();
+      await elementUpdated(el);
+      expect(toggleInput?.value).to.equal("Banana");
+
+      const itemsEl = el.querySelectorAll(
+        ".kuc-combobox__group__select-menu__item"
+      );
+      const svgsEl0 = itemsEl[0].querySelectorAll("svg");
+      expect(svgsEl0.length).to.equal(0);
+      expect(itemsEl[0].getAttribute("aria-selected")).to.equal("false");
+
+      const svgsEl1 = itemsEl[3].querySelectorAll("svg");
+      expect(svgsEl1.length).to.equal(1);
+      expect(itemsEl[3].getAttribute("aria-selected")).to.equal("true");
+
+      const svgsEl2 = itemsEl[2].querySelectorAll("svg");
+      expect(svgsEl2.length).to.equal(0);
+      expect(itemsEl[2].getAttribute("aria-selected")).to.equal("false");
+    });
   });
 
   it("should be updated by setter", async () => {
