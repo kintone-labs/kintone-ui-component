@@ -214,7 +214,7 @@ let exportRadioButton;
             class="kuc-radio-button__group__select-menu__item__input"
             name="${this._GUID}-group"
             value="${itemValue}"
-            tabindex="${tabIndex}}"
+            tabindex="${tabIndex}"
             aria-required="${this.requiredIcon}"
             ?disabled="${isDisabledItem}"
             @change="${this._handleChangeInput}"
