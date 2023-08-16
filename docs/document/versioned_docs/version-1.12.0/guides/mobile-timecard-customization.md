@@ -169,8 +169,8 @@ When you click the punch-out button, the following process takes place in the sa
 - Stamp the punch-out time if there is a record.
 - Show the notification when the punch-out time stamping is completed.
 
-*The code is omitted because there are a lot of parts that are similar to the punch-in process.<br/>
-*The same process is performed when an error message is displayed.
+\*The code is omitted because there are a lot of parts that are similar to the punch-in process.<br/>
+\*The same process is performed when an error message is displayed.
 
 ### Show error messages
 
