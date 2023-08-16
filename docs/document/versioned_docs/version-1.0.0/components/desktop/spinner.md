@@ -11,6 +11,7 @@ The Spinner component allows the user to display a rolling spinner.
 import { SpinnerComponent } from "@site/static/js/samples/desktop/spinner.js"
 
 <SpinnerComponent />
+
 ---
 
 ## Specification

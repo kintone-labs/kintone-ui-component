@@ -11,6 +11,7 @@ MobileDatePicker は入力エリアと日付選択用のカレンダーを表示
 import { MobileDatePickerComponent } from "@site/static/js/samples/mobile/date-picker.js"
 
 <MobileDatePickerComponent />
+
 ---
 
 ## Specification

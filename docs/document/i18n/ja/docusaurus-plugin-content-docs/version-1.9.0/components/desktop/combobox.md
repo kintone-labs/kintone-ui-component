@@ -11,6 +11,7 @@ Combobox は複数選択肢の中から一つの値を検索して選択する�
 import { ComboboxComponent } from "@site/static/js/samples/desktop/combobox.js"
 
 <ComboboxComponent />
+
 ---
 
 ## Specification
