@@ -305,9 +305,6 @@ let exportMultiChoice;
       let highLightIdx = highLightNumber;
       this._itemsEl.forEach((itemEl: HTMLDivElement, number: number) => {
         if (
-          itemEl.classList.contains(
-            "kuc-multi-choice__group__menu__highlight"
-          ) ||
           itemEl.classList.contains("kuc-multi-choice__group__menu__highlight")
         ) {
           itemEl.classList.remove("kuc-multi-choice__group__menu__highlight");
