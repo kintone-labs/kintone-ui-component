@@ -174,18 +174,15 @@ Output Result：
       <th>Safari</th>
       <th>Firefox</th>
       <th>Edge</th>
-      <th>IE11</th>
     </tr>
     <tr>
       <td>○</td>
       <td>○</td>
       <td>○</td>
       <td>○</td>
-      <td>△</td>
     </tr>
   </tbody>
 </table>
-
 :::info
 The components have been tested in the latest version of each supported browser.<br/>
 Kintone UI Component v1 does not work properly in IE11 due to the balance with the library currently used by Kintone.

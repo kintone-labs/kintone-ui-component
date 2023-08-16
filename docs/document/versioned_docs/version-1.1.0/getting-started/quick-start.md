@@ -160,7 +160,6 @@ npm run build:webpack
 Output Result：
 ./dist/customization.min.js
 ```
-```
 
 6. Upload the bundled file created in the previous step to the `JavaScript and CSS Customization` option inside Kintone app settings. ([Customizing an App with JavaScript and CSS](https://get.kintone.help/k/en/user/app_settings/js_customize.html))
 
@@ -175,14 +174,12 @@ Output Result：
       <th>Safari</th>
       <th>Firefox</th>
       <th>Edge</th>
-      <th>IE11</th>
     </tr>
     <tr>
       <td>○</td>
       <td>○</td>
       <td>○</td>
       <td>○</td>
-      <td>△</td>
     </tr>
   </tbody>
 </table>
