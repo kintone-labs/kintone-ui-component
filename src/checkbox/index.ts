@@ -210,6 +210,7 @@ let exportCheckbox;
 
     private _getItemTemplate(item: CheckBoxItem, index: number) {
       const isCheckedItem = this._isCheckedItem(item, index);
+      const isDisabled = item.disabled || this.disabled;
       return html`
         <div
           class="kuc-checkbox__group__select-menu__item"
@@ -224,7 +225,7 @@ let exportCheckbox;
             class="kuc-checkbox__group__select-menu__item__input"
             name="${this._GUID}-group"
             value="${item.value !== undefined ? item.value : ""}"
-            ?disabled="${this.disabled}"
+            ?disabled="${isDisabled}"
             @change="${this._handleChangeInput}"
             @focus="${this._handleFocusInput}"
             @blur="${this._handleBlurInput}"
@@ -233,7 +234,7 @@ let exportCheckbox;
             for="${this._GUID}-item-${index}"
             class="kuc-checkbox__group__select-menu__item__label"
             >${this._getCheckboxIconSvgTemplate(
-              this.disabled,
+              isDisabled,
               isCheckedItem
             )}${item.label === undefined ? item.value : item.label}
           </label>
