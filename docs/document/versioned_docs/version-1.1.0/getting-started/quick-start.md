@@ -31,8 +31,10 @@ Kintone UI Component supports installation via a UMD, a CDN, or a npm package.<b
 You can choose to import or implement the library according to the environment such as the browser environment or Node.js environment.<br/>
 In this article, we will show you how to install and implement using each approach.
 
-> See the Components section in the sidebar for more details on each component.<br/>
-> (Additional components will be added in order.)
+:::tip
+See the Components section in the sidebar for more details on each component.<br/>
+(Additional components will be added in order.)
+:::
 
 ### Use the UMD
 
@@ -89,12 +91,13 @@ In the production environment, you can use the `kuc.min.js` of the UMD to avoid 
 
 ### Use the npm package
 
-1. Create a folder name `my-customization`, and move your root into the folder, then execute the following command:
+1. Create a folder name `customization`, and move your root into the folder, then execute the following command:
 
 ```bash
-mkdir my-customization && cd my-customization
+mkdir customization && cd customization
+npm init -y
 npm install kintone-ui-component
-npm install webpack
+npm install webpack webpack-cli --save-dev
 ```
 
 :::tip
@@ -124,27 +127,25 @@ kintone.events.on('app.record.index.show', event => {
 3. Add the following `webpack.config.js` file into the root:
 
 ```js
-// webpack.config.js
 const path = require('path');
 module.exports = (env = {}) => {
   return {
     entry: {
-      "my-customization": './src/index.js'
+      customization: './src/index.js'
     },
     output: {
       path: path.resolve(__dirname, 'dist'),
-      filename: '[name].min.js',
-    },
-    watch: env.watch
-  }
-}
+      filename: '[name].min.js'
+    }
+  };
+};
 ```
 
 4. Add webpack build script into `package.json`.
 
 ```json
 "scripts": {
-  "build:webpack": "cross-env NODE_ENV=production webpack",
+  "build:webpack": "webpack --mode production",
   ...
 }
 ```
@@ -157,7 +158,8 @@ npm run build:webpack
 
 ```bash
 Output Result：
-./dist/my-customization.min.js
+./dist/customization.min.js
+```
 ```
 
 6. Upload the bundled file created in the previous step to the `JavaScript and CSS Customization` option inside Kintone app settings. ([Customizing an App with JavaScript and CSS](https://get.kintone.help/k/en/user/app_settings/js_customize.html))

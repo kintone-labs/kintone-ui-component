@@ -31,9 +31,10 @@ Kintone UI Component supports installation via a UMD, a CDN, or a npm package.<b
 You can choose to import or implement the library according to the environment such as the browser environment or Node.js environment.<br/>
 In this article, we will show you how to install and implement using each approach.
 
-> See the Components section in the sidebar for more details on each component.<br/>
-> (Additional components will be added in order.)
-
+:::tip
+See the Components section in the sidebar for more details on each component.<br/>
+(Additional components will be added in order.)
+:::
 ### Use the UMD
 
 1. Download the file located inside Kintone UI Component repository's [each version Release field](https://github.com/kintone-labs/kintone-ui-component/releases). Unzip the attached archives folder (kintone-ui-component-{version} .tgz). Upload the following file to the `JavaScript and CSS Customization` inside Kintone's app setting.

@@ -31,8 +31,10 @@ Kintone UI Component supports installation via a UMD, a CDN, or a npm package.<b
 You can choose to import or implement the library according to the environment such as the browser environment or Node.js environment.<br/>
 In this article, we will show you how to install and implement using each approach.
 
-> See the Components section in the sidebar for more details on each component.<br/>
-> (Additional components will be added in order.)
+:::tip
+See the Components section in the sidebar for more details on each component.<br/>
+(Additional components will be added in order.)
+:::
 
 ### Use the UMD
 
