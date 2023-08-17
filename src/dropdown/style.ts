@@ -110,11 +110,6 @@ export const DROPDOWN_CSS = `
     color: var(--kuc-dropdown-menu-color, #333333);
     font-size: var(--kuc-dropdown-font-size, 14px);
   }
-  .kuc-dropdown__group__select-menu__item--disabled {
-    background-color: #d4d7d7;
-    cursor: not-allowed;
-    color: #888888;
-  }
   .kuc-dropdown__group__select-menu__item__icon {
     position: absolute;
     top: 50%;
@@ -126,5 +121,11 @@ export const DROPDOWN_CSS = `
   }
   .kuc-dropdown__group__select-menu__highlight[role="option"] {
     background-color: #e2f2fe;
+  }
+  .kuc-dropdown__group__select-menu__item--disabled,
+  .kuc-dropdown__group__select-menu__item--disabled[aria-selected="true"] {
+    background-color: #d4d7d7;
+    cursor: not-allowed;
+    color: #888888;
   }
 `;
