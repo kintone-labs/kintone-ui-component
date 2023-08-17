@@ -183,10 +183,8 @@ Output Result：
     </tr>
   </tbody>
 </table>
+
 :::info
 The components have been tested in the latest version of each supported browser.<br/>
-Kintone UI Component v1 does not work properly in IE11 due to the balance with the library currently used by Kintone.
-
-You can preview the components in the Overview section in each component's reference page.<br/>
-Please be noted that it is not supported in IE11.
+You can preview the components in the Overview section in each component's reference page.
 :::
