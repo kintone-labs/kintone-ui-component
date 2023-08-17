@@ -87,7 +87,7 @@ const space = kintone.app.record.getSpaceElement('space');
 const combobox = new Kuc.Combobox({
   label: 'Fruit',
   items: [
-    { label: 'Banana', value: 'banana' },
+    { label: 'Banana', value: 'banana', disabled: true },
     { label: 'Orange', value: 'orange' },
     { label: 'Apple', value: 'apple' }
   ],
