@@ -104,6 +104,11 @@ const radioButton = new Kuc.RadioButton({
     {
       label: 'apple',
       value: 'Apple'
+    },
+    {
+      label: 'banana',
+      value: 'Banana',
+      disabled: true
     }
   ],
   value: 'Orange',
