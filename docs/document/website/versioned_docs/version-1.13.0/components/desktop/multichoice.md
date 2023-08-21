@@ -109,6 +109,11 @@ const multiChoice = new Kuc.MultiChoice({
     {
       label: 'apple',
       value: 'Apple'
+    },
+    {
+      label: 'banana',
+      value: 'Banana',
+      disabled: true
     }
   ],
   value: ['Orange'],
