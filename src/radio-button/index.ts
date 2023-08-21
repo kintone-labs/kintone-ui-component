@@ -203,7 +203,7 @@ let exportRadioButton;
         >
           <input
             type="radio"
-            aria-checked="${isCheckedItem}"
+            aria-checked="${isCheckedItem ? "true" : "false"}"
             aria-describedby="${this._GUID}-error"
             data-index="${index}"
             id="${this._GUID}-item-${index}"
