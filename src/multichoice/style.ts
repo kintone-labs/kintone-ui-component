@@ -88,8 +88,17 @@ export const MULTICHOICE_CSS = `
     margin-top: -6px;
     pointer-events: none;
   }
+  .kuc-multi-choice__group__menu__item--disabled {
+    background-color: #d4d7d7;
+    cursor: not-allowed;
+    color: #888888;
+  }
   .kuc-multi-choice__group__menu__item[aria-selected="true"] {
     color: var(--kuc-multi-choice-menu-color-selected, #3498db);
+    padding-left: 32px;
+  }
+  .kuc-multi-choice__group__menu__item--disabled[aria-selected="true"] {
+    color: #888888;
     padding-left: 32px;
   }
   .kuc-multi-choice__group__menu[disabled]
