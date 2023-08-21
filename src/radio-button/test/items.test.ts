@@ -21,9 +21,7 @@ const replacedItems = [
   { label: "Apple", value: "apple" },
 ];
 
-const dupplicatedItems = [{ value: "apple" }, { value: "apple" }];
-
-describe("MobileRadioButton", () => {
+describe("RadioButton", () => {
   describe("items", () => {
     it("should not have item when not assigned on constructor", async () => {
       const container = new RadioButton();
@@ -226,6 +224,22 @@ describe("MobileRadioButton", () => {
       const container = new RadioButton();
       container.items = null;
       fixture(container);
+    });
+
+    it("should set items when assigned disabled items on constructor", async () => {
+      const container = new RadioButton({
+        items: [
+          ...initItems,
+          { label: "Apple", value: "apple", disabled: true },
+        ],
+      });
+      const el = await fixture(container);
+      const itemsEl = el.querySelectorAll(
+        ".kuc-radio-button__group__select-menu__item"
+      );
+
+      await expect(itemsEl.length).to.equal(4);
+      await expect(itemsEl[3].querySelector("input")?.disabled).to.equal(true);
     });
   });
 });

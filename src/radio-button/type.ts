@@ -5,6 +5,7 @@ import { KucBase } from "../base/kuc-base";
 export declare type RadioButtonItem = {
   label?: string;
   value?: string;
+  disabled?: boolean;
 };
 export declare type RadioButtonProps = {
   className?: string;

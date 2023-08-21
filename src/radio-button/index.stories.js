@@ -58,6 +58,7 @@ Base.args = {
     {
       label: "item-1",
       value: "item-1",
+      disabled: true,
     },
     {
       label: "item-2",
@@ -70,7 +71,7 @@ Base.args = {
   ],
   itemLayout: "vertical",
   id: "sample-id",
-  value: "item-1",
+  value: "item-2",
   visible: true,
   selectedIndex: 0,
   label: "フルーツ一覧",
@@ -84,6 +85,7 @@ Base1.args = {
     {
       label: "Item 1",
       value: "item-1",
+      disabled: true,
     },
     {
       label: "Item 2",
@@ -94,7 +96,7 @@ Base1.args = {
       value: "item-3",
     },
   ],
-  value: "item-2",
+  value: "item-1",
   selectedIndex: 1,
   className: "sample-class",
   id: "sample-id",
@@ -120,13 +122,10 @@ Base2.args = {
     {
       label: "Item 3",
       value: "item-3",
-    },
-    {
-      label: "Item 3",
-      value: "item-3",
+      disabled: true,
     },
   ],
-  value: "item-3",
+  value: "item-1",
   selectedIndex: 3,
   className: "sample-class",
   id: "sample-id",
