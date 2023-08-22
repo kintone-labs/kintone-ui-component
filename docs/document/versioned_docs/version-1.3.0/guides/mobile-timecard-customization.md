@@ -149,7 +149,7 @@ if (!resp.records.length) {
 }
 ```
 
-### What happens when the punch-in button is clicked?
+### What happens when the punch-out button is clicked?
 
 When you click the punch-out button, the following process takes place in the same way as when you click the punch-in button:
 
