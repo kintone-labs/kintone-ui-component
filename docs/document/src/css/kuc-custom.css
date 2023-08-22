@@ -307,3 +307,13 @@ table th[class$="__table__header__cell"] {
 #mobile-multichoice #sample-container__components select:focus {
   border: 2px solid rgb(0, 95, 204);
 }
+
+.sample-container#dialog{
+  max-width: 700px;
+  height: 300px;
+  margin: 0 auto;
+}
+
+.table-of-contents__link--active {
+  font-weight: 700;
+}
