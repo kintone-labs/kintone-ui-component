@@ -34,7 +34,7 @@ Here is a list of properties that can be used for modifying the component:
 | disabled | boolean | false | Enable/Disable the component | |
 | requiredIcon | boolean | false | Show/Hide the required icon | |
 | visible | boolean | true | Show/Hide the component | |
-| items | Array\<Item\> | []  | List of options to select from | Will result an error if the value of items is not an array |
+| items | Array\<[Item](#item)\> | []  | List of options to select from | Will result an error if the value of items is not an array |
 
 > *1: You can set duplicated value in `Item.value`. In case setting duplicated value, you can handle selected item using `value` and `selectedIndex` property.<br>
 > Example: When setting `items = [{label: 'Orange', value: 'fruit'}, {label: 'Apple', value: 'fruit'}, {label: 'Carrot', value: 'vegetable'}]`

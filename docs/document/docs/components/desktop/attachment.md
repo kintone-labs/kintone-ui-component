@@ -31,7 +31,7 @@ Here is a list of properties that can be used for modifying the component:
 | disabled | boolean | false | Enable/Disable the component | |
 | requiredIcon | boolean | false | Show/Hide the required icon | |
 | visible | boolean | true | Show/Hide the component | |
-| files | Array\<File> | [] | List of files | You can specify [File object](https://developer.mozilla.org/en-US/docs/Web/API/File) or object contains `name` and `size`<br>Will result an error if the value of `files` is not an array |
+| files | Array\<[File](#file)\> | [] | List of files | You can specify [File object](https://developer.mozilla.org/en-US/docs/Web/API/File) or object contains `name` and `size`<br>Will result an error if the value of `files` is not an array |
 
 > *1: The text of "Browse" button and "Drag & drop zone" will be changed according to the `language` property.
 
