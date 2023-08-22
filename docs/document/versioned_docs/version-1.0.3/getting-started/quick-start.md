@@ -74,12 +74,12 @@ Once the CDN is being imported to the app, you will have access to the global ob
 
    - For the latest version of Kintone UI Component:
     ```bash
-    https://unpkg.com/browse/kintone-ui-component/umd/kuc.min.js
+    https://unpkg.com/kintone-ui-component/umd/kuc.min.js
     ```
 
    - If you want to import a particular version, specify the version number after the project name.
     ```bash
-    https://unpkg.com/browse/kintone-ui-component@1.0.0/umd/kuc.min.js
+    https://unpkg.com/kintone-ui-component@1.0.0/umd/kuc.min.js
     ```
 
 2. The following is the same as the UMD.
