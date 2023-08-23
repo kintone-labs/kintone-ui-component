@@ -43,8 +43,6 @@ Attachment は選択もしくはドラッグ&ドロップでファイルをア�
 | name | string | "" | ファイル名 | |
 | size | string | "" | ファイルサイズ | ファイルサイズに応じて以下のように記載される<li>size >= 1073741824: xxx GB</li><li>1073741824 > size >= 1048576: xxx MB</li><li>1048576 > size >= 1024: xxx KB</li><li>1024 > size: xxx bytes</li> |
 
-
-
 ### Event
 
 指定できるイベントの一覧です。
