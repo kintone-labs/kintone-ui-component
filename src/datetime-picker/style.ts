@@ -49,4 +49,23 @@ kuc-datetime-picker[hidden] {
   display: flex;
   max-width: 185px;
 }
+.kuc-datetime-picker__group input[type=text].kuc-base-date__input {
+  width: var(--kuc-date-time-picker-date-input-width, 100px);
+  height: var(--kuc-date-time-picker-input-height, 40px);
+  color: var(--kuc-date-time-picker-input-color);
+  font-size: var(--kuc-date-time-picker-input-font-size, 14px);
+}
+.kuc-datetime-picker__group .kuc-base-time__group {
+  max-width: var(--kuc-date-time-picker-time-input-width, 85px);
+  width: var(--kuc-date-time-picker-time-input-width, 85px);
+  font-size: var(--kuc-date-time-picker-input-font-size, 14px);
+  height: var(--kuc-date-time-picker-input-height, 40px);
+  color: var(--kuc-date-time-picker-input-color, #333333);
+}
+.kuc-datetime-picker__group .kuc-base-time__group input[type=text].kuc-base-time__group__hours,
+.kuc-datetime-picker__group .kuc-base-time__group input[type=text].kuc-base-time__group__minutes,
+.kuc-datetime-picker__group .kuc-base-time__group input[type=text].kuc-base-time__group__suffix,
+.kuc-datetime-picker__group .kuc-base-time__group--focus  {
+  color: var(--kuc-date-time-picker-input-color, #333333);
+}
 `;

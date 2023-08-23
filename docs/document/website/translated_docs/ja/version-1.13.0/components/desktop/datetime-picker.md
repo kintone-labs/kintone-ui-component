@@ -60,6 +60,19 @@ DateTimePicker(options)<br>
 | :--- | :--- | :--- | :--- | :--- |
 | options  | object | {} | コンポーネントのプロパティを含むオブジェクト |  |
 
+### Custom CSS
+> [Custom CSS](../../getting-started/custom-css.md) をご確認ください。
+
+コンポーネントのスタイルを変更するために使用できるプロパティの一覧です。
+#### Property
+| Name |
+| :--- |
+| --kuc-date-time-picker-date-input-width |
+| --kuc-date-time-picker-time-input-width |
+| --kuc-date-time-picker-input-height |
+| --kuc-date-time-picker-input-font-size |
+| --kuc-date-time-picker-input-color |
+
 ---
 ## Sample Code
 
