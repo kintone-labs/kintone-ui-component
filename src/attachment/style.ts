@@ -25,8 +25,8 @@ export const ATTACHMENT_CSS = `
     font-size: 14px;
     display: inline-table;
     vertical-align: top;
-    width: 191px;
-    min-width: 191px;
+    width: var(--kuc-attachment-width, 191px);
+    min-width: var(--kuc-attachment-width, 191px);
   }
   kuc-attachment[hidden] {
     display: none;
@@ -55,6 +55,8 @@ export const ATTACHMENT_CSS = `
     font-size: 14px;
     overflow: hidden;
     position: relative;
+    width: var(--kuc-attachment-width, auto);;
+    height: var(--kuc-attachment-height, auto);
   }
   .kuc-attachment__group__files__browse-button {
     border: 1px solid transparent;
@@ -105,7 +107,7 @@ export const ATTACHMENT_CSS = `
   .kuc-attachment__group__files__display-area__item {
     position: relative;
     margin-bottom: 8px;
-    height: 24px;
+    height: auto;
     border: 2px solid #f1f4f5;
     background-color: #f1f4f5;
     list-style: none;
@@ -114,18 +116,19 @@ export const ATTACHMENT_CSS = `
     display: inline-block;
     padding: 3px 68px 0 26px;
     width: 100%;
-    max-width: 177px;
+    max-width: calc(var(--kuc-attachment-width, 191px) - 14px);
     box-sizing: border-box;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     word-wrap: normal;
-    font-size: 14px;
+    font-size: var(--kuc-attachment-item-font-size, 14px);
+    line-height: 1.3;
   }
   .kuc-attachment__group__files__display-area__item__remove-button__container {
     display: inline-block;
     position: absolute;
-    top: 0;
+    top: calc(50% - 12px);
     left: 0;
     width: 24px;
     height: 24px;
@@ -133,8 +136,7 @@ export const ATTACHMENT_CSS = `
   .kuc-attachment__group__files__display-area__item__remove-button__container[hidden] {
     display: none;
   }
-  .kuc-attachment__group__files__display-area__item__remove-button__container__button
-  {
+  .kuc-attachment__group__files__display-area__item__remove-button__container__button {
     background-color: #f2f4f6;
     display: flex;
     align-items: center;
@@ -165,7 +167,8 @@ export const ATTACHMENT_CSS = `
     overflow: hidden;
     text-overflow: ellipsis;
     word-wrap: normal;
-    font-size: 14px;
+    font-size: var(--kuc-attachment-item-font-size, 14px);
+    line-height: 1.3;
   }
   .kuc-attachment__group__files__droppable {
     display: block;
@@ -188,7 +191,8 @@ export const ATTACHMENT_CSS = `
   }
   .kuc-attachment__group__files__browse-message {
     display: inline-block;
-    color: #888888;
+    color: var(--kuc-attachment-message-color, #888888);
+    font-size: var(--kuc-attachment-message-font-size, 14px);
     margin: 3px 0 0;
     word-break: break-all;
   }
