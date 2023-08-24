@@ -1,18 +1,18 @@
 ---
-id: version-1.13.0-mobile-checkbox
-title: MobileCheckbox
-sidebar_label: MobileCheckbox
-original_id: mobile-checkbox
+id: version-1.13.0-mobile-radio-button
+title: MobileRadioButton
+sidebar_label: MobileRadioButton
+original_id: mobile-radio-button
 ---
 
 ## Overview
 
-MobileCheckbox は、複数選択のチェックボックスを表示します。
+MobileRadioButton は、複数選択肢の中から一つの値を選択することができます。
 
-<div class="sample-container" id="mobile-checkbox">
+<div class="sample-container" id="mobile-radio-button">
   <div id="sample-container__components" class="mobile"></div>
 </div>
-<script src="/js/samples/mobile/mobile-checkbox.js"></script>
+<script src="/js/samples/mobile/mobile-radio-button.js"></script>
 
 ---
 
@@ -28,39 +28,33 @@ MobileCheckbox は、複数選択のチェックボックスを表示します�
 | error | string | "" | エラーに表示するテキスト | 未指定、あるいは空文字の場合、error は表示されない |
 | id | string | "" | コンポーネントの id 名 ||
 | label | string | "" | コンポーネントの説明ラベル | 未指定、あるいは空文字の場合、label は表示されない |
+| value *1 | string | "" | 選択されている値 | value と selectedIndex が未指定の場合、何も選択されない<br>重複する value を指定し、selectedIndex を指定しない場合、Item.value で最初にマッピングされた value の項目が選択され、selectedIndex にはその選択肢のインデックス番号が入る<br>value が文字列以外の場合、エラーを出力する |
+| selectedIndex *1 | number | -1 | 選択されている値のインデックス番号 | items 内に重複する Item.value がある場合、どの Item.value が選択されるか指定するためのプロパティ<br>value が未指定で、selectedIndex に有効な値が指定されている場合、 そのインデックス番号の選択肢が選択される<br>value に重複した Item.value が指定され、selectedIndex の値が value 内の重複した Item.value とマッピングした場合、そのインデックス番号の選択肢が選択される<br>selectedIndex が数値以外の場合、エラーを出力する |
 | borderVisible | boolean | true | 選択肢を囲う枠線の表示/非表示設定 ||
-| disabled | boolean | false | コンポーネントの選択可/不可設定 ||
+| disabled | boolean | false | コンポーネントの編集可/不可設定 ||
 | requiredIcon | boolean | false | コンポーネントの必須アイコン表示/非表示設定 ||
 | visible | boolean | true | コンポーネントの表示/非表示設定 ||
 | items | Array\<[Item](#item)\> | [] | 表示する選択肢一覧 | items が配列以外の場合、エラーを出力する |
-| value *1 | Array\<string\> | [] | 選択されている値 | value と selectedIndex が未指定の場合、何も選択されない<br>重複する value を指定し、selectedIndex を指定しない場合、Item.value で最初にマッピングされた value の項目が選択され、selectedIndex にはその選択肢のインデックス番号が入る<br>value が配列以外の場合、エラーを出力する |
-| selectedIndex *1 | Array\<Number\> | [] | 選択されている値のインデックス番号 | items 内に重複する Item.value がある場合、どの Item.value が選択されるか指定するためのプロパティ<br>value が未指定で、selectedIndex に有効な値が指定されている場合、 そのインデックス番号の選択肢が選択される<br>value に重複した Item.value が指定され、selectedIndex の値が value 内の重複した Item.value とマッピングした場合、そのインデックス番号の選択肢が選択される<br>selectedIndex が配列以外の場合、エラーを出力する |
 
-> *1: value と Item.value に重複した値を指定できる。重複した値を指定する場合、value と selectedIndex プロパティを使って制御することができる。<br>
-> 例: `items = [{label: 'Orange', value: 'fruit'}, {label: 'Apple', value: 'fruit'}, {label: 'Carrot', value: 'vegetable'}, {label: 'Lemon', value: 'fruit'}]` を指定する
+> *1: Item.value に重複した値を指定できる。重複した値を指定する場合、value と selectedIndex プロパティを使って制御することができる。<br>
+> 例: `items = [{label: 'Orange', value: 'fruit'}, {label: 'Apple', value: 'fruit'}, {label: 'Carrot', value: 'vegetable'}]` を指定する
 >
 > - 以下のように value を指定、selectedIndex を未指定の場合:
->   - value = ['fruit', 'vegetable']: 最初と 3番目の値が選択される。
->   - value = ['meat', 'other']: 何も選択されない。
+>   - value = 'fruit': 最初の値が選択される。
+>   - value = 'other': 何も選択されない。
 >
 > - 以下のように value を未指定、selectedIndex を指定する場合:
->   - selectedIndex = [0, 1]: 最初と 2番目の値が選択される。
->   - selectedIndex = [98, 99]: 何も選択されない。
->
-> - 以下のように value と selectedIndex を指定する場合:
->   - value = ['fruit', 'vegetable'], selectedIndex = [1, 3]: 2番目と 3番目の値が選択される。
->   - value = ['fruit', 'fruit', 'vegetable'], selectedIndex = [1, 3]: 2番目と 3番目と 4番目の値が選択される。
->   - value = ['fruit', 'fruit'], selectedIndex = [1, 2, 3]: 最初と 2番目の値が選択される。<br>
-> ※ value と selectedIndex が同時に指定された場合、value の値が優先される。よって、上記の 1つ目と 3つ目の例において selectedIndex の 3 に当たる item は選択されない。
+>   - selectedIndex = 1: 2番目の値が選択される。
+>   - selectedIndex = 99: 何も選択されない。
 
 #### Item
+
 | Name | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
 | label | string | null | 各選択肢のテキスト | Item.label が未指定の場合、UI 上は Item.value の値が表示される |
 | value | string | null | 各選択肢の値 | Item.value に重複の値を指定できる |
 
 ### Event
-
 指定できるイベントの一覧です。
 
 | Name | Type | Description | Remark |
@@ -69,7 +63,7 @@ MobileCheckbox は、複数選択のチェックボックスを表示します�
 
 ### Constructor
 
-MobileCheckbox(options)<br>
+MobileRadioButton(options)<br>
 使用できるコンストラクタの一覧です。
 
 #### Parameter
@@ -79,7 +73,6 @@ MobileCheckbox(options)<br>
 | options | object | {} | コンポーネントのプロパティを含むオブジェクト | |
 
 ---
-
 ## Sample Code
 
 >[導入と実装方法](../../getting-started/quick-start.md#導入と実装方法) をご確認ください。
@@ -91,7 +84,7 @@ const Kuc = Kucs['1.x.x'];
 
 const space = kintone.mobile.app.record.getSpaceElement('space');
 
-const mobileCheckbox = new Kuc.MobileCheckbox({
+const mobileRadioButton = new Kuc.MobileRadioButton({
   label: 'Fruit',
   requiredIcon: true,
   items: [
@@ -104,8 +97,8 @@ const mobileCheckbox = new Kuc.MobileCheckbox({
       value: 'Apple'
     }
   ],
-  value: ['Orange'],
-  selectedIndex: [0],
+  value: 'Orange',
+  selectedIndex: 0,
   error: 'Error occurred!',
   className: 'options-class',
   id: 'options-id',
@@ -113,9 +106,9 @@ const mobileCheckbox = new Kuc.MobileCheckbox({
   disabled: false,
   borderVisible: true
 });
-space.appendChild(mobileCheckbox);
+space.appendChild(mobileRadioButton);
 
-mobileCheckbox.addEventListener('change', event => {
+mobileRadioButton.addEventListener('change', event => {
   console.log(event);
 });
 ```
