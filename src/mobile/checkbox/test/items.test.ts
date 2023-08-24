@@ -24,7 +24,7 @@ const dupplicatedItems = [{ value: "apple" }, { value: "apple" }];
 
 describe("MobileCheckbox", () => {
   describe("items", () => {
-    it("should not have item when not asigned on constuctor", async () => {
+    it("should not have item when not assigned on constructor", async () => {
       const container = new MobileCheckbox();
       const el = await fixture(container);
       const itemsEl = el.querySelectorAll(
@@ -229,7 +229,7 @@ describe("MobileCheckbox", () => {
       fixture(container);
     });
 
-    it('should set item value "" when asigned item value undefined on constuctor', async () => {
+    it('should set item value "" when assigned item value undefined on constructor', async () => {
       const container = new MobileCheckbox({
         items: initItemsWithoutValue,
       });

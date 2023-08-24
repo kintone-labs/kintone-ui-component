@@ -34,8 +34,9 @@ import { CheckboxComponent } from "@site/static/js/samples/desktop/checkbox.js"
 | items | Array<Item\> | [] | 表示する選択肢一覧 | items が配列以外の場合、エラーを出力する |
 | Item.label | string | null | 各選択肢のテキスト | Item.label が未指定の場合、UI 上は Item.value の値が表示される |
 | Item.value | string | null | 各選択肢の値 | Item.value に重複の値を指定できる |
+| Item.disabled | boolean | false | 各オプションの選択可/不可設定 | |
 | value *1 | Array<string\> | [] | 選択されている値 | value と selectedIndex が未指定の場合、何も選択されない<br/>重複する value を指定し、selectedIndex を指定しない場合、Item.value で最初にマッピングされた value の項目が選択され、selectedIndex にはその選択肢のインデックス番号が入る<br/>value が配列以外の場合、エラーを出力する |
-| selectedIndex *1 | Array<Number\> | [] | 選択されている値のインデックス番号 | items 内に重複する Item.value がある場合、どの Item.value が選択されるか指定するためのプロパティ<br/>value が未指定で、selectedIndex に有効な値が指定されている場合、 そのインデックス番号の選択肢が選択される<br/>value に重複した Item.value が指定され、selectedIndex の値が value 内の重複した Item.value とマッピングした場合、そのインデックス番号の選択肢が選択される |
+| selectedIndex *1 | Array<Number\> | [] | 選択されている値のインデックス番号 | items 内に重複する Item.value がある場合、どの Item.value が選択されるか指定するためのプロパティ<br/>value が未指定で、selectedIndex に有効な値が指定されている場合、 そのインデックス番号の選択肢が選択される<br/>value に重複した Item.value が指定され、selectedIndex の値が value 内の重複した Item.value とマッピングした場合、そのインデックス番号の選択肢が選択される<br/>selectedIndex が配列以外の場合、エラーを出力する |
 
 :::info
 *1: value と Item.value に重複した値を指定できる。重複した値を指定する場合、value と selectedIndex プロパティを使って制御することができる。<br/>
@@ -116,6 +117,11 @@ const checkbox = new Kuc.Checkbox({
     {
       label: 'apple',
       value: 'Apple'
+    },
+    {
+      label: 'banana',
+      value: 'Banana',
+      disabled: true
     }
   ],
   value: ['Orange'],

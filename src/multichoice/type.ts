@@ -5,6 +5,7 @@ import { KucBase } from "../base/kuc-base";
 export declare type MultiChoiceItem = {
   label?: string;
   value?: string;
+  disabled?: boolean;
 };
 
 export declare type MultiChoiceProps = {

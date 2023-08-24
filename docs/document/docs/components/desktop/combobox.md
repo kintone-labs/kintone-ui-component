@@ -33,6 +33,7 @@ Here is a list of properties that can be used for modifying the component:
 | items | Array<Item\> | []  | List of options to display | Will result an error if the value of items is not an array |
 | Item.label | string | null | Text label for each option | If `Item.label` is unspecified, the value of `Item.value` is displayed on the UI |
 | Item.value | string | null | Value of each option | Will result an error if setting duplicated value in `Item.value` |
+| Item.disabled | boolean | false | Enable/Disable each option | |
 
 ### Event
 
@@ -88,7 +89,7 @@ const space = kintone.app.record.getSpaceElement('space');
 const combobox = new Kuc.Combobox({
   label: 'Fruit',
   items: [
-    { label: 'Banana', value: 'banana' },
+    { label: 'Banana', value: 'banana', disabled: true },
     { label: 'Orange', value: 'orange' },
     { label: 'Apple', value: 'apple' }
   ],

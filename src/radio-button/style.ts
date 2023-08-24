@@ -63,14 +63,10 @@ export const RADIOBUTTON_CSS = `
     font-size: var(--kuc-radio-button-menu-font-size, 14px);
   }
 
-  .kuc-radio-button__group__select-menu[itemlayout="horizontal"] {
-    flex-direction: row;
+  .kuc-radio-button__group__select-menu[itemlayout="vertical"] {
+    display: block;
   }
 
-  .kuc-radio-button__group__select-menu[itemlayout="vertical"] {
-    flex-direction: column;
-  }
-  
   .kuc-radio-button__group__select-menu[bordervisible] {
     border-color: #e3e7e8;
     border-width: 1px;

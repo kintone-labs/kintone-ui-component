@@ -269,6 +269,62 @@ describe("MultiChoice", () => {
       ).to.equal(true);
     });
 
+    it('should be skipped the disabled item when triggered "ArrowDown" keyboard event', async () => {
+      const container = new MultiChoice({
+        items: [
+          { label: "Item 1", value: "item-1" },
+          { label: "Item 2", value: "item-2" },
+          { label: "Item 3", value: "item-3", disabled: true },
+        ],
+        value: ["item-1"],
+      });
+      const el = await fixture(container);
+      const menuEl = el.querySelector(
+        ".kuc-multi-choice__group__menu"
+      ) as HTMLDivElement;
+      menuEl.click();
+      menuEl.dispatchEvent(new KeyboardEvent("keydown", { key: "ArrowDown" }));
+      menuEl.dispatchEvent(new KeyboardEvent("keydown", { key: "ArrowDown" }));
+      menuEl.dispatchEvent(new KeyboardEvent("keydown", { key: "ArrowDown" }));
+
+      const itemsEl = el.querySelectorAll(
+        ".kuc-multi-choice__group__menu__item"
+      );
+      expect(
+        itemsEl[0].classList.contains(
+          "kuc-multi-choice__group__menu__highlight"
+        )
+      ).to.equal(true);
+    });
+
+    it('should be skipped the disabled item when triggered "ArrowUp" keyboard event', async () => {
+      const container = new MultiChoice({
+        items: [
+          { label: "Item 1", value: "item-1", disabled: true },
+          { label: "Item 2", value: "item-2" },
+          { label: "Item 3", value: "item-3" },
+        ],
+        value: ["item-2"],
+      });
+      const el = await fixture(container);
+      const menuEl = el.querySelector(
+        ".kuc-multi-choice__group__menu"
+      ) as HTMLDivElement;
+      menuEl.click();
+      menuEl.dispatchEvent(new KeyboardEvent("keydown", { key: "ArrowUp" }));
+      menuEl.dispatchEvent(new KeyboardEvent("keydown", { key: "ArrowUp" }));
+      menuEl.dispatchEvent(new KeyboardEvent("keydown", { key: "ArrowUp" }));
+
+      const itemsEl = el.querySelectorAll(
+        ".kuc-multi-choice__group__menu__item"
+      );
+      expect(
+        itemsEl[2].classList.contains(
+          "kuc-multi-choice__group__menu__highlight"
+        )
+      ).to.equal(true);
+    });
+
     // TODO:
     // Testing for disabled compontent
   });
