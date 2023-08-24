@@ -10,6 +10,7 @@ export declare type ComboboxChangeEventDetail = {
 export declare type ComboboxItem = {
   label?: string;
   value?: string;
+  disabled?: boolean;
 };
 
 export declare type ComboboxProps = {

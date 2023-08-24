@@ -101,6 +101,23 @@ let exportRadioButton;
       return true;
     }
 
+    private _findItemToFocus() {
+      let index = -1;
+
+      for (let i = 0; i < this.items.length; i++) {
+        if (!this.items[i].disabled) {
+          if (this.value !== undefined && this.items[i].value === this.value) {
+            return i;
+          }
+          if (index === -1) {
+            index = i;
+          }
+        }
+      }
+
+      return index;
+    }
+
     willUpdate(changedProperties: PropertyValues): void {
       if (changedProperties.has("value")) {
         if (this.value !== "") return;
@@ -138,7 +155,10 @@ let exportRadioButton;
       menuEl.removeAttribute("focused");
     }
 
-    private _getRadioIconSvgTemplate(disabled: boolean, checked: boolean) {
+    private _getRadioIconSvgTemplate(
+      disabled: boolean | undefined,
+      checked: boolean
+    ) {
       return svg`
     <svg
       class="kuc-radio-button__group__select-menu__item__label__icon"
@@ -172,6 +192,10 @@ let exportRadioButton;
 
     private _getItemTemplate(item: RadioButtonItem, index: number) {
       const isCheckedItem = this._isCheckedItem(item, index);
+      const isDisabledItem = item.disabled || this.disabled;
+      const itemValue = item.value !== undefined ? item.value : "";
+      const tabIndex = index === this._findItemToFocus() ? "0" : "-1";
+
       return html`
         <div
           class="kuc-radio-button__group__select-menu__item"
@@ -179,16 +203,16 @@ let exportRadioButton;
         >
           <input
             type="radio"
-            aria-checked="${isCheckedItem}"
+            aria-checked="${isCheckedItem ? "true" : "false"}"
             aria-describedby="${this._GUID}-error"
             data-index="${index}"
             id="${this._GUID}-item-${index}"
             class="kuc-radio-button__group__select-menu__item__input"
             name="${this._GUID}-group"
-            value="${item.value !== undefined ? item.value : ""}"
-            tabindex="${this._getTabIndex(index, item, this.items)}"
+            value="${itemValue}"
+            tabindex="${tabIndex}"
             aria-required="${this.requiredIcon}"
-            ?disabled="${this.disabled}"
+            ?disabled="${isDisabledItem}"
             @change="${this._handleChangeInput}"
             @focus="${this._handleFocusInput}"
             @blur="${this._handleBlurInput}"
@@ -197,26 +221,12 @@ let exportRadioButton;
             class="kuc-radio-button__group__select-menu__item__label"
             for="${this._GUID}-item-${index}"
             >${this._getRadioIconSvgTemplate(
-              this.disabled,
+              isDisabledItem,
               isCheckedItem
             )}${item.label === undefined ? item.value : item.label}
           </label>
         </div>
       `;
-    }
-
-    private _getTabIndex(
-      index: number,
-      currentItem: RadioButtonItem,
-      items: RadioButtonItem[]
-    ) {
-      if (
-        index === 0 &&
-        items.filter((item) => item.value === this.value).length === 0
-      )
-        return "0";
-      if (currentItem.value === this.value) return "0";
-      return "-1";
     }
 
     update(changedProperties: PropertyValues) {

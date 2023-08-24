@@ -61,9 +61,23 @@ Base.args = {
     {
       label: "sample2",
       value: "sample2",
+      disabled: true,
+    },
+    {
+      label: "sample3",
+      value: "sample3",
+    },
+    {
+      label: "sample4",
+      value: "sample4",
+      disabled: true,
+    },
+    {
+      label: "sample5",
+      value: "sample5",
     },
   ],
-  value: ["sample1"],
+  value: ["sample1", "sample2"],
   className: "sample-class",
   id: "sample-id",
   visible: true,

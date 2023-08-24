@@ -54,5 +54,25 @@ describe("MultiChoice", () => {
 
       expect(triggeredEvent).to.equal(null);
     });
+
+    it("should not triggered when mousedown on the disabled item", async () => {
+      let triggeredEvent: any = null;
+      const disabledItem = { label: "Item 4", value: "item-4", disabled: true };
+      const container = new MultiChoice({
+        items: [...initItems, disabledItem],
+        value: [initItems[1].value],
+      });
+      container.addEventListener("change", (event: any) => {
+        triggeredEvent = event;
+      });
+
+      const el = await fixture(container);
+      const itemsEl = el.querySelectorAll(
+        ".kuc-multi-choice__group__menu__item"
+      );
+      itemsEl[3].dispatchEvent(new Event("mousedown"));
+
+      expect(triggeredEvent).to.equal(null);
+    });
   });
 });

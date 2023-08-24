@@ -122,4 +122,10 @@ export const DROPDOWN_CSS = `
   .kuc-dropdown__group__select-menu__highlight[role="option"] {
     background-color: #e2f2fe;
   }
+  .kuc-dropdown__group__select-menu__item--disabled,
+  .kuc-dropdown__group__select-menu__item--disabled[aria-selected="true"] {
+    background-color: #d4d7d7;
+    cursor: not-allowed;
+    color: #888888;
+  }
 `;

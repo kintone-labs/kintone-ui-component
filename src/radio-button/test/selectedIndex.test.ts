@@ -54,5 +54,22 @@ describe("RadioButton", () => {
       const circlesEl2 = itemsEl[2].querySelectorAll("circle");
       expect(circlesEl2.length).to.equal(1);
     });
+
+    it("should throw error when set invalid value", (done) => {
+      const handleError = (event: any) => {
+        const errorMsg = event.reason.message;
+        expect(errorMsg).to.equal("'selectedIndex' property is not number.");
+        window.removeEventListener("unhandledrejection", handleError);
+        done();
+      };
+      window.addEventListener("unhandledrejection", handleError);
+
+      const container = new RadioButton({
+        items: initItems,
+        value: "orange",
+        selectedIndex: "1",
+      });
+      fixture(container);
+    });
   });
 });
