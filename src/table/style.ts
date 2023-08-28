@@ -59,6 +59,8 @@ export const TABLE_CSS = `
         display: none;
     }
     .kuc-table__table__body__row__cell-data {
+        box-sizing: border-box;
+        overflow: auto;
         border-color: #e3e7e8;
         border-style: solid;
         border-width: 1px;
