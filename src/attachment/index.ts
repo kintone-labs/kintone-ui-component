@@ -279,11 +279,8 @@ let exportAttachment;
         event.preventDefault();
         const DRAG_TEXT_BORDER_WIDTH = 2;
         const FILES_BORDER_WIDTH = 1;
-        const FILES_PADDING_HEIGHT = 16;
         this._groupFilesEl.style.height =
-          this._groupFilesEl.getBoundingClientRect().height -
-          (FILES_PADDING_HEIGHT + FILES_BORDER_WIDTH) * 2 +
-          "px";
+          this._groupFilesEl.getBoundingClientRect().height + "px";
         this._dragTextEl.style.width =
           this._groupFilesEl.getBoundingClientRect().width -
           FILES_BORDER_WIDTH * 2 +

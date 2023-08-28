@@ -55,6 +55,7 @@ export const ATTACHMENT_CSS = `
     font-size: 14px;
     overflow: hidden;
     position: relative;
+    box-sizing: border-box;
     width: var(--kuc-attachment-width, auto);;
     height: var(--kuc-attachment-height, auto);
   }
@@ -115,8 +116,7 @@ export const ATTACHMENT_CSS = `
   .kuc-attachment__group__files__display-area__item__name {
     display: inline-block;
     padding: 3px 68px 0 26px;
-    width: 100%;
-    max-width: calc(var(--kuc-attachment-width, 191px) - 14px);
+    width: calc(var(--kuc-attachment-width, 191px) - 14px);
     box-sizing: border-box;
     white-space: nowrap;
     overflow: hidden;
