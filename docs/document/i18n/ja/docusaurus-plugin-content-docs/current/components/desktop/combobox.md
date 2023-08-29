@@ -30,10 +30,15 @@ import { ComboboxComponent } from "@site/static/js/samples/desktop/combobox.js"
 | disabled | boolean | false | コンポーネントの編集可/不可設定 ||
 | requiredIcon | boolean | false | コンポーネントの必須アイコン表示/非表示設定 ||
 | visible | boolean | true | コンポーネントの表示/非表示設定 ||
-| items | Array<Item\> | [] | 表示する選択肢一覧 | items が配列以外の場合、エラーを出力する |
-| Item.label | string | null | 各選択肢のテキスト | Item.label が未指定の場合、UI 上は Item.value の値が表示される |
-| Item.value | string | null | 各選択肢の値 | Item.value に重複した値を指定した場合、エラーを出力する |
-| Item.disabled | boolean | false | 各オプションの選択可/不可設定 | |
+| items | Array<[Item](#item)\> | [] | 表示する選択肢一覧 | items が配列以外の場合、エラーを出力する |
+
+#### Item
+
+| Name   | Type | Default | Description | Remark |
+| :--- | :--- | :--- | :--- | :--- |
+| label | string | null | 各選択肢のテキスト | Item.label が未指定の場合、UI 上は Item.value の値が表示される |
+| value | string | null | 各選択肢の値 | Item.value に重複した値を指定した場合、エラーを出力する |
+| disabled | boolean | false | 各オプションの選択可/不可設定 | |
 
 ### Event
 

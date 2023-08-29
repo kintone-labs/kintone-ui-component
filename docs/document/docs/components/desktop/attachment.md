@@ -30,13 +30,18 @@ Here is a list of properties that can be used for modifying the component:
 | disabled | boolean | false | Enable/Disable the component | |
 | requiredIcon | boolean | false | Show/Hide the required icon | |
 | visible | boolean | true | Show/Hide the component | |
-| files | Array<File\> | [] | List of files | You can specify [File object](https://developer.mozilla.org/en-US/docs/Web/API/File) or object contains `name` and `size`<br/>Will result an error if the value of `files` is not an array |
-| File.name | string | "" | File name | |
-| File.size | string | "" | File size | There are 4 types to show the size:<li>size >= 1073741824: xxx GB</li><li>1073741824 > size >= 1048576: xxx MB</li><li>1048576 > size >= 1024: xxx KB</li><li>1024 > size: xxx bytes</li> |
+| files | Array<[File](#file)\> | [] | List of files | You can specify [File object](https://developer.mozilla.org/en-US/docs/Web/API/File) or object contains `name` and `size`<br/>Will result an error if the value of `files` is not an array |
 
 :::info
 *1: The text of "Browse" button and "Drag & drop zone" will be changed according to the `language` property.
 :::
+
+#### File
+
+| Name   | Type | Default | Description | Remark |
+| :--- | :--- | :--- | :--- | :--- |
+| name | string | "" | File name | |
+| size | string | "" | File size | There are 4 types to show the size:<li>size >= 1073741824: xxx GB</li><li>1073741824 > size >= 1048576: xxx MB</li><li>1048576 > size >= 1024: xxx KB</li><li>1024 > size: xxx bytes</li> |
 
 ### Event
 

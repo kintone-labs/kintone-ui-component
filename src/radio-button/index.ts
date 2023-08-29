@@ -105,13 +105,15 @@ let exportRadioButton;
       let index = -1;
 
       for (let i = 0; i < this.items.length; i++) {
-        if (!this.items[i].disabled) {
-          if (this.value !== undefined && this.items[i].value === this.value) {
-            return i;
-          }
-          if (index === -1) {
-            index = i;
-          }
+        const currentItem = this.items[i];
+        if (currentItem.disabled) continue;
+
+        if (this.selectedIndex === i && currentItem.value === this.value) {
+          index = i;
+          continue;
+        }
+        if (index === -1) {
+          index = i;
         }
       }
 
