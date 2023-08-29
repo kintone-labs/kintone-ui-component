@@ -64,7 +64,7 @@ kuc-datetime-picker[hidden] {
 }
 .kuc-datetime-picker__group .kuc-base-time__group input[type=text].kuc-base-time__group__hours,
 .kuc-datetime-picker__group .kuc-base-time__group input[type=text].kuc-base-time__group__minutes,
-.kuc-datetime-picker__group .kuc-base-time__group input[type=text].kuc-base-time__group__suffix,
+.kuc-datetime-picker__group .kuc-base-time__group input.kuc-base-time__group__suffix,
 .kuc-datetime-picker__group .kuc-base-time__group--focus  {
   color: var(--kuc-date-time-picker-input-color, #333333);
 }
