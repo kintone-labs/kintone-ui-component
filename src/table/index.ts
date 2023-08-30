@@ -25,7 +25,7 @@ const btnAddRowClassName = "kuc-table__table__body__row__action-add";
 const btnRemoveRowClassName = "kuc-table__table__body__row__action-remove";
 
 const customWidthVariables = (index: number) =>
-  `var(--kuc-table-header-cell-${index}-width, auto)`;
+  `var(--kuc-table-header-cell-${index}-width, var(--kuc-table-header-cell-width, auto))`;
 
 const dAdd =
   "M8 16C12.4183 16 16 12.4183 16 8C16 3.58172 12.4183 0 8 0C3.58172 0 0 3.58172 0 8C0 12.4183 3.58172 16 8 16ZM12.0355 8.49997V7.49997H8.50008V3.96454H7.50008V7.49997H3.96443V8.49997H7.50008V12.0356H8.50008V8.49997H12.0355Z";

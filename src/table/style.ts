@@ -50,7 +50,7 @@ export const TABLE_CSS = `
         font-weight: 400;
         background-color: var(--kuc-table-header-cell-background-color, #3498db);
         color: var(--kuc-table-header-color, #ffffff);
-        height: 40px;
+        height: var(--kuc-table-header-height, 40px);
         padding: 4px 8px;
         text-align: left;
         white-space: nowrap;
