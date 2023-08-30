@@ -1,16 +1,16 @@
 ---
-id: mobile-checkbox
-title: MobileCheckbox
-sidebar_label: MobileCheckbox
+id: multichoice
+title: MultiChoice
+sidebar_label: MultiChoice
 ---
 
 ## Overview
 
-MobileCheckbox は、複数選択のチェックボックスを表示します。
+MultiChoice は、複数選択肢の中から複数の値を選択することができます。
 
-import { MobileCheckboxComponent } from "@site/static/js/samples/mobile/checkbox.js"
+import { MultichoiceComponent } from "@site/static/js/samples/desktop/multichoice.js"
 
-<MobileCheckboxComponent />
+<MultichoiceComponent />
 
 ---
 
@@ -26,8 +26,7 @@ import { MobileCheckboxComponent } from "@site/static/js/samples/mobile/checkbox
 | error | string | "" | エラーに表示するテキスト | 未指定、あるいは空文字の場合、error は表示されない |
 | id | string | "" | コンポーネントの id 名 ||
 | label | string | "" | コンポーネントの説明ラベル | 未指定、あるいは空文字の場合、label は表示されない |
-| borderVisible | boolean | true | 選択肢を囲う枠線の表示/非表示設定 ||
-| disabled | boolean | false | コンポーネントの選択可/不可設定 ||
+| disabled | boolean | false | コンポーネントの編集可/不可設定 ||
 | requiredIcon | boolean | false | コンポーネントの必須アイコン表示/非表示設定 ||
 | visible | boolean | true | コンポーネントの表示/非表示設定 ||
 | items | Array<[Item](#item)\> | [] | 表示する選択肢一覧 | items が配列以外の場合、エラーを出力する |
@@ -38,29 +37,30 @@ import { MobileCheckboxComponent } from "@site/static/js/samples/mobile/checkbox
 *1: value と Item.value に重複した値を指定できる。重複した値を指定する場合、value と selectedIndex プロパティを使って制御することができる。<br/>
 例: `items = [{label: 'Orange', value: 'fruit'}, {label: 'Apple', value: 'fruit'}, {label: 'Carrot', value: 'vegetable'}, {label: 'Lemon', value: 'fruit'}]` を指定する
 
- - 以下のように value を指定、selectedIndex を未指定の場合:
-   - value = ['fruit', 'vegetable']: 最初と 3番目の値が選択される。
-   - value = ['meat', 'other']: 何も選択されない。
+- 以下のように value を指定、selectedIndex を未指定の場合:
+  - value = ['fruit', 'vegetable']: 最初と 3番目の値が選択される。
+  - value = ['meat', 'other']: 何も選択されない。
 
- - 以下のように value を未指定、selectedIndex を指定する場合:
-   - selectedIndex = [0, 1]: 最初と 2番目の値が選択される。
-   - selectedIndex = [98, 99]: 何も選択されない。
+- 以下のように value を未指定、selectedIndex を指定する場合:
+  - selectedIndex = [0, 1]: 最初と 2番目の値が選択される。
+  - selectedIndex = [98, 99]: 何も選択されない。
 
- - 以下のように value と selectedIndex を指定する場合:
-   - value = ['fruit', 'vegetable'], selectedIndex = [1, 3]: 2番目と 3番目の値が選択される。
-   - value = ['fruit', 'fruit', 'vegetable'], selectedIndex = [1, 3]: 2番目と 3番目と 4番目の値が選択される。
-   - value = ['fruit', 'fruit'], selectedIndex = [1, 2, 3]: 最初と 2番目の値が選択される。<br/>
- ※ value と selectedIndex が同時に指定された場合、value の値が優先される。よって、上記の 1つ目と 3つ目の例において selectedIndex の 3 に当たる item は選択されない。
+- 以下のように value と selectedIndex を指定する場合:
+  - value = ['fruit', 'vegetable'], selectedIndex = [1, 3]: 2番目と 3番目の値が選択される。
+  - value = ['fruit', 'fruit', 'vegetable'], selectedIndex = [1, 3]: 2番目と 3番目と 4番目の値が選択される。
+  - value = ['fruit', 'fruit'], selectedIndex = [1, 2, 3]: 最初と 2番目の値が選択される。<br/>
+※ value と selectedIndex が同時に指定された場合、value の値が優先される。よって、上記の 1つ目と 3つ目の例において selectedIndex の 3 に当たる item は選択されない。
 :::
 
 #### Item
-| Name | Type | Default | Description | Remark |
+
+| Name   | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
 | label | string | null | 各選択肢のテキスト | Item.label が未指定の場合、UI 上は Item.value の値が表示される |
 | value | string | null | 各選択肢の値 | Item.value に重複の値を指定できる |
+| disabled | boolean | false | 各オプションの選択可/不可設定 | |
 
 ### Event
-
 指定できるイベントの一覧です。
 
 | Name | Type | Description | Remark |
@@ -69,7 +69,7 @@ import { MobileCheckboxComponent } from "@site/static/js/samples/mobile/checkbox
 
 ### Constructor
 
-MobileCheckbox(options)<br/>
+MultiChoice(options)<br/>
 使用できるコンストラクタの一覧です。
 
 #### Parameter
@@ -78,8 +78,23 @@ MobileCheckbox(options)<br/>
 | :--- | :--- | :--- | :--- | :--- |
 | options | object | {} | コンポーネントのプロパティを含むオブジェクト | |
 
----
+### Custom CSS
+:::tip
+[Custom CSS](../../getting-started/custom-css.md) をご確認ください。
+:::
 
+コンポーネントのスタイルを変更するために使用できるプロパティの一覧です。
+#### Property
+| Name |
+| :--- |
+| --kuc-multi-choice-menu-width |
+| --kuc-multi-choice-menu-height |
+| --kuc-multi-choice-menu-font-size |
+| --kuc-multi-choice-menu-color |
+| --kuc-multi-choice-menu-color-selected |
+| --kuc-multi-choice-menu-background-color-hover |
+
+---
 ## Sample Code
 
 :::tip
@@ -91,9 +106,9 @@ MobileCheckbox(options)<br/>
 ```javascript
 const Kuc = Kucs['1.x.x'];
 
-const space = kintone.mobile.app.record.getSpaceElement('space');
+const space = kintone.app.record.getSpaceElement('space');
 
-const mobileCheckbox = new Kuc.MobileCheckbox({
+const multiChoice = new Kuc.MultiChoice({
   label: 'Fruit',
   requiredIcon: true,
   items: [
@@ -104,6 +119,11 @@ const mobileCheckbox = new Kuc.MobileCheckbox({
     {
       label: 'apple',
       value: 'Apple'
+    },
+    {
+      label: 'banana',
+      value: 'Banana',
+      disabled: true
     }
   ],
   value: ['Orange'],
@@ -112,12 +132,17 @@ const mobileCheckbox = new Kuc.MobileCheckbox({
   className: 'options-class',
   id: 'options-id',
   visible: true,
-  disabled: false,
-  borderVisible: true
+  disabled: false
 });
-space.appendChild(mobileCheckbox);
+space.appendChild(multiChoice);
 
-mobileCheckbox.addEventListener('change', event => {
+multiChoice.addEventListener('change', event => {
   console.log(event);
 });
 ```
+
+---
+
+## Related Articles
+
+- [Format setting plug-in](../../guides/format-setting-plugin.md)
