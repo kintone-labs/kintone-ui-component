@@ -26,6 +26,7 @@ import { DialogComponent } from "@site/static/js/samples/desktop/dialog.js"
 | title | string | "" | Header のタイトル | |
 | content *1 | string/HTMLElement | "" | Content の DOM | HTML が記載された string を指定した場合、自動的に HTML に変換してそのまま表示される |
 | footer *1 | string/HTMLElement | "" | Footer の DOM | HTML が記載された string を指定した場合、自動的に HTML に変換してそのまま表示される |
+| container | HTMLElement | document.body | コンポーネントを追加する対象の要素 | デフォルトではトップレベルのドキュメントオブジェクトのボディを使うので、ほとんどの場合は document.body となる<br/>container が HTMLElement 以外の場合、エラーを出力する |
 
 :::caution
 *1: kintone UI Component はこのプロパティの値を内部的にサニタイズしていません。ユーザー入力を受け付けるような実装でこのプロパティを使用する場合は、開発者自身で XSS 対策をしてください。
@@ -122,7 +123,8 @@ const dialog = new Kuc.Dialog({
   title: 'Title',
   content: '<div>This is Content</div>',
   footer: divEl,
-  icon: 'info'
+  icon: 'info',
+  container: document.body
 });
 
 dialog.addEventListener('close', event => {

@@ -23,6 +23,7 @@ import { SpinnerComponent } from "@site/static/js/samples/desktop/spinner.js"
 | Name | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
 | text | string | "" | ローダーアイコン下部に表示するテキスト | text が未指定、あるいは空文字の場合*は、初期値を表示する |
+| container | HTMLElement | document.body | コンポーネントを追加する対象の要素 | デフォルトではトップレベルのドキュメントオブジェクトのボディを使うので、ほとんどの場合は document.body となる<br/>container が HTMLElement 以外の場合、エラーを出力する |
 
 :::info
 text が未指定、あるいは空文字の場合は、アクセシビリティを考慮して visually-hidden class を付与し、"now loading…" の文言を視覚的に見えない状態で表示する。
@@ -87,7 +88,8 @@ none
 const Kuc = Kucs['1.x.x'];
 
 const spinner = new Kuc.Spinner({
-  text: 'now loading...'
+  text: 'now loading...',
+  container: document.body
 });
 
 spinner.open();
