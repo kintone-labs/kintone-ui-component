@@ -62,23 +62,6 @@ Here is a list of available constructors:
 | :--- | :--- | :--- | :--- | :--- |
 | options | object | {} | Object that includes component properties | |
 
-### Custom CSS
-> Please check [Custom CSS feature guide](../../getting-started/custom-css.md) at first.
-
-Here is a list of properties that can be used for modifying component style:
-#### Property
-| Name |
-| :--- |
-| --kuc-table-header-cell-{index}-width *1 |
-| --kuc-table-header-cell-width *2 |
-| --kuc-table-header-height |
-| --kuc-table-header-color |
-| --kuc-table-header-font-size |
-| --kuc-table-header-cell-background-color |
-> *1 You can specify the width of the columns based on the index value. For example, you can set the width for the first column using: `--kuc-table-header-cell-1-width`.
-
-> *2 It is used to define the width for all columns in a table. If you want to set a specific width for a particular column, you can use the `--kuc-table-header-cell-{index}-width` property. This targeted approach allows you to override the width set by the `--kuc-table-header-cell-width` property for that specific column.
-
 ---
 
 ## Sample Code
