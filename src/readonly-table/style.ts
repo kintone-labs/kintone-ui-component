@@ -49,16 +49,16 @@ export const READ_ONLY_TABLE_CSS = `
     display: none;
   }
   .kuc-readonly-table__table__header__cell {
-    background-color: #3498db;
-    color: #ffffff;
-    height: 40px;
+    background-color: var(--kuc-read-only-table-header-background-color,#3498db);
+    color: var(--kuc-read-only-table-header-color, #ffffff);
+    height: var(--kuc-read-only-table-header-height, 40px);
     box-sizing: border-box;
     text-align: left;
     white-space: nowrap;
     word-wrap: break-word;
     padding: 4px 8px;
     font-weight: 400;
-    font-size: 12px;
+    font-size: var(--kuc-read-only-table-header-font-size, 12px);
   }
   .kuc-readonly-table__table__header__cell[hidden] {
     display: none;
@@ -67,7 +67,7 @@ export const READ_ONLY_TABLE_CSS = `
     vertical-align: top;
   }
   .kuc-readonly-table__table__body__row__cell-data {
-    overflow: hidden;
+    overflow: auto;
     box-sizing: border-box;
     padding: 4px 8px;
     white-space: pre-wrap;
