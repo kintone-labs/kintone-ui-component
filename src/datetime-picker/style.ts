@@ -35,6 +35,7 @@ kuc-datetime-picker[hidden] {
   padding: 0px;
   height: auto;
   display: inline-block;
+  max-width: calc(var(--kuc-date-time-picker-date-input-width, 100px) + var(--kuc-date-time-picker-time-input-width, 85px));
   margin: 0px;
 }
 .kuc-datetime-picker__group__label {
@@ -47,7 +48,7 @@ kuc-datetime-picker[hidden] {
 }
 .kuc-datetime-picker__group__inputs {
   display: flex;
-  width: calc(var(--kuc-date-time-picker-date-input-width, 100px) + var(--kuc-date-time-picker-time-input-width, 85px));;
+  width: calc(var(--kuc-date-time-picker-date-input-width, 100px) + var(--kuc-date-time-picker-time-input-width, 85px));
 }
 .kuc-datetime-picker__group input[type=text].kuc-base-date__input {
   width: var(--kuc-date-time-picker-date-input-width, 100px);
