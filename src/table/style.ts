@@ -37,7 +37,7 @@ export const TABLE_CSS = `
     }
     .kuc-table__table__header {
         border-width: 0px 1px;
-        border-color: #3498db;
+        border-color: var(--kuc-table-header-cell-background-color, #3498db);
         border-style: solid;
         border-right: 0;
     }
