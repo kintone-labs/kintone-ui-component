@@ -109,21 +109,25 @@ export const ATTACHMENT_CSS = `
     position: relative;
     margin-bottom: 8px;
     height: auto;
+    min-height: 24px;
     border: 2px solid #f1f4f5;
     background-color: #f1f4f5;
     list-style: none;
+    display: flex;
+    align-items: center;
   }
   .kuc-attachment__group__files__display-area__item__name {
     display: inline-block;
-    padding: 3px 68px 0 26px;
-    width: calc(var(--kuc-attachment-width, 191px) - 14px);
+    padding: 3px calc(4.6em + 4px) 3px 26px;
+    width: 100%;
+    max-width: 177px;
     box-sizing: border-box;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     word-wrap: normal;
     font-size: var(--kuc-attachment-item-font-size, 14px);
-    line-height: 1.3;
+    line-height: 1.2;
   }
   .kuc-attachment__group__files__display-area__item__remove-button__container {
     display: inline-block;
@@ -158,17 +162,16 @@ export const ATTACHMENT_CSS = `
   .kuc-attachment__group__files__display-area__item__size {
     display: inline-block;
     position: absolute;
-    top: 0;
     right: 0;
     color: #888888;
-    padding: 3px 3px 0 0;
-    max-width: 64px;
+    padding: 0 3px 0 0;
+    max-width: 4.6em;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     word-wrap: normal;
     font-size: var(--kuc-attachment-item-font-size, 14px);
-    line-height: 1.3;
+    line-height: 1.2;
   }
   .kuc-attachment__group__files__droppable {
     display: block;

@@ -73,6 +73,11 @@ let exportAttachment;
     )
     private _inputEl!: HTMLInputElement;
 
+    @query(".kuc-attachment__group__label")
+    private _labelEl!: HTMLDivElement;
+    @queryAll(".kuc-attachment__group__files__display-area__item__name")
+    private _fileItemsEl!: HTMLDivElement[];
+
     @queryAll(
       ".kuc-attachment__group__files__display-area__item__remove-button__container__button"
     )
@@ -199,6 +204,20 @@ let exportAttachment;
     }
     async updated(_changedProperties: PropertyValues) {
       await this.updateComplete;
+      this._updateFileNameMaxWidth();
+    }
+
+    private _updateFileNameMaxWidth() {
+      const FILES_PADDING_AND_BORDER_WIDTH = 5;
+      const FILE_ITEM_BORDER_WIDTH = 2;
+      const labelElWidth = this._labelEl.getBoundingClientRect().width;
+      this._fileItemsEl.forEach((fileItem) => {
+        fileItem.style.maxWidth = `calc(var(--kuc-attachment-width, ${
+          labelElWidth < 191 ? 191 : labelElWidth
+        }px) - ${
+          (FILES_PADDING_AND_BORDER_WIDTH + FILE_ITEM_BORDER_WIDTH) * 2
+        }px)`;
+      });
     }
 
     private _getRemoveButtonIcon() {
