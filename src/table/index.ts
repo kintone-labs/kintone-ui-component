@@ -135,7 +135,7 @@ let exportTable;
       return html`
         <tr>
           ${this.columns.map((column, index) =>
-            this._getColumnHeaderTemplate(column, index + 1)
+            this._getColumnHeaderTemplate(column, index)
           )}
         </tr>
       `;
@@ -195,7 +195,7 @@ let exportTable;
       const newRow = this._tBody.insertRow(currentRowIndex);
       newRow.classList.add(rowClassName);
       for (let i = 0; i < this.columns.length; i++) {
-        const customWidth = customWidthVariables(i + 1);
+        const customWidth = customWidthVariables(i);
         const newCell = newRow.insertCell(i);
         const column = this.columns[i];
         newCell.classList.add(cellClassName);
