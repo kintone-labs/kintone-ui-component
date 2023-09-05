@@ -49,7 +49,7 @@ export const READ_ONLY_TABLE_CSS = `
     display: none;
   }
   .kuc-readonly-table__table__header__cell {
-    background-color: var(--kuc-read-only-table-header-background-color,#3498db);
+    background-color: var(--kuc-read-only-table-header-cell-background-color,#3498db);
     color: var(--kuc-read-only-table-header-color, #ffffff);
     height: var(--kuc-read-only-table-header-height, 40px);
     box-sizing: border-box;
