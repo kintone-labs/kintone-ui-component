@@ -56,7 +56,7 @@ export const ATTACHMENT_CSS = `
     overflow: hidden;
     position: relative;
     box-sizing: border-box;
-    width: var(--kuc-attachment-width, auto);;
+    width: var(--kuc-attachment-width, auto);
     height: var(--kuc-attachment-height, auto);
   }
   .kuc-attachment__group__files__browse-button {
