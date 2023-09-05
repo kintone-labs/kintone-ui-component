@@ -46,6 +46,7 @@ export const TABLE_CSS = `
     }
     .kuc-table__table__header__cell {
         box-sizing: border-box;
+        overflow: auto;
         font-size: var(--kuc-table-header-font-size, 12px);
         font-weight: 400;
         background-color: var(--kuc-table-header-cell-background-color, #3498db);
