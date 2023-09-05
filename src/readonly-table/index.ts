@@ -141,9 +141,7 @@ let exportReadOnlyTable;
     }
 
     private _customWidthVariables(index: number) {
-      return `var(--kuc-readonly-table-header-cell-${
-        index + 1
-      }-width, var(--kuc-readonly-table-header-cell-width, auto))`;
+      return `var(--kuc-readonly-table-header-cell-${index}-width, var(--kuc-readonly-table-header-cell-width, auto))`;
     }
 
     private _getColumnsTemplate(column: Column, index: number) {
