@@ -37,7 +37,7 @@ export const READ_ONLY_TABLE_CSS = `
   }
   .kuc-readonly-table__table__header {
     border-width: 0px 1px;
-    border-color: #3498db;
+    border-color: var(--kuc-read-only-table-header-cell-background-color,#3498db);
     border-style: solid;
   }
   .kuc-readonly-table__table__label {
@@ -54,6 +54,7 @@ export const READ_ONLY_TABLE_CSS = `
     height: var(--kuc-read-only-table-header-height, 40px);
     box-sizing: border-box;
     text-align: left;
+    overflow: auto;
     white-space: nowrap;
     word-wrap: break-word;
     padding: 4px 8px;
