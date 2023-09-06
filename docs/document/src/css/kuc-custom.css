@@ -304,8 +304,9 @@ table th[class$="__table__header__cell"] {
   margin: 0 auto;
 }
 
-#mobile-multichoice #sample-container__components select:focus {
-  border: 2px solid rgb(0, 95, 204);
+#mobile-multichoice #sample-container__components select:focus,
+#mobile-dropdown #sample-container__components select:focus {
+  outline: revert;
 }
 
 .sample-container#dialog{
