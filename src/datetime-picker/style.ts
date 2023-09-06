@@ -53,7 +53,7 @@ kuc-datetime-picker[hidden] {
 .kuc-datetime-picker__group input[type=text].kuc-base-date__input {
   width: var(--kuc-date-time-picker-date-input-width, 100px);
   height: var(--kuc-date-time-picker-input-height, 40px);
-  color: var(--kuc-date-time-picker-input-color);
+  color: var(--kuc-date-time-picker-input-color, #333333);
   font-size: var(--kuc-date-time-picker-input-font-size, 14px);
 }
 .kuc-datetime-picker__group .kuc-base-time__group {
