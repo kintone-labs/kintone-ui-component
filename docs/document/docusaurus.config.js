@@ -53,6 +53,7 @@ const config = {
           // Remove this to remove the "edit this page" links.
           editUrl: undefined,
           lastVersion: `${getLatestVersionName()}`,
+          showLastUpdateTime: true,
         },
         theme: {
           customCss: [
