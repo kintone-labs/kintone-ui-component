@@ -9,6 +9,7 @@
   "exclude": [
     "node_modules",
     "./demos",
+    "docs/document",
     "lib",
     "./src/readonly-table/",
     "./src/index.bundle.ts",
