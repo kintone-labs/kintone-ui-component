@@ -59,6 +59,9 @@ export const TABLE_CSS = `
     .kuc-table__table__header__cell[hidden] {
         display: none;
     }
+    .kuc-table__table__header__cell .kuc-base-label__required-icon {
+        font-size: var(--kuc-table-header-font-size, 20px);
+    }
     .kuc-table__table__body__row__cell-data {
         box-sizing: border-box;
         overflow: auto;
