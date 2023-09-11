@@ -1,28 +1,39 @@
 {
   "name": "document",
   "scripts": {
-    "lint-md": "remark .",
-    "es-lint": "node_modules/.bin/eslint website --ext .js"
+    "docusaurus": "docusaurus",
+    "start": "docusaurus start",
+    "start-ja": "docusaurus start --locale ja",
+    "build": "docusaurus build",
+    "deploy": "docusaurus deploy",
+    "clear": "docusaurus clear",
+    "serve": "docusaurus serve"
+  },
+  "dependencies": {
+    "@docusaurus/core": "^2.4.1",
+    "@docusaurus/preset-classic": "^2.4.1",
+    "@mdx-js/react": "^1.6.22",
+    "clsx": "^1.2.1",
+    "prism-react-renderer": "^1.3.5",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
   },
   "devDependencies": {
-    "@cybozu/eslint-config": "^20.0.1",
-    "dictionary-en": "^3.2.0",
-    "eslint": "^8.43.0",
-    "prettier": "^2.8.8",
-    "remark-cli": "^11.0.0",
-    "remark-frontmatter": "^4.0.1",
-    "remark-lint": "^9.1.2",
-    "remark-preset-lint-consistent": "^5.1.2",
-    "remark-preset-lint-markdown-style-guide": "^5.1.3",
-    "remark-preset-lint-recommended": "^6.1.3",
-    "remark-retext": "^5.0.1",
-    "retext-english": "^4.1.0",
-    "retext-repeated-words": "^4.2.0",
-    "retext-sentence-spacing": "^5.2.0",
-    "retext-spell": "^5.3.0",
-    "retext-syntax-urls": "^3.1.2",
-    "retext-usage": "^0.5.0",
-    "typescript": "^5.1.3",
-    "unified": "^10.1.2"
+    "@docusaurus/module-type-aliases": "^2.4.1"
+  },
+  "browserslist": {
+    "production": [
+      ">0.5%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "engines": {
+    "node": ">=16.14"
   }
 }

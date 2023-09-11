@@ -339,7 +339,9 @@ let exportDropdown;
 
       if (
         Array.from(this._disabledItemsEl).some(
-          (disabledItemEl: HTMLLIElement) => disabledItemEl === event.target
+          (disabledItemEl: HTMLLIElement) =>
+            disabledItemEl === event.target ||
+            disabledItemEl.contains(event.target as HTMLElement)
         )
       ) {
         return;
@@ -430,7 +432,11 @@ let exportDropdown;
       if (this.items.length === 0) return;
       this._selectorVisible = true;
 
-      if (this._selectedItemEl === null) return;
+      if (
+        this._selectedItemEl === null ||
+        this._selectedItemEl.classList.contains(this._DISABLED_CLASS)
+      )
+        return;
       this._setHighlightAndActiveDescendantMenu(this._selectedItemEl);
     }
 
@@ -687,7 +693,6 @@ let exportDropdown;
     }
 
     private _isCheckedItem(item: DropdownItem, index: number) {
-      if (item.disabled) return false;
       if (!this.value) return this.selectedIndex === index;
       return item.value === this.value && this.selectedIndex === index;
     }
@@ -700,7 +705,7 @@ let exportDropdown;
             ? this._DISABLED_CLASS
             : ""}"
           role="option"
-          tabindex="${isCheckedItem ? "0" : "-1"}"
+          tabindex="${!item.disabled && isCheckedItem ? "0" : "-1"}"
           aria-selected="${isCheckedItem ? "true" : "false"}"
           data-index="${index}"
           value="${item.value !== undefined ? item.value : ""}"
@@ -712,13 +717,13 @@ let exportDropdown;
             ? this._handleMouseOverDropdownItem
             : null}"
         >
-          ${this._getDropdownIconSvgTemplate(isCheckedItem)}
+          ${this._getDropdownIconSvgTemplate(isCheckedItem, !!item.disabled)}
           ${item.label === undefined ? item.value : item.label}
         </li>
       `;
     }
 
-    private _getDropdownIconSvgTemplate(checked: boolean) {
+    private _getDropdownIconSvgTemplate(checked: boolean, disabled: boolean) {
       return svg`
       ${
         checked
@@ -734,7 +739,7 @@ let exportDropdown;
             fill-rule="evenodd"
             clip-rule="evenodd"
             d="M0 5L1.5 3L4.5 5.5L9.5 0L11 1.5L4.5 8.5L0 5Z"
-            fill="#3498db"/>
+            fill="${disabled ? "#888888" : "#3498db"}"/>
         </svg>`
           : ""
       }`;
