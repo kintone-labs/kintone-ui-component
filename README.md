@@ -129,7 +129,7 @@ For more details, please refer to the articles below.
 We welcome contributions to kintone UI Component.<br>
 For the details, please check [Contributing Guideline](https://github.com/kintone-labs/kintone-ui-component/blob/master/CONTRIBUTING.md).<br>
 
-If you have a question or feature request, please register [GitHub issue](https://github.com/kintone-labs/kintone-ui-component/issues/new/choose).<br>
+If you have a question or feature request, please register [GitHub issue](https://github.com/kintone-labs/kintone-ui-component/issues).<br>
 And we use [Discussions feature of GitHub](https://github.com/kintone-labs/kintone-ui-component/discussions) as our community page.
 
 ## Roadmap
