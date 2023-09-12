@@ -23,7 +23,7 @@ const dupplicatedItems = [{ value: "apple" }, { value: "apple" }];
 
 describe("Dropdown", () => {
   describe("items", () => {
-    it("should not have item when not asigned on constuctor", async () => {
+    it("should not have item when not assigned on constructor", async () => {
       const container = new Dropdown();
       const el = await fixture(container);
       const itemsEl = el.querySelectorAll(
@@ -99,7 +99,7 @@ describe("Dropdown", () => {
       );
     });
 
-    it("should set items when assigned items by setter", async () => {
+    it("should set items when assigned items on constructor", async () => {
       const container = new Dropdown({ items: initItems });
       const el = await fixture(container);
       const itemsEl = el.querySelectorAll(
@@ -162,6 +162,26 @@ describe("Dropdown", () => {
       const container = new Dropdown();
       container.items = null;
       fixture(container);
+    });
+
+    it("should set items when assigned disabled items on constructor", async () => {
+      const container = new Dropdown({
+        items: [
+          ...initItems,
+          { label: "Apple", value: "apple", disabled: true },
+        ],
+      });
+      const el = await fixture(container);
+      const itemsEl = el.querySelectorAll(
+        ".kuc-dropdown__group__select-menu__item"
+      );
+
+      await expect(itemsEl.length).to.equal(4);
+      await expect(
+        itemsEl[3].classList.contains(
+          "kuc-dropdown__group__select-menu__item--disabled"
+        )
+      ).to.equal(true);
     });
   });
 });

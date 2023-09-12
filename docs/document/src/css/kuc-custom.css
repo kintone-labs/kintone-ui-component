@@ -1,0 +1,320 @@
+.title-text {
+  color: #03a9f4;
+}
+
+.button.button-top {
+  color: #fff;
+  border-color: #fff;
+  border-width: 2px;
+  border-radius: 8px;
+  text-transform: uppercase;
+  background-color: transparent;
+  font-weight: 500;
+  padding: 8px;
+}
+.button.button-top:hover {
+  background-color: #03a9f4;
+}
+
+.support-policy {
+  background-color: #2b3137;
+  border-left: 8px solid #3498db;
+  border-radius: 3px;
+  padding: 15px 30px 15px 15px;
+  color: #fff;
+  font-size: 13px;
+  margin: 0px 150px 20px 150px;
+}
+
+.support-policy .container {
+  margin-left: 0px;
+}
+
+.support-policy .title {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.support-policy .github-infomation {
+  margin-bottom: 10px;
+}
+
+details.toggle-panel {
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+  padding-left: 0px;
+  padding-bottom: 0px;
+}
+
+details.toggle-panel .collapsibleContent_node_modules-\@docusaurus-theme-common-lib-components-Details-styles-module {
+  border-top: none !important;
+  margin-top: 0px !important;
+}
+
+details.toggle-panel summary{
+  font-weight: 600;
+}
+
+.sample-container table thead, .sample-container table tr:nth-child(2n) {
+  background-color: transparent;
+}
+
+.usecase {
+  margin: 0 auto
+}
+.usecase_sentense {
+  padding: 10px;
+}
+.usecase_group {
+  text-align: center;
+}
+.usecase_image {
+  display: inline-block;
+  margin: 5px;
+  text-align: center;
+}
+.usecase_image img {
+  width: 100%;
+  max-width: 480px;
+  background: #fff;
+  border-radius: 3px;
+  box-shadow: 0 0px 20px rgba(0, 0, 0, 0.2);
+}
+.usecase_code {
+  display: inline-block;
+  text-align: left;
+  color: #fff;
+  line-height: 1.5;
+  background-color: #2b3137;
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  border-radius: 3px;
+  height: auto;
+  max-width: 100%;
+  max-height: 239px;
+  overflow: auto;
+  word-break: normal !important;
+  word-wrap: normal !important;
+  white-space: pre !important;
+}
+.usecase_code button {
+  display: none;
+}
+
+#button .kuc_normal_button, #button .kuc_submit_button, #mobile-button .kuc_normal_button {
+ margin: 0px 5px 0px 0px;
+}
+
+#notification {
+  display: block;
+}
+
+#notification #sample-container__components{
+  height: 250px;
+  position: relative;
+}
+
+#notification #sample-container__components .notification {
+  position: absolute;
+}
+
+#notification #sample-container__components .notification pre {
+  background-color: unset;
+  border-radius: unset;
+  color: unset;
+  font: unset;
+  margin: unset;
+  overflow: unset;
+  padding: unset;
+}
+
+#checkbox .cus-checkbox div[class$=__select-menu__item], #radio-button .cus-radio-button div[class$=__select-menu__item] {
+  height: auto;
+}
+
+#spinner #sample-container__components{
+  width: 100%;
+  height: 200px;
+  position: relative;
+  display: flex;
+}
+
+#spinner #sample-container__components .spinner {
+  position: absolute;
+  width: 300px;
+  height: 200px;
+  z-index: 1;
+}
+
+#spinner #sample-container__components .spinner div {
+  position: absolute;
+}
+
+#sample-container__components {
+  display: flex;
+  justify-content: space-around;
+}
+
+.sample-container .mobile {
+  max-width: 375px;
+}
+
+#mobile-checkbox .cus-mobile-checkbox label[class$=__select-menu__item] {
+  height: 40px;
+}
+
+#mobile-checkbox {
+  display: flex;
+  justify-content: center;
+}
+
+#mobile-checkbox .cus-mobile-checkbox {
+  min-width: 235px;
+}
+
+#mobile-button .kuc_normal_button {
+  margin: 0 5px 0 0;
+}
+.sample-container {
+  display: flex;
+  justify-content: space-around;
+}
+
+#mobile-radio-button .cus-mobile-radio-button div[class$=__select-menu__item] {
+  min-width: 253px;
+}
+
+#dialog #sample-container__components {
+  position: relative;
+  width: 100%;
+  height: 300px;
+}
+
+#dialog #sample-container__components .dialog {
+  z-index: 1;
+}
+
+#dialog #sample-container__components .dialog div[class$=__dialog] {
+  position: absolute;
+}
+
+#dialog #sample-container__components .dialog div[class$=__mask] {
+  position: absolute;
+}
+
+#dialog #sample-container__components .dialog h2 {
+  margin: 0px;
+}
+
+table td li img {
+  display: inline;
+}
+
+#table tr{
+  border-top: 0;
+}
+#table thead tr {
+  border-bottom: unset;
+}
+#table tr[class$="__table__body__row"]{
+  background-color: transparent;
+}
+#table td[class$="__table__body__row__action"]{
+  border: 0;
+  padding: 0;
+}
+#table table {
+  overflow: visible;
+}
+table[class^="kuc-readonly-table-"] {
+  margin-bottom: 0px;
+}
+table th[class$="__table__header__cell"] {
+  border: none;
+  vertical-align: middle;
+}
+
+#tabs li+li {
+  margin-top: 0;
+}
+#tabs div[class$="__group__tab-panel"] {
+  padding: 16px;
+}
+
+#attachment div[class$="__group__files__droppable__text"] {
+  box-sizing: content-box;
+}
+
+#attachment div[class$="__group"] {
+  display: block;
+}
+
+#mobile-notification .mobile-notification {
+  position: relative;
+  width: 300px;
+}
+
+#mobile-notification pre {
+  background-color: transparent;
+}
+
+.sample-container.block {
+  display: block;
+}
+
+.sample-container.display-block-mobile {
+  display: block;
+  margin-left: 0px;
+}
+
+.sample-container .mobile {
+  max-width: 375px;
+}
+
+.sample-container .mobile .mobile-textarea {
+  width: 100%;
+}
+
+.sample-container.block #sample-container__components {
+  display: block;
+}
+
+#textarea #sample-container__components {
+  position: relative;
+  left: 50%;
+  margin-left: -150px;
+}
+
+#mobile-text .cus-mobile-text {
+  min-width: 250px;
+}
+
+.navbar__inner .navbar__items--right .lightToggleIcon_pyhR,
+.navbar__inner .navbar__items--right button.clean-btn {
+  color: #ffffff !important;
+}
+
+.navbar__inner .navbar__items--right .lightToggleIcon_pyhR:hover,
+.navbar__inner .navbar__items--right button.clean-btn:hover {
+  background-color: #444950;
+}
+
+#mobile-textarea #sample-container__components {
+  margin: 0 auto;
+}
+
+#mobile-multichoice #sample-container__components select:focus,
+#mobile-dropdown #sample-container__components select:focus {
+  outline: revert;
+}
+
+.sample-container#dialog{
+  max-width: 700px;
+  height: 300px;
+  margin: 0 auto;
+}
+
+.table-of-contents__link--active {
+  font-weight: 700;
+}

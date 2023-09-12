@@ -140,6 +140,12 @@ export const COMBOBOX_CSS = `
   .kuc-combobox__group__select-menu__item[aria-selected="true"] {
     color: var(--kuc-combobox-menu-color-selected, #3498db);
   }
+  .kuc-combobox__group__select-menu__item--disabled,
+  .kuc-combobox__group__select-menu__item--disabled[aria-selected="true"] {
+    background-color: #d4d7d7;
+    cursor: not-allowed;
+    color: #888888;
+  }
   .kuc-combobox__group__select-menu__highlight[role="option"] {
     background-color: #e2f2fe;
   }

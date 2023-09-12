@@ -1,8 +1,9 @@
 import { html, PropertyValues, svg } from "lit";
-import { property, query, queryAll } from "lit/decorators.js";
+import { property, query, queryAll, state } from "lit/decorators.js";
 import { DirectiveResult } from "lit/directive.js";
 import { UnsafeHTMLDirective } from "lit/directives/unsafe-html.js";
 
+import { ERROR_MESSAGE } from "../base/constant";
 import { unsafeHTMLConverter } from "../base/converter";
 import {
   createStyleOnHeader,
@@ -33,6 +34,10 @@ let exportDialog;
     @property({ type: String }) title = "";
     @property() content: string | HTMLElement = "";
     @property() footer: string | HTMLElement = "";
+    @property() container: HTMLElement = document.body;
+
+    @state()
+    private _isOpened = false;
 
     @query(".kuc-dialog__dialog") private _dialogEl!: HTMLDivElement;
     @queryAll(
@@ -232,6 +237,27 @@ let exportDialog;
       }
     }
 
+    shouldUpdate(changedProperties: PropertyValues): boolean {
+      if (changedProperties.has("container")) {
+        if (this.container === null || this.container === undefined) {
+          this._isOpened && this._close();
+          return false;
+        }
+
+        const isValidContainer = this._isValidContainerElement();
+        const shouldClose =
+          !isValidContainer || !document.contains(this.container);
+        if (this._isOpened && shouldClose) {
+          this._close();
+        }
+        if (!isValidContainer) {
+          this.throwErrorAfterUpdateComplete(ERROR_MESSAGE.CONTAINER.INVALID);
+          return false;
+        }
+      }
+      return true;
+    }
+
     update(changedProperties: PropertyValues) {
       if (changedProperties.has("content")) {
         this._content = unsafeHTMLConverter(this.content);
@@ -242,26 +268,43 @@ let exportDialog;
       super.update(changedProperties);
     }
 
+    private _isValidContainerElement() {
+      return this.container instanceof HTMLElement;
+    }
+
     open() {
-      const body = document.getElementsByTagName("body")[0];
-      body.appendChild(this);
-      body.classList.add("kuc--has-dialog");
+      const isValidContainer = this._isValidContainerElement();
+      if (!isValidContainer) {
+        document.body.appendChild(this);
+        requestAnimationFrame(() => {
+          document.body.removeChild(this);
+        });
+        this.performUpdate();
+        return;
+      }
+      this.container.appendChild(this);
+      this.container.classList.add("kuc--has-dialog");
       this.performUpdate();
 
       this.setAttribute("opened", "");
+      this._isOpened = true;
       this._triggeredElement = document.activeElement;
       this._dialogEl && this._dialogEl.focus();
     }
 
     close() {
+      this._close();
+      dispatchCustomEvent(this, "close");
+    }
+
+    private _close() {
+      this._isOpened = false;
       const body = document.getElementsByTagName("body")[0];
       body.classList.remove("kuc--has-dialog");
       this.removeAttribute("opened");
       if (this._triggeredElement instanceof HTMLElement) {
         this._triggeredElement.focus();
       }
-
-      dispatchCustomEvent(this, "close");
     }
 
     render() {

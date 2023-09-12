@@ -35,6 +35,7 @@ kuc-datetime-picker[hidden] {
   padding: 0px;
   height: auto;
   display: inline-block;
+  max-width: calc(var(--kuc-date-time-picker-date-input-width, 100px) + var(--kuc-date-time-picker-time-input-width, 85px));
   margin: 0px;
 }
 .kuc-datetime-picker__group__label {
@@ -47,6 +48,25 @@ kuc-datetime-picker[hidden] {
 }
 .kuc-datetime-picker__group__inputs {
   display: flex;
-  max-width: 185px;
+  width: calc(var(--kuc-date-time-picker-date-input-width, 100px) + var(--kuc-date-time-picker-time-input-width, 85px));
+}
+.kuc-datetime-picker__group input[type=text].kuc-base-date__input {
+  width: var(--kuc-date-time-picker-date-input-width, 100px);
+  height: var(--kuc-date-time-picker-input-height, 40px);
+  color: var(--kuc-date-time-picker-input-color, #333333);
+  font-size: var(--kuc-date-time-picker-input-font-size, 14px);
+}
+.kuc-datetime-picker__group .kuc-base-time__group {
+  max-width: var(--kuc-date-time-picker-time-input-width, 85px);
+  width: var(--kuc-date-time-picker-time-input-width, 85px);
+  font-size: var(--kuc-date-time-picker-input-font-size, 14px);
+  height: var(--kuc-date-time-picker-input-height, 40px);
+  color: var(--kuc-date-time-picker-input-color, #333333);
+}
+.kuc-datetime-picker__group .kuc-base-time__group input[type=text].kuc-base-time__group__hours,
+.kuc-datetime-picker__group .kuc-base-time__group input[type=text].kuc-base-time__group__minutes,
+.kuc-datetime-picker__group .kuc-base-time__group input.kuc-base-time__group__suffix,
+.kuc-datetime-picker__group .kuc-base-time__group--focus  {
+  color: var(--kuc-date-time-picker-input-color, #333333);
 }
 `;

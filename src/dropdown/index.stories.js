@@ -79,6 +79,7 @@ Base1.args = {
     {
       label: "Orange",
       value: "orange",
+      disabled: true,
     },
     {
       label: "Apple",

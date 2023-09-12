@@ -73,6 +73,8 @@ let exportAttachment;
     )
     private _inputEl!: HTMLInputElement;
 
+    @query(".kuc-attachment__group__label")
+    private _labelEl!: HTMLDivElement;
     @queryAll(".kuc-attachment__group__files__display-area__item__name")
     private _fileItemsEl!: HTMLDivElement[];
 
@@ -208,11 +210,13 @@ let exportAttachment;
     private _updateFileNameMaxWidth() {
       const FILES_PADDING_AND_BORDER_WIDTH = 5;
       const FILE_ITEM_BORDER_WIDTH = 2;
+      const labelElWidth = this._labelEl.getBoundingClientRect().width;
       this._fileItemsEl.forEach((fileItem) => {
-        fileItem.style.maxWidth = `${
-          this._groupFilesEl.getBoundingClientRect().width -
+        fileItem.style.maxWidth = `calc(var(--kuc-attachment-width, ${
+          labelElWidth < 191 ? 191 : labelElWidth
+        }px) - ${
           (FILES_PADDING_AND_BORDER_WIDTH + FILE_ITEM_BORDER_WIDTH) * 2
-        }px`;
+        }px)`;
       });
     }
 
@@ -294,11 +298,8 @@ let exportAttachment;
         event.preventDefault();
         const DRAG_TEXT_BORDER_WIDTH = 2;
         const FILES_BORDER_WIDTH = 1;
-        const FILES_PADDING_HEIGHT = 16;
         this._groupFilesEl.style.height =
-          this._groupFilesEl.getBoundingClientRect().height -
-          (FILES_PADDING_HEIGHT + FILES_BORDER_WIDTH) * 2 +
-          "px";
+          this._groupFilesEl.getBoundingClientRect().height + "px";
         this._dragTextEl.style.width =
           this._groupFilesEl.getBoundingClientRect().width -
           FILES_BORDER_WIDTH * 2 +
@@ -349,7 +350,7 @@ let exportAttachment;
       this._dragEnterCounter--;
 
       if (this._dragEnterCounter === 0) {
-        this._groupFilesEl.style.height = "auto";
+        this._groupFilesEl.style.height = "var(--kuc-attachment-height, auto)";
         this._isDraging = false;
       }
     }

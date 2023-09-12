@@ -2,7 +2,12 @@ import { PropertyValues } from "lit";
 
 import { KucBase } from "../base/kuc-base";
 
-export declare type CheckBoxItem = { label?: string; value?: string };
+export declare type CheckBoxItem = {
+  label?: string;
+  value?: string;
+  disabled?: boolean;
+};
+
 export declare type CheckboxProps = {
   className?: string;
   error?: string;

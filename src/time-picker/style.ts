@@ -59,7 +59,8 @@ kuc-time-picker[hidden] {
 }
 .kuc-time-picker__group .kuc-base-time__group input[type=text].kuc-base-time__group__hours,
 .kuc-time-picker__group .kuc-base-time__group input[type=text].kuc-base-time__group__minutes,
-.kuc-time-picker__group .kuc-base-time__group--focus  {
+.kuc-time-picker__group .kuc-base-time__group input.kuc-base-time__group__suffix,
+.kuc-time-picker__group .kuc-base-time__group--focus {
   color: var(--kuc-time-picker-input-color, #333333);
 }
 .kuc-time-picker__group__label {

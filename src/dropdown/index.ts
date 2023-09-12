@@ -73,12 +73,18 @@ let exportDropdown;
     @query(".kuc-dropdown__group__select-menu__highlight")
     private _highlightItemEl!: HTMLLIElement;
 
+    @queryAll(".kuc-dropdown__group__select-menu__item--disabled")
+    private _disabledItemsEl!: HTMLLIElement[];
+
     @query(".kuc-base-error__error")
     private _errorEl!: HTMLDivElement;
 
     private _timeoutID!: number | null;
 
     private _GUID: string;
+
+    private _DISABLED_CLASS =
+      "kuc-dropdown__group__select-menu__item--disabled";
 
     constructor(props?: DropdownProps) {
       super();
@@ -330,6 +336,16 @@ let exportDropdown;
       ) {
         event.stopPropagation();
       }
+
+      if (
+        Array.from(this._disabledItemsEl).some(
+          (disabledItemEl: HTMLLIElement) =>
+            disabledItemEl === event.target ||
+            disabledItemEl.contains(event.target as HTMLElement)
+        )
+      ) {
+        return;
+      }
       this._actionHideMenu();
     }
 
@@ -416,7 +432,11 @@ let exportDropdown;
       if (this.items.length === 0) return;
       this._selectorVisible = true;
 
-      if (this._selectedItemEl === null) return;
+      if (
+        this._selectedItemEl === null ||
+        this._selectedItemEl.classList.contains(this._DISABLED_CLASS)
+      )
+        return;
       this._setHighlightAndActiveDescendantMenu(this._selectedItemEl);
     }
 
@@ -436,11 +456,33 @@ let exportDropdown;
     }
 
     private _actionHighlightFirstMenuItem() {
-      this._setHighlightAndActiveDescendantMenu(this._firstItemEl);
+      let firstItem = this._firstItemEl;
+      let itemIsDisabled = false;
+      for (let i = 0; i < this.items.length; i++) {
+        itemIsDisabled = firstItem.classList.contains(this._DISABLED_CLASS);
+        if (itemIsDisabled) {
+          firstItem = firstItem.nextElementSibling as HTMLLIElement;
+        } else {
+          break;
+        }
+      }
+
+      !itemIsDisabled && this._setHighlightAndActiveDescendantMenu(firstItem);
     }
 
     private _actionHighlightLastMenuItem() {
-      this._setHighlightAndActiveDescendantMenu(this._lastItemEl);
+      let lastItem = this._lastItemEl;
+      let itemIsDisabled = false;
+      for (let i = 0; i < this.items.length; i++) {
+        itemIsDisabled = lastItem.classList.contains(this._DISABLED_CLASS);
+        if (itemIsDisabled) {
+          lastItem = lastItem.previousElementSibling as HTMLLIElement;
+        } else {
+          break;
+        }
+      }
+
+      !itemIsDisabled && this._setHighlightAndActiveDescendantMenu(lastItem);
     }
 
     private _actionHighlightPrevMenuItem() {
@@ -448,32 +490,54 @@ let exportDropdown;
       if (this._highlightItemEl !== null) {
         prevItem = this._highlightItemEl
           .previousElementSibling as HTMLLIElement;
-        this._highlightItemEl.classList.remove(
-          "kuc-dropdown__group__select-menu__highlight"
-        );
       }
 
       if (prevItem === null) {
         prevItem = this._lastItemEl;
       }
 
-      this._setHighlightAndActiveDescendantMenu(prevItem);
+      let prevItemIsDisabled = false;
+      for (let i = 0; i < this.items.length; i++) {
+        prevItemIsDisabled = prevItem.classList.contains(this._DISABLED_CLASS);
+        if (prevItemIsDisabled) {
+          prevItem = prevItem.previousElementSibling as HTMLLIElement;
+          if (prevItem === null) {
+            prevItem = this._lastItemEl;
+          }
+        } else {
+          break;
+        }
+      }
+
+      !prevItemIsDisabled &&
+        this._setHighlightAndActiveDescendantMenu(prevItem);
     }
 
     private _actionHighlightNextMenuItem() {
       let nextItem = null;
       if (this._highlightItemEl !== null) {
         nextItem = this._highlightItemEl.nextElementSibling as HTMLLIElement;
-        this._highlightItemEl.classList.remove(
-          "kuc-dropdown__group__select-menu__highlight"
-        );
       }
 
       if (nextItem === null) {
         nextItem = this._firstItemEl;
       }
 
-      this._setHighlightAndActiveDescendantMenu(nextItem);
+      let nextItemIsDisabled = false;
+      for (let i = 0; i < this.items.length; i++) {
+        nextItemIsDisabled = nextItem.classList.contains(this._DISABLED_CLASS);
+        if (nextItemIsDisabled) {
+          nextItem = nextItem.nextElementSibling as HTMLLIElement;
+          if (nextItem === null) {
+            nextItem = this._firstItemEl;
+          }
+        } else {
+          break;
+        }
+      }
+
+      !nextItemIsDisabled &&
+        this._setHighlightAndActiveDescendantMenu(nextItem);
     }
 
     private _actionClearAllHighlightMenuItem() {
@@ -637,23 +701,29 @@ let exportDropdown;
       const isCheckedItem = this._isCheckedItem(item, index);
       return html`
         <li
-          class="kuc-dropdown__group__select-menu__item"
+          class="kuc-dropdown__group__select-menu__item ${item.disabled
+            ? this._DISABLED_CLASS
+            : ""}"
           role="option"
-          tabindex="${isCheckedItem ? "0" : "-1"}"
+          tabindex="${!item.disabled && isCheckedItem ? "0" : "-1"}"
           aria-selected="${isCheckedItem ? "true" : "false"}"
           data-index="${index}"
           value="${item.value !== undefined ? item.value : ""}"
           id="${this._GUID}-menuitem-${index}"
-          @mousedown="${this._handleMouseDownDropdownItem}"
-          @mouseover="${this._handleMouseOverDropdownItem}"
+          @mousedown="${!item.disabled
+            ? this._handleMouseDownDropdownItem
+            : null}"
+          @mouseover="${!item.disabled
+            ? this._handleMouseOverDropdownItem
+            : null}"
         >
-          ${this._getDropdownIconSvgTemplate(isCheckedItem)}
+          ${this._getDropdownIconSvgTemplate(isCheckedItem, !!item.disabled)}
           ${item.label === undefined ? item.value : item.label}
         </li>
       `;
     }
 
-    private _getDropdownIconSvgTemplate(checked: boolean) {
+    private _getDropdownIconSvgTemplate(checked: boolean, disabled: boolean) {
       return svg`
       ${
         checked
@@ -669,7 +739,7 @@ let exportDropdown;
             fill-rule="evenodd"
             clip-rule="evenodd"
             d="M0 5L1.5 3L4.5 5.5L9.5 0L11 1.5L4.5 8.5L0 5Z"
-            fill="#3498db"/>
+            fill="${disabled ? "#888888" : "#3498db"}"/>
         </svg>`
           : ""
       }`;
