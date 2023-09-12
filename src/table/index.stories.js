@@ -126,7 +126,7 @@ const columns = [
   {
     title: "Age",
     field: "age",
-    render: renderAge,
+    // render: renderAge,
   },
   {
     title: "Date",
