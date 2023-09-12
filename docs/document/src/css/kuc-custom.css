@@ -242,7 +242,7 @@ table th[class$="__table__header__cell"] {
   padding: 16px;
 }
 
-#attachment div[class$="__group__files"], #attachment div[class$="__group__files__droppable__text"] {
+#attachment div[class$="__group__files__droppable__text"] {
   box-sizing: content-box;
 }
 
