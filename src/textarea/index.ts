@@ -29,8 +29,8 @@ let exportTextarea;
   }
 
   const TextAreaLayout = {
-    MIN_WIDTH: 299,
-    MIN_HEIGHT: 125,
+    MIN_WIDTH: 10,
+    MIN_HEIGHT: 10,
   };
 
   class KucTextArea extends KucBase {

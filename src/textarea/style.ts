@@ -23,10 +23,11 @@ export const TEXTAREA_CSS = `
   }
   kuc-textarea {
     font-size: 14px;
-    color: #333333;
+    color: var(--kuc-text-area-input-color, #333333);
     display: inline-table;
     vertical-align: top;
-    width: 299px;
+    width: var(--kuc-text-area-input-width, 299px);
+    height: var(--kuc-text-area-input-height, 125px);
     line-height: 1.5;
   }
   kuc-textarea[hidden] {
@@ -53,14 +54,17 @@ export const TEXTAREA_CSS = `
     display: block;
     border: 1px solid #e3e7e8;
     box-sizing: border-box;
-    font-size: 14px;
+    font-size: var(--kuc-text-area-input-font-size, 14px);
     box-shadow: 2px 2px 4px #f5f5f5 inset, -2px -2px 4px #f5f5f5 inset;
-    min-width: 299px;
-    min-height: 125px;
+    min-width: var(--kuc-text-area-input-width, 299px);
+    min-height: var(--kuc-text-area-input-height, 125px);
+    width: var(--kuc-text-area-input-width, 299px);
+    height: var(--kuc-text-area-input-height, 125px);
     padding: 8px;
     resize: none;
     width: 100%;
     background-color: #ffffff;
+    color: var(--kuc-text-area-input-color, #333333);
   }
   .kuc-textarea__group__textarea:focus {
     outline: none;
@@ -68,7 +72,7 @@ export const TEXTAREA_CSS = `
     box-shadow: 2px 2px 4px #f5f5f5 inset, -2px -2px 4px #f5f5f5 inset;
     border: 1px solid #3498db;
     background-color: #ffffff;
-    color: #333333;
+    color: var(--kuc-text-area-input-color, #333333);
   }
   .kuc-textarea__group__textarea:disabled {
     color: #888888;
