@@ -152,7 +152,9 @@ let exportReadOnlyTable;
           ?hidden="${column.visible === false}"
           style="width: ${customWidth}; min-width: ${customWidth}; max-width: ${customWidth}"
         >
-          ${column.title || ""}
+          <div class="kuc-readonly-table__table__header__cell__data">
+            ${column.title || ""}
+          </div>
         </th>
       `;
     }
@@ -168,7 +170,12 @@ let exportReadOnlyTable;
             const customWidth = this._customWidthVariables(colIndex);
             // Do not remove below disable comment. This is for table display.
             // eslint-disable-next-line
-            return html`<td class="kuc-readonly-table__table__body__row__cell-data" ?hidden="${!visible}" style="width: ${customWidth}; min-width: ${customWidth}; max-width: ${customWidth}">${value}</td>`;
+            return html`<td class="kuc-readonly-table__table__body__row__cell" ?hidden="${!visible}" style="width: ${customWidth}; min-width: ${customWidth}; max-width: ${customWidth}">
+              <div
+                class="kuc-readonly-table__table__body__row__cell__data"
+              // eslint-disable-next-line prettier/prettier
+              >${value}</div>
+            </td>`;
           })}
         </tr>
       `;
