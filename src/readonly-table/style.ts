@@ -42,8 +42,7 @@ export const READ_ONLY_TABLE_CSS = `
   }
   .kuc-readonly-table__table__label {
     text-align: left;
-    white-space: normal;
-    overflow-wrap: anywhere;
+    white-space: nowrap;
     padding: 4px 0px;
   }
   .kuc-readonly-table__table__label[hidden] {
@@ -55,6 +54,7 @@ export const READ_ONLY_TABLE_CSS = `
     height: var(--kuc-read-only-table-header-height, 40px);
     box-sizing: border-box;
     text-align: left;
+    overflow: auto;
     white-space: nowrap;
     word-wrap: break-word;
     padding: 4px 8px;
@@ -67,32 +67,17 @@ export const READ_ONLY_TABLE_CSS = `
   .kuc-readonly-table__table__body {
     vertical-align: top;
   }
-  .kuc-readonly-table__table__body__row__cell {
-    border-color: #e3e7e8;
-    border-style: solid;
-    box-sizing: border-box;
-    border-width: 1px;
-  }
-  .kuc-readonly-table__table__body__row__cell__data {
-    overflow-wrap: normal;
+  .kuc-readonly-table__table__body__row__cell-data {
+    overflow: auto;
     box-sizing: border-box;
     padding: 4px 8px;
     white-space: pre-wrap;
+    word-wrap: break-word;
+    border-color: #e3e7e8;
+    border-style: solid;
+    border-width: 1px;
   }
-  .kuc-readonly-table__table__header__cell__data,
-  .kuc-readonly-table__table__body__row__cell__data
-   {
-    width: 100%;
-    overflow: auto;
-    scrollbar-width: none; /* Firefox */
- 
-  }
-  .kuc-readonly-table__table__header__cell__data::-webkit-scrollbar,
-  .kuc-readonly-table__table__body__row__cell__data::-webkit-scrollbar {
-    width: 0; /* Safari and Chrome */
-    display: none
-  }
-  .kuc-readonly-table__table__body__row__cell[hidden] {
+  .kuc-readonly-table__table__body__row__cell-data[hidden] {
     display: none;
   }
 `;
