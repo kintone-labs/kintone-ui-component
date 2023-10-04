@@ -111,5 +111,6 @@ export const TABLE_CSS = `
     .kuc-table__table caption {
         text-align: left;
         margin-bottom: 6px;
+        overflow-wrap: anywhere;
     }
 `;
