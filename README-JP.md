@@ -86,7 +86,7 @@ text.addEventListener("change", event => {
 > グローバルオブジェクトとして Kuc を使うこともできますが、2つ以上の kuc.min.js を kintone カスタマイズやプラグインに読み込む場合はバージョンコンフリクトが起きる可能性があるのでご注意ください。この際、Kuc オブジェクトは最後に読み込まれた kuc.min.js を参照します。<br>
 > システム上に kuc.min.js が 1つしかない、もしくは最後に読み込まれた kuc.min.js の利用で問題ない場合は、Kuc オブジェクトを利用いただいて問題ありません。以下の `const Kuc = Kucs['1.x.x'];` の行を削除してください。<br>
 > v1.3.2 以前のバージョンを利用する場合は、Kuc をグローバルオブジェクトとして使ってください。2つ以上の kuc.min.js を kintone カスタマイズやプラグインに追加すると、バージョンコンフリクト問題が起きるのでご注意ください。
-> 詳しくは、[Quick Start](https://kintone-ui-component.netlify.app/docs/ja/getting-started/quick-start#installation) と [Version conflicts issue and solution](https://kintone-ui-component.netlify.app/docs/ja/guides/version-conflicts-issue-solution) 記事をご確認ください。
+> 詳しくは、[Quick Start](https://kintone-ui-component.netlify.app/ja/docs/getting-started/quick-start#installation) と [Version conflicts issue and solution](https://kintone-ui-component.netlify.app/ja/docs/guides/version-conflicts-issue-solution) 記事をご確認ください。
 
 ## ブラウザサポート
 
@@ -118,14 +118,14 @@ kintone UI Component v0 を使用する場合は、こちらのリンクをご�
 ## 移行ガイド
 v0 と v1 の仕様とインターフェースには違いがあるので、更新時には十分な確認をしてください。<br />
 詳細は下記の記事をご参照ください。
-- [A commentary on the difference between v0 and v1](https://kintone-ui-component.netlify.app/docs/ja/guides/comparison-v0-v1)
-- [v1.0.0 Release Notes](https://kintone-ui-component.netlify.app/docs/ja/releases/release-notes-v1.0.0)
+- [A commentary on the difference between v0 and v1](https://kintone-ui-component.netlify.app/ja/docs/guides/comparison-v0-v1)
+- [v1.0.0 Release Notes](https://kintone-ui-component.netlify.app/ja/docs/releases/release-notes-v1.0.0)
 
 > v0 で提供していた React 版については、現在 v1 では対応を見送っています。
 
 ## コントリビューションガイドライン
 kintone UI Component へのコントリビュートについて、詳しくは [Contributing Guideline](https://github.com/kintone-labs/kintone-ui-component/blob/master/CONTRIBUTING.md) をご確認ください。<br>
-ご質問やご要望などございましたら、[GitHub issue](https://github.com/kintone-labs/kintone-ui-component/issues/new/choose) に登録してください。<br>
+ご質問やご要望などございましたら、[GitHub issue](https://github.com/kintone-labs/kintone-ui-component/issues) に登録してください。<br>
 またコミュニティとして [GitHub の Discussions 機能](https://github.com/kintone-labs/kintone-ui-component/discussions)を利用しています。
 
 ## ロードマップ

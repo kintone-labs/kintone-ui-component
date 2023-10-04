@@ -13,17 +13,31 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
       - name: Install node
         uses: actions/setup-node@v3
         with:
           node-version: 16
       - name: Install dependencies
         run: npm ci
-        working-directory: docs/document/website
+        working-directory: docs/document
       - name: Build document
         run: npm run build
-        working-directory: docs/document/website
+        working-directory: docs/document
       - name: Install Netlify
         run: npm i netlify-cli --no-save
       - name: Deploying on Netlify Production Environment
-        run: netlify deploy --prod --dir=./docs/document/website/build/kintone-ui-component --auth=${{ secrets.NETLIFY_AUTH_TOKEN }} --site=${{ secrets.NETLIFY_DOCUMENT_ID }}
+        run: netlify deploy --prod --dir=./docs/document/build --auth=${{ secrets.NETLIFY_AUTH_TOKEN }} --site=${{ secrets.NETLIFY_DOCUMENT_ID }}
+      - name: Sleep for 30s
+        run: sleep 30
+      - name: Algolia crawler creation and recrawl
+        uses: algolia/algoliasearch-crawler-github-actions@v1
+        id: crawler_push
+        with:
+          crawler-user-id: ${{ secrets.CRAWLER_USER_ID }}
+          crawler-api-key: ${{ secrets.CRAWLER_API_KEY }}
+          algolia-app-id: ${{ secrets.ALGOLIA_APP_ID }}
+          algolia-api-key: ${{ secrets.ALGOLIA_API_KEY }}
+          crawler-name: "kintone"
+          site-url: "https://kintone-ui-component.netlify.app"

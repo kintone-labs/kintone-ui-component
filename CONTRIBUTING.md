@@ -1,7 +1,7 @@
 # Contributing Guideline
 
 Contributions are always welcome!<br>
-If you discover a bug or have a feature request, please [create an issue on GitHub](https://github.com/kintone-labs/kintone-ui-component/issues/new/choose).<br>
+If you discover a bug or have a feature request, please [create an issue on GitHub](https://github.com/kintone-labs/kintone-ui-component/issues).<br>
 
 Pull requests are also welcome when you find a trivial bug or typo.<br>
 

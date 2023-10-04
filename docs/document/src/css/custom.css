@@ -1,0 +1,139 @@
+:root {
+  --ifm-color-primary: #2b3137;/* #2e8555;*/
+  --ifm-color-primary-dark: #29784c;
+  --ifm-color-primary-darker: #277148;
+  --ifm-color-primary-darkest: #205d3b;
+  --ifm-color-primary-light: #33925d;
+  --ifm-color-primary-lighter: #359962;
+  --ifm-color-primary-lightest: #3cad6e;
+  --ifm-code-font-size: 95%;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+  --ifm-navbar-background-color: #2b3137;
+  --ifm-navbar-link-color: #ffffff;
+  --ifm-navbar-link-hover-color: #cccccc;
+  --ifm-footer-link-hover-color: #cccccc;
+  --ifm-link-color: #3498db;
+  --ifm-link-hover-color: rgba(52,152,219,.792156862745098);
+  --ifm-link-hover-decoration: none;
+  --ifm-link-decoration: none;
+  --ifm-font-family-base: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+a.hash-link {
+  color: #000000;
+}
+
+.sample-container {
+  -webkit-font-smoothing: auto !important;
+}
+
+.collapsibleContent_i85q {
+  border-top: none !important;
+}
+
+.footer--dark {
+  --ifm-footer-background-color: #2b3137;
+  --ifm-footer-color: hsla(0,0%,100%,.4);
+}
+
+.footer__link-item {
+  color: hsla(0,0%,100%,.6);
+}
+
+.navbar__inner .navbar__items button.navbar__toggle.clean-btn {
+  color: #ffffff;
+}
+
+.navbar__inner .navbar__items a.versions {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  text-decoration-color: #dddddd;
+  text-decoration-thickness: 1px;
+}
+
+.alert {
+  --ifm-link-color: #3498db;
+  --ifm-link-hover-color: rgba(52,152,219,.792156862745098);
+  --ifm-link-hover-decoration: none;
+  --ifm-link-decoration: none;
+}
+
+@media screen and (max-width: 996px) {
+  .menu__link {
+    color: #ffffff;
+  }
+
+  .navbar-sidebar__back {
+    background-color: #ccc;
+  }
+
+  .menu__link--active:hover {
+    color: #ccc;
+  }
+}
+/* For readability concerns, you should choose a lighter palette in dark mode. */
+[data-theme='dark'] {
+  --ifm-color-primary: rgb(3, 169, 244);
+  --ifm-color-primary-dark: #21af90;
+  --ifm-color-primary-darker: #1fa588;
+  --ifm-color-primary-darkest: #1a8870;
+  --ifm-color-primary-light: #29d5b0;
+  --ifm-color-primary-lighter: #32d8b4;
+  --ifm-color-primary-lightest: #4fddbf;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+  --ifm-menu-color-active: rgb(3, 169, 244);
+  --ifm-breadcrumb-color-active: rgb(3, 169, 244);
+}
+
+[data-theme='dark'] .hero--primary {
+  --ifm-hero-background-color: #090a11;
+}
+
+[data-theme='dark'] .container .hero__title,
+[data-theme='dark'] .container .hero__subtitle,
+[data-theme='dark'] #table tr td {
+  color: #ffffff;
+}
+
+[data-theme='dark'] .sample-container#dialog {
+  color: #000000;
+}
+
+[data-theme='dark'] .sample-container select,
+[data-theme='dark'] .sample-container input,
+[data-theme='dark'] .sample-container#mobile-textarea textarea {
+  background-color: #ffffff !important;
+}
+
+[data-theme='dark'] .hash-link,
+[data-theme='dark'] .sample-container label,
+[data-theme='dark'] .sample-container label:hover,
+[data-theme='dark'] #tabs label span,
+[data-theme='dark'] #tabs legend span,
+[data-theme='dark'] #mobile-checkbox fieldset div[class$="__group__select-menu__item__label"]{
+  color: #ffffff;
+}
+
+[data-theme='light'] .DocSearch {
+  /* --docsearch-primary-color: var(--ifm-color-primary); */
+  /* --docsearch-text-color: var(--ifm-font-color-base); */
+  --docsearch-muted-color: var(--ifm-color-secondary-darkest);
+  --docsearch-container-background: rgba(94, 100, 112, 0.7);
+  /* Modal */
+  --docsearch-modal-background: var(--ifm-color-secondary-lighter);
+  /* Search box */
+  --docsearch-searchbox-background: var(--ifm-color-secondary);
+  --docsearch-searchbox-focus-background: var(--ifm-color-white);
+  /* Hit */
+  --docsearch-hit-color: var(--ifm-font-color-base);
+  --docsearch-hit-active-color: var(--ifm-color-white);
+  --docsearch-hit-background: var(--ifm-color-white);
+  /* Footer */
+  --docsearch-footer-background: var(--ifm-color-white);
+}
+
+img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
