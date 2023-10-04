@@ -62,7 +62,7 @@ details.toggle-panel summary{
 }
 
 .usecase {
-  margin: 0 auto
+  margin: 0 auto;
 }
 .usecase_sentense {
   padding: 10px;
@@ -317,4 +317,38 @@ table th[class$="__table__header__cell"] {
 
 .table-of-contents__link--active {
   font-weight: 700;
+}
+
+@media screen and (max-width: 1200px) {
+  .support-policy {
+    margin: 0px 65px 20px 70px;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .usecase {
+    width: 100%;
+  }
+  .usecase_group {
+    margin: 0px 5px;
+  }
+  .usecase .usecase_image {
+    margin: 0px 0px 10px 0px;
+  }
+  .usecase .usecase_image img, .usecase .usecase_code {
+    max-width: 97%;
+    width: 97%;
+  }
+  .support-policy {
+    margin: -20px 0px 20px 0px;
+  }
+  .footer .footer__links .col {
+    --ifm-col-width: 33%;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .footer .footer__links .col {
+    --ifm-col-width: 100%;
+  }
 }
