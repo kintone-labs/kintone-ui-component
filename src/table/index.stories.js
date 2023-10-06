@@ -36,7 +36,8 @@ const renderName = (cellData, rowData, index) => {
     items: [
       {
         label: "Nguyen Van A",
-        value: "a",
+        value:
+          "a ád ád ád ákld ákd lád lkasjd laksjd alskdj álkd jaslkdj álkdj álkdj alskdj alksdj álkdj alsk djalk djaslkd jaslk jas dlkasjdlkasjdalksdj álkd jaslkd jasldk jasdl kjasd lkajsd lkasjd lkasjd lákj dalksd jaslkd jaslkd jaslkd jas lkdjas lkdajs dlkajs dlkajd alskdj álk djasl dkjasdlk jaslkd jasdl kj",
       },
       {
         label: "Vo Duc Hau",
@@ -101,11 +102,41 @@ const renderMultiChoice = (cellData) => {
 };
 
 const Template = (args) => {
+  const wrapper = document.createElement("div");
+
+  const label = document.createElement("label");
+  label.innerHTML = "Custom CSS Variables";
+
+  const styleEl = document.createElement("style");
+  styleEl.innerHTML = `
+    kuc-table {
+      --kuc-table-header-cell-0-width: 200px;
+      --kuc-table-header-cell-2-width: auto;
+    }
+  `;
+  document.head.appendChild(styleEl);
+
+  const ul = document.createElement("ul");
+  // Create list items and set their text content
+  const li1 = document.createElement("li");
+  li1.textContent = "--kuc-table-header-cell-0-width: 200px; -> Name";
+
+  const li2 = document.createElement("li");
+  li2.textContent = "--kuc-table-header-cell-2-width: auto; -> Age";
+
+  // Append the list items to the unordered list
+  ul.appendChild(li1);
+  ul.appendChild(li2);
+
   const table = new Table({ ...args });
   table.addEventListener("change", (event) => {
     console.log(event, "event");
   });
-  return table;
+
+  wrapper.appendChild(label);
+  wrapper.appendChild(ul);
+  wrapper.appendChild(table);
+  return wrapper;
 };
 
 // NOTES: Currently, storybook doesn't support the function type of args.
@@ -116,7 +147,7 @@ const columns = [
     title: "Name",
     field: "name",
     requiredIcon: true,
-    render: renderName,
+    // render: renderName,
   },
   {
     title: "Address",
@@ -152,7 +183,7 @@ const columns = [
 
 const data = [
   {
-    name: "a",
+    name: "LongtextLongtextLongtextLongtextLongtextLongtextLongtextLongtextLongtextLongtextLongtext",
     age: 32,
     date: "2021-03-31",
     time: "12:12",
@@ -161,7 +192,7 @@ const data = [
     address: ["vn"],
   },
   {
-    name: "hau",
+    name: "Longtext Longtext Longtext Longtext Longtext Longtext Longtext Longtext Longtext Longtext",
     age: 20,
     date: "2021-02-22",
     time: "13:13",
