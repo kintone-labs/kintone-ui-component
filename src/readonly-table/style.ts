@@ -42,7 +42,8 @@ export const READ_ONLY_TABLE_CSS = `
   }
   .kuc-readonly-table__table__label {
     text-align: left;
-    white-space: nowrap;
+    white-space: normal;
+    overflow-wrap: anywhere;
     padding: 4px 0px;
   }
   .kuc-readonly-table__table__label[hidden] {
@@ -79,5 +80,18 @@ export const READ_ONLY_TABLE_CSS = `
   }
   .kuc-readonly-table__table__body__row__cell-data[hidden] {
     display: none;
+  }
+  .kuc-readonly-table__table__header__cell,
+  .kuc-readonly-table__table__body__row__cell-data
+   {
+    width: 100%;
+    overflow: auto;
+    scrollbar-width: none; /* Firefox */
+ 
+  }
+  .kuc-readonly-table__table__header__cell::-webkit-scrollbar,
+  .kuc-readonly-table__table__body__row__cell-data::-webkit-scrollbar {
+    width: 0; /* Safari and Chrome */
+    display: none
   }
 `;
