@@ -114,4 +114,11 @@ export const TABLE_CSS = `
         overflow-wrap: anywhere;
         white-space: normal;
     }
+    .kuc-table__table__header__cell {
+      scrollbar-width: none; /* Firefox */
+    }
+    .kuc-table__table__header__cell::-webkit-scrollbar {
+      width: 0; /* Safari and Chrome */
+      display: none
+    }
 `;
