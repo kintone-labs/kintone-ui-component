@@ -112,5 +112,6 @@ export const TABLE_CSS = `
         text-align: left;
         margin-bottom: 6px;
         overflow-wrap: anywhere;
+        white-space: normal;
     }
 `;
