@@ -82,12 +82,8 @@ export const READ_ONLY_TABLE_CSS = `
     display: none;
   }
   .kuc-readonly-table__table__header__cell,
-  .kuc-readonly-table__table__body__row__cell-data
-   {
-    width: 100%;
-    overflow: auto;
+  .kuc-readonly-table__table__body__row__cell-data {
     scrollbar-width: none; /* Firefox */
- 
   }
   .kuc-readonly-table__table__header__cell::-webkit-scrollbar,
   .kuc-readonly-table__table__body__row__cell-data::-webkit-scrollbar {
