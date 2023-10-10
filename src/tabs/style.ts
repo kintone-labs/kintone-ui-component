@@ -64,8 +64,8 @@ export const TABS_CSS = `
     border-right: 1px solid #c7cbcb;
   }
   .kuc-tabs__group__tab-list__tab__button:disabled {
-    color: var(--kuc-tabs-tab-color, GrayText);
-    background-color: var(--kuc-tabs-tab-background-color, #d4d7d7);
+    color: GrayText;
+    background-color: #d4d7d7;
     cursor: default;
   }
   .kuc-tabs__group__tab-list__tab__button:focus {
