@@ -37,11 +37,15 @@ export const TABS_CSS = `
   .kuc-tabs__group__tab-list__tab {
     min-height: var(--kuc-tabs-tab-height, 48px);
     height: var(--kuc-tabs-tab-height, 48px);
+    white-space: normal;
   }
   .kuc-tabs__group__tab-list__tab__button {
     height: 100%;
     margin: 0;
     padding: 0 24px;
+    display: grid;
+    align-items: center;
+    align-content: center;
     font-size: var(--kuc-tabs-tab-font-size, 14px);
     background-color: var(--kuc-tabs-tab-background-color, #d4d7d7);
     color: var(--kuc-tabs-tab-color, #333333);

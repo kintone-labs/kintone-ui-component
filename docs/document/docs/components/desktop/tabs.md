@@ -67,13 +67,13 @@ Here is a list of properties that can be used for modifying component style:
 #### Property
 | Name |
 | :--- |
-| --kuc-tabs-tab-width |
-| --kuc-tabs-tab-height |
-| --kuc-tabs-tab-font-size |
 | --kuc-tabs-tab-background-color |
-| --kuc-tabs-tab-color |
 | --kuc-tabs-tab-background-color-selected |
+| --kuc-tabs-tab-color |
 | --kuc-tabs-tab-color-selected |
+| --kuc-tabs-tab-font-size |
+| --kuc-tabs-tab-height |
+| --kuc-tabs-tab-width |
 
 ---
 ## Sample Code
