@@ -29,8 +29,8 @@ let exportTextarea;
   }
 
   const TextAreaLayout = {
-    MIN_WIDTH: 10,
-    MIN_HEIGHT: 10,
+    MIN_WIDTH: 16,
+    MIN_HEIGHT: 16,
   };
 
   class KucTextArea extends KucBase {
@@ -53,6 +53,9 @@ let exportTextarea;
 
     private _GUID: string;
     private _onResize = false;
+
+    @query(".kuc-textarea__group__container")
+    private _container!: HTMLDivElement;
 
     @query(".kuc-textarea__group__textarea")
     private _textarea!: HTMLTextAreaElement;
@@ -111,7 +114,7 @@ let exportTextarea;
       if (textAreaHeight < TextAreaLayout.MIN_HEIGHT)
         textAreaHeight = TextAreaLayout.MIN_HEIGHT;
 
-      this.style.width = textAreaWidth + "px";
+      this._container.style.width = textAreaWidth + "px";
       this._textarea.style.height = textAreaHeight + "px";
     }
 
@@ -152,26 +155,28 @@ let exportTextarea;
               .requiredIcon="${this.requiredIcon}"
             ></kuc-base-label>
           </label>
-          <textarea
-            id="${this._GUID}-label"
-            class="kuc-textarea__group__textarea"
-            placeholder="${this.placeholder}"
-            .value="${this.value}"
-            aria-describedby="${this._GUID}-error"
-            aria-required="${this.requiredIcon}"
-            aria-invalid="${this.error !== ""}"
-            @change="${this._handleChangeTextarea}"
-            @focus="${this._handleFocusTextarea}"
-            @input="${this._handleInputTextArea}"
-            ?disabled="${this.disabled}"
-          >
-          </textarea>
-          <div
-            class="kuc-textarea__group__resizer"
-            @mousedown="${this._handleMouseDownResize}"
-            ?hidden="${this.disabled}"
-          >
-            ${this._getResizerButtonSvgTemplate()}
+          <div class="kuc-textarea__group__container">
+            <textarea
+              id="${this._GUID}-label"
+              class="kuc-textarea__group__textarea"
+              placeholder="${this.placeholder}"
+              .value="${this.value}"
+              aria-describedby="${this._GUID}-error"
+              aria-required="${this.requiredIcon}"
+              aria-invalid="${this.error !== ""}"
+              @change="${this._handleChangeTextarea}"
+              @focus="${this._handleFocusTextarea}"
+              @input="${this._handleInputTextArea}"
+              ?disabled="${this.disabled}"
+            >
+            </textarea>
+            <div
+              class="kuc-textarea__group__resizer"
+              @mousedown="${this._handleMouseDownResize}"
+              ?hidden="${this.disabled}"
+            >
+              ${this._getResizerButtonSvgTemplate()}
+            </div>
           </div>
           <kuc-base-error
             .text="${this.error}"

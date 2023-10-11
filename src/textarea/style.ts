@@ -50,6 +50,12 @@ export const TEXTAREA_CSS = `
   .kuc-textarea__group__label[hidden] {
     display: none;
   }
+  .kuc-textarea__group__container {
+    position: relative;
+    display: inline-table;
+    width: var(--kuc-text-area-input-width, 100%);
+    min-width: var(--kuc-text-area-input-width, 100%);
+  }
   textarea.kuc-textarea__group__textarea {
     display: block;
     border: 1px solid #e3e7e8;
@@ -82,11 +88,12 @@ export const TEXTAREA_CSS = `
     resize: none;
   }
   .kuc-textarea__group__resizer {
-    position: relative;
+    position: absolute;
     width: 16px;
     height: 16px;
     cursor: se-resize;
     float: right;
     margin: -16px 0px;
+    right: 0px;
   }
 `;
