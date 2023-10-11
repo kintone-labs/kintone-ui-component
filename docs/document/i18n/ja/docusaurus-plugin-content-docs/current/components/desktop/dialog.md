@@ -82,6 +82,7 @@ none
 #### Property
 | Name |
 | :--- |
+| --kuc-dialog-max-width |
 | --kuc-dialog-header-font-size |
 | --kuc-dialog-header-color |
 
