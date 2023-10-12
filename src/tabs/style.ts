@@ -57,7 +57,7 @@ export const TABS_CSS = `
   }
   .kuc-tabs__group__tab-list__tab__button:disabled {
     color: GrayText;
-    cursor: default;
+    cursor: not-allowed;
   }
   .kuc-tabs__group__tab-list__tab__button:focus {
     outline: none;
