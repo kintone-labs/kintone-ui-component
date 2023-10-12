@@ -166,6 +166,10 @@ const config = {
         indexName: 'kintone',
         contextualSearch: true,
       },
+      metadata: [
+        { name: 'twitter:card', content: 'summary' },
+      ],
+      image: 'img/kuc_box_yellow_twitter.png',
     }),
 };
 
