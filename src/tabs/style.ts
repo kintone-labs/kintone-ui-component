@@ -39,6 +39,11 @@ export const TABS_CSS = `
     height: var(--kuc-tabs-tab-height, 48px);
     white-space: normal;
   }
+  .kuc-tabs__group__tab-list__tab__button:disabled {
+    color: GrayText;
+    background-color: #d4d7d7;
+    cursor: default;
+  }
   .kuc-tabs__group__tab-list__tab__button {
     height: 100%;
     margin: 0;
@@ -63,11 +68,7 @@ export const TABS_CSS = `
   .kuc-tabs__group__tab-list__tab__button:last-of-type {
     border-right: 1px solid #c7cbcb;
   }
-  .kuc-tabs__group__tab-list__tab__button:disabled {
-    color: GrayText;
-    background-color: #d4d7d7;
-    cursor: default;
-  }
+  
   .kuc-tabs__group__tab-list__tab__button:focus {
     outline: none;
     border: 1px solid var(--kuc-tabs-tab-background-color-selected, #3498db);
