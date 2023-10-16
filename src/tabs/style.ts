@@ -80,8 +80,8 @@ export const TABS_CSS = `
     border-right: 1px solid #c7cbcb;
   }
   .kuc-tabs__group__tab-list__tab__button[aria-selected="true"] {
-    background-color: var(--kuc-tabs-tab-background-color-selected, #ffffff);
-    color: var(--kuc-tabs-tab-color-selected, #333333);
+    background-color: var(--kuc-tabs-tab-background-color-selected, var(--kuc-tabs-tab-background-color, #ffffff));
+    color: var(--kuc-tabs-tab-color-selected, var(--kuc-tabs-tab-color, #333333));
     box-shadow: none;
   }
   .kuc-tabs__group__tab-panel {
