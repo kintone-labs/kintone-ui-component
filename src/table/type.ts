@@ -2,7 +2,7 @@ import { PropertyValues } from "lit";
 
 import { KucBase } from "../base/kuc-base";
 
-export declare type Column = {
+export declare type ColumnTable = {
   field: string;
   title?: string;
   requiredIcon?: boolean;
@@ -21,7 +21,7 @@ export declare type TableProps<T extends object = object> = {
   id?: string;
   label?: string;
   data?: T[];
-  columns?: Column[];
+  columns?: ColumnTable[];
   actionButton?: boolean;
   headerVisible?: boolean;
   visible?: boolean;
@@ -39,7 +39,7 @@ export declare class Table<T extends object = object> extends KucBase {
   className: string;
   id: string;
   label: string;
-  columns: Column[];
+  columns: ColumnTable[];
   data: T[];
   actionButton: boolean;
   headerVisible: boolean;

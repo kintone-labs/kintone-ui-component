@@ -16,7 +16,7 @@ import {
 } from "../base/validator";
 
 import { TABLE_CSS } from "./style";
-import { Column, TableChangeEventDetail, TableProps } from "./type";
+import { ColumnTable, TableChangeEventDetail, TableProps } from "./type";
 
 const cellClassName = "kuc-table__table__body__row__cell-data";
 const rowClassName = "kuc-table__table__body__row";
@@ -42,7 +42,7 @@ let exportTable;
       "";
     @property({ type: String, reflect: true, attribute: "id" }) id = "";
     @property({ type: String }) label = "";
-    @property({ type: Array }) columns: Column[] = [];
+    @property({ type: Array }) columns: ColumnTable[] = [];
     @property({ type: Array }) data: T[] = [];
     @property({ type: Boolean }) actionButton = true;
     @property({ type: Boolean }) headerVisible = true;
@@ -136,7 +136,7 @@ let exportTable;
       `;
     }
 
-    private _getColumnHeaderTemplate(column: Column) {
+    private _getColumnHeaderTemplate(column: ColumnTable) {
       return html`
         <th
           class="kuc-table__table__header__cell"
