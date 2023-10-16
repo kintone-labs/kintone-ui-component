@@ -35,43 +35,33 @@ export const TABS_CSS = `
     list-style: none;
   }
   .kuc-tabs__group__tab-list__tab {
-    min-height: var(--kuc-tabs-tab-height, 48px);
-    height: var(--kuc-tabs-tab-height, 48px);
-    white-space: normal;
-  }
-  .kuc-tabs__group__tab-list__tab__button:disabled {
-    color: GrayText;
-    background-color: #d4d7d7;
-    cursor: default;
+    min-height: 48px;
   }
   .kuc-tabs__group__tab-list__tab__button {
+    min-width: 200px;
     height: 100%;
     margin: 0;
     padding: 0 24px;
-    display: grid;
-    align-items: center;
-    align-content: center;
-    font-size: var(--kuc-tabs-tab-font-size, 14px);
-    background-color: var(--kuc-tabs-tab-background-color, #d4d7d7);
-    color: var(--kuc-tabs-tab-color, #333333);
+    background-color: #d4d7d7;
+    color: #333333;
     border-style: none;
     border-top: 1px solid #c7cbcb;
     border-left: 1px solid #c7cbcb;
     box-shadow: 1px 0 3px #c7cbcb inset;
-    box-sizing: border-box;
     cursor: pointer;
     line-height: 1.5;
-    width: var(--kuc-tabs-tab-width, auto);
-    min-width: var(--kuc-tabs-tab-width, 200px);
     word-wrap: break-word;
   }
   .kuc-tabs__group__tab-list__tab__button:last-of-type {
     border-right: 1px solid #c7cbcb;
   }
-  
+  .kuc-tabs__group__tab-list__tab__button:disabled {
+    color: GrayText;
+    cursor: not-allowed;
+  }
   .kuc-tabs__group__tab-list__tab__button:focus {
     outline: none;
-    border: 1px solid var(--kuc-tabs-tab-background-color-selected, #3498db);
+    border: 1px solid #3498db;
   }
   .kuc-tabs__group__tab-list__tab__button--click:focus{
     border: none;
@@ -80,8 +70,7 @@ export const TABS_CSS = `
     border-right: 1px solid #c7cbcb;
   }
   .kuc-tabs__group__tab-list__tab__button[aria-selected="true"] {
-    background-color: var(--kuc-tabs-tab-background-color-selected, var(--kuc-tabs-tab-background-color, #ffffff));
-    color: var(--kuc-tabs-tab-color-selected, var(--kuc-tabs-tab-color, #333333));
+    background-color: #ffffff;
     box-shadow: none;
   }
   .kuc-tabs__group__tab-panel {
