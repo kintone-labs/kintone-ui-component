@@ -65,7 +65,8 @@ function HomepagePolicy () {
           </div>
           <div className="more-infomation">
             You are allowed to change the source code, redistribute it, and use it in accordance with the license.<br/>
-            For more details of the license type please refer to the GitHub repository.
+            For more details of the license type please refer to the GitHub repository.<br/>
+            You can also utilize the following community spaces. These communities are made up of volunteers.
           </div>
         </div>
       </div>
@@ -86,7 +87,8 @@ function HomepagePolicy () {
           </div>
           <div className="more-infomation">
             ソースコードの変更、再配布および商用利用等は、ライセンスに従ってご利用可能です。<br/>
-            ライセンスの種別は GitHub のリポジトリでご確認ください。
+            ライセンスの種別は GitHub のリポジトリでご確認ください。<br/>
+            以下のコミュニティを活用いただくこともできます。有志のメンバーによって運営されています。
           </div>
         </div>
       </div>
