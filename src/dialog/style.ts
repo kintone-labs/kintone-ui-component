@@ -33,6 +33,7 @@ export const DIALOG_CSS = `
   .kuc-dialog__dialog {
     min-width: 400px;
     max-width: var(--kuc-dialog-max-width, 600px);
+    width: max-content;
     font-size: 20px;
     background-color: #ffffff;
     position: fixed;
