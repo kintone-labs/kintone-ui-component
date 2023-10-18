@@ -79,4 +79,7 @@ export const READ_ONLY_TABLE_CSS = `
   .kuc-readonly-table__table__body__row__cell-data[hidden] {
     display: none;
   }
+  .kuc-readonly-table__table__body__row__cell-data--html {
+    white-space: normal;
+  }
 `;
