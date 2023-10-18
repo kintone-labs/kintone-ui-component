@@ -7,14 +7,17 @@ export default function NotFound() {
   return (
     <BrowserOnly>
       {() => {
-        let pathUrl = window.location.pathname;
-        if(pathUrl.indexOf('/en/') > -1) {
-          pathUrl = pathUrl.replace("/en/", "/");
-          const newURL = window.location.protocol + "//" + window.location.host + pathUrl;
-          window.location.href = newURL;
+        const pathUrl = window.location.pathname;
+        const domain = window.location.protocol + "//" + window.location.host;
+        if (pathUrl.indexOf('/en/') > -1) {
+          window.location.href = domain + pathUrl.replace("/en/", "/");
           return;
         }
-        return <NotFoundPage/>
+        if (pathUrl.indexOf('/docs/ja/') > -1) {
+          window.location.href = domain + pathUrl.replace("/docs/ja/", "/ja/docs/");
+          return;
+        }
+        return <NotFoundPage />;
       }}
     </BrowserOnly>
   );

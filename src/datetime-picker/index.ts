@@ -1,7 +1,6 @@
 import { html, PropertyValues } from "lit";
 import { property, query } from "lit/decorators.js";
 
-import { getWidthElmByContext } from "../base/context";
 import {
   dateValueConverter,
   languagePropConverter,
@@ -89,12 +88,6 @@ let exportDateTimePicker;
 
     @query(".kuc-base-date__input")
     private _dateInput!: HTMLInputElement;
-
-    @query("kuc-base-label")
-    private _baseLabelEl!: BaseLabel;
-
-    @query("kuc-base-error")
-    private _baseErrorEl!: BaseError;
 
     private _dateValue = "";
     private _timeValue = "";
@@ -371,9 +364,6 @@ let exportDateTimePicker;
 
     updated() {
       this._resetState();
-      this._baseLabelEl.updateComplete.then((_) => {
-        this._updateErrorWidth();
-      });
     }
 
     private _resetState() {
@@ -381,16 +371,6 @@ let exportDateTimePicker;
       this._previousDateValue = "";
       this._changeDateByUI = false;
       this._changeTimeByUI = false;
-    }
-
-    private _updateErrorWidth() {
-      const labelWidth = getWidthElmByContext(this._baseLabelEl);
-      const inputGroupWitdh = 185;
-      if (labelWidth > inputGroupWitdh) {
-        this._baseErrorEl.style.width = labelWidth + "px";
-        return;
-      }
-      this._baseErrorEl.style.width = inputGroupWitdh + "px";
     }
 
     private _handleDateChange(event: CustomEvent) {

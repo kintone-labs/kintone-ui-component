@@ -161,9 +161,9 @@ const config = {
         respectPrefersColorScheme: false,
       },
       algolia: {
-        appId: 'QJ2QB6FCE5',
-        apiKey: '636c5f8d218f77cc2f87c81fbd95a9b8',
-        indexName: 'kuc-usaurus-v2',
+        appId: 'ETPAGY3L8I',
+        apiKey: 'f0ba69d7d57a6bf274f3991502d2a4d4',
+        indexName: 'kintone',
         contextualSearch: true,
       },
     }),

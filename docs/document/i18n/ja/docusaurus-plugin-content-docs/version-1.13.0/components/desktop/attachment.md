@@ -61,6 +61,21 @@ Attachment(options)<br/>
 | :--- | :--- | :--- | :--- | :--- |
 | options  | object | {} | コンポーネントのプロパティを含むオブジェクト |  |
 
+### Custom CSS
+:::tip
+[Custom CSS](../../getting-started/custom-css.md) をご確認ください。
+:::
+
+コンポーネントのスタイルを変更するために使用できるプロパティの一覧です。
+#### Property
+| Name |
+| :--- |
+| --kuc-attachment-width |
+| --kuc-attachment-height |
+| --kuc-attachment-item-font-size |
+| --kuc-attachment-message-font-size |
+| --kuc-attachment-message-color |
+
 ---
 ## Sample Code
 

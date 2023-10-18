@@ -126,7 +126,7 @@ let exportTabs;
           role="tab"
           ?hidden="${item.visible === false}"
           aria-selected="${isSelected}"
-          tabindex="${isSelected ? "" : "-1"}"
+          tabindex="${isSelected && !item.disabled ? "0" : "-1"}"
           class="kuc-tabs__group__tab-list__tab__button ${this._isClick
             ? "kuc-tabs__group__tab-list__tab__button--click"
             : ""}"
