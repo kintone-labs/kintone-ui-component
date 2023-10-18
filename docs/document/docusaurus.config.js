@@ -168,8 +168,9 @@ const config = {
       },
       metadata: [
         { name: 'twitter:card', content: 'summary' },
+        { property: 'og:type', content: 'website' },
       ],
-      image: 'img/kuc_box_yellow_twitter.png',
+      image: 'img/kuc_box_yellow.png',
     }),
 };
 
