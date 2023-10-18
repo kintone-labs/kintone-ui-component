@@ -130,14 +130,6 @@ const config = {
             title: 'Community',
             items: [
               {
-                label: 'kintone developer forum (English site)',
-                href: 'https://forum.kintone.dev/c/general/1'
-              },
-              {
-                label: 'cybozu developer community (Japanese site)',
-                href: 'https://community.cybozu.dev/c/kintone/5'
-              },
-              {
                 label: 'GitHub issue',
                 href: 'https://github.com/kintone-labs/kintone-ui-component/issues',
               }
