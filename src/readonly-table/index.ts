@@ -12,7 +12,7 @@ import {
 
 import "../base/pagination";
 import { READ_ONLY_TABLE_CSS } from "./style";
-import { Column, ReadOnlyTableProps } from "./type";
+import { ReadOnlyTableColumn, ReadOnlyTableProps } from "./type";
 
 let exportReadOnlyTable;
 (() => {
@@ -25,7 +25,7 @@ let exportReadOnlyTable;
       "";
     @property({ type: String, reflect: true, attribute: "id" }) id = "";
     @property({ type: String }) label = "";
-    @property({ type: Array }) columns: Column[] = [];
+    @property({ type: Array }) columns: ReadOnlyTableColumn[] = [];
     @property({ type: Array }) data: T[] = [];
     @property({ type: Boolean }) pagination = true;
     @property({ type: Number }) rowsPerPage = 5;
@@ -144,7 +144,7 @@ let exportReadOnlyTable;
       return `var(--kuc-read-only-table-header-cell-${index}-width, var(--kuc-read-only-table-header-cell-width, auto))`;
     }
 
-    private _getColumnsTemplate(column: Column, index: number) {
+    private _getColumnsTemplate(column: ReadOnlyTableColumn, index: number) {
       const customWidth = this._customWidthVariables(index);
       return html`
         <th

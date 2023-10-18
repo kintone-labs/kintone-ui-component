@@ -14,7 +14,7 @@ import { BaseLabel } from "../base/label";
 import { validateArrayType, validateProps } from "../base/validator";
 
 import { CHECKBOX_CSS } from "./style";
-import { CheckboxChangeEventDetail, CheckBoxItem, CheckboxProps } from "./type";
+import { CheckboxChangeEventDetail, CheckboxItem, CheckboxProps } from "./type";
 
 export { BaseError, BaseLabel };
 
@@ -46,7 +46,7 @@ let exportCheckbox;
       converter: visiblePropConverter,
     })
     visible = true;
-    @property({ type: Array }) items: CheckBoxItem[] = [];
+    @property({ type: Array }) items: CheckboxItem[] = [];
     @property({ type: Array }) selectedIndex: number[] = [];
     @property({ type: Array }) value: string[] = [];
 
@@ -198,7 +198,7 @@ let exportCheckbox;
       return "#d8d8d8";
     }
 
-    private _isCheckedItem(item: CheckBoxItem, index: number) {
+    private _isCheckedItem(item: CheckboxItem, index: number) {
       const values = Object.values(this._valueMapping);
       const keys = Object.keys(this._valueMapping);
       const result = values.filter(
@@ -208,7 +208,7 @@ let exportCheckbox;
       return result.length > 0;
     }
 
-    private _getItemTemplate(item: CheckBoxItem, index: number) {
+    private _getItemTemplate(item: CheckboxItem, index: number) {
       const isCheckedItem = this._isCheckedItem(item, index);
       const isDisabled = item.disabled || this.disabled;
       return html`

@@ -2,7 +2,7 @@ import { PropertyValues } from "lit";
 
 import { KucBase } from "../base/kuc-base";
 
-export declare type CheckBoxItem = {
+export declare type CheckboxItem = {
   label?: string;
   value?: string;
   disabled?: boolean;
@@ -18,7 +18,7 @@ export declare type CheckboxProps = {
   disabled?: boolean;
   requiredIcon?: boolean;
   visible?: boolean;
-  items?: CheckBoxItem[];
+  items?: CheckboxItem[];
   value?: string[];
   selectedIndex?: number[];
 };
@@ -37,7 +37,7 @@ export declare class Checkbox extends KucBase {
   disabled: boolean;
   requiredIcon: boolean;
   visible: boolean;
-  items: CheckBoxItem[];
+  items: CheckboxItem[];
   selectedIndex: number[];
   value: string[];
   constructor(props?: CheckboxProps);
