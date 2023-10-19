@@ -53,6 +53,7 @@ export const CHECKBOX_CSS = `
   .kuc-checkbox__group__select-menu[itemLayout="vertical"] {
     flex-direction: column;
     align-items: flex-start;
+    justify-content: center;
   }
   .kuc-checkbox__group__label {
     display: inline-block;
