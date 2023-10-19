@@ -56,7 +56,7 @@ export const RADIOBUTTON_CSS = `
 
   .kuc-radio-button__group__select-menu {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     width: var(--kuc-radio-button-menu-width, 100%);
     height: var(--kuc-radio-button-menu-height);
     color: var(--kuc-radio-button-menu-color, #333333);
@@ -64,7 +64,9 @@ export const RADIOBUTTON_CSS = `
   }
 
   .kuc-radio-button__group__select-menu[itemlayout="vertical"] {
-    display: block;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
   }
 
   .kuc-radio-button__group__select-menu[bordervisible] {
@@ -86,6 +88,10 @@ export const RADIOBUTTON_CSS = `
     word-wrap: normal;
     display: flex;
     align-items: center;
+  }
+
+  .kuc-radio-button__group__select-menu__item[itemLayout="vertical"] {
+    width: calc(var(--kuc-radio-button-menu-width, 233px) - 26px);
   }
 
   .kuc-radio-button__group__select-menu__item[focused] {
