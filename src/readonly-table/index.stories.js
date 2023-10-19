@@ -34,6 +34,10 @@ Base.args = {
   pagination: true,
   columns: [
     {
+      title: "Link",
+      field: "link",
+    },
+    {
       title: "Number",
       field: "index",
     },
@@ -56,18 +60,21 @@ Base.args = {
       name: "Ho Chi Minh",
       country: "Vietnam",
       population: "8,993,000",
+      link: '<a href="https://github.com/kintone-labs/kintone-ui-component" target="_blank">Github page</a>',
     },
     {
       index: "2",
       name: "Can Tho",
       country: "Vietnam",
       population: "1,282,000",
+      link: '<a href="https://github.com/kintone-labs/kintone-ui-component/releases" target="_blank">Releases page</a>',
     },
     {
       index: "3",
       name: "Vinh Long",
       country: "Vietnam",
       population: "200,000",
+      link: `<a href='javascript:alert("Hello");'>Hello</a>`,
     },
     {
       index: "4",
