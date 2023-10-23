@@ -60,12 +60,14 @@ function HomepagePolicy () {
         <div className="container">
           <div className="title">Support Policy</div>
           <div className="github-infomation">
-            You can ask questions and/or submit requests on
-            <a href="https://github.com/kintone-labs/kintone-ui-component/issues" target="_blank" rel="noreferrer"> GitHub Issue</a>.
+            If you have a question or feature request, please register <a href="https://github.com/kintone-labs/kintone-ui-component/issues" target="_blank" rel="noreferrer"> GitHub Issue</a>.<br/>
+            About questions, you can also utilize the following community spaces. These communities are made up of volunteers.<br/>
+             <li><a href="https://forum.kintone.dev/c/general/1" target="_blank" rel="noreferrer">kintone developer forum (English site)</a></li>
+             <li><a href="https://community.cybozu.dev/c/kintone/5" target="_blank" rel="noreferrer">cybozu developer community (Japanese site)</a></li>
           </div>
           <div className="more-infomation">
             You are allowed to change the source code, redistribute it, and use it in accordance with the license.<br/>
-            For more details of the license type please refer to the GitHub repository.
+            For more details of the license type please refer to the GitHub repository.<br/>
           </div>
         </div>
       </div>
@@ -81,12 +83,14 @@ function HomepagePolicy () {
             をご確認の上、お問合せください。
           </div>
           <div className="github-infomation">
-            その他 <a href="https://github.com/kintone-labs/kintone-ui-component/issues" target="_blank" rel="noreferrer"> GitHub Issue</a>{" "}
-            にてご質問や機能リクエストを受け付けております。
+            ご質問やご要望などございましたら、<a href="https://github.com/kintone-labs/kintone-ui-component/issues">GitHub Issue</a> に登録してください。<br/> 
+            ご質問については、以下のコミュニティを活用いただくこともできます。有志のメンバーによって運営されています。<br/> 
+            <li><a href="https://forum.kintone.dev/c/general/1" target="_blank" rel="noreferrer">kintone developer forum (English site)</a></li>
+            <li><a href="https://community.cybozu.dev/c/kintone/5" target="_blank" rel="noreferrer">cybozu developer community (Japanese site)</a></li>
           </div>
           <div className="more-infomation">
             ソースコードの変更、再配布および商用利用等は、ライセンスに従ってご利用可能です。<br/>
-            ライセンスの種別は GitHub のリポジトリでご確認ください。
+            ライセンスの種別は GitHub のリポジトリでご確認ください。<br/>
           </div>
         </div>
       </div>

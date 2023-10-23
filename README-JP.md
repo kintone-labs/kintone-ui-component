@@ -126,7 +126,11 @@ v0 と v1 の仕様とインターフェースには違いがあるので、更�
 ## コントリビューションガイドライン
 kintone UI Component へのコントリビュートについて、詳しくは [Contributing Guideline](https://github.com/kintone-labs/kintone-ui-component/blob/master/CONTRIBUTING.md) をご確認ください。<br>
 ご質問やご要望などございましたら、[GitHub issue](https://github.com/kintone-labs/kintone-ui-component/issues) に登録してください。<br>
-またコミュニティとして [GitHub の Discussions 機能](https://github.com/kintone-labs/kintone-ui-component/discussions)を利用しています。
+ご質問については、以下のコミュニティを活用いただくこともできます。有志のメンバーによって運営されています。<br>
+- [kintone developer forum (English site)](https://forum.kintone.dev/c/general/1)
+- [cybozu developer community (Japanese site)](https://community.cybozu.dev/c/kintone/5)
+
+また、本プロダクト専用のコミュニティとして [GitHub の Discussions 機能](https://github.com/kintone-labs/kintone-ui-component/discussions)を利用しています。<br>
 
 ## ロードマップ
 開発ロードマップを公開しています。<br>
