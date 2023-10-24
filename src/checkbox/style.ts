@@ -48,12 +48,10 @@ export const CHECKBOX_CSS = `
     color: var(--kuc-checkbox-menu-color, #333333);
     font-size: var(--kuc-checkbox-menu-font-size, 14px);
     display: flex;
-    align-items: center;
+    align-items: flex-start;
   }
   .kuc-checkbox__group__select-menu[itemLayout="vertical"] {
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
+    display: block;
   }
   .kuc-checkbox__group__label {
     display: inline-block;
@@ -79,9 +77,6 @@ export const CHECKBOX_CSS = `
     word-wrap: normal;
     display: flex;
     align-items: center;
-  }
-  .kuc-checkbox__group__select-menu__item[itemLayout="vertical"] {
-    width: calc(var(--kuc-checkbox-menu-width, 233px) - 26px);
   }
   .kuc-checkbox__group__select-menu__item[focused] {
     border: 1px solid #3498db;
