@@ -9,7 +9,7 @@ describe("Attachment", () => {
       let eventDetail = new Event("click");
       const el = await fixture(container);
       const labelEl = el.querySelector(
-        ".kuc-attachment__group__label"
+        ".kuc-attachment__group__label",
       ) as HTMLLabelElement;
       labelEl.addEventListener("click", (event) => {
         eventDetail = event;

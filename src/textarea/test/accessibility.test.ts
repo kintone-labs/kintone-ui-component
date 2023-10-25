@@ -8,7 +8,7 @@ describe("TextArea", () => {
       const container = new TextArea();
       const el = await fixture(container);
       el.querySelector(".kuc-textarea__group__resizer")!.dispatchEvent(
-        new CustomEvent("mousedown")
+        new CustomEvent("mousedown"),
       );
       // TODO: Update expect() logic
       // I was not found something happened on HTML when mousedown

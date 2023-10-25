@@ -10,7 +10,7 @@ describe("Dialog", () => {
       await elementUpdated(container);
 
       const footerEl = container.querySelector(
-        ".kuc-dialog__dialog__footer"
+        ".kuc-dialog__dialog__footer",
       ) as HTMLDivElement;
       expect(footerEl.childElementCount).to.equal(0);
       expect(footerEl.textContent?.trim()).to.equal("");
@@ -22,7 +22,7 @@ describe("Dialog", () => {
       await elementUpdated(container);
 
       const footerEl = container.querySelector(
-        ".kuc-dialog__dialog__footer"
+        ".kuc-dialog__dialog__footer",
       ) as HTMLDivElement;
       expect(footerEl.textContent?.trim()).to.equal("footer");
     });
@@ -36,10 +36,10 @@ describe("Dialog", () => {
       await elementUpdated(container);
 
       const footerEl = container.querySelector(
-        ".kuc-dialog__dialog__footer"
+        ".kuc-dialog__dialog__footer",
       ) as HTMLDivElement;
       expect(footerEl.firstElementChild!.className).to.equal(
-        "kuc-element-class"
+        "kuc-element-class",
       );
     });
 
@@ -50,10 +50,10 @@ describe("Dialog", () => {
       await elementUpdated(container);
 
       const footerEl = container.querySelector(
-        ".kuc-dialog__dialog__footer"
+        ".kuc-dialog__dialog__footer",
       ) as HTMLDivElement;
       expect(footerEl.firstElementChild!.className).to.equal(
-        "kuc-element-class"
+        "kuc-element-class",
       );
     });
 
@@ -65,7 +65,7 @@ describe("Dialog", () => {
       await elementUpdated(container);
 
       const footerEl = container.querySelector(
-        ".kuc-dialog__dialog__footer"
+        ".kuc-dialog__dialog__footer",
       ) as HTMLDivElement;
       expect(footerEl.textContent?.trim()).to.equal("footer");
     });
@@ -81,10 +81,10 @@ describe("Dialog", () => {
       await elementUpdated(container);
 
       const footerEl = container.querySelector(
-        ".kuc-dialog__dialog__footer"
+        ".kuc-dialog__dialog__footer",
       ) as HTMLDivElement;
       expect(footerEl.firstElementChild!.className).to.equal(
-        "kuc-element-class"
+        "kuc-element-class",
       );
     });
 
@@ -97,10 +97,10 @@ describe("Dialog", () => {
       await elementUpdated(container);
 
       const footerEl = container.querySelector(
-        ".kuc-dialog__dialog__footer"
+        ".kuc-dialog__dialog__footer",
       ) as HTMLDivElement;
       expect(footerEl.firstElementChild!.className).to.equal(
-        "kuc-element-class"
+        "kuc-element-class",
       );
     });
 
@@ -111,7 +111,7 @@ describe("Dialog", () => {
       await elementUpdated(container);
 
       const footerEl = container.querySelector(
-        ".kuc-dialog__dialog__footer"
+        ".kuc-dialog__dialog__footer",
       ) as HTMLDivElement;
       expect(footerEl.textContent!.trim()).to.equal("replaced footer");
     });

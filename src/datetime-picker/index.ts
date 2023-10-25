@@ -150,7 +150,7 @@ let exportDateTimePicker;
       }
 
       this._timeConverted = timeValueConverter(
-        this._dateAndTime.time.slice(0, 5)
+        this._dateAndTime.time.slice(0, 5),
       );
       if (
         _changedProperties.has("value") &&
@@ -261,7 +261,7 @@ let exportDateTimePicker;
 
     private _setDateTimeValueSeparate(
       dateTime: DateAndTime,
-      dateValue: string
+      dateValue: string,
     ) {
       this._dateValue = dateValue || this._dateInput.value;
       this._timeValue =

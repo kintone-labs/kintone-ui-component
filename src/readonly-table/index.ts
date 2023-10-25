@@ -76,7 +76,7 @@ let exportReadOnlyTable;
       if (changedProperties.has("columns")) {
         this._columnOrder = [];
         this.columns.map((col) =>
-          this._columnOrder.push(col.field ? col.field : "")
+          this._columnOrder.push(col.field ? col.field : ""),
         );
       }
 
@@ -109,7 +109,7 @@ let exportReadOnlyTable;
               <thead class="kuc-readonly-table__table__header">
                 <tr>
                   ${this.columns.map((column) =>
-                    this._getColumnsTemplate(column)
+                    this._getColumnsTemplate(column),
                   )}
                 </tr>
               </thead>
@@ -135,7 +135,7 @@ let exportReadOnlyTable;
       const lastRow = this._pagePosition * this.rowsPerPage;
       const displayData = this.data.filter(
         (_element, index: number) =>
-          index >= firstRow - 1 && index <= lastRow - 1
+          index >= firstRow - 1 && index <= lastRow - 1,
       );
       return displayData;
     }

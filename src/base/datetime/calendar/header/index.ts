@@ -190,6 +190,6 @@ if (!window.customElements.get("kuc-base-datetime-calendar-header")) {
   createStyleOnHeader(CALENDAR_HEADER_CSS);
   window.customElements.define(
     "kuc-base-datetime-calendar-header",
-    BaseDateTimeCalendarHeader
+    BaseDateTimeCalendarHeader,
   );
 }

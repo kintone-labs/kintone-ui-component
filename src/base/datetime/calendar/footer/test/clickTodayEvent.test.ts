@@ -13,7 +13,7 @@ describe("BaseDateTimeCalendarFooter", () => {
 
       const el = await fixture(container);
       const buttonEl = el.querySelector(
-        ".kuc-base-datetime-calendar-footer__group__button--today"
+        ".kuc-base-datetime-calendar-footer__group__button--today",
       ) as HTMLButtonElement;
 
       buttonEl.click();

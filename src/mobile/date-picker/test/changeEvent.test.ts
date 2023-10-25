@@ -17,7 +17,7 @@ describe("MobileDatePicker", () => {
       const el = await fixture(container);
 
       const inputDateEl = el.querySelector(
-        ".kuc-mobile-base-date__group__input"
+        ".kuc-mobile-base-date__group__input",
       ) as HTMLInputElement;
 
       inputDateEl.click();
@@ -25,7 +25,7 @@ describe("MobileDatePicker", () => {
       await elementUpdated(el);
 
       const selectedElUp = el.querySelector(
-        "kuc-base-mobile-datetime-calendar-body .kuc-base-mobile-datetime-calendar-body__table__date--selected"
+        "kuc-base-mobile-datetime-calendar-body .kuc-base-mobile-datetime-calendar-body__table__date--selected",
       ) as HTMLButtonElement;
 
       const nextEl = selectedElUp?.nextElementSibling as HTMLTableCellElement;
@@ -48,7 +48,7 @@ describe("MobileDatePicker", () => {
       });
       const el = await fixture(container);
       const inputDateEl = el.querySelector(
-        ".kuc-mobile-base-date__group__input"
+        ".kuc-mobile-base-date__group__input",
       ) as HTMLInputElement;
 
       inputDateEl.click();
@@ -56,7 +56,7 @@ describe("MobileDatePicker", () => {
       await elementUpdated(el);
 
       const noneBtnEl = el.querySelector(
-        ".kuc-base-mobile-datetime-calendar-footer__group__button--none"
+        ".kuc-base-mobile-datetime-calendar-footer__group__button--none",
       ) as HTMLButtonElement;
       noneBtnEl.click();
       await elementUpdated(container);
@@ -69,7 +69,7 @@ describe("MobileDatePicker", () => {
       await elementUpdated(el);
 
       const noneBtnElEmpty = el.querySelector(
-        ".kuc-base-mobile-datetime-calendar-footer__group__button--none"
+        ".kuc-base-mobile-datetime-calendar-footer__group__button--none",
       ) as HTMLButtonElement;
       noneBtnElEmpty.click();
       await elementUpdated(container);

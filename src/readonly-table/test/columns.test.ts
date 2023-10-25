@@ -60,7 +60,7 @@ describe("ReadOnlyTable", () => {
       const container = new ReadOnlyTable();
       const el = await fixture(container);
       const columnsEl = el.querySelectorAll(
-        ".kuc-readonly-table__table__header tr th "
+        ".kuc-readonly-table__table__header tr th ",
       );
       expect(columnsEl.length).to.equal(0);
     });
@@ -69,7 +69,7 @@ describe("ReadOnlyTable", () => {
       const container = new ReadOnlyTable({ columns: columnsWithoutHeader });
       const el = await fixture(container);
       const columnsEl = el.querySelectorAll(
-        ".kuc-readonly-table__table__header tr th"
+        ".kuc-readonly-table__table__header tr th",
       );
 
       expect(columnsEl.length).to.equal(3);
@@ -85,7 +85,7 @@ describe("ReadOnlyTable", () => {
       const container = new ReadOnlyTable({ columns: columnsWithoutVisible });
       const el = await fixture(container);
       const columnsEl = el.querySelectorAll(
-        ".kuc-readonly-table__table__header tr th"
+        ".kuc-readonly-table__table__header tr th",
       );
 
       expect(columnsEl.length).to.equal(3);
@@ -102,7 +102,7 @@ describe("ReadOnlyTable", () => {
       container.columns = columnsWithoutHeader;
       const el = await fixture(container);
       const columnsEl = el.querySelectorAll(
-        ".kuc-readonly-table__table__header tr th"
+        ".kuc-readonly-table__table__header tr th",
       );
 
       expect(columnsEl.length).to.equal(3);
@@ -119,7 +119,7 @@ describe("ReadOnlyTable", () => {
       container.columns = columnsWithoutVisible;
       const el = await fixture(container);
       const columnsEl = el.querySelectorAll(
-        ".kuc-readonly-table__table__header tr th"
+        ".kuc-readonly-table__table__header tr th",
       );
 
       expect(columnsEl.length).to.equal(3);
@@ -135,7 +135,7 @@ describe("ReadOnlyTable", () => {
       const container = new ReadOnlyTable({ columns: columns });
       const el = await fixture(container);
       const columnsEl = el.querySelectorAll(
-        ".kuc-readonly-table__table__header tr th"
+        ".kuc-readonly-table__table__header tr th",
       );
 
       expect(columnsEl.length).to.equal(3);
@@ -152,7 +152,7 @@ describe("ReadOnlyTable", () => {
       container.columns = columns;
       const el = await fixture(container);
       const columnsEl = el.querySelectorAll(
-        ".kuc-readonly-table__table__header tr th"
+        ".kuc-readonly-table__table__header tr th",
       );
 
       expect(columnsEl.length).to.equal(3);
@@ -173,7 +173,7 @@ describe("ReadOnlyTable", () => {
 
       const el = await fixture(container);
       const columnsEl = el.querySelectorAll(
-        ".kuc-readonly-table__table__header tr th"
+        ".kuc-readonly-table__table__header tr th",
       );
 
       expect(columnsEl.length).to.equal(2);

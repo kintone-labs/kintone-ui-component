@@ -9,7 +9,7 @@ describe("Table", () => {
       const el = await fixture(container);
 
       const captionEl = el.querySelector(
-        ".kuc-table__table__label"
+        ".kuc-table__table__label",
       ) as HTMLTableCaptionElement;
       expect(captionEl.hasAttribute("hidden")).to.equal(true);
     });
@@ -19,7 +19,7 @@ describe("Table", () => {
       const el = await fixture(container);
 
       const captionEl = el.querySelector(
-        ".kuc-table__table__label"
+        ".kuc-table__table__label",
       ) as HTMLLegendElement;
       expect(captionEl.hasAttribute("hidden")).to.equal(false);
       expect(captionEl.innerText).to.equal("options-label");
@@ -33,7 +33,7 @@ describe("Table", () => {
 
       const el = await fixture(container);
       const captionEl = el.querySelector(
-        ".kuc-table__table__label"
+        ".kuc-table__table__label",
       ) as HTMLLegendElement;
       expect(captionEl.hasAttribute("hidden")).to.equal(false);
       expect(captionEl.innerText).to.equal("replace-label");

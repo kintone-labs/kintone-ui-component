@@ -8,7 +8,7 @@ describe("MobileRadioButton", () => {
       const container = new MobileRadioButton();
       const el = await fixture(container);
       const requiredIconEl = el.querySelector(
-        ".kuc-base-mobile-label__required-icon"
+        ".kuc-base-mobile-label__required-icon",
       ) as HTMLSpanElement;
       expect(requiredIconEl.hasAttribute("hidden")).to.equal(true);
       const computedStyle = window.getComputedStyle(requiredIconEl);
@@ -19,7 +19,7 @@ describe("MobileRadioButton", () => {
       const container = new MobileRadioButton({ requiredIcon: true });
       const el = await fixture(container);
       const requiredIconEl = el.querySelector(
-        ".kuc-base-mobile-label__required-icon"
+        ".kuc-base-mobile-label__required-icon",
       ) as HTMLSpanElement;
       expect(requiredIconEl.hasAttribute("hidden")).to.equal(false);
       const computedStyle = window.getComputedStyle(requiredIconEl);
@@ -31,7 +31,7 @@ describe("MobileRadioButton", () => {
       container.requiredIcon = true;
       const el = await fixture(container);
       const requiredIconEl = el.querySelector(
-        ".kuc-base-mobile-label__required-icon"
+        ".kuc-base-mobile-label__required-icon",
       ) as HTMLSpanElement;
       expect(requiredIconEl.hasAttribute("hidden")).to.equal(false);
       const computedStyle = window.getComputedStyle(requiredIconEl);
@@ -43,7 +43,7 @@ describe("MobileRadioButton", () => {
       container.requiredIcon = false;
       const el = await fixture(container);
       const requiredIconEl = el.querySelector(
-        ".kuc-base-mobile-label__required-icon"
+        ".kuc-base-mobile-label__required-icon",
       ) as HTMLSpanElement;
       expect(requiredIconEl.hasAttribute("hidden")).to.equal(true);
       const computedStyle = window.getComputedStyle(requiredIconEl);

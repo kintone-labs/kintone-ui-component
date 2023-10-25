@@ -93,7 +93,7 @@ let exportRadioButton;
       if (changedProperties.has("selectedIndex")) {
         if (!validateNumberType(this.selectedIndex)) {
           this.throwErrorAfterUpdateComplete(
-            ERROR_MESSAGE.SELECTED_INDEX.IS_NOT_NUMBER
+            ERROR_MESSAGE.SELECTED_INDEX.IS_NOT_NUMBER,
           );
           return false;
         }
@@ -159,7 +159,7 @@ let exportRadioButton;
 
     private _getRadioIconSvgTemplate(
       disabled: boolean | undefined,
-      checked: boolean
+      checked: boolean,
     ) {
       return svg`
     <svg
@@ -224,7 +224,7 @@ let exportRadioButton;
             for="${this._GUID}-item-${index}"
             >${this._getRadioIconSvgTemplate(
               isDisabledItem,
-              isCheckedItem
+              isCheckedItem,
             )}${item.label === undefined ? item.value : item.label}
           </label>
         </div>
@@ -267,7 +267,7 @@ let exportRadioButton;
             itemLayout="${this.itemLayout}"
           >
             ${this.items.map((item, index) =>
-              this._getItemTemplate(item, index)
+              this._getItemTemplate(item, index),
             )}
           </div>
           <kuc-base-error
@@ -287,12 +287,12 @@ let exportRadioButton;
       }
 
       const firstIndex = this.items.findIndex(
-        (item) => item.value === this.value
+        (item) => item.value === this.value,
       );
       if (firstIndex === -1) return -1;
       const selectedIndex = this.items.findIndex(
         (item, index) =>
-          item.value === this.value && index === this.selectedIndex
+          item.value === this.value && index === this.selectedIndex,
       );
       return selectedIndex > -1 ? selectedIndex : firstIndex;
     }

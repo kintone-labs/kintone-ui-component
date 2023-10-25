@@ -86,6 +86,6 @@ if (!window.customElements.get("kuc-base-mobile-datetime-calendar")) {
   createStyleOnHeader(BASE_MOBILE_CALENDAR);
   window.customElements.define(
     "kuc-base-mobile-datetime-calendar",
-    BaseMobileDateTimeCalendar
+    BaseMobileDateTimeCalendar,
   );
 }

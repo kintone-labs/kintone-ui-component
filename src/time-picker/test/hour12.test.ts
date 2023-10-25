@@ -8,10 +8,10 @@ describe("TimePicker", () => {
       const container = new TimePicker({ value: "13:15" });
       const el = await fixture(container);
       const inputHourEl = el.querySelector(
-        ".kuc-base-time__group__hours"
+        ".kuc-base-time__group__hours",
       ) as HTMLInputElement;
       const inputMinuteEl = el.querySelector(
-        ".kuc-base-time__group__minutes"
+        ".kuc-base-time__group__minutes",
       ) as HTMLInputElement;
 
       expect(inputHourEl.value).to.be.equal("13");
@@ -22,13 +22,13 @@ describe("TimePicker", () => {
       const container = new TimePicker({ value: "13:15", hour12: true });
       const el = await fixture(container);
       const inputHourEl = el.querySelector(
-        ".kuc-base-time__group__hours"
+        ".kuc-base-time__group__hours",
       ) as HTMLInputElement;
       const inputMinuteEl = el.querySelector(
-        ".kuc-base-time__group__minutes"
+        ".kuc-base-time__group__minutes",
       ) as HTMLInputElement;
       const inputSuffixEl = el.querySelector(
-        ".kuc-base-time__group__suffix"
+        ".kuc-base-time__group__suffix",
       ) as HTMLInputElement;
 
       expect(inputHourEl.value).to.be.equal("01");
@@ -42,10 +42,10 @@ describe("TimePicker", () => {
       const el = await fixture(container);
       await elementUpdated(el);
       const inputHourEl = el.querySelector(
-        ".kuc-base-time__group__hours"
+        ".kuc-base-time__group__hours",
       ) as HTMLInputElement;
       const inputMinuteEl = el.querySelector(
-        ".kuc-base-time__group__minutes"
+        ".kuc-base-time__group__minutes",
       ) as HTMLInputElement;
 
       expect(inputHourEl.value).to.be.equal("13");

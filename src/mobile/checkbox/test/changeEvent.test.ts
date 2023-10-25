@@ -22,7 +22,7 @@ describe("MobileCheckbox", () => {
 
       const el = await fixture(container);
       const inputsEl = el.querySelectorAll(
-        ".kuc-mobile-checkbox__group__select-menu__item__input"
+        ".kuc-mobile-checkbox__group__select-menu__item__input",
       );
       inputsEl[2].dispatchEvent(new Event("change"));
       await elementUpdated(el);

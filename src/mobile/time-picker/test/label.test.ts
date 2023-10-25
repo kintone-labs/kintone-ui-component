@@ -9,7 +9,7 @@ describe("MobileTimePicker", () => {
       const el = await fixture(container);
 
       const labelTextEl = el.querySelector(
-        ".kuc-base-mobile-label__text"
+        ".kuc-base-mobile-label__text",
       ) as HTMLSpanElement;
       expect(labelTextEl.textContent).to.equal("");
     });
@@ -23,7 +23,7 @@ describe("MobileTimePicker", () => {
       container.label = "replace-label";
       await elementUpdated(el);
       const labelTextEl = el.querySelector(
-        ".kuc-base-mobile-label__text"
+        ".kuc-base-mobile-label__text",
       ) as HTMLSpanElement;
       expect(labelTextEl.textContent).to.equal("replace-label");
     });

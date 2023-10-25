@@ -69,7 +69,7 @@ let exportAttachment;
     @query(".kuc-attachment__group__files__droppable__text")
     private _dragTextEl!: HTMLDivElement;
     @query(
-      ".kuc-attachment__group__files__browse-button__input-container__input"
+      ".kuc-attachment__group__files__browse-button__input-container__input",
     )
     private _inputEl!: HTMLInputElement;
 
@@ -79,7 +79,7 @@ let exportAttachment;
     private _fileItemsEl!: HTMLDivElement[];
 
     @queryAll(
-      ".kuc-attachment__group__files__display-area__item__remove-button__container__button"
+      ".kuc-attachment__group__files__display-area__item__remove-button__container__button",
     )
     private _fileRemoveButtons!: HTMLButtonElement[];
 
@@ -140,7 +140,7 @@ let exportAttachment;
             ?hidden="${this._isDraging}"
           >
           ${this.files.map((item, number) =>
-            this._getAttachmentItemTemplate(item, number)
+            this._getAttachmentItemTemplate(item, number),
           )}
           </ul>
           <div class="kuc-attachment__group__files__browse-button"
@@ -266,7 +266,7 @@ let exportAttachment;
       const removeButtonEl = event.currentTarget as HTMLButtonElement;
       const index = parseInt(
         removeButtonEl.getAttribute("data-file-index")!,
-        10
+        10,
       );
 
       if (this.files) {

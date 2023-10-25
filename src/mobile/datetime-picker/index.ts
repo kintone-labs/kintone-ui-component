@@ -34,7 +34,7 @@ type DateAndTime = {
 let exportMobileDateTimePicker;
 (() => {
   exportMobileDateTimePicker = window.customElements.get(
-    "kuc-mobile-datetime-picker"
+    "kuc-mobile-datetime-picker",
   );
   if (exportMobileDateTimePicker) {
     return;
@@ -157,7 +157,7 @@ let exportMobileDateTimePicker;
 
     private _setDateTimeValueSeparate(
       dateTime: DateAndTime,
-      dateValue: string
+      dateValue: string,
     ) {
       this._dateValue = dateValue;
       this._timeValue =
@@ -364,7 +364,7 @@ let exportMobileDateTimePicker;
 
   window.customElements.define(
     "kuc-mobile-datetime-picker",
-    KucMobileDateTimePicker
+    KucMobileDateTimePicker,
   );
   createStyleOnHeader(MOBILE_DATETIME_PICKER_CSS);
   exportMobileDateTimePicker = KucMobileDateTimePicker;

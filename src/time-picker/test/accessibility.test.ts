@@ -12,12 +12,12 @@ describe("TimePicker", () => {
       });
       const el = await fixture(container);
       const groupInputEl = el.querySelector(
-        ".kuc-base-time__group"
+        ".kuc-base-time__group",
       ) as HTMLDivElement;
       groupInputEl.click();
       await elementUpdated(el);
       const ulElement = el.querySelector(
-        ".kuc-base-datetime-listbox__listbox"
+        ".kuc-base-datetime-listbox__listbox",
       ) as HTMLUListElement;
       const firstElement = ulElement.children[0] as HTMLLIElement;
       firstElement.dispatchEvent(new Event("mousedown", { bubbles: true }));
@@ -30,20 +30,20 @@ describe("TimePicker", () => {
       const container = new TimePicker();
       const el = await fixture(container);
       const inputHourEl = el.querySelector(
-        ".kuc-base-time__group__hours"
+        ".kuc-base-time__group__hours",
       ) as HTMLInputElement;
       inputHourEl.click();
       await elementUpdated(el);
       const listboxEl = el.querySelector(
-        ".kuc-base-datetime-listbox__listbox"
+        ".kuc-base-datetime-listbox__listbox",
       ) as HTMLUListElement;
       listboxEl.click();
       listboxEl.dispatchEvent(
-        new CustomEvent("kuc:listbox-blur", { bubbles: true })
+        new CustomEvent("kuc:listbox-blur", { bubbles: true }),
       );
       await elementUpdated(el);
       const listboxElHidden = el.querySelector(
-        ".kuc-base-datetime-listbox__listbox"
+        ".kuc-base-datetime-listbox__listbox",
       ) as HTMLUListElement;
       expect(listboxElHidden).to.equal(null);
     });
@@ -52,22 +52,22 @@ describe("TimePicker", () => {
       const container = new TimePicker({ value: "08:30" });
       const el = await fixture(container);
       const buttonOpen = el.querySelector(
-        ".kuc-base-time__assistive-text"
+        ".kuc-base-time__assistive-text",
       ) as HTMLButtonElement;
       buttonOpen.focus();
       buttonOpen.dispatchEvent(
-        new KeyboardEvent("keydown", { key: "Enter", bubbles: true })
+        new KeyboardEvent("keydown", { key: "Enter", bubbles: true }),
       );
       await elementUpdated(el);
       const itemEl = el.querySelector(
-        ".kuc-base-datetime-listbox__listbox__item"
+        ".kuc-base-datetime-listbox__listbox__item",
       ) as HTMLUListElement;
       itemEl.dispatchEvent(
-        new KeyboardEvent("keydown", { key: "Escape", bubbles: true })
+        new KeyboardEvent("keydown", { key: "Escape", bubbles: true }),
       );
       await elementUpdated(el);
       const listboxEl = el.querySelector(
-        ".kuc-base-datetime-listbox__listbox"
+        ".kuc-base-datetime-listbox__listbox",
       ) as HTMLUListElement;
       expect(listboxEl).to.equal(null);
     });
@@ -76,29 +76,29 @@ describe("TimePicker", () => {
       const container = new TimePicker({ value: "" });
       const el = await fixture(container);
       const groupInputEl = el.querySelector(
-        ".kuc-base-time__group"
+        ".kuc-base-time__group",
       ) as HTMLDivElement;
       const buttonOpen = el.querySelector(
-        ".kuc-base-time__assistive-text"
+        ".kuc-base-time__assistive-text",
       ) as HTMLDivElement;
 
       groupInputEl.click();
       await elementUpdated(el);
       const itemElShow = el.querySelector(
-        ".kuc-base-datetime-listbox__listbox__item"
+        ".kuc-base-datetime-listbox__listbox__item",
       ) as HTMLLIElement;
       expect(itemElShow.title).to.equal("00:00");
 
       buttonOpen.dispatchEvent(
-        new KeyboardEvent("keydown", { key: "Escape", bubbles: true })
+        new KeyboardEvent("keydown", { key: "Escape", bubbles: true }),
       );
       await elementUpdated(container);
       const itemElHide = el.querySelector(
-        ".kuc-base-datetime-listbox__listbox__item"
+        ".kuc-base-datetime-listbox__listbox__item",
       ) as HTMLLIElement;
       expect(itemElHide).to.equal(null);
       expect(
-        groupInputEl.classList.contains("kuc-base-time__group--focus")
+        groupInputEl.classList.contains("kuc-base-time__group--focus"),
       ).to.equal(true);
     });
 
@@ -106,18 +106,18 @@ describe("TimePicker", () => {
       const container = new TimePicker({ value: "" });
       const el = await fixture(container);
       const inputHourEl = el.querySelector(
-        ".kuc-base-time__group__hours"
+        ".kuc-base-time__group__hours",
       ) as HTMLInputElement;
       const inputMinuteEl = el.querySelector(
-        ".kuc-base-time__group__minutes"
+        ".kuc-base-time__group__minutes",
       ) as HTMLInputElement;
       const buttonOpen = el.querySelector(
-        ".kuc-base-time__assistive-text"
+        ".kuc-base-time__assistive-text",
       ) as HTMLButtonElement;
 
       buttonOpen.focus();
       buttonOpen.dispatchEvent(
-        new KeyboardEvent("keydown", { key: "8", bubbles: true })
+        new KeyboardEvent("keydown", { key: "8", bubbles: true }),
       );
       await elementUpdated(el);
 

@@ -8,7 +8,7 @@ describe("MobileDatePicker", () => {
       const container = new MobileDatePicker({});
       const el = await fixture(container);
       const errorEl = el.querySelector(
-        ".kuc-base-mobile-error__error"
+        ".kuc-base-mobile-error__error",
       ) as HTMLDivElement;
       expect(errorEl).has.attribute("hidden");
     });
@@ -17,7 +17,7 @@ describe("MobileDatePicker", () => {
       const container = new MobileDatePicker({ error: "error-message" });
       const el = await fixture(container);
       const errorEl = el.querySelector(
-        ".kuc-base-mobile-error__error"
+        ".kuc-base-mobile-error__error",
       ) as HTMLDivElement;
       expect(errorEl.innerText).to.have.equal("error-message");
       expect(errorEl).not.has.attribute("hidden");
@@ -30,7 +30,7 @@ describe("MobileDatePicker", () => {
       container.error = "replace-error";
       const el = await fixture(container);
       const errorEl = el.querySelector(
-        ".kuc-base-mobile-error__error"
+        ".kuc-base-mobile-error__error",
       ) as HTMLDivElement;
       expect(errorEl.innerText).to.have.equal("replace-error");
       expect(errorEl).not.has.attribute("hidden");
@@ -42,7 +42,7 @@ describe("MobileDatePicker", () => {
       });
       const el = await fixture(container);
       const inputDateEl = el.querySelector(
-        ".kuc-mobile-base-date__group__input"
+        ".kuc-mobile-base-date__group__input",
       ) as HTMLInputElement;
 
       inputDateEl.click();
@@ -50,14 +50,14 @@ describe("MobileDatePicker", () => {
       await elementUpdated(el);
 
       const selectedElUp = el.querySelector(
-        "kuc-base-mobile-datetime-calendar-body .kuc-base-mobile-datetime-calendar-body__table__date--selected"
+        "kuc-base-mobile-datetime-calendar-body .kuc-base-mobile-datetime-calendar-body__table__date--selected",
       ) as HTMLButtonElement;
 
       const nextEl = selectedElUp?.nextElementSibling as HTMLTableCellElement;
       const buttonEl = nextEl as HTMLElement;
       buttonEl.click();
       const errorEl = el.querySelector(
-        ".kuc-base-mobile-error__error"
+        ".kuc-base-mobile-error__error",
       ) as HTMLDivElement;
       await elementUpdated(container);
       expect(errorEl.innerText).to.have.equal("error-message");

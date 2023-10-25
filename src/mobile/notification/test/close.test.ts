@@ -17,7 +17,7 @@ describe("MobileNotification", () => {
 
       expect(container.classList.length).to.equal(1);
       expect(container.classList[0]).to.equal(
-        "kuc-mobile-notification-fadeout"
+        "kuc-mobile-notification-fadeout",
       );
     });
 
@@ -27,7 +27,7 @@ describe("MobileNotification", () => {
       await elementUpdated(container);
 
       const closeBtnEl = container.querySelector(
-        ".kuc-mobile-notification__notification__close-button"
+        ".kuc-mobile-notification__notification__close-button",
       ) as HTMLButtonElement;
       closeBtnEl.click();
       await elementUpdated(container);
@@ -37,7 +37,7 @@ describe("MobileNotification", () => {
 
       expect(container.classList.length).to.equal(1);
       expect(container.classList[0]).to.equal(
-        "kuc-mobile-notification-fadeout"
+        "kuc-mobile-notification-fadeout",
       );
     });
   });

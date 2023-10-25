@@ -22,7 +22,7 @@ describe("RadioButton", () => {
 
       const el = await fixture(container);
       const inputsEl = el.querySelectorAll(
-        ".kuc-radio-button__group__select-menu__item__input"
+        ".kuc-radio-button__group__select-menu__item__input",
       );
       inputsEl[2].dispatchEvent(new Event("change"));
 

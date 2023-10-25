@@ -16,7 +16,7 @@ describe("MobileMultiChoice", () => {
       });
       const el = await fixture(container);
       const inputEl = el.querySelector(
-        ".kuc-mobile-multi-choice__input-form__select__input"
+        ".kuc-mobile-multi-choice__input-form__select__input",
       );
       expect(inputEl).not.to.have.attr("disabled");
     });
@@ -28,7 +28,7 @@ describe("MobileMultiChoice", () => {
       });
       const el = await fixture(container);
       const inputEl = el.querySelector(
-        ".kuc-mobile-multi-choice__input-form__select__input"
+        ".kuc-mobile-multi-choice__input-form__select__input",
       );
       expect(inputEl).to.have.attr("disabled");
     });
@@ -41,7 +41,7 @@ describe("MobileMultiChoice", () => {
       container.disabled = true;
       const el = await fixture(container);
       const inputEl = el.querySelector(
-        ".kuc-mobile-multi-choice__input-form__select__input"
+        ".kuc-mobile-multi-choice__input-form__select__input",
       );
       expect(inputEl).to.have.attr("disabled");
     });
@@ -54,7 +54,7 @@ describe("MobileMultiChoice", () => {
       container.disabled = false;
       const el = await fixture(container);
       const inputEl = el.querySelector(
-        ".kuc-mobile-multi-choice__input-form__select__input"
+        ".kuc-mobile-multi-choice__input-form__select__input",
       );
       expect(inputEl).not.to.have.attr("disabled");
     });

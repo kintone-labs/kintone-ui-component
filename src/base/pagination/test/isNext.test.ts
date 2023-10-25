@@ -9,11 +9,11 @@ describe("BasePagination", () => {
       const el = await fixture(container);
 
       const nextEl = el.querySelector(
-        "button.kuc-base-pagination__group__pager-next"
+        "button.kuc-base-pagination__group__pager-next",
       ) as HTMLElement;
 
       expect(
-        nextEl.classList.contains("kuc-base-pagination__group__pager-disable")
+        nextEl.classList.contains("kuc-base-pagination__group__pager-disable"),
       ).to.equal(false);
     });
 
@@ -24,11 +24,11 @@ describe("BasePagination", () => {
       await elementUpdated(el);
 
       const nextEl = el.querySelector(
-        "button.kuc-base-pagination__group__pager-next"
+        "button.kuc-base-pagination__group__pager-next",
       ) as HTMLElement;
 
       expect(
-        nextEl.classList.contains("kuc-base-pagination__group__pager-disable")
+        nextEl.classList.contains("kuc-base-pagination__group__pager-disable"),
       ).to.equal(false);
     });
 
@@ -39,11 +39,11 @@ describe("BasePagination", () => {
       await elementUpdated(el);
 
       const nextEl = el.querySelector(
-        "button.kuc-base-pagination__group__pager-next"
+        "button.kuc-base-pagination__group__pager-next",
       ) as HTMLElement;
 
       expect(
-        nextEl.classList.contains("kuc-base-pagination__group__pager-disable")
+        nextEl.classList.contains("kuc-base-pagination__group__pager-disable"),
       ).to.equal(true);
     });
   });

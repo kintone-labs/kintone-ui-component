@@ -28,7 +28,7 @@ describe("MobileCheckbox", () => {
       const container = new MobileCheckbox();
       const el = await fixture(container);
       const itemsEl = el.querySelectorAll(
-        ".kuc-mobile-checkbox__group__select-menu__item"
+        ".kuc-mobile-checkbox__group__select-menu__item",
       );
 
       expect(itemsEl.length).to.equal(0);
@@ -38,7 +38,7 @@ describe("MobileCheckbox", () => {
       const container = new MobileCheckbox({ items: initItemsWithoutLabel });
       const el = await fixture(container);
       const itemsEl = el.querySelectorAll(
-        ".kuc-mobile-checkbox__group__select-menu__item"
+        ".kuc-mobile-checkbox__group__select-menu__item",
       );
 
       expect(itemsEl.length).to.equal(3);
@@ -47,7 +47,7 @@ describe("MobileCheckbox", () => {
       expect(inputEl0.hasAttribute("checked")).to.equal(false);
       expect(inputEl0.value).to.equal(initItemsWithoutLabel[0].value);
       const labelEl0 = itemsEl[0].querySelector(
-        ".kuc-mobile-checkbox__group__select-menu__item__label"
+        ".kuc-mobile-checkbox__group__select-menu__item__label",
       ) as HTMLDivElement;
       expect(labelEl0.innerText).to.equal(initItemsWithoutLabel[0].value);
 
@@ -55,7 +55,7 @@ describe("MobileCheckbox", () => {
       expect(inputEl1.hasAttribute("checked")).to.equal(false);
       expect(inputEl1.value).to.equal(initItemsWithoutLabel[1].value);
       const labelEl1 = itemsEl[1].querySelector(
-        ".kuc-mobile-checkbox__group__select-menu__item__label"
+        ".kuc-mobile-checkbox__group__select-menu__item__label",
       ) as HTMLDivElement;
       expect(labelEl1.innerText).to.equal(initItemsWithoutLabel[1].value);
 
@@ -63,7 +63,7 @@ describe("MobileCheckbox", () => {
       expect(inputEl2.hasAttribute("checked")).to.equal(false);
       expect(inputEl2.value).to.equal(initItemsWithoutLabel[2].value);
       const labelEl2 = itemsEl[2].querySelector(
-        ".kuc-mobile-checkbox__group__select-menu__item__label"
+        ".kuc-mobile-checkbox__group__select-menu__item__label",
       ) as HTMLDivElement;
       expect(labelEl2.innerText).to.equal(initItemsWithoutLabel[2].value);
     });
@@ -73,7 +73,7 @@ describe("MobileCheckbox", () => {
       container.items = initItemsWithoutLabel;
       const el = await fixture(container);
       const itemsEl = el.querySelectorAll(
-        ".kuc-mobile-checkbox__group__select-menu__item"
+        ".kuc-mobile-checkbox__group__select-menu__item",
       );
 
       expect(itemsEl.length).to.equal(3);
@@ -82,7 +82,7 @@ describe("MobileCheckbox", () => {
       expect(inputEl0.hasAttribute("checked")).to.equal(false);
       expect(inputEl0.value).to.equal(initItemsWithoutLabel[0].value);
       const labelEl0 = itemsEl[0].querySelector(
-        ".kuc-mobile-checkbox__group__select-menu__item__label"
+        ".kuc-mobile-checkbox__group__select-menu__item__label",
       ) as HTMLDivElement;
       expect(labelEl0.innerText).to.equal(initItemsWithoutLabel[0].value);
 
@@ -90,7 +90,7 @@ describe("MobileCheckbox", () => {
       expect(inputEl1.hasAttribute("checked")).to.equal(false);
       expect(inputEl1.value).to.equal(initItemsWithoutLabel[1].value);
       const labelEl1 = itemsEl[1].querySelector(
-        ".kuc-mobile-checkbox__group__select-menu__item__label"
+        ".kuc-mobile-checkbox__group__select-menu__item__label",
       ) as HTMLDivElement;
       expect(labelEl1.innerText).to.equal(initItemsWithoutLabel[1].value);
 
@@ -98,7 +98,7 @@ describe("MobileCheckbox", () => {
       expect(inputEl2.hasAttribute("checked")).to.equal(false);
       expect(inputEl2.value).to.equal(initItemsWithoutLabel[2].value);
       const labelEl2 = itemsEl[2].querySelector(
-        ".kuc-mobile-checkbox__group__select-menu__item__label"
+        ".kuc-mobile-checkbox__group__select-menu__item__label",
       ) as HTMLDivElement;
       expect(labelEl2.innerText).to.equal(initItemsWithoutLabel[2].value);
     });
@@ -107,7 +107,7 @@ describe("MobileCheckbox", () => {
       const container = new MobileCheckbox({ items: initItems });
       const el = await fixture(container);
       const itemsEl = el.querySelectorAll(
-        ".kuc-mobile-checkbox__group__select-menu__item"
+        ".kuc-mobile-checkbox__group__select-menu__item",
       );
 
       expect(itemsEl.length).to.equal(3);
@@ -116,7 +116,7 @@ describe("MobileCheckbox", () => {
       expect(inputEl0.hasAttribute("checked")).to.equal(false);
       expect(inputEl0.value).to.equal(initItems[0].value);
       const labelEl0 = itemsEl[0].querySelector(
-        ".kuc-mobile-checkbox__group__select-menu__item__label"
+        ".kuc-mobile-checkbox__group__select-menu__item__label",
       ) as HTMLDivElement;
       expect(labelEl0.innerText).to.equal(initItems[0].label);
 
@@ -124,7 +124,7 @@ describe("MobileCheckbox", () => {
       expect(inputEl1.hasAttribute("checked")).to.equal(false);
       expect(inputEl1.value).to.equal(initItems[1].value);
       const labelEl1 = itemsEl[1].querySelector(
-        ".kuc-mobile-checkbox__group__select-menu__item__label"
+        ".kuc-mobile-checkbox__group__select-menu__item__label",
       ) as HTMLDivElement;
       expect(labelEl1.innerText).to.equal(initItems[1].label);
 
@@ -132,7 +132,7 @@ describe("MobileCheckbox", () => {
       expect(inputEl2.hasAttribute("checked")).to.equal(false);
       expect(inputEl2.value).to.equal(initItems[2].value);
       const labelEl2 = itemsEl[2].querySelector(
-        ".kuc-mobile-checkbox__group__select-menu__item__label"
+        ".kuc-mobile-checkbox__group__select-menu__item__label",
       ) as HTMLDivElement;
       expect(labelEl2.innerText).to.equal(initItems[2].label);
     });
@@ -143,7 +143,7 @@ describe("MobileCheckbox", () => {
 
       const el = await fixture(container);
       const itemsEl = el.querySelectorAll(
-        ".kuc-mobile-checkbox__group__select-menu__item"
+        ".kuc-mobile-checkbox__group__select-menu__item",
       );
 
       expect(itemsEl.length).to.equal(3);
@@ -152,7 +152,7 @@ describe("MobileCheckbox", () => {
       expect(inputEl0.hasAttribute("checked")).to.equal(false);
       expect(inputEl0.value).to.equal(initItems[0].value);
       const labelEl0 = itemsEl[0].querySelector(
-        ".kuc-mobile-checkbox__group__select-menu__item__label"
+        ".kuc-mobile-checkbox__group__select-menu__item__label",
       ) as HTMLDivElement;
       expect(labelEl0.innerText).to.equal(initItems[0].label);
 
@@ -160,7 +160,7 @@ describe("MobileCheckbox", () => {
       expect(inputEl1.hasAttribute("checked")).to.equal(false);
       expect(inputEl1.value).to.equal(initItems[1].value);
       const labelEl1 = itemsEl[1].querySelector(
-        ".kuc-mobile-checkbox__group__select-menu__item__label"
+        ".kuc-mobile-checkbox__group__select-menu__item__label",
       ) as HTMLDivElement;
       expect(labelEl1.innerText).to.equal(initItems[1].label);
 
@@ -168,7 +168,7 @@ describe("MobileCheckbox", () => {
       expect(inputEl2.hasAttribute("checked")).to.equal(false);
       expect(inputEl2.value).to.equal(initItems[2].value);
       const labelEl2 = itemsEl[2].querySelector(
-        ".kuc-mobile-checkbox__group__select-menu__item__label"
+        ".kuc-mobile-checkbox__group__select-menu__item__label",
       ) as HTMLDivElement;
       expect(labelEl2.innerText).to.equal(initItems[2].label);
     });
@@ -179,7 +179,7 @@ describe("MobileCheckbox", () => {
 
       const el = await fixture(container);
       const itemsEl = el.querySelectorAll(
-        ".kuc-mobile-checkbox__group__select-menu__item"
+        ".kuc-mobile-checkbox__group__select-menu__item",
       );
 
       expect(container.items).to.be.equal(replacedItems);
@@ -189,7 +189,7 @@ describe("MobileCheckbox", () => {
       expect(inputEl0.hasAttribute("checked")).to.equal(false);
       expect(inputEl0.value).to.equal(replacedItems[0].value);
       const labelEl0 = itemsEl[0].querySelector(
-        ".kuc-mobile-checkbox__group__select-menu__item__label"
+        ".kuc-mobile-checkbox__group__select-menu__item__label",
       ) as HTMLDivElement;
       expect(labelEl0.innerText).to.equal(replacedItems[0].label);
 
@@ -197,7 +197,7 @@ describe("MobileCheckbox", () => {
       expect(inputEl1.hasAttribute("checked")).to.equal(false);
       expect(inputEl1.value).to.equal(replacedItems[1].value);
       const labelEl1 = itemsEl[1].querySelector(
-        ".kuc-mobile-checkbox__group__select-menu__item__label"
+        ".kuc-mobile-checkbox__group__select-menu__item__label",
       ) as HTMLDivElement;
       expect(labelEl1.innerText).to.equal(replacedItems[1].label);
     });
@@ -235,7 +235,7 @@ describe("MobileCheckbox", () => {
       });
       const el = await fixture(container);
       const itemsEl = el.querySelectorAll(
-        ".kuc-mobile-checkbox__group__select-menu__item"
+        ".kuc-mobile-checkbox__group__select-menu__item",
       );
       const inputEl0 = itemsEl[0].querySelector("input") as HTMLInputElement;
       expect(inputEl0.value).to.equal("");

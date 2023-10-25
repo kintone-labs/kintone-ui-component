@@ -9,7 +9,7 @@ describe("MobileRadioButton", () => {
 
       const el = await fixture(container);
       const selectMenuEl = el.querySelector(
-        ".kuc-mobile-radio-button__group__select-menu"
+        ".kuc-mobile-radio-button__group__select-menu",
       ) as HTMLDivElement;
 
       expect(selectMenuEl.hasAttribute("borderVisible")).to.equal(true);
@@ -21,7 +21,7 @@ describe("MobileRadioButton", () => {
 
     const el = await fixture(container);
     const selectMenuEl = el.querySelector(
-      ".kuc-mobile-radio-button__group__select-menu"
+      ".kuc-mobile-radio-button__group__select-menu",
     ) as HTMLDivElement;
 
     expect(selectMenuEl.hasAttribute("borderVisible")).to.equal(false);
@@ -33,7 +33,7 @@ describe("MobileRadioButton", () => {
 
     const el = await fixture(container);
     const selectMenuEl = el.querySelector(
-      ".kuc-mobile-radio-button__group__select-menu"
+      ".kuc-mobile-radio-button__group__select-menu",
     ) as HTMLDivElement;
 
     expect(selectMenuEl.hasAttribute("borderVisible")).to.equal(true);
@@ -45,7 +45,7 @@ describe("MobileRadioButton", () => {
 
     const el = await fixture(container);
     const selectMenuEl = el.querySelector(
-      ".kuc-mobile-radio-button__group__select-menu"
+      ".kuc-mobile-radio-button__group__select-menu",
     ) as HTMLDivElement;
 
     expect(selectMenuEl.hasAttribute("borderVisible")).to.equal(false);

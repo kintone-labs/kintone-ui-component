@@ -8,19 +8,19 @@ describe("TimePicker", () => {
       const container = new TimePicker();
       const el = await fixture(container);
       const groupInputEl = el.querySelector(
-        ".kuc-base-time__group"
+        ".kuc-base-time__group",
       ) as HTMLDivElement;
 
       groupInputEl.click();
       await elementUpdated(container);
 
       const itemsEl = el.querySelectorAll(
-        ".kuc-base-datetime-listbox__listbox__item"
+        ".kuc-base-datetime-listbox__listbox__item",
       );
 
       expect(itemsEl[0].getAttribute("value")).to.equal("00:00");
       expect(itemsEl[itemsEl.length - 1].getAttribute("value")).to.equal(
-        "23:30"
+        "23:30",
       );
     });
 
@@ -28,14 +28,14 @@ describe("TimePicker", () => {
       const container = new TimePicker({ min: "13:15" });
       const el = await fixture(container);
       const groupInputEl = el.querySelector(
-        ".kuc-base-time__group"
+        ".kuc-base-time__group",
       ) as HTMLDivElement;
 
       groupInputEl.click();
       await elementUpdated(container);
 
       const itemsEl = el.querySelectorAll(
-        ".kuc-base-datetime-listbox__listbox__item"
+        ".kuc-base-datetime-listbox__listbox__item",
       );
 
       expect(itemsEl[0].getAttribute("value")).to.equal("13:15");
@@ -46,14 +46,14 @@ describe("TimePicker", () => {
       container.min = "13:15";
       const el = await fixture(container);
       const groupInputEl = el.querySelector(
-        ".kuc-base-time__group"
+        ".kuc-base-time__group",
       ) as HTMLDivElement;
 
       groupInputEl.click();
       await elementUpdated(container);
 
       const itemsEl = el.querySelectorAll(
-        ".kuc-base-datetime-listbox__listbox__item"
+        ".kuc-base-datetime-listbox__listbox__item",
       );
 
       expect(itemsEl[0].getAttribute("value")).to.equal("13:15");

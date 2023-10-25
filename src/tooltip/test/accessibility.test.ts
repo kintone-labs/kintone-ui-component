@@ -17,7 +17,7 @@ describe("Tooltip", () => {
       });
       const el = await fixture(container);
       const containerEl = el.querySelector(
-        ".kuc-tooltip__group__container"
+        ".kuc-tooltip__group__container",
       ) as HTMLDivElement;
 
       const eventMouseEnter = new MouseEvent("mouseenter");
@@ -25,17 +25,17 @@ describe("Tooltip", () => {
       await elementUpdated(el);
 
       const titleEl = el.querySelector(
-        ".kuc-tooltip__group__title"
+        ".kuc-tooltip__group__title",
       ) as HTMLDivElement;
       expect(getComputedStyle(titleEl).getPropertyValue("display")).to.be.equal(
-        "block"
+        "block",
       );
 
       const eventMouseLeave = new MouseEvent("mouseleave");
       containerEl.dispatchEvent(eventMouseLeave);
       await elementUpdated(el);
       expect(getComputedStyle(titleEl).getPropertyValue("display")).to.be.equal(
-        "none"
+        "none",
       );
     });
 
@@ -47,7 +47,7 @@ describe("Tooltip", () => {
       });
       const el = await fixture(container);
       const containerEl = el.querySelector(
-        ".kuc-tooltip__group__container"
+        ".kuc-tooltip__group__container",
       ) as HTMLDivElement;
 
       const eventFocusin = new MouseEvent("focusin");
@@ -55,17 +55,17 @@ describe("Tooltip", () => {
       await elementUpdated(el);
 
       const titleEl = el.querySelector(
-        ".kuc-tooltip__group__title"
+        ".kuc-tooltip__group__title",
       ) as HTMLDivElement;
       expect(getComputedStyle(titleEl).getPropertyValue("display")).to.be.equal(
-        "block"
+        "block",
       );
 
       const eventFocusout = new MouseEvent("focusout");
       containerEl.dispatchEvent(eventFocusout);
       await elementUpdated(el);
       expect(getComputedStyle(titleEl).getPropertyValue("display")).to.be.equal(
-        "none"
+        "none",
       );
     });
 
@@ -77,17 +77,17 @@ describe("Tooltip", () => {
       });
       const el = await fixture(container);
       const containerEl = el.querySelector(
-        ".kuc-tooltip__group__container"
+        ".kuc-tooltip__group__container",
       ) as HTMLDivElement;
 
       const eventMouseEnter = new MouseEvent("mouseenter");
       containerEl.dispatchEvent(eventMouseEnter);
 
       const titleEl = el.querySelector(
-        ".kuc-tooltip__group__title"
+        ".kuc-tooltip__group__title",
       ) as HTMLDivElement;
       expect(getComputedStyle(titleEl).getPropertyValue("display")).to.be.equal(
-        "block"
+        "block",
       );
 
       const eventEscapeKey = new KeyboardEvent("keydown", {
@@ -97,7 +97,7 @@ describe("Tooltip", () => {
       containerEl.dispatchEvent(eventEscapeKey);
       await elementUpdated(el);
       expect(getComputedStyle(titleEl).getPropertyValue("display")).to.be.equal(
-        "none"
+        "none",
       );
     });
     it("should close the tooltip when mouseleave the title element", async () => {
@@ -108,24 +108,24 @@ describe("Tooltip", () => {
       });
       const el = await fixture(container);
       const containerEl = el.querySelector(
-        ".kuc-tooltip__group__container"
+        ".kuc-tooltip__group__container",
       ) as HTMLDivElement;
 
       const eventMouseEnter = new MouseEvent("mouseenter");
       containerEl.dispatchEvent(eventMouseEnter);
 
       const titleEl = el.querySelector(
-        ".kuc-tooltip__group__title"
+        ".kuc-tooltip__group__title",
       ) as HTMLDivElement;
       expect(getComputedStyle(titleEl).getPropertyValue("display")).to.be.equal(
-        "block"
+        "block",
       );
 
       const eventMouseLeave = new MouseEvent("mouseleave");
       titleEl.dispatchEvent(eventMouseLeave);
       await elementUpdated(el);
       expect(getComputedStyle(titleEl).getPropertyValue("display")).to.be.equal(
-        "none"
+        "none",
       );
     });
   });

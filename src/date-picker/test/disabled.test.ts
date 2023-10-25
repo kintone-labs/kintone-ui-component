@@ -8,7 +8,7 @@ describe("DatePicker", () => {
       const container = new DatePicker();
       const el = await fixture(container);
       const inputEl = el.querySelector(
-        ".kuc-base-date__input"
+        ".kuc-base-date__input",
       ) as HTMLInputElement;
 
       expect(inputEl.hasAttribute("disabled")).to.equal(false);
@@ -18,7 +18,7 @@ describe("DatePicker", () => {
       const container = new DatePicker({ disabled: true });
       const el = await fixture(container);
       const inputEl = el.querySelector(
-        ".kuc-base-date__input"
+        ".kuc-base-date__input",
       ) as HTMLInputElement;
 
       expect(inputEl.hasAttribute("disabled")).to.equal(true);
@@ -28,7 +28,7 @@ describe("DatePicker", () => {
       const container = new DatePicker({ disabled: true });
       const el = await fixture(container);
       const inputEl = el.querySelector(
-        ".kuc-base-date__input"
+        ".kuc-base-date__input",
       ) as HTMLInputElement;
 
       expect(inputEl.hasAttribute("disabled")).to.equal(true);
@@ -39,7 +39,7 @@ describe("DatePicker", () => {
       container.disabled = false;
       const el = await fixture(container);
       const inputEl = el.querySelector(
-        ".kuc-base-date__input"
+        ".kuc-base-date__input",
       ) as HTMLInputElement;
 
       expect(inputEl.hasAttribute("disabled")).to.equal(false);

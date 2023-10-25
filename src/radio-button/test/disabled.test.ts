@@ -16,7 +16,7 @@ describe("RadioButton", () => {
 
       const el = await fixture(container);
       const inputEls = el.querySelectorAll(
-        ".kuc-radio-button__group__select-menu__item__input"
+        ".kuc-radio-button__group__select-menu__item__input",
       );
 
       expect(inputEls[0].hasAttribute("disabled")).to.equal(false);
@@ -33,7 +33,7 @@ describe("RadioButton", () => {
 
       const el = await fixture(container);
       const inputEls = el.querySelectorAll(
-        ".kuc-radio-button__group__select-menu__item__input"
+        ".kuc-radio-button__group__select-menu__item__input",
       );
 
       expect(inputEls[0].hasAttribute("disabled")).to.equal(true);
@@ -51,7 +51,7 @@ describe("RadioButton", () => {
 
       const el = await fixture(container);
       const inputEls = el.querySelectorAll(
-        ".kuc-radio-button__group__select-menu__item__input"
+        ".kuc-radio-button__group__select-menu__item__input",
       );
 
       expect(inputEls[0].hasAttribute("disabled")).to.equal(true);
@@ -69,7 +69,7 @@ describe("RadioButton", () => {
 
       const el = await fixture(container);
       const inputEls = el.querySelectorAll(
-        ".kuc-radio-button__group__select-menu__item__input"
+        ".kuc-radio-button__group__select-menu__item__input",
       );
 
       expect(inputEls[0].hasAttribute("disabled")).to.equal(false);

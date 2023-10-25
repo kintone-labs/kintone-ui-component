@@ -8,7 +8,7 @@ describe("MobileButton", () => {
       const container = new MobileButton();
       const el = await fixture(container);
       const buttonEl = el.querySelector(
-        ".kuc-mobile-button__button"
+        ".kuc-mobile-button__button",
       ) as HTMLButtonElement;
       expect(buttonEl.innerText).to.equal("");
     });
@@ -17,7 +17,7 @@ describe("MobileButton", () => {
       const container = new MobileButton({ text: "text" });
       const el = await fixture(container);
       const buttonEl = el.querySelector(
-        ".kuc-mobile-button__button"
+        ".kuc-mobile-button__button",
       ) as HTMLButtonElement;
       expect(buttonEl.innerText).to.equal("text");
     });
@@ -27,7 +27,7 @@ describe("MobileButton", () => {
       container.text = "update";
       const el = await fixture(container);
       const buttonEl = el.querySelector(
-        ".kuc-mobile-button__button"
+        ".kuc-mobile-button__button",
       ) as HTMLButtonElement;
       expect(buttonEl.innerText).to.equal("update");
     });

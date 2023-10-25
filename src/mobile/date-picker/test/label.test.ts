@@ -8,7 +8,7 @@ describe("MobileDatePicker", () => {
       const container = new MobileDatePicker({});
       const el = await fixture(container);
       const labelEl = el.querySelector(
-        ".kuc-base-mobile-label__text"
+        ".kuc-base-mobile-label__text",
       ) as HTMLSpanElement;
       expect(labelEl.innerText).to.have.equal("");
     });
@@ -17,7 +17,7 @@ describe("MobileDatePicker", () => {
       const container = new MobileDatePicker({ label: "options-label" });
       const el = await fixture(container);
       const labelEl = el.querySelector(
-        ".kuc-base-mobile-label__text"
+        ".kuc-base-mobile-label__text",
       ) as HTMLSpanElement;
       expect(labelEl.innerText).to.have.equal("options-label");
     });
@@ -29,7 +29,7 @@ describe("MobileDatePicker", () => {
       container.label = "replace-label";
       const el = await fixture(container);
       const labelEl = el.querySelector(
-        ".kuc-base-mobile-label__text"
+        ".kuc-base-mobile-label__text",
       ) as HTMLSpanElement;
       expect(labelEl.textContent).to.have.equal("replace-label");
     });

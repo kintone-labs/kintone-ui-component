@@ -8,7 +8,7 @@ describe("Button", () => {
       const container = new Button({ text: "text" });
       const el = await fixture(container);
       const buttonEl = el.querySelector(
-        ".kuc-button__button"
+        ".kuc-button__button",
       ) as HTMLButtonElement;
       expect(buttonEl.innerText).to.equal("text");
     });
@@ -16,7 +16,7 @@ describe("Button", () => {
       const container = new Button({ content: "content" });
       const el = await fixture(container);
       const buttonEl = el.querySelector(
-        ".kuc-button__button"
+        ".kuc-button__button",
       ) as HTMLButtonElement;
       expect(buttonEl.innerText).to.equal("content");
     });
@@ -28,10 +28,10 @@ describe("Button", () => {
       const el = await fixture(container);
 
       const contentEl = el.querySelector(
-        ".kuc-button__button"
+        ".kuc-button__button",
       ) as HTMLDivElement;
       expect(contentEl.firstElementChild!.className).to.equal(
-        "kuc-element-class"
+        "kuc-element-class",
       );
     });
     it("should be HTMLElement when assigned html string on constructor", async () => {
@@ -40,10 +40,10 @@ describe("Button", () => {
       const el = await fixture(container);
 
       const contentEl = el.querySelector(
-        ".kuc-button__button"
+        ".kuc-button__button",
       ) as HTMLDivElement;
       expect(contentEl.firstElementChild!.className).to.equal(
-        "kuc-element-class"
+        "kuc-element-class",
       );
     });
     it('should be "content" when set string by setter', async () => {
@@ -51,7 +51,7 @@ describe("Button", () => {
       container.content = "content";
       const el = await fixture(container);
       const buttonEl = el.querySelector(
-        ".kuc-button__button"
+        ".kuc-button__button",
       ) as HTMLButtonElement;
       expect(buttonEl.innerText).to.equal("content");
     });
@@ -62,10 +62,10 @@ describe("Button", () => {
       container.content = htmlElement;
       const el = await fixture(container);
       const contentEl = el.querySelector(
-        ".kuc-button__button"
+        ".kuc-button__button",
       ) as HTMLDivElement;
       expect(contentEl.firstElementChild!.className).to.equal(
-        "kuc-element-class"
+        "kuc-element-class",
       );
     });
     it("should be HTMLElement when set html string by setter", async () => {
@@ -74,10 +74,10 @@ describe("Button", () => {
       container.content = htmlString;
       const el = await fixture(container);
       const contentEl = el.querySelector(
-        ".kuc-button__button"
+        ".kuc-button__button",
       ) as HTMLDivElement;
       expect(contentEl.firstElementChild!.className).to.equal(
-        "kuc-element-class"
+        "kuc-element-class",
       );
     });
   });

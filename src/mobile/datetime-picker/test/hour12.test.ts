@@ -12,7 +12,7 @@ describe("MobileDateTimePicker", () => {
       const el = await fixture(container);
       await elementUpdated(container);
       const selectHourEl = el.querySelector(
-        ".kuc-base-mobile-time__group__hours"
+        ".kuc-base-mobile-time__group__hours",
       ) as HTMLSelectElement;
 
       expect(selectHourEl.value).to.equal("14");
@@ -25,7 +25,7 @@ describe("MobileDateTimePicker", () => {
       const el = await fixture(container);
       await elementUpdated(container);
       const selectHourEl = el.querySelector(
-        ".kuc-base-mobile-time__group__hours"
+        ".kuc-base-mobile-time__group__hours",
       ) as HTMLSelectElement;
 
       expect(selectHourEl.value).to.equal("PM 02");
@@ -40,7 +40,7 @@ describe("MobileDateTimePicker", () => {
       container.hour12 = true;
       await elementUpdated(container);
       const selectHourEl = el.querySelector(
-        ".kuc-base-mobile-time__group__hours"
+        ".kuc-base-mobile-time__group__hours",
       ) as HTMLSelectElement;
 
       expect(selectHourEl.value).to.equal("PM 02");

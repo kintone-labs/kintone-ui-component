@@ -18,37 +18,37 @@ describe("MultiChoice", () => {
 
       const el = await fixture(container);
       const menuEl = el.querySelector(
-        ".kuc-multi-choice__group__menu"
+        ".kuc-multi-choice__group__menu",
       ) as HTMLDivElement;
       menuEl.click();
 
       const itemsEl = el.querySelectorAll(
-        ".kuc-multi-choice__group__menu__item"
+        ".kuc-multi-choice__group__menu__item",
       );
       itemsEl[2].dispatchEvent(new Event("mouseover"));
       expect(
         itemsEl[2].classList.contains(
-          "kuc-multi-choice__group__menu__highlight"
-        )
+          "kuc-multi-choice__group__menu__highlight",
+        ),
       ).to.equal(true);
 
       itemsEl[1].dispatchEvent(new Event("mouseover"));
       expect(
         itemsEl[2].classList.contains(
-          "kuc-multi-choice__group__menu__highlight"
-        )
+          "kuc-multi-choice__group__menu__highlight",
+        ),
       ).to.equal(false);
       expect(
         itemsEl[1].classList.contains(
-          "kuc-multi-choice__group__menu__highlight"
-        )
+          "kuc-multi-choice__group__menu__highlight",
+        ),
       ).to.equal(true);
 
       itemsEl[1].dispatchEvent(new Event("mouseleave"));
       expect(
         itemsEl[1].classList.contains(
-          "kuc-multi-choice__group__menu__highlight"
-        )
+          "kuc-multi-choice__group__menu__highlight",
+        ),
       ).to.equal(false);
     });
 
@@ -61,15 +61,15 @@ describe("MultiChoice", () => {
 
       const el = await fixture(container);
       const menuEl = el.querySelector(
-        ".kuc-multi-choice__group__menu"
+        ".kuc-multi-choice__group__menu",
       ) as HTMLDivElement;
       menuEl.click();
 
       const itemsEl = el.querySelectorAll(
-        ".kuc-multi-choice__group__menu__item"
+        ".kuc-multi-choice__group__menu__item",
       );
       const highlightEl = el.querySelector(
-        ".kuc-multi-choice__group__menu__highlight"
+        ".kuc-multi-choice__group__menu__highlight",
       );
       itemsEl[2].dispatchEvent(new Event("mouseover"));
       expect(highlightEl).to.equal(null);
@@ -89,25 +89,25 @@ describe("MultiChoice", () => {
 
       const el = await fixture(container);
       const menuEl = el.querySelector(
-        ".kuc-multi-choice__group__menu"
+        ".kuc-multi-choice__group__menu",
       ) as HTMLDivElement;
       menuEl.click();
 
       const itemsEl = el.querySelectorAll(
-        ".kuc-multi-choice__group__menu__item"
+        ".kuc-multi-choice__group__menu__item",
       );
       itemsEl[2].dispatchEvent(new Event("mouseover"));
       expect(
         itemsEl[2].classList.contains(
-          "kuc-multi-choice__group__menu__highlight"
-        )
+          "kuc-multi-choice__group__menu__highlight",
+        ),
       ).to.equal(true);
 
       itemsEl[2].dispatchEvent(new Event("mousedown"));
       expect(
         itemsEl[2].classList.contains(
-          "kuc-multi-choice__group__menu__highlight"
-        )
+          "kuc-multi-choice__group__menu__highlight",
+        ),
       ).to.equal(true);
     });
 
@@ -118,19 +118,19 @@ describe("MultiChoice", () => {
       });
       const el = await fixture(container);
       const menuEl = el.querySelector(
-        ".kuc-multi-choice__group__menu"
+        ".kuc-multi-choice__group__menu",
       ) as HTMLDivElement;
       menuEl.click();
       menuEl.dispatchEvent(new KeyboardEvent("keydown", { key: "ArrowUp" }));
       menuEl.dispatchEvent(new KeyboardEvent("keydown", { key: "ArrowUp" }));
 
       const itemsEl = el.querySelectorAll(
-        ".kuc-multi-choice__group__menu__item"
+        ".kuc-multi-choice__group__menu__item",
       );
       expect(
         itemsEl[2].classList.contains(
-          "kuc-multi-choice__group__menu__highlight"
-        )
+          "kuc-multi-choice__group__menu__highlight",
+        ),
       ).to.equal(true);
     });
 
@@ -141,19 +141,19 @@ describe("MultiChoice", () => {
       });
       const el = await fixture(container);
       const menuEl = el.querySelector(
-        ".kuc-multi-choice__group__menu"
+        ".kuc-multi-choice__group__menu",
       ) as HTMLDivElement;
       menuEl.click();
       menuEl.dispatchEvent(new KeyboardEvent("keydown", { key: "Up" }));
       menuEl.dispatchEvent(new KeyboardEvent("keydown", { key: "Up" }));
 
       const itemsEl = el.querySelectorAll(
-        ".kuc-multi-choice__group__menu__item"
+        ".kuc-multi-choice__group__menu__item",
       );
       expect(
         itemsEl[2].classList.contains(
-          "kuc-multi-choice__group__menu__highlight"
-        )
+          "kuc-multi-choice__group__menu__highlight",
+        ),
       ).to.equal(true);
     });
 
@@ -164,18 +164,18 @@ describe("MultiChoice", () => {
       });
       const el = await fixture(container);
       const menuEl = el.querySelector(
-        ".kuc-multi-choice__group__menu"
+        ".kuc-multi-choice__group__menu",
       ) as HTMLDivElement;
       menuEl.click();
       menuEl.dispatchEvent(new KeyboardEvent("keydown", { key: "ArrowDown" }));
 
       const itemsEl = el.querySelectorAll(
-        ".kuc-multi-choice__group__menu__item"
+        ".kuc-multi-choice__group__menu__item",
       );
       expect(
         itemsEl[0].classList.contains(
-          "kuc-multi-choice__group__menu__highlight"
-        )
+          "kuc-multi-choice__group__menu__highlight",
+        ),
       ).to.equal(true);
     });
 
@@ -186,18 +186,18 @@ describe("MultiChoice", () => {
       });
       const el = await fixture(container);
       const menuEl = el.querySelector(
-        ".kuc-multi-choice__group__menu"
+        ".kuc-multi-choice__group__menu",
       ) as HTMLDivElement;
       menuEl.click();
       menuEl.dispatchEvent(new KeyboardEvent("keydown", { key: "Down" }));
 
       const itemsEl = el.querySelectorAll(
-        ".kuc-multi-choice__group__menu__item"
+        ".kuc-multi-choice__group__menu__item",
       );
       expect(
         itemsEl[0].classList.contains(
-          "kuc-multi-choice__group__menu__highlight"
-        )
+          "kuc-multi-choice__group__menu__highlight",
+        ),
       ).to.equal(true);
     });
 
@@ -208,7 +208,7 @@ describe("MultiChoice", () => {
       });
       const el = await fixture(container);
       const menuEl = el.querySelector(
-        ".kuc-multi-choice__group__menu"
+        ".kuc-multi-choice__group__menu",
       ) as HTMLDivElement;
       menuEl.click();
       menuEl.dispatchEvent(new KeyboardEvent("keydown", { key: "ArrowDown" }));
@@ -227,7 +227,7 @@ describe("MultiChoice", () => {
       });
       const el = await fixture(container);
       const menuEl = el.querySelector(
-        ".kuc-multi-choice__group__menu"
+        ".kuc-multi-choice__group__menu",
       ) as HTMLDivElement;
       menuEl.click();
       menuEl.dispatchEvent(new KeyboardEvent("keydown", { key: "Down" }));
@@ -246,26 +246,26 @@ describe("MultiChoice", () => {
       });
       const el = await fixture(container);
       const menuEl = el.querySelector(
-        ".kuc-multi-choice__group__menu"
+        ".kuc-multi-choice__group__menu",
       ) as HTMLDivElement;
       menuEl.click();
       menuEl.dispatchEvent(new KeyboardEvent("keydown", { key: "Down" }));
 
       const itemsEl = el.querySelectorAll(
-        ".kuc-multi-choice__group__menu__item"
+        ".kuc-multi-choice__group__menu__item",
       );
       expect(
         itemsEl[0].classList.contains(
-          "kuc-multi-choice__group__menu__highlight"
-        )
+          "kuc-multi-choice__group__menu__highlight",
+        ),
       ).to.equal(true);
 
       // "Space" is not handled key code and it will do nothing as default operation.
       menuEl.dispatchEvent(new KeyboardEvent("keydown", { key: "Space" }));
       expect(
         itemsEl[0].classList.contains(
-          "kuc-multi-choice__group__menu__highlight"
-        )
+          "kuc-multi-choice__group__menu__highlight",
+        ),
       ).to.equal(true);
     });
 
@@ -280,7 +280,7 @@ describe("MultiChoice", () => {
       });
       const el = await fixture(container);
       const menuEl = el.querySelector(
-        ".kuc-multi-choice__group__menu"
+        ".kuc-multi-choice__group__menu",
       ) as HTMLDivElement;
       menuEl.click();
       menuEl.dispatchEvent(new KeyboardEvent("keydown", { key: "ArrowDown" }));
@@ -288,12 +288,12 @@ describe("MultiChoice", () => {
       menuEl.dispatchEvent(new KeyboardEvent("keydown", { key: "ArrowDown" }));
 
       const itemsEl = el.querySelectorAll(
-        ".kuc-multi-choice__group__menu__item"
+        ".kuc-multi-choice__group__menu__item",
       );
       expect(
         itemsEl[0].classList.contains(
-          "kuc-multi-choice__group__menu__highlight"
-        )
+          "kuc-multi-choice__group__menu__highlight",
+        ),
       ).to.equal(true);
     });
 
@@ -308,7 +308,7 @@ describe("MultiChoice", () => {
       });
       const el = await fixture(container);
       const menuEl = el.querySelector(
-        ".kuc-multi-choice__group__menu"
+        ".kuc-multi-choice__group__menu",
       ) as HTMLDivElement;
       menuEl.click();
       menuEl.dispatchEvent(new KeyboardEvent("keydown", { key: "ArrowUp" }));
@@ -316,12 +316,12 @@ describe("MultiChoice", () => {
       menuEl.dispatchEvent(new KeyboardEvent("keydown", { key: "ArrowUp" }));
 
       const itemsEl = el.querySelectorAll(
-        ".kuc-multi-choice__group__menu__item"
+        ".kuc-multi-choice__group__menu__item",
       );
       expect(
         itemsEl[2].classList.contains(
-          "kuc-multi-choice__group__menu__highlight"
-        )
+          "kuc-multi-choice__group__menu__highlight",
+        ),
       ).to.equal(true);
     });
 

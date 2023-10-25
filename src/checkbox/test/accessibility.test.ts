@@ -23,16 +23,16 @@ describe("Checkbox", () => {
 
       const el: HTMLElement = await fixture(container);
       const inputEl = el.querySelector(
-        ".kuc-checkbox__group__select-menu__item__input"
+        ".kuc-checkbox__group__select-menu__item__input",
       ) as HTMLInputElement;
       await triggerFocusFor(inputEl);
       expect(document.activeElement?.className).to.equal(
-        "kuc-checkbox__group__select-menu__item__input"
+        "kuc-checkbox__group__select-menu__item__input",
       );
 
       triggerBlurFor(inputEl);
       expect(document.activeElement?.className).to.not.equal(
-        "kuc-checkbox__group__select-menu__item__input"
+        "kuc-checkbox__group__select-menu__item__input",
       );
     });
 
@@ -44,12 +44,12 @@ describe("Checkbox", () => {
 
       const el: HTMLElement = await fixture(container);
       const inputEls = el.querySelectorAll(
-        ".kuc-checkbox__group__select-menu__item__input"
+        ".kuc-checkbox__group__select-menu__item__input",
       ) as NodeListOf<HTMLInputElement>;
 
       await triggerFocusFor(inputEls[3]);
       await expect(document.activeElement?.className).to.not.equal(
-        "kuc-checkbox__group__select-menu__item__input"
+        "kuc-checkbox__group__select-menu__item__input",
       );
     });
   });

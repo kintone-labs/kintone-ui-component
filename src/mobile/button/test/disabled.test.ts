@@ -8,7 +8,7 @@ describe("MobileButton", () => {
       const container = new MobileButton({});
       const el = await fixture(container);
       const buttonEl = el.querySelector(
-        ".kuc-mobile-button__button"
+        ".kuc-mobile-button__button",
       ) as HTMLButtonElement;
 
       expect(buttonEl.hasAttribute("disabled")).to.equal(false);
@@ -18,7 +18,7 @@ describe("MobileButton", () => {
       const container = new MobileButton({ disabled: true });
       const el = await fixture(container);
       const buttonEl = el.querySelector(
-        ".kuc-mobile-button__button"
+        ".kuc-mobile-button__button",
       ) as HTMLButtonElement;
 
       expect(buttonEl.hasAttribute("disabled")).to.equal(true);
@@ -29,7 +29,7 @@ describe("MobileButton", () => {
       container.disabled = true;
       const el = await fixture(container);
       const buttonEl = el.querySelector(
-        ".kuc-mobile-button__button"
+        ".kuc-mobile-button__button",
       ) as HTMLButtonElement;
 
       expect(buttonEl.hasAttribute("disabled")).to.equal(true);
@@ -40,7 +40,7 @@ describe("MobileButton", () => {
       container.disabled = false;
       const el = await fixture(container);
       const buttonEl = el.querySelector(
-        ".kuc-mobile-button__button"
+        ".kuc-mobile-button__button",
       ) as HTMLButtonElement;
 
       expect(buttonEl.hasAttribute("disabled")).to.equal(false);

@@ -23,20 +23,20 @@ describe("RadioButton", () => {
 
       const el: HTMLElement = await fixture(container);
       const itemsEl = el.querySelector(
-        ".kuc-radio-button__group__select-menu__item__input"
+        ".kuc-radio-button__group__select-menu__item__input",
       ) as HTMLInputElement;
       await triggerFocusFor(itemsEl);
       expect(
         document.activeElement?.classList.contains(
-          "kuc-radio-button__group__select-menu__item__input"
-        )
+          "kuc-radio-button__group__select-menu__item__input",
+        ),
       ).to.equal(true);
 
       await triggerBlurFor(itemsEl);
       expect(
         document.activeElement?.classList.contains(
-          "kuc-radio-button__group__select-menu__item__input"
-        )
+          "kuc-radio-button__group__select-menu__item__input",
+        ),
       ).to.equal(false);
     });
   });

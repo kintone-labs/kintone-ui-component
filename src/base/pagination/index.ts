@@ -71,25 +71,25 @@ let exportPagination;
 
     private _handleFocusPrevButton() {
       this._prevButtonEl.classList.add(
-        "kuc-base-pagination__group__pager--focus"
+        "kuc-base-pagination__group__pager--focus",
       );
     }
 
     private _handleBlurPrevButton() {
       this._prevButtonEl.classList.remove(
-        "kuc-base-pagination__group__pager--focus"
+        "kuc-base-pagination__group__pager--focus",
       );
     }
 
     private _handleMouseOverPrevButton() {
       this._prevButtonEl.classList.add(
-        "kuc-base-pagination__group__pager--horver"
+        "kuc-base-pagination__group__pager--horver",
       );
     }
 
     private _handleMouseLeavePrevButton() {
       this._prevButtonEl.classList.remove(
-        "kuc-base-pagination__group__pager--horver"
+        "kuc-base-pagination__group__pager--horver",
       );
     }
 
@@ -100,25 +100,25 @@ let exportPagination;
 
     private _handleFocusNextButton() {
       this._nextButtonEl.classList.add(
-        "kuc-base-pagination__group__pager--focus"
+        "kuc-base-pagination__group__pager--focus",
       );
     }
 
     private _handleBlurNextButton() {
       this._nextButtonEl.classList.remove(
-        "kuc-base-pagination__group__pager--focus"
+        "kuc-base-pagination__group__pager--focus",
       );
     }
 
     private _handleMouseOverNextButton() {
       this._nextButtonEl.classList.add(
-        "kuc-base-pagination__group__pager--horver"
+        "kuc-base-pagination__group__pager--horver",
       );
     }
 
     private _handleMouseLeaveNextButton() {
       this._nextButtonEl.classList.remove(
-        "kuc-base-pagination__group__pager--horver"
+        "kuc-base-pagination__group__pager--horver",
       );
     }
 

@@ -44,7 +44,7 @@ const template = (args) => {
     "Set nonexistent element",
     () => {
       spinner.container = document.createElement("div");
-    }
+    },
   );
 
   const setInvalidValueButton = createButton("Set invalid value", () => {

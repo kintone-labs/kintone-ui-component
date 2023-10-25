@@ -47,12 +47,12 @@ export class BaseMobileDateTimeCalendarHeader extends KucBase {
   private _locale = getLocale("en");
 
   @query(
-    ".kuc-base-mobile-datetime-calendar-header__group__center__month__select"
+    ".kuc-base-mobile-datetime-calendar-header__group__center__month__select",
   )
   private _selectMonthEl!: HTMLSelectElement;
 
   @query(
-    ".kuc-base-mobile-datetime-calendar-header__group__center__year__select"
+    ".kuc-base-mobile-datetime-calendar-header__group__center__year__select",
   )
   private _selectYearEl!: HTMLSelectElement;
 
@@ -213,29 +213,27 @@ export class BaseMobileDateTimeCalendarHeader extends KucBase {
 
   private _getOptionsMonthTemplate() {
     return this._monthOptions.map(
-      (month) =>
-        html`
-          <option
-            ?selected="${parseInt(month.value!, 10) === this.month}"
-            value="${month.value!}"
-          >
-            ${month.label}
-          </option>
-        `
+      (month) => html`
+        <option
+          ?selected="${parseInt(month.value!, 10) === this.month}"
+          value="${month.value!}"
+        >
+          ${month.label}
+        </option>
+      `,
     );
   }
 
   private _getOptionsYearTemplate() {
     return this._yearOptions.map(
-      (year) =>
-        html`
-          <option
-            ?selected="${parseInt(year.value!, 10) === this.year}"
-            value="${year.value!}"
-          >
-            ${year.label}
-          </option>
-        `
+      (year) => html`
+        <option
+          ?selected="${parseInt(year.value!, 10) === this.year}"
+          value="${year.value!}"
+        >
+          ${year.label}
+        </option>
+      `,
     );
   }
 
@@ -310,6 +308,6 @@ if (!window.customElements.get("kuc-base-mobile-datetime-calendar-header")) {
   createStyleOnHeader(BASE_MOBILE_CALENDAR_HEADER_CSS);
   window.customElements.define(
     "kuc-base-mobile-datetime-calendar-header",
-    BaseMobileDateTimeCalendarHeader
+    BaseMobileDateTimeCalendarHeader,
   );
 }

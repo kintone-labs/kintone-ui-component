@@ -9,7 +9,7 @@ describe("Attachment", () => {
       const container = new Attachment();
       const el = await fixture(container);
       const requiredIconEl = el.querySelector(
-        ".kuc-base-label__required-icon"
+        ".kuc-base-label__required-icon",
       ) as HTMLSpanElement;
       expect(requiredIconEl.hasAttribute("hidden")).to.equal(true);
       const computedStyle = window.getComputedStyle(requiredIconEl);
@@ -20,7 +20,7 @@ describe("Attachment", () => {
       const container = new Attachment({ requiredIcon: true });
       const el = await fixture(container);
       const requiredIconEl = el.querySelector(
-        ".kuc-base-label__required-icon"
+        ".kuc-base-label__required-icon",
       ) as HTMLSpanElement;
       expect(requiredIconEl.hasAttribute("hidden")).to.equal(false);
       const computedStyle = window.getComputedStyle(requiredIconEl);
@@ -32,7 +32,7 @@ describe("Attachment", () => {
       container.requiredIcon = true;
       const el = await fixture(container);
       const requiredIconEl = el.querySelector(
-        ".kuc-base-label__required-icon"
+        ".kuc-base-label__required-icon",
       ) as HTMLSpanElement;
       expect(requiredIconEl.hasAttribute("hidden")).to.equal(false);
       const computedStyle = window.getComputedStyle(requiredIconEl);
@@ -44,7 +44,7 @@ describe("Attachment", () => {
       container.requiredIcon = false;
       const el = await fixture(container);
       const requiredIconEl = el.querySelector(
-        ".kuc-base-label__required-icon"
+        ".kuc-base-label__required-icon",
       ) as HTMLSpanElement;
       expect(requiredIconEl.hasAttribute("hidden")).to.equal(true);
       const computedStyle = window.getComputedStyle(requiredIconEl);

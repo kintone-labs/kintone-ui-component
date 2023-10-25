@@ -22,13 +22,13 @@ describe("Combobox", () => {
 
     const el = await fixture(container);
     const toggleIconButtonEl = el.querySelector(
-      ".kuc-combobox__group__toggle__icon__button"
+      ".kuc-combobox__group__toggle__icon__button",
     ) as HTMLButtonElement;
     toggleIconButtonEl.click();
     await elementUpdated(container);
 
     const itemsEl = el.querySelectorAll(
-      ".kuc-combobox__group__select-menu__item"
+      ".kuc-combobox__group__select-menu__item",
     );
     (itemsEl[2] as HTMLDivElement).dispatchEvent(new Event("mousedown"));
 
@@ -50,13 +50,13 @@ describe("Combobox", () => {
 
     const el = await fixture(container);
     const toggleIconButtonEl = el.querySelector(
-      ".kuc-combobox__group__toggle__icon__button"
+      ".kuc-combobox__group__toggle__icon__button",
     ) as HTMLButtonElement;
     toggleIconButtonEl.click();
     await elementUpdated(container);
 
     const itemsEl = el.querySelectorAll(
-      ".kuc-combobox__group__select-menu__item"
+      ".kuc-combobox__group__select-menu__item",
     );
     (itemsEl[1] as HTMLDivElement).dispatchEvent(new Event("mousedown"));
     expect(triggeredEvent).to.equal(null);
@@ -77,12 +77,12 @@ describe("Combobox", () => {
 
     const el = await fixture(container);
     const toggleEl = el.querySelector(
-      ".kuc-combobox__group__toggle__icon__button"
+      ".kuc-combobox__group__toggle__icon__button",
     ) as HTMLDivElement;
     toggleEl.click();
     await elementUpdated(container);
     const itemsEl = el.querySelectorAll(
-      ".kuc-combobox__group__select-menu__item"
+      ".kuc-combobox__group__select-menu__item",
     );
     (itemsEl[3] as HTMLDivElement).dispatchEvent(new Event("mousedown"));
     expect(triggeredEvent).to.equal(null);

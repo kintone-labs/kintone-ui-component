@@ -8,7 +8,7 @@ describe("BaseMobileDateTimeCalendarBody", () => {
       const container = new BaseMobileDateTimeCalendarBody();
       const el = await fixture(container);
       const item = el.querySelector(
-        ".kuc-base-mobile-datetime-calendar-body__table__header"
+        ".kuc-base-mobile-datetime-calendar-body__table__header",
       ) as HTMLTableSectionElement;
       expect(item.innerText).to.equal("SUN");
     });
@@ -18,7 +18,7 @@ describe("BaseMobileDateTimeCalendarBody", () => {
       container.language = "vn";
       const el = await fixture(container);
       const item = el.querySelector(
-        ".kuc-base-mobile-datetime-calendar-body__table__header"
+        ".kuc-base-mobile-datetime-calendar-body__table__header",
       ) as HTMLTableSectionElement;
       expect(item.innerText).to.equal("SUN");
     });
@@ -28,7 +28,7 @@ describe("BaseMobileDateTimeCalendarBody", () => {
       container.language = "en";
       const el = await fixture(container);
       const item = el.querySelector(
-        ".kuc-base-mobile-datetime-calendar-body__table__header"
+        ".kuc-base-mobile-datetime-calendar-body__table__header",
       ) as HTMLTableSectionElement;
       expect(item.innerText).to.equal("SUN");
     });
@@ -38,7 +38,7 @@ describe("BaseMobileDateTimeCalendarBody", () => {
       container.language = "ja";
       const el = await fixture(container);
       const item = el.querySelector(
-        ".kuc-base-mobile-datetime-calendar-body__table__header"
+        ".kuc-base-mobile-datetime-calendar-body__table__header",
       ) as HTMLTableSectionElement;
       expect(item.innerText).to.equal("日");
     });
@@ -48,7 +48,7 @@ describe("BaseMobileDateTimeCalendarBody", () => {
       container.language = "zh-TW";
       const el = await fixture(container);
       const item = el.querySelector(
-        ".kuc-base-mobile-datetime-calendar-body__table__header"
+        ".kuc-base-mobile-datetime-calendar-body__table__header",
       ) as HTMLTableSectionElement;
       expect(item.innerText).to.equal("周日");
     });
@@ -57,7 +57,7 @@ describe("BaseMobileDateTimeCalendarBody", () => {
       container.language = "zh";
       const el = await fixture(container);
       const item = el.querySelector(
-        ".kuc-base-mobile-datetime-calendar-body__table__header"
+        ".kuc-base-mobile-datetime-calendar-body__table__header",
       ) as HTMLTableSectionElement;
       expect(item.innerText).to.equal("周日");
     });

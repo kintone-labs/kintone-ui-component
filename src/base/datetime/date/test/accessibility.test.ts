@@ -12,13 +12,13 @@ describe("BaseDate", () => {
 
       const el = await fixture(container);
       const inputEl = el.querySelector(
-        ".kuc-base-date__input"
+        ".kuc-base-date__input",
       ) as HTMLInputElement;
       inputEl.click();
       await elementUpdated(container);
       await elementUpdated(el);
       const assistiveText = el.querySelector(
-        ".kuc-base-date__assistive-text"
+        ".kuc-base-date__assistive-text",
       ) as HTMLButtonElement;
 
       expect(assistiveText.getAttribute("aria-expanded")).to.equal("true");
@@ -37,13 +37,13 @@ describe("BaseDate", () => {
 
       const el = await fixture(container);
       const inputEl = el.querySelector(
-        ".kuc-base-date__input"
+        ".kuc-base-date__input",
       ) as HTMLInputElement;
       inputEl.click();
       await elementUpdated(container);
       await elementUpdated(el);
       const assistiveText = el.querySelector(
-        ".kuc-base-date__assistive-text"
+        ".kuc-base-date__assistive-text",
       ) as HTMLButtonElement;
 
       expect(assistiveText.getAttribute("aria-expanded")).to.equal("true");
@@ -61,7 +61,7 @@ describe("BaseDate", () => {
       const el = await fixture(container);
 
       const assistiveText = el.querySelector(
-        ".kuc-base-date__assistive-text"
+        ".kuc-base-date__assistive-text",
       ) as HTMLButtonElement;
 
       assistiveText.focus();
@@ -79,7 +79,7 @@ describe("BaseDate", () => {
       const el = await fixture(container);
 
       const assistiveText = el.querySelector(
-        ".kuc-base-date__assistive-text"
+        ".kuc-base-date__assistive-text",
       ) as HTMLButtonElement;
 
       assistiveText.focus();
