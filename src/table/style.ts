@@ -37,7 +37,7 @@ export const TABLE_CSS = `
     }
     .kuc-table__table__header {
         border-width: 0px 1px;
-        border-color: var(--kuc-table-header-cell-background-color, #3498db);
+        border-color: var(--kuc-table-header-background-color, #3498db);
         border-style: solid;
         border-right: 0;
     }
@@ -49,7 +49,7 @@ export const TABLE_CSS = `
         overflow: auto;
         font-size: var(--kuc-table-header-font-size, 12px);
         font-weight: 400;
-        background-color: var(--kuc-table-header-cell-background-color, #3498db);
+        background-color: var(--kuc-table-header-background-color, #3498db);
         color: var(--kuc-table-header-color, #ffffff);
         height: var(--kuc-table-header-height, 40px);
         padding: 4px 8px;
