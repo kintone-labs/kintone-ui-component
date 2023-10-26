@@ -29,7 +29,11 @@ import { ReadOnlyTableComponent } from "@site/static/js/samples/desktop/readonly
 | pagination | boolean | true | ページネーションの表示/非表示設定 | false を指定した場合、ページネーションは非表示になり全ての行が表示される<br/>true を指定した場合、ページネーションは表示され rowsPerPage に指定された行数のみがページごとに表示される |
 | visible | boolean | true | コンポーネントの表示/非表示設定 | |
 | columns | Array<[Column](#column)\> | []  | コンポーネントの列データ | columns が配列以外の場合、エラーを出力する |
-| data | Array<object\> | []  | コンポーネントの行データ | data が配列以外の場合、エラーを出力する |
+| data *1 | Array<object\> | []  | コンポーネントの行データ | data が配列以外の場合、エラーを出力する |
+
+:::caution
+*1: kintone UI Component はこのプロパティの値を内部的にサニタイズしていません。ユーザー入力を受け付けるような実装でこのプロパティを使用する場合は、開発者自身で XSS 対策をしてください。
+:::
 
 #### Column
 | Name | Type | Default | Description | Remark |

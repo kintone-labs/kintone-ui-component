@@ -29,7 +29,11 @@ Here is a list of properties that can be used for modifying the component:
 | pagination | boolean | true | Show/Hide the pagination | If setting `false`, pagination is hidden and all rows are displayed<br/>If setting `true`, pagination is displayed and only the number of rows set in `rowsPerPage` are displayed |
 | visible | boolean | true | Show/Hide the component | |
 | columns | Array<[Column](#column)\> | []  | Column data of the component | Will result an error if the value of `columns` is not an array |
-| data | Array<object\> | []  | Row data of the component | Will result an error if the value of `data` is not an array |
+| data *1 | Array<object\> | []  | Row data of the component | Will result an error if the value of `data` is not an array |
+
+:::caution
+*1: [Security] Kintone UI Component does NOT sanitize this property value. It is the developer's responsibility to escape any user input when using this option so that XSS attacks would be prevented.
+:::
 
 #### Column
 | Name | Type | Default | Description | Remark |
