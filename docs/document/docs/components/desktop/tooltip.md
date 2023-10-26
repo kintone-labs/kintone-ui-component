@@ -69,6 +69,21 @@ Here is a list of available constructors:
 | :--- | :--- | :--- | :--- | :--- |
 | options  | object | {} | Object that includes component properties |  |
 
+### Custom CSS
+:::tip
+Please check [Custom CSS feature guide](../../getting-started/custom-css.md) at first.
+:::
+
+Here is a list of properties that can be used for modifying component style:
+#### Property
+| Name |
+| :--- |
+| --kuc-tooltip-width |
+| --kuc-tooltip-height |
+| --kuc-tooltip-font-size |
+| --kuc-tooltip-color |
+| --kuc-tooltip-background-color |
+
 ---
 
 ## Sample Code

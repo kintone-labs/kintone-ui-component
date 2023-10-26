@@ -69,6 +69,21 @@ Tooltip(options)<br/>
 | :--- | :--- | :--- | :--- | :--- |
 | options  | object | {} | コンポーネントのプロパティを含むオブジェクト |  |
 
+### Custom CSS
+:::tip
+[Custom CSS](../../getting-started/custom-css.md) をご確認ください。
+:::
+
+コンポーネントのスタイルを変更するために使用できるプロパティの一覧です。
+#### Property
+| Name |
+| :--- |
+| --kuc-tooltip-width |
+| --kuc-tooltip-height |
+| --kuc-tooltip-font-size |
+| --kuc-tooltip-color |
+| --kuc-tooltip-background-color |
+
 ---
 
 ## Sample Code
