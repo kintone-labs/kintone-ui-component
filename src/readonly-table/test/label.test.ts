@@ -9,7 +9,7 @@ describe("ReadOnlyTable", () => {
 
       const el = await fixture(container);
       const captionEl = el.querySelector(
-        ".kuc-readonly-table___table__label"
+        ".kuc-readonly-table___table__label",
       ) as HTMLTableCaptionElement;
 
       expect(captionEl).to.equal(null);
@@ -22,7 +22,7 @@ describe("ReadOnlyTable", () => {
 
       const el = await fixture(container);
       const captionEl = el.querySelector(
-        ".kuc-readonly-table__table__label"
+        ".kuc-readonly-table__table__label",
       ) as HTMLTableCaptionElement;
 
       expect(captionEl.textContent?.trim()).to.equal("options-label");
@@ -34,7 +34,7 @@ describe("ReadOnlyTable", () => {
 
       const el = await fixture(container);
       const captionEl = el.querySelector(
-        ".kuc-readonly-table__table__label"
+        ".kuc-readonly-table__table__label",
       ) as HTMLTableCaptionElement;
 
       expect(captionEl.textContent?.trim()).to.equal("replace-label");

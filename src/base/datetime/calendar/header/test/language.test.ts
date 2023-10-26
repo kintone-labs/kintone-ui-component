@@ -8,15 +8,15 @@ describe("BaseDateTimeCalendarHeader", () => {
       const container = new BaseDateTimeCalendarHeader();
       const el = await fixture(container);
       const headerCenterEl = el.querySelector(
-        ".kuc-base-datetime-calendar-header__group__center"
+        ".kuc-base-datetime-calendar-header__group__center",
       ) as HTMLSpanElement;
 
       expect(headerCenterEl.childElementCount).to.equal(2);
       expect(headerCenterEl.children[0].tagName).to.equal(
-        "KUC-BASE-DATETIME-HEADER-MONTH"
+        "KUC-BASE-DATETIME-HEADER-MONTH",
       );
       expect(headerCenterEl.children[1].tagName).to.equal(
-        "KUC-BASE-DATETIME-HEADER-YEAR"
+        "KUC-BASE-DATETIME-HEADER-YEAR",
       );
     });
 
@@ -25,7 +25,7 @@ describe("BaseDateTimeCalendarHeader", () => {
       container.language = "ja";
       const el = await fixture(container);
       const headerCenterEl = el.querySelector(
-        ".kuc-base-datetime-calendar-header__group__center"
+        ".kuc-base-datetime-calendar-header__group__center",
       ) as HTMLSpanElement;
 
       expect(headerCenterEl.childElementCount).to.equal(2);
@@ -35,7 +35,7 @@ describe("BaseDateTimeCalendarHeader", () => {
       expect(yearEl.textContent).to.contain("年");
 
       expect(headerCenterEl.children[1].tagName).to.equal(
-        "KUC-BASE-DATETIME-HEADER-MONTH"
+        "KUC-BASE-DATETIME-HEADER-MONTH",
       );
     });
 
@@ -44,7 +44,7 @@ describe("BaseDateTimeCalendarHeader", () => {
       container.language = "zh";
       const el = await fixture(container);
       const headerCenterEl = el.querySelector(
-        ".kuc-base-datetime-calendar-header__group__center"
+        ".kuc-base-datetime-calendar-header__group__center",
       ) as HTMLSpanElement;
 
       expect(headerCenterEl.childElementCount).to.equal(2);
@@ -54,7 +54,7 @@ describe("BaseDateTimeCalendarHeader", () => {
       expect(yearEl.textContent).to.contain("年");
 
       expect(headerCenterEl.children[1].tagName).to.equal(
-        "KUC-BASE-DATETIME-HEADER-MONTH"
+        "KUC-BASE-DATETIME-HEADER-MONTH",
       );
     });
 
@@ -63,7 +63,7 @@ describe("BaseDateTimeCalendarHeader", () => {
       container.language = "zh-TW";
       const el = await fixture(container);
       const headerCenterEl = el.querySelector(
-        ".kuc-base-datetime-calendar-header__group__center"
+        ".kuc-base-datetime-calendar-header__group__center",
       ) as HTMLSpanElement;
 
       expect(headerCenterEl.childElementCount).to.equal(2);
@@ -73,7 +73,7 @@ describe("BaseDateTimeCalendarHeader", () => {
       expect(yearEl.textContent).to.contain("年");
 
       expect(headerCenterEl.children[1].tagName).to.equal(
-        "KUC-BASE-DATETIME-HEADER-MONTH"
+        "KUC-BASE-DATETIME-HEADER-MONTH",
       );
     });
 
@@ -82,15 +82,15 @@ describe("BaseDateTimeCalendarHeader", () => {
       container.language = "en";
       const el = await fixture(container);
       const headerCenterEl = el.querySelector(
-        ".kuc-base-datetime-calendar-header__group__center"
+        ".kuc-base-datetime-calendar-header__group__center",
       ) as HTMLSpanElement;
 
       expect(headerCenterEl.childElementCount).to.equal(2);
       expect(headerCenterEl.children[0].tagName).to.equal(
-        "KUC-BASE-DATETIME-HEADER-MONTH"
+        "KUC-BASE-DATETIME-HEADER-MONTH",
       );
       expect(headerCenterEl.children[1].tagName).to.equal(
-        "KUC-BASE-DATETIME-HEADER-YEAR"
+        "KUC-BASE-DATETIME-HEADER-YEAR",
       );
     });
 
@@ -99,15 +99,15 @@ describe("BaseDateTimeCalendarHeader", () => {
       container.language = "xx";
       const el = await fixture(container);
       const headerCenterEl = el.querySelector(
-        ".kuc-base-datetime-calendar-header__group__center"
+        ".kuc-base-datetime-calendar-header__group__center",
       ) as HTMLSpanElement;
 
       expect(headerCenterEl.childElementCount).to.equal(2);
       expect(headerCenterEl.children[0].tagName).to.equal(
-        "KUC-BASE-DATETIME-HEADER-MONTH"
+        "KUC-BASE-DATETIME-HEADER-MONTH",
       );
       expect(headerCenterEl.children[1].tagName).to.equal(
-        "KUC-BASE-DATETIME-HEADER-YEAR"
+        "KUC-BASE-DATETIME-HEADER-YEAR",
       );
     });
   });

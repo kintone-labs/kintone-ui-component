@@ -15,7 +15,7 @@ describe("Tabs", () => {
 
       const el = await fixture(container);
       const tabPanels = el.querySelectorAll(
-        ".kuc-tabs__group__tab-panel__content"
+        ".kuc-tabs__group__tab-panel__content",
       );
 
       expect(container.value).to.equal("");
@@ -30,7 +30,7 @@ describe("Tabs", () => {
       container.value = initItems[2].value;
       const el = await fixture(container);
       const tabPanels = el.querySelectorAll(
-        ".kuc-tabs__group__tab-panel__content"
+        ".kuc-tabs__group__tab-panel__content",
       );
       expect(tabPanels[2].hasAttribute("hidden")).to.equal(false);
     });

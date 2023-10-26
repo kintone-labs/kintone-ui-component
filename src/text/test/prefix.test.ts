@@ -8,7 +8,7 @@ describe("Text", () => {
       const container = new Text();
       const el = await fixture(container);
       const prefixEl = el.querySelector(
-        ".kuc-text__group__input-form__prefix-outer__prefix"
+        ".kuc-text__group__input-form__prefix-outer__prefix",
       ) as HTMLSpanElement;
       expect(prefixEl.hasAttribute("hidden")).to.equal(true);
     });
@@ -17,7 +17,7 @@ describe("Text", () => {
       const container = new Text({ prefix: "$" });
       const el = await fixture(container);
       const prefixEl = el.querySelector(
-        ".kuc-text__group__input-form__prefix-outer__prefix"
+        ".kuc-text__group__input-form__prefix-outer__prefix",
       ) as HTMLSpanElement;
       expect(prefixEl.hasAttribute("hidden")).to.equal(false);
       expect(prefixEl.innerText).to.equal("$");
@@ -28,7 +28,7 @@ describe("Text", () => {
       container.prefix = "$";
       const el = await fixture(container);
       const prefixEl = el.querySelector(
-        ".kuc-text__group__input-form__prefix-outer__prefix"
+        ".kuc-text__group__input-form__prefix-outer__prefix",
       ) as HTMLSpanElement;
       expect(prefixEl.hasAttribute("hidden")).to.equal(false);
       expect(prefixEl.innerText).to.equal("$");
@@ -39,7 +39,7 @@ describe("Text", () => {
       container.prefix = "$";
       const el = await fixture(container);
       const prefixEl = el.querySelector(
-        ".kuc-text__group__input-form__prefix-outer__prefix"
+        ".kuc-text__group__input-form__prefix-outer__prefix",
       ) as HTMLSpanElement;
       expect(prefixEl.hasAttribute("hidden")).to.equal(false);
       expect(prefixEl.innerText).to.equal("$");

@@ -22,12 +22,12 @@ describe("Dropdown", () => {
 
     const el = await fixture(container);
     const toggleEl = el.querySelector(
-      ".kuc-dropdown__group__toggle"
+      ".kuc-dropdown__group__toggle",
     ) as HTMLDivElement;
     toggleEl.click();
 
     const itemsEl = el.querySelectorAll(
-      ".kuc-dropdown__group__select-menu__item"
+      ".kuc-dropdown__group__select-menu__item",
     );
     (itemsEl[2] as HTMLDivElement).dispatchEvent(new Event("mousedown"));
 
@@ -49,12 +49,12 @@ describe("Dropdown", () => {
 
     const el = await fixture(container);
     const toggleEl = el.querySelector(
-      ".kuc-dropdown__group__toggle"
+      ".kuc-dropdown__group__toggle",
     ) as HTMLDivElement;
     toggleEl.click();
 
     const itemsEl = el.querySelectorAll(
-      ".kuc-dropdown__group__select-menu__item"
+      ".kuc-dropdown__group__select-menu__item",
     );
     (itemsEl[1] as HTMLDivElement).dispatchEvent(new Event("mousedown"));
     expect(triggeredEvent).to.equal(null);
@@ -72,12 +72,12 @@ describe("Dropdown", () => {
 
     const el = await fixture(container);
     const toggleEl = el.querySelector(
-      ".kuc-dropdown__group__toggle"
+      ".kuc-dropdown__group__toggle",
     ) as HTMLDivElement;
     toggleEl.click();
 
     const itemsEl = el.querySelectorAll(
-      ".kuc-dropdown__group__select-menu__item"
+      ".kuc-dropdown__group__select-menu__item",
     );
     (itemsEl[3] as HTMLDivElement).dispatchEvent(new Event("mousedown"));
     await expect(triggeredEvent).to.equal(null);

@@ -184,7 +184,7 @@ export class BaseDate extends KucBase {
     this._calendarValue = this._getNewCalendarValue(newValue);
     if (this._calendarValue.length > 7) {
       this._dispathDateChangeCustomEvent(
-        formatInputValueToValue(this.language, newValue)
+        formatInputValueToValue(this.language, newValue),
       );
       return;
     }

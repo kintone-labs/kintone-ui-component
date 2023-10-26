@@ -30,7 +30,7 @@ describe("MobileCheckbox", () => {
       const container = new MultiChoice();
       const el = await fixture(container);
       const itemsEl = el.querySelectorAll(
-        ".kuc-multi-choice__group__menu__item"
+        ".kuc-multi-choice__group__menu__item",
       );
       expect(itemsEl.length).to.equal(0);
     });
@@ -39,29 +39,29 @@ describe("MobileCheckbox", () => {
       const container = new MultiChoice({ items: initItemsWithoutLabel });
       const el = await fixture(container);
       const itemsEl = el.querySelectorAll(
-        ".kuc-multi-choice__group__menu__item"
+        ".kuc-multi-choice__group__menu__item",
       );
       expect(itemsEl.length).to.equal(3);
 
       expect(itemsEl[0].getAttribute("value")).to.equal(
-        initItemsWithoutLabel[0].value
+        initItemsWithoutLabel[0].value,
       );
       expect(itemsEl[0].textContent?.trim()).to.equal(
-        initItemsWithoutLabel[0].value
+        initItemsWithoutLabel[0].value,
       );
 
       expect(itemsEl[1].getAttribute("value")).to.equal(
-        initItemsWithoutLabel[1].value
+        initItemsWithoutLabel[1].value,
       );
       expect(itemsEl[1].textContent?.trim()).to.equal(
-        initItemsWithoutLabel[1].value
+        initItemsWithoutLabel[1].value,
       );
 
       expect(itemsEl[2].getAttribute("value")).to.equal(
-        initItemsWithoutLabel[2].value
+        initItemsWithoutLabel[2].value,
       );
       expect(itemsEl[2].textContent?.trim()).to.equal(
-        initItemsWithoutLabel[2].value
+        initItemsWithoutLabel[2].value,
       );
     });
 
@@ -71,30 +71,30 @@ describe("MobileCheckbox", () => {
 
       const el = await fixture(container);
       const itemsEl = el.querySelectorAll(
-        ".kuc-multi-choice__group__menu__item"
+        ".kuc-multi-choice__group__menu__item",
       );
 
       expect(itemsEl.length).to.equal(3);
 
       expect(itemsEl[0].getAttribute("value")).to.equal(
-        initItemsWithoutLabel[0].value
+        initItemsWithoutLabel[0].value,
       );
       expect(itemsEl[0].textContent?.trim()).to.equal(
-        initItemsWithoutLabel[0].value
+        initItemsWithoutLabel[0].value,
       );
 
       expect(itemsEl[1].getAttribute("value")).to.equal(
-        initItemsWithoutLabel[1].value
+        initItemsWithoutLabel[1].value,
       );
       expect(itemsEl[1].textContent?.trim()).to.equal(
-        initItemsWithoutLabel[1].value
+        initItemsWithoutLabel[1].value,
       );
 
       expect(itemsEl[2].getAttribute("value")).to.equal(
-        initItemsWithoutLabel[2].value
+        initItemsWithoutLabel[2].value,
       );
       expect(itemsEl[2].textContent?.trim()).to.equal(
-        initItemsWithoutLabel[2].value
+        initItemsWithoutLabel[2].value,
       );
     });
     it('should set item value "" when assigned item value undefined on constructor', async () => {
@@ -103,7 +103,7 @@ describe("MobileCheckbox", () => {
       });
       const el = await fixture(container);
       const itemsEl = el.querySelectorAll(
-        ".kuc-multi-choice__group__menu__item"
+        ".kuc-multi-choice__group__menu__item",
       );
       expect(itemsEl.length).to.equal(1);
       expect(itemsEl[0].getAttribute("value")).to.equal("");
@@ -113,7 +113,7 @@ describe("MobileCheckbox", () => {
 
       const el = await fixture(container);
       const itemsEl = el.querySelectorAll(
-        ".kuc-multi-choice__group__menu__item"
+        ".kuc-multi-choice__group__menu__item",
       );
 
       expect(container.items).to.be.equal(initItems);
@@ -135,7 +135,7 @@ describe("MobileCheckbox", () => {
 
       const el = await fixture(container);
       const itemsEl = el.querySelectorAll(
-        ".kuc-multi-choice__group__menu__item"
+        ".kuc-multi-choice__group__menu__item",
       );
 
       expect(container.items).to.be.equal(initItems);
@@ -157,7 +157,7 @@ describe("MobileCheckbox", () => {
 
       const el = await fixture(container);
       const itemsEl = el.querySelectorAll(
-        ".kuc-multi-choice__group__menu__item"
+        ".kuc-multi-choice__group__menu__item",
       );
 
       expect(container.items).to.be.equal(replacedItems);

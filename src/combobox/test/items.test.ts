@@ -25,13 +25,13 @@ describe("Combobox", () => {
       const container = new Combobox();
       const el = await fixture(container);
       const toggleIconButtonEl = el.querySelector(
-        ".kuc-combobox__group__toggle__icon__button"
+        ".kuc-combobox__group__toggle__icon__button",
       ) as HTMLButtonElement;
       toggleIconButtonEl.click();
       await elementUpdated(container);
 
       const itemsEl = el.querySelectorAll(
-        ".kuc-combobox__group__select-menu__item"
+        ".kuc-combobox__group__select-menu__item",
       );
 
       expect(itemsEl.length).to.equal(0);
@@ -44,36 +44,36 @@ describe("Combobox", () => {
       });
       const el = await fixture(container);
       const toggleIconButtonEl = el.querySelector(
-        ".kuc-combobox__group__toggle__icon__button"
+        ".kuc-combobox__group__toggle__icon__button",
       ) as HTMLButtonElement;
       toggleIconButtonEl.click();
       await elementUpdated(container);
 
       const itemsEl = el.querySelectorAll(
-        ".kuc-combobox__group__select-menu__item"
+        ".kuc-combobox__group__select-menu__item",
       );
 
       expect(itemsEl.length).to.equal(3);
 
       expect(itemsEl[0].getAttribute("value")).to.equal(
-        initItemsWithoutLabel[0].value
+        initItemsWithoutLabel[0].value,
       );
       expect(itemsEl[0].textContent?.trim()).to.equal(
-        initItemsWithoutLabel[0].value
+        initItemsWithoutLabel[0].value,
       );
 
       expect(itemsEl[1].getAttribute("value")).to.equal(
-        initItemsWithoutLabel[1].value
+        initItemsWithoutLabel[1].value,
       );
       expect(itemsEl[1].textContent?.trim()).to.equal(
-        initItemsWithoutLabel[1].value
+        initItemsWithoutLabel[1].value,
       );
 
       expect(itemsEl[2].getAttribute("value")).to.equal(
-        initItemsWithoutLabel[2].value
+        initItemsWithoutLabel[2].value,
       );
       expect(itemsEl[2].textContent?.trim()).to.equal(
-        initItemsWithoutLabel[2].value
+        initItemsWithoutLabel[2].value,
       );
     });
 
@@ -82,36 +82,36 @@ describe("Combobox", () => {
       container.items = initItemsWithoutLabel;
       const el = await fixture(container);
       const toggleIconButtonEl = el.querySelector(
-        ".kuc-combobox__group__toggle__icon__button"
+        ".kuc-combobox__group__toggle__icon__button",
       ) as HTMLButtonElement;
       toggleIconButtonEl.click();
       await elementUpdated(container);
 
       const itemsEl = el.querySelectorAll(
-        ".kuc-combobox__group__select-menu__item"
+        ".kuc-combobox__group__select-menu__item",
       );
 
       expect(itemsEl.length).to.equal(3);
 
       expect(itemsEl[0].getAttribute("value")).to.equal(
-        initItemsWithoutLabel[0].value
+        initItemsWithoutLabel[0].value,
       );
       expect(itemsEl[0].textContent?.trim()).to.equal(
-        initItemsWithoutLabel[0].value
+        initItemsWithoutLabel[0].value,
       );
 
       expect(itemsEl[1].getAttribute("value")).to.equal(
-        initItemsWithoutLabel[1].value
+        initItemsWithoutLabel[1].value,
       );
       expect(itemsEl[1].textContent?.trim()).to.equal(
-        initItemsWithoutLabel[1].value
+        initItemsWithoutLabel[1].value,
       );
 
       expect(itemsEl[2].getAttribute("value")).to.equal(
-        initItemsWithoutLabel[2].value
+        initItemsWithoutLabel[2].value,
       );
       expect(itemsEl[2].textContent?.trim()).to.equal(
-        initItemsWithoutLabel[2].value
+        initItemsWithoutLabel[2].value,
       );
     });
 
@@ -119,13 +119,13 @@ describe("Combobox", () => {
       const container = new Combobox({ items: initItems });
       const el = await fixture(container);
       const toggleIconButtonEl = el.querySelector(
-        ".kuc-combobox__group__toggle__icon__button"
+        ".kuc-combobox__group__toggle__icon__button",
       ) as HTMLButtonElement;
       toggleIconButtonEl.click();
       await elementUpdated(container);
 
       const itemsEl = el.querySelectorAll(
-        ".kuc-combobox__group__select-menu__item"
+        ".kuc-combobox__group__select-menu__item",
       );
 
       expect(itemsEl.length).to.equal(3);
@@ -146,13 +146,13 @@ describe("Combobox", () => {
 
       const el = await fixture(container);
       const toggleIconButtonEl = el.querySelector(
-        ".kuc-combobox__group__toggle__icon__button"
+        ".kuc-combobox__group__toggle__icon__button",
       ) as HTMLButtonElement;
       toggleIconButtonEl.click();
       await elementUpdated(container);
 
       const itemsEl = el.querySelectorAll(
-        ".kuc-combobox__group__select-menu__item"
+        ".kuc-combobox__group__select-menu__item",
       );
 
       expect(container.items).to.be.equal(replacedItems);

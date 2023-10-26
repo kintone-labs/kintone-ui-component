@@ -9,7 +9,7 @@ describe("MobileDateTimePicker", () => {
       const container = new MobileDateTimePicker();
       const el = await fixture(container);
       const requiredIconEl = el.querySelector(
-        ".kuc-base-mobile-label__required-icon"
+        ".kuc-base-mobile-label__required-icon",
       ) as HTMLSpanElement;
       expect(requiredIconEl.hasAttribute("hidden")).to.equal(true);
     });
@@ -18,7 +18,7 @@ describe("MobileDateTimePicker", () => {
       const container = new MobileDateTimePicker({ requiredIcon: true });
       const el = await fixture(container);
       const requiredIconEl = el.querySelector(
-        ".kuc-base-mobile-label__required-icon"
+        ".kuc-base-mobile-label__required-icon",
       ) as HTMLSpanElement;
       expect(requiredIconEl.hasAttribute("hidden")).to.equal(false);
     });
@@ -28,7 +28,7 @@ describe("MobileDateTimePicker", () => {
       container.requiredIcon = true;
       const el = await fixture(container);
       const requiredIconEl = el.querySelector(
-        ".kuc-base-mobile-label__required-icon"
+        ".kuc-base-mobile-label__required-icon",
       ) as HTMLSpanElement;
       expect(requiredIconEl.hasAttribute("hidden")).to.equal(false);
     });
@@ -38,7 +38,7 @@ describe("MobileDateTimePicker", () => {
       container.requiredIcon = false;
       const el = await fixture(container);
       const requiredIconEl = el.querySelector(
-        ".kuc-base-mobile-label__required-icon"
+        ".kuc-base-mobile-label__required-icon",
       ) as HTMLSpanElement;
       expect(requiredIconEl.hasAttribute("hidden")).to.equal(true);
     });

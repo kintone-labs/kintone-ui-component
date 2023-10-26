@@ -15,7 +15,7 @@ describe("MobileDropdown", () => {
 
       const el = await fixture(container);
       const itemsEl = el.querySelectorAll(
-        ".kuc-mobile-radio-button__group__select-menu__item"
+        ".kuc-mobile-radio-button__group__select-menu__item",
       );
 
       expect(container.selectedIndex).to.equal(-1);
@@ -45,7 +45,7 @@ describe("MobileDropdown", () => {
 
       const el = await fixture(container);
       const itemsEl = el.querySelectorAll(
-        ".kuc-mobile-radio-button__group__select-menu__item"
+        ".kuc-mobile-radio-button__group__select-menu__item",
       );
 
       expect(container.selectedIndex).to.equal(1);

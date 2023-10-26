@@ -199,6 +199,9 @@ export const ATTACHMENT_CSS = `
     margin: 3px 0 0;
     word-break: break-all;
   }
+  .kuc-attachment__group__files__browse-message--disabled {
+    color: #888888;
+  }
   .kuc-attachment__group__files__browse-message[hidden] {
     display: none;
   }

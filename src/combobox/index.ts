@@ -187,7 +187,7 @@ let exportCombobox;
             @mousedown="${this._handleMouseDownMenu}"
           >
             ${this._matchingItems.map((item, number) =>
-              this._getItemTemplate(item, number)
+              this._getItemTemplate(item, number),
             )}
           </ul>
           <kuc-base-error
@@ -234,7 +234,7 @@ let exportCombobox;
           document.removeEventListener(
             "click",
             this._handleClickDocument,
-            true
+            true,
           );
         }, 1);
       }
@@ -270,7 +270,7 @@ let exportCombobox;
         newText = html`
           ${text.slice(0, startIndex)}<b>${text.slice(
             startIndex,
-            endIndex
+            endIndex,
           )}</b>${text.slice(endIndex)}
         `;
       }
@@ -317,7 +317,7 @@ let exportCombobox;
 
     private _handleMouseDownComboboxItem(event: MouseEvent) {
       const itemEl = this._getItemElementWhenMouseOverDown(
-        event.target as HTMLElement
+        event.target as HTMLElement,
       );
       const value = itemEl.getAttribute("value") as string;
       this._actionUpdateValue(value);
@@ -325,7 +325,7 @@ let exportCombobox;
 
     private _handleMouseOverComboboxItem(event: Event) {
       const itemEl = this._getItemElementWhenMouseOverDown(
-        event.target as HTMLElement
+        event.target as HTMLElement,
       );
       this._actionHighlightMenuItem(itemEl);
     }
@@ -381,7 +381,7 @@ let exportCombobox;
         Array.from(this._disabledItemsEl).some(
           (disabledItemEl: HTMLLIElement) =>
             disabledItemEl === event.target ||
-            disabledItemEl.contains(event.target as HTMLElement)
+            disabledItemEl.contains(event.target as HTMLElement),
         )
       ) {
         return;
@@ -456,7 +456,7 @@ let exportCombobox;
 
     private _getSelectedLabel() {
       const items = this.items.filter((item, index) =>
-        this._isCheckedItem(item)
+        this._isCheckedItem(item),
       );
       if (items.length === 0) return "";
       return items[0].label === undefined ? items[0].value : items[0].label;
@@ -582,7 +582,7 @@ let exportCombobox;
     }
 
     private _setHighlightAndActiveDescendantMenu(
-      selectedItemEl: HTMLLIElement
+      selectedItemEl: HTMLLIElement,
     ) {
       this._actionHighlightMenuItem(selectedItemEl);
       this._actionSetActiveDescendant(selectedItemEl.id);
@@ -764,7 +764,7 @@ let exportCombobox;
     }
 
     private _getItemElementWhenMouseOverDown(
-      eventTarget: HTMLElement
+      eventTarget: HTMLElement,
     ): HTMLLIElement {
       if (
         eventTarget.classList.value
@@ -775,7 +775,7 @@ let exportCombobox;
       }
 
       return this._getItemElementWhenMouseOverDown(
-        eventTarget.parentElement as HTMLElement
+        eventTarget.parentElement as HTMLElement,
       );
     }
   }

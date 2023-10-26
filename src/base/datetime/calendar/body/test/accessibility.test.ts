@@ -26,7 +26,7 @@ describe("BaseDateTimeCalendarBody", () => {
 
       const el = await fixture(container);
       const selectedEl = el.querySelector(
-        '.kuc-base-datetime-calendar-body__table__date--selected[aria-selected="true"]'
+        '.kuc-base-datetime-calendar-body__table__date--selected[aria-selected="true"]',
       ) as HTMLButtonElement;
       selectedEl.dispatchEvent(new KeyboardEvent("keydown", { key: "Up" }));
       await elementUpdated(el);
@@ -41,10 +41,10 @@ describe("BaseDateTimeCalendarBody", () => {
 
       const el = await fixture(container);
       const selectedEl = el.querySelector(
-        '.kuc-base-datetime-calendar-body__table__date--selected[aria-selected="true"]'
+        '.kuc-base-datetime-calendar-body__table__date--selected[aria-selected="true"]',
       ) as HTMLButtonElement;
       selectedEl.dispatchEvent(
-        new KeyboardEvent("keydown", { key: "ArrowUp" })
+        new KeyboardEvent("keydown", { key: "ArrowUp" }),
       );
       await elementUpdated(el);
       expect(container.value).to.equal(expectValue.previousWeek);
@@ -58,7 +58,7 @@ describe("BaseDateTimeCalendarBody", () => {
 
       const el = await fixture(container);
       const selectedEl = el.querySelector(
-        '.kuc-base-datetime-calendar-body__table__date--selected[aria-selected="true"]'
+        '.kuc-base-datetime-calendar-body__table__date--selected[aria-selected="true"]',
       ) as HTMLButtonElement;
       selectedEl.dispatchEvent(new KeyboardEvent("keydown", { key: "Down" }));
       await elementUpdated(el);
@@ -73,10 +73,10 @@ describe("BaseDateTimeCalendarBody", () => {
 
       const el = await fixture(container);
       const selectedEl = el.querySelector(
-        '.kuc-base-datetime-calendar-body__table__date--selected[aria-selected="true"]'
+        '.kuc-base-datetime-calendar-body__table__date--selected[aria-selected="true"]',
       ) as HTMLButtonElement;
       selectedEl.dispatchEvent(
-        new KeyboardEvent("keydown", { key: "ArrowDown" })
+        new KeyboardEvent("keydown", { key: "ArrowDown" }),
       );
       await elementUpdated(el);
       expect(container.value).to.equal(expectValue.nextWeek);
@@ -90,14 +90,14 @@ describe("BaseDateTimeCalendarBody", () => {
 
       const el = await fixture(container);
       const selectedEl = el.querySelector(
-        '.kuc-base-datetime-calendar-body__table__date--selected[aria-selected="true"]'
+        '.kuc-base-datetime-calendar-body__table__date--selected[aria-selected="true"]',
       ) as HTMLTableCellElement;
       selectedEl.dispatchEvent(
-        new KeyboardEvent("keydown", { key: "ArrowDown" })
+        new KeyboardEvent("keydown", { key: "ArrowDown" }),
       );
       await elementUpdated(el);
       selectedEl.dispatchEvent(
-        new KeyboardEvent("keydown", { key: "ArrowDown" })
+        new KeyboardEvent("keydown", { key: "ArrowDown" }),
       );
       await elementUpdated(el);
       expect(container.value).to.equal(expectValue.next2Weeks);
@@ -111,7 +111,7 @@ describe("BaseDateTimeCalendarBody", () => {
 
       const el = await fixture(container);
       const selectedEl = el.querySelector(
-        '.kuc-base-datetime-calendar-body__table__date--selected[aria-selected="true"]'
+        '.kuc-base-datetime-calendar-body__table__date--selected[aria-selected="true"]',
       ) as HTMLTableCellElement;
       selectedEl.dispatchEvent(new KeyboardEvent("keydown", { key: "Left" }));
       await elementUpdated(el);
@@ -126,10 +126,10 @@ describe("BaseDateTimeCalendarBody", () => {
 
       const el = await fixture(container);
       const selectedEl = el.querySelector(
-        '.kuc-base-datetime-calendar-body__table__date--selected[aria-selected="true"]'
+        '.kuc-base-datetime-calendar-body__table__date--selected[aria-selected="true"]',
       ) as HTMLTableCellElement;
       selectedEl.dispatchEvent(
-        new KeyboardEvent("keydown", { key: "ArrowLeft" })
+        new KeyboardEvent("keydown", { key: "ArrowLeft" }),
       );
       await elementUpdated(el);
       expect(container.value).to.equal(expectValue.previousDay);
@@ -143,7 +143,7 @@ describe("BaseDateTimeCalendarBody", () => {
 
       const el = await fixture(container);
       const selectedEl = el.querySelector(
-        '.kuc-base-datetime-calendar-body__table__date--selected[aria-selected="true"]'
+        '.kuc-base-datetime-calendar-body__table__date--selected[aria-selected="true"]',
       ) as HTMLTableCellElement;
       selectedEl.dispatchEvent(new KeyboardEvent("keydown", { key: "Right" }));
       await elementUpdated(el);
@@ -158,10 +158,10 @@ describe("BaseDateTimeCalendarBody", () => {
 
       const el = await fixture(container);
       const selectedEl = el.querySelector(
-        '.kuc-base-datetime-calendar-body__table__date--selected[aria-selected="true"]'
+        '.kuc-base-datetime-calendar-body__table__date--selected[aria-selected="true"]',
       ) as HTMLTableCellElement;
       selectedEl.dispatchEvent(
-        new KeyboardEvent("keydown", { key: "ArrowRight" })
+        new KeyboardEvent("keydown", { key: "ArrowRight" }),
       );
       await elementUpdated(el);
       expect(container.value).to.equal(expectValue.nextDay);
@@ -175,11 +175,11 @@ describe("BaseDateTimeCalendarBody", () => {
 
       const el = await fixture(container);
       const selectedEl = el.querySelector(
-        '.kuc-base-datetime-calendar-body__table__date--selected[aria-selected="true"]'
+        '.kuc-base-datetime-calendar-body__table__date--selected[aria-selected="true"]',
       ) as HTMLTableCellElement;
 
       selectedEl.dispatchEvent(
-        new KeyboardEvent("keydown", { key: "ArrowRight" })
+        new KeyboardEvent("keydown", { key: "ArrowRight" }),
       );
       await elementUpdated(el);
 
@@ -196,11 +196,11 @@ describe("BaseDateTimeCalendarBody", () => {
 
       const el = await fixture(container);
       const selectedEl = el.querySelector(
-        '.kuc-base-datetime-calendar-body__table__date--selected[aria-selected="true"]'
+        '.kuc-base-datetime-calendar-body__table__date--selected[aria-selected="true"]',
       ) as HTMLTableCellElement;
 
       selectedEl.dispatchEvent(
-        new KeyboardEvent("keydown", { key: "ArrowRight" })
+        new KeyboardEvent("keydown", { key: "ArrowRight" }),
       );
       await elementUpdated(el);
 
@@ -217,7 +217,7 @@ describe("BaseDateTimeCalendarBody", () => {
 
       const el = await fixture(container);
       const selectedEl = el.querySelector(
-        '.kuc-base-datetime-calendar-body__table__date--selected[aria-selected="true"]'
+        '.kuc-base-datetime-calendar-body__table__date--selected[aria-selected="true"]',
       ) as HTMLTableCellElement;
       selectedEl.dispatchEvent(new KeyboardEvent("keydown", { key: "a" }));
       await elementUpdated(el);
@@ -232,10 +232,10 @@ describe("BaseDateTimeCalendarBody", () => {
 
       const el = await fixture(container);
       const selectedEl = el.querySelectorAll(
-        '.kuc-base-datetime-calendar-body__table__date--selected[aria-selected="true"]'
+        '.kuc-base-datetime-calendar-body__table__date--selected[aria-selected="true"]',
       )[0] as HTMLTableCellElement;
       selectedEl.dispatchEvent(
-        new KeyboardEvent("keydown", { key: "ArrowRight" })
+        new KeyboardEvent("keydown", { key: "ArrowRight" }),
       );
       await elementUpdated(el);
       expect(container.value).to.equal("2022-01-01");
@@ -249,7 +249,7 @@ describe("BaseDateTimeCalendarBody", () => {
 
       const el = await fixture(container);
       const selectedEl = el.querySelector(
-        ".kuc-base-datetime-calendar-body__table__date"
+        ".kuc-base-datetime-calendar-body__table__date",
       ) as HTMLTableCellElement;
       selectedEl.click();
       await elementUpdated(el);

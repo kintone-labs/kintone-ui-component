@@ -18,17 +18,17 @@ describe("Table", () => {
       const container = new Table({ columns: [...columns], data: [...data] });
       const el = await fixture(container);
       const removeRowButtons = el.querySelectorAll(
-        ".kuc-table__table__body__row__action-remove"
+        ".kuc-table__table__body__row__action-remove",
       );
       const firstBtnAddRow = el.querySelector(
-        ".kuc-table__table__body__row__action-add"
+        ".kuc-table__table__body__row__action-add",
       ) as HTMLButtonElement;
       firstBtnAddRow.addEventListener("focus", (e) => {
         triggeredEvent = e;
       });
       (removeRowButtons[1] as HTMLButtonElement).click();
       const firstRemoveRowButton = el.querySelector(
-        ".kuc-table__table__body__row__action-remove"
+        ".kuc-table__table__body__row__action-remove",
       ) as HTMLButtonElement;
       expect(triggeredEvent.type).to.equal("focus");
       expect(firstRemoveRowButton.style.display).to.equal("none");

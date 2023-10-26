@@ -14,7 +14,7 @@ describe("BaseDateTimeListBox", () => {
       container.items = initItems;
       const el = await fixture(container);
       const itemsEl = el.querySelectorAll(
-        ".kuc-base-datetime-listbox__listbox__item"
+        ".kuc-base-datetime-listbox__listbox__item",
       );
 
       expect(itemsEl.length).to.equal(3);

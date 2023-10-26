@@ -14,14 +14,14 @@ describe("DatePicker", () => {
 
       const el = await fixture(divParentEl);
       const inputEl = el.querySelector(
-        ".kuc-base-date__input"
+        ".kuc-base-date__input",
       ) as HTMLInputElement;
 
       inputEl.click();
       await elementUpdated(container);
       await elementUpdated(el);
       const calendaerEl = el.querySelector(
-        ".kuc-base-date__calendar"
+        ".kuc-base-date__calendar",
       ) as HTMLElement;
       const computedStyle = window.getComputedStyle(calendaerEl);
 
@@ -39,14 +39,14 @@ describe("DatePicker", () => {
 
       const el = await fixture(divParentEl);
       const inputEl = el.querySelector(
-        ".kuc-base-date__input"
+        ".kuc-base-date__input",
       ) as HTMLInputElement;
 
       inputEl.click();
       await elementUpdated(container);
       await elementUpdated(el);
       const calendaerEl = el.querySelector(
-        ".kuc-base-date__calendar"
+        ".kuc-base-date__calendar",
       ) as HTMLElement;
       const computedStyle = window.getComputedStyle(calendaerEl);
 
@@ -65,13 +65,13 @@ describe("DatePicker", () => {
 
       const el = await fixture(divParentEl);
       const inputEl = el.querySelector(
-        ".kuc-base-date__input"
+        ".kuc-base-date__input",
       ) as HTMLInputElement;
       inputEl.click();
       await elementUpdated(container);
       await elementUpdated(el);
       const calendaerEl = el.querySelector(
-        ".kuc-base-date__calendar"
+        ".kuc-base-date__calendar",
       ) as HTMLElement;
       const computedStyle = window.getComputedStyle(calendaerEl);
 
@@ -89,13 +89,13 @@ describe("DatePicker", () => {
 
       const el = await fixture(divParentEl);
       const inputEl = el.querySelector(
-        ".kuc-base-date__input"
+        ".kuc-base-date__input",
       ) as HTMLInputElement;
       inputEl.click();
       await elementUpdated(container);
       await elementUpdated(el);
       const calendaerEl = el.querySelector(
-        ".kuc-base-date__calendar"
+        ".kuc-base-date__calendar",
       ) as HTMLElement;
       const computedStyle = window.getComputedStyle(calendaerEl);
 

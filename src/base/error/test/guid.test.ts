@@ -8,7 +8,7 @@ describe("BaseError", () => {
       const el = await fixture(container);
 
       const textEl = el.querySelector(
-        ".kuc-base-error__error"
+        ".kuc-base-error__error",
       ) as HTMLSpanElement;
       expect(textEl.id).to.equal("-error");
     });
@@ -18,7 +18,7 @@ describe("BaseError", () => {
       container.setAttribute("guid", "guid");
       const el = await fixture(container);
       const textEl = el.querySelector(
-        ".kuc-base-error__error"
+        ".kuc-base-error__error",
       ) as HTMLSpanElement;
       expect(textEl.id).to.equal("guid-error");
     });
@@ -30,7 +30,7 @@ describe("BaseError", () => {
       container.setAttribute("guid", "replace-guid");
       await elementUpdated(el);
       const textEl = el.querySelector(
-        ".kuc-base-error__error"
+        ".kuc-base-error__error",
       ) as HTMLSpanElement;
       expect(textEl.id).to.equal("replace-guid-error");
     });

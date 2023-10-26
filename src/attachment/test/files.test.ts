@@ -16,7 +16,7 @@ describe("Attachment", () => {
       const container = new Attachment({ files: files });
       const el = await fixture(container);
       const lisEl = el.querySelectorAll(
-        ".kuc-attachment__group__files__display-area__item__name"
+        ".kuc-attachment__group__files__display-area__item__name",
       );
       expect(lisEl.length).to.equal(files.length);
       expect((lisEl[0] as HTMLDivElement).innerText).to.equal(files[0].name);
@@ -30,12 +30,12 @@ describe("Attachment", () => {
       container.files = invalidFileSizeFiles;
       const el = await fixture(container);
       const lisEl = el.querySelectorAll(
-        ".kuc-attachment__group__files__display-area__item__size"
+        ".kuc-attachment__group__files__display-area__item__size",
       );
       expect(lisEl.length).to.equal(files.length);
       expect((lisEl[0] as HTMLDivElement).innerText).to.equal("NaN size");
       expect((lisEl[1] as HTMLDivElement).innerText).to.equal(
-        `${files[1].size} bytes`
+        `${files[1].size} bytes`,
       );
     });
     it("should be throw error when assigned null to files on constructor", (done) => {

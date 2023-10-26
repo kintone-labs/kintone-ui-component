@@ -11,25 +11,25 @@ describe("DateTimePicker", () => {
       });
       const el = await fixture(container);
       const baseDateEl = el.querySelector(
-        ".kuc-datetime-picker__group__inputs--date"
+        ".kuc-datetime-picker__group__inputs--date",
       ) as BaseDate;
       baseDateEl.dispatchEvent(
         new CustomEvent("kuc:base-date-change", {
           detail: { value: "2022-01-01", oldValue: undefined },
-        })
+        }),
       );
       await elementUpdated(el);
 
       const inputDateEl = el.querySelector(
-        ".kuc-base-date__input"
+        ".kuc-base-date__input",
       ) as HTMLInputElement;
       expect(inputDateEl.value).to.be.equal("01/01/2022");
 
       const inputHourEl = el.querySelector(
-        ".kuc-base-time__group__hours"
+        ".kuc-base-time__group__hours",
       ) as HTMLInputElement;
       const inputMinuteEl = el.querySelector(
-        ".kuc-base-time__group__minutes"
+        ".kuc-base-time__group__minutes",
       ) as HTMLInputElement;
       expect(inputHourEl.value).to.be.equal("");
       expect(inputMinuteEl.value).to.be.equal("");

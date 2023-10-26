@@ -9,7 +9,7 @@ describe("MobileDatePicker", () => {
       const container = new MobileDatePicker();
       const el = await fixture(container);
       const inputEl = el.querySelector(
-        ".kuc-mobile-base-date__group__input"
+        ".kuc-mobile-base-date__group__input",
       ) as HTMLInputElement;
 
       expect(inputEl.value).to.be.equal("");
@@ -19,7 +19,7 @@ describe("MobileDatePicker", () => {
       const container = new MobileDatePicker({ value: "2021-12-12" });
       const el = await fixture(container);
       const inputEl = el.querySelector(
-        ".kuc-mobile-base-date__group__input"
+        ".kuc-mobile-base-date__group__input",
       ) as HTMLInputElement;
 
       expect(inputEl.value).to.be.equal("12/12/2021");
@@ -31,7 +31,7 @@ describe("MobileDatePicker", () => {
       const el = await fixture(container);
       el.setAttribute("value", "13:15");
       const inputEl = el.querySelector(
-        ".kuc-mobile-base-date__group__input"
+        ".kuc-mobile-base-date__group__input",
       ) as HTMLInputElement;
 
       expect(inputEl.value).to.be.equal("12/13/2021");
@@ -70,14 +70,14 @@ describe("MobileDatePicker", () => {
       });
       const el = await fixture(container);
       const inputDateEl = el.querySelector(
-        ".kuc-mobile-base-date__group__input"
+        ".kuc-mobile-base-date__group__input",
       ) as HTMLInputElement;
       inputDateEl.click();
       await elementUpdated(container);
       await elementUpdated(el);
 
       const todayBtnEl = el.querySelector(
-        ".kuc-base-mobile-datetime-calendar-footer__group__button--today"
+        ".kuc-base-mobile-datetime-calendar-footer__group__button--today",
       ) as HTMLButtonElement;
       todayBtnEl.click();
       await elementUpdated(el);
@@ -94,7 +94,7 @@ describe("MobileDatePicker", () => {
       container.value = undefined;
       await elementUpdated(el);
       const inputDateEl = el.querySelector(
-        ".kuc-mobile-base-date__group__input"
+        ".kuc-mobile-base-date__group__input",
       ) as HTMLInputElement;
 
       expect(inputDateEl.value).to.be.equal("");
@@ -108,7 +108,7 @@ describe("MobileDatePicker", () => {
       });
       const el = await fixture(container);
       const inputDateEl = el.querySelector(
-        ".kuc-mobile-base-date__group__input"
+        ".kuc-mobile-base-date__group__input",
       ) as HTMLInputElement;
 
       expect(inputDateEl.value).to.be.equal("");
@@ -122,7 +122,7 @@ describe("MobileDatePicker", () => {
       });
       const el = await fixture(container);
       const inputDateEl = el.querySelector(
-        ".kuc-mobile-base-date__group__input"
+        ".kuc-mobile-base-date__group__input",
       ) as HTMLInputElement;
 
       expect(inputDateEl.value).to.be.equal("");
@@ -138,7 +138,7 @@ describe("MobileDatePicker", () => {
       container.value = "";
       await elementUpdated(el);
       const inputDateEl = el.querySelector(
-        ".kuc-mobile-base-date__group__input"
+        ".kuc-mobile-base-date__group__input",
       ) as HTMLInputElement;
 
       expect(inputDateEl.value).to.be.equal("");

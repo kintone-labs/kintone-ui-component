@@ -16,12 +16,12 @@ describe("FieldGroup", () => {
       const el = await fixture(container);
 
       const divContentEl = el.querySelector(
-        ".kuc-field-group__group__body"
+        ".kuc-field-group__group__body",
       ) as HTMLDivElement;
       expect(divContentEl.hasAttribute("hidden")).to.equal(true);
 
       const labelTextEl = el.querySelector(
-        ".field-group-content"
+        ".field-group-content",
       ) as HTMLSpanElement;
       expect(labelTextEl.textContent).to.equal("");
     });
@@ -33,12 +33,12 @@ describe("FieldGroup", () => {
       const el = await fixture(container);
 
       const divContentEl = el.querySelector(
-        ".kuc-field-group__group__body"
+        ".kuc-field-group__group__body",
       ) as HTMLDivElement;
       expect(divContentEl.hasAttribute("hidden")).to.equal(true);
 
       const labelTextEl = el.querySelector(
-        ".field-group-content"
+        ".field-group-content",
       ) as HTMLSpanElement;
       expect(labelTextEl.innerText).to.equal("FieldGroup's content");
     });
@@ -51,12 +51,12 @@ describe("FieldGroup", () => {
 
       const el = await fixture(container);
       const divContentEl = el.querySelector(
-        ".kuc-field-group__group__body"
+        ".kuc-field-group__group__body",
       ) as HTMLDivElement;
       expect(divContentEl.hasAttribute("hidden")).to.equal(true);
 
       const labelTextEl = el.querySelector(
-        ".field-group-content"
+        ".field-group-content",
       ) as HTMLSpanElement;
       expect(labelTextEl.innerText).to.equal("replace-content");
     });

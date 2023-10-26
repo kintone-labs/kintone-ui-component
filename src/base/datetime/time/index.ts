@@ -94,7 +94,7 @@ export class BaseTime extends KucBase {
         this.hour12,
         this.timeStep,
         this.min,
-        this.max
+        this.max,
       );
       this._updateInputValue();
     }
@@ -191,7 +191,7 @@ export class BaseTime extends KucBase {
       return this._inputGroupEl.classList.add("kuc-base-time__group--disabled");
 
     return this._inputGroupEl.classList.remove(
-      "kuc-base-time__group--disabled"
+      "kuc-base-time__group--disabled",
     );
   }
 
@@ -539,7 +539,7 @@ export class BaseTime extends KucBase {
       hours?: string;
       minutes?: string;
       suffix?: string;
-    } = { hours: this._hours, minutes: this._minutes, suffix: this._suffix }
+    } = { hours: this._hours, minutes: this._minutes, suffix: this._suffix },
   ) {
     const hours = props.hours || this._hours;
     const minutes = props.minutes || this._minutes;

@@ -112,11 +112,11 @@ export class BaseDateTimeCalendar extends KucBase {
   private _calculateCalendarPosition(
     inputToRight: number,
     inputToLeft: number,
-    type: string
+    type: string,
   ) {
     if (!this.parentElement) return;
     const input = this.parentElement.getElementsByClassName(
-      "kuc-base-date__input"
+      "kuc-base-date__input",
     )[0];
     const calendarWidth = 336;
     const inputHeight = input.getBoundingClientRect().height;
@@ -201,6 +201,6 @@ if (!window.customElements.get("kuc-base-datetime-calendar")) {
   createStyleOnHeader(CALENDAR_CSS);
   window.customElements.define(
     "kuc-base-datetime-calendar",
-    BaseDateTimeCalendar
+    BaseDateTimeCalendar,
   );
 }

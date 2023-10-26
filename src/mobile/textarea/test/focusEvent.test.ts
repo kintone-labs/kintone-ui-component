@@ -13,7 +13,7 @@ describe("MobileTextArea", () => {
 
       const el = await fixture(container);
       const inputEl = el.querySelector(
-        ".kuc-mobile-textarea__form__textarea"
+        ".kuc-mobile-textarea__form__textarea",
       ) as HTMLTextAreaElement;
       inputEl.focus();
 

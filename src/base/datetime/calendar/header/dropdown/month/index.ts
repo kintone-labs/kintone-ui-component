@@ -197,7 +197,7 @@ export class BaseDateTimeHeaderMonth extends KucBase {
 
   private _getMonthLabel() {
     const monthSelected = this._locale.MONTH_SELECT.filter(
-      (_: string, index: number) => this.month === index + 1
+      (_: string, index: number) => this.month === index + 1,
     );
     return monthSelected.length > 0 ? monthSelected[0] : "JANUARY";
   }
@@ -207,6 +207,6 @@ if (!window.customElements.get("kuc-base-datetime-header-month")) {
   createStyleOnHeader(CALENDAR_HEADER_MONTH_CSS);
   window.customElements.define(
     "kuc-base-datetime-header-month",
-    BaseDateTimeHeaderMonth
+    BaseDateTimeHeaderMonth,
   );
 }

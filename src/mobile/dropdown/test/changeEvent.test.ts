@@ -23,7 +23,7 @@ describe("MobileDropdown", () => {
 
       const el = await fixture(container);
       const itemsEl = el.querySelector(
-        ".kuc-mobile-dropdown__input-form__select__input"
+        ".kuc-mobile-dropdown__input-form__select__input",
       ) as HTMLSelectElement;
       itemsEl.dispatchEvent(new Event("change", { bubbles: true }));
       itemsEl.selectedIndex = 2;

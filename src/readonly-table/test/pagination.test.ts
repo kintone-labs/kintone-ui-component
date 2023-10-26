@@ -67,7 +67,7 @@ describe("ReadOnlyTable", () => {
       });
       const el = await fixture(container);
       const paginationEl = el.querySelector(
-        "kuc-base-pagination"
+        "kuc-base-pagination",
       ) as HTMLElement;
       expect(paginationEl.hidden).to.equal(false);
     });
@@ -80,7 +80,7 @@ describe("ReadOnlyTable", () => {
       });
       const el = await fixture(container);
       const paginationEl = el.querySelector(
-        "kuc-base-pagination"
+        "kuc-base-pagination",
       ) as HTMLElement;
       expect(paginationEl.hidden).to.equal(false);
     });
@@ -93,7 +93,7 @@ describe("ReadOnlyTable", () => {
       container.pagination = true;
       const el = await fixture(container);
       const paginationEl = el.querySelector(
-        "kuc-base-pagination"
+        "kuc-base-pagination",
       ) as HTMLElement;
       expect(paginationEl.hidden).to.equal(false);
     });
@@ -106,10 +106,10 @@ describe("ReadOnlyTable", () => {
       });
       const el = await fixture(container);
       const paginationEl = el.querySelector(
-        "kuc-base-pagination"
+        "kuc-base-pagination",
       ) as HTMLElement;
       const rowsEl = el.querySelectorAll(
-        ".kuc-readonly-table__table__body__row "
+        ".kuc-readonly-table__table__body__row ",
       ) as NodeList;
       expect(paginationEl.hidden).to.equal(true);
       expect(rowsEl.length).to.equal(data.length);
@@ -123,10 +123,10 @@ describe("ReadOnlyTable", () => {
       container.pagination = false;
       const el = await fixture(container);
       const paginationEl = el.querySelector(
-        "kuc-base-pagination"
+        "kuc-base-pagination",
       ) as HTMLElement;
       const rowsEl = el.querySelectorAll(
-        ".kuc-readonly-table__table__body__row "
+        ".kuc-readonly-table__table__body__row ",
       ) as NodeList;
       expect(paginationEl.hidden).to.equal(true);
       expect(rowsEl.length).to.equal(data.length);
@@ -141,13 +141,13 @@ describe("ReadOnlyTable", () => {
       const el = await fixture(container);
 
       const prevEl = el.querySelector(
-        "kuc-base-pagination button.kuc-base-pagination__group__pager-prev"
+        "kuc-base-pagination button.kuc-base-pagination__group__pager-prev",
       ) as HTMLButtonElement;
 
       expect(
         prevEl.classList.value.includes(
-          "kuc-base-pagination__group__pager-disable"
-        )
+          "kuc-base-pagination__group__pager-disable",
+        ),
       ).to.equal(true);
     });
 
@@ -162,15 +162,15 @@ describe("ReadOnlyTable", () => {
       const el = await fixture(container);
 
       const nextEl = el.querySelector(
-        "kuc-base-pagination button.kuc-base-pagination__group__pager-next"
+        "kuc-base-pagination button.kuc-base-pagination__group__pager-next",
       ) as HTMLButtonElement;
       nextEl.click();
       nextEl.click();
       await elementUpdated(nextEl);
       expect(
         nextEl.classList.value.includes(
-          "kuc-base-pagination__group__pager-disable"
-        )
+          "kuc-base-pagination__group__pager-disable",
+        ),
       ).to.equal(true);
     });
   });

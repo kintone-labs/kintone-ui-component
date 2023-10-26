@@ -13,7 +13,7 @@ describe("BaseDateTimeCalendarFooter", () => {
 
       const el = await fixture(container);
       const buttonEl = el.querySelector(
-        ".kuc-base-datetime-calendar-footer__group__button--none"
+        ".kuc-base-datetime-calendar-footer__group__button--none",
       ) as HTMLButtonElement;
 
       buttonEl.click();

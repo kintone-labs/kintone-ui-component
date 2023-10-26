@@ -15,7 +15,7 @@ describe("RadioButton", () => {
 
       const el = await fixture(container);
       const itemsEl = el.querySelectorAll(
-        ".kuc-radio-button__group__select-menu__item"
+        ".kuc-radio-button__group__select-menu__item",
       );
 
       expect(container.value).to.equal("");
@@ -39,7 +39,7 @@ describe("RadioButton", () => {
 
       const el = await fixture(container);
       const itemsEl = el.querySelectorAll(
-        ".kuc-radio-button__group__select-menu__item"
+        ".kuc-radio-button__group__select-menu__item",
       );
 
       expect(container.value).to.equal(initItems[1].value);

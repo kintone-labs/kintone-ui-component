@@ -12,16 +12,16 @@ describe("FieldGroup", () => {
 
       const el = await fixture(container);
       const buttonToggle = el.querySelector(
-        ".kuc-field-group__group__toggle"
+        ".kuc-field-group__group__toggle",
       ) as HTMLButtonElement;
       buttonToggle.dispatchEvent(
         new KeyboardEvent("keydown", {
           key: "Enter",
-        })
+        }),
       );
       await elementUpdated(el);
       const divContentEl = el.querySelector(
-        ".kuc-field-group__group__body"
+        ".kuc-field-group__group__body",
       ) as HTMLDivElement;
       expect(divContentEl.hasAttribute("hidden")).to.equal(false);
       expect(buttonToggle.getAttribute("aria-expanded")).to.equal("true");
@@ -35,16 +35,16 @@ describe("FieldGroup", () => {
 
       const el = await fixture(container);
       const buttonToggle = el.querySelector(
-        ".kuc-field-group__group__toggle"
+        ".kuc-field-group__group__toggle",
       ) as HTMLButtonElement;
       buttonToggle.dispatchEvent(
         new KeyboardEvent("keydown", {
           key: " ",
-        })
+        }),
       );
       await elementUpdated(el);
       const divContentEl = el.querySelector(
-        ".kuc-field-group__group__body"
+        ".kuc-field-group__group__body",
       ) as HTMLDivElement;
       expect(divContentEl.hasAttribute("hidden")).to.equal(false);
       expect(buttonToggle.getAttribute("aria-expanded")).to.equal("true");
@@ -59,16 +59,16 @@ describe("FieldGroup", () => {
 
       const el = await fixture(container);
       const buttonToggle = el.querySelector(
-        ".kuc-field-group__group__toggle"
+        ".kuc-field-group__group__toggle",
       ) as HTMLButtonElement;
       buttonToggle.dispatchEvent(
         new KeyboardEvent("keydown", {
           key: "Enter",
-        })
+        }),
       );
       await elementUpdated(el);
       const divContentEl = el.querySelector(
-        ".kuc-field-group__group__body"
+        ".kuc-field-group__group__body",
       ) as HTMLDivElement;
       expect(divContentEl.hasAttribute("hidden")).to.equal(true);
       expect(buttonToggle.getAttribute("aria-expanded")).to.equal("false");
@@ -83,16 +83,16 @@ describe("FieldGroup", () => {
 
       const el = await fixture(container);
       const buttonToggle = el.querySelector(
-        ".kuc-field-group__group__toggle"
+        ".kuc-field-group__group__toggle",
       ) as HTMLButtonElement;
       buttonToggle.dispatchEvent(
         new KeyboardEvent("keydown", {
           key: " ",
-        })
+        }),
       );
       await elementUpdated(el);
       const divContentEl = el.querySelector(
-        ".kuc-field-group__group__body"
+        ".kuc-field-group__group__body",
       ) as HTMLDivElement;
       expect(divContentEl.hasAttribute("hidden")).to.equal(true);
       expect(buttonToggle.getAttribute("aria-expanded")).to.equal("false");

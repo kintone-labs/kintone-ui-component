@@ -11,10 +11,10 @@ describe("Attachment", () => {
       });
       const el = await fixture(container);
       const messageEl = el.querySelector(
-        ".kuc-attachment__group__files__browse-message"
+        ".kuc-attachment__group__files__browse-message",
       );
       expect((messageEl as HTMLParagraphElement).innerText).to.equal(
-        "(Max: 1GB)"
+        "(Max: 1GB)",
       );
     });
 
@@ -22,7 +22,7 @@ describe("Attachment", () => {
       const container = new Attachment({});
       const el = await fixture(container);
       const messageEl = el.querySelector(
-        ".kuc-attachment__group__files__browse-message"
+        ".kuc-attachment__group__files__browse-message",
       ) as HTMLParagraphElement;
       expect(messageEl.hasAttribute("hidden")).to.equal(true);
     });
@@ -35,10 +35,10 @@ describe("Attachment", () => {
       container.message = "(Max: 2GB)";
       const el = await fixture(container);
       const messageEl = el.querySelector(
-        ".kuc-attachment__group__files__browse-message"
+        ".kuc-attachment__group__files__browse-message",
       );
       expect((messageEl as HTMLParagraphElement).innerText).to.equal(
-        "(Max: 2GB)"
+        "(Max: 2GB)",
       );
     });
   });

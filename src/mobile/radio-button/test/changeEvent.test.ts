@@ -22,7 +22,7 @@ describe("MobileRadioButton", () => {
 
       const el = await fixture(container);
       const inputsEl = el.querySelectorAll(
-        ".kuc-mobile-radio-button__group__select-menu__item__input"
+        ".kuc-mobile-radio-button__group__select-menu__item__input",
       );
       inputsEl[2].dispatchEvent(new Event("change", { bubbles: true }));
 
@@ -43,7 +43,7 @@ describe("MobileRadioButton", () => {
 
       const el = await fixture(container);
       const inputsEl = el.querySelectorAll(
-        ".kuc-mobile-radio-button__group__select-menu__item__input"
+        ".kuc-mobile-radio-button__group__select-menu__item__input",
       );
       inputsEl[1].dispatchEvent(new Event("change", { bubbles: true }));
 

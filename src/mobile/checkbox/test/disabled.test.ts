@@ -19,12 +19,12 @@ describe("MobileCheckbox", () => {
 
       const el = await fixture(container);
       const groupEl = el.querySelector(
-        ".kuc-mobile-checkbox__group__select-menu"
+        ".kuc-mobile-checkbox__group__select-menu",
       ) as HTMLDivElement;
       expect(groupEl.hasAttribute("disabled")).to.equal(false);
 
       const inputEls = el.querySelectorAll(
-        ".kuc-mobile-checkbox__group__select-menu__item__input"
+        ".kuc-mobile-checkbox__group__select-menu__item__input",
       );
 
       expect(inputEls[0].hasAttribute("disabled")).to.equal(false);
@@ -41,12 +41,12 @@ describe("MobileCheckbox", () => {
 
       const el = await fixture(container);
       const groupEl = el.querySelector(
-        ".kuc-mobile-checkbox__group__select-menu"
+        ".kuc-mobile-checkbox__group__select-menu",
       ) as HTMLDivElement;
       expect(groupEl.hasAttribute("disabled")).to.equal(true);
 
       const inputEls = el.querySelectorAll(
-        ".kuc-mobile-checkbox__group__select-menu__item__input"
+        ".kuc-mobile-checkbox__group__select-menu__item__input",
       );
 
       expect(inputEls[0].hasAttribute("disabled")).to.equal(true);
@@ -64,12 +64,12 @@ describe("MobileCheckbox", () => {
 
       const el = await fixture(container);
       const groupEl = el.querySelector(
-        ".kuc-mobile-checkbox__group__select-menu"
+        ".kuc-mobile-checkbox__group__select-menu",
       ) as HTMLDivElement;
       expect(groupEl.hasAttribute("disabled")).to.equal(true);
 
       const inputEls = el.querySelectorAll(
-        ".kuc-mobile-checkbox__group__select-menu__item__input"
+        ".kuc-mobile-checkbox__group__select-menu__item__input",
       );
 
       expect(inputEls[0].hasAttribute("disabled")).to.equal(true);
@@ -87,12 +87,12 @@ describe("MobileCheckbox", () => {
 
       const el = await fixture(container);
       const groupEl = el.querySelector(
-        ".kuc-mobile-checkbox__group__select-menu"
+        ".kuc-mobile-checkbox__group__select-menu",
       ) as HTMLDivElement;
       expect(groupEl.hasAttribute("disabled")).to.equal(false);
 
       const inputEls = el.querySelectorAll(
-        ".kuc-mobile-checkbox__group__select-menu__item__input"
+        ".kuc-mobile-checkbox__group__select-menu__item__input",
       );
 
       expect(inputEls[0].hasAttribute("disabled")).to.equal(false);

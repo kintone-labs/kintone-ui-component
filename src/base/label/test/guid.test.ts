@@ -8,7 +8,7 @@ describe("BaseLabel", () => {
       const el = await fixture(container);
 
       const textEl = el.querySelector(
-        ".kuc-base-label__text"
+        ".kuc-base-label__text",
       ) as HTMLSpanElement;
       expect(textEl.id).to.equal("");
     });
@@ -18,7 +18,7 @@ describe("BaseLabel", () => {
       container.setAttribute("guid", "guid");
       const el = await fixture(container);
       const textEl = el.querySelector(
-        ".kuc-base-label__text"
+        ".kuc-base-label__text",
       ) as HTMLSpanElement;
       expect(textEl.id).to.equal("guid-group");
     });
@@ -30,7 +30,7 @@ describe("BaseLabel", () => {
       container.setAttribute("guid", "replace-guid");
       await elementUpdated(el);
       const textEl = el.querySelector(
-        ".kuc-base-label__text"
+        ".kuc-base-label__text",
       ) as HTMLSpanElement;
       expect(textEl.id).to.equal("replace-guid-group");
     });

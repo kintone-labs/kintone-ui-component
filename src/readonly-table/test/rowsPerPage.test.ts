@@ -68,12 +68,12 @@ describe("ReadOnlyTable", () => {
       const el = await fixture(container);
 
       const paginationButtons = el.querySelectorAll(
-        ".kuc-base-pagination__group__pager-disable"
+        ".kuc-base-pagination__group__pager-disable",
       ) as NodeList;
       expect(paginationButtons.length).to.equal(1);
 
       const rowsEl = el.querySelectorAll(
-        ".kuc-readonly-table__table__body__row "
+        ".kuc-readonly-table__table__body__row ",
       ) as NodeList;
       expect(rowsEl.length).to.equal(5);
     });
@@ -87,12 +87,12 @@ describe("ReadOnlyTable", () => {
       const el = await fixture(container);
 
       const paginationButtons = el.querySelectorAll(
-        ".kuc-base-pagination__group__pager-disable"
+        ".kuc-base-pagination__group__pager-disable",
       ) as NodeList;
       expect(paginationButtons.length).to.equal(1);
 
       const rowsEl = el.querySelectorAll(
-        ".kuc-readonly-table__table__body__row "
+        ".kuc-readonly-table__table__body__row ",
       ) as NodeList;
       expect(rowsEl.length).to.equal(4);
     });
@@ -106,7 +106,7 @@ describe("ReadOnlyTable", () => {
       const el = await fixture(container);
 
       const paginationButtons = el.querySelectorAll(
-        ".kuc-base-pagination__group__pager-disable"
+        ".kuc-base-pagination__group__pager-disable",
       ) as NodeList;
       expect(paginationButtons.length).to.equal(2);
     });
@@ -120,7 +120,7 @@ describe("ReadOnlyTable", () => {
       const el = await fixture(container);
 
       const paginationButtons = el.querySelectorAll(
-        ".kuc-base-pagination__group__pager-disable"
+        ".kuc-base-pagination__group__pager-disable",
       ) as NodeList;
       expect(paginationButtons.length).to.equal(2);
     });
@@ -134,12 +134,12 @@ describe("ReadOnlyTable", () => {
       const el = await fixture(container);
 
       const paginationButtons = el.querySelectorAll(
-        ".kuc-base-pagination__group__pager-disable"
+        ".kuc-base-pagination__group__pager-disable",
       ) as NodeList;
       expect(paginationButtons.length).to.equal(1);
 
       const rowsEl = el.querySelectorAll(
-        ".kuc-readonly-table__table__body__row "
+        ".kuc-readonly-table__table__body__row ",
       ) as NodeList;
       expect(rowsEl.length).to.equal(6);
     });
@@ -153,12 +153,12 @@ describe("ReadOnlyTable", () => {
       const el = await fixture(container);
 
       const paginationButtons = el.querySelectorAll(
-        ".kuc-base-pagination__group__pager-disable"
+        ".kuc-base-pagination__group__pager-disable",
       ) as NodeList;
       expect(paginationButtons.length).to.equal(1);
 
       const rowsEl = el.querySelectorAll(
-        ".kuc-readonly-table__table__body__row "
+        ".kuc-readonly-table__table__body__row ",
       ) as NodeList;
       expect(rowsEl.length).to.equal(4);
     });
@@ -172,12 +172,12 @@ describe("ReadOnlyTable", () => {
       const el = await fixture(container);
 
       const paginationButtons = el.querySelectorAll(
-        ".kuc-base-pagination__group__pager-disable"
+        ".kuc-base-pagination__group__pager-disable",
       ) as NodeList;
       expect(paginationButtons.length).to.equal(1);
 
       const rowsEl = el.querySelectorAll(
-        ".kuc-readonly-table__table__body__row "
+        ".kuc-readonly-table__table__body__row ",
       ) as NodeList;
       expect(rowsEl.length).to.equal(6);
     });
@@ -191,12 +191,12 @@ describe("ReadOnlyTable", () => {
       const el = await fixture(container);
 
       const paginationButtons = el.querySelectorAll(
-        ".kuc-base-pagination__group__pager-disable"
+        ".kuc-base-pagination__group__pager-disable",
       ) as NodeList;
       expect(paginationButtons.length).to.equal(1);
 
       const rowsEl = el.querySelectorAll(
-        ".kuc-readonly-table__table__body__row "
+        ".kuc-readonly-table__table__body__row ",
       ) as NodeList;
       expect(rowsEl.length).to.equal(4);
     });
@@ -205,7 +205,7 @@ describe("ReadOnlyTable", () => {
       const handleError = (event: any) => {
         const errorMsg = event.reason.message;
         expect(errorMsg).to.equal(
-          "'rowsPerPage' property is not positive integer."
+          "'rowsPerPage' property is not positive integer.",
         );
         window.removeEventListener("unhandledrejection", handleError);
         done();
@@ -220,7 +220,7 @@ describe("ReadOnlyTable", () => {
       const handleError = (event: any) => {
         const errorMsg = event.reason.message;
         expect(errorMsg).to.equal(
-          "'rowsPerPage' property is not positive integer."
+          "'rowsPerPage' property is not positive integer.",
         );
         window.removeEventListener("unhandledrejection", handleError);
         done();

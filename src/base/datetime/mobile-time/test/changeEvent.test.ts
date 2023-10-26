@@ -13,7 +13,7 @@ describe("BaseMobileTime", () => {
 
       const el = await fixture(container);
       const selectHourEl = el.querySelector(
-        ".kuc-base-mobile-time__group__hours"
+        ".kuc-base-mobile-time__group__hours",
       ) as HTMLSelectElement;
 
       selectHourEl.value = "01";
@@ -36,7 +36,7 @@ describe("BaseMobileTime", () => {
 
       const el = await fixture(container);
       const selectHourEl = el.querySelector(
-        ".kuc-base-mobile-time__group__hours"
+        ".kuc-base-mobile-time__group__hours",
       ) as HTMLSelectElement;
 
       selectHourEl.value = "PM 03";
@@ -58,7 +58,7 @@ describe("BaseMobileTime", () => {
 
       const el = await fixture(container);
       const selectMinuteEl = el.querySelector(
-        ".kuc-base-mobile-time__group__minutes"
+        ".kuc-base-mobile-time__group__minutes",
       ) as HTMLSelectElement;
 
       selectMinuteEl.value = "35";

@@ -8,7 +8,7 @@ describe("BaseMobileDate", () => {
       container.setAttribute("value", "2022-02-14");
       const el = await fixture(container);
       const inputEl = el.querySelector(
-        ".kuc-mobile-base-date__group__input"
+        ".kuc-mobile-base-date__group__input",
       ) as HTMLInputElement;
 
       expect(inputEl.getAttribute("aria-required")).to.equal("false");
@@ -21,7 +21,7 @@ describe("BaseMobileDate", () => {
 
       const el = await fixture(container);
       const inputEl = el.querySelector(
-        ".kuc-mobile-base-date__group__input"
+        ".kuc-mobile-base-date__group__input",
       ) as HTMLInputElement;
 
       expect(inputEl.getAttribute("aria-required")).to.equal("true");
@@ -34,7 +34,7 @@ describe("BaseMobileDate", () => {
       container.setAttribute("required", "true");
       await elementUpdated(container);
       const inputEl = el.querySelector(
-        ".kuc-mobile-base-date__group__input"
+        ".kuc-mobile-base-date__group__input",
       ) as HTMLInputElement;
 
       expect(inputEl.getAttribute("aria-required")).to.equal("true");
@@ -48,7 +48,7 @@ describe("BaseMobileDate", () => {
       container.removeAttribute("required");
       await elementUpdated(container);
       const inputEl = el.querySelector(
-        ".kuc-mobile-base-date__group__input"
+        ".kuc-mobile-base-date__group__input",
       ) as HTMLInputElement;
 
       expect(inputEl.getAttribute("aria-required")).to.equal("false");

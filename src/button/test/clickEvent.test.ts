@@ -12,7 +12,7 @@ describe("Button", () => {
 
       const el = await fixture(container);
       const buttonEl = el.querySelector(
-        ".kuc-button__button"
+        ".kuc-button__button",
       ) as HTMLButtonElement;
 
       buttonEl.click();
@@ -32,7 +32,7 @@ describe("Button", () => {
 
       const el = await fixture(container);
       const buttonEl = el.querySelector(
-        ".kuc-button__button"
+        ".kuc-button__button",
       ) as HTMLButtonElement;
 
       buttonEl.click();

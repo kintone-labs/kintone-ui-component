@@ -27,7 +27,7 @@ describe("MobileRadioButton", () => {
       const container = new MobileRadioButton();
       const el = await fixture(container);
       const itemsEl = el.querySelectorAll(
-        ".kuc-mobile-radio-button__group__select-menu__item"
+        ".kuc-mobile-radio-button__group__select-menu__item",
       );
       expect(itemsEl.length).to.equal(0);
     });
@@ -36,7 +36,7 @@ describe("MobileRadioButton", () => {
       const container = new MobileRadioButton({ items: initItemsWithoutLabel });
       const el = await fixture(container);
       const itemsEl = el.querySelectorAll(
-        ".kuc-mobile-radio-button__group__select-menu__item"
+        ".kuc-mobile-radio-button__group__select-menu__item",
       );
       expect(itemsEl.length).to.equal(3);
 
@@ -67,7 +67,7 @@ describe("MobileRadioButton", () => {
       container.items = initItemsWithoutLabel;
       const el = await fixture(container);
       const itemsEl = el.querySelectorAll(
-        ".kuc-mobile-radio-button__group__select-menu__item"
+        ".kuc-mobile-radio-button__group__select-menu__item",
       );
       expect(itemsEl.length).to.equal(3);
 
@@ -97,7 +97,7 @@ describe("MobileRadioButton", () => {
       const container = new MobileRadioButton({ items: initItems });
       const el = await fixture(container);
       const itemsEl = el.querySelectorAll(
-        ".kuc-mobile-radio-button__group__select-menu__item"
+        ".kuc-mobile-radio-button__group__select-menu__item",
       );
 
       expect(container.items).to.be.equal(initItems);
@@ -131,7 +131,7 @@ describe("MobileRadioButton", () => {
       });
       const el = await fixture(container);
       const itemsEl = el.querySelectorAll(
-        ".kuc-mobile-radio-button__group__select-menu__item"
+        ".kuc-mobile-radio-button__group__select-menu__item",
       );
       const inputEl0 = itemsEl[0].querySelector("input") as HTMLInputElement;
       expect(inputEl0.value).to.equal("");
@@ -141,7 +141,7 @@ describe("MobileRadioButton", () => {
       container.items = initItems;
       const el = await fixture(container);
       const itemsEl = el.querySelectorAll(
-        ".kuc-mobile-radio-button__group__select-menu__item"
+        ".kuc-mobile-radio-button__group__select-menu__item",
       );
 
       expect(container.items).to.be.equal(initItems);
@@ -175,7 +175,7 @@ describe("MobileRadioButton", () => {
 
       const el = await fixture(container);
       const itemsEl = el.querySelectorAll(
-        ".kuc-mobile-radio-button__group__select-menu__item"
+        ".kuc-mobile-radio-button__group__select-menu__item",
       );
 
       expect(container.items).to.be.equal(replacedItems);

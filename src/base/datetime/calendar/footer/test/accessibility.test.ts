@@ -13,7 +13,7 @@ describe("BaseDateTimeCalendarFooter", () => {
 
       const el = await fixture(container);
       const buttonEl = el.querySelector(
-        ".kuc-base-datetime-calendar-footer__group__button--none"
+        ".kuc-base-datetime-calendar-footer__group__button--none",
       ) as HTMLButtonElement;
 
       buttonEl.dispatchEvent(new KeyboardEvent("keydown", { key: "a" }));
@@ -30,11 +30,11 @@ describe("BaseDateTimeCalendarFooter", () => {
 
       const el = await fixture(container);
       const buttonEl = el.querySelector(
-        ".kuc-base-datetime-calendar-footer__group__button--none"
+        ".kuc-base-datetime-calendar-footer__group__button--none",
       ) as HTMLButtonElement;
 
       buttonEl.dispatchEvent(
-        new KeyboardEvent("keydown", { key: "Tab", shiftKey: true })
+        new KeyboardEvent("keydown", { key: "Tab", shiftKey: true }),
       );
       await elementUpdated(el);
       expect(triggeredEvent).to.equal(null);
