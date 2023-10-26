@@ -29,6 +29,7 @@ export const TEXTAREA_CSS = `
     width: var(--kuc-text-area-input-width, 299px);
     height: var(--kuc-text-area-input-height, 125px);
     line-height: 1.5;
+    white-space: normal;
   }
   kuc-textarea[hidden] {
     display: none;
