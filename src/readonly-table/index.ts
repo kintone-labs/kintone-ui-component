@@ -141,7 +141,7 @@ let exportReadOnlyTable;
     }
 
     private _customWidthVariables(index: number) {
-      return `var(--kuc-read-only-table-header-cell-${index}-width, var(--kuc-read-only-table-header-cell-width, auto))`;
+      return `var(--kuc-read-only-table-header-${index}-width, var(--kuc-read-only-table-header-width, auto))`;
     }
 
     private _getColumnsTemplate(column: ReadOnlyTableColumn, index: number) {

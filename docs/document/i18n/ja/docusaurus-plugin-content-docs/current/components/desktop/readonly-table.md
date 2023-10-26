@@ -48,6 +48,22 @@ ReadOnlyTable(options)<br/>
 | :--- | :--- | :--- | :--- | :--- |
 | options | object | {} | コンポーネントのプロパティを含むオブジェクト |  |
 
+### Custom CSS
+:::tip
+[Custom CSS](../../getting-started/custom-css.md) をご確認ください。
+:::
+
+コンポーネントのスタイルを変更するために使用できるプロパティの一覧です。
+#### Property
+| Name | Description |
+| :--- | :--- |
+| --kuc-read-only-table-header-background-color | |
+| --kuc-read-only-table-header-{index}-width | <li>This property allows you to set the width of specific table columns based on their index values. For instance, you can define the width of the first column using `--kuc-read-only-table-header-0-width`</li><li>Please note that the index values start from `0`, with `0` corresponding to the first column</li> |
+| --kuc-read-only-table-header-width | <li>This property is used to set the width for all columns in a table, it defines a uniform width for every column</li><li>If you need to set a specific width for an individual column, you can use the `--kuc-read-only-table-header-{index}-width` property</li> |
+| --kuc-read-only-table-header-color | |
+| --kuc-read-only-table-header-font-size | |
+| --kuc-read-only-table-header-height | |
+
 ---
 ## Sample Code
 
