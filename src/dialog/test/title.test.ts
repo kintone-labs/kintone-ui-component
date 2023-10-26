@@ -10,7 +10,7 @@ describe("Dialog", () => {
       await elementUpdated(container);
 
       const titleEl = container.querySelector(
-        ".kuc-dialog__dialog__header__title"
+        ".kuc-dialog__dialog__header__title",
       ) as HTMLSpanElement;
       expect(titleEl.innerText).to.equal("");
     });
@@ -21,7 +21,7 @@ describe("Dialog", () => {
       await elementUpdated(container);
 
       const titleEl = container.querySelector(
-        ".kuc-dialog__dialog__header__title"
+        ".kuc-dialog__dialog__header__title",
       ) as HTMLSpanElement;
       expect(titleEl.innerText).to.equal("title");
     });
@@ -34,7 +34,7 @@ describe("Dialog", () => {
       await elementUpdated(container);
 
       const titleEl = container.querySelector(
-        ".kuc-dialog__dialog__header__title"
+        ".kuc-dialog__dialog__header__title",
       ) as HTMLSpanElement;
       expect(titleEl.innerText).to.equal("title");
     });
@@ -47,7 +47,7 @@ describe("Dialog", () => {
       await elementUpdated(container);
 
       const titleEl = container.querySelector(
-        ".kuc-dialog__dialog__header__title"
+        ".kuc-dialog__dialog__header__title",
       ) as HTMLSpanElement;
       expect(titleEl.innerText).to.equal("replaced title");
     });

@@ -94,7 +94,7 @@ let exportCheckbox;
       if (changedProperties.has("selectedIndex")) {
         if (!validateArrayType(this.selectedIndex)) {
           this.throwErrorAfterUpdateComplete(
-            ERROR_MESSAGE.SELECTED_INDEX.IS_NOT_ARRAY
+            ERROR_MESSAGE.SELECTED_INDEX.IS_NOT_ARRAY,
           );
           return false;
         }
@@ -132,12 +132,12 @@ let exportCheckbox;
       const newValueMapping = this._getNewValueMapping(value, selectedIndex);
       const itemsValue = this.items.map((item) => item.value);
       const newValue = Object.values(newValueMapping).filter(
-        (item) => itemsValue.indexOf(item) > -1
+        (item) => itemsValue.indexOf(item) > -1,
       );
       if (newValue === oldValue) return;
 
       const newSelectedIndex = Object.keys(newValueMapping).map(
-        (item: string) => parseInt(item, 10)
+        (item: string) => parseInt(item, 10),
       );
       this.value = newValue;
       this.selectedIndex = newSelectedIndex;
@@ -203,7 +203,7 @@ let exportCheckbox;
       const keys = Object.keys(this._valueMapping);
       const result = values.filter(
         (val, indexVal) =>
-          val === item.value && index === parseInt(keys[indexVal], 10)
+          val === item.value && index === parseInt(keys[indexVal], 10),
       );
       return result.length > 0;
     }
@@ -235,7 +235,7 @@ let exportCheckbox;
             class="kuc-checkbox__group__select-menu__item__label"
             >${this._getCheckboxIconSvgTemplate(
               isDisabled,
-              isCheckedItem
+              isCheckedItem,
             )}${item.label === undefined ? item.value : item.label}
           </label>
         </div>
@@ -278,7 +278,7 @@ let exportCheckbox;
             itemLayout="${this.itemLayout}"
           >
             ${this.items.map((item, index) =>
-              this._getItemTemplate(item, index)
+              this._getItemTemplate(item, index),
             )}
           </div>
           <kuc-base-error
@@ -317,7 +317,7 @@ let exportCheckbox;
 
     private _getValidValue(
       itemsMapping: CheckBoxValueMapping,
-      _selectedIndex: number[]
+      _selectedIndex: number[],
     ) {
       return _selectedIndex
         .filter((item) => itemsMapping[item])
@@ -333,7 +333,7 @@ let exportCheckbox;
           continue;
         }
         const firstIndex = this.items.findIndex(
-          (item) => item.value === this.value[i]
+          (item) => item.value === this.value[i],
         );
         validSelectedIndex.push(firstIndex);
       }
@@ -344,7 +344,7 @@ let exportCheckbox;
     private _setValueAndSelectedIndex() {
       this.value = Object.values(this._valueMapping);
       this.selectedIndex = Object.keys(this._valueMapping).map((key) =>
-        parseInt(key, 10)
+        parseInt(key, 10),
       );
     }
   }

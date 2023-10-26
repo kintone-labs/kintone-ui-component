@@ -17,7 +17,7 @@ describe("MultiChoice", () => {
       expect(container.value).to.deep.equal([]);
 
       const itemsEl = el.querySelectorAll(
-        ".kuc-multi-choice__group__menu__item"
+        ".kuc-multi-choice__group__menu__item",
       );
       const svgsEl0 = itemsEl[0].querySelectorAll("svg");
       expect(svgsEl0.length).to.equal(0);
@@ -39,7 +39,7 @@ describe("MultiChoice", () => {
       expect(container.value).to.deep.equal([]);
 
       const itemsEl = el.querySelectorAll(
-        ".kuc-multi-choice__group__menu__item"
+        ".kuc-multi-choice__group__menu__item",
       );
       const svgsEl0 = itemsEl[0].querySelectorAll("svg");
       expect(svgsEl0.length).to.equal(0);
@@ -64,7 +64,7 @@ describe("MultiChoice", () => {
       expect(container.value).to.deep.equal([initItems[1].value]);
 
       const itemsEl = el.querySelectorAll(
-        ".kuc-multi-choice__group__menu__item"
+        ".kuc-multi-choice__group__menu__item",
       );
       const svgsEl0 = itemsEl[0].querySelectorAll("svg");
       expect(svgsEl0.length).to.equal(0);
@@ -90,7 +90,7 @@ describe("MultiChoice", () => {
       expect(container.value).to.deep.equal([initItems[1].value]);
 
       const itemsEl = el.querySelectorAll(
-        ".kuc-multi-choice__group__menu__item"
+        ".kuc-multi-choice__group__menu__item",
       );
       const svgsEl0 = itemsEl[0].querySelectorAll("svg");
       expect(svgsEl0.length).to.equal(0);
@@ -116,7 +116,7 @@ describe("MultiChoice", () => {
       expect(container.value).to.deep.equal([]);
 
       const itemsEl = el.querySelectorAll(
-        ".kuc-multi-choice__group__menu__item"
+        ".kuc-multi-choice__group__menu__item",
       );
       const svgsEl0 = itemsEl[0].querySelectorAll("svg");
       expect(svgsEl0.length).to.equal(0);

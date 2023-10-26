@@ -15,14 +15,14 @@ describe("BaseDateTimeListBox", () => {
 
       const el = await fixture(container);
       const itemsEl = el.querySelectorAll(
-        ".kuc-base-datetime-listbox__listbox__item"
+        ".kuc-base-datetime-listbox__listbox__item",
       );
 
       itemsEl[2].dispatchEvent(new Event("mouseover"));
       expect(
         itemsEl[2].classList.contains(
-          "kuc-base-datetime-listbox__listbox--highlight"
-        )
+          "kuc-base-datetime-listbox__listbox--highlight",
+        ),
       ).to.equal(true);
     });
 
@@ -41,7 +41,7 @@ describe("BaseDateTimeListBox", () => {
 
       const el = await fixture(container);
       const listboxItem = el.querySelector(
-        ".kuc-base-datetime-listbox__listbox__item"
+        ".kuc-base-datetime-listbox__listbox__item",
       ) as HTMLLIElement;
 
       listboxItem.focus();
@@ -67,13 +67,13 @@ describe("BaseDateTimeListBox", () => {
 
       const el = await fixture(container);
       const listboxItem = el.querySelector(
-        ".kuc-base-datetime-listbox__listbox__item"
+        ".kuc-base-datetime-listbox__listbox__item",
       ) as HTMLLIElement;
 
       listboxItem.focus();
 
       listboxItem.dispatchEvent(
-        new KeyboardEvent("keydown", { key: "ArrowUp" })
+        new KeyboardEvent("keydown", { key: "ArrowUp" }),
       );
       listboxItem.dispatchEvent(new Event("mouseover"));
       await elementUpdated(container);
@@ -96,13 +96,13 @@ describe("BaseDateTimeListBox", () => {
 
       const el = await fixture(container);
       const listboxItem = el.querySelector(
-        ".kuc-base-datetime-listbox__listbox__item"
+        ".kuc-base-datetime-listbox__listbox__item",
       ) as HTMLLIElement;
 
       listboxItem.focus();
 
       listboxItem.dispatchEvent(
-        new KeyboardEvent("keydown", { key: "ArrowDown" })
+        new KeyboardEvent("keydown", { key: "ArrowDown" }),
       );
       listboxItem.dispatchEvent(new Event("mouseover"));
       await elementUpdated(container);

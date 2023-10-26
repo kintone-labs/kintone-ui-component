@@ -11,13 +11,13 @@ describe("DateTimePicker", () => {
       });
       const el = await fixture(container);
       const timeGroupEl = el.querySelector(
-        ".kuc-base-time__group"
+        ".kuc-base-time__group",
       ) as HTMLInputElement;
       timeGroupEl.click();
       await elementUpdated(container);
       await elementUpdated(el);
       const dateTimeListbox = el.querySelector(
-        ".kuc-base-time__group__listbox"
+        ".kuc-base-time__group__listbox",
       ) as HTMLElement;
       expect(dateTimeListbox).to.equal(null);
     });
@@ -29,18 +29,18 @@ describe("DateTimePicker", () => {
       });
       const el = await fixture(container);
       const inputHourEl = el.querySelector(
-        ".kuc-base-time__group__hours"
+        ".kuc-base-time__group__hours",
       ) as HTMLInputElement;
       inputHourEl.click();
       inputHourEl.focus();
       await elementUpdated(el);
 
       const listboxEl = el.querySelector(
-        ".kuc-base-time__group__listbox"
+        ".kuc-base-time__group__listbox",
       ) as HTMLElement;
 
       listboxEl.dispatchEvent(
-        new CustomEvent("kuc:listbox-blur", { bubbles: true })
+        new CustomEvent("kuc:listbox-blur", { bubbles: true }),
       );
       await elementUpdated(el);
       expect(listboxEl.getAttribute("aria-hidden")).to.equal("false");
@@ -50,21 +50,21 @@ describe("DateTimePicker", () => {
       const container = new DateTimePicker();
       const el = await fixture(container);
       const timeGroupEl = el.querySelector(
-        ".kuc-base-time__group"
+        ".kuc-base-time__group",
       ) as HTMLInputElement;
       timeGroupEl.click();
       await elementUpdated(container);
       await elementUpdated(el);
       const assistiveTextEl = el.querySelector(
-        ".kuc-base-time__assistive-text"
+        ".kuc-base-time__assistive-text",
       ) as HTMLElement;
       assistiveTextEl.focus();
       assistiveTextEl.dispatchEvent(
-        new KeyboardEvent("keydown", { key: "Tab" })
+        new KeyboardEvent("keydown", { key: "Tab" }),
       );
       await elementUpdated(el);
       const dateTimeListbox = el.querySelector(
-        ".kuc-base-time__group__listbox"
+        ".kuc-base-time__group__listbox",
       ) as HTMLElement;
       expect(dateTimeListbox).to.equal(null);
     });
@@ -73,20 +73,20 @@ describe("DateTimePicker", () => {
       const container = new DateTimePicker();
       const el = await fixture(container);
       const timeGroupEl = el.querySelector(
-        ".kuc-base-time__group"
+        ".kuc-base-time__group",
       ) as HTMLInputElement;
       await elementUpdated(container);
       await elementUpdated(el);
       const assistiveTextEl = el.querySelector(
-        ".kuc-base-time__assistive-text"
+        ".kuc-base-time__assistive-text",
       ) as HTMLElement;
       assistiveTextEl.focus();
       assistiveTextEl.dispatchEvent(
-        new KeyboardEvent("keydown", { key: "Tab" })
+        new KeyboardEvent("keydown", { key: "Tab" }),
       );
       await elementUpdated(el);
       const dateTimeListbox = el.querySelector(
-        ".kuc-base-time__group__listbox"
+        ".kuc-base-time__group__listbox",
       ) as HTMLElement;
       expect(dateTimeListbox).to.equal(null);
     });
@@ -98,18 +98,18 @@ describe("DateTimePicker", () => {
       });
       const el = await fixture(container);
       const inputHourEl = el.querySelector(
-        ".kuc-base-time__group__hours"
+        ".kuc-base-time__group__hours",
       ) as HTMLInputElement;
       inputHourEl.click();
       inputHourEl.focus();
       await elementUpdated(el);
 
       const listboxEl = el.querySelector(
-        ".kuc-base-time__group__listbox"
+        ".kuc-base-time__group__listbox",
       ) as HTMLElement;
 
       listboxEl.dispatchEvent(
-        new CustomEvent("kuc:listbox-escape", { bubbles: true })
+        new CustomEvent("kuc:listbox-escape", { bubbles: true }),
       );
       await elementUpdated(el);
       expect(listboxEl.getAttribute("aria-hidden")).to.equal("false");
@@ -121,7 +121,7 @@ describe("DateTimePicker", () => {
       });
       const el = await fixture(container);
       const inputMinuteEl = el.querySelector(
-        ".kuc-base-time__group__minutes"
+        ".kuc-base-time__group__minutes",
       ) as HTMLInputElement;
       inputMinuteEl.focus();
       inputMinuteEl.dispatchEvent(new KeyboardEvent("keydown", { key: "3" }));
@@ -135,7 +135,7 @@ describe("DateTimePicker", () => {
       });
       const el = await fixture(container);
       const suffixEl = el.querySelector(
-        ".kuc-base-time__group__suffix"
+        ".kuc-base-time__group__suffix",
       ) as HTMLInputElement;
       suffixEl.focus();
       suffixEl.dispatchEvent(new KeyboardEvent("keydown", { key: "P" }));

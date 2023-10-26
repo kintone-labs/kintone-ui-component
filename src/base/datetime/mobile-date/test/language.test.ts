@@ -9,7 +9,7 @@ describe("BaseMobileDate", () => {
       container.setAttribute("value", "2022-02-14");
       const el = await fixture(container);
       const inputEl = el.querySelector(
-        ".kuc-mobile-base-date__group__input"
+        ".kuc-mobile-base-date__group__input",
       ) as HTMLInputElement;
 
       expect(inputEl.value).to.equal("02/14/2022");
@@ -21,7 +21,7 @@ describe("BaseMobileDate", () => {
       container.language = "zh";
       const el = await fixture(container);
       const inputEl = el.querySelector(
-        ".kuc-mobile-base-date__group__input"
+        ".kuc-mobile-base-date__group__input",
       ) as HTMLInputElement;
 
       expect(inputEl.value).to.equal("2022-02-14");
@@ -33,7 +33,7 @@ describe("BaseMobileDate", () => {
       container.language = "zh-TW";
       const el = await fixture(container);
       const inputEl = el.querySelector(
-        ".kuc-mobile-base-date__group__input"
+        ".kuc-mobile-base-date__group__input",
       ) as HTMLInputElement;
 
       expect(inputEl.value).to.equal("2022-02-14");
@@ -45,7 +45,7 @@ describe("BaseMobileDate", () => {
       container.language = "ja";
       const el = await fixture(container);
       const inputEl = el.querySelector(
-        ".kuc-mobile-base-date__group__input"
+        ".kuc-mobile-base-date__group__input",
       ) as HTMLInputElement;
 
       expect(inputEl.value).to.equal("2022-02-14");
@@ -60,7 +60,7 @@ describe("BaseMobileDate", () => {
       await elementUpdated(container);
 
       const inputEl = el.querySelector(
-        ".kuc-mobile-base-date__group__input"
+        ".kuc-mobile-base-date__group__input",
       ) as HTMLInputElement;
 
       expect(inputEl.value).to.equal("2022-02-14");

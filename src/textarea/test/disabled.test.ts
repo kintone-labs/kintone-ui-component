@@ -8,7 +8,7 @@ describe("TextArea", () => {
       const container = new TextArea();
       const el = await fixture(container);
       const textareaEl = el.querySelector(
-        ".kuc-textarea__group__textarea"
+        ".kuc-textarea__group__textarea",
       ) as HTMLTextAreaElement;
 
       expect(textareaEl.hasAttribute("disabled")).to.equal(false);
@@ -18,7 +18,7 @@ describe("TextArea", () => {
       const container = new TextArea({ disabled: true });
       const el = await fixture(container);
       const textareaEl = el.querySelector(
-        ".kuc-textarea__group__textarea"
+        ".kuc-textarea__group__textarea",
       ) as HTMLTextAreaElement;
 
       expect(textareaEl.hasAttribute("disabled")).to.equal(true);
@@ -29,7 +29,7 @@ describe("TextArea", () => {
       container.disabled = true;
       const el = await fixture(container);
       const textareaEl = el.querySelector(
-        ".kuc-textarea__group__textarea"
+        ".kuc-textarea__group__textarea",
       ) as HTMLTextAreaElement;
 
       expect(textareaEl.hasAttribute("disabled")).to.equal(true);
@@ -40,7 +40,7 @@ describe("TextArea", () => {
       container.disabled = false;
       const el = await fixture(container);
       const textareaEl = el.querySelector(
-        ".kuc-textarea__group__textarea"
+        ".kuc-textarea__group__textarea",
       ) as HTMLTextAreaElement;
 
       expect(textareaEl.hasAttribute("disabled")).to.equal(false);

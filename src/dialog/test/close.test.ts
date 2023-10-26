@@ -18,7 +18,7 @@ describe("Dialog", () => {
 
       const el: HTMLElement = await fixture(container);
       const itemsEl = el.querySelector(
-        ".kuc-dialog__dialog__header__close-button"
+        ".kuc-dialog__dialog__header__close-button",
       ) as HTMLButtonElement;
       itemsEl.click();
       expect(container.hasAttribute("opened")).to.equal(false);

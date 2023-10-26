@@ -17,20 +17,20 @@ describe("Combobox", () => {
       });
       const el = await fixture(container);
       const toggleIconButton = el.querySelector(
-        ".kuc-combobox__group__toggle__icon__button"
+        ".kuc-combobox__group__toggle__icon__button",
       ) as HTMLButtonElement;
 
       toggleIconButton.click();
       await elementUpdated(container);
       let menuEl = el.querySelector(
-        ".kuc-combobox__group__select-menu"
+        ".kuc-combobox__group__select-menu",
       ) as HTMLDivElement;
       expect(menuEl).not.has.attribute("hidden");
 
       toggleIconButton.click();
       await elementUpdated(container);
       menuEl = el.querySelector(
-        ".kuc-combobox__group__select-menu"
+        ".kuc-combobox__group__select-menu",
       ) as HTMLDivElement;
       expect(menuEl).has.attribute("hidden");
     });
@@ -42,13 +42,13 @@ describe("Combobox", () => {
       });
       const el = await fixture(container);
       const toggleIconButton = el.querySelector(
-        ".kuc-combobox__group__toggle__icon__button"
+        ".kuc-combobox__group__toggle__icon__button",
       ) as HTMLButtonElement;
 
       toggleIconButton.click();
       await elementUpdated(container);
       let menuEl = el.querySelector(
-        ".kuc-combobox__group__select-menu"
+        ".kuc-combobox__group__select-menu",
       ) as HTMLDivElement;
       expect(menuEl).not.has.attribute("hidden");
 
@@ -56,7 +56,7 @@ describe("Combobox", () => {
       document.body.click();
       await elementUpdated(container);
       menuEl = el.querySelector(
-        ".kuc-combobox__group__select-menu"
+        ".kuc-combobox__group__select-menu",
       ) as HTMLDivElement;
       expect(menuEl).has.attribute("hidden");
     });
@@ -71,24 +71,24 @@ describe("Combobox", () => {
       });
       const el = await fixture(container);
       const toggle = el.querySelector(
-        ".kuc-combobox__group__toggle__icon__button"
+        ".kuc-combobox__group__toggle__icon__button",
       ) as HTMLButtonElement;
 
       toggle.click();
       await elementUpdated(container);
       let menuEl = el.querySelector(
-        ".kuc-combobox__group__select-menu"
+        ".kuc-combobox__group__select-menu",
       ) as HTMLDivElement;
       expect(menuEl).not.has.attribute("hidden");
 
       await aTimeout(10);
       const itemsEl = el.querySelectorAll(
-        ".kuc-combobox__group__select-menu__item"
+        ".kuc-combobox__group__select-menu__item",
       );
       (itemsEl[3] as HTMLLIElement).click();
       await elementUpdated(container);
       menuEl = el.querySelector(
-        ".kuc-combobox__group__select-menu"
+        ".kuc-combobox__group__select-menu",
       ) as HTMLDivElement;
       expect(menuEl).not.has.attribute("hidden");
     });
@@ -100,39 +100,39 @@ describe("Combobox", () => {
       });
       const el = await fixture(container);
       const toggleIconButton = el.querySelector(
-        ".kuc-combobox__group__toggle__icon__button"
+        ".kuc-combobox__group__toggle__icon__button",
       ) as HTMLButtonElement;
       toggleIconButton.click();
       await elementUpdated(container);
       const itemsEl = el.querySelectorAll(
-        ".kuc-combobox__group__select-menu__item"
+        ".kuc-combobox__group__select-menu__item",
       );
 
       itemsEl[2].dispatchEvent(new Event("mouseover"));
       expect(
         itemsEl[2].classList.contains(
-          "kuc-combobox__group__select-menu__highlight"
-        )
+          "kuc-combobox__group__select-menu__highlight",
+        ),
       ).to.equal(true);
 
       const menuEl = el.querySelector(
-        ".kuc-combobox__group__select-menu"
+        ".kuc-combobox__group__select-menu",
       ) as HTMLDivElement;
       menuEl.dispatchEvent(new Event("mouseleave"));
       expect(
         itemsEl[0].classList.contains(
-          "kuc-combobox__group__select-menu__highlight"
-        )
+          "kuc-combobox__group__select-menu__highlight",
+        ),
       ).to.equal(false);
       expect(
         itemsEl[1].classList.contains(
-          "kuc-combobox__group__select-menu__highlight"
-        )
+          "kuc-combobox__group__select-menu__highlight",
+        ),
       ).to.equal(false);
       expect(
         itemsEl[2].classList.contains(
-          "kuc-combobox__group__select-menu__highlight"
-        )
+          "kuc-combobox__group__select-menu__highlight",
+        ),
       ).to.equal(false);
     });
 
@@ -146,25 +146,25 @@ describe("Combobox", () => {
       });
       const el = await fixture(container);
       const toggleEl = el.querySelector(
-        ".kuc-combobox__group__toggle__input"
+        ".kuc-combobox__group__toggle__input",
       ) as HTMLInputElement;
       toggleEl.click();
       await elementUpdated(container);
       const itemsEl = el.querySelectorAll(
-        ".kuc-combobox__group__select-menu__item"
+        ".kuc-combobox__group__select-menu__item",
       );
 
       itemsEl[3].dispatchEvent(new Event("mouseover"));
       await expect(
         itemsEl[3].classList.contains(
-          "kuc-combobox__group__select-menu__highlight"
-        )
+          "kuc-combobox__group__select-menu__highlight",
+        ),
       ).to.equal(false);
 
       await expect(
         itemsEl[0].classList.contains(
-          "kuc-combobox__group__select-menu__highlight"
-        )
+          "kuc-combobox__group__select-menu__highlight",
+        ),
       ).to.equal(true);
     });
 
@@ -175,10 +175,10 @@ describe("Combobox", () => {
       });
       const el = await fixture(container);
       const toggleIconButton = el.querySelector(
-        ".kuc-combobox__group__toggle__icon__button"
+        ".kuc-combobox__group__toggle__icon__button",
       ) as HTMLButtonElement;
       const menuEl = el.querySelector(
-        ".kuc-combobox__group__select-menu"
+        ".kuc-combobox__group__select-menu",
       ) as HTMLDivElement;
 
       toggleIconButton.dispatchEvent(new MouseEvent("mouseup"));
@@ -190,7 +190,7 @@ describe("Combobox", () => {
       expect(menuEl.hidden).to.equal(true);
 
       const toggleInput = el.querySelector(
-        ".kuc-combobox__group__toggle__input"
+        ".kuc-combobox__group__toggle__input",
       ) as HTMLInputElement;
       toggleInput.dispatchEvent(new MouseEvent("mouseup"));
       await elementUpdated(el);
@@ -205,15 +205,15 @@ describe("Combobox", () => {
       const container = new Combobox({ items: initItems });
       const el = await fixture(container);
       const toggleInput = el.querySelector(
-        ".kuc-combobox__group__toggle__input"
+        ".kuc-combobox__group__toggle__input",
       ) as HTMLInputElement;
       toggleInput.dispatchEvent(
-        new KeyboardEvent("keydown", { key: "ArrowUp" })
+        new KeyboardEvent("keydown", { key: "ArrowUp" }),
       );
       await elementUpdated(el);
 
       const menuEl = el.querySelector(
-        ".kuc-combobox__group__select-menu"
+        ".kuc-combobox__group__select-menu",
       ) as HTMLUListElement;
 
       expect(menuEl.hidden).to.equal(false);
@@ -223,15 +223,15 @@ describe("Combobox", () => {
       const container = new Combobox({ items: initItems });
       const el = await fixture(container);
       const toggleInput = el.querySelector(
-        ".kuc-combobox__group__toggle__input"
+        ".kuc-combobox__group__toggle__input",
       ) as HTMLInputElement;
       toggleInput.dispatchEvent(
-        new KeyboardEvent("keydown", { key: "ArrowDown" })
+        new KeyboardEvent("keydown", { key: "ArrowDown" }),
       );
       await elementUpdated(el);
 
       const menuEl = el.querySelector(
-        ".kuc-combobox__group__select-menu"
+        ".kuc-combobox__group__select-menu",
       ) as HTMLUListElement;
 
       expect(menuEl.hidden).to.equal(false);
@@ -241,21 +241,21 @@ describe("Combobox", () => {
       const container = new Combobox({ items: initItems });
       const el = await fixture(container);
       const toggleInput = el.querySelector(
-        ".kuc-combobox__group__toggle__input"
+        ".kuc-combobox__group__toggle__input",
       ) as HTMLInputElement;
 
       const menuEl = el.querySelector(
-        ".kuc-combobox__group__select-menu"
+        ".kuc-combobox__group__select-menu",
       ) as HTMLUListElement;
 
       toggleInput.dispatchEvent(
-        new KeyboardEvent("keydown", { key: "ArrowDown" })
+        new KeyboardEvent("keydown", { key: "ArrowDown" }),
       );
       await elementUpdated(el);
       expect(menuEl.hidden).to.equal(false);
 
       toggleInput.dispatchEvent(
-        new KeyboardEvent("keydown", { key: "Escape" })
+        new KeyboardEvent("keydown", { key: "Escape" }),
       );
       await elementUpdated(el);
       expect(menuEl.hidden).to.equal(true);
@@ -268,22 +268,22 @@ describe("Combobox", () => {
       });
       const el = await fixture(container);
       const toggleInput = el.querySelector(
-        ".kuc-combobox__group__toggle__input"
+        ".kuc-combobox__group__toggle__input",
       ) as HTMLInputElement;
       toggleInput.click();
       await elementUpdated(el);
       toggleInput.dispatchEvent(
-        new KeyboardEvent("keydown", { key: "ArrowUp" })
+        new KeyboardEvent("keydown", { key: "ArrowUp" }),
       );
       await elementUpdated(el);
 
       const itemsEl = el.querySelectorAll(
-        ".kuc-combobox__group__select-menu__item"
+        ".kuc-combobox__group__select-menu__item",
       );
       expect(
         itemsEl[2].classList.contains(
-          "kuc-combobox__group__select-menu__highlight"
-        )
+          "kuc-combobox__group__select-menu__highlight",
+        ),
       ).to.equal(true);
     });
 
@@ -294,7 +294,7 @@ describe("Combobox", () => {
       });
       const el = await fixture(container);
       const toggleInput = el.querySelector(
-        ".kuc-combobox__group__toggle__input"
+        ".kuc-combobox__group__toggle__input",
       ) as HTMLInputElement;
       toggleInput.click();
       await elementUpdated(el);
@@ -302,12 +302,12 @@ describe("Combobox", () => {
       await elementUpdated(el);
 
       const itemsEl = el.querySelectorAll(
-        ".kuc-combobox__group__select-menu__item"
+        ".kuc-combobox__group__select-menu__item",
       );
       expect(
         itemsEl[2].classList.contains(
-          "kuc-combobox__group__select-menu__highlight"
-        )
+          "kuc-combobox__group__select-menu__highlight",
+        ),
       ).to.equal(true);
     });
 
@@ -321,7 +321,7 @@ describe("Combobox", () => {
       });
       const el = await fixture(container);
       const toggleInput = el.querySelector(
-        ".kuc-combobox__group__toggle__input"
+        ".kuc-combobox__group__toggle__input",
       ) as HTMLInputElement;
       toggleInput.click();
       await elementUpdated(el);
@@ -329,17 +329,17 @@ describe("Combobox", () => {
       await elementUpdated(el);
 
       const itemsEl = el.querySelectorAll(
-        ".kuc-combobox__group__select-menu__item"
+        ".kuc-combobox__group__select-menu__item",
       );
       await expect(
         itemsEl[2].classList.contains(
-          "kuc-combobox__group__select-menu__highlight"
-        )
+          "kuc-combobox__group__select-menu__highlight",
+        ),
       ).to.equal(true);
       await expect(
         itemsEl[3].classList.contains(
-          "kuc-combobox__group__select-menu__highlight"
-        )
+          "kuc-combobox__group__select-menu__highlight",
+        ),
       ).to.equal(false);
     });
 
@@ -353,24 +353,24 @@ describe("Combobox", () => {
       });
       const el = await fixture(container);
       const toggleEl = el.querySelector(
-        ".kuc-combobox__group__toggle__input"
+        ".kuc-combobox__group__toggle__input",
       ) as HTMLButtonElement;
       toggleEl.click();
       await elementUpdated(el);
       toggleEl.dispatchEvent(new KeyboardEvent("keydown", { key: "ArrowUp" }));
       await elementUpdated(el);
       const itemsEl = el.querySelectorAll(
-        ".kuc-combobox__group__select-menu__item"
+        ".kuc-combobox__group__select-menu__item",
       );
       await expect(
         itemsEl[2].classList.contains(
-          "kuc-combobox__group__select-menu__highlight"
-        )
+          "kuc-combobox__group__select-menu__highlight",
+        ),
       ).to.equal(true);
       await expect(
         itemsEl[3].classList.contains(
-          "kuc-combobox__group__select-menu__highlight"
-        )
+          "kuc-combobox__group__select-menu__highlight",
+        ),
       ).to.equal(false);
     });
 
@@ -381,22 +381,22 @@ describe("Combobox", () => {
       });
       const el = await fixture(container);
       const toggleInput = el.querySelector(
-        ".kuc-combobox__group__toggle__input"
+        ".kuc-combobox__group__toggle__input",
       ) as HTMLInputElement;
       toggleInput.click();
       await elementUpdated(el);
       toggleInput.dispatchEvent(
-        new KeyboardEvent("keydown", { key: "ArrowDown" })
+        new KeyboardEvent("keydown", { key: "ArrowDown" }),
       );
       await elementUpdated(el);
 
       const itemsEl = el.querySelectorAll(
-        ".kuc-combobox__group__select-menu__item"
+        ".kuc-combobox__group__select-menu__item",
       );
       expect(
         itemsEl[1].classList.contains(
-          "kuc-combobox__group__select-menu__highlight"
-        )
+          "kuc-combobox__group__select-menu__highlight",
+        ),
       ).to.equal(true);
     });
 
@@ -410,27 +410,27 @@ describe("Combobox", () => {
       });
       const el = await fixture(container);
       const toggleInput = el.querySelector(
-        ".kuc-combobox__group__toggle__input"
+        ".kuc-combobox__group__toggle__input",
       ) as HTMLInputElement;
       toggleInput.click();
       await elementUpdated(el);
       toggleInput.dispatchEvent(
-        new KeyboardEvent("keydown", { key: "ArrowDown" })
+        new KeyboardEvent("keydown", { key: "ArrowDown" }),
       );
       await elementUpdated(el);
 
       const itemsEl = el.querySelectorAll(
-        ".kuc-combobox__group__select-menu__item"
+        ".kuc-combobox__group__select-menu__item",
       );
       await expect(
         itemsEl[0].classList.contains(
-          "kuc-combobox__group__select-menu__highlight"
-        )
+          "kuc-combobox__group__select-menu__highlight",
+        ),
       ).to.equal(true);
       await expect(
         itemsEl[3].classList.contains(
-          "kuc-combobox__group__select-menu__highlight"
-        )
+          "kuc-combobox__group__select-menu__highlight",
+        ),
       ).to.equal(false);
     });
 
@@ -441,7 +441,7 @@ describe("Combobox", () => {
       });
       const el = await fixture(container);
       const toggleInput = el.querySelector(
-        ".kuc-combobox__group__toggle__input"
+        ".kuc-combobox__group__toggle__input",
       ) as HTMLInputElement;
       toggleInput.click();
       await elementUpdated(el);
@@ -449,12 +449,12 @@ describe("Combobox", () => {
       await elementUpdated(el);
 
       const itemsEl = el.querySelectorAll(
-        ".kuc-combobox__group__select-menu__item"
+        ".kuc-combobox__group__select-menu__item",
       );
       expect(
         itemsEl[1].classList.contains(
-          "kuc-combobox__group__select-menu__highlight"
-        )
+          "kuc-combobox__group__select-menu__highlight",
+        ),
       ).to.equal(true);
     });
 
@@ -468,7 +468,7 @@ describe("Combobox", () => {
       });
       const el = await fixture(container);
       const toggleInput = el.querySelector(
-        ".kuc-combobox__group__toggle__input"
+        ".kuc-combobox__group__toggle__input",
       ) as HTMLInputElement;
       toggleInput.click();
       await elementUpdated(el);
@@ -476,17 +476,17 @@ describe("Combobox", () => {
       await elementUpdated(el);
 
       const itemsEl = el.querySelectorAll(
-        ".kuc-combobox__group__select-menu__item"
+        ".kuc-combobox__group__select-menu__item",
       );
       await expect(
         itemsEl[0].classList.contains(
-          "kuc-combobox__group__select-menu__highlight"
-        )
+          "kuc-combobox__group__select-menu__highlight",
+        ),
       ).to.equal(true);
       await expect(
         itemsEl[3].classList.contains(
-          "kuc-combobox__group__select-menu__highlight"
-        )
+          "kuc-combobox__group__select-menu__highlight",
+        ),
       ).to.equal(false);
     });
 
@@ -497,10 +497,10 @@ describe("Combobox", () => {
       });
       const el = await fixture(container);
       const toggleInput = el.querySelector(
-        ".kuc-combobox__group__toggle__input"
+        ".kuc-combobox__group__toggle__input",
       ) as HTMLInputElement;
       toggleInput.dispatchEvent(
-        new KeyboardEvent("keydown", { key: "ArrowDown" })
+        new KeyboardEvent("keydown", { key: "ArrowDown" }),
       );
       await elementUpdated(el);
 
@@ -508,12 +508,12 @@ describe("Combobox", () => {
       await elementUpdated(el);
 
       const itemsEl = el.querySelectorAll(
-        ".kuc-combobox__group__select-menu__item"
+        ".kuc-combobox__group__select-menu__item",
       );
       expect(
         itemsEl[0].classList.contains(
-          "kuc-combobox__group__select-menu__highlight"
-        )
+          "kuc-combobox__group__select-menu__highlight",
+        ),
       ).to.equal(true);
     });
 
@@ -527,10 +527,10 @@ describe("Combobox", () => {
       });
       const el = await fixture(container);
       const toggleInput = el.querySelector(
-        ".kuc-combobox__group__toggle__input"
+        ".kuc-combobox__group__toggle__input",
       ) as HTMLInputElement;
       toggleInput.dispatchEvent(
-        new KeyboardEvent("keydown", { key: "ArrowDown" })
+        new KeyboardEvent("keydown", { key: "ArrowDown" }),
       );
       await elementUpdated(el);
 
@@ -538,17 +538,17 @@ describe("Combobox", () => {
       await elementUpdated(el);
 
       const itemsEl = el.querySelectorAll(
-        ".kuc-combobox__group__select-menu__item"
+        ".kuc-combobox__group__select-menu__item",
       );
       await expect(
         itemsEl[1].classList.contains(
-          "kuc-combobox__group__select-menu__highlight"
-        )
+          "kuc-combobox__group__select-menu__highlight",
+        ),
       ).to.equal(true);
       await expect(
         itemsEl[0].classList.contains(
-          "kuc-combobox__group__select-menu__highlight"
-        )
+          "kuc-combobox__group__select-menu__highlight",
+        ),
       ).to.equal(false);
     });
 
@@ -559,10 +559,10 @@ describe("Combobox", () => {
       });
       const el = await fixture(container);
       const toggleInput = el.querySelector(
-        ".kuc-combobox__group__toggle__input"
+        ".kuc-combobox__group__toggle__input",
       ) as HTMLInputElement;
       toggleInput.dispatchEvent(
-        new KeyboardEvent("keydown", { key: "ArrowDown" })
+        new KeyboardEvent("keydown", { key: "ArrowDown" }),
       );
       await elementUpdated(el);
 
@@ -570,12 +570,12 @@ describe("Combobox", () => {
       await elementUpdated(el);
 
       const itemsEl = el.querySelectorAll(
-        ".kuc-combobox__group__select-menu__item"
+        ".kuc-combobox__group__select-menu__item",
       );
       expect(
         itemsEl[2].classList.contains(
-          "kuc-combobox__group__select-menu__highlight"
-        )
+          "kuc-combobox__group__select-menu__highlight",
+        ),
       ).to.equal(true);
     });
 
@@ -589,10 +589,10 @@ describe("Combobox", () => {
       });
       const el = await fixture(container);
       const toggleInput = el.querySelector(
-        ".kuc-combobox__group__toggle__input"
+        ".kuc-combobox__group__toggle__input",
       ) as HTMLInputElement;
       toggleInput.dispatchEvent(
-        new KeyboardEvent("keydown", { key: "ArrowDown" })
+        new KeyboardEvent("keydown", { key: "ArrowDown" }),
       );
       await elementUpdated(el);
 
@@ -600,17 +600,17 @@ describe("Combobox", () => {
       await elementUpdated(el);
 
       const itemsEl = el.querySelectorAll(
-        ".kuc-combobox__group__select-menu__item"
+        ".kuc-combobox__group__select-menu__item",
       );
       await expect(
         itemsEl[2].classList.contains(
-          "kuc-combobox__group__select-menu__highlight"
-        )
+          "kuc-combobox__group__select-menu__highlight",
+        ),
       ).to.equal(true);
       await expect(
         itemsEl[3].classList.contains(
-          "kuc-combobox__group__select-menu__highlight"
-        )
+          "kuc-combobox__group__select-menu__highlight",
+        ),
       ).to.equal(false);
     });
 
@@ -621,13 +621,13 @@ describe("Combobox", () => {
       });
       const el = await fixture(container);
       const toggleInput = el.querySelector(
-        ".kuc-combobox__group__toggle__input"
+        ".kuc-combobox__group__toggle__input",
       ) as HTMLInputElement;
       toggleInput.dispatchEvent(new InputEvent("input", { data: "a" }));
       await fixture(container);
 
       const menuEl = el.querySelector(
-        ".kuc-combobox__group__select-menu"
+        ".kuc-combobox__group__select-menu",
       ) as HTMLUListElement;
 
       expect(menuEl.hidden).to.equal(false);
@@ -640,15 +640,15 @@ describe("Combobox", () => {
       });
       const el = await fixture(container);
       const toggleInput = el.querySelector(
-        ".kuc-combobox__group__toggle__input"
+        ".kuc-combobox__group__toggle__input",
       ) as HTMLInputElement;
       toggleInput.dispatchEvent(
-        new KeyboardEvent("keydown", { key: "ArrowUp" })
+        new KeyboardEvent("keydown", { key: "ArrowUp" }),
       );
       await elementUpdated(el);
 
       toggleInput.dispatchEvent(
-        new KeyboardEvent("keydown", { key: "ArrowDown" })
+        new KeyboardEvent("keydown", { key: "ArrowDown" }),
       );
       await elementUpdated(el);
 
@@ -662,14 +662,14 @@ describe("Combobox", () => {
       const container = new Combobox({ items: initItems });
       const el = await fixture(container);
       const toggleInput = el.querySelector(
-        ".kuc-combobox__group__toggle__input"
+        ".kuc-combobox__group__toggle__input",
       ) as HTMLInputElement;
 
       toggleInput.click();
       await elementUpdated(el);
 
       const menuEl = el.querySelector(
-        ".kuc-combobox__group__select-menu"
+        ".kuc-combobox__group__select-menu",
       ) as HTMLUListElement;
       expect(menuEl.hidden).to.equal(false);
 

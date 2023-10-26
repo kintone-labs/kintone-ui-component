@@ -8,7 +8,7 @@ describe("Button", () => {
       const container = new Button();
       const el = await fixture(container);
       const buttonEl = el.querySelector(
-        ".kuc-button__button"
+        ".kuc-button__button",
       ) as HTMLButtonElement;
 
       expect(buttonEl.hasAttribute("disabled")).to.equal(false);
@@ -18,7 +18,7 @@ describe("Button", () => {
       const container = new Button({ disabled: true });
       const el = await fixture(container);
       const buttonEl = el.querySelector(
-        ".kuc-button__button"
+        ".kuc-button__button",
       ) as HTMLButtonElement;
 
       expect(buttonEl.hasAttribute("disabled")).to.equal(true);
@@ -29,7 +29,7 @@ describe("Button", () => {
       container.disabled = true;
       const el = await fixture(container);
       const buttonEl = el.querySelector(
-        ".kuc-button__button"
+        ".kuc-button__button",
       ) as HTMLButtonElement;
 
       expect(buttonEl.hasAttribute("disabled")).to.equal(true);
@@ -40,7 +40,7 @@ describe("Button", () => {
       container.disabled = false;
       const el = await fixture(container);
       const buttonEl = el.querySelector(
-        ".kuc-button__button"
+        ".kuc-button__button",
       ) as HTMLButtonElement;
 
       expect(buttonEl.hasAttribute("disabled")).to.equal(false);

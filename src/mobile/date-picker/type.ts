@@ -30,7 +30,7 @@ export declare class MobileDatePicker extends KucBase {
   visible: boolean;
   constructor(props?: MobileDatePickerProps);
   protected shouldUpdate(
-    _changedProperties: Map<string | number | symbol, unknown>
+    _changedProperties: Map<string | number | symbol, unknown>,
   ): boolean;
   willUpdate(changedProperties: PropertyValues): void;
   update(changedProperties: PropertyValues): void;

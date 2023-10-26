@@ -8,15 +8,15 @@ describe("DateTimePicker", () => {
       const container = new DateTimePicker();
       const el = await fixture(container);
       const inputEl = el.querySelector(
-        ".kuc-base-date__input"
+        ".kuc-base-date__input",
       ) as HTMLInputElement;
 
       const inputHourEl = el.querySelector(
-        ".kuc-base-time__group__hours"
+        ".kuc-base-time__group__hours",
       ) as HTMLInputElement;
 
       const inputMinuteEl = el.querySelector(
-        ".kuc-base-time__group__minutes"
+        ".kuc-base-time__group__minutes",
       ) as HTMLInputElement;
 
       expect(inputEl.hasAttribute("disabled")).to.equal(false);
@@ -28,15 +28,15 @@ describe("DateTimePicker", () => {
       const container = new DateTimePicker({ disabled: true });
       const el = await fixture(container);
       const inputEl = el.querySelector(
-        ".kuc-base-date__input"
+        ".kuc-base-date__input",
       ) as HTMLInputElement;
 
       const inputHourEl = el.querySelector(
-        ".kuc-base-time__group__hours"
+        ".kuc-base-time__group__hours",
       ) as HTMLInputElement;
 
       const inputMinuteEl = el.querySelector(
-        ".kuc-base-time__group__minutes"
+        ".kuc-base-time__group__minutes",
       ) as HTMLInputElement;
 
       expect(inputEl.hasAttribute("disabled")).to.equal(true);
@@ -48,15 +48,15 @@ describe("DateTimePicker", () => {
       const container = new DateTimePicker({ disabled: true });
       const el = await fixture(container);
       const inputEl = el.querySelector(
-        ".kuc-base-date__input"
+        ".kuc-base-date__input",
       ) as HTMLInputElement;
 
       const inputHourEl = el.querySelector(
-        ".kuc-base-time__group__hours"
+        ".kuc-base-time__group__hours",
       ) as HTMLInputElement;
 
       const inputMinuteEl = el.querySelector(
-        ".kuc-base-time__group__minutes"
+        ".kuc-base-time__group__minutes",
       ) as HTMLInputElement;
 
       expect(inputEl.hasAttribute("disabled")).to.equal(true);
@@ -69,15 +69,15 @@ describe("DateTimePicker", () => {
       container.disabled = false;
       const el = await fixture(container);
       const inputEl = el.querySelector(
-        ".kuc-base-date__input"
+        ".kuc-base-date__input",
       ) as HTMLInputElement;
 
       const inputHourEl = el.querySelector(
-        ".kuc-base-time__group__hours"
+        ".kuc-base-time__group__hours",
       ) as HTMLInputElement;
 
       const inputMinuteEl = el.querySelector(
-        ".kuc-base-time__group__minutes"
+        ".kuc-base-time__group__minutes",
       ) as HTMLInputElement;
 
       expect(inputEl.hasAttribute("disabled")).to.equal(false);

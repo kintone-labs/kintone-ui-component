@@ -19,12 +19,12 @@ describe("MobileRadioButton", () => {
 
       const el = await fixture(container);
       const groupEl = el.querySelector(
-        ".kuc-mobile-radio-button__group__select-menu"
+        ".kuc-mobile-radio-button__group__select-menu",
       ) as HTMLDivElement;
       expect(groupEl.hasAttribute("disabled")).to.equal(false);
 
       const inputEls = el.querySelectorAll(
-        ".kuc-mobile-radio-button__group__select-menu__item__input"
+        ".kuc-mobile-radio-button__group__select-menu__item__input",
       );
       expect(inputEls[0].hasAttribute("disabled")).to.equal(false);
       expect(inputEls[1].hasAttribute("disabled")).to.equal(false);
@@ -40,12 +40,12 @@ describe("MobileRadioButton", () => {
 
       const el = await fixture(container);
       const groupEl = el.querySelector(
-        ".kuc-mobile-radio-button__group__select-menu"
+        ".kuc-mobile-radio-button__group__select-menu",
       ) as HTMLDivElement;
       expect(groupEl.hasAttribute("disabled")).to.equal(true);
 
       const inputEls = el.querySelectorAll(
-        ".kuc-mobile-radio-button__group__select-menu__item__input"
+        ".kuc-mobile-radio-button__group__select-menu__item__input",
       );
       expect(inputEls[0].hasAttribute("disabled")).to.equal(true);
       expect(inputEls[1].hasAttribute("disabled")).to.equal(true);
@@ -62,12 +62,12 @@ describe("MobileRadioButton", () => {
 
       const el = await fixture(container);
       const groupEl = el.querySelector(
-        ".kuc-mobile-radio-button__group__select-menu"
+        ".kuc-mobile-radio-button__group__select-menu",
       ) as HTMLDivElement;
       expect(groupEl.hasAttribute("disabled")).to.equal(true);
 
       const inputEls = el.querySelectorAll(
-        ".kuc-mobile-radio-button__group__select-menu__item__input"
+        ".kuc-mobile-radio-button__group__select-menu__item__input",
       );
       expect(inputEls[0].hasAttribute("disabled")).to.equal(true);
       expect(inputEls[1].hasAttribute("disabled")).to.equal(true);
@@ -84,12 +84,12 @@ describe("MobileRadioButton", () => {
 
       const el = await fixture(container);
       const groupEl = el.querySelector(
-        ".kuc-mobile-radio-button__group__select-menu"
+        ".kuc-mobile-radio-button__group__select-menu",
       ) as HTMLDivElement;
       expect(groupEl.hasAttribute("disabled")).to.equal(false);
 
       const inputEls = el.querySelectorAll(
-        ".kuc-mobile-radio-button__group__select-menu__item__input"
+        ".kuc-mobile-radio-button__group__select-menu__item__input",
       );
       expect(inputEls[0].hasAttribute("disabled")).to.equal(false);
       expect(inputEls[1].hasAttribute("disabled")).to.equal(false);

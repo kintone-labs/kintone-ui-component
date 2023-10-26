@@ -19,13 +19,13 @@ describe("Dropdown", () => {
       });
       const el = await fixture(container);
       const toggle = el.querySelector(
-        ".kuc-dropdown__group__toggle"
+        ".kuc-dropdown__group__toggle",
       ) as HTMLButtonElement;
 
       toggle.click();
       await elementUpdated(container);
       const menuEl = el.querySelector(
-        ".kuc-dropdown__group__select-menu"
+        ".kuc-dropdown__group__select-menu",
       ) as HTMLDivElement;
       expect(menuEl.style.bottom).to.equal("auto");
       expect(menuEl.style.height).to.equal("auto");
@@ -40,13 +40,13 @@ describe("Dropdown", () => {
       });
       const el = await fixture(container);
       const toggle = el.querySelector(
-        ".kuc-dropdown__group__toggle"
+        ".kuc-dropdown__group__toggle",
       ) as HTMLButtonElement;
 
       toggle.click();
       await elementUpdated(container);
       const menuEl = el.querySelector(
-        ".kuc-dropdown__group__select-menu"
+        ".kuc-dropdown__group__select-menu",
       ) as HTMLDivElement;
       expect(menuEl.style.bottom).to.equal("auto");
       expect(menuEl.style.overflowY).to.equal("scroll");
@@ -62,19 +62,19 @@ describe("Dropdown", () => {
       });
       const el = await fixture(container);
       const toggle = el.querySelector(
-        ".kuc-dropdown__group__toggle"
+        ".kuc-dropdown__group__toggle",
       ) as HTMLButtonElement;
 
       toggle.click();
       await elementUpdated(container);
       const menuEl = el.querySelector(
-        ".kuc-dropdown__group__select-menu"
+        ".kuc-dropdown__group__select-menu",
       ) as HTMLDivElement;
       const errorEl = el.querySelector(
-        ".kuc-base-error__error"
+        ".kuc-base-error__error",
       ) as HTMLDivElement;
       expect(menuEl.style.bottom).to.equal(
-        `${toggle.offsetHeight + errorEl.offsetHeight + 16}px`
+        `${toggle.offsetHeight + errorEl.offsetHeight + 16}px`,
       );
       expect(menuEl.style.height).to.equal("auto");
     });
@@ -89,13 +89,13 @@ describe("Dropdown", () => {
       const el = await fixture(container);
       document.body.appendChild(el);
       const toggle = el.querySelector(
-        ".kuc-dropdown__group__toggle"
+        ".kuc-dropdown__group__toggle",
       ) as HTMLButtonElement;
 
       toggle.click();
       await elementUpdated(container);
       const menuEl = el.querySelector(
-        ".kuc-dropdown__group__select-menu"
+        ".kuc-dropdown__group__select-menu",
       ) as HTMLDivElement;
       expect(menuEl.style.bottom).to.equal(`${toggle.offsetHeight}px`);
       expect(menuEl.style.overflowY).to.equal("scroll");

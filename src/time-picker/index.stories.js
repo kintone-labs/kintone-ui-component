@@ -19,24 +19,23 @@ export default {
   },
 };
 
-const Template = (args) =>
-  html`
-    <kuc-time-picker
-      .className="${args.className}"
-      .error="${args.error}"
-      .id="${args.id}"
-      .label="${args.label}"
-      .value="${args.value}"
-      .disabled="${args.disabled}"
-      .hour12="${args.hour12}"
-      .requiredIcon="${args.requiredIcon}"
-      .visible="${args.visible}"
-      .timeStep="${args.timeStep}"
-      .min="${args.min}"
-      .max="${args.max}"
-      .language="${args.language}"
-    ></kuc-time-picker>
-  `;
+const Template = (args) => html`
+  <kuc-time-picker
+    .className="${args.className}"
+    .error="${args.error}"
+    .id="${args.id}"
+    .label="${args.label}"
+    .value="${args.value}"
+    .disabled="${args.disabled}"
+    .hour12="${args.hour12}"
+    .requiredIcon="${args.requiredIcon}"
+    .visible="${args.visible}"
+    .timeStep="${args.timeStep}"
+    .min="${args.min}"
+    .max="${args.max}"
+    .language="${args.language}"
+  ></kuc-time-picker>
+`;
 
 export const BaseHour24 = Template.bind({});
 BaseHour24.args = {

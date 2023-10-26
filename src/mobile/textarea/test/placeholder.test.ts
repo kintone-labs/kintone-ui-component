@@ -8,7 +8,7 @@ describe("MobileTextarea", () => {
 
       const el = await fixture(container);
       const textareaEl = el.querySelector(
-        ".kuc-mobile-textarea__form__textarea"
+        ".kuc-mobile-textarea__form__textarea",
       ) as HTMLTextAreaElement;
 
       expect(textareaEl.placeholder).to.equal("");
@@ -20,7 +20,7 @@ describe("MobileTextarea", () => {
 
     const el = await fixture(container);
     const textareaEl = el.querySelector(
-      ".kuc-mobile-textarea__form__textarea"
+      ".kuc-mobile-textarea__form__textarea",
     ) as HTMLTextAreaElement;
 
     expect(textareaEl.placeholder).to.equal("Apple");
@@ -32,7 +32,7 @@ describe("MobileTextarea", () => {
 
     const el = await fixture(container);
     const textareaEl = el.querySelector(
-      ".kuc-mobile-textarea__form__textarea"
+      ".kuc-mobile-textarea__form__textarea",
     ) as HTMLTextAreaElement;
 
     expect(textareaEl.placeholder).to.equal("Apple");

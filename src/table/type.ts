@@ -13,7 +13,7 @@ export declare type TableColumn = {
 export declare type Render = (
   cellData: any,
   rowData: object,
-  rowIndex: number
+  rowIndex: number,
 ) => HTMLElement;
 
 export declare type TableProps<T extends object = object> = {

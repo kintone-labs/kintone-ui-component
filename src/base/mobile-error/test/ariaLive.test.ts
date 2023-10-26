@@ -8,7 +8,7 @@ describe("BaseMobileError", () => {
       const el = await fixture(container);
 
       const errorEl = el.querySelector(
-        ".kuc-base-mobile-error__error"
+        ".kuc-base-mobile-error__error",
       ) as HTMLDivElement;
       expect(errorEl.hasAttribute("aria-live")).to.equal(false);
     });
@@ -19,7 +19,7 @@ describe("BaseMobileError", () => {
       const el = await fixture(container);
 
       const errorEl = el.querySelector(
-        ".kuc-base-mobile-error__error"
+        ".kuc-base-mobile-error__error",
       ) as HTMLDivElement;
       expect(errorEl.hasAttribute("aria-live")).to.equal(true);
       expect(errorEl.getAttribute("aria-live")).to.equal("assertive");
@@ -32,7 +32,7 @@ describe("BaseMobileError", () => {
       container.setAttribute("ariaLive", "assertive-update");
       await elementUpdated(el);
       const errorEl = el.querySelector(
-        ".kuc-base-mobile-error__error"
+        ".kuc-base-mobile-error__error",
       ) as HTMLDivElement;
       expect(errorEl.hasAttribute("aria-live")).to.equal(true);
       expect(errorEl.getAttribute("aria-live")).to.equal("assertive-update");
@@ -45,7 +45,7 @@ describe("BaseMobileError", () => {
       container.removeAttribute("ariaLive");
       await elementUpdated(el);
       const errorEl = el.querySelector(
-        ".kuc-base-mobile-error__error"
+        ".kuc-base-mobile-error__error",
       ) as HTMLDivElement;
       expect(errorEl.hasAttribute("aria-live")).to.equal(false);
     });

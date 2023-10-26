@@ -8,7 +8,7 @@ describe("MobileTextArea", () => {
       const container = new MobileTextArea();
       const el = await fixture(container);
       const inputEl = el.querySelector(
-        ".kuc-mobile-textarea__form__textarea"
+        ".kuc-mobile-textarea__form__textarea",
       ) as HTMLTextAreaElement;
       expect(inputEl.value).to.be.equal("");
     });
@@ -17,7 +17,7 @@ describe("MobileTextArea", () => {
       const container = new MobileTextArea({ value: "Apple" });
       const el = await fixture(container);
       const inputEl = el.querySelector(
-        ".kuc-mobile-textarea__form__textarea"
+        ".kuc-mobile-textarea__form__textarea",
       ) as HTMLTextAreaElement;
       expect(inputEl.value).to.be.equal("Apple");
     });
@@ -27,7 +27,7 @@ describe("MobileTextArea", () => {
       container.value = "Apple";
       const el = await fixture(container);
       const inputEl = el.querySelector(
-        ".kuc-mobile-textarea__form__textarea"
+        ".kuc-mobile-textarea__form__textarea",
       ) as HTMLTextAreaElement;
       expect(inputEl.value).to.be.equal("Apple");
     });
@@ -37,7 +37,7 @@ describe("MobileTextArea", () => {
       container.value = "Orange";
       const el = await fixture(container);
       const inputEl = el.querySelector(
-        ".kuc-mobile-textarea__form__textarea"
+        ".kuc-mobile-textarea__form__textarea",
       ) as HTMLTextAreaElement;
       expect(inputEl.value).to.be.equal("Orange");
     });
@@ -47,7 +47,7 @@ describe("MobileTextArea", () => {
       const container = new MobileTextArea({ value: null });
       const el = await fixture(container);
       const inputEl = el.querySelector(
-        ".kuc-mobile-textarea__form__textarea"
+        ".kuc-mobile-textarea__form__textarea",
       ) as HTMLTextAreaElement;
       expect(inputEl.value).to.be.equal("");
     });
@@ -58,7 +58,7 @@ describe("MobileTextArea", () => {
       container.value = null;
       const el = await fixture(container);
       const inputEl = el.querySelector(
-        ".kuc-mobile-textarea__form__textarea"
+        ".kuc-mobile-textarea__form__textarea",
       ) as HTMLTextAreaElement;
       expect(inputEl.value).to.be.equal("");
     });

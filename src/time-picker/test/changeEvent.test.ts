@@ -13,14 +13,14 @@ describe("TimePicker", () => {
 
       const el = await fixture(container);
       const groupInputEl = el.querySelector(
-        ".kuc-base-time__group"
+        ".kuc-base-time__group",
       ) as HTMLDivElement;
 
       groupInputEl.click();
       await elementUpdated(container);
 
       const ulElement = el.querySelector(
-        ".kuc-base-datetime-listbox__listbox"
+        ".kuc-base-datetime-listbox__listbox",
       ) as HTMLUListElement;
       const firstElement = ulElement.children[0] as HTMLLIElement;
       firstElement.dispatchEvent(new Event("mousedown", { bubbles: true }));
@@ -39,14 +39,14 @@ describe("TimePicker", () => {
 
       const el = await fixture(container);
       const groupInputEl = el.querySelector(
-        ".kuc-base-time__group"
+        ".kuc-base-time__group",
       ) as HTMLDivElement;
       const buttonOpen = el.querySelector(
-        ".kuc-base-time__assistive-text"
+        ".kuc-base-time__assistive-text",
       ) as HTMLDivElement;
 
       buttonOpen.dispatchEvent(
-        new KeyboardEvent("keydown", { key: "ArrowDown", bubbles: true })
+        new KeyboardEvent("keydown", { key: "ArrowDown", bubbles: true }),
       );
       await fixture(container);
 
@@ -56,7 +56,7 @@ describe("TimePicker", () => {
       groupInputEl.click();
       await elementUpdated(el);
       buttonOpen.dispatchEvent(
-        new KeyboardEvent("keydown", { key: "ArrowUp", bubbles: true })
+        new KeyboardEvent("keydown", { key: "ArrowUp", bubbles: true }),
       );
       await elementUpdated(el);
 
@@ -66,7 +66,7 @@ describe("TimePicker", () => {
       groupInputEl.click();
       await elementUpdated(el);
       buttonOpen.dispatchEvent(
-        new KeyboardEvent("keydown", { key: "Enter", bubbles: true })
+        new KeyboardEvent("keydown", { key: "Enter", bubbles: true }),
       );
       await elementUpdated(el);
 
@@ -76,7 +76,7 @@ describe("TimePicker", () => {
       groupInputEl.click();
       await elementUpdated(el);
       buttonOpen.dispatchEvent(
-        new KeyboardEvent("keydown", { key: "Space", bubbles: true })
+        new KeyboardEvent("keydown", { key: "Space", bubbles: true }),
       );
       await elementUpdated(el);
 
@@ -88,7 +88,7 @@ describe("TimePicker", () => {
       const container = new TimePicker();
       const el = await fixture(container);
       const hourInputEl = el.querySelector(
-        ".kuc-base-time__group__hours"
+        ".kuc-base-time__group__hours",
       ) as HTMLInputElement;
 
       const event = Object.assign(
@@ -98,7 +98,7 @@ describe("TimePicker", () => {
             getData: () => "4321",
             types: ["text/html"],
           },
-        }
+        },
       );
       hourInputEl.dispatchEvent(event);
       await elementUpdated(el);

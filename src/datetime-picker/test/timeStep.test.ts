@@ -8,14 +8,14 @@ describe("DateTimePicker", () => {
       const container = new DateTimePicker();
       const el = await fixture(container);
       const groupInputEl = el.querySelector(
-        ".kuc-base-time__group"
+        ".kuc-base-time__group",
       ) as HTMLDivElement;
 
       groupInputEl.click();
       await elementUpdated(container);
 
       const itemsEl = el.querySelectorAll(
-        ".kuc-base-datetime-listbox__listbox__item"
+        ".kuc-base-datetime-listbox__listbox__item",
       );
       expect(itemsEl[0].getAttribute("value")).to.equal("00:00");
       expect(itemsEl[1].getAttribute("value")).to.equal("00:30");
@@ -25,14 +25,14 @@ describe("DateTimePicker", () => {
       const container = new DateTimePicker({ timeStep: 60 });
       const el = await fixture(container);
       const groupInputEl = el.querySelector(
-        ".kuc-base-time__group"
+        ".kuc-base-time__group",
       ) as HTMLDivElement;
 
       groupInputEl.click();
       await elementUpdated(container);
 
       const itemsEl = el.querySelectorAll(
-        ".kuc-base-datetime-listbox__listbox__item"
+        ".kuc-base-datetime-listbox__listbox__item",
       );
       expect(itemsEl[0].getAttribute("value")).to.equal("00:00");
       expect(itemsEl[1].getAttribute("value")).to.equal("01:00");
@@ -43,14 +43,14 @@ describe("DateTimePicker", () => {
       container.timeStep = 60;
       const el = await fixture(container);
       const groupInputEl = el.querySelector(
-        ".kuc-base-time__group"
+        ".kuc-base-time__group",
       ) as HTMLDivElement;
 
       groupInputEl.click();
       await elementUpdated(container);
 
       const itemsEl = el.querySelectorAll(
-        ".kuc-base-datetime-listbox__listbox__item"
+        ".kuc-base-datetime-listbox__listbox__item",
       );
       expect(itemsEl[0].getAttribute("value")).to.equal("00:00");
       expect(itemsEl[1].getAttribute("value")).to.equal("01:00");

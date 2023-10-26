@@ -9,10 +9,10 @@ describe("FieldGroup", () => {
       const el = await fixture(container);
 
       const divContentEl = el.querySelector(
-        ".kuc-field-group__group__body"
+        ".kuc-field-group__group__body",
       ) as HTMLDivElement;
       const buttonToggle = el.querySelector(
-        ".kuc-field-group__group__toggle"
+        ".kuc-field-group__group__toggle",
       ) as HTMLButtonElement;
 
       expect(buttonToggle.getAttribute("aria-expanded")).to.equal("false");
@@ -27,10 +27,10 @@ describe("FieldGroup", () => {
       const el = await fixture(container);
 
       const divContentEl = el.querySelector(
-        ".kuc-field-group__group__body"
+        ".kuc-field-group__group__body",
       ) as HTMLDivElement;
       const buttonToggle = el.querySelector(
-        ".kuc-field-group__group__toggle"
+        ".kuc-field-group__group__toggle",
       ) as HTMLButtonElement;
 
       expect(buttonToggle.getAttribute("aria-expanded")).to.equal("true");
@@ -45,10 +45,10 @@ describe("FieldGroup", () => {
       const el = await fixture(container);
 
       const divContentEl = el.querySelector(
-        ".kuc-field-group__group__body"
+        ".kuc-field-group__group__body",
       ) as HTMLDivElement;
       const buttonToggle = el.querySelector(
-        ".kuc-field-group__group__toggle"
+        ".kuc-field-group__group__toggle",
       ) as HTMLButtonElement;
 
       expect(buttonToggle.getAttribute("aria-expanded")).to.equal("false");
@@ -64,10 +64,10 @@ describe("FieldGroup", () => {
       const el = await fixture(container);
 
       const divContentEl = el.querySelector(
-        ".kuc-field-group__group__body"
+        ".kuc-field-group__group__body",
       ) as HTMLDivElement;
       const buttonToggle = el.querySelector(
-        ".kuc-field-group__group__toggle"
+        ".kuc-field-group__group__toggle",
       ) as HTMLButtonElement;
 
       expect(buttonToggle.getAttribute("aria-expanded")).to.equal("false");

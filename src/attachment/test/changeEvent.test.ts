@@ -12,7 +12,7 @@ describe("Attachment", () => {
       });
       const el = await fixture(container);
       const inputEl = el.querySelector(
-        ".kuc-attachment__group__files__browse-button__input-container__input"
+        ".kuc-attachment__group__files__browse-button__input-container__input",
       ) as HTMLInputElement;
       const list = new DataTransfer();
       const file = new File(["content"], "filename.jpg");
@@ -33,10 +33,10 @@ describe("Attachment", () => {
       });
       const el = await fixture(container);
       const dragEl = el.querySelector(
-        ".kuc-attachment__group__files"
+        ".kuc-attachment__group__files",
       ) as HTMLDivElement;
       const dropEL = el.querySelector(
-        ".kuc-attachment__group__files__droppable"
+        ".kuc-attachment__group__files__droppable",
       ) as HTMLDivElement;
       const list = new DataTransfer();
       const file = new File(["content"], "filename.jpg");
@@ -46,28 +46,28 @@ describe("Attachment", () => {
           dataTransfer: list,
           cancelable: true,
           bubbles: true,
-        })
+        }),
       );
       dragEl.dispatchEvent(
         new DragEvent("dragover", {
           dataTransfer: list,
           cancelable: true,
           bubbles: true,
-        })
+        }),
       );
       dropEL.dispatchEvent(
         new DragEvent("drop", {
           dataTransfer: list,
           cancelable: true,
           bubbles: true,
-        })
+        }),
       );
       dragEl.dispatchEvent(
         new DragEvent("dragleave", {
           dataTransfer: list,
           cancelable: true,
           bubbles: true,
-        })
+        }),
       );
       await elementUpdated(container);
       container.disabled = false;
@@ -76,28 +76,28 @@ describe("Attachment", () => {
           dataTransfer: list,
           cancelable: true,
           bubbles: true,
-        })
+        }),
       );
       dragEl.dispatchEvent(
         new DragEvent("dragover", {
           dataTransfer: list,
           cancelable: true,
           bubbles: true,
-        })
+        }),
       );
       dropEL.dispatchEvent(
         new DragEvent("drop", {
           dataTransfer: list,
           cancelable: true,
           bubbles: true,
-        })
+        }),
       );
       dragEl.dispatchEvent(
         new DragEvent("dragleave", {
           dataTransfer: list,
           cancelable: true,
           bubbles: true,
-        })
+        }),
       );
       await elementUpdated(container);
       expect(triggeredEvent.type).to.equal("change");
@@ -119,13 +119,13 @@ describe("Attachment", () => {
       });
       const el = await fixture(container);
       const buttonsEl = el.querySelectorAll(
-        ".kuc-attachment__group__files__display-area__item__remove-button__container__button"
+        ".kuc-attachment__group__files__display-area__item__remove-button__container__button",
       );
       (buttonsEl[2] as HTMLButtonElement).click();
       await elementUpdated(container);
       expect(triggeredEvent.type).to.equal("change");
       expect(
-        triggeredEvent.detail.oldFiles[triggeredEvent.detail.fileIndex[0]].name
+        triggeredEvent.detail.oldFiles[triggeredEvent.detail.fileIndex[0]].name,
       ).to.equal("icon.jpg");
       expect(triggeredEvent.detail.type).to.equal("remove-file");
     });
@@ -137,13 +137,13 @@ describe("Attachment", () => {
       });
       const el = await fixture(container);
       const dragEl = el.querySelector(
-        ".kuc-attachment__group__files"
+        ".kuc-attachment__group__files",
       ) as HTMLDivElement;
       dragEl.dispatchEvent(
         new DragEvent("dragenter", {
           cancelable: true,
           bubbles: true,
-        })
+        }),
       );
       expect(triggeredEvent).to.equal(null);
     });

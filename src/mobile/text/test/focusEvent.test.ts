@@ -13,7 +13,7 @@ describe("MobileText", () => {
 
       const el = await fixture(container);
       const inputEl = el.querySelector(
-        ".kuc-mobile-text__input-form__input"
+        ".kuc-mobile-text__input-form__input",
       ) as HTMLInputElement;
       inputEl.focus();
 

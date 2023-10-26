@@ -16,7 +16,7 @@ describe("Tooltip", () => {
       });
       const el = await fixture(container);
       const containerEl = el.querySelector(
-        ".kuc-tooltip__group__container"
+        ".kuc-tooltip__group__container",
       ) as HTMLDivElement;
 
       const event = new MouseEvent("mouseenter");
@@ -24,7 +24,7 @@ describe("Tooltip", () => {
 
       const firstChildElement = containerEl.firstElementChild;
       expect(firstChildElement!.getAttribute("aria-label")).to.be.equal(
-        "sample-title"
+        "sample-title",
       );
     });
 
@@ -36,7 +36,7 @@ describe("Tooltip", () => {
       });
       const el = await fixture(container);
       const containerEl = el.querySelector(
-        ".kuc-tooltip__group__container"
+        ".kuc-tooltip__group__container",
       ) as HTMLDivElement;
 
       const event = new MouseEvent("mouseenter");
@@ -44,7 +44,7 @@ describe("Tooltip", () => {
 
       const firstChildElement = containerEl.firstElementChild;
       expect(firstChildElement!.getAttribute("aria-label")).to.be.equal(
-        "sample-title"
+        "sample-title",
       );
     });
 
@@ -56,12 +56,12 @@ describe("Tooltip", () => {
       });
       const el = await fixture(container);
       const containerEl = el.querySelector(
-        ".kuc-tooltip__group__container"
+        ".kuc-tooltip__group__container",
       ) as HTMLDivElement;
 
       const firstChildElement = containerEl.firstElementChild;
       expect(firstChildElement!.getAttribute("title")).to.be.equal(
-        "sample-title"
+        "sample-title",
       );
     });
 
@@ -73,7 +73,7 @@ describe("Tooltip", () => {
       });
       const el = await fixture(container);
       const containerEl = el.querySelector(
-        ".kuc-tooltip__group__container"
+        ".kuc-tooltip__group__container",
       ) as HTMLDivElement;
 
       const event = new MouseEvent("focusin");
@@ -81,7 +81,7 @@ describe("Tooltip", () => {
 
       const firstChildElement = containerEl.firstElementChild;
       expect(firstChildElement!.hasAttribute("aria-describedby")).to.be.equal(
-        true
+        true,
       );
     });
   });

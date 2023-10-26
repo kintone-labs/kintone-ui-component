@@ -8,7 +8,7 @@ describe("Button", () => {
       const container = new Button();
       const el = await fixture(container);
       const buttonEl = el.querySelector(
-        ".kuc-button__button"
+        ".kuc-button__button",
       ) as HTMLButtonElement;
       expect(buttonEl.classList.length).to.equal(2);
       expect(buttonEl.classList[0]).to.equal("kuc-button__button");
@@ -22,7 +22,7 @@ describe("Button", () => {
       container.type = "normal";
       const el = await fixture(container);
       const buttonEl = el.querySelector(
-        ".kuc-button__button"
+        ".kuc-button__button",
       ) as HTMLButtonElement;
       expect(buttonEl.classList.length).to.equal(2);
       expect(buttonEl.classList[0]).to.equal("kuc-button__button");
@@ -36,7 +36,7 @@ describe("Button", () => {
       container.type = "alert";
       const el = await fixture(container);
       const buttonEl = el.querySelector(
-        ".kuc-button__button"
+        ".kuc-button__button",
       ) as HTMLButtonElement;
       expect(buttonEl.classList.length).to.equal(2);
       expect(buttonEl.classList[0]).to.equal("kuc-button__button");
@@ -50,7 +50,7 @@ describe("Button", () => {
       container.type = "submit";
       const el = await fixture(container);
       const buttonEl = el.querySelector(
-        ".kuc-button__button"
+        ".kuc-button__button",
       ) as HTMLButtonElement;
       expect(buttonEl.classList.length).to.equal(2);
       expect(buttonEl.classList[0]).to.equal("kuc-button__button");
@@ -62,7 +62,7 @@ describe("Button", () => {
       container.type = "other_type";
       const el = await fixture(container);
       const buttonEl = el.querySelector(
-        ".kuc-button__button"
+        ".kuc-button__button",
       ) as HTMLButtonElement;
       expect(buttonEl.classList.length).to.equal(2);
       expect(buttonEl.classList[0]).to.equal("kuc-button__button");

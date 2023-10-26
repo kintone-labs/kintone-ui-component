@@ -41,17 +41,17 @@ describe("MobileMultiChoice", () => {
       expect(itemsEl.length).to.be.equal(3);
       expect(itemsEl[0].textContent?.trim()).to.have.equal(expectedLabels[0]);
       expect(itemsEl[0].getAttribute("value")?.trim()).to.have.equal(
-        expectedValues[0]
+        expectedValues[0],
       );
 
       expect(itemsEl[1].textContent?.trim()).to.have.equal(expectedLabels[1]);
       expect(itemsEl[1].getAttribute("value")?.trim()).to.have.equal(
-        expectedValues[1]
+        expectedValues[1],
       );
 
       expect(itemsEl[2].textContent?.trim()).to.have.equal(expectedLabels[2]);
       expect(itemsEl[2].getAttribute("value")?.trim()).to.have.equal(
-        expectedValues[2]
+        expectedValues[2],
       );
 
       expect(container.items).to.be.equal(initItems);
@@ -64,15 +64,15 @@ describe("MobileMultiChoice", () => {
       const itemsEl = el.getElementsByTagName("option");
       expect(itemsEl.length).to.be.equal(3);
       expect(itemsEl[0].getAttribute("value")?.trim()).to.have.equal(
-        expectedValues[0]
+        expectedValues[0],
       );
       expect(itemsEl[0].textContent?.trim()).to.have.equal(expectedValues[0]);
       expect(itemsEl[1].getAttribute("value")?.trim()).to.have.equal(
-        expectedValues[1]
+        expectedValues[1],
       );
       expect(itemsEl[1].textContent?.trim()).to.have.equal(expectedValues[1]);
       expect(itemsEl[2].getAttribute("value")?.trim()).to.have.equal(
-        expectedValues[2]
+        expectedValues[2],
       );
       expect(itemsEl[2].textContent?.trim()).to.have.equal(expectedValues[2]);
     });
@@ -93,17 +93,17 @@ describe("MobileMultiChoice", () => {
       expect(itemsEl.length).to.be.equal(3);
       expect(itemsEl[0].textContent?.trim()).to.have.equal(expectedLabels[0]);
       expect(itemsEl[0].getAttribute("value")?.trim()).to.have.equal(
-        expectedValues[0]
+        expectedValues[0],
       );
 
       expect(itemsEl[1].textContent?.trim()).to.have.equal(expectedLabels[1]);
       expect(itemsEl[1].getAttribute("value")?.trim()).to.have.equal(
-        expectedValues[1]
+        expectedValues[1],
       );
 
       expect(itemsEl[2].textContent?.trim()).to.have.equal(expectedLabels[2]);
       expect(itemsEl[2].getAttribute("value")?.trim()).to.have.equal(
-        expectedValues[2]
+        expectedValues[2],
       );
       expect(container.items).to.be.equal(initItems);
     });
@@ -121,12 +121,12 @@ describe("MobileMultiChoice", () => {
 
       expect(itemsEl[0].textContent?.trim()).to.have.equal(expectedLabels[1]);
       expect(itemsEl[0].getAttribute("value")?.trim()).to.have.equal(
-        itemsForReplace[0].value
+        itemsForReplace[0].value,
       );
 
       expect(itemsEl[1].textContent?.trim()).to.have.equal(expectedLabels[2]);
       expect(itemsEl[1].getAttribute("value")?.trim()).to.have.equal(
-        itemsForReplace[1].value
+        itemsForReplace[1].value,
       );
       expect(container.items).to.be.equal(itemsForReplace);
     });
