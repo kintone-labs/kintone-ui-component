@@ -157,7 +157,11 @@ let exportAttachment;
               @change="${this._handleChangeFiles}"></input>
             </div>
           </div>
-          <p class="kuc-attachment__group__files__browse-message"
+          <p class="kuc-attachment__group__files__browse-message${
+            this.disabled
+              ? " kuc-attachment__group__files__browse-message--disabled"
+              : ""
+          }"
             ?hidden="${!this.message}"
           >
             ${this.message}
