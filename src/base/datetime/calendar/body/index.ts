@@ -26,7 +26,7 @@ export class BaseDateTimeCalendarBody extends KucBase {
   @state() _year = 2021;
 
   @query(
-    '.kuc-base-datetime-calendar-body__table__date--selected[aria-selected="true"]'
+    '.kuc-base-datetime-calendar-body__table__date--selected[aria-selected="true"]',
   )
   private _selectedItem!: HTMLTableCellElement;
 
@@ -34,7 +34,7 @@ export class BaseDateTimeCalendarBody extends KucBase {
   private _highlightItem!: HTMLTableCellElement;
 
   @query(
-    '.kuc-base-datetime-calendar-body__table__date--selected[tabindex="0"]'
+    '.kuc-base-datetime-calendar-body__table__date--selected[tabindex="0"]',
   )
   private _focusedItem!: HTMLTableCellElement;
 
@@ -325,6 +325,6 @@ if (!window.customElements.get("kuc-base-datetime-calendar-body")) {
   createStyleOnHeader(CALENDAR_BODY_CSS);
   window.customElements.define(
     "kuc-base-datetime-calendar-body",
-    BaseDateTimeCalendarBody
+    BaseDateTimeCalendarBody,
   );
 }

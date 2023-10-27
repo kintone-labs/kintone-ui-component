@@ -41,7 +41,7 @@ let exportDialog;
 
     @query(".kuc-dialog__dialog") private _dialogEl!: HTMLDivElement;
     @queryAll(
-      "a[href]:not([disabled]), button:not([disabled]), textarea:not([disabled]), input[type='text']:not([disabled]), input[type='radio']:not([disabled]), input[type='checkbox']:not([disabled]), select:not([disabled]),[tabindex='0']"
+      "a[href]:not([disabled]), button:not([disabled]), textarea:not([disabled]), input[type='text']:not([disabled]), input[type='radio']:not([disabled]), input[type='checkbox']:not([disabled]), select:not([disabled]),[tabindex='0']",
     )
     private _focusableElements!: HTMLElement[];
     private _triggeredElement: Element | null = null;

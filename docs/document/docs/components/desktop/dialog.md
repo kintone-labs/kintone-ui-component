@@ -84,6 +84,7 @@ Here is a list of properties that can be used for modifying component style:
 | :--- |
 | --kuc-dialog-header-font-size |
 | --kuc-dialog-header-color |
+| --kuc-dialog-max-width |
 
 ---
 ## Sample Code

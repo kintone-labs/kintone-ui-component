@@ -16,7 +16,7 @@ describe("Checkbox", () => {
       const container = new Checkbox({ items: initItems, value: initValues });
       const el = await fixture(container);
       const inputEls = el.querySelectorAll(
-        ".kuc-checkbox__group__select-menu__item__input"
+        ".kuc-checkbox__group__select-menu__item__input",
       );
 
       expect(inputEls[0].hasAttribute("disabled")).to.equal(false);
@@ -32,7 +32,7 @@ describe("Checkbox", () => {
       });
       const el = await fixture(container);
       const inputEls = el.querySelectorAll(
-        ".kuc-checkbox__group__select-menu__item__input"
+        ".kuc-checkbox__group__select-menu__item__input",
       );
 
       expect(inputEls[0].hasAttribute("disabled")).to.equal(true);
@@ -51,7 +51,7 @@ describe("Checkbox", () => {
 
     const el = await fixture(container);
     const inputEls = el.querySelectorAll(
-      ".kuc-checkbox__group__select-menu__item__input"
+      ".kuc-checkbox__group__select-menu__item__input",
     );
 
     expect(inputEls[0].hasAttribute("disabled")).to.equal(true);
@@ -69,7 +69,7 @@ describe("Checkbox", () => {
 
     const el = await fixture(container);
     const inputEls = el.querySelectorAll(
-      ".kuc-checkbox__group__select-menu__item__input"
+      ".kuc-checkbox__group__select-menu__item__input",
     );
 
     expect(inputEls[0].hasAttribute("disabled")).to.equal(false);

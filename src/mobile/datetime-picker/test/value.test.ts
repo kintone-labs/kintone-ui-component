@@ -11,13 +11,13 @@ describe("MobileDateTimePicker", () => {
       const container = new MobileDateTimePicker();
       const el = await fixture(container);
       const inputDateEl = el.querySelector(
-        ".kuc-mobile-base-date__group__input"
+        ".kuc-mobile-base-date__group__input",
       ) as HTMLInputElement;
       const inputHourEl = el.querySelector(
-        ".kuc-base-mobile-time__group__hours"
+        ".kuc-base-mobile-time__group__hours",
       ) as HTMLSelectElement;
       const inputMinuteEl = el.querySelector(
-        ".kuc-base-mobile-time__group__minutes"
+        ".kuc-base-mobile-time__group__minutes",
       ) as HTMLSelectElement;
 
       expect(inputDateEl.value).to.be.equal("");
@@ -30,13 +30,13 @@ describe("MobileDateTimePicker", () => {
       const container = new MobileDateTimePicker({ value: "2021-12-12" });
       const el = await fixture(container);
       const inputDateEl = el.querySelector(
-        ".kuc-mobile-base-date__group__input"
+        ".kuc-mobile-base-date__group__input",
       ) as HTMLInputElement;
       const inputHourEl = el.querySelector(
-        ".kuc-base-mobile-time__group__hours"
+        ".kuc-base-mobile-time__group__hours",
       ) as HTMLSelectElement;
       const inputMinuteEl = el.querySelector(
-        ".kuc-base-mobile-time__group__minutes"
+        ".kuc-base-mobile-time__group__minutes",
       ) as HTMLSelectElement;
 
       expect(inputDateEl.value).to.be.equal("12/12/2021");
@@ -51,13 +51,13 @@ describe("MobileDateTimePicker", () => {
       });
       const el = await fixture(container);
       const inputDateEl = el.querySelector(
-        ".kuc-mobile-base-date__group__input"
+        ".kuc-mobile-base-date__group__input",
       ) as HTMLInputElement;
       const inputHourEl = el.querySelector(
-        ".kuc-base-mobile-time__group__hours"
+        ".kuc-base-mobile-time__group__hours",
       ) as HTMLSelectElement;
       const inputMinuteEl = el.querySelector(
-        ".kuc-base-mobile-time__group__minutes"
+        ".kuc-base-mobile-time__group__minutes",
       ) as HTMLSelectElement;
 
       expect(inputDateEl.value).to.be.equal("12/12/2021");
@@ -74,13 +74,13 @@ describe("MobileDateTimePicker", () => {
       container.value = "2021-12-13T11:11:00";
       await elementUpdated(el);
       const inputDateEl = el.querySelector(
-        ".kuc-mobile-base-date__group__input"
+        ".kuc-mobile-base-date__group__input",
       ) as HTMLInputElement;
       const inputHourEl = el.querySelector(
-        ".kuc-base-mobile-time__group__hours"
+        ".kuc-base-mobile-time__group__hours",
       ) as HTMLSelectElement;
       const inputMinuteEl = el.querySelector(
-        ".kuc-base-mobile-time__group__minutes"
+        ".kuc-base-mobile-time__group__minutes",
       ) as HTMLSelectElement;
 
       expect(inputDateEl.value).to.be.equal("12/13/2021");
@@ -125,13 +125,13 @@ describe("MobileDateTimePicker", () => {
       });
       const el = await fixture(container);
       const inputDateEl = el.querySelector(
-        ".kuc-mobile-base-date__group__input"
+        ".kuc-mobile-base-date__group__input",
       ) as HTMLInputElement;
       const inputHourEl = el.querySelector(
-        ".kuc-base-mobile-time__group__hours"
+        ".kuc-base-mobile-time__group__hours",
       ) as HTMLSelectElement;
       const inputMinuteEl = el.querySelector(
-        ".kuc-base-mobile-time__group__minutes"
+        ".kuc-base-mobile-time__group__minutes",
       ) as HTMLSelectElement;
 
       inputDateEl.click();
@@ -139,7 +139,7 @@ describe("MobileDateTimePicker", () => {
       await elementUpdated(el);
 
       const todayBtnEl = el.querySelector(
-        ".kuc-base-mobile-datetime-calendar-footer__group__button--today"
+        ".kuc-base-mobile-datetime-calendar-footer__group__button--today",
       ) as HTMLButtonElement;
       todayBtnEl.click();
       await elementUpdated(el);
@@ -159,13 +159,13 @@ describe("MobileDateTimePicker", () => {
       container.value = undefined;
       await elementUpdated(el);
       const inputDateEl = el.querySelector(
-        ".kuc-mobile-base-date__group__input"
+        ".kuc-mobile-base-date__group__input",
       ) as HTMLInputElement;
       const inputHourEl = el.querySelector(
-        ".kuc-base-mobile-time__group__hours"
+        ".kuc-base-mobile-time__group__hours",
       ) as HTMLSelectElement;
       const inputMinuteEl = el.querySelector(
-        ".kuc-base-mobile-time__group__minutes"
+        ".kuc-base-mobile-time__group__minutes",
       ) as HTMLSelectElement;
 
       expect(inputDateEl.value).to.be.equal("");
@@ -181,13 +181,13 @@ describe("MobileDateTimePicker", () => {
       });
       const el = await fixture(container);
       const inputDateEl = el.querySelector(
-        ".kuc-mobile-base-date__group__input"
+        ".kuc-mobile-base-date__group__input",
       ) as HTMLInputElement;
       const inputHourEl = el.querySelector(
-        ".kuc-base-mobile-time__group__hours"
+        ".kuc-base-mobile-time__group__hours",
       ) as HTMLSelectElement;
       const inputMinuteEl = el.querySelector(
-        ".kuc-base-mobile-time__group__minutes"
+        ".kuc-base-mobile-time__group__minutes",
       ) as HTMLSelectElement;
 
       expect(inputDateEl.value).to.be.equal("");
@@ -203,13 +203,13 @@ describe("MobileDateTimePicker", () => {
       });
       const el = await fixture(container);
       const inputDateEl = el.querySelector(
-        ".kuc-mobile-base-date__group__input"
+        ".kuc-mobile-base-date__group__input",
       ) as HTMLInputElement;
       const inputHourEl = el.querySelector(
-        ".kuc-base-mobile-time__group__hours"
+        ".kuc-base-mobile-time__group__hours",
       ) as HTMLSelectElement;
       const inputMinuteEl = el.querySelector(
-        ".kuc-base-mobile-time__group__minutes"
+        ".kuc-base-mobile-time__group__minutes",
       ) as HTMLSelectElement;
 
       expect(inputDateEl.value).to.be.equal("");
@@ -227,13 +227,13 @@ describe("MobileDateTimePicker", () => {
       container.value = "";
       await elementUpdated(el);
       const inputDateEl = el.querySelector(
-        ".kuc-mobile-base-date__group__input"
+        ".kuc-mobile-base-date__group__input",
       ) as HTMLInputElement;
       const inputHourEl = el.querySelector(
-        ".kuc-base-mobile-time__group__hours"
+        ".kuc-base-mobile-time__group__hours",
       ) as HTMLSelectElement;
       const inputMinuteEl = el.querySelector(
-        ".kuc-base-mobile-time__group__minutes"
+        ".kuc-base-mobile-time__group__minutes",
       ) as HTMLSelectElement;
 
       expect(inputDateEl.value).to.be.equal("");
@@ -251,10 +251,10 @@ describe("MobileDateTimePicker", () => {
       container.value = "";
       await elementUpdated(el);
       const inputHourEl = el.querySelector(
-        ".kuc-base-mobile-time__group__hours"
+        ".kuc-base-mobile-time__group__hours",
       ) as HTMLSelectElement;
       const baseTimeEl = el.querySelector(
-        ".kuc-mobile-datetime-picker__group__input--time"
+        ".kuc-mobile-datetime-picker__group__input--time",
       ) as HTMLElement;
       inputHourEl.value = "";
       baseTimeEl.dispatchEvent(
@@ -264,7 +264,7 @@ describe("MobileDateTimePicker", () => {
             oldValue: "00:00",
             error: "Format is not valid.",
           },
-        })
+        }),
       );
       await elementUpdated(el);
       expect(container.value).to.be.equal(undefined);
@@ -279,13 +279,13 @@ describe("MobileDateTimePicker", () => {
       container.value = "";
       await elementUpdated(el);
       const inputDateEl = el.querySelector(
-        ".kuc-mobile-base-date__group__input"
+        ".kuc-mobile-base-date__group__input",
       ) as HTMLInputElement;
       const inputHourEl = el.querySelector(
-        ".kuc-base-mobile-time__group__hours"
+        ".kuc-base-mobile-time__group__hours",
       ) as HTMLSelectElement;
       const baseTimeEl = el.querySelector(
-        ".kuc-mobile-datetime-picker__group__input--time"
+        ".kuc-mobile-datetime-picker__group__input--time",
       ) as HTMLElement;
       inputHourEl.value = "";
       baseTimeEl.dispatchEvent(
@@ -295,14 +295,14 @@ describe("MobileDateTimePicker", () => {
             oldValue: "00:00",
             error: "Format is not valid.",
           },
-        })
+        }),
       );
       await elementUpdated(el);
       inputDateEl.click();
       await elementUpdated(container);
       await elementUpdated(el);
       const todayBtnEl = el.querySelector(
-        ".kuc-base-mobile-datetime-calendar-footer__group__button--today"
+        ".kuc-base-mobile-datetime-calendar-footer__group__button--today",
       ) as HTMLButtonElement;
       todayBtnEl.dispatchEvent(new Event("click"));
       await elementUpdated(el);
@@ -317,13 +317,13 @@ describe("MobileDateTimePicker", () => {
       });
       const el = await fixture(container);
       const inputDateEl = el.querySelector(
-        ".kuc-mobile-base-date__group__input"
+        ".kuc-mobile-base-date__group__input",
       ) as HTMLInputElement;
       const inputHourEl = el.querySelector(
-        ".kuc-base-mobile-time__group__hours"
+        ".kuc-base-mobile-time__group__hours",
       ) as HTMLSelectElement;
       const inputMinuteEl = el.querySelector(
-        ".kuc-base-mobile-time__group__minutes"
+        ".kuc-base-mobile-time__group__minutes",
       ) as HTMLSelectElement;
 
       inputDateEl.click();
@@ -331,7 +331,7 @@ describe("MobileDateTimePicker", () => {
       await elementUpdated(el);
 
       const todayBtnEl = el.querySelector(
-        ".kuc-base-mobile-datetime-calendar-footer__group__button--today"
+        ".kuc-base-mobile-datetime-calendar-footer__group__button--today",
       ) as HTMLButtonElement;
       todayBtnEl.click();
       await elementUpdated(el);

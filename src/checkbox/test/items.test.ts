@@ -28,7 +28,7 @@ describe("Checkbox", () => {
       const container = new Checkbox();
       const el = await fixture(container);
       const itemsEl = el.querySelectorAll(
-        ".kuc-checkbox__group__select-menu__item"
+        ".kuc-checkbox__group__select-menu__item",
       );
 
       expect(itemsEl.length).to.equal(0);
@@ -38,7 +38,7 @@ describe("Checkbox", () => {
       const container = new Checkbox({ items: initItemsWithoutLabel });
       const el = await fixture(container);
       const itemsEl = el.querySelectorAll(
-        ".kuc-checkbox__group__select-menu__item"
+        ".kuc-checkbox__group__select-menu__item",
       );
 
       expect(itemsEl.length).to.equal(3);
@@ -67,7 +67,7 @@ describe("Checkbox", () => {
       container.items = initItemsWithoutLabel;
       const el = await fixture(container);
       const itemsEl = el.querySelectorAll(
-        ".kuc-checkbox__group__select-menu__item"
+        ".kuc-checkbox__group__select-menu__item",
       );
 
       expect(itemsEl.length).to.equal(3);
@@ -95,7 +95,7 @@ describe("Checkbox", () => {
       const container = new Checkbox({ items: initItems });
       const el = await fixture(container);
       const itemsEl = el.querySelectorAll(
-        ".kuc-checkbox__group__select-menu__item"
+        ".kuc-checkbox__group__select-menu__item",
       );
 
       expect(itemsEl.length).to.equal(3);
@@ -125,7 +125,7 @@ describe("Checkbox", () => {
 
       const el = await fixture(container);
       const itemsEl = el.querySelectorAll(
-        ".kuc-checkbox__group__select-menu__item"
+        ".kuc-checkbox__group__select-menu__item",
       );
 
       expect(container.items).to.be.equal(replacedItems);
@@ -177,7 +177,7 @@ describe("Checkbox", () => {
       });
       const el = await fixture(container);
       const itemsEl = el.querySelectorAll(
-        ".kuc-checkbox__group__select-menu__item"
+        ".kuc-checkbox__group__select-menu__item",
       );
       const inputEl0 = itemsEl[0].querySelector("input") as HTMLInputElement;
       expect(inputEl0.value).to.equal("");
@@ -190,7 +190,7 @@ describe("Checkbox", () => {
       });
       const el = await fixture(container);
       const inputEls = el.querySelectorAll(
-        ".kuc-checkbox__group__select-menu__item"
+        ".kuc-checkbox__group__select-menu__item",
       );
 
       expect(inputEls.length).to.equal(4);

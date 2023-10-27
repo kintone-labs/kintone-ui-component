@@ -132,10 +132,10 @@ let exportTextarea;
 
     firstUpdated() {
       document.addEventListener("mousemove", (event) =>
-        this._handleMouseMoveDocument(event)
+        this._handleMouseMoveDocument(event),
       );
       document.addEventListener("mouseup", (_) =>
-        this._handleMouseUpDocument()
+        this._handleMouseUpDocument(),
       );
     }
 

@@ -8,7 +8,7 @@ describe("MobileText", () => {
       const container = new MobileText();
       const el = await fixture(container);
       const errorEl = el.querySelector(
-        ".kuc-base-mobile-error__error"
+        ".kuc-base-mobile-error__error",
       ) as HTMLDivElement;
       expect(errorEl).has.attribute("hidden");
     });
@@ -17,7 +17,7 @@ describe("MobileText", () => {
       const container = new MobileText({ error: "error-message" });
       const el = await fixture(container);
       const errorEl = el.querySelector(
-        ".kuc-base-mobile-error__error"
+        ".kuc-base-mobile-error__error",
       ) as HTMLDivElement;
       expect(errorEl.innerText).to.equal("error-message");
       expect(errorEl).not.has.attribute("hidden");
@@ -28,7 +28,7 @@ describe("MobileText", () => {
       container.error = "error-message";
       const el = await fixture(container);
       const errorEl = el.querySelector(
-        ".kuc-base-mobile-error__error"
+        ".kuc-base-mobile-error__error",
       ) as HTMLDivElement;
       expect(errorEl.innerText).to.equal("error-message");
       expect(errorEl).not.has.attribute("hidden");
@@ -39,7 +39,7 @@ describe("MobileText", () => {
       container.error = "replace-error";
       const el = await fixture(container);
       const errorEl = el.querySelector(
-        ".kuc-base-mobile-error__error"
+        ".kuc-base-mobile-error__error",
       ) as HTMLDivElement;
       expect(errorEl.innerText).to.equal("replace-error");
       expect(errorEl).not.has.attribute("hidden");

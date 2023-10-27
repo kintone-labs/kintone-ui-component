@@ -26,11 +26,11 @@ describe("Tabs", () => {
       const container = new Tabs({ items: items });
       const el = await fixture(container);
       const itemButtons = el.querySelectorAll(
-        ".kuc-tabs__group__tab-list__tab__button "
+        ".kuc-tabs__group__tab-list__tab__button ",
       );
       items.forEach((item, index) => {
         expect((itemButtons[index] as HTMLButtonElement).innerText).to.equal(
-          item.label
+          item.label,
         );
       });
       expect(itemButtons[2].hasAttribute("disabled")).to.equal(true);
@@ -67,7 +67,7 @@ describe("Tabs", () => {
       const handleError = (event: any) => {
         const errorMsg = event.reason.message;
         expect(errorMsg).to.equal(
-          "'value' property is not specified in items."
+          "'value' property is not specified in items.",
         );
         window.removeEventListener("unhandledrejection", handleError);
         done();

@@ -12,7 +12,7 @@ describe("DatePicker", () => {
       await elementUpdated(container);
       await elementUpdated(el);
       const inputHourEl = el.querySelector(
-        ".kuc-base-time__group__hours"
+        ".kuc-base-time__group__hours",
       ) as HTMLInputElement;
       expect(inputHourEl.value).to.equal("02");
     });

@@ -29,7 +29,7 @@ type ValueMapping = {
 let exportMobileMultiChoice;
 (() => {
   exportMobileMultiChoice = window.customElements.get(
-    "kuc-mobile-multi-choice"
+    "kuc-mobile-multi-choice",
   );
   if (exportMobileMultiChoice) {
     return;
@@ -87,11 +87,11 @@ let exportMobileMultiChoice;
       const oldValue = !this.value ? this.value : [...this.value];
       const newValue = Array.from(
         selectEl.selectedOptions,
-        (option) => option.value
+        (option) => option.value,
       );
       const newSelectedIndex = Array.from(
         selectEl.selectedOptions,
-        (option) => option.dataset.index
+        (option) => option.dataset.index,
       );
       const detail: MobileMultiChoiceChangeEventDetail = {
         value: newValue,
@@ -99,7 +99,7 @@ let exportMobileMultiChoice;
       };
       this.value = newValue;
       this.selectedIndex = newSelectedIndex.map((item) =>
-        item ? parseInt(item, 10) : 0
+        item ? parseInt(item, 10) : 0,
       );
       dispatchCustomEvent(this, "change", detail);
     }
@@ -122,7 +122,7 @@ let exportMobileMultiChoice;
       if (changedProperties.has("selectedIndex")) {
         if (!validateArrayType(this.selectedIndex)) {
           this.throwErrorAfterUpdateComplete(
-            ERROR_MESSAGE.SELECTED_INDEX.IS_NOT_ARRAY
+            ERROR_MESSAGE.SELECTED_INDEX.IS_NOT_ARRAY,
           );
           return false;
         }
@@ -174,7 +174,7 @@ let exportMobileMultiChoice;
 
     private _getValidValue(
       itemsMapping: ValueMapping,
-      _selectedIndex: number[]
+      _selectedIndex: number[],
     ) {
       return _selectedIndex
         .filter((item) => itemsMapping[item])
@@ -190,7 +190,7 @@ let exportMobileMultiChoice;
           continue;
         }
         const firstIndex = this.items.findIndex(
-          (item) => item.value === this.value[i]
+          (item) => item.value === this.value[i],
         );
         validSelectedIndex.push(firstIndex);
       }
@@ -201,7 +201,7 @@ let exportMobileMultiChoice;
     private _setValueAndSelectedIndex() {
       this.value = Object.values(this._valueMapping);
       this.selectedIndex = Object.keys(this._valueMapping).map((key) =>
-        parseInt(key, 10)
+        parseInt(key, 10),
       );
     }
 
@@ -210,7 +210,7 @@ let exportMobileMultiChoice;
       const keys = Object.keys(this._valueMapping);
       const result = values.filter(
         (val, indexVal) =>
-          val === item.value && index === parseInt(keys[indexVal], 10)
+          val === item.value && index === parseInt(keys[indexVal], 10),
       );
       return result.length > 0;
     }
@@ -256,7 +256,7 @@ let exportMobileMultiChoice;
               @change="${this._handleChangeInput}"
             >
               ${this.items.map((item, index) =>
-                this._getItemTemplate(item, index)
+                this._getItemTemplate(item, index),
               )}
             </select>
           </div>

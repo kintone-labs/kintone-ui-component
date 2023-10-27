@@ -7,10 +7,10 @@ describe("BaseMobileTime", () => {
       const container = document.createElement("kuc-base-mobile-time");
       const el = await fixture(container);
       const selectHourEl = el.querySelector(
-        ".kuc-base-mobile-time__group__hours"
+        ".kuc-base-mobile-time__group__hours",
       ) as HTMLSelectElement;
       const selectMinuteEl = el.querySelector(
-        ".kuc-base-mobile-time__group__minutes"
+        ".kuc-base-mobile-time__group__minutes",
       ) as HTMLSelectElement;
 
       expect(selectHourEl.value).to.be.equal("");
@@ -22,10 +22,10 @@ describe("BaseMobileTime", () => {
       container.setAttribute("value", "13:15");
       const el = await fixture(container);
       const selectHourEl = el.querySelector(
-        ".kuc-base-mobile-time__group__hours"
+        ".kuc-base-mobile-time__group__hours",
       ) as HTMLSelectElement;
       const selectMinuteEl = el.querySelector(
-        ".kuc-base-mobile-time__group__minutes"
+        ".kuc-base-mobile-time__group__minutes",
       ) as HTMLSelectElement;
 
       expect(selectHourEl.value).to.be.equal("13");
@@ -41,10 +41,10 @@ describe("BaseMobileTime", () => {
 
       el.setAttribute("value", "13:15");
       const selectHourEl = el.querySelector(
-        ".kuc-base-mobile-time__group__hours"
+        ".kuc-base-mobile-time__group__hours",
       ) as HTMLSelectElement;
       const selectMinuteEl = el.querySelector(
-        ".kuc-base-mobile-time__group__minutes"
+        ".kuc-base-mobile-time__group__minutes",
       ) as HTMLSelectElement;
 
       expect(selectHourEl.value).to.be.equal("13");

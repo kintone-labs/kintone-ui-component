@@ -14,7 +14,7 @@ describe("MultiChoice", () => {
       const container = new MultiChoice({ items: initItems });
       const el = await fixture(container);
       const menuEl = el.querySelector(
-        ".kuc-multi-choice__group__menu"
+        ".kuc-multi-choice__group__menu",
       ) as HTMLDivElement;
 
       expect(menuEl.hasAttribute("disabled")).to.equal(false);
@@ -24,7 +24,7 @@ describe("MultiChoice", () => {
       const container = new MultiChoice({ items: initItems, disabled: true });
       const el = await fixture(container);
       const menuEl = el.querySelector(
-        ".kuc-multi-choice__group__menu"
+        ".kuc-multi-choice__group__menu",
       ) as HTMLDivElement;
 
       expect(menuEl.hasAttribute("disabled")).to.equal(true);
@@ -36,7 +36,7 @@ describe("MultiChoice", () => {
 
       const el = await fixture(container);
       const menuEl = el.querySelector(
-        ".kuc-multi-choice__group__menu"
+        ".kuc-multi-choice__group__menu",
       ) as HTMLDivElement;
 
       expect(menuEl.hasAttribute("disabled")).to.equal(true);
@@ -48,7 +48,7 @@ describe("MultiChoice", () => {
 
       const el = await fixture(container);
       const menuEl = el.querySelector(
-        ".kuc-multi-choice__group__menu"
+        ".kuc-multi-choice__group__menu",
       ) as HTMLDivElement;
 
       expect(menuEl.hasAttribute("disabled")).to.equal(false);

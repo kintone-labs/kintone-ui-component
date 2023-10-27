@@ -286,7 +286,7 @@ let exportTable;
         this.columns.length
       ] as HTMLTableCellElement;
       const addRowButton = firstActionsCell.querySelector(
-        `.${btnAddRowClassName}`
+        `.${btnAddRowClassName}`,
       ) as HTMLButtonElement;
       addRowButton.focus();
     }
@@ -309,7 +309,7 @@ let exportTable;
     private _getSvgDOM(fillPath: string, dPath: string) {
       const iconSvg = document.createElementNS(
         "http://www.w3.org/2000/svg",
-        "svg"
+        "svg",
       );
       iconSvg.setAttribute("fill", "none");
       iconSvg.setAttribute("width", "18");
@@ -319,7 +319,7 @@ let exportTable;
 
       const iconPath = document.createElementNS(
         "http://www.w3.org/2000/svg",
-        "path"
+        "path",
       );
       iconPath.setAttribute("d", dPath);
       iconPath.setAttribute("fill-rule", "evenodd");

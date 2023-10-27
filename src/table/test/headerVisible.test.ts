@@ -54,7 +54,7 @@ describe("Table", () => {
       const container = new Table({ columns: [...columns], data: [...data] });
       const el = await fixture(container);
       const tableHeader = el.querySelector(
-        ".kuc-table__table__header"
+        ".kuc-table__table__header",
       ) as HTMLDivElement;
       expect(tableHeader.hasAttribute("hidden")).to.equal(false);
     });
@@ -66,7 +66,7 @@ describe("Table", () => {
       });
       const el = await fixture(container);
       const tableHeader = el.querySelector(
-        ".kuc-table__table__header"
+        ".kuc-table__table__header",
       ) as HTMLDivElement;
       expect(tableHeader.hasAttribute("hidden")).to.equal(true);
       const computedStyle = window.getComputedStyle(tableHeader);
@@ -81,7 +81,7 @@ describe("Table", () => {
       container.headerVisible = true;
       const el = await fixture(container);
       const tableHeader = el.querySelector(
-        ".kuc-table__table__header"
+        ".kuc-table__table__header",
       ) as HTMLDivElement;
       expect(tableHeader.hasAttribute("hidden")).to.equal(false);
     });
@@ -94,7 +94,7 @@ describe("Table", () => {
       container.headerVisible = false;
       const el = await fixture(container);
       const tableHeader = el.querySelector(
-        ".kuc-table__table__header"
+        ".kuc-table__table__header",
       ) as HTMLDivElement;
       expect(tableHeader.hasAttribute("hidden")).to.equal(true);
       const computedStyle = window.getComputedStyle(tableHeader);

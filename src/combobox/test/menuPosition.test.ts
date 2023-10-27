@@ -19,13 +19,13 @@ describe("Combobox", () => {
       });
       const el = await fixture(container);
       const toggleIconButton = el.querySelector(
-        ".kuc-combobox__group__toggle__icon__button"
+        ".kuc-combobox__group__toggle__icon__button",
       ) as HTMLButtonElement;
 
       toggleIconButton.click();
       await elementUpdated(container);
       const menuEl = el.querySelector(
-        ".kuc-combobox__group__select-menu"
+        ".kuc-combobox__group__select-menu",
       ) as HTMLDivElement;
       expect(menuEl.style.bottom).to.equal("auto");
       expect(menuEl.style.height).to.equal("auto");
@@ -48,13 +48,13 @@ describe("Combobox", () => {
       });
       const el = await fixture(container);
       const toggleIconButton = el.querySelector(
-        ".kuc-combobox__group__toggle__icon__button"
+        ".kuc-combobox__group__toggle__icon__button",
       ) as HTMLButtonElement;
 
       toggleIconButton.click();
       await elementUpdated(container);
       const menuEl = el.querySelector(
-        ".kuc-combobox__group__select-menu"
+        ".kuc-combobox__group__select-menu",
       ) as HTMLDivElement;
       expect(menuEl.style.bottom).to.equal("auto");
       expect(menuEl.style.overflowY).to.equal("scroll");
@@ -70,22 +70,22 @@ describe("Combobox", () => {
       });
       const el = await fixture(container);
       const toggleIconButton = el.querySelector(
-        ".kuc-combobox__group__toggle__icon__button"
+        ".kuc-combobox__group__toggle__icon__button",
       ) as HTMLButtonElement;
 
       toggleIconButton.click();
       await elementUpdated(container);
       const menuEl = el.querySelector(
-        ".kuc-combobox__group__select-menu"
+        ".kuc-combobox__group__select-menu",
       ) as HTMLDivElement;
       const errorEl = el.querySelector(
-        ".kuc-base-error__error"
+        ".kuc-base-error__error",
       ) as HTMLDivElement;
       const toggle = el.querySelector(
-        ".kuc-combobox__group__toggle"
+        ".kuc-combobox__group__toggle",
       ) as HTMLDivElement;
       expect(menuEl.style.bottom).to.equal(
-        `${toggle.offsetHeight + errorEl.offsetHeight + 16}px`
+        `${toggle.offsetHeight + errorEl.offsetHeight + 16}px`,
       );
       expect(menuEl.style.height).to.equal("auto");
     });
@@ -108,16 +108,16 @@ describe("Combobox", () => {
       const el = await fixture(container);
       document.body.appendChild(el);
       const toggleIconButton = el.querySelector(
-        ".kuc-combobox__group__toggle__icon__button"
+        ".kuc-combobox__group__toggle__icon__button",
       ) as HTMLButtonElement;
 
       toggleIconButton.click();
       await elementUpdated(container);
       const menuEl = el.querySelector(
-        ".kuc-combobox__group__select-menu"
+        ".kuc-combobox__group__select-menu",
       ) as HTMLDivElement;
       const toggle = el.querySelector(
-        ".kuc-combobox__group__toggle"
+        ".kuc-combobox__group__toggle",
       ) as HTMLDivElement;
       expect(menuEl.style.bottom).to.equal(`${toggle.offsetHeight}px`);
       expect(menuEl.style.overflowY).to.equal("scroll");

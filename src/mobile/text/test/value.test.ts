@@ -8,7 +8,7 @@ describe("MobileText", () => {
       const container = new MobileText();
       const el = await fixture(container);
       const inputEl = el.querySelector(
-        ".kuc-mobile-text__input-form__input"
+        ".kuc-mobile-text__input-form__input",
       ) as HTMLInputElement;
       expect(inputEl.value).to.be.equal("");
     });
@@ -17,7 +17,7 @@ describe("MobileText", () => {
       const container = new MobileText({ value: "Apple" });
       const el = await fixture(container);
       const inputEl = el.querySelector(
-        ".kuc-mobile-text__input-form__input"
+        ".kuc-mobile-text__input-form__input",
       ) as HTMLInputElement;
       expect(inputEl.value).to.be.equal("Apple");
     });
@@ -27,7 +27,7 @@ describe("MobileText", () => {
       container.value = "Apple";
       const el = await fixture(container);
       const inputEl = el.querySelector(
-        ".kuc-mobile-text__input-form__input"
+        ".kuc-mobile-text__input-form__input",
       ) as HTMLInputElement;
       expect(inputEl.value).to.be.equal("Apple");
     });
@@ -37,7 +37,7 @@ describe("MobileText", () => {
       container.value = "Orange";
       const el = await fixture(container);
       const inputEl = el.querySelector(
-        ".kuc-mobile-text__input-form__input"
+        ".kuc-mobile-text__input-form__input",
       ) as HTMLInputElement;
       expect(inputEl.value).to.be.equal("Orange");
     });

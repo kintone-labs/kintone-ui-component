@@ -18,14 +18,14 @@ describe("MobileDateTimePicker", () => {
       });
       const el = await fixture(container);
       const inputDateEl = el.querySelector(
-        ".kuc-mobile-base-date__group__input"
+        ".kuc-mobile-base-date__group__input",
       ) as HTMLInputElement;
       inputDateEl.click();
       await elementUpdated(container);
       await elementUpdated(el);
 
       const selectedElUp = el.querySelector(
-        "kuc-base-mobile-datetime-calendar-body .kuc-base-mobile-datetime-calendar-body__table__date--selected"
+        "kuc-base-mobile-datetime-calendar-body .kuc-base-mobile-datetime-calendar-body__table__date--selected",
       ) as HTMLButtonElement;
 
       const nextEl = selectedElUp?.nextElementSibling as HTMLTableCellElement;
@@ -34,10 +34,10 @@ describe("MobileDateTimePicker", () => {
       await elementUpdated(container);
 
       const inputHourEl = el.querySelector(
-        ".kuc-base-mobile-time__group__hours"
+        ".kuc-base-mobile-time__group__hours",
       ) as HTMLSelectElement;
       const inputMinuteEl = el.querySelector(
-        ".kuc-base-mobile-time__group__minutes"
+        ".kuc-base-mobile-time__group__minutes",
       ) as HTMLSelectElement;
 
       expect(triggeredEvent.type).to.equal("change");
@@ -58,7 +58,7 @@ describe("MobileDateTimePicker", () => {
       });
       const el = await fixture(container);
       const inputDateEl = el.querySelector(
-        ".kuc-mobile-base-date__group__input"
+        ".kuc-mobile-base-date__group__input",
       ) as HTMLInputElement;
 
       inputDateEl.click();
@@ -66,7 +66,7 @@ describe("MobileDateTimePicker", () => {
       await elementUpdated(el);
 
       const noneBtnEl = el.querySelector(
-        ".kuc-base-mobile-datetime-calendar-footer__group__button--none"
+        ".kuc-base-mobile-datetime-calendar-footer__group__button--none",
       ) as HTMLButtonElement;
       noneBtnEl.click();
       await elementUpdated(container);
@@ -87,7 +87,7 @@ describe("MobileDateTimePicker", () => {
       });
       const el = await fixture(container);
       const selectHourEl = el.querySelector(
-        ".kuc-base-mobile-time__group__hours"
+        ".kuc-base-mobile-time__group__hours",
       ) as HTMLSelectElement;
 
       selectHourEl.value = "01";
@@ -111,14 +111,14 @@ describe("MobileDateTimePicker", () => {
       });
       const el = await fixture(container);
       const inputDateEl = el.querySelector(
-        ".kuc-mobile-base-date__group__input"
+        ".kuc-mobile-base-date__group__input",
       ) as HTMLInputElement;
       inputDateEl.click();
       await elementUpdated(el);
       await elementUpdated(container);
 
       const todayBtnEl = el.querySelector(
-        ".kuc-base-mobile-datetime-calendar-footer__group__button--today"
+        ".kuc-base-mobile-datetime-calendar-footer__group__button--today",
       ) as HTMLButtonElement;
       todayBtnEl.click();
       await elementUpdated(el);

@@ -14,7 +14,7 @@ describe("BasePagination", () => {
       container.addEventListener("kuc:pagination-click-prev", handleEvent);
 
       const prevEl = container.querySelector(
-        ".kuc-base-pagination__group__pager-prev"
+        ".kuc-base-pagination__group__pager-prev",
       ) as HTMLElement;
 
       prevEl.click();
@@ -30,7 +30,7 @@ describe("BasePagination", () => {
       container.addEventListener("kuc:pagination-click-next", handleEvent);
 
       const nextEl = container.querySelector(
-        ".kuc-base-pagination__group__pager-next"
+        ".kuc-base-pagination__group__pager-next",
       ) as HTMLElement;
 
       nextEl.click();

@@ -57,6 +57,23 @@ Tabs(options)<br/>
 | :--- | :--- | :--- | :--- | :--- |
 | options | object | {} | コンポーネントのプロパティを含むオブジェクト |  |
 
+### Custom CSS
+:::tip
+[Custom CSS](../../getting-started/custom-css.md) をご確認ください。
+:::
+
+コンポーネントのスタイルを変更するために使用できるプロパティの一覧です。
+#### Property
+| Name |
+| :--- |
+| --kuc-tabs-tab-background-color |
+| --kuc-tabs-tab-background-color-selected |
+| --kuc-tabs-tab-color |
+| --kuc-tabs-tab-color-selected |
+| --kuc-tabs-tab-font-size |
+| --kuc-tabs-tab-height |
+| --kuc-tabs-tab-width |
+
 ---
 ## Sample Code
 

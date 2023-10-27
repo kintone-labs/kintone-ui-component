@@ -9,10 +9,10 @@ describe("TimePicker", () => {
       const container = new TimePicker();
       const el = await fixture(container);
       const inputHourEl = el.querySelector(
-        ".kuc-base-time__group__hours"
+        ".kuc-base-time__group__hours",
       ) as HTMLInputElement;
       const inputMinuteEl = el.querySelector(
-        ".kuc-base-time__group__minutes"
+        ".kuc-base-time__group__minutes",
       ) as HTMLInputElement;
       inputHourEl.addEventListener("focus", (event: Event) => {
         triggeredEvent = event;
@@ -20,7 +20,7 @@ describe("TimePicker", () => {
       inputMinuteEl.focus();
       await elementUpdated(el);
       inputMinuteEl.dispatchEvent(
-        new KeyboardEvent("keydown", { key: "ArrowLeft", bubbles: true })
+        new KeyboardEvent("keydown", { key: "ArrowLeft", bubbles: true }),
       );
       await elementUpdated(el);
       expect(triggeredEvent.type).to.equal("focus");
@@ -30,16 +30,16 @@ describe("TimePicker", () => {
       const container = new TimePicker({ value: "13:15" });
       const el = await fixture(container);
       const inputHourEl = el.querySelector(
-        ".kuc-base-time__group__hours"
+        ".kuc-base-time__group__hours",
       ) as HTMLInputElement;
       const inputMinuteEl = el.querySelector(
-        ".kuc-base-time__group__minutes"
+        ".kuc-base-time__group__minutes",
       ) as HTMLInputElement;
 
       inputHourEl.click();
       inputMinuteEl.click();
       inputMinuteEl.dispatchEvent(
-        new KeyboardEvent("keydown", { key: "Backspace", bubbles: true })
+        new KeyboardEvent("keydown", { key: "Backspace", bubbles: true }),
       );
       await elementUpdated(el);
 
@@ -51,15 +51,15 @@ describe("TimePicker", () => {
       const container = new TimePicker({ value: "13:15" });
       const el = await fixture(container);
       const inputHourEl = el.querySelector(
-        ".kuc-base-time__group__hours"
+        ".kuc-base-time__group__hours",
       ) as HTMLInputElement;
       const inputMinuteEl = el.querySelector(
-        ".kuc-base-time__group__minutes"
+        ".kuc-base-time__group__minutes",
       ) as HTMLInputElement;
 
       inputMinuteEl.click();
       inputMinuteEl.dispatchEvent(
-        new KeyboardEvent("keydown", { key: "ArrowUp", bubbles: true })
+        new KeyboardEvent("keydown", { key: "ArrowUp", bubbles: true }),
       );
       await elementUpdated(el);
 
@@ -71,15 +71,15 @@ describe("TimePicker", () => {
       const container = new TimePicker({ value: "12:00" });
       const el = await fixture(container);
       const inputHourEl = el.querySelector(
-        ".kuc-base-time__group__hours"
+        ".kuc-base-time__group__hours",
       ) as HTMLInputElement;
       const inputMinuteEl = el.querySelector(
-        ".kuc-base-time__group__minutes"
+        ".kuc-base-time__group__minutes",
       ) as HTMLInputElement;
 
       inputMinuteEl.click();
       inputMinuteEl.dispatchEvent(
-        new KeyboardEvent("keydown", { key: "ArrowDown", bubbles: true })
+        new KeyboardEvent("keydown", { key: "ArrowDown", bubbles: true }),
       );
       await elementUpdated(el);
 
@@ -91,29 +91,29 @@ describe("TimePicker", () => {
       const container = new TimePicker({ value: "13:15" });
       const el = await fixture(container);
       const inputHourEl = el.querySelector(
-        ".kuc-base-time__group__hours"
+        ".kuc-base-time__group__hours",
       ) as HTMLInputElement;
       const inputMinuteEl = el.querySelector(
-        ".kuc-base-time__group__minutes"
+        ".kuc-base-time__group__minutes",
       ) as HTMLInputElement;
 
       inputMinuteEl.focus();
       inputMinuteEl.dispatchEvent(
-        new KeyboardEvent("keydown", { key: "2", bubbles: true })
+        new KeyboardEvent("keydown", { key: "2", bubbles: true }),
       );
       await elementUpdated(el);
       expect(inputHourEl.value).to.be.equal("13");
       expect(inputMinuteEl.value).to.be.equal("52");
 
       inputMinuteEl.dispatchEvent(
-        new KeyboardEvent("keydown", { key: "8", bubbles: true })
+        new KeyboardEvent("keydown", { key: "8", bubbles: true }),
       );
       await elementUpdated(el);
       expect(inputHourEl.value).to.be.equal("13");
       expect(inputMinuteEl.value).to.be.equal("28");
 
       inputMinuteEl.dispatchEvent(
-        new KeyboardEvent("keydown", { key: "8", bubbles: true })
+        new KeyboardEvent("keydown", { key: "8", bubbles: true }),
       );
       await elementUpdated(el);
       expect(inputHourEl.value).to.be.equal("13");

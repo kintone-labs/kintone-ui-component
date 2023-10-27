@@ -84,6 +84,7 @@ none
 | :--- |
 | --kuc-dialog-header-font-size |
 | --kuc-dialog-header-color |
+| --kuc-dialog-max-width |
 
 ---
 ## Sample Code

@@ -9,7 +9,7 @@ describe("DateTimePicker", () => {
       const el = await fixture(container);
       document.documentElement.setAttribute("lang", "en");
       const inputDateEl = el.querySelector(
-        ".kuc-base-date__input"
+        ".kuc-base-date__input",
       ) as HTMLInputElement;
       expect(inputDateEl.value).to.equal("12/22/2021");
     });
@@ -21,7 +21,7 @@ describe("DateTimePicker", () => {
       });
       const el = await fixture(container);
       const inputDateEl = el.querySelector(
-        ".kuc-base-date__input"
+        ".kuc-base-date__input",
       ) as HTMLInputElement;
       expect(inputDateEl.value).to.equal("2021-12-22");
     });
@@ -34,7 +34,7 @@ describe("DateTimePicker", () => {
       container.language = "zh";
       const el = await fixture(container);
       const inputDateEl = el.querySelector(
-        ".kuc-base-date__input"
+        ".kuc-base-date__input",
       ) as HTMLInputElement;
       expect(inputDateEl.value).to.equal("2021-12-22");
     });
@@ -47,7 +47,7 @@ describe("DateTimePicker", () => {
       container.language = "zh-TW";
       const el = await fixture(container);
       const inputDateEl = el.querySelector(
-        ".kuc-base-date__input"
+        ".kuc-base-date__input",
       ) as HTMLInputElement;
       expect(inputDateEl.value).to.equal("2021-12-22");
     });

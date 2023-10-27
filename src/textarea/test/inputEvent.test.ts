@@ -13,13 +13,13 @@ describe("TextArea", () => {
 
       const el = await fixture(container);
       const textAreaEl = el.querySelector(
-        ".kuc-textarea__group__textarea"
+        ".kuc-textarea__group__textarea",
       ) as HTMLTextAreaElement;
       textAreaEl.value = "OrangeApple";
       textAreaEl.dispatchEvent(
         new InputEvent("input", {
           data: "Apple",
-        })
+        }),
       );
 
       expect(triggeredEvent.type).to.equal("input");

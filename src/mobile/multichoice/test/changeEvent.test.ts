@@ -26,7 +26,7 @@ describe("MobileMultiChoice", () => {
     it("Function change event run successfully", async () => {
       const el = await fixture(container);
       const itemsEl = el.querySelector(
-        ".kuc-mobile-multi-choice__input-form__select__input"
+        ".kuc-mobile-multi-choice__input-form__select__input",
       ) as HTMLSelectElement;
       itemsEl.dispatchEvent(new Event("change"));
 

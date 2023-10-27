@@ -24,7 +24,7 @@ describe("FieldGroup", () => {
 
       const el = await fixture(container);
       const buttonToggle = el.querySelector(
-        ".kuc-field-group__group__toggle"
+        ".kuc-field-group__group__toggle",
       ) as HTMLButtonElement;
       buttonToggle.click();
     });
@@ -43,7 +43,7 @@ describe("FieldGroup", () => {
 
       const el = await fixture(container);
       const buttonToggle = el.querySelector(
-        ".kuc-field-group__group__toggle"
+        ".kuc-field-group__group__toggle",
       ) as HTMLButtonElement;
       buttonToggle.click();
 
@@ -64,7 +64,7 @@ describe("FieldGroup", () => {
 
       const el = await fixture(container);
       const inputEl = el.querySelector(
-        ".kuc-text__group__input-form__input-outer__input"
+        ".kuc-text__group__input-form__input-outer__input",
       ) as HTMLInputElement;
       inputEl.value = "Apple";
       inputEl.dispatchEvent(new CustomEvent("change"));
@@ -79,7 +79,7 @@ describe("FieldGroup", () => {
       const el = await fixture(container);
       requestAnimationFrame(() => {
         const groupEl = el.querySelector(
-          ".kuc-field-group__group"
+          ".kuc-field-group__group",
         ) as HTMLElement;
         const groupWidth = getComputedStyle(groupEl).width;
         expect(groupWidth).not.equal(DEFAULT_WIDTH);

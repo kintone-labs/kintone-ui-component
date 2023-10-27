@@ -8,7 +8,7 @@ describe("TextArea", () => {
       const container = new TextArea();
       const el = await fixture(container);
       const inputEl = el.querySelector(
-        ".kuc-textarea__group__textarea"
+        ".kuc-textarea__group__textarea",
       ) as HTMLTextAreaElement;
       expect(inputEl.value).to.be.equal("");
     });
@@ -17,7 +17,7 @@ describe("TextArea", () => {
       const container = new TextArea({ value: "Apple" });
       const el = await fixture(container);
       const inputEl = el.querySelector(
-        ".kuc-textarea__group__textarea"
+        ".kuc-textarea__group__textarea",
       ) as HTMLTextAreaElement;
       expect(inputEl.value).to.be.equal("Apple");
     });
@@ -27,7 +27,7 @@ describe("TextArea", () => {
       container.value = "Apple";
       const el = await fixture(container);
       const inputEl = el.querySelector(
-        ".kuc-textarea__group__textarea"
+        ".kuc-textarea__group__textarea",
       ) as HTMLTextAreaElement;
       expect(inputEl.value).to.be.equal("Apple");
     });
@@ -37,7 +37,7 @@ describe("TextArea", () => {
       container.value = "Orange";
       const el = await fixture(container);
       const inputEl = el.querySelector(
-        ".kuc-textarea__group__textarea"
+        ".kuc-textarea__group__textarea",
       ) as HTMLTextAreaElement;
       expect(inputEl.value).to.be.equal("Orange");
     });
@@ -47,7 +47,7 @@ describe("TextArea", () => {
       const container = new TextArea({ value: null });
       const el = await fixture(container);
       const inputEl = el.querySelector(
-        ".kuc-textarea__group__textarea"
+        ".kuc-textarea__group__textarea",
       ) as HTMLTextAreaElement;
       expect(inputEl.value).to.be.equal("");
     });
@@ -58,7 +58,7 @@ describe("TextArea", () => {
       container.value = null;
       const el = await fixture(container);
       const inputEl = el.querySelector(
-        ".kuc-textarea__group__textarea"
+        ".kuc-textarea__group__textarea",
       ) as HTMLTextAreaElement;
       expect(inputEl.value).to.be.equal("");
     });

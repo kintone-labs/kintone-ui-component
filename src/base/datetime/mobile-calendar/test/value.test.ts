@@ -9,7 +9,7 @@ describe("BaseDateTimeCalendar", () => {
       container.value = "2021-08-22";
       const el = await fixture(container);
       const selectedEl = el.querySelector(
-        ".kuc-base-mobile-datetime-calendar-body__table__date--selected"
+        ".kuc-base-mobile-datetime-calendar-body__table__date--selected",
       ) as HTMLButtonElement;
       expect(selectedEl.getAttribute("data-date")).to.equal("2021-08-22");
     });
@@ -19,7 +19,7 @@ describe("BaseDateTimeCalendar", () => {
       container.value = "";
       const el = await fixture(container);
       const selectedEl = el.querySelector(
-        ".kuc-base-mobile-datetime-calendar-body__table__date--selected"
+        ".kuc-base-mobile-datetime-calendar-body__table__date--selected",
       ) as HTMLButtonElement;
       expect(selectedEl.dataset.date?.slice(8)).to.equal("01");
     });

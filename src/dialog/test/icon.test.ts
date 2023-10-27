@@ -10,7 +10,7 @@ describe("Dialog", () => {
       await elementUpdated(container);
 
       const iconEl = container.querySelector(
-        ".kuc-dialog__dialog__content__icon"
+        ".kuc-dialog__dialog__content__icon",
       ) as HTMLDivElement;
       expect(iconEl.childElementCount).to.equal(0);
       expect(iconEl.textContent?.trim()).to.equal("");
@@ -24,10 +24,10 @@ describe("Dialog", () => {
       await elementUpdated(container);
 
       const iconEl = container.querySelector(
-        ".kuc-dialog__dialog__content__icon"
+        ".kuc-dialog__dialog__content__icon",
       ) as HTMLDivElement;
       expect(iconEl.firstElementChild!.classList[0]).to.equal(
-        "kuc-dialog__dialog__content__icon-info"
+        "kuc-dialog__dialog__content__icon-info",
       );
     });
 
@@ -39,10 +39,10 @@ describe("Dialog", () => {
       await elementUpdated(container);
 
       const iconEl = container.querySelector(
-        ".kuc-dialog__dialog__content__icon"
+        ".kuc-dialog__dialog__content__icon",
       ) as HTMLDivElement;
       expect(iconEl.firstElementChild!.classList[0]).to.equal(
-        "kuc-dialog__dialog__content__icon-success"
+        "kuc-dialog__dialog__content__icon-success",
       );
     });
 
@@ -54,10 +54,10 @@ describe("Dialog", () => {
       await elementUpdated(container);
 
       const iconEl = container.querySelector(
-        ".kuc-dialog__dialog__content__icon"
+        ".kuc-dialog__dialog__content__icon",
       ) as HTMLDivElement;
       expect(iconEl.firstElementChild!.classList[0]).to.equal(
-        "kuc-dialog__dialog__content__icon-error"
+        "kuc-dialog__dialog__content__icon-error",
       );
     });
 
@@ -69,10 +69,10 @@ describe("Dialog", () => {
       await elementUpdated(container);
 
       const iconEl = container.querySelector(
-        ".kuc-dialog__dialog__content__icon"
+        ".kuc-dialog__dialog__content__icon",
       ) as HTMLDivElement;
       expect(iconEl.firstElementChild!.classList[0]).to.equal(
-        "kuc-dialog__dialog__content__icon-warning"
+        "kuc-dialog__dialog__content__icon-warning",
       );
     });
 
@@ -84,10 +84,10 @@ describe("Dialog", () => {
       await elementUpdated(container);
 
       const iconEl = container.querySelector(
-        ".kuc-dialog__dialog__content__icon"
+        ".kuc-dialog__dialog__content__icon",
       ) as HTMLDivElement;
       expect(iconEl.firstElementChild!.classList[0]).to.equal(
-        "kuc-dialog__dialog__content__icon-question"
+        "kuc-dialog__dialog__content__icon-question",
       );
     });
 
@@ -100,7 +100,7 @@ describe("Dialog", () => {
       await elementUpdated(container);
 
       const iconEl = container.querySelector(
-        ".kuc-dialog__dialog__content__icon"
+        ".kuc-dialog__dialog__content__icon",
       ) as HTMLDivElement;
       expect(iconEl.childElementCount).to.equal(0);
       expect(iconEl.textContent?.trim()).to.equal("");

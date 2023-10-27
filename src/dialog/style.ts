@@ -32,7 +32,8 @@ export const DIALOG_CSS = `
 
   .kuc-dialog__dialog {
     min-width: 400px;
-    max-width: 600px;
+    max-width: var(--kuc-dialog-max-width, 600px);
+    width: max-content;
     font-size: 20px;
     background-color: #ffffff;
     position: fixed;
@@ -87,6 +88,7 @@ export const DIALOG_CSS = `
     background-color: #f7f9fa;
     padding: 24px;
     display: flex;
+    overflow: auto;
   }
 
   .kuc-dialog__dialog__content__content {

@@ -12,12 +12,12 @@ describe("BaseMobileDateTimeCalendar", () => {
         "kuc:mobile-calendar-header-change",
         (event) => {
           triggeredEvent = event;
-        }
+        },
       );
 
       const el = await fixture(container);
       const buttonEl = el.querySelector(
-        "kuc-base-mobile-datetime-calendar-header .kuc-base-mobile-datetime-calendar-header__group__button--next-month"
+        "kuc-base-mobile-datetime-calendar-header .kuc-base-mobile-datetime-calendar-header__group__button--next-month",
       ) as HTMLButtonElement;
 
       buttonEl.click();

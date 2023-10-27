@@ -8,10 +8,10 @@ describe("TimePicker", () => {
       const container = new TimePicker();
       const el = await fixture(container);
       const inputHourEl = el.querySelector(
-        ".kuc-base-time__group__hours"
+        ".kuc-base-time__group__hours",
       ) as HTMLInputElement;
       const inputMinuteEl = el.querySelector(
-        ".kuc-base-time__group__minutes"
+        ".kuc-base-time__group__minutes",
       ) as HTMLInputElement;
 
       expect(inputHourEl.hasAttribute("disabled")).to.equal(false);
@@ -22,10 +22,10 @@ describe("TimePicker", () => {
       const container = new TimePicker({ disabled: true });
       const el = await fixture(container);
       const inputHourEl = el.querySelector(
-        ".kuc-base-time__group__hours"
+        ".kuc-base-time__group__hours",
       ) as HTMLInputElement;
       const inputMinuteEl = el.querySelector(
-        ".kuc-base-time__group__minutes"
+        ".kuc-base-time__group__minutes",
       ) as HTMLInputElement;
 
       expect(inputHourEl.hasAttribute("disabled")).to.equal(true);
@@ -36,10 +36,10 @@ describe("TimePicker", () => {
       const container = new TimePicker({ disabled: true });
       const el = await fixture(container);
       const inputHourEl = el.querySelector(
-        ".kuc-base-time__group__hours"
+        ".kuc-base-time__group__hours",
       ) as HTMLInputElement;
       const inputMinuteEl = el.querySelector(
-        ".kuc-base-time__group__minutes"
+        ".kuc-base-time__group__minutes",
       ) as HTMLInputElement;
 
       expect(inputHourEl.hasAttribute("disabled")).to.equal(true);
@@ -51,10 +51,10 @@ describe("TimePicker", () => {
       container.disabled = false;
       const el = await fixture(container);
       const inputHourEl = el.querySelector(
-        ".kuc-base-time__group__hours"
+        ".kuc-base-time__group__hours",
       ) as HTMLInputElement;
       const inputMinuteEl = el.querySelector(
-        ".kuc-base-time__group__minutes"
+        ".kuc-base-time__group__minutes",
       ) as HTMLInputElement;
 
       expect(inputHourEl.hasAttribute("disabled")).to.equal(false);

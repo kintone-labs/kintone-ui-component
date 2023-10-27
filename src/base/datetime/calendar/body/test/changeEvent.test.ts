@@ -27,11 +27,11 @@ describe("BaseDateTimeCalendarBody", () => {
 
       const el = await fixture(container);
       const selectedEl = el.querySelector(
-        '.kuc-base-datetime-calendar-body__table__date--selected[aria-selected="true"]'
+        '.kuc-base-datetime-calendar-body__table__date--selected[aria-selected="true"]',
       ) as HTMLButtonElement;
 
       selectedEl.dispatchEvent(
-        new KeyboardEvent("keydown", { key: "ArrowRight" })
+        new KeyboardEvent("keydown", { key: "ArrowRight" }),
       );
       expect(triggeredEvent.type).to.equal("kuc:calendar-body-change-date");
       expect(triggeredEvent.detail.value).to.equal(ItemForTest.value);

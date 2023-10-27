@@ -7,10 +7,10 @@ describe("BaseMobileTime", () => {
       const container = document.createElement("kuc-base-mobile-time");
       const el = await fixture(container);
       const selectHourEl = el.querySelector(
-        ".kuc-base-mobile-time__group__hours"
+        ".kuc-base-mobile-time__group__hours",
       ) as HTMLInputElement;
       const selectMinuteEl = el.querySelector(
-        ".kuc-base-mobile-time__group__minutes"
+        ".kuc-base-mobile-time__group__minutes",
       ) as HTMLInputElement;
 
       expect(selectHourEl.disabled).to.equal(false);
@@ -22,10 +22,10 @@ describe("BaseMobileTime", () => {
       container.setAttribute("disabled", "true");
       const el = await fixture(container);
       const selectHourEl = el.querySelector(
-        ".kuc-base-mobile-time__group__hours"
+        ".kuc-base-mobile-time__group__hours",
       ) as HTMLInputElement;
       const selectMinuteEl = el.querySelector(
-        ".kuc-base-mobile-time__group__minutes"
+        ".kuc-base-mobile-time__group__minutes",
       ) as HTMLInputElement;
 
       expect(selectHourEl.disabled).to.equal(true);
@@ -38,10 +38,10 @@ describe("BaseMobileTime", () => {
       container.setAttribute("disabled", "true");
       await elementUpdated(el);
       const selectHourEl = el.querySelector(
-        ".kuc-base-mobile-time__group__hours"
+        ".kuc-base-mobile-time__group__hours",
       ) as HTMLInputElement;
       const selectMinuteEl = el.querySelector(
-        ".kuc-base-mobile-time__group__minutes"
+        ".kuc-base-mobile-time__group__minutes",
       ) as HTMLInputElement;
 
       expect(selectHourEl.disabled).to.equal(true);
@@ -56,10 +56,10 @@ describe("BaseMobileTime", () => {
       container.removeAttribute("disabled");
       await elementUpdated(el);
       const selectHourEl = el.querySelector(
-        ".kuc-base-mobile-time__group__hours"
+        ".kuc-base-mobile-time__group__hours",
       ) as HTMLInputElement;
       const selectMinuteEl = el.querySelector(
-        ".kuc-base-mobile-time__group__minutes"
+        ".kuc-base-mobile-time__group__minutes",
       ) as HTMLInputElement;
 
       expect(selectHourEl.disabled).to.equal(false);

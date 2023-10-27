@@ -8,7 +8,7 @@ describe("MobileText", () => {
       const container = new MobileText();
       const el = await fixture(container);
       const inputEl = el.querySelector(
-        ".kuc-mobile-text__input-form__input"
+        ".kuc-mobile-text__input-form__input",
       ) as HTMLInputElement;
 
       expect(inputEl.hasAttribute("disabled")).to.equal(false);
@@ -18,7 +18,7 @@ describe("MobileText", () => {
       const container = new MobileText({ disabled: true });
       const el = await fixture(container);
       const inputEl = el.querySelector(
-        ".kuc-mobile-text__input-form__input"
+        ".kuc-mobile-text__input-form__input",
       ) as HTMLInputElement;
 
       expect(inputEl.hasAttribute("disabled")).to.equal(true);
@@ -29,7 +29,7 @@ describe("MobileText", () => {
       container.disabled = true;
       const el = await fixture(container);
       const inputEl = el.querySelector(
-        ".kuc-mobile-text__input-form__input"
+        ".kuc-mobile-text__input-form__input",
       ) as HTMLInputElement;
 
       expect(inputEl.hasAttribute("disabled")).to.equal(true);
@@ -40,7 +40,7 @@ describe("MobileText", () => {
       container.disabled = false;
       const el = await fixture(container);
       const inputEl = el.querySelector(
-        ".kuc-mobile-text__input-form__input"
+        ".kuc-mobile-text__input-form__input",
       ) as HTMLInputElement;
 
       expect(inputEl.hasAttribute("disabled")).to.equal(false);

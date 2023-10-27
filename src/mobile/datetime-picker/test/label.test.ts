@@ -11,12 +11,12 @@ describe("MobileDateTimePicker", () => {
       const el = await fixture(container);
 
       const labelEl = el.querySelector(
-        ".kuc-mobile-datetime-picker__group__label"
+        ".kuc-mobile-datetime-picker__group__label",
       ) as HTMLLegendElement;
       expect(labelEl.hasAttribute("hidden")).to.equal(true);
 
       const labelTextEl = el.querySelector(
-        ".kuc-base-mobile-label__text"
+        ".kuc-base-mobile-label__text",
       ) as HTMLSpanElement;
       expect(labelTextEl.textContent).to.equal("");
     });
@@ -26,12 +26,12 @@ describe("MobileDateTimePicker", () => {
       const el = await fixture(container);
 
       const labelEl = el.querySelector(
-        ".kuc-mobile-datetime-picker__group__label"
+        ".kuc-mobile-datetime-picker__group__label",
       ) as HTMLLegendElement;
       expect(labelEl.hasAttribute("hidden")).to.equal(false);
 
       const labelTextEl = el.querySelector(
-        ".kuc-base-mobile-label__text"
+        ".kuc-base-mobile-label__text",
       ) as HTMLSpanElement;
       expect(labelTextEl.textContent).to.equal("options-label");
     });
@@ -44,12 +44,12 @@ describe("MobileDateTimePicker", () => {
 
       const el = await fixture(container);
       const labelEl = el.querySelector(
-        ".kuc-mobile-datetime-picker__group__label"
+        ".kuc-mobile-datetime-picker__group__label",
       ) as HTMLLegendElement;
       expect(labelEl.hasAttribute("hidden")).to.equal(false);
 
       const labelTextEl = el.querySelector(
-        ".kuc-base-mobile-label__text"
+        ".kuc-base-mobile-label__text",
       ) as HTMLSpanElement;
       expect(labelTextEl.textContent).to.equal("replace-label");
     });

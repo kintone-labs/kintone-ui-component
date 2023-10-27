@@ -7,7 +7,7 @@ describe("BaseLabel", () => {
       const container = document.createElement("kuc-base-label");
       const el = await fixture(container);
       const textEl = el.querySelector(
-        ".kuc-base-label__text"
+        ".kuc-base-label__text",
       ) as HTMLButtonElement;
       expect(textEl.innerText).to.equal("");
     });
@@ -17,7 +17,7 @@ describe("BaseLabel", () => {
       container.setAttribute("text", "text");
       const el = await fixture(container);
       const textEl = el.querySelector(
-        ".kuc-base-label__text"
+        ".kuc-base-label__text",
       ) as HTMLButtonElement;
       expect(textEl.innerText).to.equal("text");
     });
@@ -29,7 +29,7 @@ describe("BaseLabel", () => {
       container.setAttribute("text", "update");
       await elementUpdated(el);
       const textEl = el.querySelector(
-        ".kuc-base-label__text"
+        ".kuc-base-label__text",
       ) as HTMLButtonElement;
       expect(textEl.innerText).to.equal("update");
     });
