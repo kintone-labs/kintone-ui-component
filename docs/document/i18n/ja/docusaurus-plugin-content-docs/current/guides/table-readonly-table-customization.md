@@ -22,7 +22,7 @@ sidebar_label: Table and ReadOnlyTable customization
 ## Table と ReadOnlyTable の使い方の違い
 基本的に Table と ReadOnlyTable コンポーネントは同じような構造になっています。
 
-ReadOnlyTable コンポーネントは、読み取り専用のテーブルを表示することができます。つまり、ユーザーが操作できないプレーンなテキストのみ表示することができます。
+ReadOnlyTable コンポーネントは、読み取り専用のテーブルを表示することができます。ユーザーが操作できないプレーンなテキストや HTMLElement を表示することができます。
 
 一方で、Table コンポーネントは、データを変更したり行の追加/削除をしたりとテーブルのセルに表示されるコンポーネントを操作することができます。
 
