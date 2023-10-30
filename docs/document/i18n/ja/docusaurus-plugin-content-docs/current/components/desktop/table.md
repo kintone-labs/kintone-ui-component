@@ -28,11 +28,7 @@ import { TableComponent } from "@site/static/js/samples/desktop/table.js"
 | headerVisible | boolean | true | ヘッダーの表示/非表示設定 | |
 | visible | boolean | true | コンポーネントの表示/非表示設定 | |
 | columns | Array<[Column](#column)\> | []  | コンポーネントの列データ | columns が配列以外の場合、エラーを出力する |
-| data *1 | Array<object\> | []  | コンポーネントの行データ | data が配列以外の場合、エラーを出力する |
-
-:::caution
-*1: kintone UI Component はこのプロパティの値を内部的にサニタイズしていません。ユーザー入力を受け付けるような実装でこのプロパティを使用する場合は、開発者自身で XSS 対策をしてください。
-:::
+| data | Array<object\> | []  | コンポーネントの行データ | data が配列以外の場合、エラーを出力する |
 
 #### Column
 | Name | Type | Default | Description | Remark |
@@ -41,7 +37,11 @@ import { TableComponent } from "@site/static/js/samples/desktop/table.js"
 | title | string | ""  | 列のヘッダー名 | |
 | requiredIcon | boolean | false  | コンポーネントの必須アイコン表示/非表示設定 | |
 | visible | boolean |  true  | 列の表示/非表示設定 | |
-| render | function<br/>`function(cellData, rowData, rowIndex) {}` | null | セルの描画関数 | DOM を戻り値にする<br/>以下の3つのパラメーターを使って関数に情報を加えることができる<br/><ul><li>cellData は現在表示されているセルの値</li><li>rowData は現在表示されている行の値</li><li>rowIndex は現在表示されている行番号</li></ul><br/>render 関数が未指定の場合、セルはデフォルトのテキストで表示される |
+| render *1 | function<br/>`function(cellData, rowData, rowIndex) {}` | null | セルの描画関数 | DOM を戻り値にする<br/>以下の3つのパラメーターを使って関数に情報を加えることができる<br/><ul><li>cellData は現在表示されているセルの値</li><li>rowData は現在表示されている行の値</li><li>rowIndex は現在表示されている行番号</li></ul><br/>render 関数が未指定の場合、セルはデフォルトのテキストで表示される |
+
+:::caution
+*1: kintone UI Component はこのプロパティの値を内部的にサニタイズしていません。ユーザー入力を受け付けるような実装でこのプロパティを使用する場合は、開発者自身で XSS 対策をしてください。
+:::
 
 ### Event
 

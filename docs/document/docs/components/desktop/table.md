@@ -28,11 +28,7 @@ Here is a list of properties that can be used for modifying the component:
 | headerVisible | boolean | true | Show/Hide the header | |
 | visible | boolean | true | Show/Hide the component | |
 | columns | Array<[Column](#column)\> |  []  | Column data of the component | Will result an error if the value of `columns` is not an array|
-| data *1 | Array<object\> | []  | Row data of the component | Will result an error if the value of `data` is not an array |
-
-:::caution
-*1: [Security] Kintone UI Component does NOT sanitize this property value. It is the developer's responsibility to escape any user input when using this option so that XSS attacks would be prevented.
-:::
+| data | Array<object\> | []  | Row data of the component | Will result an error if the value of `data` is not an array |
 
 #### Column
 | Name | Type | Default | Description | Remark |
@@ -41,7 +37,11 @@ Here is a list of properties that can be used for modifying the component:
 | title | string | ""  | 	Header name of the column | |
 | requiredIcon | boolean | false  | Show/Hide the required icon | |
 | visible | boolean |  true  | Show/Hide the column | |
-| render | function <br/>`function(cellData, rowData, rowIndex) {}` | null | Renderer of the cell | The return value should be a DOM<br/>Following 3 params provide more information for the function<br/><ul><li>`cellData` is the data of the current cell rendered</li><li>`rowData` is the data of the current row rendered</li><li>`rowIndex` is the index number of the current row rendered</li></ul><br/>If `render` function is not specified, the cell will display with the default text |
+| render *1 | function <br/>`function(cellData, rowData, rowIndex) {}` | null | Renderer of the cell | The return value should be a DOM<br/>Following 3 params provide more information for the function<br/><ul><li>`cellData` is the data of the current cell rendered</li><li>`rowData` is the data of the current row rendered</li><li>`rowIndex` is the index number of the current row rendered</li></ul><br/>If `render` function is not specified, the cell will display with the default text |
+
+:::caution
+*1: [Security] Kintone UI Component does NOT sanitize this property value. It is the developer's responsibility to escape any user input when using this option so that XSS attacks would be prevented.
+:::
 
 ### Event
 
