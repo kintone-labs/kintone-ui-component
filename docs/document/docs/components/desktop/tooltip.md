@@ -78,12 +78,11 @@ Here is a list of properties that can be used for modifying component style:
 #### Property
 | Name |
 | :--- |
-| --kuc-tooltip-width |
-| --kuc-tooltip-height |
-| --kuc-tooltip-font-size |
-| --kuc-tooltip-color |
 | --kuc-tooltip-background-color |
-
+| --kuc-tooltip-color |
+| --kuc-tooltip-font-size |
+| --kuc-tooltip-height |
+| --kuc-tooltip-width |
 ---
 
 ## Sample Code
