@@ -58,8 +58,8 @@ ReadOnlyTable(options)<br/>
 | Name | Description |
 | :--- | :--- |
 | --kuc-read-only-table-header-background-color | |
-| --kuc-read-only-table-header-{index}-width | <li>This property allows you to set the width of specific table columns based on their index values. For instance, you can define the width of the first column using `--kuc-read-only-table-header-0-width`</li><li>Please note that the index values start from `0`, with `0` corresponding to the first column</li> |
-| --kuc-read-only-table-header-width | <li>This property is used to set the width for all columns in a table, it defines a uniform width for every column</li><li>If you need to set a specific width for an individual column, you can use the `--kuc-read-only-table-header-{index}-width` property</li> |
+| --kuc-read-only-table-header-{index}-width | <li>このプロパティを使用すると、インデックス値に基づいて特定のテーブル列の幅を設定できる</li><li>例えば、`--kuc-read-only-table-header-0-width` を使用して、最初のカラムの幅を設定できる</li><li>インデックス値は `0` から始まることに注意</li> |
+| --kuc-read-only-table-header-width | <li>このプロパティを使用すると、テーブル内のすべての列の幅を設定できる</li><li>単一のカラムに対して特定の幅を設定する必要がある場合は、`--kuc-read-only-table-header-{index}-width` プロパティを利用する</li> |
 | --kuc-read-only-table-header-color | |
 | --kuc-read-only-table-header-font-size | |
 | --kuc-read-only-table-header-height | |

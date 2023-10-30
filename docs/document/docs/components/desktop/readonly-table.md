@@ -58,8 +58,8 @@ Here is a list of properties that can be used for modifying component style:
 | Name | Description |
 | :--- | :--- |
 | --kuc-read-only-table-header-background-color | |
-| --kuc-read-only-table-header-{index}-width | <li>This property allows you to set the width of specific table columns based on their index values. For instance, you can define the width of the first column using `--kuc-read-only-table-header-0-width`</li><li>Please note that the index values start from `0`, with `0` corresponding to the first column</li> |
-| --kuc-read-only-table-header-width | <li>This property is used to set the width for all columns in a table, it defines a uniform width for every column</li><li>If you need to set a specific width for an individual column, you can use the `--kuc-read-only-table-header-{index}-width` property</li> |
+| --kuc-read-only-table-header-{index}-width | <li>This property allows you to set the width of certain table columns based on their index values</li><li>For example, you can use `--kuc-read-only-table-header-0-width` to set the width of the first column</li><li>Note that the index values start from `0`, where `0` corresponds to the first column</li> |
+| --kuc-read-only-table-header-width | <li>This property is used to set the width for all columns in a table, it defines a uniform width for every column</li><li>If you need to set a specific width for a single column, you can use `--kuc-read-only-table-header-{index}-width` property</li> |
 | --kuc-read-only-table-header-color | |
 | --kuc-read-only-table-header-font-size | |
 | --kuc-read-only-table-header-height | |
