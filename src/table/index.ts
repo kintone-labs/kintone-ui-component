@@ -24,6 +24,9 @@ const cellActionsClassName = "kuc-table__table__body__row__action";
 const btnAddRowClassName = "kuc-table__table__body__row__action-add";
 const btnRemoveRowClassName = "kuc-table__table__body__row__action-remove";
 
+const customWidthVariables = (index: number) =>
+  `var(--kuc-table-header-${index}-width, var(--kuc-table-header-width, auto))`;
+
 const dAdd =
   "M8 16C12.4183 16 16 12.4183 16 8C16 3.58172 12.4183 0 8 0C3.58172 0 0 3.58172 0 8C0 12.4183 3.58172 16 8 16ZM12.0355 8.49997V7.49997H8.50008V3.96454H7.50008V7.49997H3.96443V8.49997H7.50008V12.0356H8.50008V8.49997H12.0355Z";
 const fillAdd = "#3498db";
@@ -131,16 +134,20 @@ let exportTable;
     private _getTableHeaderTemplate() {
       return html`
         <tr>
-          ${this.columns.map((column) => this._getColumnHeaderTemplate(column))}
+          ${this.columns.map((column, index) =>
+            this._getColumnHeaderTemplate(column, index)
+          )}
         </tr>
       `;
     }
 
-    private _getColumnHeaderTemplate(column: TableColumn) {
+    private _getColumnHeaderTemplate(column: TableColumn, index: number) {
+      const customWidth = customWidthVariables(index);
       return html`
         <th
           class="kuc-table__table__header__cell"
           ?hidden="${column.visible === false}"
+          style="width: ${customWidth}; min-width: ${customWidth}; max-width: ${customWidth}"
         ><!--
         -->${column.title || ""}<!--
         --><span
@@ -188,9 +195,13 @@ let exportTable;
       const newRow = this._tBody.insertRow(currentRowIndex);
       newRow.classList.add(rowClassName);
       for (let i = 0; i < this.columns.length; i++) {
+        const customWidth = customWidthVariables(i);
         const newCell = newRow.insertCell(i);
         const column = this.columns[i];
         newCell.classList.add(cellClassName);
+        newCell.style.width = customWidth;
+        newCell.style.maxWidth = customWidth;
+        newCell.style.minWidth = customWidth;
         newCell.addEventListener("change", (event: Event) => {
           this._handleChangeCell(event, column.field);
         });
