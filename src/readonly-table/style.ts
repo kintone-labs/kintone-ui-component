@@ -37,7 +37,7 @@ export const READ_ONLY_TABLE_CSS = `
   }
   .kuc-readonly-table__table__header {
     border-width: 0px 1px;
-    border-color: var(--kuc-read-only-table-header-background-color, #3498db);
+    border-color: var(--kuc-readonly-table-header-background-color, #3498db);
     border-style: solid;
   }
   .kuc-readonly-table__table__label {
@@ -50,9 +50,9 @@ export const READ_ONLY_TABLE_CSS = `
     display: none;
   }
   .kuc-readonly-table__table__header__cell {
-    background-color: var(--kuc-read-only-table-header-background-color, #3498db);
-    color: var(--kuc-read-only-table-header-color, #ffffff);
-    height: var(--kuc-read-only-table-header-height, 40px);
+    background-color: var(--kuc-readonly-table-header-background-color, #3498db);
+    color: var(--kuc-readonly-table-header-color, #ffffff);
+    height: var(--kuc-readonly-table-header-height, 40px);
     box-sizing: border-box;
     text-align: left;
     overflow: auto;
@@ -60,7 +60,7 @@ export const READ_ONLY_TABLE_CSS = `
     word-wrap: break-word;
     padding: 4px 8px;
     font-weight: 400;
-    font-size: var(--kuc-read-only-table-header-font-size, 12px);
+    font-size: var(--kuc-readonly-table-header-font-size, 12px);
   }
   .kuc-readonly-table__table__header__cell[hidden] {
     display: none;

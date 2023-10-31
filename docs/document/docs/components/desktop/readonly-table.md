@@ -57,12 +57,12 @@ Here is a list of properties that can be used for modifying component style:
 #### Property
 | Name | Description |
 | :--- | :--- |
-| --kuc-read-only-table-header-background-color | |
-| --kuc-read-only-table-header-{index}-width | <li>This property allows you to set the width of certain table columns based on their index values</li><li>For example, you can use `--kuc-read-only-table-header-0-width` to set the width of the first column</li><li>Note that the index values start from `0`, where `0` corresponds to the first column</li> |
-| --kuc-read-only-table-header-width | <li>This property is used to set the width for all columns in a table, it defines a uniform width for every column</li><li>If you need to set a specific width for a single column, you can use `--kuc-read-only-table-header-{index}-width` property</li> |
-| --kuc-read-only-table-header-color | |
-| --kuc-read-only-table-header-font-size | |
-| --kuc-read-only-table-header-height | |
+| --kuc-readonly-table-header-background-color | |
+| --kuc-readonly-table-header-color | |
+| --kuc-readonly-table-header-font-size | |
+| --kuc-readonly-table-header-height | |
+| --kuc-readonly-table-header-{index}-width | <li>This property allows you to set the width of certain table columns based on their index values</li><li>For example, you can use `--kuc-readonly-table-header-0-width` to set the width of the first column</li><li>Note that the index values start from `0`, where `0` corresponds to the first column</li> |
+| --kuc-readonly-table-header-width | <li>This property is used to set the width for all columns in a table, it defines a uniform width for every column</li><li>If you need to set a specific width for a single column, you can use `--kuc-readonly-table-header-{index}-width` property</li> |
 
 ---
 ## Sample Code
