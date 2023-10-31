@@ -201,6 +201,7 @@ export const ATTACHMENT_CSS = `
   }
   .kuc-attachment__group__files__browse-message--disabled {
     color: #888888;
+    cursor: not-allowed;
   }
   .kuc-attachment__group__files__browse-message[hidden] {
     display: none;
