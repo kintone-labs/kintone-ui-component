@@ -135,7 +135,7 @@ let exportTable;
       return html`
         <tr>
           ${this.columns.map((column, index) =>
-            this._getColumnHeaderTemplate(column, index)
+            this._getColumnHeaderTemplate(column, index),
           )}
         </tr>
       `;
