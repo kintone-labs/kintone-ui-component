@@ -52,6 +52,20 @@ TextArea(options)<br/>
 | :--- | :--- | :--- | :--- | :--- |
 | options | object | {} | コンポーネントのプロパティを含むオブジェクト | |
 
+### Custom CSS
+:::tip
+[Custom CSS](../../getting-started/custom-css.md) をご確認ください。
+:::
+
+コンポーネントのスタイルを変更するために使用できるプロパティの一覧です。
+#### Property
+| Name |
+| :--- |
+| --kuc-text-area-input-width |
+| --kuc-text-area-input-height |
+| --kuc-text-area-input-color |
+| --kuc-text-area-input-font-size |
+
 ---
 ## Sample Code
 
