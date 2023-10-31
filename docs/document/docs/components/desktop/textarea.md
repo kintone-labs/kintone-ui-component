@@ -61,10 +61,10 @@ Here is a list of properties that can be used for modifying component style:
 #### Property
 | Name |
 | :--- |
-| --kuc-text-area-input-width |
-| --kuc-text-area-input-height |
 | --kuc-text-area-input-color |
 | --kuc-text-area-input-font-size |
+| --kuc-text-area-input-height |
+| --kuc-text-area-input-width |
 
 ---
 ## Sample Code
