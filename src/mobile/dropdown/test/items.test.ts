@@ -150,7 +150,7 @@ describe("MobileDropdown", () => {
     });
 
     it("option should have disabled attribute when item with disabled is true", async () => {
-      const container = new MobileDropdown({items: disabledItems});
+      const container = new MobileDropdown({ items: disabledItems });
       const el = await fixture(container);
       const itemsEl = el.getElementsByTagName("option");
       expect(itemsEl[1]).to.have.attr("disabled");

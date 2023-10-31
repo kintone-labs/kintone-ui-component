@@ -175,7 +175,11 @@ let exportMobileDropdown;
     private _getItemTemplate(item: MobileDropdownItem, index: number) {
       const isCheckedItem = this._isCheckedItem(item, index);
       return html`
-        <option value="${item.value || ""}" ?selected="${isCheckedItem}" ?disabled="${item.disabled}">
+        <option
+          value="${item.value || ""}"
+          ?selected="${isCheckedItem}"
+          ?disabled="${item.disabled}"
+        >
           ${item.label === undefined ? item.value : item.label}
         </option>
       `;
