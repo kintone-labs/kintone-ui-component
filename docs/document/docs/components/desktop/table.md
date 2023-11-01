@@ -62,6 +62,22 @@ Here is a list of available constructors:
 | :--- | :--- | :--- | :--- | :--- |
 | options | object | {} | Object that includes component properties | |
 
+### Custom CSS
+:::tip
+Please check [Custom CSS feature guide](../../getting-started/custom-css.md) at first.
+:::
+
+Here is a list of properties that can be used for modifying component style:
+#### Property
+| Name | Description |
+| :--- | :--- |
+| --kuc-table-header-background-color | |
+| --kuc-table-header-color | |
+| --kuc-table-header-font-size | |
+| --kuc-table-header-height | |
+| --kuc-table-header-{index}-width | <li>This property allows you to set the width of certain table columns based on their index values</li><li>For example, you can use `--kuc-table-header-0-width` to set the width of the first column</li><li>Note that the index values start from `0`, where `0` corresponds to the first column</li> |
+| --kuc-table-header-width | <li>This property is used to set the width for all columns in a table, it defines a uniform width for every column</li><li>If you need to set a specific width for a single column, you can use `--kuc-table-header-{index}-width` property</li><li>If you want to add the element that will expand/contract as a child component, you may be able to preserve this behavior by setting `--kuc-table-header-width: auto`</li> |
+
 ---
 
 ## Sample Code

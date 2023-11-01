@@ -1,6 +1,7 @@
 ---
 id: dialog
 title: Dialog
+description: Dialog は、ダイアログボックスを表示します。
 sidebar_label: Dialog
 ---
 

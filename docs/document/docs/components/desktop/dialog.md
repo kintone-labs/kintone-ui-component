@@ -1,6 +1,7 @@
 ---
 id: dialog
 title: Dialog
+description: Dialog component displays a dialog box.
 sidebar_label: Dialog
 ---
 
