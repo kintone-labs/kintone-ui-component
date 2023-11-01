@@ -48,6 +48,22 @@ ReadOnlyTable(options)<br/>
 | :--- | :--- | :--- | :--- | :--- |
 | options | object | {} | コンポーネントのプロパティを含むオブジェクト |  |
 
+### Custom CSS
+:::tip
+[Custom CSS](../../getting-started/custom-css.md) をご確認ください。
+:::
+
+コンポーネントのスタイルを変更するために使用できるプロパティの一覧です。
+#### Property
+| Name | Description |
+| :--- | :--- |
+| --kuc-readonly-table-header-background-color | |
+| --kuc-readonly-table-header-color | |
+| --kuc-readonly-table-header-font-size | |
+| --kuc-readonly-table-header-height | |
+| --kuc-readonly-table-header-{index}-width | <li>このプロパティを使用すると、インデックス値に基づいて特定のテーブル列の幅を設定できる</li><li>例えば、`--kuc-readonly-table-header-0-width` を使用して、最初のカラムの幅を設定できる</li><li>インデックス値は `0` から始まることに注意</li> |
+| --kuc-readonly-table-header-width | <li>このプロパティを使用すると、テーブル内のすべての列の幅を設定できる</li><li>単一のカラムに対して特定の幅を設定する必要がある場合は、`--kuc-readonly-table-header-{index}-width` プロパティを利用する</li> |
+
 ---
 ## Sample Code
 

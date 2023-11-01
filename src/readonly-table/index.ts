@@ -108,8 +108,8 @@ let exportReadOnlyTable;
               </caption>
               <thead class="kuc-readonly-table__table__header">
                 <tr>
-                  ${this.columns.map((column) =>
-                    this._getColumnsTemplate(column),
+                  ${this.columns.map((column, index) =>
+                    this._getColumnsTemplate(column, index),
                   )}
                 </tr>
               </thead>
@@ -140,11 +140,17 @@ let exportReadOnlyTable;
       return displayData;
     }
 
-    private _getColumnsTemplate(column: ReadOnlyTableColumn) {
+    private _customWidthVariables(index: number) {
+      return `var(--kuc-readonly-table-header-${index}-width, var(--kuc-readonly-table-header-width, auto))`;
+    }
+
+    private _getColumnsTemplate(column: ReadOnlyTableColumn, index: number) {
+      const customWidth = this._customWidthVariables(index);
       return html`
         <th
           class="kuc-readonly-table__table__header__cell"
           ?hidden="${column.visible === false}"
+          style="width: ${customWidth}; min-width: ${customWidth}; max-width: ${customWidth}"
         >
           ${column.title || ""}
         </th>
@@ -159,9 +165,10 @@ let exportReadOnlyTable;
           ${this._columnOrder.map((currentCol, colIndex) => {
             const visible = this.columns[colIndex].visible ?? true;
             const value = data[currentCol];
+            const customWidth = this._customWidthVariables(colIndex);
             // Do not remove below disable comment. This is for table display.
             // eslint-disable-next-line
-            return html`<td class="kuc-readonly-table__table__body__row__cell-data" ?hidden="${!visible}">${value}</td>`;
+            return html`<td class="kuc-readonly-table__table__body__row__cell-data" ?hidden="${!visible}" style="width: ${customWidth}; min-width: ${customWidth}; max-width: ${customWidth}">${value}</td>`;
           })}
         </tr>
       `;
