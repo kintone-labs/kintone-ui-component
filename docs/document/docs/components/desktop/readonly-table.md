@@ -70,10 +70,6 @@ const readOnlyTable = new Kuc.ReadOnlyTable({
   label: 'ReadOnlyTable',
   columns: [
     {
-      title: 'Link',
-      field: 'link'
-    },
-    {
       title: 'Number',
       field: 'index'
     },
@@ -92,6 +88,10 @@ const readOnlyTable = new Kuc.ReadOnlyTable({
     {
       title: 'Coordinates',
       field: 'coordinates'
+    },
+    {
+      title: 'Link',
+      field: 'link'
     }
   ],
   data: [
@@ -101,7 +101,7 @@ const readOnlyTable = new Kuc.ReadOnlyTable({
       country: 'Vietnam',
       population: '8,371,000',
       coordinates: '10.762622, 106.660172',
-      link: '<a href="https://github.com/kintone-labs/kintone-ui-component" target="_blank">Github page</a>'
+      link: '<a href="https://en.wikipedia.org/wiki/Ho_Chi_Minh_City" target="_blank">Vietnam: Ho Chi Minh City</a>'
     },
     {
       index: '2',
@@ -109,7 +109,7 @@ const readOnlyTable = new Kuc.ReadOnlyTable({
       country: 'Japan',
       population: '14,000,000',
       coordinates: '35.689487, 139.691711',
-      link: '<a href="https://github.com/kintone-labs/kintone-ui-component/releases" target="_blank">Releases page</a>'
+      link: '<a href="https://en.wikipedia.org/wiki/Tokyo" target="_blank">Japan: Tokyo</a>'
     },
     {
       index: '3',
@@ -117,7 +117,7 @@ const readOnlyTable = new Kuc.ReadOnlyTable({
       country: 'USA',
       population: '8,400,000',
       coordinates: '40.712776, -74.005974',
-      link: `<a href='javascript:alert("Hello");'>Hello</a>`
+      link: '<a href="https://en.wikipedia.org/wiki/New_York_City" target="_blank">USA: New York City</a>'
     }
   ],
   className: 'sample-class',
