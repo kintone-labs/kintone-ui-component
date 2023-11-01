@@ -135,5 +135,34 @@ describe("ReadOnlyTable", () => {
       container.data = null;
       fixture(container);
     });
+
+    it("should have rows when assigned HTML data", async () => {
+      const htmlString = `<input type="text">`;
+      const container = new ReadOnlyTable({
+        columns: [
+          {
+            headerName: "HTML input",
+            field: "input",
+          },
+        ],
+        data: [
+          {
+            input: htmlString,
+          },
+        ],
+      });
+      const el = await fixture(container);
+      const rowsEl = el.querySelectorAll(
+        ".kuc-readonly-table__table__body__row",
+      );
+
+      await expect(rowsEl.length).to.equal(1);
+      await expect(rowsEl[0].children[0].children[0].classList[0]).to.equal(
+        "kuc-readonly-table__table__body__row__cell-data--html",
+      );
+      await expect(
+        rowsEl[0].children[0].children[0].children[0].outerHTML.trim(),
+      ).to.equal(htmlString);
+    });
   });
 });

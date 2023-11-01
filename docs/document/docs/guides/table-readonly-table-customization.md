@@ -22,7 +22,7 @@ We assume the following scenario:
 ## Table and ReadOnlyTable usage difference
 Basically, the Table and ReadOnlyTable components have the same structure.
 
-The ReadOnlyTable component allows the user to display a read-only mode table. This means that it only displays plain text that the user cannot manipulate.
+The ReadOnlyTable component allows the user to display a read-only mode table. It can display plain text that the user cannot manipulate or HTML elements.
 
 In contrast, the Table component allows the user to manipulate the components displayed in the table cell such as changing data and adding and deleting rows.
 

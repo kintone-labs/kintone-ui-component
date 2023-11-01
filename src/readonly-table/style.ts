@@ -90,4 +90,7 @@ export const READ_ONLY_TABLE_CSS = `
     width: 0; /* Safari and Chrome */
     display: none
   }
+  .kuc-readonly-table__table__body__row__cell-data--html {
+    white-space: normal;
+  }
 `;

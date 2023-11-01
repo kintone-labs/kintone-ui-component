@@ -29,7 +29,11 @@ Here is a list of properties that can be used for modifying the component:
 | pagination | boolean | true | Show/Hide the pagination | If setting `false`, pagination is hidden and all rows are displayed<br/>If setting `true`, pagination is displayed and only the number of rows set in `rowsPerPage` are displayed |
 | visible | boolean | true | Show/Hide the component | |
 | columns | Array<[Column](#column)\> | []  | Column data of the component | Will result an error if the value of `columns` is not an array |
-| data | Array<object\> | []  | Row data of the component | Will result an error if the value of `data` is not an array |
+| data *1 | Array<object\> | []  | Row data of the component | Will result an error if the value of `data` is not an array |
+
+:::caution
+*1: [Security] Kintone UI Component does NOT sanitize this property value. It is the developer's responsibility to escape any user input when using this option so that XSS attacks would be prevented.
+:::
 
 #### Column
 | Name | Type | Default | Description | Remark |
@@ -62,7 +66,7 @@ Here is a list of properties that can be used for modifying component style:
 | --kuc-readonly-table-header-font-size | |
 | --kuc-readonly-table-header-height | |
 | --kuc-readonly-table-header-{index}-width | <li>This property allows you to set the width of certain table columns based on their index values</li><li>For example, you can use `--kuc-readonly-table-header-0-width` to set the width of the first column</li><li>Note that the index values start from `0`, where `0` corresponds to the first column</li> |
-| --kuc-readonly-table-header-width | <li>This property is used to set the width for all columns in a table, it defines a uniform width for every column</li><li>If you need to set a specific width for a single column, you can use `--kuc-readonly-table-header-{index}-width` property</li> |
+| --kuc-readonly-table-header-width | <li>This property is used to set the width for all columns in a table, it defines a uniform width for every column</li><li>If you need to set a specific width for a single column, you can use `--kuc-readonly-table-header-{index}-width` property</li><li>If you want to add the element that will expand/contract as a child component, you may be able to preserve this behavior by setting `--kuc-readonly-table-header-width: auto`</li> |
 
 ---
 ## Sample Code
@@ -100,6 +104,10 @@ const readOnlyTable = new Kuc.ReadOnlyTable({
     {
       title: 'Coordinates',
       field: 'coordinates'
+    },
+    {
+      title: 'Link',
+      field: 'link'
     }
   ],
   data: [
@@ -108,21 +116,24 @@ const readOnlyTable = new Kuc.ReadOnlyTable({
       name: 'HoChiMinh',
       country: 'Vietnam',
       population: '8,371,000',
-      coordinates: '10.762622, 106.660172'
+      coordinates: '10.762622, 106.660172',
+      link: '<a href="https://en.wikipedia.org/wiki/Ho_Chi_Minh_City" target="_blank">Vietnam: Ho Chi Minh City</a>'
     },
     {
       index: '2',
       name: 'Tokyo',
       country: 'Japan',
       population: '14,000,000',
-      coordinates: '35.689487, 139.691711'
+      coordinates: '35.689487, 139.691711',
+      link: '<a href="https://en.wikipedia.org/wiki/Tokyo" target="_blank">Japan: Tokyo</a>'
     },
     {
       index: '3',
       name: 'New York',
       country: 'USA',
       population: '8,400,000',
-      coordinates: '40.712776, -74.005974'
+      coordinates: '40.712776, -74.005974',
+      link: '<a href="https://en.wikipedia.org/wiki/New_York_City" target="_blank">USA: New York City</a>'
     }
   ],
   className: 'sample-class',

@@ -49,6 +49,10 @@ Base.args = {
       title: "Population",
       field: "population",
     },
+    {
+      title: "Link",
+      field: "link",
+    },
   ],
   data: [
     {
@@ -56,42 +60,49 @@ Base.args = {
       name: "Ho Chi Minh",
       country: "Vietnam",
       population: "8,993,000",
+      link: '<a href="https://en.wikipedia.org/wiki/Ho_Chi_Minh_City" target="_blank">Vietnam: Ho Chi Minh City</a>',
     },
     {
       index: "2",
       name: "Can Tho",
       country: "Vietnam",
       population: "1,282,000",
+      link: '<a href="https://en.wikipedia.org/wiki/C%E1%BA%A7n_Th%C6%A1" target="_blank">Vietnam: Cần Thơ</a>',
     },
     {
       index: "3",
       name: "Vinh Long",
       country: "Vietnam",
       population: "200,000",
+      link: '<a href="https://en.wikipedia.org/wiki/V%C4%A9nh_Long" target="_blank">Vietnam: Vĩnh Long</a>',
     },
     {
       index: "4",
       name: "Rach Gia",
       country: "Vietnam",
       population: "400,000",
+      link: '<a href="https://en.wikipedia.org/wiki/R%E1%BA%A1ch_Gi%C3%A1" target="_blank">Vietnam: Rạch Giá</a>',
     },
     {
       index: "5",
       name: "Edmonton",
       country: "Canada",
       population: "981,000",
+      link: '<a href="https://en.wikipedia.org/wiki/Edmonton" target="_blank">Canada: Edmonton</a>',
     },
     {
       index: "6",
       name: "Calgary",
       country: "Canada",
       population: "1,336,000",
+      link: '<a href="https://en.wikipedia.org/wiki/Calgary" target="_blank">Canada: Calgary</a>',
     },
     {
       index: "7",
       name: "Vancouver",
       country: "Canada",
       population: "675,000",
+      link: '<a href="https://en.wikipedia.org/wiki/Vancouver" target="_blank">Canada: Vancouver</a>',
     },
   ],
 };

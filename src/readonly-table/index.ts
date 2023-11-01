@@ -2,7 +2,7 @@ import { html, PropertyValues } from "lit";
 import { property, state } from "lit/decorators.js";
 
 import { ERROR_MESSAGE } from "../base/constant";
-import { visiblePropConverter } from "../base/converter";
+import { unsafeHTMLConverter, visiblePropConverter } from "../base/converter";
 import { createStyleOnHeader, KucBase } from "../base/kuc-base";
 import {
   validateArrayType,
@@ -164,7 +164,16 @@ let exportReadOnlyTable;
         >
           ${this._columnOrder.map((currentCol, colIndex) => {
             const visible = this.columns[colIndex].visible ?? true;
-            const value = data[currentCol];
+            let value = data[currentCol];
+
+            if (this._isHTML(value)) {
+              value = html`<div
+                class="kuc-readonly-table__table__body__row__cell-data--html"
+              >
+                ${unsafeHTMLConverter(value)}
+              </div>`;
+            }
+
             const customWidth = this._customWidthVariables(colIndex);
             // Do not remove below disable comment. This is for table display.
             // eslint-disable-next-line
@@ -198,6 +207,14 @@ let exportReadOnlyTable;
       }
       if (this._toggleDisplayNextButton() === false) return;
       this._pagePosition += 1;
+    }
+
+    private _isHTML(element: string | HTMLElement) {
+      if (element instanceof HTMLElement) return true;
+
+      const div = document.createElement("div");
+      div.innerHTML = element;
+      return div.childElementCount > 0;
     }
   }
   window.customElements.define("kuc-readonly-table", KucReadOnlyTable);
