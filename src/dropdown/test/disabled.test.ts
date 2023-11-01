@@ -14,7 +14,7 @@ describe("Dropdown", () => {
       const container = new Dropdown({ items: initItems });
       const el = await fixture(container);
       const toggleEl = el.querySelector(
-        ".kuc-dropdown__group__toggle"
+        ".kuc-dropdown__group__toggle",
       ) as HTMLButtonElement;
 
       expect(toggleEl.hasAttribute("disabled")).to.equal(false);
@@ -24,7 +24,7 @@ describe("Dropdown", () => {
       const container = new Dropdown({ items: initItems, disabled: true });
       const el = await fixture(container);
       const toggleEl = el.querySelector(
-        ".kuc-dropdown__group__toggle"
+        ".kuc-dropdown__group__toggle",
       ) as HTMLButtonElement;
 
       expect(toggleEl.hasAttribute("disabled")).to.equal(true);
@@ -35,7 +35,7 @@ describe("Dropdown", () => {
       container.disabled = true;
       const el = await fixture(container);
       const toggleEl = el.querySelector(
-        ".kuc-dropdown__group__toggle"
+        ".kuc-dropdown__group__toggle",
       ) as HTMLButtonElement;
 
       expect(toggleEl.hasAttribute("disabled")).to.equal(true);
@@ -46,7 +46,7 @@ describe("Dropdown", () => {
       container.disabled = false;
       const el = await fixture(container);
       const toggleEl = el.querySelector(
-        ".kuc-dropdown__group__toggle"
+        ".kuc-dropdown__group__toggle",
       ) as HTMLButtonElement;
 
       expect(toggleEl.hasAttribute("disabled")).to.equal(false);

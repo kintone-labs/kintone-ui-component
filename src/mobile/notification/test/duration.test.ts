@@ -25,7 +25,7 @@ describe("MobileNotification", () => {
       await aTimeout(1000);
       expect(container.classList.length).to.equal(1);
       expect(container.classList[0]).to.equal(
-        "kuc-mobile-notification-fadeout"
+        "kuc-mobile-notification-fadeout",
       );
     });
 
@@ -41,7 +41,7 @@ describe("MobileNotification", () => {
       await aTimeout(1000);
       expect(container.classList.length).to.equal(1);
       expect(container.classList[0]).to.equal(
-        "kuc-mobile-notification-fadeout"
+        "kuc-mobile-notification-fadeout",
       );
     });
   });

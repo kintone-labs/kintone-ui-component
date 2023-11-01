@@ -15,12 +15,12 @@ describe("Combobox", () => {
       const el = await fixture(container);
 
       const toggleInputEl = el.querySelector(
-        ".kuc-combobox__group__toggle__input"
+        ".kuc-combobox__group__toggle__input",
       ) as HTMLInputElement;
       expect(toggleInputEl.hasAttribute("disabled")).to.equal(false);
 
       const toggleIconButtonEl = el.querySelector(
-        ".kuc-combobox__group__toggle__icon__button"
+        ".kuc-combobox__group__toggle__icon__button",
       ) as HTMLButtonElement;
       expect(toggleIconButtonEl.hasAttribute("disabled")).to.equal(false);
     });
@@ -30,12 +30,12 @@ describe("Combobox", () => {
       const el = await fixture(container);
 
       const toggleInputEl = el.querySelector(
-        ".kuc-combobox__group__toggle__input"
+        ".kuc-combobox__group__toggle__input",
       ) as HTMLInputElement;
       expect(toggleInputEl.hasAttribute("disabled")).to.equal(true);
 
       const toggleIconButtonEl = el.querySelector(
-        ".kuc-combobox__group__toggle__icon__button"
+        ".kuc-combobox__group__toggle__icon__button",
       ) as HTMLButtonElement;
       expect(toggleIconButtonEl.hasAttribute("disabled")).to.equal(true);
     });
@@ -46,12 +46,12 @@ describe("Combobox", () => {
       const el = await fixture(container);
 
       const toggleInputEl = el.querySelector(
-        ".kuc-combobox__group__toggle__input"
+        ".kuc-combobox__group__toggle__input",
       ) as HTMLInputElement;
       expect(toggleInputEl.hasAttribute("disabled")).to.equal(true);
 
       const toggleIconButtonEl = el.querySelector(
-        ".kuc-combobox__group__toggle__icon__button"
+        ".kuc-combobox__group__toggle__icon__button",
       ) as HTMLButtonElement;
       expect(toggleIconButtonEl.hasAttribute("disabled")).to.equal(true);
     });
@@ -62,12 +62,12 @@ describe("Combobox", () => {
       const el = await fixture(container);
 
       const toggleInputEl = el.querySelector(
-        ".kuc-combobox__group__toggle__input"
+        ".kuc-combobox__group__toggle__input",
       ) as HTMLInputElement;
       expect(toggleInputEl.hasAttribute("disabled")).to.equal(false);
 
       const toggleIconButtonEl = el.querySelector(
-        ".kuc-combobox__group__toggle__icon__button"
+        ".kuc-combobox__group__toggle__icon__button",
       ) as HTMLButtonElement;
       expect(toggleIconButtonEl.hasAttribute("disabled")).to.equal(false);
     });

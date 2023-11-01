@@ -14,7 +14,7 @@ describe("MobileDropdown", () => {
       const container = new MobileDropdown({ items: initItems });
       const el = await fixture(container);
       const inputEl = el.querySelector(
-        ".kuc-mobile-dropdown__input-form__select__input"
+        ".kuc-mobile-dropdown__input-form__select__input",
       );
       expect(inputEl).not.to.have.attr("disabled");
     });
@@ -26,7 +26,7 @@ describe("MobileDropdown", () => {
       });
       const el = await fixture(container);
       const inputEl = el.querySelector(
-        ".kuc-mobile-dropdown__input-form__select__input"
+        ".kuc-mobile-dropdown__input-form__select__input",
       );
       expect(inputEl).to.have.attr("disabled");
     });
@@ -41,7 +41,7 @@ describe("MobileDropdown", () => {
       container.disabled = true;
       const el = await fixture(container);
       const inputEl = el.querySelector(
-        ".kuc-mobile-dropdown__input-form__select__input"
+        ".kuc-mobile-dropdown__input-form__select__input",
       );
       expect(inputEl).to.have.attr("disabled");
     });
@@ -56,7 +56,7 @@ describe("MobileDropdown", () => {
       container.disabled = false;
       const el = await fixture(container);
       const inputEl = el.querySelector(
-        ".kuc-mobile-dropdown__input-form__select__input"
+        ".kuc-mobile-dropdown__input-form__select__input",
       );
       expect(inputEl).not.to.have.attr("disabled");
     });

@@ -11,11 +11,11 @@ describe("MobileTimePicker", () => {
       });
       const el = await fixture(container);
       const errorEl = el.querySelector(
-        ".kuc-base-mobile-error__error"
+        ".kuc-base-mobile-error__error",
       ) as HTMLDivElement;
       expect(errorEl.innerText).to.equal("error-message");
       const selectMinuteEl = el.querySelector(
-        ".kuc-base-mobile-time__group__minutes"
+        ".kuc-base-mobile-time__group__minutes",
       ) as HTMLSelectElement;
       selectMinuteEl.value = "35";
       selectMinuteEl.dispatchEvent(new Event("change", { bubbles: true }));
@@ -31,11 +31,11 @@ describe("MobileTimePicker", () => {
       });
       const el = await fixture(container);
       const errorEl = el.querySelector(
-        ".kuc-base-mobile-error__error"
+        ".kuc-base-mobile-error__error",
       ) as HTMLDivElement;
       expect(errorEl.innerText).to.equal("error-message");
       const selectMinuteEl = el.querySelector(
-        ".kuc-base-mobile-time__group__minutes"
+        ".kuc-base-mobile-time__group__minutes",
       ) as HTMLSelectElement;
       selectMinuteEl.value = "35";
       selectMinuteEl.dispatchEvent(new Event("change", { bubbles: true }));
@@ -51,11 +51,11 @@ describe("MobileTimePicker", () => {
       });
       const el = await fixture(container);
       const errorEl = el.querySelector(
-        ".kuc-base-mobile-error__error"
+        ".kuc-base-mobile-error__error",
       ) as HTMLDivElement;
       expect(errorEl.innerText).to.equal("error-message");
       const selectMinuteEl = el.querySelector(
-        ".kuc-base-mobile-time__group__minutes"
+        ".kuc-base-mobile-time__group__minutes",
       ) as HTMLSelectElement;
       selectMinuteEl.value = "35";
       selectMinuteEl.dispatchEvent(new Event("change", { bubbles: true }));
@@ -71,11 +71,11 @@ describe("MobileTimePicker", () => {
       });
       const el = await fixture(container);
       const errorEl = el.querySelector(
-        ".kuc-base-mobile-error__error"
+        ".kuc-base-mobile-error__error",
       ) as HTMLDivElement;
       expect(errorEl.innerText).to.equal("error-message");
       const selectMinuteEl = el.querySelector(
-        ".kuc-base-mobile-time__group__minutes"
+        ".kuc-base-mobile-time__group__minutes",
       ) as HTMLSelectElement;
       selectMinuteEl.value = "35";
       selectMinuteEl.dispatchEvent(new Event("change", { bubbles: true }));

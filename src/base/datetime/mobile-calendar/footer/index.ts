@@ -71,6 +71,6 @@ if (!window.customElements.get("kuc-base-mobile-datetime-calendar-footer")) {
   createStyleOnHeader(BASE_MOBILE_CALENDAR_FOOTER_CSS);
   window.customElements.define(
     "kuc-base-mobile-datetime-calendar-footer",
-    BaseMobileDateTimeCalendarFooter
+    BaseMobileDateTimeCalendarFooter,
   );
 }

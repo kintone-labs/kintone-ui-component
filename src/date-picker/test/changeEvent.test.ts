@@ -15,7 +15,7 @@ describe("DatePicker", () => {
       const el = await fixture(container);
 
       const inputDateEl = el.querySelector(
-        ".kuc-base-date__input"
+        ".kuc-base-date__input",
       ) as HTMLInputElement;
 
       inputDateEl.click();
@@ -23,11 +23,11 @@ describe("DatePicker", () => {
       await elementUpdated(el);
 
       const selectedElRight = el.querySelector(
-        'kuc-base-datetime-calendar-body .kuc-base-datetime-calendar-body__table__date--selected[aria-selected="true"]'
+        'kuc-base-datetime-calendar-body .kuc-base-datetime-calendar-body__table__date--selected[aria-selected="true"]',
       ) as HTMLButtonElement;
 
       selectedElRight.dispatchEvent(
-        new KeyboardEvent("keydown", { key: "ArrowRight" })
+        new KeyboardEvent("keydown", { key: "ArrowRight" }),
       );
       await elementUpdated(container);
 
@@ -49,7 +49,7 @@ describe("DatePicker", () => {
       const el = await fixture(container);
 
       const inputDateEl = el.querySelector(
-        ".kuc-base-date__input"
+        ".kuc-base-date__input",
       ) as HTMLInputElement;
 
       inputDateEl.click();
@@ -57,11 +57,11 @@ describe("DatePicker", () => {
       await elementUpdated(el);
 
       const selectedElRight = el.querySelector(
-        'kuc-base-datetime-calendar-body .kuc-base-datetime-calendar-body__table__date--selected[aria-selected="true"]'
+        'kuc-base-datetime-calendar-body .kuc-base-datetime-calendar-body__table__date--selected[aria-selected="true"]',
       ) as HTMLButtonElement;
 
       selectedElRight.dispatchEvent(
-        new KeyboardEvent("keydown", { key: "ArrowRight" })
+        new KeyboardEvent("keydown", { key: "ArrowRight" }),
       );
       await elementUpdated(container);
 
@@ -69,11 +69,11 @@ describe("DatePicker", () => {
       expect(triggeredEvent.detail.value).to.equal("2021-12-21");
 
       const selectedElLeft = el.querySelector(
-        'kuc-base-datetime-calendar-body .kuc-base-datetime-calendar-body__table__date--selected[aria-selected="true"]'
+        'kuc-base-datetime-calendar-body .kuc-base-datetime-calendar-body__table__date--selected[aria-selected="true"]',
       ) as HTMLButtonElement;
 
       selectedElLeft.dispatchEvent(
-        new KeyboardEvent("keydown", { key: "ArrowLeft" })
+        new KeyboardEvent("keydown", { key: "ArrowLeft" }),
       );
       await elementUpdated(container);
 
@@ -90,7 +90,7 @@ describe("DatePicker", () => {
 
       const el = await fixture(container);
       const inputDateEl = el.querySelector(
-        ".kuc-base-date__input"
+        ".kuc-base-date__input",
       ) as HTMLInputElement;
 
       inputDateEl.click();
@@ -98,11 +98,11 @@ describe("DatePicker", () => {
       await elementUpdated(el);
 
       const selectedElUp = el.querySelector(
-        'kuc-base-datetime-calendar-body .kuc-base-datetime-calendar-body__table__date--selected[aria-selected="true"]'
+        'kuc-base-datetime-calendar-body .kuc-base-datetime-calendar-body__table__date--selected[aria-selected="true"]',
       ) as HTMLButtonElement;
 
       selectedElUp.dispatchEvent(
-        new KeyboardEvent("keydown", { key: "ArrowUp" })
+        new KeyboardEvent("keydown", { key: "ArrowUp" }),
       );
       await elementUpdated(container);
 
@@ -110,11 +110,11 @@ describe("DatePicker", () => {
       expect(triggeredEvent.detail.value).to.equal("2021-12-13");
 
       const selectedElDown = el.querySelector(
-        'kuc-base-datetime-calendar-body .kuc-base-datetime-calendar-body__table__date--selected[aria-selected="true"]'
+        'kuc-base-datetime-calendar-body .kuc-base-datetime-calendar-body__table__date--selected[aria-selected="true"]',
       ) as HTMLButtonElement;
 
       selectedElDown.dispatchEvent(
-        new KeyboardEvent("keydown", { key: "ArrowDown" })
+        new KeyboardEvent("keydown", { key: "ArrowDown" }),
       );
       await elementUpdated(container);
 
@@ -132,7 +132,7 @@ describe("DatePicker", () => {
       const el = await fixture(container);
 
       const inputDateEl = el.querySelector(
-        ".kuc-base-date__input"
+        ".kuc-base-date__input",
       ) as HTMLInputElement;
 
       inputDateEl.click();
@@ -140,7 +140,7 @@ describe("DatePicker", () => {
       await elementUpdated(el);
 
       const selectedElUp = el.querySelector(
-        'kuc-base-datetime-calendar-body .kuc-base-datetime-calendar-body__table__date--selected[aria-selected="true"]'
+        'kuc-base-datetime-calendar-body .kuc-base-datetime-calendar-body__table__date--selected[aria-selected="true"]',
       ) as HTMLTableCellElement;
 
       const nextEl = selectedElUp.nextElementSibling as HTMLTableCellElement;
@@ -165,7 +165,7 @@ describe("DatePicker", () => {
       const el = await fixture(container);
 
       const inputDateEl = el.querySelector(
-        ".kuc-base-date__input"
+        ".kuc-base-date__input",
       ) as HTMLInputElement;
 
       inputDateEl.value = "2021-12/12";
@@ -191,7 +191,7 @@ describe("DatePicker", () => {
       });
       const el = await fixture(container);
       const inputDateEl = el.querySelector(
-        ".kuc-base-date__input"
+        ".kuc-base-date__input",
       ) as HTMLInputElement;
 
       inputDateEl.click();
@@ -199,7 +199,7 @@ describe("DatePicker", () => {
       await elementUpdated(el);
 
       const noneBtnEl = el.querySelector(
-        ".kuc-base-datetime-calendar-footer__group__button--none"
+        ".kuc-base-datetime-calendar-footer__group__button--none",
       ) as HTMLButtonElement;
       noneBtnEl.click();
       await elementUpdated(container);
@@ -212,7 +212,7 @@ describe("DatePicker", () => {
       await elementUpdated(el);
 
       const noneBtnElEmpty = el.querySelector(
-        ".kuc-base-datetime-calendar-footer__group__button--none"
+        ".kuc-base-datetime-calendar-footer__group__button--none",
       ) as HTMLButtonElement;
       noneBtnElEmpty.click();
       await elementUpdated(container);
@@ -225,7 +225,7 @@ describe("DatePicker", () => {
       const container = new DatePicker({ value: "2021-12-20", language: "en" });
       const el = await fixture(container);
       const inputDateEl = el.querySelector(
-        ".kuc-base-date__input"
+        ".kuc-base-date__input",
       ) as HTMLInputElement;
 
       inputDateEl.value = "12/13/2021";

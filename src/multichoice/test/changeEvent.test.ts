@@ -22,7 +22,7 @@ describe("MultiChoice", () => {
 
       const el = await fixture(container);
       const itemsEl = el.querySelectorAll(
-        ".kuc-multi-choice__group__menu__item"
+        ".kuc-multi-choice__group__menu__item",
       );
       itemsEl[1].dispatchEvent(new Event("mousedown"));
       await elementUpdated(container);
@@ -46,7 +46,7 @@ describe("MultiChoice", () => {
 
       const el = await fixture(container);
       const itemsEl = el.querySelectorAll(
-        ".kuc-multi-choice__group__menu__item"
+        ".kuc-multi-choice__group__menu__item",
       );
       itemsEl[1].dispatchEvent(new Event("mousedown"));
       await elementUpdated(container);
@@ -68,7 +68,7 @@ describe("MultiChoice", () => {
 
       const el = await fixture(container);
       const itemsEl = el.querySelectorAll(
-        ".kuc-multi-choice__group__menu__item"
+        ".kuc-multi-choice__group__menu__item",
       );
       itemsEl[3].dispatchEvent(new Event("mousedown"));
 

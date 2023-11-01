@@ -61,6 +61,7 @@ export const DROPDOWN_CSS = `
     display: grid;
     grid: auto / auto-flow;
     align-items: center;
+    align-content: center;
     justify-content: space-between;
     width: var(--kuc-dropdown-toggle-width, 100%);
     cursor: pointer;

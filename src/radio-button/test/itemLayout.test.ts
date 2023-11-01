@@ -8,7 +8,7 @@ describe("RadioButton", () => {
       const container = new RadioButton();
       const el = await fixture(container);
       const selectMenuEl = el.querySelector(
-        ".kuc-radio-button__group__select-menu"
+        ".kuc-radio-button__group__select-menu",
       ) as HTMLDivElement;
 
       expect(selectMenuEl.getAttribute("itemLayout")).to.equal("horizontal");
@@ -18,7 +18,7 @@ describe("RadioButton", () => {
       const container = new RadioButton({ itemLayout: "vertical" });
       const el = await fixture(container);
       const selectMenuEl = el.querySelector(
-        ".kuc-radio-button__group__select-menu"
+        ".kuc-radio-button__group__select-menu",
       ) as HTMLDivElement;
 
       expect(selectMenuEl.getAttribute("itemLayout")).to.equal("vertical");
@@ -30,7 +30,7 @@ describe("RadioButton", () => {
 
       const el = await fixture(container);
       const selectMenuEl = el.querySelector(
-        ".kuc-radio-button__group__select-menu"
+        ".kuc-radio-button__group__select-menu",
       ) as HTMLDivElement;
 
       expect(selectMenuEl.getAttribute("itemLayout")).to.equal("horizontal");
@@ -42,7 +42,7 @@ describe("RadioButton", () => {
 
       const el = await fixture(container);
       const selectMenuEl = el.querySelector(
-        ".kuc-radio-button__group__select-menu"
+        ".kuc-radio-button__group__select-menu",
       ) as HTMLDivElement;
 
       expect(selectMenuEl.getAttribute("itemLayout")).to.equal("vertical");

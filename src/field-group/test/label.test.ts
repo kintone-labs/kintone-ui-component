@@ -9,7 +9,7 @@ describe("FieldGroup", () => {
       const el = await fixture(container);
 
       const labelTextEl = el.querySelector(
-        ".kuc-base-label__text"
+        ".kuc-base-label__text",
       ) as HTMLSpanElement;
       expect(labelTextEl.textContent).to.equal("");
     });
@@ -19,7 +19,7 @@ describe("FieldGroup", () => {
       const el = await fixture(container);
 
       const labelTextEl = el.querySelector(
-        ".kuc-base-label__text"
+        ".kuc-base-label__text",
       ) as HTMLSpanElement;
       expect(labelTextEl.textContent).to.equal("options-label");
     });
@@ -32,7 +32,7 @@ describe("FieldGroup", () => {
       const el = await fixture(container);
 
       const labelTextEl = el.querySelector(
-        ".kuc-base-label__text"
+        ".kuc-base-label__text",
       ) as HTMLSpanElement;
       expect(labelTextEl.textContent).to.equal("replace-label");
     });

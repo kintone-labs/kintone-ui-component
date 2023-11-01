@@ -17,7 +17,7 @@ describe("Table", () => {
       const container = new Table({ columns: columns, data: data });
       const el = await fixture(container);
       const actionButtonGroup = el.querySelector(
-        ".kuc-table__table__body__row__action"
+        ".kuc-table__table__body__row__action",
       ) as HTMLTableCellElement;
       expect(actionButtonGroup.hasAttribute("hidden")).to.equal(false);
     });
@@ -31,7 +31,7 @@ describe("Table", () => {
       const el = await fixture(container);
       await elementUpdated(el);
       const actionButtonGroup = el.querySelector(
-        ".kuc-table__table__body__row__action"
+        ".kuc-table__table__body__row__action",
       ) as HTMLTableCellElement;
       expect(actionButtonGroup).to.equal(null);
     });
@@ -45,7 +45,7 @@ describe("Table", () => {
       container.actionButton = true;
       const el = await fixture(container);
       const actionButtonGroup = el.querySelector(
-        ".kuc-table__table__body__row__action"
+        ".kuc-table__table__body__row__action",
       ) as HTMLTableCellElement;
       expect(actionButtonGroup.hasAttribute("hidden")).to.equal(false);
     });
@@ -59,7 +59,7 @@ describe("Table", () => {
       container.actionButton = false;
       const el = await fixture(container);
       const actionButtonGroup = el.querySelector(
-        ".kuc-table__table__body__row__action"
+        ".kuc-table__table__body__row__action",
       ) as HTMLTableCellElement;
       expect(actionButtonGroup).to.equal(null);
     });

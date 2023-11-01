@@ -27,21 +27,20 @@ export default {
     },
   },
 };
-const Template = (args) =>
-  html`
-    <kuc-mobile-time-picker
-      .className="${args.className}"
-      .error="${args.error}"
-      .id="${args.id}"
-      .label="${args.label}"
-      .value="${args.value}"
-      .disabled="${args.disabled}"
-      .hour12="${args.hour12}"
-      .requiredIcon="${args.requiredIcon}"
-      .visible="${args.visible}"
-      .language="${args.language}"
-    ></kuc-mobile-time-picker>
-  `;
+const Template = (args) => html`
+  <kuc-mobile-time-picker
+    .className="${args.className}"
+    .error="${args.error}"
+    .id="${args.id}"
+    .label="${args.label}"
+    .value="${args.value}"
+    .disabled="${args.disabled}"
+    .hour12="${args.hour12}"
+    .requiredIcon="${args.requiredIcon}"
+    .visible="${args.visible}"
+    .language="${args.language}"
+  ></kuc-mobile-time-picker>
+`;
 
 export const BaseHour24 = Template.bind({});
 BaseHour24.args = {

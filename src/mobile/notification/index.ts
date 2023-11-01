@@ -15,7 +15,7 @@ import { MobileNotificationProps } from "./type";
 let exportMobileNotification;
 (() => {
   exportMobileNotification = window.customElements.get(
-    "kuc-mobile-notification"
+    "kuc-mobile-notification",
   );
   if (exportMobileNotification) {
     return;
@@ -153,7 +153,7 @@ let exportMobileNotification;
 
   window.customElements.define(
     "kuc-mobile-notification",
-    KucMobileNotification
+    KucMobileNotification,
   );
   createStyleOnHeader(MOBILE_NOTIFICATION_CSS);
   exportMobileNotification = KucMobileNotification;

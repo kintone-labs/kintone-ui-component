@@ -11,7 +11,7 @@ describe("Tabs", () => {
       });
       const el = await fixture(container);
       const tabPanel = el.querySelector(
-        ".kuc-tabs__group__tab-panel"
+        ".kuc-tabs__group__tab-panel",
       ) as HTMLDivElement;
       expect(tabPanel.hasAttribute("border-visible")).to.equal(true);
     });
@@ -23,7 +23,7 @@ describe("Tabs", () => {
       });
       const el = await fixture(container);
       const tabPanel = el.querySelector(
-        ".kuc-tabs__group__tab-panel"
+        ".kuc-tabs__group__tab-panel",
       ) as HTMLDivElement;
       expect(tabPanel.hasAttribute("border-visible")).to.equal(false);
     });
@@ -37,7 +37,7 @@ describe("Tabs", () => {
 
       const el = await fixture(container);
       const tabPanel = el.querySelector(
-        ".kuc-tabs__group__tab-panel"
+        ".kuc-tabs__group__tab-panel",
       ) as HTMLDivElement;
       expect(tabPanel.hasAttribute("border-visible")).to.equal(true);
     });
@@ -50,7 +50,7 @@ describe("Tabs", () => {
 
       const el = await fixture(container);
       const tabPanel = el.querySelector(
-        ".kuc-tabs__group__tab-panel"
+        ".kuc-tabs__group__tab-panel",
       ) as HTMLDivElement;
       expect(tabPanel.hasAttribute("border-visible")).to.equal(false);
     });

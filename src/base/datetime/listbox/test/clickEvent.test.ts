@@ -20,10 +20,10 @@ describe("BaseDateTimeListBox", () => {
 
       const el = await fixture(container);
       const itemsEl = el.querySelectorAll(
-        ".kuc-base-datetime-listbox__listbox__item"
+        ".kuc-base-datetime-listbox__listbox__item",
       );
       (itemsEl[2] as HTMLLIElement).dispatchEvent(
-        new CustomEvent("mousedown", { bubbles: true })
+        new CustomEvent("mousedown", { bubbles: true }),
       );
 
       expect(triggeredEvent.type).to.equal("kuc:listbox-click");
@@ -46,10 +46,10 @@ describe("BaseDateTimeListBox", () => {
 
       const el = await fixture(container);
       const itemsEl = el.querySelectorAll(
-        ".kuc-base-datetime-listbox__listbox__item"
+        ".kuc-base-datetime-listbox__listbox__item",
       );
       (itemsEl[2] as HTMLLIElement).dispatchEvent(
-        new KeyboardEvent("keydown", { key: "Tab", bubbles: true })
+        new KeyboardEvent("keydown", { key: "Tab", bubbles: true }),
       );
 
       expect(triggeredEvent.type).to.equal("kuc:listbox-click");

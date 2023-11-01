@@ -18,14 +18,13 @@ export default {
   },
 };
 
-const Template = ({ language, month, year }) =>
-  html`
-    <kuc-base-datetime-calendar-header
-      .language="${language}"
-      .month="${month}"
-      .year="${year}"
-    ></kuc-base-datetime-calendar-header>
-  `;
+const Template = ({ language, month, year }) => html`
+  <kuc-base-datetime-calendar-header
+    .language="${language}"
+    .month="${month}"
+    .year="${year}"
+  ></kuc-base-datetime-calendar-header>
+`;
 
 export const Base = Template.bind({});
 Base.args = {

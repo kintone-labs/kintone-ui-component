@@ -59,7 +59,7 @@ describe("Table", () => {
       });
       const el = await fixture(container);
       const addRowButton = el.querySelectorAll(
-        ".kuc-table__table__body__row__action-add"
+        ".kuc-table__table__body__row__action-add",
       );
       const tableEl = el.querySelector(".kuc-table__table") as HTMLTableElement;
       expect(tableEl.rows.length).to.equal(4);
@@ -83,7 +83,7 @@ describe("Table", () => {
       });
       const el = await fixture(container);
       const removeRowButton = el.querySelectorAll(
-        ".kuc-table__table__body__row__action-remove"
+        ".kuc-table__table__body__row__action-remove",
       );
 
       const tableEl = el.querySelector(".kuc-table__table") as HTMLTableElement;
@@ -108,16 +108,16 @@ describe("Table", () => {
       expect(tableEl.rows.length).to.equal(2);
       expect(container.data.length).to.equal(1);
       expect((removeRowButton[2] as HTMLElement).style.display).to.equal(
-        "none"
+        "none",
       );
 
       const addRowButton = el.querySelectorAll(
-        ".kuc-table__table__body__row__action-add"
+        ".kuc-table__table__body__row__action-add",
       );
       (addRowButton[0] as HTMLElement).click();
 
       expect((removeRowButton[2] as HTMLElement).style.display).to.equal(
-        "block"
+        "block",
       );
     });
 
@@ -138,7 +138,7 @@ describe("Table", () => {
           detail: { value: "female", oldValue: "male" },
           bubbles: true,
           cancelable: true,
-        })
+        }),
       );
 
       expect(triggeredEvent.type).to.equal("change");

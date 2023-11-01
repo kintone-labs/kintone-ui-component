@@ -27,7 +27,7 @@ describe("Dropdown", () => {
       const container = new Dropdown();
       const el = await fixture(container);
       const itemsEl = el.querySelectorAll(
-        ".kuc-dropdown__group__select-menu__item"
+        ".kuc-dropdown__group__select-menu__item",
       );
 
       expect(itemsEl.length).to.equal(0);
@@ -40,30 +40,30 @@ describe("Dropdown", () => {
       });
       const el = await fixture(container);
       const itemsEl = el.querySelectorAll(
-        ".kuc-dropdown__group__select-menu__item"
+        ".kuc-dropdown__group__select-menu__item",
       );
 
       expect(itemsEl.length).to.equal(3);
 
       expect(itemsEl[0].getAttribute("value")).to.equal(
-        initItemsWithoutLabel[0].value
+        initItemsWithoutLabel[0].value,
       );
       expect(itemsEl[0].textContent?.trim()).to.equal(
-        initItemsWithoutLabel[0].value
+        initItemsWithoutLabel[0].value,
       );
 
       expect(itemsEl[1].getAttribute("value")).to.equal(
-        initItemsWithoutLabel[1].value
+        initItemsWithoutLabel[1].value,
       );
       expect(itemsEl[1].textContent?.trim()).to.equal(
-        initItemsWithoutLabel[1].value
+        initItemsWithoutLabel[1].value,
       );
 
       expect(itemsEl[2].getAttribute("value")).to.equal(
-        initItemsWithoutLabel[2].value
+        initItemsWithoutLabel[2].value,
       );
       expect(itemsEl[2].textContent?.trim()).to.equal(
-        initItemsWithoutLabel[2].value
+        initItemsWithoutLabel[2].value,
       );
     });
 
@@ -72,30 +72,30 @@ describe("Dropdown", () => {
       container.items = initItemsWithoutLabel;
       const el = await fixture(container);
       const itemsEl = el.querySelectorAll(
-        ".kuc-dropdown__group__select-menu__item"
+        ".kuc-dropdown__group__select-menu__item",
       );
 
       expect(itemsEl.length).to.equal(3);
 
       expect(itemsEl[0].getAttribute("value")).to.equal(
-        initItemsWithoutLabel[0].value
+        initItemsWithoutLabel[0].value,
       );
       expect(itemsEl[0].textContent?.trim()).to.equal(
-        initItemsWithoutLabel[0].value
+        initItemsWithoutLabel[0].value,
       );
 
       expect(itemsEl[1].getAttribute("value")).to.equal(
-        initItemsWithoutLabel[1].value
+        initItemsWithoutLabel[1].value,
       );
       expect(itemsEl[1].textContent?.trim()).to.equal(
-        initItemsWithoutLabel[1].value
+        initItemsWithoutLabel[1].value,
       );
 
       expect(itemsEl[2].getAttribute("value")).to.equal(
-        initItemsWithoutLabel[2].value
+        initItemsWithoutLabel[2].value,
       );
       expect(itemsEl[2].textContent?.trim()).to.equal(
-        initItemsWithoutLabel[2].value
+        initItemsWithoutLabel[2].value,
       );
     });
 
@@ -103,7 +103,7 @@ describe("Dropdown", () => {
       const container = new Dropdown({ items: initItems });
       const el = await fixture(container);
       const itemsEl = el.querySelectorAll(
-        ".kuc-dropdown__group__select-menu__item"
+        ".kuc-dropdown__group__select-menu__item",
       );
 
       expect(itemsEl.length).to.equal(3);
@@ -124,7 +124,7 @@ describe("Dropdown", () => {
 
       const el = await fixture(container);
       const itemsEl = el.querySelectorAll(
-        ".kuc-dropdown__group__select-menu__item"
+        ".kuc-dropdown__group__select-menu__item",
       );
 
       expect(container.items).to.be.equal(replacedItems);
@@ -173,14 +173,14 @@ describe("Dropdown", () => {
       });
       const el = await fixture(container);
       const itemsEl = el.querySelectorAll(
-        ".kuc-dropdown__group__select-menu__item"
+        ".kuc-dropdown__group__select-menu__item",
       );
 
       await expect(itemsEl.length).to.equal(4);
       await expect(
         itemsEl[3].classList.contains(
-          "kuc-dropdown__group__select-menu__item--disabled"
-        )
+          "kuc-dropdown__group__select-menu__item--disabled",
+        ),
       ).to.equal(true);
     });
   });

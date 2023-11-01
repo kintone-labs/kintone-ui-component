@@ -2,7 +2,7 @@ import { html, PropertyValues } from "lit";
 import { property, state } from "lit/decorators.js";
 
 import { ERROR_MESSAGE } from "../base/constant";
-import { visiblePropConverter } from "../base/converter";
+import { unsafeHTMLConverter, visiblePropConverter } from "../base/converter";
 import { createStyleOnHeader, KucBase } from "../base/kuc-base";
 import {
   validateArrayType,
@@ -12,7 +12,7 @@ import {
 
 import "../base/pagination";
 import { READ_ONLY_TABLE_CSS } from "./style";
-import { Column, ReadOnlyTableProps } from "./type";
+import { ReadOnlyTableColumn, ReadOnlyTableProps } from "./type";
 
 let exportReadOnlyTable;
 (() => {
@@ -25,7 +25,7 @@ let exportReadOnlyTable;
       "";
     @property({ type: String, reflect: true, attribute: "id" }) id = "";
     @property({ type: String }) label = "";
-    @property({ type: Array }) columns: Column[] = [];
+    @property({ type: Array }) columns: ReadOnlyTableColumn[] = [];
     @property({ type: Array }) data: T[] = [];
     @property({ type: Boolean }) pagination = true;
     @property({ type: Number }) rowsPerPage = 5;
@@ -76,7 +76,7 @@ let exportReadOnlyTable;
       if (changedProperties.has("columns")) {
         this._columnOrder = [];
         this.columns.map((col) =>
-          this._columnOrder.push(col.field ? col.field : "")
+          this._columnOrder.push(col.field ? col.field : ""),
         );
       }
 
@@ -108,8 +108,8 @@ let exportReadOnlyTable;
               </caption>
               <thead class="kuc-readonly-table__table__header">
                 <tr>
-                  ${this.columns.map((column) =>
-                    this._getColumnsTemplate(column)
+                  ${this.columns.map((column, index) =>
+                    this._getColumnsTemplate(column, index),
                   )}
                 </tr>
               </thead>
@@ -135,16 +135,22 @@ let exportReadOnlyTable;
       const lastRow = this._pagePosition * this.rowsPerPage;
       const displayData = this.data.filter(
         (_element, index: number) =>
-          index >= firstRow - 1 && index <= lastRow - 1
+          index >= firstRow - 1 && index <= lastRow - 1,
       );
       return displayData;
     }
 
-    private _getColumnsTemplate(column: Column) {
+    private _customWidthVariables(index: number) {
+      return `var(--kuc-readonly-table-header-${index}-width, var(--kuc-readonly-table-header-width, auto))`;
+    }
+
+    private _getColumnsTemplate(column: ReadOnlyTableColumn, index: number) {
+      const customWidth = this._customWidthVariables(index);
       return html`
         <th
           class="kuc-readonly-table__table__header__cell"
           ?hidden="${column.visible === false}"
+          style="width: ${customWidth}; min-width: ${customWidth}; max-width: ${customWidth}"
         >
           ${column.title || ""}
         </th>
@@ -158,10 +164,20 @@ let exportReadOnlyTable;
         >
           ${this._columnOrder.map((currentCol, colIndex) => {
             const visible = this.columns[colIndex].visible ?? true;
-            const value = data[currentCol];
+            let value = data[currentCol];
+
+            if (this._isHTML(value)) {
+              value = html`<div
+                class="kuc-readonly-table__table__body__row__cell-data--html"
+              >
+                ${unsafeHTMLConverter(value)}
+              </div>`;
+            }
+
+            const customWidth = this._customWidthVariables(colIndex);
             // Do not remove below disable comment. This is for table display.
             // eslint-disable-next-line
-            return html`<td class="kuc-readonly-table__table__body__row__cell-data" ?hidden="${!visible}">${value}</td>`;
+            return html`<td class="kuc-readonly-table__table__body__row__cell-data" ?hidden="${!visible}" style="width: ${customWidth}; min-width: ${customWidth}; max-width: ${customWidth}">${value}</td>`;
           })}
         </tr>
       `;
@@ -191,6 +207,14 @@ let exportReadOnlyTable;
       }
       if (this._toggleDisplayNextButton() === false) return;
       this._pagePosition += 1;
+    }
+
+    private _isHTML(element: string | HTMLElement) {
+      if (element instanceof HTMLElement) return true;
+
+      const div = document.createElement("div");
+      div.innerHTML = element;
+      return div.childElementCount > 0;
     }
   }
   window.customElements.define("kuc-readonly-table", KucReadOnlyTable);

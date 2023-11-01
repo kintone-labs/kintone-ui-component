@@ -7,7 +7,7 @@ describe("BaseMobileLabel", () => {
       const container = document.createElement("kuc-base-mobile-label");
       const el = await fixture(container);
       const textEl = el.querySelector(
-        ".kuc-base-mobile-label__text"
+        ".kuc-base-mobile-label__text",
       ) as HTMLButtonElement;
       expect(textEl.innerText).to.equal("");
     });
@@ -17,7 +17,7 @@ describe("BaseMobileLabel", () => {
       container.setAttribute("text", "text");
       const el = await fixture(container);
       const textEl = el.querySelector(
-        ".kuc-base-mobile-label__text"
+        ".kuc-base-mobile-label__text",
       ) as HTMLButtonElement;
       expect(textEl.innerText).to.equal("text");
     });
@@ -29,7 +29,7 @@ describe("BaseMobileLabel", () => {
       container.setAttribute("text", "update");
       await elementUpdated(el);
       const textEl = el.querySelector(
-        ".kuc-base-mobile-label__text"
+        ".kuc-base-mobile-label__text",
       ) as HTMLButtonElement;
       expect(textEl.innerText).to.equal("update");
     });

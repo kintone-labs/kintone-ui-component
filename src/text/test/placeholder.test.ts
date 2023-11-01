@@ -9,7 +9,7 @@ describe("Text", () => {
 
       const el = await fixture(container);
       const inputEl = el.querySelector(
-        ".kuc-text__group__input-form__input-outer__input"
+        ".kuc-text__group__input-form__input-outer__input",
       ) as HTMLInputElement;
 
       expect(inputEl.placeholder).to.equal("");
@@ -21,7 +21,7 @@ describe("Text", () => {
 
     const el = await fixture(container);
     const inputEl = el.querySelector(
-      ".kuc-text__group__input-form__input-outer__input"
+      ".kuc-text__group__input-form__input-outer__input",
     ) as HTMLInputElement;
 
     expect(inputEl.placeholder).to.equal("Apple");
@@ -33,7 +33,7 @@ describe("Text", () => {
 
     const el = await fixture(container);
     const inputEl = el.querySelector(
-      ".kuc-text__group__input-form__input-outer__input"
+      ".kuc-text__group__input-form__input-outer__input",
     ) as HTMLInputElement;
 
     expect(inputEl.placeholder).to.equal("Apple");
@@ -45,7 +45,7 @@ describe("Text", () => {
 
     const el = await fixture(container);
     const inputEl = el.querySelector(
-      ".kuc-text__group__input-form__input-outer__input"
+      ".kuc-text__group__input-form__input-outer__input",
     ) as HTMLInputElement;
 
     expect(inputEl.placeholder).to.equal("Apple");

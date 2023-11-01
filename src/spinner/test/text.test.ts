@@ -9,7 +9,7 @@ describe("Spinner", () => {
       container.open();
       const el = await fixture(container);
       const inputTextEl = el.querySelector(
-        ".kuc-spinner__spinner__text"
+        ".kuc-spinner__spinner__text",
       ) as HTMLSpanElement;
       expect(inputTextEl.innerText).to.equal("now loading…");
     });
@@ -22,7 +22,7 @@ describe("Spinner", () => {
     container.open();
     const el = await fixture(container);
     const inputTextEl = el.querySelector(
-      ".kuc-spinner__spinner__text"
+      ".kuc-spinner__spinner__text",
     ) as HTMLSpanElement;
     expect(inputTextEl.innerText).to.equal("display spinner");
   });
@@ -35,7 +35,7 @@ describe("Spinner", () => {
     container.text = "replace-text";
     const el = await fixture(container);
     const replaceTextEl = el.querySelector(
-      ".kuc-spinner__spinner__text"
+      ".kuc-spinner__spinner__text",
     ) as HTMLSpanElement;
     expect(replaceTextEl.innerText).to.equal("replace-text");
   });

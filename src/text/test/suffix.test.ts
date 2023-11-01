@@ -8,7 +8,7 @@ describe("Text", () => {
       const container = new Text();
       const el = await fixture(container);
       const suffixEl = el.querySelector(
-        ".kuc-text__group__input-form__suffix-outer__suffix"
+        ".kuc-text__group__input-form__suffix-outer__suffix",
       ) as HTMLSpanElement;
       expect(suffixEl.hasAttribute("hidden")).to.equal(true);
     });
@@ -17,7 +17,7 @@ describe("Text", () => {
       const container = new Text();
       const el = await fixture(container);
       const suffixEl = el.querySelector(
-        ".kuc-text__group__input-form__suffix-outer__suffix"
+        ".kuc-text__group__input-form__suffix-outer__suffix",
       ) as HTMLSpanElement;
       expect(suffixEl.hasAttribute("hidden")).to.equal(true);
     });
@@ -27,7 +27,7 @@ describe("Text", () => {
       container.suffix = "yen";
       const el = await fixture(container);
       const suffixEl = el.querySelector(
-        ".kuc-text__group__input-form__suffix-outer__suffix"
+        ".kuc-text__group__input-form__suffix-outer__suffix",
       ) as HTMLSpanElement;
       expect(suffixEl.hasAttribute("hidden")).to.equal(false);
       expect(suffixEl.innerText).to.equal("yen");
@@ -38,7 +38,7 @@ describe("Text", () => {
       container.suffix = "yen";
       const el = await fixture(container);
       const suffixEl = el.querySelector(
-        ".kuc-text__group__input-form__suffix-outer__suffix"
+        ".kuc-text__group__input-form__suffix-outer__suffix",
       ) as HTMLSpanElement;
       expect(suffixEl.hasAttribute("hidden")).to.equal(false);
       expect(suffixEl.innerText).to.equal("yen");

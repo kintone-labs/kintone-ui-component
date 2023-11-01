@@ -30,7 +30,7 @@ export { BaseMobileLabel, BaseMobileError };
 let exportMobileRadioButton;
 (() => {
   exportMobileRadioButton = window.customElements.get(
-    "kuc-mobile-radio-button"
+    "kuc-mobile-radio-button",
   );
   if (exportMobileRadioButton) {
     return;
@@ -190,7 +190,7 @@ let exportMobileRadioButton;
       if (changedProperties.has("selectedIndex")) {
         if (!validateNumberType(this.selectedIndex)) {
           this.throwErrorAfterUpdateComplete(
-            ERROR_MESSAGE.SELECTED_INDEX.IS_NOT_NUMBER
+            ERROR_MESSAGE.SELECTED_INDEX.IS_NOT_NUMBER,
           );
           return false;
         }
@@ -232,7 +232,7 @@ let exportMobileRadioButton;
             ?disabled="${this.disabled}"
           >
             ${this.items.map((item, index) =>
-              this._getItemTemplate(item, index)
+              this._getItemTemplate(item, index),
             )}
           </div>
           <kuc-base-mobile-error
@@ -259,12 +259,12 @@ let exportMobileRadioButton;
       }
 
       const firstIndex = this.items.findIndex(
-        (item) => item.value === this.value
+        (item) => item.value === this.value,
       );
       if (firstIndex === -1) return -1;
       const selectedIndex = this.items.findIndex(
         (item, index) =>
-          item.value === this.value && index === this.selectedIndex
+          item.value === this.value && index === this.selectedIndex,
       );
       return selectedIndex > -1 ? selectedIndex : firstIndex;
     }

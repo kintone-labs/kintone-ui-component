@@ -8,13 +8,13 @@ describe("BaseMobileDateTimeCalendarFooter", () => {
       const container = new BaseMobileDateTimeCalendarFooter();
       const el = await fixture(container);
       const buttonTodayEl = el.querySelector(
-        ".kuc-base-mobile-datetime-calendar-footer__group__button--today"
+        ".kuc-base-mobile-datetime-calendar-footer__group__button--today",
       ) as HTMLButtonElement;
       const buttonNoneEl = el.querySelector(
-        ".kuc-base-mobile-datetime-calendar-footer__group__button--none"
+        ".kuc-base-mobile-datetime-calendar-footer__group__button--none",
       ) as HTMLButtonElement;
       const buttonCloseEl = el.querySelector(
-        ".kuc-base-mobile-datetime-calendar-footer__group__button--close"
+        ".kuc-base-mobile-datetime-calendar-footer__group__button--close",
       ) as HTMLButtonElement;
       expect(buttonTodayEl.innerText).to.equal("Today");
       expect(buttonNoneEl.innerText).to.equal("None");
@@ -26,13 +26,13 @@ describe("BaseMobileDateTimeCalendarFooter", () => {
       container.language = "ja";
       const el = await fixture(container);
       const buttonTodayEl = el.querySelector(
-        ".kuc-base-mobile-datetime-calendar-footer__group__button--today"
+        ".kuc-base-mobile-datetime-calendar-footer__group__button--today",
       ) as HTMLButtonElement;
       const buttonNoneEl = el.querySelector(
-        ".kuc-base-mobile-datetime-calendar-footer__group__button--none"
+        ".kuc-base-mobile-datetime-calendar-footer__group__button--none",
       ) as HTMLButtonElement;
       const buttonCloseEl = el.querySelector(
-        ".kuc-base-mobile-datetime-calendar-footer__group__button--close"
+        ".kuc-base-mobile-datetime-calendar-footer__group__button--close",
       ) as HTMLButtonElement;
       expect(buttonTodayEl.innerText).to.equal("今日");
       expect(buttonNoneEl.innerText).to.equal("選択を解除");
@@ -44,13 +44,13 @@ describe("BaseMobileDateTimeCalendarFooter", () => {
       container.language = "zh";
       const el = await fixture(container);
       const buttonTodayEl = el.querySelector(
-        ".kuc-base-mobile-datetime-calendar-footer__group__button--today"
+        ".kuc-base-mobile-datetime-calendar-footer__group__button--today",
       ) as HTMLButtonElement;
       const buttonNoneEl = el.querySelector(
-        ".kuc-base-mobile-datetime-calendar-footer__group__button--none"
+        ".kuc-base-mobile-datetime-calendar-footer__group__button--none",
       ) as HTMLButtonElement;
       const buttonCloseEl = el.querySelector(
-        ".kuc-base-mobile-datetime-calendar-footer__group__button--close"
+        ".kuc-base-mobile-datetime-calendar-footer__group__button--close",
       ) as HTMLButtonElement;
       expect(buttonTodayEl.innerText).to.equal("今天");
       expect(buttonNoneEl.innerText).to.equal("清空");
@@ -61,13 +61,13 @@ describe("BaseMobileDateTimeCalendarFooter", () => {
       container.language = "zh-TW";
       const el = await fixture(container);
       const buttonTodayEl = el.querySelector(
-        ".kuc-base-mobile-datetime-calendar-footer__group__button--today"
+        ".kuc-base-mobile-datetime-calendar-footer__group__button--today",
       ) as HTMLButtonElement;
       const buttonNoneEl = el.querySelector(
-        ".kuc-base-mobile-datetime-calendar-footer__group__button--none"
+        ".kuc-base-mobile-datetime-calendar-footer__group__button--none",
       ) as HTMLButtonElement;
       const buttonCloseEl = el.querySelector(
-        ".kuc-base-mobile-datetime-calendar-footer__group__button--close"
+        ".kuc-base-mobile-datetime-calendar-footer__group__button--close",
       ) as HTMLButtonElement;
       expect(buttonTodayEl.innerText).to.equal("今天");
       expect(buttonNoneEl.innerText).to.equal("清空");

@@ -15,7 +15,7 @@ describe("BaseDateTimeListBox", () => {
 
       const el = await fixture(container);
       const selectedItemEl = el.querySelector(
-        '.kuc-base-datetime-listbox__listbox__item[aria-selected="true"]'
+        '.kuc-base-datetime-listbox__listbox__item[aria-selected="true"]',
       ) as HTMLLIElement;
       expect(selectedItemEl.textContent?.trim()).to.equal("FEBRUARY");
     });

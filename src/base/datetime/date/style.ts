@@ -26,7 +26,7 @@ input.kuc-base-date__input--focus {
   border-color: #3498db;
 }
 input.kuc-base-date__input:disabled {
-  color: #888888;
+  color: #888888 !important;
   background-color: #d4d7d7;
   box-shadow: none;
   cursor: not-allowed;

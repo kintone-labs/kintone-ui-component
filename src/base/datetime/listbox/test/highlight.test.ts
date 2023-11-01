@@ -15,13 +15,13 @@ describe("BaseDateTimeListBox", () => {
 
       const el = await fixture(container);
       const itemsEl = el.querySelectorAll(
-        ".kuc-base-datetime-listbox__listbox__item"
+        ".kuc-base-datetime-listbox__listbox__item",
       );
 
       itemsEl[2].dispatchEvent(new Event("mouseover"));
 
       expect((container.getHighlightItemEl() as HTMLLIElement).value).to.equal(
-        2
+        2,
       );
     });
 
@@ -37,24 +37,24 @@ describe("BaseDateTimeListBox", () => {
 
       const el = await fixture(container);
       const itemsEl = el.querySelectorAll(
-        ".kuc-base-datetime-listbox__listbox"
+        ".kuc-base-datetime-listbox__listbox",
       )[0];
       const liEl = itemsEl.children[0] as HTMLLIElement;
 
       liEl.dispatchEvent(
-        new KeyboardEvent("keydown", { key: "ArrowDown", bubbles: true })
+        new KeyboardEvent("keydown", { key: "ArrowDown", bubbles: true }),
       );
       await elementUpdated(el);
       expect((container.getHighlightItemEl() as HTMLLIElement).value).to.equal(
-        1
+        1,
       );
 
       liEl.dispatchEvent(
-        new KeyboardEvent("keydown", { key: "Down", bubbles: true })
+        new KeyboardEvent("keydown", { key: "Down", bubbles: true }),
       );
       await elementUpdated(el);
       expect((container.getHighlightItemEl() as HTMLLIElement).value).to.equal(
-        2
+        2,
       );
     });
 
@@ -70,24 +70,24 @@ describe("BaseDateTimeListBox", () => {
 
       const el = await fixture(container);
       const itemsEl = el.querySelectorAll(
-        ".kuc-base-datetime-listbox__listbox"
+        ".kuc-base-datetime-listbox__listbox",
       )[0];
       const liEl = itemsEl.children[0] as HTMLLIElement;
 
       liEl.dispatchEvent(
-        new KeyboardEvent("keydown", { key: "ArrowUp", bubbles: true })
+        new KeyboardEvent("keydown", { key: "ArrowUp", bubbles: true }),
       );
       await elementUpdated(el);
       expect((container.getHighlightItemEl() as HTMLLIElement).value).to.equal(
-        2
+        2,
       );
 
       liEl.dispatchEvent(
-        new KeyboardEvent("keydown", { key: "Up", bubbles: true })
+        new KeyboardEvent("keydown", { key: "Up", bubbles: true }),
       );
       await elementUpdated(el);
       expect((container.getHighlightItemEl() as HTMLLIElement).value).to.equal(
-        1
+        1,
       );
     });
 
@@ -102,24 +102,24 @@ describe("BaseDateTimeListBox", () => {
 
       const el = await fixture(container);
       const itemsEl = el.querySelectorAll(
-        ".kuc-base-datetime-listbox__listbox"
+        ".kuc-base-datetime-listbox__listbox",
       )[0];
       const liEl = itemsEl.children[0] as HTMLLIElement;
 
       liEl.dispatchEvent(
-        new KeyboardEvent("keydown", { key: "Home", bubbles: true })
+        new KeyboardEvent("keydown", { key: "Home", bubbles: true }),
       );
       await elementUpdated(el);
       expect((container.getHighlightItemEl() as HTMLLIElement).value).to.equal(
-        0
+        0,
       );
 
       liEl.dispatchEvent(
-        new KeyboardEvent("keydown", { key: "End", bubbles: true })
+        new KeyboardEvent("keydown", { key: "End", bubbles: true }),
       );
       await elementUpdated(el);
       expect((container.getHighlightItemEl() as HTMLLIElement).value).to.equal(
-        2
+        2,
       );
     });
 
@@ -130,7 +130,7 @@ describe("BaseDateTimeListBox", () => {
 
       const el = await fixture(container);
       const itemsEl = el.querySelectorAll(
-        ".kuc-base-datetime-listbox__listbox__item"
+        ".kuc-base-datetime-listbox__listbox__item",
       );
 
       expect((itemsEl[1] as HTMLLIElement).title).to.equal("");
@@ -147,7 +147,7 @@ describe("BaseDateTimeListBox", () => {
 
       const el = await fixture(container);
       const itemsEl = el.querySelectorAll(
-        ".kuc-base-datetime-listbox__listbox__item"
+        ".kuc-base-datetime-listbox__listbox__item",
       );
 
       expect((itemsEl[1] as HTMLLIElement).value).to.equal(0);

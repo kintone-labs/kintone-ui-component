@@ -22,7 +22,7 @@ describe("Checkbox", () => {
 
       const el = await fixture(container);
       const inputsEl = el.querySelectorAll(
-        ".kuc-checkbox__group__select-menu__item__input"
+        ".kuc-checkbox__group__select-menu__item__input",
       );
       expect(inputsEl.length).equal(3);
       inputsEl[2].dispatchEvent(new Event("change"));
@@ -57,7 +57,7 @@ describe("Checkbox", () => {
 
       const el = await fixture(container);
       const inputsEls = el.querySelectorAll(
-        ".kuc-checkbox__group__select-menu__item__input"
+        ".kuc-checkbox__group__select-menu__item__input",
       );
       await expect(inputsEls.length).equal(4);
       inputsEls[3].dispatchEvent(new Event("mousedown"));

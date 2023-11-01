@@ -30,7 +30,7 @@ describe("Tabs", () => {
       });
       const el = await fixture(container);
       const itemButtons = el.querySelectorAll(
-        ".kuc-tabs__group__tab-list__tab__button "
+        ".kuc-tabs__group__tab-list__tab__button ",
       );
       itemButtons[0].dispatchEvent(new Event("click"));
       itemButtons[1].dispatchEvent(new Event("mousedown"));
@@ -48,7 +48,7 @@ describe("Tabs", () => {
       });
       const el = await fixture(container);
       const inputEl = el.querySelector(
-        ".kuc-text__group__input-form__input-outer__input"
+        ".kuc-text__group__input-form__input-outer__input",
       ) as HTMLInputElement;
       inputEl.value = "Apple";
       inputEl.dispatchEvent(new CustomEvent("change"));
@@ -72,15 +72,15 @@ describe("Tabs", () => {
       });
       const el = await fixture(container);
       const itemButtons = el.querySelectorAll(
-        ".kuc-tabs__group__tab-list__tab__button"
+        ".kuc-tabs__group__tab-list__tab__button",
       );
       itemButtons[0].dispatchEvent(new Event("click"));
       itemButtons[0].dispatchEvent(
-        new KeyboardEvent("keydown", { key: "ArrowLeft" })
+        new KeyboardEvent("keydown", { key: "ArrowLeft" }),
       );
       expect(triggeredEvent).to.equal(null);
       itemButtons[0].dispatchEvent(
-        new KeyboardEvent("keydown", { key: "ArrowRight" })
+        new KeyboardEvent("keydown", { key: "ArrowRight" }),
       );
       expect(triggeredEvent).to.equal(null);
     });

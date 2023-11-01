@@ -66,7 +66,7 @@ let exportTabs;
           const itemValue = this.items[index].value;
           if (itemValue === undefined) {
             this.throwErrorAfterUpdateComplete(
-              ERROR_MESSAGE.ITEMS.IS_NOT_SPECIFIED
+              ERROR_MESSAGE.ITEMS.IS_NOT_SPECIFIED,
             );
             return false;
           }
@@ -101,7 +101,7 @@ let exportTabs;
             @blur="${this._handleBlur}"
           >
             ${this.items.map((item, index) =>
-              this._getTabTemplate(item, index)
+              this._getTabTemplate(item, index),
             )}
           </ul>
           <div
@@ -109,7 +109,7 @@ let exportTabs;
             ?border-visible="${this.borderVisible}"
           >
             ${this.items.map((item, index) =>
-              this._getTabContentTemplate(item, index)
+              this._getTabContentTemplate(item, index),
             )}
           </div>
         </div>
@@ -126,7 +126,7 @@ let exportTabs;
           role="tab"
           ?hidden="${item.visible === false}"
           aria-selected="${isSelected}"
-          tabindex="${isSelected ? "" : "-1"}"
+          tabindex="${isSelected && !item.disabled ? "0" : "-1"}"
           class="kuc-tabs__group__tab-list__tab__button ${this._isClick
             ? "kuc-tabs__group__tab-list__tab__button--click"
             : ""}"
@@ -165,12 +165,12 @@ let exportTabs;
       const tabEl = event.target as HTMLButtonElement;
       tabEl.blur();
       const currentIndex = this._getCurrentTabIndex(
-        tabEl.getAttribute("value") as string
+        tabEl.getAttribute("value") as string,
       );
       this._tabButtons[currentIndex].focus();
       if (this.value === tabEl.value) return;
       const eventDetail: TabsChangeEventDetail = this._generateEventDetail(
-        tabEl.value
+        tabEl.value,
       );
       dispatchCustomEvent(this, "change", eventDetail);
     }
@@ -236,16 +236,16 @@ let exportTabs;
 
     private _getMatchedTabIndex() {
       return this.items.findIndex(
-        (item) => item.visible !== false && item.value === this.value
+        (item) => item.visible !== false && item.value === this.value,
       );
     }
 
     private _moveToLastFirstTab(
       triggerEl: HTMLButtonElement,
-      direction: "first" | "last"
+      direction: "first" | "last",
     ) {
       const currentIndex = this._getCurrentTabIndex(
-        triggerEl.getAttribute("value") as string
+        triggerEl.getAttribute("value") as string,
       );
       const increment = direction === "last" ? -1 : 1;
       let index = direction === "last" ? this.items.length - 1 : 0;
@@ -259,8 +259,8 @@ let exportTabs;
             this,
             "change",
             this._generateEventDetail(
-              this._tabButtons[index].getAttribute("value") as string
-            )
+              this._tabButtons[index].getAttribute("value") as string,
+            ),
           );
           this._tabButtons[this._getCurrentTabIndex(this.value)].focus();
           break;
@@ -271,10 +271,10 @@ let exportTabs;
 
     private _moveToAdjacentTab(
       triggerEl: HTMLButtonElement,
-      direction: "next" | "prev"
+      direction: "next" | "prev",
     ) {
       const currentIndex = this._getCurrentTabIndex(
-        triggerEl.getAttribute("value") as string
+        triggerEl.getAttribute("value") as string,
       );
       const increment = direction === "next" ? 1 : -1;
       let index = currentIndex + increment;
@@ -296,8 +296,8 @@ let exportTabs;
             this,
             "change",
             this._generateEventDetail(
-              this._tabButtons[index].getAttribute("value") as string
-            )
+              this._tabButtons[index].getAttribute("value") as string,
+            ),
           );
           this._tabButtons[this._getCurrentTabIndex(this.value)].focus();
           break;

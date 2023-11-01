@@ -2,7 +2,7 @@ import { PropertyValues } from "lit";
 
 import { KucBase } from "../base/kuc-base";
 
-export declare type Column = {
+export declare type ReadOnlyTableColumn = {
   field?: string;
   title?: string;
   visible?: boolean;
@@ -12,7 +12,7 @@ export declare type ReadOnlyTableProps<T extends object = object> = {
   className?: string;
   id?: string;
   label?: string;
-  columns?: Column[];
+  columns?: ReadOnlyTableColumn[];
   data?: T[];
   pagination?: boolean;
   rowsPerPage?: number;
@@ -23,7 +23,7 @@ export declare class ReadOnlyTable<T extends object = object> extends KucBase {
   className: string;
   id: string;
   label: string;
-  columns: Column[];
+  columns: ReadOnlyTableColumn[];
   data: T[];
   pagination: boolean;
   rowsPerPage: number;

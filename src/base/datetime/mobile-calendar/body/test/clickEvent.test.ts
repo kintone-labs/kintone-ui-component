@@ -16,7 +16,7 @@ describe("BaseMobileDateTimeCalendarBody", () => {
       };
 
       const container = document.createElement(
-        "kuc-base-mobile-datetime-calendar-body"
+        "kuc-base-mobile-datetime-calendar-body",
       );
       container.setAttribute("month", InitValue.month.toString());
       container.setAttribute("year", InitValue.year.toString());
@@ -26,16 +26,16 @@ describe("BaseMobileDateTimeCalendarBody", () => {
         "kuc:mobile-calendar-body-click-date",
         (event) => {
           triggeredEvent = event;
-        }
+        },
       );
 
       const el = await fixture(container);
       const itemsEl = el.querySelectorAll(
-        ".kuc-base-mobile-datetime-calendar-body__table__date"
+        ".kuc-base-mobile-datetime-calendar-body__table__date",
       );
       (itemsEl[ItemForTest.index] as HTMLDivElement).click();
       expect(triggeredEvent.type).to.equal(
-        "kuc:mobile-calendar-body-click-date"
+        "kuc:mobile-calendar-body-click-date",
       );
       expect(triggeredEvent.detail.value).to.equal(ItemForTest.value);
     });

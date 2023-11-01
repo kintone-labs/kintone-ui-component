@@ -13,13 +13,13 @@ describe("Text", () => {
 
       const el = await fixture(container);
       const inputEl = el.querySelector(
-        ".kuc-text__group__input-form__input-outer__input"
+        ".kuc-text__group__input-form__input-outer__input",
       ) as HTMLInputElement;
       inputEl.value = "OrangeApple";
       inputEl.dispatchEvent(
         new InputEvent("input", {
           data: "Apple",
-        })
+        }),
       );
 
       expect(triggeredEvent.type).to.equal("input");

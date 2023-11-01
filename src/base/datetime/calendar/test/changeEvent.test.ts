@@ -14,7 +14,7 @@ describe("BaseDateTimeCalendar", () => {
 
       const el = await fixture(container);
       const buttonEl = el.querySelector(
-        "kuc-base-datetime-calendar-header .kuc-base-datetime-calendar-header__group__button--next-month"
+        "kuc-base-datetime-calendar-header .kuc-base-datetime-calendar-header__group__button--next-month",
       ) as HTMLButtonElement;
 
       buttonEl.click();
@@ -33,11 +33,11 @@ describe("BaseDateTimeCalendar", () => {
 
       const el = await fixture(container);
       const selectedEl = el.querySelector(
-        'kuc-base-datetime-calendar-body .kuc-base-datetime-calendar-body__table__date--selected[aria-selected="true"]'
+        'kuc-base-datetime-calendar-body .kuc-base-datetime-calendar-body__table__date--selected[aria-selected="true"]',
       ) as HTMLButtonElement;
 
       selectedEl.dispatchEvent(
-        new KeyboardEvent("keydown", { key: "ArrowRight" })
+        new KeyboardEvent("keydown", { key: "ArrowRight" }),
       );
       expect(triggeredEvent.type).to.equal("kuc:calendar-body-change-date");
       expect(triggeredEvent.detail.value).to.equal("2021-08-23");

@@ -17,20 +17,20 @@ describe("Dropdown", () => {
       });
       const el = await fixture(container);
       const toggle = el.querySelector(
-        ".kuc-dropdown__group__toggle"
+        ".kuc-dropdown__group__toggle",
       ) as HTMLButtonElement;
 
       toggle.click();
       await elementUpdated(container);
       let menuEl = el.querySelector(
-        ".kuc-dropdown__group__select-menu"
+        ".kuc-dropdown__group__select-menu",
       ) as HTMLDivElement;
       expect(menuEl).not.has.attribute("hidden");
 
       toggle.click();
       await elementUpdated(container);
       menuEl = el.querySelector(
-        ".kuc-dropdown__group__select-menu"
+        ".kuc-dropdown__group__select-menu",
       ) as HTMLDivElement;
       expect(menuEl).has.attribute("hidden");
     });
@@ -42,13 +42,13 @@ describe("Dropdown", () => {
       });
       const el = await fixture(container);
       const toggle = el.querySelector(
-        ".kuc-dropdown__group__toggle"
+        ".kuc-dropdown__group__toggle",
       ) as HTMLButtonElement;
 
       toggle.click();
       await elementUpdated(container);
       let menuEl = el.querySelector(
-        ".kuc-dropdown__group__select-menu"
+        ".kuc-dropdown__group__select-menu",
       ) as HTMLDivElement;
       expect(menuEl).not.has.attribute("hidden");
 
@@ -56,7 +56,7 @@ describe("Dropdown", () => {
       document.body.click();
       await elementUpdated(container);
       menuEl = el.querySelector(
-        ".kuc-dropdown__group__select-menu"
+        ".kuc-dropdown__group__select-menu",
       ) as HTMLDivElement;
       expect(menuEl).has.attribute("hidden");
     });
@@ -71,24 +71,24 @@ describe("Dropdown", () => {
       });
       const el = await fixture(container);
       const toggle = el.querySelector(
-        ".kuc-dropdown__group__toggle"
+        ".kuc-dropdown__group__toggle",
       ) as HTMLButtonElement;
 
       toggle.click();
       await elementUpdated(container);
       let menuEl = el.querySelector(
-        ".kuc-dropdown__group__select-menu"
+        ".kuc-dropdown__group__select-menu",
       ) as HTMLDivElement;
       expect(menuEl).not.has.attribute("hidden");
 
       await aTimeout(10);
       const itemsEl = el.querySelectorAll(
-        ".kuc-dropdown__group__select-menu__item"
+        ".kuc-dropdown__group__select-menu__item",
       );
       (itemsEl[3] as HTMLLIElement).click();
       await elementUpdated(container);
       menuEl = el.querySelector(
-        ".kuc-dropdown__group__select-menu"
+        ".kuc-dropdown__group__select-menu",
       ) as HTMLDivElement;
       expect(menuEl).not.has.attribute("hidden");
     });
@@ -100,38 +100,38 @@ describe("Dropdown", () => {
       });
       const el = await fixture(container);
       const toggleEl = el.querySelector(
-        ".kuc-dropdown__group__toggle"
+        ".kuc-dropdown__group__toggle",
       ) as HTMLButtonElement;
       toggleEl.click();
       const itemsEl = el.querySelectorAll(
-        ".kuc-dropdown__group__select-menu__item"
+        ".kuc-dropdown__group__select-menu__item",
       );
 
       itemsEl[2].dispatchEvent(new Event("mouseover"));
       expect(
         itemsEl[2].classList.contains(
-          "kuc-dropdown__group__select-menu__highlight"
-        )
+          "kuc-dropdown__group__select-menu__highlight",
+        ),
       ).to.equal(true);
 
       const menuEl = el.querySelector(
-        ".kuc-dropdown__group__select-menu"
+        ".kuc-dropdown__group__select-menu",
       ) as HTMLDivElement;
       menuEl.dispatchEvent(new Event("mouseleave"));
       expect(
         itemsEl[0].classList.contains(
-          "kuc-dropdown__group__select-menu__highlight"
-        )
+          "kuc-dropdown__group__select-menu__highlight",
+        ),
       ).to.equal(false);
       expect(
         itemsEl[1].classList.contains(
-          "kuc-dropdown__group__select-menu__highlight"
-        )
+          "kuc-dropdown__group__select-menu__highlight",
+        ),
       ).to.equal(false);
       expect(
         itemsEl[2].classList.contains(
-          "kuc-dropdown__group__select-menu__highlight"
-        )
+          "kuc-dropdown__group__select-menu__highlight",
+        ),
       ).to.equal(false);
     });
 
@@ -145,24 +145,24 @@ describe("Dropdown", () => {
       });
       const el = await fixture(container);
       const toggleEl = el.querySelector(
-        ".kuc-dropdown__group__toggle"
+        ".kuc-dropdown__group__toggle",
       ) as HTMLButtonElement;
       toggleEl.click();
       const itemsEl = el.querySelectorAll(
-        ".kuc-dropdown__group__select-menu__item"
+        ".kuc-dropdown__group__select-menu__item",
       );
 
       itemsEl[3].dispatchEvent(new Event("mouseover"));
       await expect(
         itemsEl[3].classList.contains(
-          "kuc-dropdown__group__select-menu__highlight"
-        )
+          "kuc-dropdown__group__select-menu__highlight",
+        ),
       ).to.equal(false);
 
       await expect(
         itemsEl[0].classList.contains(
-          "kuc-dropdown__group__select-menu__highlight"
-        )
+          "kuc-dropdown__group__select-menu__highlight",
+        ),
       ).to.equal(true);
     });
 
@@ -173,10 +173,10 @@ describe("Dropdown", () => {
       });
       const el = await fixture(container);
       const toggleEl = el.querySelector(
-        ".kuc-dropdown__group__toggle"
+        ".kuc-dropdown__group__toggle",
       ) as HTMLButtonElement;
       const menuEl = el.querySelector(
-        ".kuc-dropdown__group__select-menu"
+        ".kuc-dropdown__group__select-menu",
       ) as HTMLDivElement;
 
       toggleEl.dispatchEvent(new MouseEvent("mouseup"));
@@ -192,13 +192,13 @@ describe("Dropdown", () => {
       const container = new Dropdown({ items: initItems });
       const el = await fixture(container);
       const toggleEl = el.querySelector(
-        ".kuc-dropdown__group__toggle"
+        ".kuc-dropdown__group__toggle",
       ) as HTMLButtonElement;
       toggleEl.dispatchEvent(new KeyboardEvent("keydown", { key: "Enter" }));
       await elementUpdated(el);
 
       const menuEl = el.querySelector(
-        ".kuc-dropdown__group__select-menu"
+        ".kuc-dropdown__group__select-menu",
       ) as HTMLUListElement;
 
       expect(menuEl.hidden).to.equal(false);
@@ -208,13 +208,13 @@ describe("Dropdown", () => {
       const container = new Dropdown({ items: initItems });
       const el = await fixture(container);
       const toggleEl = el.querySelector(
-        ".kuc-dropdown__group__toggle"
+        ".kuc-dropdown__group__toggle",
       ) as HTMLButtonElement;
       toggleEl.dispatchEvent(new KeyboardEvent("keydown", { key: "ArrowUp" }));
       await elementUpdated(el);
 
       const menuEl = el.querySelector(
-        ".kuc-dropdown__group__select-menu"
+        ".kuc-dropdown__group__select-menu",
       ) as HTMLUListElement;
 
       expect(menuEl.hidden).to.equal(false);
@@ -224,15 +224,15 @@ describe("Dropdown", () => {
       const container = new Dropdown({ items: initItems });
       const el = await fixture(container);
       const toggleEl = el.querySelector(
-        ".kuc-dropdown__group__toggle"
+        ".kuc-dropdown__group__toggle",
       ) as HTMLButtonElement;
       toggleEl.dispatchEvent(
-        new KeyboardEvent("keydown", { key: "ArrowDown" })
+        new KeyboardEvent("keydown", { key: "ArrowDown" }),
       );
       await elementUpdated(el);
 
       const menuEl = el.querySelector(
-        ".kuc-dropdown__group__select-menu"
+        ".kuc-dropdown__group__select-menu",
       ) as HTMLUListElement;
 
       expect(menuEl.hidden).to.equal(false);
@@ -242,10 +242,10 @@ describe("Dropdown", () => {
       const container = new Dropdown({ items: initItems });
       const el = await fixture(container);
       const toggleEl = el.querySelector(
-        ".kuc-dropdown__group__toggle"
+        ".kuc-dropdown__group__toggle",
       ) as HTMLButtonElement;
       const menuEl = el.querySelector(
-        ".kuc-dropdown__group__select-menu"
+        ".kuc-dropdown__group__select-menu",
       ) as HTMLUListElement;
 
       toggleEl.dispatchEvent(new KeyboardEvent("keydown", { key: "Enter" }));
@@ -264,18 +264,18 @@ describe("Dropdown", () => {
       });
       const el = await fixture(container);
       const toggleEl = el.querySelector(
-        ".kuc-dropdown__group__toggle"
+        ".kuc-dropdown__group__toggle",
       ) as HTMLButtonElement;
       toggleEl.click();
       toggleEl.dispatchEvent(new KeyboardEvent("keydown", { key: "ArrowUp" }));
 
       const itemsEl = el.querySelectorAll(
-        ".kuc-dropdown__group__select-menu__item"
+        ".kuc-dropdown__group__select-menu__item",
       );
       expect(
         itemsEl[2].classList.contains(
-          "kuc-dropdown__group__select-menu__highlight"
-        )
+          "kuc-dropdown__group__select-menu__highlight",
+        ),
       ).to.equal(true);
     });
 
@@ -286,18 +286,18 @@ describe("Dropdown", () => {
       });
       const el = await fixture(container);
       const toggleEl = el.querySelector(
-        ".kuc-dropdown__group__toggle"
+        ".kuc-dropdown__group__toggle",
       ) as HTMLButtonElement;
       toggleEl.click();
       toggleEl.dispatchEvent(new KeyboardEvent("keydown", { key: "Up" }));
 
       const itemsEl = el.querySelectorAll(
-        ".kuc-dropdown__group__select-menu__item"
+        ".kuc-dropdown__group__select-menu__item",
       );
       expect(
         itemsEl[2].classList.contains(
-          "kuc-dropdown__group__select-menu__highlight"
-        )
+          "kuc-dropdown__group__select-menu__highlight",
+        ),
       ).to.equal(true);
     });
 
@@ -311,23 +311,23 @@ describe("Dropdown", () => {
       });
       const el = await fixture(container);
       const toggleEl = el.querySelector(
-        ".kuc-dropdown__group__toggle"
+        ".kuc-dropdown__group__toggle",
       ) as HTMLButtonElement;
       toggleEl.click();
       toggleEl.dispatchEvent(new KeyboardEvent("keydown", { key: "ArrowUp" }));
 
       const itemsEl = el.querySelectorAll(
-        ".kuc-dropdown__group__select-menu__item"
+        ".kuc-dropdown__group__select-menu__item",
       );
       await expect(
         itemsEl[2].classList.contains(
-          "kuc-dropdown__group__select-menu__highlight"
-        )
+          "kuc-dropdown__group__select-menu__highlight",
+        ),
       ).to.equal(true);
       await expect(
         itemsEl[3].classList.contains(
-          "kuc-dropdown__group__select-menu__highlight"
-        )
+          "kuc-dropdown__group__select-menu__highlight",
+        ),
       ).to.equal(false);
     });
 
@@ -341,23 +341,23 @@ describe("Dropdown", () => {
       });
       const el = await fixture(container);
       const toggleEl = el.querySelector(
-        ".kuc-dropdown__group__toggle"
+        ".kuc-dropdown__group__toggle",
       ) as HTMLButtonElement;
       toggleEl.click();
       toggleEl.dispatchEvent(new KeyboardEvent("keydown", { key: "Up" }));
 
       const itemsEl = el.querySelectorAll(
-        ".kuc-dropdown__group__select-menu__item"
+        ".kuc-dropdown__group__select-menu__item",
       );
       await expect(
         itemsEl[2].classList.contains(
-          "kuc-dropdown__group__select-menu__highlight"
-        )
+          "kuc-dropdown__group__select-menu__highlight",
+        ),
       ).to.equal(true);
       await expect(
         itemsEl[3].classList.contains(
-          "kuc-dropdown__group__select-menu__highlight"
-        )
+          "kuc-dropdown__group__select-menu__highlight",
+        ),
       ).to.equal(false);
     });
 
@@ -368,20 +368,20 @@ describe("Dropdown", () => {
       });
       const el = await fixture(container);
       const toggleEl = el.querySelector(
-        ".kuc-dropdown__group__toggle"
+        ".kuc-dropdown__group__toggle",
       ) as HTMLButtonElement;
       toggleEl.click();
       toggleEl.dispatchEvent(
-        new KeyboardEvent("keydown", { key: "ArrowDown" })
+        new KeyboardEvent("keydown", { key: "ArrowDown" }),
       );
 
       const itemsEl = el.querySelectorAll(
-        ".kuc-dropdown__group__select-menu__item"
+        ".kuc-dropdown__group__select-menu__item",
       );
       expect(
         itemsEl[1].classList.contains(
-          "kuc-dropdown__group__select-menu__highlight"
-        )
+          "kuc-dropdown__group__select-menu__highlight",
+        ),
       ).to.equal(true);
     });
 
@@ -392,18 +392,18 @@ describe("Dropdown", () => {
       });
       const el = await fixture(container);
       const toggleEl = el.querySelector(
-        ".kuc-dropdown__group__toggle"
+        ".kuc-dropdown__group__toggle",
       ) as HTMLButtonElement;
       toggleEl.click();
       toggleEl.dispatchEvent(new KeyboardEvent("keydown", { key: "Down" }));
 
       const itemsEl = el.querySelectorAll(
-        ".kuc-dropdown__group__select-menu__item"
+        ".kuc-dropdown__group__select-menu__item",
       );
       expect(
         itemsEl[1].classList.contains(
-          "kuc-dropdown__group__select-menu__highlight"
-        )
+          "kuc-dropdown__group__select-menu__highlight",
+        ),
       ).to.equal(true);
     });
 
@@ -417,25 +417,25 @@ describe("Dropdown", () => {
       });
       const el = await fixture(container);
       const toggleEl = el.querySelector(
-        ".kuc-dropdown__group__toggle"
+        ".kuc-dropdown__group__toggle",
       ) as HTMLButtonElement;
       toggleEl.click();
       toggleEl.dispatchEvent(
-        new KeyboardEvent("keydown", { key: "ArrowDown" })
+        new KeyboardEvent("keydown", { key: "ArrowDown" }),
       );
 
       const itemsEl = el.querySelectorAll(
-        ".kuc-dropdown__group__select-menu__item"
+        ".kuc-dropdown__group__select-menu__item",
       );
       await expect(
         itemsEl[0].classList.contains(
-          "kuc-dropdown__group__select-menu__highlight"
-        )
+          "kuc-dropdown__group__select-menu__highlight",
+        ),
       ).to.equal(true);
       await expect(
         itemsEl[3].classList.contains(
-          "kuc-dropdown__group__select-menu__highlight"
-        )
+          "kuc-dropdown__group__select-menu__highlight",
+        ),
       ).to.equal(false);
     });
 
@@ -449,23 +449,23 @@ describe("Dropdown", () => {
       });
       const el = await fixture(container);
       const toggleEl = el.querySelector(
-        ".kuc-dropdown__group__toggle"
+        ".kuc-dropdown__group__toggle",
       ) as HTMLButtonElement;
       toggleEl.click();
       toggleEl.dispatchEvent(new KeyboardEvent("keydown", { key: "Down" }));
 
       const itemsEl = el.querySelectorAll(
-        ".kuc-dropdown__group__select-menu__item"
+        ".kuc-dropdown__group__select-menu__item",
       );
       await expect(
         itemsEl[0].classList.contains(
-          "kuc-dropdown__group__select-menu__highlight"
-        )
+          "kuc-dropdown__group__select-menu__highlight",
+        ),
       ).to.equal(true);
       await expect(
         itemsEl[3].classList.contains(
-          "kuc-dropdown__group__select-menu__highlight"
-        )
+          "kuc-dropdown__group__select-menu__highlight",
+        ),
       ).to.equal(false);
     });
 
@@ -476,7 +476,7 @@ describe("Dropdown", () => {
       });
       const el = await fixture(container);
       const toggleEl = el.querySelector(
-        ".kuc-dropdown__group__toggle"
+        ".kuc-dropdown__group__toggle",
       ) as HTMLButtonElement;
       toggleEl.dispatchEvent(new KeyboardEvent("keydown", { key: "Enter" }));
       await elementUpdated(el);
@@ -485,12 +485,12 @@ describe("Dropdown", () => {
       await elementUpdated(el);
 
       const itemsEl = el.querySelectorAll(
-        ".kuc-dropdown__group__select-menu__item"
+        ".kuc-dropdown__group__select-menu__item",
       );
       expect(
         itemsEl[0].classList.contains(
-          "kuc-dropdown__group__select-menu__highlight"
-        )
+          "kuc-dropdown__group__select-menu__highlight",
+        ),
       ).to.equal(true);
     });
 
@@ -504,7 +504,7 @@ describe("Dropdown", () => {
       });
       const el = await fixture(container);
       const toggleEl = el.querySelector(
-        ".kuc-dropdown__group__toggle"
+        ".kuc-dropdown__group__toggle",
       ) as HTMLButtonElement;
       toggleEl.dispatchEvent(new KeyboardEvent("keydown", { key: "Enter" }));
       await elementUpdated(el);
@@ -513,17 +513,17 @@ describe("Dropdown", () => {
       await elementUpdated(el);
 
       const itemsEl = el.querySelectorAll(
-        ".kuc-dropdown__group__select-menu__item"
+        ".kuc-dropdown__group__select-menu__item",
       );
       await expect(
         itemsEl[1].classList.contains(
-          "kuc-dropdown__group__select-menu__highlight"
-        )
+          "kuc-dropdown__group__select-menu__highlight",
+        ),
       ).to.equal(true);
       await expect(
         itemsEl[0].classList.contains(
-          "kuc-dropdown__group__select-menu__highlight"
-        )
+          "kuc-dropdown__group__select-menu__highlight",
+        ),
       ).to.equal(false);
     });
 
@@ -534,7 +534,7 @@ describe("Dropdown", () => {
       });
       const el = await fixture(container);
       const toggleEl = el.querySelector(
-        ".kuc-dropdown__group__toggle"
+        ".kuc-dropdown__group__toggle",
       ) as HTMLButtonElement;
       toggleEl.dispatchEvent(new KeyboardEvent("keydown", { key: "Enter" }));
       await elementUpdated(el);
@@ -543,12 +543,12 @@ describe("Dropdown", () => {
       await elementUpdated(el);
 
       const itemsEl = el.querySelectorAll(
-        ".kuc-dropdown__group__select-menu__item"
+        ".kuc-dropdown__group__select-menu__item",
       );
       expect(
         itemsEl[2].classList.contains(
-          "kuc-dropdown__group__select-menu__highlight"
-        )
+          "kuc-dropdown__group__select-menu__highlight",
+        ),
       ).to.equal(true);
     });
 
@@ -562,7 +562,7 @@ describe("Dropdown", () => {
       });
       const el = await fixture(container);
       const toggleEl = el.querySelector(
-        ".kuc-dropdown__group__toggle"
+        ".kuc-dropdown__group__toggle",
       ) as HTMLButtonElement;
       toggleEl.dispatchEvent(new KeyboardEvent("keydown", { key: "Enter" }));
       await elementUpdated(el);
@@ -571,17 +571,17 @@ describe("Dropdown", () => {
       await elementUpdated(el);
 
       const itemsEl = el.querySelectorAll(
-        ".kuc-dropdown__group__select-menu__item"
+        ".kuc-dropdown__group__select-menu__item",
       );
       await expect(
         itemsEl[2].classList.contains(
-          "kuc-dropdown__group__select-menu__highlight"
-        )
+          "kuc-dropdown__group__select-menu__highlight",
+        ),
       ).to.equal(true);
       await expect(
         itemsEl[3].classList.contains(
-          "kuc-dropdown__group__select-menu__highlight"
-        )
+          "kuc-dropdown__group__select-menu__highlight",
+        ),
       ).to.equal(false);
     });
 
@@ -592,7 +592,7 @@ describe("Dropdown", () => {
       });
       const el = await fixture(container);
       const toggleEl = el.querySelector(
-        ".kuc-dropdown__group__toggle"
+        ".kuc-dropdown__group__toggle",
       ) as HTMLButtonElement;
       toggleEl.dispatchEvent(new KeyboardEvent("keydown", { key: "Enter" }));
       await elementUpdated(el);
@@ -601,7 +601,7 @@ describe("Dropdown", () => {
       await elementUpdated(el);
 
       const menuEl = el.querySelector(
-        ".kuc-dropdown__group__select-menu"
+        ".kuc-dropdown__group__select-menu",
       ) as HTMLUListElement;
 
       expect(menuEl.hidden).to.equal(false);
@@ -614,13 +614,13 @@ describe("Dropdown", () => {
       });
       const el = await fixture(container);
       const toggleEl = el.querySelector(
-        ".kuc-dropdown__group__toggle"
+        ".kuc-dropdown__group__toggle",
       ) as HTMLButtonElement;
       toggleEl.dispatchEvent(new KeyboardEvent("keydown", { key: "Enter" }));
       await elementUpdated(el);
 
       toggleEl.dispatchEvent(
-        new KeyboardEvent("keydown", { key: "ArrowDown" })
+        new KeyboardEvent("keydown", { key: "ArrowDown" }),
       );
       await elementUpdated(el);
 
@@ -634,10 +634,10 @@ describe("Dropdown", () => {
       const container = new Dropdown({ items: initItems });
       const el = await fixture(container);
       const toggleEl = el.querySelector(
-        ".kuc-dropdown__group__toggle"
+        ".kuc-dropdown__group__toggle",
       ) as HTMLButtonElement;
       const menuEl = el.querySelector(
-        ".kuc-dropdown__group__select-menu"
+        ".kuc-dropdown__group__select-menu",
       ) as HTMLUListElement;
 
       toggleEl.click();

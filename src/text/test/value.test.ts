@@ -8,7 +8,7 @@ describe("Text", () => {
       const container = new Text();
       const el = await fixture(container);
       const inputEl = el.querySelector(
-        ".kuc-text__group__input-form__input-outer__input"
+        ".kuc-text__group__input-form__input-outer__input",
       ) as HTMLInputElement;
       expect(inputEl.value).to.be.equal("");
     });
@@ -17,7 +17,7 @@ describe("Text", () => {
       const container = new Text({ value: "Apple" });
       const el = await fixture(container);
       const inputEl = el.querySelector(
-        ".kuc-text__group__input-form__input-outer__input"
+        ".kuc-text__group__input-form__input-outer__input",
       ) as HTMLInputElement;
       expect(inputEl.value).to.be.equal("Apple");
     });
@@ -27,7 +27,7 @@ describe("Text", () => {
       container.value = "Apple";
       const el = await fixture(container);
       const inputEl = el.querySelector(
-        ".kuc-text__group__input-form__input-outer__input"
+        ".kuc-text__group__input-form__input-outer__input",
       ) as HTMLInputElement;
       expect(inputEl.value).to.be.equal("Apple");
     });
@@ -37,7 +37,7 @@ describe("Text", () => {
       container.value = "Orange";
       const el = await fixture(container);
       const inputEl = el.querySelector(
-        ".kuc-text__group__input-form__input-outer__input"
+        ".kuc-text__group__input-form__input-outer__input",
       ) as HTMLInputElement;
       expect(inputEl.value).to.be.equal("Orange");
     });

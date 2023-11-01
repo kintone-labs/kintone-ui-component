@@ -184,7 +184,7 @@ let exportTooltip;
         this._firstChildEl.removeAttribute("title");
         this._firstChildEl.setAttribute(
           "aria-describedby",
-          `${this._GUID}-title`
+          `${this._GUID}-title`,
         );
         return;
       }

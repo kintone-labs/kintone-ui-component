@@ -16,14 +16,14 @@ describe("Combobox", () => {
       expect(container.value).to.be.equal("");
 
       const toggleInput = el.querySelector(
-        ".kuc-combobox__group__toggle__input"
+        ".kuc-combobox__group__toggle__input",
       ) as HTMLInputElement;
       toggleInput.click();
       await elementUpdated(el);
       expect(toggleInput?.value).to.equal("");
 
       const itemsEl = el.querySelectorAll(
-        ".kuc-combobox__group__select-menu__item"
+        ".kuc-combobox__group__select-menu__item",
       );
       const svgsEl0 = itemsEl[0].querySelectorAll("svg");
       expect(svgsEl0.length).to.equal(0);
@@ -47,14 +47,14 @@ describe("Combobox", () => {
       expect(container.value).to.be.equal(initItems[1].value);
 
       const toggleInput = el.querySelector(
-        ".kuc-combobox__group__toggle__input"
+        ".kuc-combobox__group__toggle__input",
       ) as HTMLInputElement;
       toggleInput.click();
       await elementUpdated(el);
       expect(toggleInput?.value).to.equal(initItems[1].label);
 
       const itemsEl = el.querySelectorAll(
-        ".kuc-combobox__group__select-menu__item"
+        ".kuc-combobox__group__select-menu__item",
       );
       const svgsEl0 = itemsEl[0].querySelectorAll("svg");
       expect(svgsEl0.length).to.equal(0);
@@ -81,14 +81,14 @@ describe("Combobox", () => {
       expect(container.value).to.be.equal("banana");
 
       const toggleInput = el.querySelector(
-        ".kuc-combobox__group__toggle__input"
+        ".kuc-combobox__group__toggle__input",
       ) as HTMLInputElement;
       toggleInput.click();
       await elementUpdated(el);
       expect(toggleInput?.value).to.equal("Banana");
 
       const itemsEl = el.querySelectorAll(
-        ".kuc-combobox__group__select-menu__item"
+        ".kuc-combobox__group__select-menu__item",
       );
       const svgsEl3 = itemsEl[3].querySelectorAll("svg");
       expect(svgsEl3.length).to.equal(1);
@@ -107,14 +107,14 @@ describe("Combobox", () => {
     expect(container.value).to.be.equal(initItems[1].value);
 
     const toggleInput = el.querySelector(
-      ".kuc-combobox__group__toggle__input"
+      ".kuc-combobox__group__toggle__input",
     ) as HTMLInputElement;
     toggleInput.click();
     await elementUpdated(el);
     expect(toggleInput?.value).to.equal(initItems[1].label);
 
     const itemsEl = el.querySelectorAll(
-      ".kuc-combobox__group__select-menu__item"
+      ".kuc-combobox__group__select-menu__item",
     );
     const svgsEl0 = itemsEl[0].querySelectorAll("svg");
     expect(svgsEl0.length).to.equal(0);
@@ -141,14 +141,14 @@ describe("Combobox", () => {
     expect(container.value).to.be.equal("");
 
     const toggleInput = el.querySelector(
-      ".kuc-combobox__group__toggle__input"
+      ".kuc-combobox__group__toggle__input",
     ) as HTMLInputElement;
     toggleInput.click();
     await elementUpdated(el);
     expect(toggleInput?.value).to.equal("");
 
     const itemsEl = el.querySelectorAll(
-      ".kuc-combobox__group__select-menu__item"
+      ".kuc-combobox__group__select-menu__item",
     );
     const svgsEl0 = itemsEl[0].querySelectorAll("svg");
     expect(svgsEl0.length).to.equal(0);
@@ -172,14 +172,14 @@ describe("Combobox", () => {
     expect(container.value).to.be.equal("");
 
     const toggleInput = el.querySelector(
-      ".kuc-combobox__group__toggle__input"
+      ".kuc-combobox__group__toggle__input",
     ) as HTMLInputElement;
     toggleInput.click();
     await elementUpdated(el);
     expect(toggleInput?.value).to.equal("");
 
     const itemsEl = el.querySelectorAll(
-      ".kuc-combobox__group__select-menu__item"
+      ".kuc-combobox__group__select-menu__item",
     );
     const svgsEl0 = itemsEl[0].querySelectorAll("svg");
     expect(svgsEl0.length).to.equal(0);
@@ -203,14 +203,14 @@ describe("Combobox", () => {
     expect(container.value).to.be.equal("nonexistent");
 
     const toggleInput = el.querySelector(
-      ".kuc-combobox__group__toggle__input"
+      ".kuc-combobox__group__toggle__input",
     ) as HTMLInputElement;
     toggleInput.click();
     await elementUpdated(el);
     expect(toggleInput?.value).to.equal("");
 
     const itemsEl = el.querySelectorAll(
-      ".kuc-combobox__group__select-menu__item"
+      ".kuc-combobox__group__select-menu__item",
     );
     const svgsEl0 = itemsEl[0].querySelectorAll("svg");
     expect(svgsEl0.length).to.equal(0);

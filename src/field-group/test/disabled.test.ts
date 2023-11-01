@@ -8,7 +8,7 @@ describe("FieldGroup", () => {
       const container = new FieldGroup({ content: "FieldGroup's content" });
       const el = await fixture(container);
       const toggleEl = el.querySelector(
-        ".kuc-field-group__group__toggle"
+        ".kuc-field-group__group__toggle",
       ) as HTMLButtonElement;
 
       expect(toggleEl.hasAttribute("disabled")).to.equal(false);
@@ -21,7 +21,7 @@ describe("FieldGroup", () => {
       });
       const el = await fixture(container);
       const toggleEl = el.querySelector(
-        ".kuc-field-group__group__toggle"
+        ".kuc-field-group__group__toggle",
       ) as HTMLButtonElement;
 
       expect(toggleEl.hasAttribute("disabled")).to.equal(true);
@@ -35,7 +35,7 @@ describe("FieldGroup", () => {
       container.disabled = true;
       const el = await fixture(container);
       const toggleEl = el.querySelector(
-        ".kuc-field-group__group__toggle"
+        ".kuc-field-group__group__toggle",
       ) as HTMLButtonElement;
 
       expect(toggleEl.hasAttribute("disabled")).to.equal(true);
@@ -49,7 +49,7 @@ describe("FieldGroup", () => {
       container.disabled = false;
       const el = await fixture(container);
       const toggleEl = el.querySelector(
-        ".kuc-field-group__group__toggle"
+        ".kuc-field-group__group__toggle",
       ) as HTMLButtonElement;
 
       expect(toggleEl.hasAttribute("disabled")).to.equal(false);

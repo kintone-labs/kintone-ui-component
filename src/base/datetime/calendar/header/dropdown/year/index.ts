@@ -194,6 +194,6 @@ if (!window.customElements.get("kuc-base-datetime-header-year")) {
   createStyleOnHeader(CALENDAR_HEADER_YEAR_CSS);
   window.customElements.define(
     "kuc-base-datetime-header-year",
-    BaseDateTimeHeaderYear
+    BaseDateTimeHeaderYear,
   );
 }

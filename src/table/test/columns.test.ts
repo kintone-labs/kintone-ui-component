@@ -98,10 +98,10 @@ describe("Table", () => {
       const secondRow = tableEl.rows[2] as HTMLTableRowElement;
 
       const firstDropdown = firstRow?.cells[0].querySelector(
-        "kuc-dropdown"
+        "kuc-dropdown",
       ) as any;
       const secondDropdown = secondRow?.cells[0].querySelector(
-        "kuc-dropdown"
+        "kuc-dropdown",
       ) as any;
       const firstText = firstRow?.cells[1].querySelector("kuc-text") as any;
       const secondText = secondRow?.cells[1].querySelector("kuc-text") as any;
@@ -135,7 +135,7 @@ describe("Table", () => {
       expect(columnsEl.length).to.equal(2);
       expect((columnsEl[0] as HTMLTableCellElement).innerText).to.equal("City");
       expect((columnsEl[1] as HTMLTableCellElement).innerText).to.equal(
-        "Country"
+        "Country",
       );
     });
 
@@ -169,7 +169,7 @@ describe("Table", () => {
       const handleError = (event: any) => {
         const errorMsg = event.reason.message;
         expect(errorMsg).to.equal(
-          "'field' property is not specified in columns."
+          "'field' property is not specified in columns.",
         );
         window.removeEventListener("unhandledrejection", handleError);
         done();

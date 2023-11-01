@@ -194,7 +194,7 @@ export class BaseDateTimeListBox extends KucBase {
 
     const itemsEl = Array.from(this._itemsEl);
     const itemSelected = itemsEl.filter(
-      (item) => item.getAttribute("aria-selected") === "true"
+      (item) => item.getAttribute("aria-selected") === "true",
     )[0];
     if (!itemSelected) return;
 
@@ -282,7 +282,7 @@ export class BaseDateTimeListBox extends KucBase {
     if (!this._highlightItemEl) return;
     this._highlightItemEl.setAttribute("tabindex", "-1");
     this._highlightItemEl.classList.remove(
-      "kuc-base-datetime-listbox__listbox--highlight"
+      "kuc-base-datetime-listbox__listbox--highlight",
     );
   }
 
@@ -322,8 +322,8 @@ export class BaseDateTimeListBox extends KucBase {
     let liEl = listLiEl.find(
       (element) =>
         new Date(
-          Date.parse(`2021/01/01 ${(element as HTMLLIElement).title}`)
-        ) >= itemTimeObj
+          Date.parse(`2021/01/01 ${(element as HTMLLIElement).title}`),
+        ) >= itemTimeObj,
     ) as HTMLLIElement;
     if (!liEl) {
       liEl = listLiEl[listLiEl.length - 1] as HTMLLIElement;
@@ -377,6 +377,6 @@ if (!window.customElements.get("kuc-base-datetime-listbox")) {
   createStyleOnHeader(BASE_DATETIME_LISTBOX_CSS);
   window.customElements.define(
     "kuc-base-datetime-listbox",
-    BaseDateTimeListBox
+    BaseDateTimeListBox,
   );
 }

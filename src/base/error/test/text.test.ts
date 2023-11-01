@@ -7,7 +7,7 @@ describe("BaseError", () => {
       const container = document.createElement("kuc-base-error");
       const el = await fixture(container);
       const textEl = el.querySelector(
-        ".kuc-base-error__error"
+        ".kuc-base-error__error",
       ) as HTMLDivElement;
       expect(textEl.hasAttribute("hidden")).to.equal(true);
     });
@@ -17,7 +17,7 @@ describe("BaseError", () => {
       container.setAttribute("text", "text");
       const el = await fixture(container);
       const textEl = el.querySelector(
-        ".kuc-base-error__error"
+        ".kuc-base-error__error",
       ) as HTMLDivElement;
       expect(textEl.innerText).to.equal("text");
     });
@@ -29,7 +29,7 @@ describe("BaseError", () => {
       container.setAttribute("text", "update");
       await elementUpdated(el);
       const textEl = el.querySelector(
-        ".kuc-base-error__error"
+        ".kuc-base-error__error",
       ) as HTMLDivElement;
       expect(textEl.innerText).to.equal("update");
     });

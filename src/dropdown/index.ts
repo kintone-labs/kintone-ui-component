@@ -105,7 +105,7 @@ let exportDropdown;
 
     private _getSelectedLabel() {
       const items = this.items.filter((item, index) =>
-        this._isCheckedItem(item, index)
+        this._isCheckedItem(item, index),
       );
       if (items.length === 0) return "";
       return items[0].label === undefined ? items[0].value : items[0].label;
@@ -147,7 +147,7 @@ let exportDropdown;
       if (changedProperties.has("selectedIndex")) {
         if (!validateNumberType(this.selectedIndex)) {
           this.throwErrorAfterUpdateComplete(
-            ERROR_MESSAGE.SELECTED_INDEX.IS_NOT_NUMBER
+            ERROR_MESSAGE.SELECTED_INDEX.IS_NOT_NUMBER,
           );
           return false;
         }
@@ -186,12 +186,12 @@ let exportDropdown;
       }
 
       const firstIndex = this.items.findIndex(
-        (item) => item.value === this.value
+        (item) => item.value === this.value,
       );
       if (firstIndex === -1) return -1;
       const selectedIndex = this.items.findIndex(
         (item, index) =>
-          item.value === this.value && index === this.selectedIndex
+          item.value === this.value && index === this.selectedIndex,
       );
       return selectedIndex > -1 ? selectedIndex : firstIndex;
     }
@@ -250,7 +250,7 @@ let exportDropdown;
             @mousedown="${this._handleMouseDownMenu}"
           >
             ${this.items.map((item, number) =>
-              this._getItemTemplate(item, number)
+              this._getItemTemplate(item, number),
             )}
           </ul>
           <kuc-base-error
@@ -286,7 +286,7 @@ let exportDropdown;
           document.removeEventListener(
             "click",
             this._handleClickDocument,
-            true
+            true,
           );
         }, 1);
       }
@@ -294,7 +294,7 @@ let exportDropdown;
 
     private _handleMouseDownDropdownItem(event: MouseEvent) {
       const itemEl = this._getItemElementWhenMouseOverDown(
-        event.target as HTMLElement
+        event.target as HTMLElement,
       );
       const value = itemEl.getAttribute("value") as string;
       const selectedIndex = itemEl.dataset.index || "0";
@@ -303,7 +303,7 @@ let exportDropdown;
 
     private _handleMouseOverDropdownItem(event: Event) {
       const itemEl = this._getItemElementWhenMouseOverDown(
-        event.target as HTMLElement
+        event.target as HTMLElement,
       );
       this._actionHighlightMenuItem(itemEl);
     }
@@ -341,7 +341,7 @@ let exportDropdown;
         Array.from(this._disabledItemsEl).some(
           (disabledItemEl: HTMLLIElement) =>
             disabledItemEl === event.target ||
-            disabledItemEl.contains(event.target as HTMLElement)
+            disabledItemEl.contains(event.target as HTMLElement),
         )
       ) {
         return;
@@ -548,7 +548,7 @@ let exportDropdown;
     }
 
     private _setHighlightAndActiveDescendantMenu(
-      selectedItemEl: HTMLLIElement
+      selectedItemEl: HTMLLIElement,
     ) {
       this._actionHighlightMenuItem(selectedItemEl);
       this._actionSetActiveDescendant(selectedItemEl.id);
@@ -746,7 +746,7 @@ let exportDropdown;
     }
 
     private _getItemElementWhenMouseOverDown(
-      eventTarget: HTMLElement
+      eventTarget: HTMLElement,
     ): HTMLLIElement {
       if (
         eventTarget.classList.value
@@ -757,7 +757,7 @@ let exportDropdown;
       }
 
       return this._getItemElementWhenMouseOverDown(
-        eventTarget.parentElement as HTMLElement
+        eventTarget.parentElement as HTMLElement,
       );
     }
   }

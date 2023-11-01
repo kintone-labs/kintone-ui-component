@@ -9,7 +9,7 @@ describe("Textarea", () => {
 
       const el = await fixture(container);
       const textAreaEl = el.querySelector(
-        ".kuc-textarea__group__textarea"
+        ".kuc-textarea__group__textarea",
       ) as HTMLTextAreaElement;
 
       expect(textAreaEl.getAttribute("placeholder")).to.equal("");
@@ -20,7 +20,7 @@ describe("Textarea", () => {
 
       const el = await fixture(container);
       const textAreaEl = el.querySelector(
-        ".kuc-textarea__group__textarea"
+        ".kuc-textarea__group__textarea",
       ) as HTMLTextAreaElement;
 
       expect(textAreaEl.getAttribute("placeholder")).to.equal("Fruit");
@@ -32,7 +32,7 @@ describe("Textarea", () => {
 
       const el = await fixture(container);
       const textAreaEl = el.querySelector(
-        ".kuc-textarea__group__textarea"
+        ".kuc-textarea__group__textarea",
       ) as HTMLTextAreaElement;
 
       expect(textAreaEl.getAttribute("placeholder")).to.equal("Fruit");
@@ -44,7 +44,7 @@ describe("Textarea", () => {
 
       const el = await fixture(container);
       const textAreaEl = el.querySelector(
-        ".kuc-textarea__group__textarea"
+        ".kuc-textarea__group__textarea",
       ) as HTMLTextAreaElement;
 
       expect(textAreaEl.getAttribute("placeholder")).to.equal("Food");

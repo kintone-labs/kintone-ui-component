@@ -10,7 +10,7 @@ describe("Context", () => {
         'メイリオ, "Hiragino Kaku Gothic ProN", Meiryo, sans-serif';
       document.body.appendChild(elm);
       expect(createContextElm(elm).style.fontFamily).to.equal(
-        'メイリオ, "Hiragino Kaku Gothic ProN", Meiryo, sans-serif'
+        'メイリオ, "Hiragino Kaku Gothic ProN", Meiryo, sans-serif',
       );
     });
   });
