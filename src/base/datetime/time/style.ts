@@ -84,6 +84,8 @@ export const BASE_TIME_CSS = `
 .kuc-base-time__group--disabled {
   background-color: #d4d7d7;
   box-shadow: none;
+  color: #888888;
+  cursor: not-allowed;
 } 
 .kuc-base-time__group--disabled span,
 .kuc-base-time__group__hours:disabled,
