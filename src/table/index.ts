@@ -103,7 +103,10 @@ let exportTable;
     render() {
       return !this.columns || this.columns.length < 1
         ? html`<table class="kuc-table__table">
-            <caption class="kuc-table__table__label" ?hidden="${!this.label}">
+            <caption
+              class="kuc-table__table__label kuc-table__table__label--no-column"
+              ?hidden="${!this.label}"
+            >
               ${this.label}
             </caption>
           </table>`

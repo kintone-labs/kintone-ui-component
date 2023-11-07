@@ -49,6 +49,9 @@ export const READ_ONLY_TABLE_CSS = `
   .kuc-readonly-table__table__label[hidden] {
     display: none;
   }
+  .kuc-readonly-table__table__label--no-column {
+    overflow-wrap: break-word;
+  }
   .kuc-readonly-table__table__header__cell {
     background-color: var(--kuc-readonly-table-header-background-color, #3498db);
     color: var(--kuc-readonly-table-header-color, #ffffff);

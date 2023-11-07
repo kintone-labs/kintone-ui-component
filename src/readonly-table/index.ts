@@ -91,7 +91,7 @@ let exportReadOnlyTable;
         ? html`
             <table class="kuc-readonly-table__table">
               <caption
-                class="kuc-readonly-table__table__label"
+                class="kuc-readonly-table__table__label kuc-readonly-table__table__label--no-column"
                 ?hidden="${!this.label}"
               >
                 ${this.label}
