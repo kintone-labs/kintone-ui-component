@@ -94,7 +94,7 @@ Base1.args = {
       disabled: true,
     },
   ],
-  value: "apple",
+  value: "orange",
   selectedIndex: 2,
   label: "フルーツ一覧",
   requiredIcon: true,
