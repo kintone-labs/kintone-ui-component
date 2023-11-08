@@ -97,7 +97,8 @@ const mobileDropdown = new Kuc.MobileDropdown({
     },
     {
       label: 'apple',
-      value: 'Apple'
+      value: 'Apple',
+      disabled: true
     }
   ],
   value: 'Orange',
