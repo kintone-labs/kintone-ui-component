@@ -155,11 +155,13 @@ let exportMobileRadioButton;
             value="${item.value !== undefined ? item.value : ""}"
             aria-invalid="${this.error !== ""}"
             aria-required="${this.requiredIcon}"
-            ?disabled="${this.disabled}"
+            ?disabled="${this.disabled || item.disabled}"
             @change="${this._handleChangeInput}"
           />
           <label
-            class="kuc-mobile-radio-button__group__select-menu__item__label"
+            class="kuc-mobile-radio-button__group__select-menu__item__label ${item.disabled
+              ? " kuc-mobile-radio-button__group__select-menu__item__label--disabled"
+              : ""}"
             for="${this._GUID}-item-${index}"
             >${this._getRadioIconSvgTemplate(this.disabled, isCheckedItem)}
             <div

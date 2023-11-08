@@ -107,7 +107,8 @@ export const MOBILE_RADIO_BUTTON_CSS = `
     padding-left: 35px;
   }
 
-  .kuc-mobile-radio-button__group__select-menu[disabled] {
+  .kuc-mobile-radio-button__group__select-menu[disabled], 
+  .kuc-mobile-radio-button__group__select-menu__item__label--disabled {
     background-color: #d5d7d9;
     color: #999999;
     -webkit-text-fill-color: #999999;

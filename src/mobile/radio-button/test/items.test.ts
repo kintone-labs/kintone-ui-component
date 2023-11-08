@@ -19,7 +19,10 @@ const replacedItems = [
   { label: "Apple", value: "apple" },
 ];
 
-const dupplicatedItems = [{ value: "apple" }, { value: "apple" }];
+const disabledItems = [
+  { label: "Orange", value: "orange" },
+  { label: "Apple", value: "apple", disabled: true },
+];
 
 describe("MobileRadioButton", () => {
   describe("items", () => {
@@ -208,6 +211,18 @@ describe("MobileRadioButton", () => {
       const container = new MobileRadioButton();
       container.items = null;
       fixture(container);
+    });
+
+    it("option should have disabled attribute when item with disabled is true", async () => {
+      const container = new MobileRadioButton({ items: disabledItems });
+      const el = await fixture(container);
+      const itemsEl = el.querySelectorAll(
+        ".kuc-mobile-radio-button__group__select-menu__item",
+      );
+      const inputEl0 = itemsEl[0].querySelector("input") as HTMLInputElement;
+      expect(inputEl0).to.not.have.attr("disabled");
+      const inputEl1 = itemsEl[1].querySelector("input") as HTMLInputElement;
+      expect(inputEl1).to.have.attr("disabled");
     });
   });
 });
