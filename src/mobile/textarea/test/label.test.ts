@@ -9,12 +9,12 @@ describe("MobileTextArea", () => {
       const el = await fixture(container);
 
       const labelEl = el.querySelector(
-        ".kuc-mobile-textarea__label"
+        ".kuc-mobile-textarea__label",
       ) as HTMLLegendElement;
       expect(labelEl.hasAttribute("hidden")).to.equal(true);
 
       const labelTextEl = el.querySelector(
-        ".kuc-base-mobile-label__text"
+        ".kuc-base-mobile-label__text",
       ) as HTMLSpanElement;
       expect(labelTextEl.textContent).to.equal("");
     });
@@ -24,12 +24,12 @@ describe("MobileTextArea", () => {
       const el = await fixture(container);
 
       const labelEl = el.querySelector(
-        ".kuc-mobile-textarea__label"
+        ".kuc-mobile-textarea__label",
       ) as HTMLLegendElement;
       expect(labelEl.hasAttribute("hidden")).to.equal(false);
 
       const labelTextEl = el.querySelector(
-        ".kuc-base-mobile-label__text"
+        ".kuc-base-mobile-label__text",
       ) as HTMLSpanElement;
       expect(labelTextEl.textContent).to.equal("options-label");
     });
@@ -42,12 +42,12 @@ describe("MobileTextArea", () => {
 
       const el = await fixture(container);
       const labelEl = el.querySelector(
-        ".kuc-mobile-textarea__label"
+        ".kuc-mobile-textarea__label",
       ) as HTMLLegendElement;
       expect(labelEl.hasAttribute("hidden")).to.equal(false);
 
       const labelTextEl = el.querySelector(
-        ".kuc-base-mobile-label__text"
+        ".kuc-base-mobile-label__text",
       ) as HTMLSpanElement;
       expect(labelTextEl.textContent).to.equal("replace-label");
     });

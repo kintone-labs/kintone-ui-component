@@ -1,6 +1,7 @@
 ---
 id: tooltip
 title: Tooltip
+description: Tooltip は要素にホバーしたりフォーカスしたりする時に、対象となる要素のラベルや短い説明を表示します。
 sidebar_label: Tooltip
 ---
 

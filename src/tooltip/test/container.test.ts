@@ -8,7 +8,7 @@ describe("Tooltip", () => {
       const container = new Tooltip();
       const el = await fixture(container);
       const containerEl = el.querySelector(
-        ".kuc-tooltip__group__container"
+        ".kuc-tooltip__group__container",
       ) as HTMLDivElement;
 
       expect(containerEl.innerText).to.be.equal("");
@@ -21,7 +21,7 @@ describe("Tooltip", () => {
       });
       const el = await fixture(container);
       const containerEl = el.querySelector(
-        ".kuc-tooltip__group__container"
+        ".kuc-tooltip__group__container",
       ) as HTMLDivElement;
 
       expect(containerEl.innerText).to.be.equal("container");
@@ -37,7 +37,7 @@ describe("Tooltip", () => {
       await elementUpdated(el);
 
       const containerEl = el.querySelector(
-        ".kuc-tooltip__group__container"
+        ".kuc-tooltip__group__container",
       ) as HTMLDivElement;
 
       expect(containerEl.innerText).to.be.equal("updated-container");
@@ -47,7 +47,7 @@ describe("Tooltip", () => {
       const container = new Tooltip({ title: "title", container: undefined });
       const el = await fixture(container);
       const containerEl = el.querySelector(
-        ".kuc-tooltip__group__container"
+        ".kuc-tooltip__group__container",
       ) as HTMLDivElement;
 
       expect(containerEl.innerText).to.be.equal("");
@@ -60,7 +60,7 @@ describe("Tooltip", () => {
       await elementUpdated(el);
 
       const containerEl = el.querySelector(
-        ".kuc-tooltip__group__container"
+        ".kuc-tooltip__group__container",
       ) as HTMLDivElement;
 
       expect(containerEl.innerText).to.be.equal("");

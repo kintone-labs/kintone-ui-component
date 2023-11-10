@@ -70,11 +70,11 @@ describe("Table", () => {
       expect(tBodyEl?.children.length).to.equal(replacedData.length);
       expect(firstRow?.cells[0].innerText).to.equal(replacedData[0].name);
       expect(firstRow?.cells[1].innerText).to.equal(
-        replacedData[0].age.toString()
+        replacedData[0].age.toString(),
       );
       expect(secondRow?.cells[0].innerText).to.equal(replacedData[1].name);
       expect(secondRow?.cells[1].innerText).to.equal(
-        replacedData[1].age.toString()
+        replacedData[1].age.toString(),
       );
     });
 

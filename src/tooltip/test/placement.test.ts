@@ -11,7 +11,7 @@ describe("Tooltip", () => {
       const groupEl = el.querySelector(".kuc-tooltip__group") as HTMLDivElement;
 
       expect(groupEl.classList.contains("kuc-tooltip__group--top")).to.equal(
-        true
+        true,
       );
     });
 
@@ -26,7 +26,7 @@ describe("Tooltip", () => {
       const groupEl = el.querySelector(".kuc-tooltip__group") as HTMLDivElement;
 
       expect(groupEl.classList.contains("kuc-tooltip__group--bottom")).to.equal(
-        true
+        true,
       );
     });
 
@@ -41,7 +41,7 @@ describe("Tooltip", () => {
       const groupEl = el.querySelector(".kuc-tooltip__group") as HTMLDivElement;
 
       expect(groupEl.classList.contains("kuc-tooltip__group--left")).to.equal(
-        true
+        true,
       );
     });
     it('should be "right" when assigning on constructor', async () => {
@@ -55,7 +55,7 @@ describe("Tooltip", () => {
       const groupEl = el.querySelector(".kuc-tooltip__group") as HTMLDivElement;
 
       expect(groupEl.classList.contains("kuc-tooltip__group--right")).to.equal(
-        true
+        true,
       );
     });
     it('should be "top" when assigning on constructor', async () => {
@@ -69,7 +69,7 @@ describe("Tooltip", () => {
       const groupEl = el.querySelector(".kuc-tooltip__group") as HTMLDivElement;
 
       expect(groupEl.classList.contains("kuc-tooltip__group--top")).to.equal(
-        true
+        true,
       );
     });
   });

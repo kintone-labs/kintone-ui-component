@@ -8,7 +8,7 @@ describe("Checkbox", () => {
       const container = new Checkbox();
       const el = await fixture(container);
       const selectMenuEl = el.querySelector(
-        ".kuc-checkbox__group__select-menu"
+        ".kuc-checkbox__group__select-menu",
       ) as HTMLDivElement;
 
       expect(selectMenuEl.getAttribute("itemLayout")).to.equal("horizontal");
@@ -18,7 +18,7 @@ describe("Checkbox", () => {
       const container = new Checkbox({ itemLayout: "vertical" });
       const el = await fixture(container);
       const selectMenuEl = el.querySelector(
-        ".kuc-checkbox__group__select-menu"
+        ".kuc-checkbox__group__select-menu",
       ) as HTMLDivElement;
 
       expect(selectMenuEl.getAttribute("itemLayout")).to.equal("vertical");
@@ -30,7 +30,7 @@ describe("Checkbox", () => {
 
       const el = await fixture(container);
       const selectMenuEl = el.querySelector(
-        ".kuc-checkbox__group__select-menu"
+        ".kuc-checkbox__group__select-menu",
       ) as HTMLDivElement;
 
       expect(selectMenuEl.getAttribute("itemLayout")).to.equal("horizontal");
@@ -42,7 +42,7 @@ describe("Checkbox", () => {
 
       const el = await fixture(container);
       const selectMenuEl = el.querySelector(
-        ".kuc-checkbox__group__select-menu"
+        ".kuc-checkbox__group__select-menu",
       ) as HTMLDivElement;
 
       expect(selectMenuEl.getAttribute("itemLayout")).to.equal("vertical");

@@ -8,7 +8,7 @@ describe("MobileText", () => {
       const container = new MobileText();
       const el = await fixture(container);
       const suffixEl = el.querySelector(
-        ".kuc-mobile-text__input-form__suffix"
+        ".kuc-mobile-text__input-form__suffix",
       ) as HTMLSpanElement;
       expect(suffixEl.hasAttribute("hidden")).to.equal(true);
     });
@@ -17,7 +17,7 @@ describe("MobileText", () => {
       const container = new MobileText();
       const el = await fixture(container);
       const suffixEl = el.querySelector(
-        ".kuc-mobile-text__input-form__suffix"
+        ".kuc-mobile-text__input-form__suffix",
       ) as HTMLSpanElement;
       expect(suffixEl.hasAttribute("hidden")).to.equal(true);
     });
@@ -27,7 +27,7 @@ describe("MobileText", () => {
       container.suffix = "yen";
       const el = await fixture(container);
       const suffixEl = el.querySelector(
-        ".kuc-mobile-text__input-form__suffix"
+        ".kuc-mobile-text__input-form__suffix",
       ) as HTMLSpanElement;
       expect(suffixEl.hasAttribute("hidden")).to.equal(false);
       expect(suffixEl.innerText).to.equal("yen");
@@ -38,7 +38,7 @@ describe("MobileText", () => {
       container.suffix = "yen";
       const el = await fixture(container);
       const suffixEl = el.querySelector(
-        ".kuc-mobile-text__input-form__suffix"
+        ".kuc-mobile-text__input-form__suffix",
       ) as HTMLSpanElement;
       expect(suffixEl.hasAttribute("hidden")).to.equal(false);
       expect(suffixEl.innerText).to.equal("yen");

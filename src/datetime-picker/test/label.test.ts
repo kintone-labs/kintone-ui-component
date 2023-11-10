@@ -9,12 +9,12 @@ describe("DateTimePicker", () => {
       const el = await fixture(container);
 
       const labelEl = el.querySelector(
-        ".kuc-datetime-picker__group__label"
+        ".kuc-datetime-picker__group__label",
       ) as HTMLLegendElement;
       expect(labelEl.hasAttribute("hidden")).to.equal(true);
 
       const labelTextEl = el.querySelector(
-        ".kuc-base-label__text"
+        ".kuc-base-label__text",
       ) as HTMLSpanElement;
       expect(labelTextEl.textContent).to.equal("");
     });
@@ -24,12 +24,12 @@ describe("DateTimePicker", () => {
       const el = await fixture(container);
 
       const labelEl = el.querySelector(
-        ".kuc-datetime-picker__group__label"
+        ".kuc-datetime-picker__group__label",
       ) as HTMLLegendElement;
       expect(labelEl.hasAttribute("hidden")).to.equal(false);
 
       const labelTextEl = el.querySelector(
-        ".kuc-base-label__text"
+        ".kuc-base-label__text",
       ) as HTMLSpanElement;
       expect(labelTextEl.textContent).to.equal("options-label");
     });
@@ -42,12 +42,12 @@ describe("DateTimePicker", () => {
 
       const el = await fixture(container);
       const labelEl = el.querySelector(
-        ".kuc-datetime-picker__group__label"
+        ".kuc-datetime-picker__group__label",
       ) as HTMLLegendElement;
       expect(labelEl.hasAttribute("hidden")).to.equal(false);
 
       const labelTextEl = el.querySelector(
-        ".kuc-base-label__text"
+        ".kuc-base-label__text",
       ) as HTMLSpanElement;
       expect(labelTextEl.textContent).to.equal("replace-label");
     });

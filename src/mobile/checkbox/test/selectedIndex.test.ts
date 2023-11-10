@@ -14,7 +14,7 @@ describe("MobileCheckbox", () => {
       const container = new MobileCheckbox({ items: initItems });
       const el = await fixture(container);
       const inputsEl = el.querySelectorAll(
-        ".kuc-mobile-checkbox__group__select-menu__item__input"
+        ".kuc-mobile-checkbox__group__select-menu__item__input",
       );
 
       expect(inputsEl.length).to.equal(3);
@@ -30,7 +30,7 @@ describe("MobileCheckbox", () => {
       });
       const el = await fixture(container);
       const inputsEl = el.querySelectorAll(
-        ".kuc-mobile-checkbox__group__select-menu__item__input"
+        ".kuc-mobile-checkbox__group__select-menu__item__input",
       );
 
       expect(inputsEl.length).to.equal(3);

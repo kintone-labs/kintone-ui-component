@@ -37,7 +37,7 @@ const Template = ({ language, value }) => {
 
   const _showCalendar = (_) => {
     const _calendarEl = document.querySelector(
-      "kuc-base-mobile-datetime-calendar"
+      "kuc-base-mobile-datetime-calendar",
     );
     _calendarEl.hidden = false;
 
@@ -47,7 +47,7 @@ const Template = ({ language, value }) => {
 
   const _hideCalendar = (_) => {
     const _calendarEl = document.querySelector(
-      "kuc-base-mobile-datetime-calendar"
+      "kuc-base-mobile-datetime-calendar",
     );
     _calendarEl.hidden = true;
   };

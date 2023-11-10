@@ -9,7 +9,7 @@ describe("MobileDatePicker", () => {
       const el = await fixture(container);
       document.documentElement.setAttribute("lang", "fr");
       const inputDateEl = el.querySelector(
-        ".kuc-mobile-base-date__group__input"
+        ".kuc-mobile-base-date__group__input",
       ) as HTMLInputElement;
       expect(inputDateEl.value).to.equal("12/22/2021");
     });
@@ -21,7 +21,7 @@ describe("MobileDatePicker", () => {
       });
       const el = await fixture(container);
       const inputDateEl = el.querySelector(
-        ".kuc-mobile-base-date__group__input"
+        ".kuc-mobile-base-date__group__input",
       ) as HTMLInputElement;
       expect(inputDateEl.value).to.equal("2021-12-22");
     });
@@ -34,7 +34,7 @@ describe("MobileDatePicker", () => {
       container.language = "zh-TW";
       const el = await fixture(container);
       const inputDateEl = el.querySelector(
-        ".kuc-mobile-base-date__group__input"
+        ".kuc-mobile-base-date__group__input",
       ) as HTMLInputElement;
       expect(inputDateEl.value).to.equal("2021-12-22");
     });
@@ -47,7 +47,7 @@ describe("MobileDatePicker", () => {
       container.language = "zh";
       const el = await fixture(container);
       const inputDateEl = el.querySelector(
-        ".kuc-mobile-base-date__group__input"
+        ".kuc-mobile-base-date__group__input",
       ) as HTMLInputElement;
       expect(inputDateEl.value).to.equal("2021-12-22");
     });

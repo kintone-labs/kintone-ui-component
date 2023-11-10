@@ -9,7 +9,7 @@ describe("Attachment", () => {
       const el = await fixture(container);
       document.documentElement.setAttribute("lang", "en");
       const inputDateEl = el.querySelector(
-        ".kuc-attachment__group__files__browse-button__text"
+        ".kuc-attachment__group__files__browse-button__text",
       ) as HTMLSpanElement;
       expect(inputDateEl.textContent).to.equal("Browse");
     });
@@ -18,7 +18,7 @@ describe("Attachment", () => {
       const container = new Attachment({ language: "ja" });
       const el = await fixture(container);
       const inputDateEl = el.querySelector(
-        ".kuc-attachment__group__files__browse-button__text"
+        ".kuc-attachment__group__files__browse-button__text",
       ) as HTMLSpanElement;
       expect(inputDateEl.textContent).to.equal("参照");
     });
@@ -28,7 +28,7 @@ describe("Attachment", () => {
       container.language = "zh";
       const el = await fixture(container);
       const inputDateEl = el.querySelector(
-        ".kuc-attachment__group__files__browse-button__text"
+        ".kuc-attachment__group__files__browse-button__text",
       ) as HTMLSpanElement;
       expect(inputDateEl.textContent).to.equal("选择文件");
     });
@@ -37,7 +37,7 @@ describe("Attachment", () => {
       container.language = "zh-TW";
       const el = await fixture(container);
       const inputDateEl = el.querySelector(
-        ".kuc-attachment__group__files__browse-button__text"
+        ".kuc-attachment__group__files__browse-button__text",
       ) as HTMLSpanElement;
       expect(inputDateEl.textContent).to.equal("選擇檔案");
     });

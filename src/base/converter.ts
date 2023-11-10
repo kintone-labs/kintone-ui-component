@@ -41,7 +41,7 @@ export const dateValueConverter = (date: string | undefined) => {
     return `${padStart(dateParts[0], 4)}-${padStart(dateParts[1])}-01`;
   if (dateParts.length > 2)
     return `${padStart(dateParts[0], 4)}-${padStart(dateParts[1])}-${padStart(
-      dateParts[2]
+      dateParts[2],
     )}`;
   return "";
 };

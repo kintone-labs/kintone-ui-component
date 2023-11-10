@@ -1,6 +1,7 @@
 ---
 id: tooltip
 title: Tooltip
+description: Tooltip component allows the user to display a label or short explanation of the target element when hovering or focusing on the element.
 sidebar_label: Tooltip
 ---
 

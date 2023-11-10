@@ -8,7 +8,7 @@ describe("MobileTimePicker", () => {
       const container = new MobileTimePicker();
       const el = await fixture(container);
       const requiredIconEl = el.querySelector(
-        ".kuc-base-mobile-label__required-icon"
+        ".kuc-base-mobile-label__required-icon",
       ) as HTMLSpanElement;
       expect(requiredIconEl.hasAttribute("hidden")).to.equal(true);
     });
@@ -17,7 +17,7 @@ describe("MobileTimePicker", () => {
       const container = new MobileTimePicker({ requiredIcon: true });
       const el = await fixture(container);
       const requiredIconEl = el.querySelector(
-        ".kuc-base-mobile-label__required-icon"
+        ".kuc-base-mobile-label__required-icon",
       ) as HTMLSpanElement;
       expect(requiredIconEl.hasAttribute("hidden")).to.equal(false);
     });
@@ -28,7 +28,7 @@ describe("MobileTimePicker", () => {
       container.requiredIcon = true;
       await elementUpdated(el);
       const requiredIconEl = el.querySelector(
-        ".kuc-base-mobile-label__required-icon"
+        ".kuc-base-mobile-label__required-icon",
       ) as HTMLSpanElement;
       expect(requiredIconEl.hasAttribute("hidden")).to.equal(false);
     });
@@ -39,7 +39,7 @@ describe("MobileTimePicker", () => {
       container.requiredIcon = false;
       await elementUpdated(el);
       const requiredIconEl = el.querySelector(
-        ".kuc-base-mobile-label__required-icon"
+        ".kuc-base-mobile-label__required-icon",
       ) as HTMLSpanElement;
       expect(requiredIconEl.hasAttribute("hidden")).to.equal(true);
     });

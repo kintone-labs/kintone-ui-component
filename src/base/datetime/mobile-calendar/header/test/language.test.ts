@@ -8,19 +8,19 @@ describe("BaseMobileDateTimeCalendarHeader", () => {
       const container = new BaseMobileDateTimeCalendarHeader();
       const el = await fixture(container);
       const headerCenterEl = el.querySelector(
-        ".kuc-base-mobile-datetime-calendar-header__group__center"
+        ".kuc-base-mobile-datetime-calendar-header__group__center",
       ) as HTMLSpanElement;
 
       expect(headerCenterEl.childElementCount).to.equal(2);
       expect(
         headerCenterEl.children[0].classList.contains(
-          "kuc-base-mobile-datetime-calendar-header__group__center__month"
-        )
+          "kuc-base-mobile-datetime-calendar-header__group__center__month",
+        ),
       ).to.equal(true);
       expect(
         headerCenterEl.children[1].classList.contains(
-          "kuc-base-mobile-datetime-calendar-header__group__center__year"
-        )
+          "kuc-base-mobile-datetime-calendar-header__group__center__year",
+        ),
       ).to.equal(true);
     });
 
@@ -29,19 +29,19 @@ describe("BaseMobileDateTimeCalendarHeader", () => {
       container.language = "ja";
       const el = await fixture(container);
       const headerCenterEl = el.querySelector(
-        ".kuc-base-mobile-datetime-calendar-header__group__center"
+        ".kuc-base-mobile-datetime-calendar-header__group__center",
       ) as HTMLSpanElement;
 
       expect(headerCenterEl.childElementCount).to.equal(2);
       expect(
         headerCenterEl.children[0].classList.contains(
-          "kuc-base-mobile-datetime-calendar-header__group__center__year"
-        )
+          "kuc-base-mobile-datetime-calendar-header__group__center__year",
+        ),
       ).to.equal(true);
       expect(
         headerCenterEl.children[1].classList.contains(
-          "kuc-base-mobile-datetime-calendar-header__group__center__month"
-        )
+          "kuc-base-mobile-datetime-calendar-header__group__center__month",
+        ),
       ).to.equal(true);
     });
 
@@ -50,18 +50,18 @@ describe("BaseMobileDateTimeCalendarHeader", () => {
       container.language = "zh";
       const el = await fixture(container);
       const headerCenterEl = el.querySelector(
-        ".kuc-base-mobile-datetime-calendar-header__group__center"
+        ".kuc-base-mobile-datetime-calendar-header__group__center",
       ) as HTMLSpanElement;
       expect(headerCenterEl.childElementCount).to.equal(2);
       expect(
         headerCenterEl.children[0].classList.contains(
-          "kuc-base-mobile-datetime-calendar-header__group__center__year"
-        )
+          "kuc-base-mobile-datetime-calendar-header__group__center__year",
+        ),
       ).to.equal(true);
       expect(
         headerCenterEl.children[1].classList.contains(
-          "kuc-base-mobile-datetime-calendar-header__group__center__month"
-        )
+          "kuc-base-mobile-datetime-calendar-header__group__center__month",
+        ),
       ).to.equal(true);
     });
 
@@ -70,18 +70,18 @@ describe("BaseMobileDateTimeCalendarHeader", () => {
       container.language = "zh-TW";
       const el = await fixture(container);
       const headerCenterEl = el.querySelector(
-        ".kuc-base-mobile-datetime-calendar-header__group__center"
+        ".kuc-base-mobile-datetime-calendar-header__group__center",
       ) as HTMLSpanElement;
       expect(headerCenterEl.childElementCount).to.equal(2);
       expect(
         headerCenterEl.children[0].classList.contains(
-          "kuc-base-mobile-datetime-calendar-header__group__center__year"
-        )
+          "kuc-base-mobile-datetime-calendar-header__group__center__year",
+        ),
       ).to.equal(true);
       expect(
         headerCenterEl.children[1].classList.contains(
-          "kuc-base-mobile-datetime-calendar-header__group__center__month"
-        )
+          "kuc-base-mobile-datetime-calendar-header__group__center__month",
+        ),
       ).to.equal(true);
     });
 
@@ -90,18 +90,18 @@ describe("BaseMobileDateTimeCalendarHeader", () => {
       container.language = "xx";
       const el = await fixture(container);
       const headerCenterEl = el.querySelector(
-        ".kuc-base-mobile-datetime-calendar-header__group__center"
+        ".kuc-base-mobile-datetime-calendar-header__group__center",
       ) as HTMLSpanElement;
       expect(headerCenterEl.childElementCount).to.equal(2);
       expect(
         headerCenterEl.children[0].classList.contains(
-          "kuc-base-mobile-datetime-calendar-header__group__center__month"
-        )
+          "kuc-base-mobile-datetime-calendar-header__group__center__month",
+        ),
       ).to.equal(true);
       expect(
         headerCenterEl.children[1].classList.contains(
-          "kuc-base-mobile-datetime-calendar-header__group__center__year"
-        )
+          "kuc-base-mobile-datetime-calendar-header__group__center__year",
+        ),
       ).to.equal(true);
     });
   });

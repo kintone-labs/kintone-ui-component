@@ -8,10 +8,10 @@ describe("BaseDateTimeCalendarFooter", () => {
       const container = new BaseDateTimeCalendarFooter();
       const el = await fixture(container);
       const buttonTodayEl = el.querySelector(
-        ".kuc-base-datetime-calendar-footer__group__button--today"
+        ".kuc-base-datetime-calendar-footer__group__button--today",
       ) as HTMLButtonElement;
       const buttonNoneEl = el.querySelector(
-        ".kuc-base-datetime-calendar-footer__group__button--none"
+        ".kuc-base-datetime-calendar-footer__group__button--none",
       ) as HTMLButtonElement;
       expect(buttonTodayEl.innerText).to.equal("Today");
       expect(buttonNoneEl.innerText).to.equal("None");
@@ -22,10 +22,10 @@ describe("BaseDateTimeCalendarFooter", () => {
       container.language = "ja";
       const el = await fixture(container);
       const buttonTodayEl = el.querySelector(
-        ".kuc-base-datetime-calendar-footer__group__button--today"
+        ".kuc-base-datetime-calendar-footer__group__button--today",
       ) as HTMLButtonElement;
       const buttonNoneEl = el.querySelector(
-        ".kuc-base-datetime-calendar-footer__group__button--none"
+        ".kuc-base-datetime-calendar-footer__group__button--none",
       ) as HTMLButtonElement;
       expect(buttonTodayEl.innerText).to.equal("今日");
       expect(buttonNoneEl.innerText).to.equal("選択を解除");
@@ -36,10 +36,10 @@ describe("BaseDateTimeCalendarFooter", () => {
       container.language = "zh";
       const el = await fixture(container);
       const buttonTodayEl = el.querySelector(
-        ".kuc-base-datetime-calendar-footer__group__button--today"
+        ".kuc-base-datetime-calendar-footer__group__button--today",
       ) as HTMLButtonElement;
       const buttonNoneEl = el.querySelector(
-        ".kuc-base-datetime-calendar-footer__group__button--none"
+        ".kuc-base-datetime-calendar-footer__group__button--none",
       ) as HTMLButtonElement;
       expect(buttonTodayEl.innerText).to.equal("今天");
       expect(buttonNoneEl.innerText).to.equal("清空");
@@ -49,10 +49,10 @@ describe("BaseDateTimeCalendarFooter", () => {
       container.language = "zh-TW";
       const el = await fixture(container);
       const buttonTodayEl = el.querySelector(
-        ".kuc-base-datetime-calendar-footer__group__button--today"
+        ".kuc-base-datetime-calendar-footer__group__button--today",
       ) as HTMLButtonElement;
       const buttonNoneEl = el.querySelector(
-        ".kuc-base-datetime-calendar-footer__group__button--none"
+        ".kuc-base-datetime-calendar-footer__group__button--none",
       ) as HTMLButtonElement;
       expect(buttonTodayEl.innerText).to.equal("今天");
       expect(buttonNoneEl.innerText).to.equal("清空");

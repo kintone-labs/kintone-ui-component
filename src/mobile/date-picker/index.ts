@@ -73,7 +73,7 @@ let exportMobileDatePicker;
     }
 
     protected shouldUpdate(
-      _changedProperties: Map<string | number | symbol, unknown>
+      _changedProperties: Map<string | number | symbol, unknown>,
     ): boolean {
       if (this.value === undefined || this.value === "") return true;
 
@@ -170,7 +170,7 @@ let exportMobileDatePicker;
     }
 
     private _dispatchChangeEvent(
-      eventDetail: MobileDatePickerChangeEventDetail
+      eventDetail: MobileDatePickerChangeEventDetail,
     ) {
       dispatchCustomEvent(this, "change", eventDetail);
     }

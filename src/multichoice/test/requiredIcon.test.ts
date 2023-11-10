@@ -8,7 +8,7 @@ describe("MultiChoice", () => {
       const container = new MultiChoice();
       const el = await fixture(container);
       const requiredIconEl = el.querySelector(
-        ".kuc-base-label__required-icon"
+        ".kuc-base-label__required-icon",
       ) as HTMLSpanElement;
       expect(requiredIconEl.hasAttribute("hidden")).to.equal(true);
       const computedStyle = window.getComputedStyle(requiredIconEl);
@@ -19,7 +19,7 @@ describe("MultiChoice", () => {
       const container = new MultiChoice({ requiredIcon: true });
       const el = await fixture(container);
       const requiredIconEl = el.querySelector(
-        ".kuc-base-label__required-icon"
+        ".kuc-base-label__required-icon",
       ) as HTMLSpanElement;
       expect(requiredIconEl.hasAttribute("hidden")).to.equal(false);
       const computedStyle = window.getComputedStyle(requiredIconEl);
@@ -31,7 +31,7 @@ describe("MultiChoice", () => {
       container.requiredIcon = true;
       const el = await fixture(container);
       const requiredIconEl = el.querySelector(
-        ".kuc-base-label__required-icon"
+        ".kuc-base-label__required-icon",
       ) as HTMLSpanElement;
       expect(requiredIconEl.hasAttribute("hidden")).to.equal(false);
       const computedStyle = window.getComputedStyle(requiredIconEl);
@@ -43,7 +43,7 @@ describe("MultiChoice", () => {
       container.requiredIcon = false;
       const el = await fixture(container);
       const requiredIconEl = el.querySelector(
-        ".kuc-base-label__required-icon"
+        ".kuc-base-label__required-icon",
       ) as HTMLSpanElement;
       expect(requiredIconEl.hasAttribute("hidden")).to.equal(true);
       const computedStyle = window.getComputedStyle(requiredIconEl);

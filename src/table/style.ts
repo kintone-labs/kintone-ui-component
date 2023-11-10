@@ -37,7 +37,7 @@ export const TABLE_CSS = `
     }
     .kuc-table__table__header {
         border-width: 0px 1px;
-        border-color: #3498db;
+        border-color: var(--kuc-table-header-background-color, #3498db);
         border-style: solid;
         border-right: 0;
     }
@@ -46,11 +46,12 @@ export const TABLE_CSS = `
     }
     .kuc-table__table__header__cell {
         box-sizing: border-box;
-        font-size: 12px;
+        overflow: auto;
+        font-size: var(--kuc-table-header-font-size, 12px);
         font-weight: 400;
-        background-color: #3498db;
-        color: #ffffff;
-        height: 40px;
+        background-color: var(--kuc-table-header-background-color, #3498db);
+        color: var(--kuc-table-header-color, #ffffff);
+        height: var(--kuc-table-header-height, 40px);
         padding: 4px 8px;
         text-align: left;
         white-space: nowrap;
@@ -58,7 +59,13 @@ export const TABLE_CSS = `
     .kuc-table__table__header__cell[hidden] {
         display: none;
     }
+    .kuc-table__table__header__cell .kuc-base-label__required-icon {
+        font-size: var(--kuc-table-header-font-size, 20px);
+    }
     .kuc-table__table__body__row__cell-data {
+        box-sizing: border-box;
+        overflow-wrap: break-word;
+        white-space: normal;
         border-color: #e3e7e8;
         border-style: solid;
         border-width: 1px;
@@ -105,5 +112,17 @@ export const TABLE_CSS = `
     .kuc-table__table caption {
         text-align: left;
         margin-bottom: 6px;
+        overflow-wrap: anywhere;
+        white-space: normal;
+    }
+    .kuc-table__table .kuc-table__table__label--no-column {
+        overflow-wrap: break-word;
+    }
+    .kuc-table__table__header__cell {
+      scrollbar-width: none; /* Firefox */
+    }
+    .kuc-table__table__header__cell::-webkit-scrollbar {
+      width: 0; /* Safari and Chrome */
+      display: none
     }
 `;

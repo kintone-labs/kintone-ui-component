@@ -8,10 +8,10 @@ describe("Attachment", () => {
       const container = new Attachment({ disabled: true });
       const el = await fixture(container);
       const groupEl = el.querySelector(
-        ".kuc-attachment__group__files"
+        ".kuc-attachment__group__files",
       ) as HTMLDivElement;
       const browseEl = groupEl.querySelector(
-        ".kuc-attachment__group__files__browse-button"
+        ".kuc-attachment__group__files__browse-button",
       ) as HTMLDivElement;
 
       expect(browseEl.hasAttribute("hidden")).to.equal(true);
@@ -26,10 +26,10 @@ describe("Attachment", () => {
       });
       const el = await fixture(container);
       const groupEl = el.querySelector(
-        ".kuc-attachment__group__files"
+        ".kuc-attachment__group__files",
       ) as HTMLDivElement;
       const removeEl = groupEl.querySelector(
-        ".kuc-attachment__group__files__display-area__item__remove-button__container"
+        ".kuc-attachment__group__files__display-area__item__remove-button__container",
       ) as HTMLButtonElement;
 
       expect(removeEl.hasAttribute("hidden")).to.equal(true);

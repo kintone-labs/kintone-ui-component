@@ -8,7 +8,7 @@ describe("Button", () => {
       const container = new Button();
       const el = await fixture(container);
       const buttonEl = el.querySelector(
-        ".kuc-button__button"
+        ".kuc-button__button",
       ) as HTMLButtonElement;
       expect(buttonEl.innerText).to.equal("");
     });
@@ -17,7 +17,7 @@ describe("Button", () => {
       const container = new Button({ text: "text" });
       const el = await fixture(container);
       const buttonEl = el.querySelector(
-        ".kuc-button__button"
+        ".kuc-button__button",
       ) as HTMLButtonElement;
       expect(buttonEl.innerText).to.equal("text");
     });
@@ -27,7 +27,7 @@ describe("Button", () => {
       container.text = "update";
       const el = await fixture(container);
       const buttonEl = el.querySelector(
-        ".kuc-button__button"
+        ".kuc-button__button",
       ) as HTMLButtonElement;
       expect(buttonEl.innerText).to.equal("update");
     });

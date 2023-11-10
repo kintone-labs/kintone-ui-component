@@ -72,6 +72,6 @@ if (!window.customElements.get("kuc-base-datetime-calendar-footer")) {
   createStyleOnHeader(CALENDAR_FOOTER_CSS);
   window.customElements.define(
     "kuc-base-datetime-calendar-footer",
-    BaseDateTimeCalendarFooter
+    BaseDateTimeCalendarFooter,
   );
 }

@@ -9,7 +9,7 @@ describe("TimePicker", () => {
       const el = await fixture(container);
 
       const labelTextEl = el.querySelector(
-        ".kuc-base-label__text"
+        ".kuc-base-label__text",
       ) as HTMLSpanElement;
       expect(labelTextEl.textContent).to.equal("");
     });
@@ -19,12 +19,12 @@ describe("TimePicker", () => {
       const el = await fixture(container);
 
       const labelEl = el.querySelector(
-        ".kuc-time-picker__group__label"
+        ".kuc-time-picker__group__label",
       ) as HTMLLegendElement;
       expect(labelEl.hasAttribute("hidden")).to.equal(false);
 
       const labelTextEl = el.querySelector(
-        ".kuc-base-label__text"
+        ".kuc-base-label__text",
       ) as HTMLSpanElement;
       expect(labelTextEl.textContent).to.equal("options-label");
     });
@@ -37,12 +37,12 @@ describe("TimePicker", () => {
 
       const el = await fixture(container);
       const labelEl = el.querySelector(
-        ".kuc-time-picker__group__label"
+        ".kuc-time-picker__group__label",
       ) as HTMLLegendElement;
       expect(labelEl.hasAttribute("hidden")).to.equal(false);
 
       const labelTextEl = el.querySelector(
-        ".kuc-base-label__text"
+        ".kuc-base-label__text",
       ) as HTMLSpanElement;
       expect(labelTextEl.textContent).to.equal("replace-label");
     });

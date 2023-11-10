@@ -8,7 +8,7 @@ describe("Text", () => {
       const container = new Text();
       const el = await fixture(container);
       const inputEl = el.querySelector(
-        ".kuc-text__group__input-form__input-outer__input"
+        ".kuc-text__group__input-form__input-outer__input",
       ) as HTMLInputElement;
 
       expect(inputEl.hasAttribute("disabled")).to.equal(false);
@@ -18,7 +18,7 @@ describe("Text", () => {
       const container = new Text({ disabled: true });
       const el = await fixture(container);
       const inputEl = el.querySelector(
-        ".kuc-text__group__input-form__input-outer__input"
+        ".kuc-text__group__input-form__input-outer__input",
       ) as HTMLInputElement;
 
       expect(inputEl.hasAttribute("disabled")).to.equal(true);
@@ -29,7 +29,7 @@ describe("Text", () => {
       container.disabled = true;
       const el = await fixture(container);
       const inputEl = el.querySelector(
-        ".kuc-text__group__input-form__input-outer__input"
+        ".kuc-text__group__input-form__input-outer__input",
       ) as HTMLInputElement;
 
       expect(inputEl.hasAttribute("disabled")).to.equal(true);
@@ -40,7 +40,7 @@ describe("Text", () => {
       container.disabled = false;
       const el = await fixture(container);
       const inputEl = el.querySelector(
-        ".kuc-text__group__input-form__input-outer__input"
+        ".kuc-text__group__input-form__input-outer__input",
       ) as HTMLInputElement;
 
       expect(inputEl.hasAttribute("disabled")).to.equal(false);

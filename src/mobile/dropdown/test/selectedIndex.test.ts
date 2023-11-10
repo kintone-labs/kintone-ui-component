@@ -14,7 +14,7 @@ describe("MobileDropdown", () => {
       const container = new MobileDropdown({});
       const el = await fixture(container);
       const itemsEl = el.querySelector(
-        ".kuc-mobile-dropdown__input-form__select__input"
+        ".kuc-mobile-dropdown__input-form__select__input",
       ) as HTMLSelectElement;
       expect(itemsEl.selectedIndex).to.be.equal(-1);
     });
@@ -26,7 +26,7 @@ describe("MobileDropdown", () => {
       });
       const el = await fixture(container);
       const itemsEl = el.querySelector(
-        ".kuc-mobile-dropdown__input-form__select__input"
+        ".kuc-mobile-dropdown__input-form__select__input",
       ) as HTMLSelectElement;
       expect(itemsEl.selectedIndex).to.be.equal(1);
     });
@@ -38,7 +38,7 @@ describe("MobileDropdown", () => {
       });
       const el = await fixture(container);
       const itemsEl = el.querySelector(
-        ".kuc-mobile-dropdown__input-form__select__input"
+        ".kuc-mobile-dropdown__input-form__select__input",
       ) as HTMLSelectElement;
       expect(itemsEl.selectedIndex).to.be.equal(1);
     });
@@ -52,7 +52,7 @@ describe("MobileDropdown", () => {
       container.selectedIndex = 2;
       const el = await fixture(container);
       const itemsEl = el.querySelector(
-        ".kuc-mobile-dropdown__input-form__select__input"
+        ".kuc-mobile-dropdown__input-form__select__input",
       ) as HTMLSelectElement;
       expect(itemsEl.selectedIndex).to.be.equal(2);
     });

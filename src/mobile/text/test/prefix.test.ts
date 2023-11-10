@@ -8,7 +8,7 @@ describe("MobileText", () => {
       const container = new MobileText();
       const el = await fixture(container);
       const prefixEl = el.querySelector(
-        ".kuc-mobile-text__input-form__prefix"
+        ".kuc-mobile-text__input-form__prefix",
       ) as HTMLSpanElement;
       expect(prefixEl.hasAttribute("hidden")).to.equal(true);
     });
@@ -17,7 +17,7 @@ describe("MobileText", () => {
       const container = new MobileText({ prefix: "$" });
       const el = await fixture(container);
       const prefixEl = el.querySelector(
-        ".kuc-mobile-text__input-form__prefix"
+        ".kuc-mobile-text__input-form__prefix",
       ) as HTMLSpanElement;
       expect(prefixEl.hasAttribute("hidden")).to.equal(false);
       expect(prefixEl.innerText).to.equal("$");
@@ -28,7 +28,7 @@ describe("MobileText", () => {
       container.prefix = "$";
       const el = await fixture(container);
       const prefixEl = el.querySelector(
-        ".kuc-mobile-text__input-form__prefix"
+        ".kuc-mobile-text__input-form__prefix",
       ) as HTMLSpanElement;
       expect(prefixEl.hasAttribute("hidden")).to.equal(false);
       expect(prefixEl.innerText).to.equal("$");
@@ -39,7 +39,7 @@ describe("MobileText", () => {
       container.prefix = "$";
       const el = await fixture(container);
       const prefixEl = el.querySelector(
-        ".kuc-mobile-text__input-form__prefix"
+        ".kuc-mobile-text__input-form__prefix",
       ) as HTMLSpanElement;
       expect(prefixEl.hasAttribute("hidden")).to.equal(false);
       expect(prefixEl.innerText).to.equal("$");

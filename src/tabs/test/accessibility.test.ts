@@ -28,7 +28,7 @@ describe("Tabs", () => {
       const container = new Tabs({ items: items, value: items[1].value });
       const el = await fixture(container);
       const itemButtons = el.querySelectorAll(
-        ".kuc-tabs__group__tab-list__tab__button"
+        ".kuc-tabs__group__tab-list__tab__button",
       );
       let tab3FocusTriggerEvent: any = null;
       let tab1FocusTriggerEvent: any = null;
@@ -42,13 +42,13 @@ describe("Tabs", () => {
       await elementUpdated(container);
       expect(tab3FocusTriggerEvent.type).to.equal("focus");
       itemButtons[3].dispatchEvent(
-        new KeyboardEvent("keydown", { key: "ArrowLeft" })
+        new KeyboardEvent("keydown", { key: "ArrowLeft" }),
       );
       tab3FocusTriggerEvent = null;
       await elementUpdated(container);
       expect(tab1FocusTriggerEvent.type).to.equal("focus");
       itemButtons[1].dispatchEvent(
-        new KeyboardEvent("keydown", { key: "ArrowRight" })
+        new KeyboardEvent("keydown", { key: "ArrowRight" }),
       );
       await elementUpdated(container);
       expect(tab3FocusTriggerEvent.type).to.equal("focus");
@@ -58,7 +58,7 @@ describe("Tabs", () => {
       const container = new Tabs({ items: items, value: items[0].value });
       const el = await fixture(container);
       const itemButtons = el.querySelectorAll(
-        ".kuc-tabs__group__tab-list__tab__button"
+        ".kuc-tabs__group__tab-list__tab__button",
       );
       let tab3FocusTriggerEvent: any = null;
       let tab1FocusTriggerEvent: any = null;
@@ -70,12 +70,12 @@ describe("Tabs", () => {
       });
       itemButtons[1].dispatchEvent(new Event("click"));
       itemButtons[1].dispatchEvent(
-        new KeyboardEvent("keydown", { key: "End" })
+        new KeyboardEvent("keydown", { key: "End" }),
       );
       await elementUpdated(container);
       expect(tab3FocusTriggerEvent.type).to.equal("focus");
       itemButtons[3].dispatchEvent(
-        new KeyboardEvent("keydown", { key: "Home" })
+        new KeyboardEvent("keydown", { key: "Home" }),
       );
       await elementUpdated(container);
       expect(tab1FocusTriggerEvent.type).to.equal("focus");
@@ -92,7 +92,7 @@ describe("Tabs", () => {
       });
       const el = await fixture(container);
       const itemButtons = el.querySelectorAll(
-        ".kuc-tabs__group__tab-list__tab__button"
+        ".kuc-tabs__group__tab-list__tab__button",
       );
       let tab1FocusTriggerEvent: any = null;
       itemButtons[1].addEventListener("focus", (event) => {
@@ -100,7 +100,7 @@ describe("Tabs", () => {
       });
       itemButtons[2].dispatchEvent(new Event("click"));
       itemButtons[2].dispatchEvent(
-        new KeyboardEvent("keydown", { key: "ArrowRight" })
+        new KeyboardEvent("keydown", { key: "ArrowRight" }),
       );
       await elementUpdated(container);
       expect(tab1FocusTriggerEvent.type).to.equal("focus");

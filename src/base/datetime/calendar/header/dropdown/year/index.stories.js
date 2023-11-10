@@ -17,13 +17,12 @@ export default {
   },
 };
 
-const Template = ({ postfix, year }) =>
-  html`
-    <kuc-base-datetime-header-year
-      .postfix="${postfix}"
-      .year="${year}"
-    ></kuc-base-datetime-header-year>
-  `;
+const Template = ({ postfix, year }) => html`
+  <kuc-base-datetime-header-year
+    .postfix="${postfix}"
+    .year="${year}"
+  ></kuc-base-datetime-header-year>
+`;
 
 export const Base = Template.bind({});
 Base.args = {

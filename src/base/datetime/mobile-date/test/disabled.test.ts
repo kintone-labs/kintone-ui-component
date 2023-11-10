@@ -7,7 +7,7 @@ describe("BaseMobileDate", () => {
       const container = document.createElement("kuc-mobile-base-date");
       const el = await fixture(container);
       const inputEl = el.querySelector(
-        ".kuc-mobile-base-date__group__input"
+        ".kuc-mobile-base-date__group__input",
       ) as HTMLInputElement;
 
       expect(inputEl.hasAttribute("disabled")).to.equal(false);
@@ -18,7 +18,7 @@ describe("BaseMobileDate", () => {
       container.setAttribute("disabled", "true");
       const el = await fixture(container);
       const inputEl = el.querySelector(
-        ".kuc-mobile-base-date__group__input"
+        ".kuc-mobile-base-date__group__input",
       ) as HTMLInputElement;
 
       expect(inputEl.hasAttribute("disabled")).to.equal(true);
@@ -30,7 +30,7 @@ describe("BaseMobileDate", () => {
       container.setAttribute("disabled", "true");
       await elementUpdated(container);
       const inputEl = el.querySelector(
-        ".kuc-mobile-base-date__group__input"
+        ".kuc-mobile-base-date__group__input",
       ) as HTMLInputElement;
 
       expect(inputEl.hasAttribute("disabled")).to.equal(true);
@@ -44,7 +44,7 @@ describe("BaseMobileDate", () => {
       container.removeAttribute("disabled");
       await elementUpdated(container);
       const inputEl = el.querySelector(
-        ".kuc-mobile-base-date__group__input"
+        ".kuc-mobile-base-date__group__input",
       ) as HTMLInputElement;
 
       expect(inputEl.hasAttribute("disabled")).to.equal(false);

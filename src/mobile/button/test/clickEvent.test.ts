@@ -12,7 +12,7 @@ describe("MobileButton", () => {
 
       const el = await fixture(container);
       const buttonEl = el.querySelector(
-        ".kuc-mobile-button__button"
+        ".kuc-mobile-button__button",
       ) as HTMLButtonElement;
 
       buttonEl.click();
@@ -32,7 +32,7 @@ describe("MobileButton", () => {
 
       const el = await fixture(container);
       const buttonEl = el.querySelector(
-        ".kuc-mobile-button__button"
+        ".kuc-mobile-button__button",
       ) as HTMLButtonElement;
 
       buttonEl.click();

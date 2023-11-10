@@ -7,7 +7,7 @@ describe("BaseMobileError", () => {
       const container = document.createElement("kuc-base-mobile-error");
       const el = await fixture(container);
       const textEl = el.querySelector(
-        ".kuc-base-mobile-error__error"
+        ".kuc-base-mobile-error__error",
       ) as HTMLDivElement;
       expect(textEl.hasAttribute("hidden")).to.equal(true);
     });
@@ -17,7 +17,7 @@ describe("BaseMobileError", () => {
       container.setAttribute("text", "text");
       const el = await fixture(container);
       const textEl = el.querySelector(
-        ".kuc-base-mobile-error__error"
+        ".kuc-base-mobile-error__error",
       ) as HTMLDivElement;
       expect(textEl.innerText).to.equal("text");
     });
@@ -29,7 +29,7 @@ describe("BaseMobileError", () => {
       container.setAttribute("text", "update");
       await elementUpdated(el);
       const textEl = el.querySelector(
-        ".kuc-base-mobile-error__error"
+        ".kuc-base-mobile-error__error",
       ) as HTMLDivElement;
       expect(textEl.innerText).to.equal("update");
     });

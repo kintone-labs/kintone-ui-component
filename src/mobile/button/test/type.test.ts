@@ -8,12 +8,12 @@ describe("MobileButton", () => {
       const container = new MobileButton();
       const el = await fixture(container);
       const buttonEl = el.querySelector(
-        ".kuc-mobile-button__button"
+        ".kuc-mobile-button__button",
       ) as HTMLButtonElement;
       expect(buttonEl.classList.length).to.equal(2);
       expect(buttonEl.classList[0]).to.equal("kuc-mobile-button__button");
       expect(buttonEl.classList[1]).to.equal(
-        "kuc-mobile-button__button--normal"
+        "kuc-mobile-button__button--normal",
       );
     });
 
@@ -24,12 +24,12 @@ describe("MobileButton", () => {
       container.type = "normal";
       const el = await fixture(container);
       const buttonEl = el.querySelector(
-        ".kuc-mobile-button__button"
+        ".kuc-mobile-button__button",
       ) as HTMLButtonElement;
       expect(buttonEl.classList.length).to.equal(2);
       expect(buttonEl.classList[0]).to.equal("kuc-mobile-button__button");
       expect(buttonEl.classList[1]).to.equal(
-        "kuc-mobile-button__button--normal"
+        "kuc-mobile-button__button--normal",
       );
     });
 
@@ -40,12 +40,12 @@ describe("MobileButton", () => {
       container.type = "submit";
       const el = await fixture(container);
       const buttonEl = el.querySelector(
-        ".kuc-mobile-button__button"
+        ".kuc-mobile-button__button",
       ) as HTMLButtonElement;
       expect(buttonEl.classList.length).to.equal(2);
       expect(buttonEl.classList[0]).to.equal("kuc-mobile-button__button");
       expect(buttonEl.classList[1]).to.equal(
-        "kuc-mobile-button__button--submit"
+        "kuc-mobile-button__button--submit",
       );
     });
     it('should be normal when assigning a type other than "normal | alert | submit" by setter', async () => {
@@ -55,12 +55,12 @@ describe("MobileButton", () => {
       container.type = "other_type";
       const el = await fixture(container);
       const buttonEl = el.querySelector(
-        ".kuc-mobile-button__button"
+        ".kuc-mobile-button__button",
       ) as HTMLButtonElement;
       expect(buttonEl.classList.length).to.equal(2);
       expect(buttonEl.classList[0]).to.equal("kuc-mobile-button__button");
       expect(buttonEl.classList[1]).to.equal(
-        "kuc-mobile-button__button--normal"
+        "kuc-mobile-button__button--normal",
       );
     });
   });

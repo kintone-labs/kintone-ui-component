@@ -49,7 +49,7 @@ describe("ReadOnlyTable", () => {
       const container = new ReadOnlyTable({ columns: columns });
       const el = await fixture(container);
       const rowsEl = el.querySelectorAll(
-        ".kuc-readonly-table__table__body__row"
+        ".kuc-readonly-table__table__body__row",
       );
       expect(rowsEl.length).to.equal(0);
     });
@@ -58,7 +58,7 @@ describe("ReadOnlyTable", () => {
       const container = new ReadOnlyTable({ columns: columns, data: data });
       const el = await fixture(container);
       const rowsEl = el.querySelectorAll(
-        ".kuc-readonly-table__table__body__row"
+        ".kuc-readonly-table__table__body__row",
       );
 
       expect(rowsEl.length).to.equal(2);
@@ -73,7 +73,7 @@ describe("ReadOnlyTable", () => {
       container.data = data;
       const el = await fixture(container);
       const rowsEl = el.querySelectorAll(
-        ".kuc-readonly-table__table__body__row"
+        ".kuc-readonly-table__table__body__row",
       );
 
       expect(rowsEl.length).to.equal(2);
@@ -91,21 +91,21 @@ describe("ReadOnlyTable", () => {
       const el = await fixture(container);
       container.data = replacedData;
       const rowsEl = el.querySelectorAll(
-        ".kuc-readonly-table__table__body__row"
+        ".kuc-readonly-table__table__body__row",
       );
 
       expect(rowsEl.length).to.equal(2);
       expect(rowsEl[0].children[0].textContent?.trim()).to.equal(
-        replacedData[0].index
+        replacedData[0].index,
       );
       expect(rowsEl[0].children[1].textContent?.trim()).to.equal(
-        replacedData[0].name
+        replacedData[0].name,
       );
       expect(rowsEl[1].children[0].textContent?.trim()).to.equal(
-        replacedData[1].index
+        replacedData[1].index,
       );
       expect(rowsEl[1].children[1].textContent?.trim()).to.equal(
-        replacedData[1].name
+        replacedData[1].name,
       );
     });
 
@@ -134,6 +134,35 @@ describe("ReadOnlyTable", () => {
       const container = new ReadOnlyTable();
       container.data = null;
       fixture(container);
+    });
+
+    it("should have rows when assigned HTML data", async () => {
+      const htmlString = `<input type="text">`;
+      const container = new ReadOnlyTable({
+        columns: [
+          {
+            headerName: "HTML input",
+            field: "input",
+          },
+        ],
+        data: [
+          {
+            input: htmlString,
+          },
+        ],
+      });
+      const el = await fixture(container);
+      const rowsEl = el.querySelectorAll(
+        ".kuc-readonly-table__table__body__row",
+      );
+
+      await expect(rowsEl.length).to.equal(1);
+      await expect(rowsEl[0].children[0].children[0].classList[0]).to.equal(
+        "kuc-readonly-table__table__body__row__cell-data--html",
+      );
+      await expect(
+        rowsEl[0].children[0].children[0].children[0].outerHTML.trim(),
+      ).to.equal(htmlString);
     });
   });
 });

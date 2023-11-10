@@ -38,7 +38,7 @@ export const generateTimeOptions = (
   isHour12: boolean,
   timeStep: number,
   min: string,
-  max: string
+  max: string,
 ) => {
   const timeOptions = [];
   const newTimeStep = Math.round(timeStep);
@@ -50,7 +50,7 @@ export const generateTimeOptions = (
     for (let i = 0; i < limitLoop; i++) {
       const timeOption = generateTimeOption(
         minMinutes + i * newTimeStep,
-        isHour12
+        isHour12,
       );
       timeOptions.push(timeOption);
     }
@@ -131,7 +131,7 @@ export const formatTimeValueToInputValue = (value: string, hour12: boolean) => {
 
 export const formatTimeValueToInputValueForMobile = (
   value: string,
-  hour12: boolean
+  hour12: boolean,
 ) => {
   const timeResult = { hours: "", minutes: "", suffix: "" };
   const times = value.split(":");
@@ -140,7 +140,7 @@ export const formatTimeValueToInputValueForMobile = (
   const newHours = hours % MAX_HOURS24;
   if (!isNaN(newHours)) {
     timeResult.hours = padStart(
-      hour12 ? convertHour24To12(newHours) : newHours
+      hour12 ? convertHour24To12(newHours) : newHours,
     );
     timeResult.suffix = hour12 ? convertSuffix24To12(newHours) : "";
   }
@@ -269,7 +269,7 @@ export const isValidDateFormat = (language: string, dateString?: string) => {
 
 export const padStart = (
   filterString: string | number,
-  maxLength: number = 2
+  maxLength: number = 2,
 ) => {
   const s = `0000000000${filterString}`;
   return s.substr(s.length - maxLength);
@@ -281,7 +281,7 @@ const getDateRanges = (year: number, month: number) => {
 
   const startDayOfFirstWeek = new Date(startDayOfMonth);
   startDayOfFirstWeek.setDate(
-    startDayOfFirstWeek.getDate() - startDayOfFirstWeek.getDay()
+    startDayOfFirstWeek.getDate() - startDayOfFirstWeek.getDay(),
   );
 
   const endDayOfMonth = new Date(year, month);
@@ -289,7 +289,7 @@ const getDateRanges = (year: number, month: number) => {
 
   const endDayOfEndWeek = new Date(endDayOfMonth);
   endDayOfEndWeek.setDate(
-    endDayOfEndWeek.getDate() + (6 - endDayOfEndWeek.getDay())
+    endDayOfEndWeek.getDate() + (6 - endDayOfEndWeek.getDay()),
   );
 
   const rangeLength =
@@ -329,7 +329,7 @@ export const generateMinuteOptions = (timeStep: number = 1) => {
 export const generateHourOptions = (hour12 = false) => {
   if (hour12) {
     const hourOptions = generateHour12Options("AM").concat(
-      generateHour12Options("PM")
+      generateHour12Options("PM"),
     );
     return hourOptions;
   }
@@ -386,7 +386,7 @@ export const getLeftArrowIconSvgTemplate = () => {
 
 export function setListBoxPosition(_this: HTMLElement, position: string) {
   const ulEl = _this.querySelector(
-    ".kuc-base-datetime-listbox__listbox"
+    ".kuc-base-datetime-listbox__listbox",
   ) as HTMLUListElement;
   const distance = calculateDistanceInput(_this);
   if (!_this.parentElement || !ulEl || !distance) return;
@@ -435,10 +435,10 @@ export const calculateDistanceInput = (_this: HTMLElement) => {
     _this.closest("kuc-base-date") ?? _this.closest("kuc-mobile-base-date");
   const inputDate =
     (inputParentElement as HTMLElement).getElementsByClassName(
-      "kuc-base-date__input"
+      "kuc-base-date__input",
     )[0] ??
     (inputParentElement as HTMLElement).getElementsByClassName(
-      "kuc-mobile-base-date__group"
+      "kuc-mobile-base-date__group",
     )[0];
   const inputDateWidth = inputDate.getBoundingClientRect().width;
   const inputToBottom =

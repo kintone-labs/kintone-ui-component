@@ -97,9 +97,9 @@ export const BUTTON_CSS = `
     background-color: var(--kuc-button-background-color-active, #bf2718);
   }
   .kuc-button__button:disabled {
-    background-color: var(--kuc-button-background-color, #d4d7d7);
+    background-color: #d4d7d7;
     border: 1px solid #e3e7e8;
-    color: var(--kuc-button-text-color, #888888);
+    color: #888888;
     cursor: default;
   }
   .kuc-button__button--normal:focus-visible,
