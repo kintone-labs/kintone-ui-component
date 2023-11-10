@@ -20,7 +20,10 @@ const replacedItems = [
   { label: "Apple", value: "apple" },
 ];
 
-const dupplicatedItems = [{ value: "apple" }, { value: "apple" }];
+const disabledItems = [
+  { label: "Orange", value: "orange" },
+  { label: "Apple", value: "apple", disabled: true },
+];
 
 describe("MobileCheckbox", () => {
   describe("items", () => {
@@ -239,6 +242,30 @@ describe("MobileCheckbox", () => {
       );
       const inputEl0 = itemsEl[0].querySelector("input") as HTMLInputElement;
       expect(inputEl0.value).to.equal("");
+    });
+
+    it("should set items when assigned disabled items on constructor", async () => {
+      const container = new MobileCheckbox({ items: disabledItems });
+      const el = await fixture(container);
+      const itemsEl = el.querySelectorAll(
+        ".kuc-mobile-checkbox__group__select-menu__item",
+      );
+
+      await expect(
+        itemsEl[0].classList.contains(
+          "kuc-mobile-checkbox__group__select-menu__item--disabled",
+        ),
+      ).to.equal(false);
+      const inputEl0 = itemsEl[0].querySelector("input") as HTMLInputElement;
+      expect(inputEl0.hasAttribute("disabled")).to.equal(false);
+
+      await expect(
+        itemsEl[1].classList.contains(
+          "kuc-mobile-checkbox__group__select-menu__item--disabled",
+        ),
+      ).to.equal(true);
+      const inputEl1 = itemsEl[1].querySelector("input") as HTMLInputElement;
+      expect(inputEl1.hasAttribute("disabled")).to.equal(true);
     });
   });
 });

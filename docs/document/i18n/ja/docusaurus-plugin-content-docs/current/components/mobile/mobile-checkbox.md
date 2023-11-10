@@ -58,6 +58,7 @@ import { MobileCheckboxComponent } from "@site/static/js/samples/mobile/checkbox
 | :--- | :--- | :--- | :--- | :--- |
 | label | string | null | 各選択肢のテキスト | Item.label が未指定の場合、UI 上は Item.value の値が表示される |
 | value | string | null | 各選択肢の値 | Item.value に重複の値を指定できる |
+| disabled | boolean | false | 各オプションの選択可/不可設定 | |
 
 ### Event
 
@@ -104,6 +105,11 @@ const mobileCheckbox = new Kuc.MobileCheckbox({
     {
       label: 'apple',
       value: 'Apple'
+    },
+    {
+      label: 'banana',
+      value: 'Banana',
+      disabled: true
     }
   ],
   value: ['Orange'],

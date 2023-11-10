@@ -154,7 +154,9 @@ let exportMobileCheckbox;
       return html`
         <label
           for="${this._GUID}-item-${index}"
-          class="kuc-mobile-checkbox__group__select-menu__item"
+          class="kuc-mobile-checkbox__group__select-menu__item${item.disabled
+            ? " kuc-mobile-checkbox__group__select-menu__item--disabled"
+            : ""}"
           ?borderVisible="${this.borderVisible}"
         >
           <input
@@ -167,7 +169,7 @@ let exportMobileCheckbox;
             aria-describedby="${this._GUID}-error}"
             aria-required="${this.requiredIcon}"
             aria-invalid="${this.error !== ""}"
-            ?disabled="${this.disabled}"
+            ?disabled="${item.disabled || this.disabled}"
             @change="${this._handleChangeInput}"
           />
           <div class="kuc-mobile-checkbox__group__select-menu__item__label">
