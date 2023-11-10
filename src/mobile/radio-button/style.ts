@@ -108,12 +108,20 @@ export const MOBILE_RADIO_BUTTON_CSS = `
   }
 
   .kuc-mobile-radio-button__group__select-menu[disabled], 
-  .kuc-mobile-radio-button__group__select-menu__item__label--disabled {
+  .kuc-mobile-radio-button__group__select-menu__item--disabled {
     background-color: #d5d7d9;
     color: #999999;
     -webkit-text-fill-color: #999999;
     background-color: #d5d7d9;
     opacity: 1;
+  }
+  .kuc-mobile-radio-button__group__select-menu__item--disabled:last-child {
+    border-bottom-left-radius: 0.3em;
+    border-bottom-right-radius: 0.3em;
+  }
+  .kuc-mobile-radio-button__group__select-menu__item--disabled:first-child {
+    border-top-left-radius: 0.3em;
+    border-top-right-radius: 0.3em;
   }
 
   .kuc-mobile-radio-button__group__select-menu__item__label {
