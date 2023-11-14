@@ -87,7 +87,8 @@ export const BASE_TIME_CSS = `
   color: #888888;
   cursor: not-allowed;
 }
-.kuc-base-time__group--disabled input, .kuc-base-time__group--disabled span {
+.kuc-base-time__group--disabled input:disabled,
+.kuc-base-time__group--disabled span {
   cursor: not-allowed;
   color: #888888;
   -webkit-text-fill-color: #888888;

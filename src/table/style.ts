@@ -115,6 +115,9 @@ export const TABLE_CSS = `
         overflow-wrap: anywhere;
         white-space: normal;
     }
+    .kuc-table__table .kuc-table__table__label--no-column {
+        overflow-wrap: break-word;
+    }
     .kuc-table__table__header__cell {
       scrollbar-width: none; /* Firefox */
     }
