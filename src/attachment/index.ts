@@ -121,7 +121,9 @@ let exportAttachment;
           ></kuc-base-label>
         </label>
         <div
-          class="kuc-attachment__group__files"
+          class="kuc-attachment__group__files ${
+            this.disabled ? " kuc-attachment__group__files--disabled" : ""
+          }"
           @dragenter="${this._handleDragEnter}"
           @dragover="${this._handleDragOver}"
           @dragleave="${this._handleDragLeave}"
