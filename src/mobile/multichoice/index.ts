@@ -222,6 +222,7 @@ let exportMobileMultiChoice;
           value="${item.value || ""}"
           data-index="${index}"
           ?selected="${item.value !== undefined ? isCheckedItem : false}"
+          ?disabled="${item.disabled}"
         >
           ${item.label === undefined ? item.value : item.label}
         </option>

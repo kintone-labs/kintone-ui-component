@@ -58,6 +58,7 @@ Example: When setting `items = [{label: 'Orange', value: 'fruit'}, {label: 'Appl
 | :--- | :--- | :--- | :--- | :--- |
 | label | string | null | Label text for each option | If `Item.label` is unspecified, the value of `Item.value` is displayed on the UI |
 | value | string | null | Value of each option | Can set duplicated value in `Item.value` |
+| disabled | boolean | false | Enable/Disable each option | |
 
 ### Event
 Here is a list of events that can be specified:
@@ -102,6 +103,11 @@ const mobileMultiChoice = new Kuc.MobileMultiChoice({
     {
       label: 'apple',
       value: 'Apple'
+    },
+    {
+      label: 'banana',
+      value: 'Banana',
+      disabled: true
     }
   ],
   value: ['Orange'],
