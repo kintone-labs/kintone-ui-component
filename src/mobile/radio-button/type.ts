@@ -9,6 +9,7 @@ export declare type MobileRadioButtonChangeEventDetail = {
 export declare type MobileRadioButtonItem = {
   label?: string;
   value?: string;
+  disabled?: boolean;
 };
 export declare type MobileRadioButtonProps = {
   className?: string;
