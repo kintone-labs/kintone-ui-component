@@ -159,8 +159,6 @@ npm run build
 
 2. Confirm that a `build/` directory containing all documents and .html of other pages is generated in the `docs/document/` directory.
 
-For more information about build, click [here](https://docusaurus.io/docs/2.x/deployment).
-
 ### Testing your Build Locally
 
 Execute `serve` command to test your build locally.
@@ -168,6 +166,8 @@ Execute `serve` command to test your build locally.
 ```sh
 npm run serve
 ```
+
+For more information about build, click [here](https://docusaurus.io/docs/2.x/deployment).
 
 ## Hosting
 
