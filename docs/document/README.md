@@ -161,13 +161,19 @@ npm run build
 
 ### Testing your Build Locally
 
-Execute `serve` command to test your build locally.
+1. Execute `serve` command to test your build locally.
 
 ```sh
 npm run serve
 ```
 
 For more information about build, click [here](https://docusaurus.io/docs/2.x/deployment).
+
+2. Because versioning is used, access the link with `next` to see the documents you added or modified.<br>
+ex. `http://localhost:3000/docs/next/components/desktop/button` <br>
+`http://localhost:3000/ja/docs/next/components/desktop/button`
+
+For more information about versioning, click [here](https://docusaurus.io/docs/2.x/versioning).
 
 ## Hosting
 
