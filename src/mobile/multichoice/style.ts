@@ -71,4 +71,22 @@ export const MOBILE_MULTICHOICE_CSS = `
     background-color: #d5d7d9;
     opacity: 1;
   }
+
+  .kuc-mobile-multi-choice__input-form__select__input option:disabled {
+    color: #999999;
+    -webkit-text-fill-color: #999999;
+    background-color: #d5d7d9;
+    opacity: 1;
+  }
+
+  .kuc-mobile-multi-choice__input-form__select__input option:disabled[selected] {
+    background-color: #cecece; /* Chrome */
+    background-color: -moz-cellhighlight; /* Firefox */
+    opacity: 1;
+  }
+
+  .kuc-mobile-multi-choice__input-form__select__input:disabled option {
+    color: #999999;
+    -webkit-text-fill-color: #999999;
+  }
 `;
