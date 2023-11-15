@@ -59,6 +59,7 @@ Example: When setting `items = [{label: 'Orange', value: 'fruit'}, {label: 'Appl
 | :--- | :--- | :--- | :--- | :--- |
 | label | string | null | Text label for each option | If `Item.label` is unspecified, the value of `Item.value` is displayed on the UI |
 | value | string | null | Value of each option | Can set duplicated value in `Item.value` |
+| disabled | boolean | false | Enable/Disable each option | |
 
 ### Event
 
@@ -105,6 +106,11 @@ const mobileCheckbox = new Kuc.MobileCheckbox({
     {
       label: 'apple',
       value: 'Apple'
+    },
+    {
+      label: 'banana',
+      value: 'Banana',
+      disabled: true
     }
   ],
   value: ['Orange'],

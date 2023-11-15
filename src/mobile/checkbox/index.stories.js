@@ -57,6 +57,11 @@ Base.args = {
       label: "sample2",
       value: "sample2",
     },
+    {
+      label: "sample3",
+      value: "sample3",
+      disabled: true,
+    },
   ],
   value: ["sample1"],
   selectedIndex: [0],
