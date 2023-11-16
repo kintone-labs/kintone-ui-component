@@ -1,0 +1,33 @@
+name: Perform traffic logs
+on:
+  push:
+
+jobs:
+  check:
+    name: run traffic logs
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+      - name: Issue an access token
+        uses: actions/create-github-app-token@v1
+        id: app-token
+        with:
+          app_id: ${{secrets.APP_ID_GITHUB}}
+          private_key: ${{ secrets.PRIVATE_KEY }}
+      - name: Print updated config.json
+        run: cat config.json
+        working-directory: traffic-logs
+      - name: Print GitHub Token
+        run: echo "${{ steps.app-token.outputs.token }}"
+      - name: Retrieve repository information
+        run: |
+          REPO_INFO=$(curl -H "Authorization: Bearer ${{ steps.app-token.outputs.token }}" \
+            https://api.github.com/repos/${{ github.repository }})
+          echo "$REPO_INFO"
+      - name: check release info
+        env:
+          GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
+        run: |
+          node traffic-logs-kuc.min.js --config ./config.json
+        working-directory: traffic-logs
