@@ -15,9 +15,6 @@ jobs:
         with:
           app_id: ${{secrets.APP_ID_GITHUB}}
           private_key: ${{ secrets.PRIVATE_KEY }}
-      - name: Print updated config.json
-        run: cat config.json
-        working-directory: traffic-logs
       - name: Print GitHub Token
         run: echo "${{ steps.app-token.outputs.token }}"
       - name: Retrieve repository information
@@ -31,3 +28,6 @@ jobs:
         run: |
           node traffic-logs-kuc.min.js --config ./config.json
         working-directory: traffic-logs
+      - name: Print error logs
+        run: cat system_20231116.log
+        working-directory: traffic-logs/log
