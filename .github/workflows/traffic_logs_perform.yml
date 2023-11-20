@@ -26,9 +26,9 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
         run: |
-          echo "GitHub App Token: ${{ steps.app-token.outputs.token }}"
-          env:
-            GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
-          run: |
-            node traffic-logs-kuc.min.js --config ./config.json
+          node traffic-logs-kuc.min.js --config ./config.json
+        working-directory: traffic-logs
+      - name: print log
+        run: |
+          cat ./log/system_20231120.log
         working-directory: traffic-logs
