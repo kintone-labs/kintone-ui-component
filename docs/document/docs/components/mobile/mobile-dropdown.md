@@ -100,7 +100,7 @@ const mobileDropdown = new Kuc.MobileDropdown({
       label: 'apple',
       value: 'Apple',
     },
-     {
+    {
       label: 'banana',
       value: 'Banana',
       disabled: true
