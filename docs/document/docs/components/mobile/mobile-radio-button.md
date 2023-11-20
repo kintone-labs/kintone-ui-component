@@ -98,8 +98,12 @@ const mobileRadioButton = new Kuc.MobileRadioButton({
     {
       label: 'apple',
       value: 'Apple',
+    },
+    {
+      label: 'banana',
+      value: 'Banana',
       disabled: true
-    }
+    },
   ],
   value: 'Orange',
   selectedIndex: 0,
