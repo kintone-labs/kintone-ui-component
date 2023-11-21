@@ -14,13 +14,8 @@ jobs:
         uses: actions/create-github-app-token@v1
         id: app-token
         with:
-          app_id: ${{secrets.APP_ID_GITHUB}}
+          app_id: ${{secrets.TRAFFIC_LOGS_APP_ID}}
           private_key: ${{ secrets.TRAFFIC_LOGS_APP_PRIVATE_KEY }}
-      - name: Retrieve repository information
-        run: |
-          REPO_INFO=$(curl -H "Authorization: Bearer ${{ steps.app-token.outputs.token }}" \
-          https://api.github.com/repos/${{ github.repository }})
-          echo "$REPO_INFO"
       - name: Update config file
         run: |
           sed -i 's|<kintone-app-id>|${{secrets.TRAFFIC_LOGS_KINTONE_APP_ID}}|' config.json
@@ -32,8 +27,4 @@ jobs:
           GITHUB_APP_TOKEN: ${{ steps.app-token.outputs.token }}
         run: |
           node traffic-logs-kuc.min.js --config ./config.json
-        working-directory: traffic-logs
-      - name: print log
-        run: |
-          cat ./log/system_20231121.log
         working-directory: traffic-logs
