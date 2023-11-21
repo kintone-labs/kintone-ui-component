@@ -5,7 +5,7 @@ on:
     
 jobs:
   check:
-    name: run traffic logs
+    name: Run traffic logs
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
@@ -22,7 +22,7 @@ jobs:
           sed -i 's|<domain>|${{secrets.TRAFFIC_LOGS_KINTONE_APP_DOMAIN}}|' config.json
           sed -i 's|<kintone-app-token>|${{secrets.TRAFFIC_LOGS_KINTONE_APP_API_TOKEN}}|' config.json
         working-directory: traffic-logs
-      - name: check release info
+      - name: perform traffc logs with app token
         env:
           GITHUB_APP_TOKEN: ${{ steps.app-token.outputs.token }}
         run: |
