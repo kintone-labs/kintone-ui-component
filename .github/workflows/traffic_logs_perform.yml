@@ -1,7 +1,8 @@
 name: Perform traffic logs
 on:
   push:
-
+    #every 10:00 UTC+0（19:00 JP Time） 
+    
 jobs:
   check:
     name: run traffic logs
@@ -9,26 +10,21 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v3
-      - name: Issue an access token
+      - name: Generate app token
         uses: actions/create-github-app-token@v1
         id: app-token
         with:
           app_id: ${{secrets.APP_ID_GITHUB}}
           private_key: ${{ secrets.PRIVATE_KEY }}
-      - name: Print GitHub Token
-        run: echo "${{ steps.app-token.outputs.token }}"
-      - name: Retrieve repository information
+      - name: Update config file
         run: |
-          REPO_INFO=$(curl -H "Authorization: Bearer ${{ steps.app-token.outputs.token }}" \
-            https://api.github.com/repos/${{ github.repository }})
-          echo "$REPO_INFO"
+          sed -i 's|<kintone-app-id>|${{secrets.TRAFFIC_LOGS_KINTONE_APP_ID}}|' config.json
+          sed -i 's|<domain>|${{secrets.TRAFFIC_LOGS_KINTONE_APP_DOMAIN}}|' config.json
+          sed -i 's|<kintone-app-token>|${{secrets.TRAFFIC_LOGS_KINTONE_APP_API_TOKEN}}|' config.json
+        working-directory: traffic-logs
       - name: check release info
         env:
-          GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
+          GITHUB_APP_TOKEN: ${{ steps.app-token.outputs.token }}
         run: |
           node traffic-logs-kuc.min.js --config ./config.json
-        working-directory: traffic-logs
-      - name: print log
-        run: |
-          cat ./log/system_20231120.log
         working-directory: traffic-logs

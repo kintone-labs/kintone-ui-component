@@ -1,8 +1,8 @@
 {
   "kintone": {
-    "app": "217",
-    "domain": "cndevvbmzbw.cybozu.cn",
-    "apiToken": "BI8Lo1fty7txMXQXjSnR4htGsbwEzOYNx8II60oY"
+    "app": "<kintone-app-id>",
+    "domain": "<domain>",
+    "apiToken": "<kintone-app-token>"
   },
   "githubToken": "<github token>"
 }
