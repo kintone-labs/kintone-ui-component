@@ -1,8 +1,8 @@
 name: Perform traffic logs
 on:
-  push:
+  schedule:
     #every 10:00 UTC+0（19:00 JP Time） 
-    
+    - cron: '0 10 * * *'
 jobs:
   check:
     name: Run traffic logs
@@ -22,7 +22,7 @@ jobs:
           sed -i 's|<domain>|${{secrets.TRAFFIC_LOGS_KINTONE_APP_DOMAIN}}|' config.json
           sed -i 's|<kintone-app-token>|${{secrets.TRAFFIC_LOGS_KINTONE_APP_API_TOKEN}}|' config.json
         working-directory: traffic-logs
-      - name: perform traffc logs with app token
+      - name: Perform traffc logs with app token
         env:
           GITHUB_APP_TOKEN: ${{ steps.app-token.outputs.token }}
         run: |
