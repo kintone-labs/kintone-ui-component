@@ -26,11 +26,14 @@ jobs:
           sed -i 's|<kintone-app-id>|${{secrets.TRAFFIC_LOGS_KINTONE_APP_ID}}|' config.json
           sed -i 's|<domain>|${{secrets.TRAFFIC_LOGS_KINTONE_APP_DOMAIN}}|' config.json
           sed -i 's|<kintone-app-token>|${{secrets.TRAFFIC_LOGS_KINTONE_APP_API_TOKEN}}|' config.json
-          cat config.json
         working-directory: traffic-logs
       - name: check release info
         env:
           GITHUB_APP_TOKEN: ${{ steps.app-token.outputs.token }}
         run: |
           node traffic-logs-kuc.min.js --config ./config.json
+        working-directory: traffic-logs
+      - name: print log
+        run: |
+          cat ./log/system_20231121.log
         working-directory: traffic-logs
