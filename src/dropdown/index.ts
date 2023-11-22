@@ -86,6 +86,8 @@ let exportDropdown;
     private _DISABLED_CLASS =
       "kuc-dropdown__group__select-menu__item--disabled";
 
+    private _hasValueInItems = false;
+
     constructor(props?: DropdownProps) {
       super();
       this._GUID = generateGUID();
@@ -156,9 +158,12 @@ let exportDropdown;
     }
 
     willUpdate(changedProperties: PropertyValues): void {
+      if (changedProperties.has("items") || changedProperties.has("value")) {
+        this._hasValueInItems =
+          this.items.find((item) => item.value === this.value) !== undefined;
+      }
       if (changedProperties.has("value")) {
-        if (this.value !== "") return;
-
+        if (this.value !== "" || this._hasValueInItems) return;
         this.selectedIndex = -1;
       }
     }
@@ -180,7 +185,7 @@ let exportDropdown;
     }
 
     private _getSelectedIndex() {
-      if (!this.value) {
+      if (!this.value && !this._hasValueInItems) {
         if (this.items[this.selectedIndex]) return this.selectedIndex;
         return -1;
       }
@@ -693,7 +698,8 @@ let exportDropdown;
     }
 
     private _isCheckedItem(item: DropdownItem, index: number) {
-      if (!this.value) return this.selectedIndex === index;
+      if (!this.value && !this._hasValueInItems)
+        return this.selectedIndex === index;
       return item.value === this.value && this.selectedIndex === index;
     }
 
