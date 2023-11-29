@@ -1,5 +1,6 @@
 {
     "files.associations": {
         "**/style.ts": "css"
-    }
+    },
+    "editor.inlineSuggest.showToolbar": "onHover"
 }
