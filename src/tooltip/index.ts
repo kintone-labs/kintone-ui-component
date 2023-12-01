@@ -1,5 +1,5 @@
 import { html, PropertyValues } from "lit";
-import { property, query } from "lit/decorators.js";
+import { property, query, queryAll } from "lit/decorators.js";
 import { DirectiveResult } from "lit/directive";
 import { UnsafeHTMLDirective } from "lit/directives/unsafe-html";
 
@@ -32,8 +32,8 @@ let exportTooltip;
     private _groupContainerEL!: HTMLDivElement;
     @query(".kuc-tooltip__group__title__wrapper")
     private _titleWrapper!: HTMLDivElement;
-    @query(".kuc-tooltip__group__title")
-    private _tooltip!: HTMLDivElement;
+    @queryAll(".kuc-tooltip__group__title")
+    private _tooltips!: HTMLDivElement[];
 
     private _container:
       | HTMLElement
@@ -193,13 +193,21 @@ let exportTooltip;
     }
 
     private _showTooltip() {
-      if (!this._tooltip) return;
-      this._tooltip.classList.remove("kuc-tooltip__group__title--hidden");
+      if (this._tooltips.length === 0) return;
+      this._tooltips.forEach((tooltip) => {
+        if (tooltip!.id === `${this._GUID}-title`) {
+          tooltip.classList.remove("kuc-tooltip__group__title--hidden");
+        }
+      });
     }
 
     private _hideTooltip() {
-      if (!this._tooltip) return;
-      this._tooltip.classList.add("kuc-tooltip__group__title--hidden");
+      if (this._tooltips.length === 0) return;
+      this._tooltips.forEach((tooltip) => {
+        if (tooltip!.id === `${this._GUID}-title`) {
+          tooltip.classList.add("kuc-tooltip__group__title--hidden");
+        }
+      });
     }
 
     private _attachGlobalListener() {
