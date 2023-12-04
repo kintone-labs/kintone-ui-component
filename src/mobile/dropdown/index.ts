@@ -123,7 +123,7 @@ let exportMobileDropdown;
           this.items.find((item) => item.value === this.value) !== undefined;
       }
       if (changedProperties.has("value")) {
-        if (this.value !== "") return;
+        if (this.value !== "" || this._hasValueInItems) return;
 
         this.selectedIndex = -1;
       }
