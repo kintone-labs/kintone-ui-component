@@ -698,8 +698,7 @@ let exportDropdown;
     }
 
     private _isCheckedItem(item: DropdownItem, index: number) {
-      if (!this.value && !this._hasValueInItems)
-        return this.selectedIndex === index;
+      if (!this.value) return this.selectedIndex === index;
       return item.value === this.value && this.selectedIndex === index;
     }
 
