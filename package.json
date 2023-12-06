@@ -66,7 +66,7 @@
   "dependencies": {
     "@types/uuid": "^9.0.7",
     "@webcomponents/webcomponentsjs": "^2.8.0",
-    "core-js": "^3.33.3",
+    "core-js": "^3.34.0",
     "lit": "^3.1.0",
     "regenerator-runtime": "^0.14.0",
     "uuid": "^9.0.1"
