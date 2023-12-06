@@ -96,9 +96,7 @@ export const TOOLTIP_CSS = `
     border: 0.5em solid transparent;
     border-bottom-color: var(--kuc-tooltip-background-color, #000000);
   }
-  .kuc-tooltip__group.kuc-tooltip__group--top 
-   > .kuc-tooltip__group__title 
-  .kuc-tooltip__group__title__wrapper__arrow {
+  .kuc-tooltip__group.kuc-tooltip__group--top > .kuc-tooltip__group__title .kuc-tooltip__group__title__wrapper__arrow {
     border-top-color: var(--kuc-tooltip-background-color, #000000);
     border-right-color: transparent;
     border-bottom-color: transparent;
@@ -123,13 +121,13 @@ export const TOOLTIP_CSS = `
     display: flex;
     align-items: center;
   }
-  .kuc-tooltip__group.kuc-tooltip__group--top .kuc-tooltip__group__title__wrapper {
+  .kuc-tooltip__group.kuc-tooltip__group--top > .kuc-tooltip__group__title .kuc-tooltip__group__title__wrapper {
     flex-direction: column-reverse;
   }
-  .kuc-tooltip__group.kuc-tooltip__group--bottom .kuc-tooltip__group__title__wrapper {
+  .kuc-tooltip__group.kuc-tooltip__group--bottom > .kuc-tooltip__group__title .kuc-tooltip__group__title__wrapper {
     flex-direction: column;
   }
-  .kuc-tooltip__group.kuc-tooltip__group--left .kuc-tooltip__group__title__wrapper {
+  .kuc-tooltip__group.kuc-tooltip__group--left > .kuc-tooltip__group__title .kuc-tooltip__group__title__wrapper {
     flex-direction: row-reverse;
   }
 `;
