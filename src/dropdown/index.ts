@@ -159,8 +159,9 @@ let exportDropdown;
 
     willUpdate(changedProperties: PropertyValues): void {
       if (changedProperties.has("items") || changedProperties.has("value")) {
-        this._hasValueInItems =
-          this.items.find((item) => item.value === this.value) !== undefined;
+        this._hasValueInItems = this.items.some(
+          (item) => item.value === this.value,
+        );
       }
       if (changedProperties.has("value")) {
         if (this.value !== "" || this._hasValueInItems) return;
