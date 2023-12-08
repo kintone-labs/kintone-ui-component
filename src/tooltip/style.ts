@@ -65,15 +65,15 @@ export const TOOLTIP_CSS = `
     width: max-content;
     z-index: 1000;
   }
-  .kuc-tooltip__group.kuc-tooltip__group--top .kuc-tooltip__group__title {
+  .kuc-tooltip__group.kuc-tooltip__group--top > .kuc-tooltip__group__title {
     top: unset;
     bottom: 100%;
   }
-  .kuc-tooltip__group.kuc-tooltip__group--bottom .kuc-tooltip__group__title {
+  .kuc-tooltip__group.kuc-tooltip__group--bottom > .kuc-tooltip__group__title {
     width: max-content;
     top: auto;
   }
-  .kuc-tooltip__group.kuc-tooltip__group--left .kuc-tooltip__group__title {
+  .kuc-tooltip__group.kuc-tooltip__group--left > .kuc-tooltip__group__title {
     width: max-content;
     height: fit-content;
     margin: auto 0;
@@ -83,7 +83,7 @@ export const TOOLTIP_CSS = `
     bottom: 0;
     transform: translateX(0);
   }
-  .kuc-tooltip__group.kuc-tooltip__group--right .kuc-tooltip__group__title {
+  .kuc-tooltip__group.kuc-tooltip__group--right > .kuc-tooltip__group__title {
     width: max-content;
     height: fit-content;
     margin: auto 0;
@@ -96,17 +96,17 @@ export const TOOLTIP_CSS = `
     border: 0.5em solid transparent;
     border-bottom-color: var(--kuc-tooltip-background-color, #000000);
   }
-  .kuc-tooltip__group.kuc-tooltip__group--top .kuc-tooltip__group__title__wrapper__arrow {
+  .kuc-tooltip__group.kuc-tooltip__group--top > .kuc-tooltip__group__title .kuc-tooltip__group__title__wrapper__arrow {
     border-top-color: var(--kuc-tooltip-background-color, #000000);
     border-right-color: transparent;
     border-bottom-color: transparent;
     margin: auto 0;
   }
-  .kuc-tooltip__group.kuc-tooltip__group--left .kuc-tooltip__group__title__wrapper__arrow {
+  .kuc-tooltip__group.kuc-tooltip__group--left > .kuc-tooltip__group__title .kuc-tooltip__group__title__wrapper__arrow {
     border-left-color: var(--kuc-tooltip-background-color, #000000);
     border-bottom-color: transparent;
   }
-  .kuc-tooltip__group.kuc-tooltip__group--right .kuc-tooltip__group__title__wrapper__arrow {
+  .kuc-tooltip__group.kuc-tooltip__group--right > .kuc-tooltip__group__title .kuc-tooltip__group__title__wrapper__arrow {
     border-right-color: var(--kuc-tooltip-background-color, #000000);
     border-bottom-color: transparent;
     width: fit-content;
@@ -121,13 +121,13 @@ export const TOOLTIP_CSS = `
     display: flex;
     align-items: center;
   }
-  .kuc-tooltip__group.kuc-tooltip__group--top .kuc-tooltip__group__title__wrapper {
+  .kuc-tooltip__group.kuc-tooltip__group--top > .kuc-tooltip__group__title .kuc-tooltip__group__title__wrapper {
     flex-direction: column-reverse;
   }
-  .kuc-tooltip__group.kuc-tooltip__group--bottom .kuc-tooltip__group__title__wrapper {
+  .kuc-tooltip__group.kuc-tooltip__group--bottom > .kuc-tooltip__group__title .kuc-tooltip__group__title__wrapper {
     flex-direction: column;
   }
-  .kuc-tooltip__group.kuc-tooltip__group--left .kuc-tooltip__group__title__wrapper {
+  .kuc-tooltip__group.kuc-tooltip__group--left > .kuc-tooltip__group__title .kuc-tooltip__group__title__wrapper {
     flex-direction: row-reverse;
   }
 `;
