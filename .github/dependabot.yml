@@ -1,5 +1,5 @@
 version: 2
-updates: 
+updates:
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
@@ -30,13 +30,6 @@ updates:
 
   - package-ecosystem: "npm"
     directory: "/docs/document"
-    open-pull-requests-limit: -1
-    schedule:
-      interval: "weekly"
-      day: "sunday"
-
-  - package-ecosystem: "npm"
-    directory: "/docs/document/website"
     open-pull-requests-limit: -1
     schedule:
       interval: "weekly"
