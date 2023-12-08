@@ -72,11 +72,10 @@ export const READ_ONLY_TABLE_CSS = `
     vertical-align: top;
   }
   .kuc-readonly-table__table__body__row__cell-data {
-    overflow: auto;
     box-sizing: border-box;
     padding: 4px 8px;
     white-space: pre-wrap;
-    word-wrap: break-word;
+    overflow-wrap: break-word;
     border-color: #e3e7e8;
     border-style: solid;
     border-width: 1px;
