@@ -7,7 +7,11 @@ export declare type MobileCheckboxChangeEventDetail = {
   value: string[] | undefined;
 };
 
-export declare type MobileCheckboxItem = { label?: string; value?: string };
+export declare type MobileCheckboxItem = {
+  label?: string;
+  value?: string;
+  disabled?: boolean;
+};
 
 export declare type MobileCheckboxProps = {
   className?: string;

@@ -56,6 +56,8 @@ let exportMobileDropdown;
     @query(".kuc-mobile-dropdown__input-form__select__input")
     private _selectEl!: HTMLSelectElement;
 
+    private _hasValueInItems = false;
+
     private _GUID: string;
 
     constructor(props?: MobileDropdownProps) {
@@ -116,8 +118,13 @@ let exportMobileDropdown;
     }
 
     willUpdate(changedProperties: PropertyValues): void {
+      if (changedProperties.has("items") || changedProperties.has("value")) {
+        this._hasValueInItems = this.items.some(
+          (item) => item.value === this.value,
+        );
+      }
       if (changedProperties.has("value")) {
-        if (this.value !== "") return;
+        if (this.value !== "" || this._hasValueInItems) return;
 
         this.selectedIndex = -1;
       }
@@ -140,7 +147,7 @@ let exportMobileDropdown;
     }
 
     private _getSelectedIndex() {
-      if (!this.value) {
+      if (!this.value && !this._hasValueInItems) {
         if (this.items[this.selectedIndex]) return this.selectedIndex;
         return -1;
       }
@@ -175,7 +182,11 @@ let exportMobileDropdown;
     private _getItemTemplate(item: MobileDropdownItem, index: number) {
       const isCheckedItem = this._isCheckedItem(item, index);
       return html`
-        <option value="${item.value || ""}" ?selected="${isCheckedItem}">
+        <option
+          value="${item.value || ""}"
+          ?selected="${isCheckedItem}"
+          ?disabled="${item.disabled}"
+        >
           ${item.label === undefined ? item.value : item.label}
         </option>
       `;

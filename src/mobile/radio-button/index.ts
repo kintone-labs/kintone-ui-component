@@ -144,7 +144,11 @@ let exportMobileRadioButton;
     private _getItemTemplate(item: MobileRadioButtonItem, index: number) {
       const isCheckedItem = this._isCheckedItem(item, index);
       return html`
-        <div class="kuc-mobile-radio-button__group__select-menu__item">
+        <div
+          class="kuc-mobile-radio-button__group__select-menu__item ${item.disabled
+            ? " kuc-mobile-radio-button__group__select-menu__item--disabled"
+            : ""}"
+        >
           <input
             type="radio"
             aria-describedby="${this._GUID}-error"
@@ -155,7 +159,7 @@ let exportMobileRadioButton;
             value="${item.value !== undefined ? item.value : ""}"
             aria-invalid="${this.error !== ""}"
             aria-required="${this.requiredIcon}"
-            ?disabled="${this.disabled}"
+            ?disabled="${this.disabled || item.disabled}"
             @change="${this._handleChangeInput}"
           />
           <label

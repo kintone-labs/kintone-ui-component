@@ -59,6 +59,9 @@ export const ATTACHMENT_CSS = `
     width: var(--kuc-attachment-width, auto);
     height: var(--kuc-attachment-height, auto);
   }
+  .kuc-attachment__group__files--disabled {
+    cursor: not-allowed;
+  }
   .kuc-attachment__group__files__browse-button {
     border: 1px solid transparent;
     position: relative;

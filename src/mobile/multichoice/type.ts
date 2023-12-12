@@ -9,6 +9,7 @@ export declare type MobileMultiChoiceChangeEventDetail = {
 export declare type MobileMultiChoiceItem = {
   label?: string;
   value?: string;
+  disabled?: boolean;
 };
 export declare type MobileMultiChoiceProps = {
   className?: string;

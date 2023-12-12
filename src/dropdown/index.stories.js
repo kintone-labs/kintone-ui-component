@@ -48,7 +48,7 @@ Base.args = {
   items: [
     {
       label: "-----",
-      value: "-----",
+      value: "",
     },
     {
       label: "Orange",
@@ -59,7 +59,7 @@ Base.args = {
       value: "apple",
     },
   ],
-  value: "-----",
+  value: "",
   selectedIndex: 0,
   label: "フルーツ一覧",
   requiredIcon: true,

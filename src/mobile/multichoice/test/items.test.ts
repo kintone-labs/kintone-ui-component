@@ -9,9 +9,9 @@ describe("MobileMultiChoice", () => {
       { label: "Orange", value: "orange" },
       { label: "Apple", value: "apple" },
     ];
-    const duplicateItems = [
+    const disabledItems = [
       { label: "Orange", value: "orange" },
-      { label: "Apple", value: "orange" },
+      { label: "Apple", value: "apple", disabled: true },
     ];
     const itemsForReplace = [
       { label: "Orange", value: "orange" },
@@ -158,6 +158,17 @@ describe("MobileMultiChoice", () => {
       const container = new MobileMultiChoice();
       container.items = null;
       fixture(container);
+    });
+
+    it("option should have disabled attribute when the item is disabled", async () => {
+      const container = new MobileMultiChoice({ items: disabledItems });
+      const el = await fixture(container);
+      const itemsEl = el.getElementsByTagName("option");
+
+      await expect(itemsEl.length).to.be.equal(2);
+
+      expect(itemsEl[0]).to.not.have.attr("disabled");
+      expect(itemsEl[1]).to.have.attr("disabled");
     });
   });
 });

@@ -1,0 +1,7 @@
+contact_links:
+  - name: Question in Japanese
+    url: https://community.cybozu.dev/c/kintone/5
+    about: Ask a question in cybozu developer community (This is made up of volunteers)
+  - name: Question in English
+    url: https://forum.kintone.dev/c/general/1
+    about: Ask a question in kintone developer forum (This is made up of volunteers)

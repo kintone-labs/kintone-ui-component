@@ -17,9 +17,9 @@ const replacedItems = [
   { label: "Orange", value: "orange" },
   { label: "Apple", value: "apple" },
 ];
-const dupplicatedItems = [
+const disabledItems = [
   { label: "Orange", value: "orange" },
-  { label: "Apple", value: "orange" },
+  { label: "Apple", value: "apple", disabled: true },
 ];
 
 const expectedLabels = ["-----", "Orange", "Apple"];
@@ -147,6 +147,14 @@ describe("MobileDropdown", () => {
       const container = new MobileDropdown({});
       container.items = null;
       fixture(container);
+    });
+
+    it("option should have disabled attribute when item with disabled is true", async () => {
+      const container = new MobileDropdown({ items: disabledItems });
+      const el = await fixture(container);
+      const itemsEl = el.getElementsByTagName("option");
+      expect(itemsEl[1]).to.have.attr("disabled");
+      expect(itemsEl[0]).to.not.have.attr("disabled");
     });
   });
 });

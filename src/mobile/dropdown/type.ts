@@ -10,6 +10,7 @@ export declare type MobileDropdownChangeEventDetail = {
 export declare type MobileDropdownItem = {
   label?: string;
   value?: string;
+  disabled?: boolean;
 };
 export declare type MobileDropdownProps = {
   className?: string;

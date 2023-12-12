@@ -59,6 +59,7 @@ Base.args = {
     {
       label: "Item 3",
       value: "item-3",
+      disabled: true,
     },
   ],
   value: "item-2",

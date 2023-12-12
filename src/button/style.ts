@@ -100,7 +100,7 @@ export const BUTTON_CSS = `
     background-color: #d4d7d7;
     border: 1px solid #e3e7e8;
     color: #888888;
-    cursor: default;
+    cursor: not-allowed;
   }
   .kuc-button__button--normal:focus-visible,
   .kuc-button__button--submit:focus-visible,
