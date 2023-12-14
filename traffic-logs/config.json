@@ -1,0 +1,8 @@
+{
+  "kintone": {
+    "app": "<kintone-app-id>",
+    "domain": "<domain>",
+    "apiToken": "<kintone-app-token>"
+  },
+  "githubToken": "<github token>"
+}
