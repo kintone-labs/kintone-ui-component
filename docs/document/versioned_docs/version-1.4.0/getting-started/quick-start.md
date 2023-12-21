@@ -50,7 +50,7 @@ When using a version before v1.4.0, please use `Kuc` as a global variable but **
 Please read this [Version conflicts issue and solution](../guides/version-conflicts-issue-solution) article for more information!
 :::
 
-1. Download the file located inside Kintone UI Component repository's [each version Release field](https://github.com/kintone-labs/kintone-ui-component/releases). Unzip the attached archives folder (kintone-ui-component-{version} .tgz). Upload the following file to the `JavaScript and CSS Customization` inside Kintone's app setting.
+1. Download the file located inside Kintone UI Component repository's [each version Release field](https://github.com/kintone-labs/kintone-ui-component/releases). Unzip the attached archives folder (kintone-ui-component-\{version\} .tgz). Upload the following file to the `JavaScript and CSS Customization` inside Kintone's app setting.
 
 ```bash
 ./umd/kuc.min.js

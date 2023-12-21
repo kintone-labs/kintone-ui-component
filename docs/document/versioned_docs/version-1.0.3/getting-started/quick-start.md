@@ -38,7 +38,7 @@ See the Components section in the sidebar for more details on each component.<br
 
 ### Use the UMD
 
-1. Download the file located inside Kintone UI Component repository's [each version Release field](https://github.com/kintone-labs/kintone-ui-component/releases). Unzip the attached archives folder (kintone-ui-component-{version} .tgz). Upload the following file to the `JavaScript and CSS Customization` inside Kintone's app setting.
+1. Download the file located inside Kintone UI Component repository's [each version Release field](https://github.com/kintone-labs/kintone-ui-component/releases). Unzip the attached archives folder (kintone-ui-component-\{version\} .tgz). Upload the following file to the `JavaScript and CSS Customization` inside Kintone's app setting.
 
 ```bash
 ./umd/kuc.min.js

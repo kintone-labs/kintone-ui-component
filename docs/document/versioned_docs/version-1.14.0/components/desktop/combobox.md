@@ -30,7 +30,7 @@ Here is a list of properties that can be used for modifying the component:
 | disabled | boolean | false | Enable/Disable the component | |
 | requiredIcon | boolean | false | Show/Hide the required icon | |
 | visible | boolean | true | Show/Hide the component | |
-| items | Array<[Item](#item)\> | []  | List of options to display | Will result an error if the value of items is not an array |
+| items | Array\<[Item](#item)\> | []  | List of options to display | Will result an error if the value of items is not an array |
 
 #### Item
 
@@ -57,7 +57,7 @@ Here is a list of available constructors:
 
 | Name | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
-| options | object | {} | Object that includes component properties | |
+| options | object | \{\} | Object that includes component properties | |
 
 ### Custom CSS
 :::tip

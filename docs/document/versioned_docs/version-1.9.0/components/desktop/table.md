@@ -26,8 +26,8 @@ Here is a list of properties that can be used for modifying the component:
 | label | string | ""  | Label for the component | Label is not displayed if unspecified or empty |
 | actionButton | boolean | true | Show/Hide the add/remove row button | |
 | visible | boolean | true | Show/Hide the component | |
-| columns | Array<[Column](#column)\> |  []  | Column data of the component | Will result an error if the value of `columns` is not an array|
-| data | Array<object\> | []  | Row data of the component | Will result an error if the value of `data` is not an array |
+| columns | Array\<[Column](#column)\> |  []  | Column data of the component | Will result an error if the value of `columns` is not an array|
+| data | Array\<object\> | []  | Row data of the component | Will result an error if the value of `data` is not an array |
 
 #### Column
 | Name | Type | Default | Description | Remark |
@@ -56,7 +56,7 @@ Here is a list of available constructors:
 
 | Name | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
-| options | object | {} | Object that includes component properties | |
+| options | object | \{\} | Object that includes component properties | |
 
 ---
 

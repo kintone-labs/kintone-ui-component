@@ -28,8 +28,8 @@ import { ReadOnlyTableComponent } from "@site/static/js/samples/desktop/readonly
 | rowsPerPage | number | 5 | ページごとの行数 | 小数点以下を指定した場合は、最も近い整数に丸められる<br/>rowsPerPage が正の整数以外の場合、エラーを出力する|
 | pagination | boolean | true | ページネーションの表示/非表示設定 | false を指定した場合、ページネーションは非表示になり全ての行が表示される<br/>true を指定した場合、ページネーションは表示され rowsPerPage に指定された行数のみがページごとに表示される |
 | visible | boolean | true | コンポーネントの表示/非表示設定 | |
-| columns | Array<[Column](#column)\> | []  | コンポーネントの列データ | columns が配列以外の場合、エラーを出力する |
-| data | Array<object\> | []  | コンポーネントの行データ | data が配列以外の場合、エラーを出力する |
+| columns | Array\<[Column](#column)\> | []  | コンポーネントの列データ | columns が配列以外の場合、エラーを出力する |
+| data | Array\<object\> | []  | コンポーネントの行データ | data が配列以外の場合、エラーを出力する |
 
 #### Column
 | Name | Type | Default | Description | Remark |
@@ -46,7 +46,7 @@ ReadOnlyTable(options)<br/>
 #### Parameter
 | Name | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
-| options | object | {} | コンポーネントのプロパティを含むオブジェクト |  |
+| options | object | \{\} | コンポーネントのプロパティを含むオブジェクト |  |
 
 ---
 ## Sample Code

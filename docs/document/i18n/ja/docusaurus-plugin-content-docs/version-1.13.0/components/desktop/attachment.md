@@ -30,7 +30,7 @@ import { AttachmentComponent } from "@site/static/js/samples/desktop/attachment.
 | disabled | boolean | false | コンポーネントの選択可/不可設定 | |
 | requiredIcon | boolean | false | コンポーネントの必須アイコン表示/非表示設定 | |
 | visible | boolean | true | コンポーネントの表示/非表示設定 | |
-| files | Array<[File](#file)\> | [] | ファイルリスト | [File object](https://developer.mozilla.org/ja/docs/Web/API/File)もしくは name と size を含むオブジェクトを指定できる<br/>files が配列以外の場合、エラーを出力する |
+| files | Array\<[File](#file)\> | [] | ファイルリスト | [File object](https://developer.mozilla.org/ja/docs/Web/API/File)もしくは name と size を含むオブジェクトを指定できる<br/>files が配列以外の場合、エラーを出力する |
 
 :::info
 *1: "参照" ボタンと "ここにファイルをドロップします" のテキストは language プロパティの値に応じて切り替わる.
@@ -49,7 +49,7 @@ import { AttachmentComponent } from "@site/static/js/samples/desktop/attachment.
 
 | Name | Type | Description | Remark |
 | :--- | :--- | :--- | :--- |
-| change | function | ファイルが変更された時のイベントハンドラ | 引数には Event の event オブジェクトをとる<br/>event.detail で以下の値を受け取ることができる<li>add-file（ファイル追加された時にトリガーされる）<ul><li>event.detail.type: "add-file"</li><li>event.detail.oldFiles: 追加前のファイルリスト</li><li>event.detail.files: 追加後のファイルリスト</li><li>event.detail.fileIndex: 追加されたファイルの配列番号（Type: Array<number\>）<ul><li>"event.detail.files[event.detail.fileIndex[x]]" で追加されたファイルを取得できる</li></ul></li></ul></li><li>remove-file（ファイル削除された時にトリガーされる）<ul><li>event.detail.type: "remove-file"</li><li>event.detail.oldFiles: 削除前のファイルリスト</li><li>event.detail.files: 削除後のファイルリスト</li><li>event.detail.fileIndex: 削除されたファイルの配列番号（Type: Array<number\>）<ul><li>"event.detail.oldFiles[event.detail.fileIndex[x]]" で削除されたファイルを取得できる</li></ul></li></ul></li> |
+| change | function | ファイルが変更された時のイベントハンドラ | 引数には Event の event オブジェクトをとる<br/>event.detail で以下の値を受け取ることができる<li>add-file（ファイル追加された時にトリガーされる）<ul><li>event.detail.type: "add-file"</li><li>event.detail.oldFiles: 追加前のファイルリスト</li><li>event.detail.files: 追加後のファイルリスト</li><li>event.detail.fileIndex: 追加されたファイルの配列番号（Type: Array\<number\>）<ul><li>"event.detail.files[event.detail.fileIndex[x]]" で追加されたファイルを取得できる</li></ul></li></ul></li><li>remove-file（ファイル削除された時にトリガーされる）<ul><li>event.detail.type: "remove-file"</li><li>event.detail.oldFiles: 削除前のファイルリスト</li><li>event.detail.files: 削除後のファイルリスト</li><li>event.detail.fileIndex: 削除されたファイルの配列番号（Type: Array\<number\>）<ul><li>"event.detail.oldFiles[event.detail.fileIndex[x]]" で削除されたファイルを取得できる</li></ul></li></ul></li> |
 
 ### Constructor
 
@@ -59,7 +59,7 @@ Attachment(options)<br/>
 #### Parameter
 | Name | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
-| options  | object | {} | コンポーネントのプロパティを含むオブジェクト |  |
+| options  | object | \{\} | コンポーネントのプロパティを含むオブジェクト |  |
 
 ### Custom CSS
 :::tip
