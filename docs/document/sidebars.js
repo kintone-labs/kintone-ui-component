@@ -80,6 +80,7 @@ const sidebars = {
       "guides/attachment-customization",
       "guides/table-readonly-table-customization",
       "guides/tabs-customization",
+      "guides/tooltip-and-field-group-customization",
     ],
   },
   "release-notes": {
