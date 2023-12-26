@@ -12,6 +12,7 @@ export default {
         type: "select",
       },
     },
+    footerVisible: { name: "footerVisible" },
   },
 };
 
@@ -90,4 +91,5 @@ Base.args = {
   footer: "Footer",
   icon: "success",
   container: rootElement,
+  footerVisible: true,
 };
