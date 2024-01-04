@@ -32,39 +32,6 @@ function getCurrentLanguage() {
   return "en";
 }
 
-function V0Infomation() {
-  const currentLanguage = getCurrentLanguage();
-  if (currentLanguage === "en") {
-    return (
-      <div>
-        ※ Please find the version of v0 series
-        <a
-          href="https://kintone-labs.github.io/kintone-ui-component/latest/versions/"
-          target="_blank"
-          rel="noreferrer"
-        >
-          {" "}
-          here
-        </a>
-        .
-      </div>
-    );
-  }
-  return (
-    <div>
-      ※ v0 系のバージョンは
-      <a
-        href="https://kintone-labs.github.io/kintone-ui-component/latest/versions/"
-        target="_blank"
-        rel="noreferrer"
-      >
-        こちら
-      </a>
-      をご確認ください。
-    </div>
-  );
-}
-
 export default function Version(): JSX.Element {
   const {
     siteConfig: { title, tagline, organizationName, projectName },
@@ -145,7 +112,6 @@ export default function Version(): JSX.Element {
               </table>
             </div>
           )}
-          <V0Infomation />
         </main>
       </Layout>
     );
@@ -214,7 +180,6 @@ export default function Version(): JSX.Element {
             </table>
           </div>
         )}
-        <V0Infomation />
       </main>
     </Layout>
   );
