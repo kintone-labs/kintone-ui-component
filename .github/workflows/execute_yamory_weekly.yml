@@ -1,4 +1,4 @@
-name: execute yamory weekly on v0 and v1
+name: execute yamory weekly on v1
 
 on:
   schedule:
