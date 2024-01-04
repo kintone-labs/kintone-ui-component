@@ -108,12 +108,7 @@ text.addEventListener("change", event => {
 > 各対応ブラウザ最新版での動作を確認しております。
 
 ## v0の使い方
-kintone UI Component v0 を使用する場合は、こちらのリンクをご確認ください。
-- [GitHub リポジトリ](https://github.com/kintone-labs/kintone-ui-component/tree/v0_dev)
-- [ドキュメントサイト](https://kintone-labs.github.io/kintone-ui-component/latest)
-
-> kintone UI Component v1 リリースに伴い、v0 については主に不具合改修とライブラリアップデートを継続します。<br>
-> 新規の機能開発は現在予定しておりません。
+:warning::warning: kintone UI Component v0 のメンテナンスは終了しました。[kintone UI Component v1](https://github.com/kintone-labs/kintone-ui-component) への移行をお願いいたします。 :warning::warning:
 
 ## 移行ガイド
 v0 と v1 の仕様とインターフェースには違いがあるので、更新時には十分な確認をしてください。<br />

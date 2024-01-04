@@ -109,12 +109,7 @@ text.addEventListener("change", event => {
 > We confirmed the operation with the latest version of each compatible browser.
 
 ## v0 Usage
-If you want to use kintone UI Component v0.x.x, please refer to these pages.
-- [GitHub repository](https://github.com/kintone-labs/kintone-ui-component/tree/v0_dev)
-- [Document page](https://kintone-labs.github.io/kintone-ui-component/latest)
-
-> With the release of kintone UI Component v1, we will continue to mainly fix bugs and update libraries for v0.<br />
-> We don't plan to develop new functions for now.
+:warning::warning: The maintenance of kintone UI Component v0 has ended. Please migrate to [kintone UI Component v1](https://github.com/kintone-labs/kintone-ui-component). :warning::warning:
 
 ## Migration Guide
 There are differences in specifications and interfaces between v0 and v1.<br />
