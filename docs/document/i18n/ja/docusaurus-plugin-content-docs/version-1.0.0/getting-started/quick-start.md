@@ -74,12 +74,12 @@ CDN を読み込むと、グローバルオブジェクトとして `Kuc` が追
 
    - 最新版の kintone UI Component を読み込みたい場合
      ```bash
-     https://unpkg.com/kintone-ui-component/umd/kuc.min.js
+     https://unpkg.com/browse/kintone-ui-component/umd/kuc.min.js
      ```
 
    - バージョン指定して読み込みたい場合（プロジェクト名の後ろにバージョン番号を指定）
      ```bash
-     https://unpkg.com/kintone-ui-component@1.0.0/umd/kuc.min.js
+     https://unpkg.com/browse/kintone-ui-component@1.0.0/umd/kuc.min.js
      ```
 
 2. 以降は上記 UMD と同様。
