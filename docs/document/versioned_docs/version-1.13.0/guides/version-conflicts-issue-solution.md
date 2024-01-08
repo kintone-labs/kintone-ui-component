@@ -23,9 +23,11 @@ When a KUC package tries to register a custom HTML tag, and a later loaded packa
 Because we cannot register the same custom HTML tag more than once, from v1.4.0, custom HTML tags will include a version number at the end. This change also applies to class names to avoid conflicting CSS styles.
 
 ![Custom HTML tag example](/img/version-conflict-html-tag.png)
+
 <center>Tag and class names will include the version number at the end</center>
 
 ![CSS example](/img/version-conflict-css.png)
+
 <center>CSS of the component also changes to include the version number</center>
 
 In addition, we also check to see whether a custom HTML tag has been registered or not before defining it.

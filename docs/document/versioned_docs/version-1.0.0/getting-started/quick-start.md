@@ -71,15 +71,17 @@ kintone.events.on('app.record.index.show', event => {
 1. Add the following CDN URL into the `JavaScript and CSS Customization` of a deployed Kintone app. ([Customizing an App with JavaScript and CSS](https://get.kintone.help/k/en/user/app_settings/js_customize.html))<br/>
 Once the CDN is being imported to the app, you will have access to the global object of `Kuc`.
 
-   - For the latest version of Kintone UI Component:
-    ```bash
-    https://unpkg.com/browse/kintone-ui-component/umd/kuc.min.js
-    ```
+    - For the latest version of Kintone UI Component:
 
-   - If you want to import a particular version, specify the version number after the project name.
-    ```bash
-    https://unpkg.com/browse/kintone-ui-component@1.0.0/umd/kuc.min.js
-    ```
+      ```bash
+      https://unpkg.com/browse/kintone-ui-component/umd/kuc.min.js
+      ```
+
+    - If you want to import a particular version, specify the version number after the project name.
+
+      ```bash
+      https://unpkg.com/browse/kintone-ui-component@1.0.0/umd/kuc.min.js
+      ```
 
 2. The following is the same as the UMD.
 
