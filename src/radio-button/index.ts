@@ -1,3 +1,4 @@
+/* eslint-disable kuc-v1/double-quote-attribute-value */
 import { html, PropertyValues, svg } from "lit";
 import { property } from "lit/decorators.js";
 
@@ -205,6 +206,7 @@ let exportRadioButton;
         >
           <input
             type="radio"
+            .checked=${isCheckedItem}
             aria-checked="${isCheckedItem ? "true" : "false"}"
             aria-describedby="${this._GUID}-error"
             data-index="${index}"
