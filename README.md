@@ -1,7 +1,7 @@
 # kintone UI Component
 [![npm version][npm-image]][npm-url]
 
-## :warning::warning: The maintenance of kintone UI Component v0 has ended. Please migrate to [kintone UI Component v1](https://github.com/kintone-labs/kintone-ui-component). :warning::warning:
+## :warning::warning: The maintenance of kintone UI Component v0 ended on 31 December 2023. We recommend migrating to [kintone UI Component v1](https://github.com/kintone-labs/kintone-ui-component). :warning::warning:
 
 ## Announcements
 ⓘ We released kintone UI Component v1.0.0 on 04 March 2021 and now it is the mainstream.
