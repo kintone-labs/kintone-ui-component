@@ -109,7 +109,7 @@ text.addEventListener("change", event => {
 > We confirmed the operation with the latest version of each compatible browser.
 
 ## v0 Usage
-:warning::warning: The maintenance of kintone UI Component v0 has ended. Please migrate to [kintone UI Component v1](https://github.com/kintone-labs/kintone-ui-component). :warning::warning:
+:warning::warning: The maintenance of kintone UI Component v0 ended on 31 December 2023. We recommend migrating to [kintone UI Component v1](https://github.com/kintone-labs/kintone-ui-component). :warning::warning:
 
 ## Migration Guide
 There are differences in specifications and interfaces between v0 and v1.<br />
