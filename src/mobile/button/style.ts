@@ -25,16 +25,26 @@ export const MOBILE_BUTTON_CSS = `
     display: none;
   }
   .kuc-mobile-button__button {
-    min-width: 100px;
-    height: 42px;
-    padding: 12px 12px;
+    min-width: var(--kuc-mobile-button-width, "100px");
+    width: var(--kuc-mobile-button-width, "auto");
+    height: var(--kuc-mobile-button-height, 42px);
+    padding: 0 12px;
     user-select: none;
     font-weight: 700;
-    font-size: 14px;
+    font-size: var(--kuc-mobile-button-font-size, 14px);
     line-height: 1;
+    display: grid;
+    align-items: center;
+    align-content: center;
   }
   .kuc-mobile-button__button:focus {
     outline: none;
+    border-color: var(--kuc-mobile-button-background-color-focus);
+    background-color: var(--kuc-mobile-button-background-color-focus);
+  }
+  .kuc-mobile-button__button:active {
+    border-color: var(--kuc-mobile-button-background-color-active);
+    background-color: var(--kuc-mobile-button-background-color-active);
   }
   .kuc-mobile-button__button--submit {
     border: 2px solid #206694;
@@ -47,14 +57,16 @@ export const MOBILE_BUTTON_CSS = `
     background: #a5a5a5;
   }
   .kuc-mobile-button__button--normal {
-    border: 2px solid #206694;
-    background-color: #ffffff;
-    color: #206694;
+    border: 2px solid;
+    border-color: var(--kuc-mobile-button-background-color,"#206694");
+    background-color: var(--kuc-mobile-button-background-color, #ffffff);
+    color: var(--kuc-mobile-button-text-color, #206694);
     border-radius: 6px;
   }
   .kuc-mobile-button__button--normal:disabled {
     color: #a5a5a5;
     border-color: #a5a5a5;
+    background-color: #ffffff;
     cursor: default;
   }
 `;

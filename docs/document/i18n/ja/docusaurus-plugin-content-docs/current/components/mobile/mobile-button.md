@@ -53,6 +53,24 @@ MobileButton(options)<br/>
 | :--- | :--- | :--- | :--- | :--- |
 | options | object | {} | コンポーネントのプロパティを含むオブジェクト | |
 
+### Custom CSS
+:::tip
+[Custom CSS](../../getting-started/custom-css.md) をご確認ください。
+:::
+
+コンポーネントのスタイルを変更するために使用できるプロパティの一覧です。
+#### Property
+| Name |
+| :--- |
+| --kuc-mobile-button-width |
+| --kuc-mobile-button-height |
+| --kuc-mobile-button-background-color |
+| --kuc-mobile-button-background-color-hover |
+| --kuc-mobile-button-background-color-active |
+| --kuc-mobile-button-background-color-focus |
+| --kuc-mobile-button-font-size |
+| --kuc-mobile-button-text-color |
+
 ---
 
 ## Sample Code
