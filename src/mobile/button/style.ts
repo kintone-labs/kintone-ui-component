@@ -37,6 +37,9 @@ export const MOBILE_BUTTON_CSS = `
     align-items: center;
     align-content: center;
   }
+  .kuc-mobile-button__button:focus {
+    outline: none;
+  }
   .kuc-mobile-button__button--submit {
     border: 2px solid;
     border-color: var(--kuc-mobile-button-background-color, #206694);
@@ -45,7 +48,6 @@ export const MOBILE_BUTTON_CSS = `
     border-radius: 6px;
   }
   .kuc-mobile-button__button--submit:focus {
-    outline: none;
     border-color: var(--kuc-mobile-button-background-color-focus, #206694);
     background-color: var(--kuc-mobile-button-background-color-focus, #206694);
   }
@@ -66,13 +68,12 @@ export const MOBILE_BUTTON_CSS = `
     border-radius: 6px;
   }
   .kuc-mobile-button__button--normal:focus {
-    outline: none;
     border-color: var(--kuc-mobile-button-background-color-focus, #206694);
-    background-color: var(--kuc-mobile-button-background-color-focus), #206694;
+    background-color: var(--kuc-mobile-button-background-color-focus, #ffffff);
   }
   .kuc-mobile-button__button--normal:active {
     border-color: var(--kuc-mobile-button-background-color-active, #206694);
-    background-color: var(--kuc-mobile-button-background-color-active, #206694);
+    background-color: var(--kuc-mobile-button-background-color-active, #ffffff);
   }
   .kuc-mobile-button__button--normal:disabled {
     color: #a5a5a5;
