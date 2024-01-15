@@ -62,14 +62,13 @@ Here is a list of properties that can be used for modifying component style:
 #### Property
 | Name |
 | :--- |
-| --kuc-mobile-button-width |
-| --kuc-mobile-button-height |
 | --kuc-mobile-button-background-color |
-| --kuc-mobile-button-background-color-hover |
 | --kuc-mobile-button-background-color-active |
 | --kuc-mobile-button-background-color-focus |
 | --kuc-mobile-button-font-size |
+| --kuc-mobile-button-height |
 | --kuc-mobile-button-text-color |
+| --kuc-mobile-button-width |
 
 ---
 
