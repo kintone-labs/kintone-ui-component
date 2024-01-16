@@ -22,7 +22,7 @@ We assume the following scenario:
 
 ## What you will need to have ready
 
-Create an app that includes a blank space field with the id "kuc_space".
+Create an app that includes a blank space field with the id "space".
 
 ## JavaScript and CSS Customization
 
@@ -55,7 +55,7 @@ Create a Tooltip component with the tooltip message "Office day info" for the Fi
 ### Append Table components to FieldGroup content.
 In the default Kintone, FieldGroup can't have a table, but KUC allows FieldGroup to show a table when it's open.
 
-#### Create Tooltip with Html Button
+#### Create Tooltip with HTML Button
 Begin by creating a Tooltip component associated with an HTML button, conveying the message "Submit changes or additions for this entry."
 
 ```javascript
@@ -227,7 +227,8 @@ Add event listener for FieldGroup to change the tooltip message when FieldGroup 
 
 ### Using Two Types of Tooltip
 You may have noticed that when creating a Tooltip for a button, I will introduce a new property, describeChild. 
-This property is set to false by default. describeChild is used when enabling the assistive mode. 
+This property is set to false by default.<br/>
+You can effectively improve the accessibility and usability of your application with the describeChild property.<br/>
 Now, let's enable the screen reader and try moving the focus to the button to see what the screen reader reads.
 ```javascript
   const tooltipForButton = new Kuc.Tooltip({
@@ -242,7 +243,7 @@ Now, let's enable the screen reader and try moving the focus to the button to se
 ![render](/img/tooltip_describeChild_false.gif)
 ![render](/img/tooltip_describeChild_false.png)
 
-In the examples, with describeChild set to false, the screen reader replaces the button's original content 'Submit' with the Tooltip's content ('Submit changes or additions for this entry') when the button gains focus. 
+In the examples, with describeChild set to false, the screen reader replaces the button's original content 'Submit' with the Tooltip's content ('Submit changes or additions for this entry') when the button gains focus.<br/>
 This is because when describeChild is false, Tooltip adds [aria-label](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-label) to its child elements (button, FieldGroup), causing the screen reader to read the content of [aria-label](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-label) instead of the original content.
 
 When describeChild is set to true, let's see what the screen reader reads.
@@ -258,7 +259,8 @@ When describeChild is set to true, let's see what the screen reader reads.
 ![render](/img/tooltip_describeChild_true.gif)
 ![render](/img/tooltip_describeChild_true.png)
 
-This time, we can see that when describeChild is true, the screen reader first reads the content of the button itself 'Submit' when the button gains focus, then continues to read the Tooltip's title 'Submit changes or additions for this entry.'. This is because when describeChild is true, Tooltip adds [aria-describedby](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-describedby) to its child elements (button), causing the screen reader to read the original content first and then continue with the content of [aria-describedby](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-describedby).
+This time, we can see that when describeChild is set to true, the screen reader first reads the content of the button itself 'Submit' when the button gains focus, then continues to read the Tooltip's title 'Submit changes or additions for this entry.'.<br/>
+This is because when describeChild is true, Tooltip adds [aria-describedby](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-describedby) to its child elements (button), causing the screen reader to read the original content first and then continue with the content of [aria-describedby](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-describedby).
 
 
 :::info
