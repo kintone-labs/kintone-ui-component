@@ -48,12 +48,12 @@ export const MOBILE_BUTTON_CSS = `
     border-radius: 6px;
   }
   .kuc-mobile-button__button--submit:focus {
-    border-color: var(--kuc-mobile-button-background-color-focus, #206694);
-    background-color: var(--kuc-mobile-button-background-color-focus, #206694);
+    border-color: var(--kuc-mobile-button-background-color-focus, var(--kuc-mobile-button-background-color, #206694));
+    background-color: var(--kuc-mobile-button-background-color-focus, var(--kuc-mobile-button-background-color, #206694));
   }
   .kuc-mobile-button__button--submit:active {
-    border-color: var(--kuc-mobile-button-background-color-active, #206694);
-    background-color: var(--kuc-mobile-button-background-color-active, #206694);
+    border-color: var(--kuc-mobile-button-background-color-active, var(--kuc-mobile-button-background-color, #206694));
+    background-color: var(--kuc-mobile-button-background-color-active, var(--kuc-mobile-button-background-color, #206694));
   }
   .kuc-mobile-button__button--submit:disabled {
     color: #ffffff;
@@ -68,12 +68,12 @@ export const MOBILE_BUTTON_CSS = `
     border-radius: 6px;
   }
   .kuc-mobile-button__button--normal:focus {
-    border-color: var(--kuc-mobile-button-background-color-focus, #206694);
-    background-color: var(--kuc-mobile-button-background-color-focus, #ffffff);
+    border-color: var(--kuc-mobile-button-background-color-focus, var(--kuc-mobile-button-background-color, #206694));
+    background-color: var(--kuc-mobile-button-background-color-focus, var(--kuc-mobile-button-background-color, #ffffff));
   }
   .kuc-mobile-button__button--normal:active {
-    border-color: var(--kuc-mobile-button-background-color-active, #206694);
-    background-color: var(--kuc-mobile-button-background-color-active, #ffffff);
+    border-color: var(--kuc-mobile-button-background-color-active, var(--kuc-mobile-button-background-color, #206694));
+    background-color: var(--kuc-mobile-button-background-color-active, var(--kuc-mobile-button-background-color, #ffffff));
   }
   .kuc-mobile-button__button--normal:disabled {
     color: #a5a5a5;
