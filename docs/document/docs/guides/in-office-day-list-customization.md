@@ -1,11 +1,12 @@
 ---
-id: tooltip-and-field-group-customization
-title: Tooltip and FieldGroup customization
-sidebar_label: Tooltip and FieldGroup customization
+id: in-office-day-list-customization
+title: In-office day list customization
+sidebar_label: In-office day list customization
 ---
 
 ## Overview
-This article explains how to utilize and customize the FieldGroup and Tooltip components.
+This article explains how to utilize and customize the FieldGroup and Tooltip components in the context of creating an In-Office Day List.<br/>
+In this context, a Table component within the FieldGroup allows team members to specify which days they will be in the office.<br/>
 
 We assume the following scenario:
 1. Basic Usage for FieldGroup and Tooltip (*FieldGroup and Tooltip*)
@@ -32,8 +33,8 @@ You can see how to upload a file in the [Quick Start](../getting-started/quick-s
 ### Basic Usage for FieldGroup and Tooltip
 #### Create Tooltip with Basic FieldGroup
 Create a Basic FieldGroup with a label "KUC team" and the Text component as its content.
-    
-```javascript   
+
+```javascript
   const fieldGroup = new Kuc.FieldGroup({
     label: 'KUC team',
     content: new Kuc.Text({text: 'This is a FieldGroup'})
@@ -52,7 +53,7 @@ Create a Tooltip component with the tooltip message "Office day info" for the Fi
 #### The display on UI
 ![render](/img/tooltip_field-group.gif)
 
-### Append Table components to FieldGroup content.
+### Append Table components to FieldGroup content
 In the default Kintone, FieldGroup can't have a table, but KUC allows FieldGroup to show a table when it's open.
 
 #### Create Tooltip with HTML Button
@@ -61,7 +62,7 @@ Begin by creating a Tooltip component associated with an HTML button, conveying 
 ```javascript
   const button = document.createElement('button');
   button.textContent = 'Submit';
-  
+
   const tooltipForButton = new Kuc.Tooltip({
     title: 'Submit changes or additions for this entry.',
     container: button,
@@ -226,10 +227,13 @@ Add event listener for FieldGroup to change the tooltip message when FieldGroup 
 
 
 ### Using Two Types of Tooltip
-You may have noticed that when creating a Tooltip for a button, I will introduce a new property, describeChild. 
+You may have noticed that when creating a Tooltip for a button, I will introduce a new property `describeChild`.
 This property is set to false by default.<br/>
-You can effectively improve the accessibility and usability of your application with the describeChild property.<br/>
-Now, let's enable the screen reader and try moving the focus to the button to see what the screen reader reads.
+You can effectively improve the accessibility and usability of your application with the `describeChild` property.<br/>
+Now, let's enable the [screen reader](https://support.apple.com/en-us/guide/voiceover/vo2682/mac) and try moving the focus to the button to see what the screen reader reads.<br/>
+
+#### Tooltip represents the purpose of the element
+If the Tooltip represents the purpose of the element itself (provides a label for the element it is attached to). You need to set `describeChild` to false.
 ```javascript
   const tooltipForButton = new Kuc.Tooltip({
     title: 'Submit changes or additions for this entry.',
@@ -239,14 +243,14 @@ Now, let's enable the screen reader and try moving the focus to the button to se
   });
 ```
 
-#### The display on UI
 ![render](/img/tooltip_describeChild_false.gif)
-![render](/img/tooltip_describeChild_false.png)
 
-In the examples, with describeChild set to false, the screen reader replaces the button's original content 'Submit' with the Tooltip's content ('Submit changes or additions for this entry') when the button gains focus.<br/>
-This is because when describeChild is false, Tooltip adds [aria-label](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-label) to its child elements (button, FieldGroup), causing the screen reader to read the content of [aria-label](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-label) instead of the original content.
+In the examples, the screen reader replaces the button's original content "Submit" with the Tooltip's content ("Submit changes or additions for this entry") when the button gains focus.<br/>
+This is because when `describeChild` is false, Tooltip adds [aria-label](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-label) to its child elements (button, FieldGroup), causing the screen reader to read the content of [aria-label](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-label) instead of the original content.<br/>
 
-When describeChild is set to true, let's see what the screen reader reads.
+#### Tooltip represents the description of the element
+If the Tooltip represents the description of the element (provides additional information or a supplementary description about the element it is attached to).
+You need to set `describeChild` to true.
 ```javascript
   const tooltipForButton = new Kuc.Tooltip({
     title: 'Submit changes or additions for this entry.',
@@ -255,15 +259,13 @@ When describeChild is set to true, let's see what the screen reader reads.
     placement: 'bottom'
   });
 ```
-#### The display on UI
 ![render](/img/tooltip_describeChild_true.gif)
-![render](/img/tooltip_describeChild_true.png)
 
-This time, we can see that when describeChild is set to true, the screen reader first reads the content of the button itself 'Submit' when the button gains focus, then continues to read the Tooltip's title 'Submit changes or additions for this entry.'.<br/>
-This is because when describeChild is true, Tooltip adds [aria-describedby](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-describedby) to its child elements (button), causing the screen reader to read the original content first and then continue with the content of [aria-describedby](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-describedby).
+This time, we can see that when `describeChild` is set to true, the screen reader first reads the content of the button itself "Submit" when the button gains focus, then continues to read the Tooltip's title "Submit changes or additions for this entry."".<br/>
+This is because when `describeChild` is true, Tooltip adds [aria-describedby](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-describedby) to its child elements (button), causing the screen reader to read the original content first and then continue with the content of [aria-describedby](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-describedby).
 
 
 :::info
-This article was reviewed by Kintone and Google Chrome as of Dec, 2023.<br/>
-In addition, the version of Kintone UI Component that is used for customizations is v1.15.0.
+This article was reviewed by Kintone and Google Chrome as of Feb, 2024.<br/>
+In addition, the version of Kintone UI Component that is used for customizations is v1.16.0.
 :::
