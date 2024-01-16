@@ -72,7 +72,7 @@ Begin by creating a Tooltip component associated with an HTML button, conveying 
 ```
 
 #### Create Table with Dropdown, Text, MultiChoice components and Button wrapped by Tooltip
-Create a Table component containing information such as 'Name', 'In office day', 'Location' and 'Note' and a button wrapped in a Tooltip.
+Create a Table component containing information such as "Name", "In office day", "Location" and "Note" and a button wrapped in a Tooltip.
 
 ```javascript
   const renderName = cellData => {
@@ -261,7 +261,7 @@ You need to set `describeChild` to true.
 ```
 ![render](/img/tooltip_describeChild_true.gif)
 
-This time, we can see that when `describeChild` is set to true, the screen reader first reads the content of the button itself "Submit" when the button gains focus, then continues to read the Tooltip's title "Submit changes or additions for this entry."".<br/>
+This time, we can see that when `describeChild` is set to true, the screen reader first reads the content of the button itself "Submit" when the button gains focus, then continues to read the Tooltip's title "Submit changes or additions for this entry.".<br/>
 This is because when `describeChild` is true, Tooltip adds [aria-describedby](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-describedby) to its child elements (button), causing the screen reader to read the original content first and then continue with the content of [aria-describedby](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-describedby).
 
 
