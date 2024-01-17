@@ -26,8 +26,8 @@ import { TableComponent } from "@site/static/js/samples/desktop/table.js"
 | label | string | ""  | コンポーネントの説明ラベル | 未指定、あるいは空文字の場合、label は表示されない |
 | actionButton | boolean | true | 行追加/削除ボタンの表示/非表示設定 | |
 | visible | boolean | true | コンポーネントの表示/非表示設定 | |
-| columns | Array<[Column](#column)\> | []  | コンポーネントの列データ | columns が配列以外の場合、エラーを出力する |
-| data | Array<object\> | []  | コンポーネントの行データ | data が配列以外の場合、エラーを出力する |
+| columns | Array\<[Column](#column)\> | []  | コンポーネントの列データ | columns が配列以外の場合、エラーを出力する |
+| data | Array\<object\> | []  | コンポーネントの行データ | data が配列以外の場合、エラーを出力する |
 
 #### Column
 | Name | Type | Default | Description | Remark |
@@ -56,7 +56,7 @@ Table(options)<br/>
 
 | Name | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
-| options | object | {} | コンポーネントのプロパティを含むオブジェクト |  |
+| options | object | \{\} | コンポーネントのプロパティを含むオブジェクト |  |
 
 ---
 

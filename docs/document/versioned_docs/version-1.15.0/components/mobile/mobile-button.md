@@ -51,7 +51,7 @@ Here is a list of available constructors:
 
 | Name | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
-| options | object | {} | Object that includes component properties |  |
+| options | object | \{\} | Object that includes component properties |  |
 
 ---
 

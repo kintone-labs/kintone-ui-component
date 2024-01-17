@@ -27,8 +27,8 @@ Here is a list of properties that can be used for modifying the component:
 | actionButton | boolean | true | Show/Hide the add/remove row button | |
 | headerVisible | boolean | true | Show/Hide the header | |
 | visible | boolean | true | Show/Hide the component | |
-| columns | Array<[Column](#column)\> |  []  | Column data of the component | Will result an error if the value of `columns` is not an array|
-| data | Array<object\> | []  | Row data of the component | Will result an error if the value of `data` is not an array |
+| columns | Array\<[Column](#column)\> |  []  | Column data of the component | Will result an error if the value of `columns` is not an array|
+| data | Array\<object\> | []  | Row data of the component | Will result an error if the value of `data` is not an array |
 
 #### Column
 | Name | Type | Default | Description | Remark |
@@ -60,7 +60,7 @@ Here is a list of available constructors:
 
 | Name | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
-| options | object | {} | Object that includes component properties | |
+| options | object | \{\} | Object that includes component properties | |
 
 ### Custom CSS
 :::tip
@@ -75,7 +75,7 @@ Here is a list of properties that can be used for modifying component style:
 | --kuc-table-header-color | |
 | --kuc-table-header-font-size | |
 | --kuc-table-header-height | |
-| --kuc-table-header-{index}-width | <li>This property allows you to set the width of certain table columns based on their index values</li><li>For example, you can use `--kuc-table-header-0-width` to set the width of the first column</li><li>Note that the index values start from `0`, where `0` corresponds to the first column</li> |
+| --kuc-table-header-\{index\}-width | <li>This property allows you to set the width of certain table columns based on their index values</li><li>For example, you can use `--kuc-table-header-0-width` to set the width of the first column</li><li>Note that the index values start from `0`, where `0` corresponds to the first column</li> |
 | --kuc-table-header-width | <li>This property is used to set the width for all columns in a table, it defines a uniform width for every column</li><li>If you need to set a specific width for a single column, you can use `--kuc-table-header-{index}-width` property</li><li>If you want to add the element that will expand/contract as a child component, you may be able to preserve this behavior by setting `--kuc-table-header-width: auto`</li> |
 
 ---

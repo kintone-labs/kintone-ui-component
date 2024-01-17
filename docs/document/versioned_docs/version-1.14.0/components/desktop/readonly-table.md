@@ -28,8 +28,8 @@ Here is a list of properties that can be used for modifying the component:
 | rowsPerPage | number | 5 | Number of table rows per page | Round off to the nearest whole number when the decimal point is set<br/>Will result an error if the value of `rowsPerPage` is not a positive integer |
 | pagination | boolean | true | Show/Hide the pagination | If setting `false`, pagination is hidden and all rows are displayed<br/>If setting `true`, pagination is displayed and only the number of rows set in `rowsPerPage` are displayed |
 | visible | boolean | true | Show/Hide the component | |
-| columns | Array<[Column](#column)\> | []  | Column data of the component | Will result an error if the value of `columns` is not an array |
-| data *1 | Array<object\> | []  | Row data of the component | Will result an error if the value of `data` is not an array |
+| columns | Array\<[Column](#column)\> | []  | Column data of the component | Will result an error if the value of `columns` is not an array |
+| data *1 | Array\<object\> | []  | Row data of the component | Will result an error if the value of `data` is not an array |
 
 :::caution
 *1: [Security] Kintone UI Component does NOT sanitize this property value. It is the developer's responsibility to escape any user input when using this option so that XSS attacks would be prevented.
@@ -50,7 +50,7 @@ Here is a list of available constructors:
 #### Parameter
 | Name | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
-| options | object | {} | Object that includes component properties |  |
+| options | object | \{\} | Object that includes component properties |  |
 
 ### Custom CSS
 :::tip
@@ -65,7 +65,7 @@ Here is a list of properties that can be used for modifying component style:
 | --kuc-readonly-table-header-color | |
 | --kuc-readonly-table-header-font-size | |
 | --kuc-readonly-table-header-height | |
-| --kuc-readonly-table-header-{index}-width | <li>This property allows you to set the width of certain table columns based on their index values</li><li>For example, you can use `--kuc-readonly-table-header-0-width` to set the width of the first column</li><li>Note that the index values start from `0`, where `0` corresponds to the first column</li> |
+| --kuc-readonly-table-header-\{index\}-width | <li>This property allows you to set the width of certain table columns based on their index values</li><li>For example, you can use `--kuc-readonly-table-header-0-width` to set the width of the first column</li><li>Note that the index values start from `0`, where `0` corresponds to the first column</li> |
 | --kuc-readonly-table-header-width | <li>This property is used to set the width for all columns in a table, it defines a uniform width for every column</li><li>If you need to set a specific width for a single column, you can use `--kuc-readonly-table-header-{index}-width` property</li><li>If you want to add the element that will expand/contract as a child component, you may be able to preserve this behavior by setting `--kuc-readonly-table-header-width: auto`</li> |
 
 ---
