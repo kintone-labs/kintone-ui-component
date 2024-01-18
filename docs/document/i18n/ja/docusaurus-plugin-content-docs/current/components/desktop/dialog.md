@@ -142,3 +142,4 @@ dialog.close();
 ## Related Articles
 
 - [Format setting plug-in](../../guides/format-setting-plugin.md)
+- [Search box customization with TypeScript](../../guides/search-box-customization-with-typescript.md)

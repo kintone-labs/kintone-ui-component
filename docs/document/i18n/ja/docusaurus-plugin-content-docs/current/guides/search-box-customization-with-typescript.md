@@ -10,26 +10,26 @@ sidebar_label: Search box customization with TypeScript
 
 ## 使用するコンポーネント
 
-- Button
-- Dialog
-- ReadOnlyTable
-- Text
+- [Button](../components/desktop/button.md)
+- [Dialog](../components/desktop/dialog.md)
+- [ReadOnlyTable](../components/desktop/readonly-table.md)
+- [Text](../components/desktop/text.md)
 
 ## 完成イメージ
 
 検索ボックスと検索結果ダイアログの完成イメージは、次の通りです。
 
-#### 検索ボックスデスクトップ版
+#### 検索ボックス
 
-検索ボックス(デスクトップ)
+![検索ボックス](/img/search_box_ts.png)
 
 #### 検索結果ダイアログ
 
-検索結果ダイアログ(デスクトップ)
+![検索結果ダイアログ](/img/search_result_dialog_ts.png)
 
 ## TypeScript 環境の構築と実装
 
-TypeScript の開発環境の構築方法は、[Usage with TypeScript](https://kintone-ui-component.netlify.app/ja/docs/getting-started/usage-with-typescript) をご覧ください。
+TypeScript の開発環境の構築方法は、[Usage with TypeScript](../../getting-started/usage-with-typescript.md) をご覧ください。
 
 ### 検索ボックスの表示
 
@@ -69,13 +69,13 @@ header.appendChild(button);
 
 ButtonProps や TextProps にマウスをホバーすると、プロパティを参照することができます。
 
-（ButtonProps の画像を入れる）
+![Button props](/img/button_props.png)
 
 ### 検索結果ダイアログの表示
 
 [以前の検索ボックスの作り方](https://kintone-ui-component.netlify.app/ja/docs/guides/search-box-customization)では、検索結果を表示するために、
 kintone アプリの絞り込み機能の URL にクエリ文字列を埋め込んでいます。
-具体的な箇所は次のコードの '&q=f6054049%20like%20"' の部分です。
+具体的な箇所は次のコードの `'&q=f6054049%20like%20"'` の部分です。
 この方法は推奨されない実装方法なので、今回は Dialog コンポーネントと ReadOnlyTable コンポーネントを使って検索結果を表示します。
 
 ```javascript
