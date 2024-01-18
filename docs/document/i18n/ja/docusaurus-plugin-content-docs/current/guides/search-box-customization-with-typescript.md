@@ -47,18 +47,19 @@ const header = kintone.app.getHeaderMenuSpaceElement();
 if (!header) return;
 
 // Prevent duplication bug with ID granted by property
-if (document.getElementById("kuc-searchbox-text") !== null) {
+if (document.getElementById('kuc-searchbox-text') !== null) {
   return;
 }
 
 const textProps: TextProps = {
-  id: "kuc-searchbox-text",
+  id: 'kuc-searchbox-text',
+  placeholder: 'Search for products'
 };
 
 const buttonProps: ButtonProps = {
-  text: "ボタン",
-  id: "kuc-searchbox-button",
-  type: "submit",
+  text: 'Search',
+  id: 'kuc-searchbox-button',
+  type: 'submit'
 };
 
 const text = new Text(textProps);
@@ -96,11 +97,12 @@ kintone
 Dialog コンポーネントの変数に、Dialog コンポーネントの型定義情報を使用します。
 
 ```typescript title="createDialogWithTable.ts"
-import { Dialog, DialogProps } from "kintone-ui-component";
-export const createDialogWithTable = (resultTable: HTMLTableElement) => {
+import { Dialog, DialogProps, ReadOnlyTable } from 'kintone-ui-component';
+
+export const createDialogWithTable = (resultTable: ReadOnlyTable) => {
   const dialogProps: DialogProps = {
-    title: "Result",
-    content: resultTable,
+    title: 'Search Result',
+    content: resultTable
   };
   const result = new Dialog(dialogProps);
   result.open();
@@ -114,7 +116,7 @@ export const getAllRecords = (keyword: string, appId: number) => {
   const client = new KintoneRestAPIClient();
   const body = {
     app: appId,
-    condition: `product like "${keyword}" or price like "${keyword}"`,
+    condition: `product like "${keyword}" or price like "${keyword}"`
   };
   return client.record.getAllRecords<MyAppRecord>(body);
 };
@@ -125,12 +127,12 @@ export const getAllRecords = (keyword: string, appId: number) => {
 const apiResult = await getAllRecords(keyword, appId);
 
 // Pick up the necessary information from the API result
-const records = apiResult.map((record) => {
+const records = apiResult.map(record => {
   return {
     // url creation
     $id: `<a href=/k/${appId}/show#record=${record.$id.value}>${record.$id.value}</a>`,
     product: record.product.value,
-    price: record.price.value,
+    price: record.price.value
   };
 });
 ```
@@ -138,26 +140,25 @@ const records = apiResult.map((record) => {
 ```typescript title="createReadOnlyTable.ts"
 export const createReadOnlyTable = (records: Record[]) => {
   const initialTableData: ReadOnlyTableProps = {
-    label: "Search results",
     columns: [
       {
-        title: "ID",
-        field: "$id",
+        title: 'ID',
+        field: '$id'
       },
       {
-        title: "Product",
-        field: "product",
+        title: 'Product',
+        field: 'product'
       },
       {
-        title: "Price",
-        field: "price",
-      },
+        title: 'Price',
+        field: 'price'
+      }
     ],
     data: records,
-    id: "kuc-searchbox-readonly-table",
+    id: 'kuc-searchbox-readonly-table',
     visible: true,
     pagination: true,
-    rowsPerPage: 5,
+    rowsPerPage: 5
   };
 
   const table = new ReadOnlyTable(initialTableData);
