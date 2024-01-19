@@ -6,7 +6,7 @@ sidebar_label: Search box customization with TypeScript
 
 ## 概要
 
-[以前紹介した検索ボックスの作り方](https://kintone-ui-component.netlify.app/ja/docs/guides/search-box-customization)を kintone UI Component の Dialog コンポーネントを使い TypeScript で実装する方法を説明します。
+[以前紹介した検索ボックスの作り方](../../guides/search-box-customization.md)を kintone UI Component の Dialog コンポーネントを使い TypeScript で実装する方法を説明します。
 
 ## 使用するコンポーネント
 
@@ -33,7 +33,7 @@ TypeScript の開発環境の構築方法は、[Usage with TypeScript](../../get
 
 ### 検索ボックスの表示
 
-検索ボックスを表示するために、Text コンポーネントと Button コンポーネントを使います。
+検索ボックスを表示するために、Text コンポーネントと Button コンポーネントを使います。<br/>
 各コンポーネントと各コンポーネントの型定義情報をインポートします。
 
 ```typescript title="main.ts"
@@ -74,9 +74,9 @@ ButtonProps や TextProps にマウスをホバーすると、プロパティを
 
 ### 検索結果ダイアログの表示
 
-[以前の検索ボックスの作り方](https://kintone-ui-component.netlify.app/ja/docs/guides/search-box-customization)では、検索結果を表示するために、
-kintone アプリの絞り込み機能の URL にクエリ文字列を埋め込んでいます。
-具体的な箇所は次のコードの `'&q=f6054049%20like%20"'` の部分です。
+[以前の検索ボックスの作り方](../../guides/search-box-customization.md)では、検索結果を表示するために、
+kintone アプリの絞り込み機能の URL にクエリ文字列を埋め込んでいます。<br/>
+具体的な箇所は次のコードの `'&q=f6054049%20like%20"'` の部分です。<br/>
 この方法は推奨されない実装方法なので、今回は Dialog コンポーネントと ReadOnlyTable コンポーネントを使って検索結果を表示します。
 
 ```javascript
@@ -90,10 +90,10 @@ kintone
     }
 ```
 
-まず、Dialog コンポーネントと型定義情報をインポートします。
+まず、Dialog コンポーネントと型定義情報をインポートします。<br/>
 今回の実装では、kintone のイベント処理を発火させる main.ts にて様々な処理を実行しています。
 
-検索結果ダイアログは、createDialogWithTable.ts ファイルで表示しています。
+検索結果ダイアログは、createDialogWithTable.ts ファイルで表示しています。<br/>
 Dialog コンポーネントの変数に、Dialog コンポーネントの型定義情報を使用します。
 
 ```typescript title="createDialogWithTable.ts"
