@@ -8,7 +8,7 @@ sidebar_label: Search box customization with TypeScript
 
 This section describes how to develop the [Search box customization previously introduced](../../guides/search-box-customization.md) using the Dialog component of Kintone UI Component with TypeScript.
 
-## 使用するコンポーネント
+## Components to use
 
 - [Button](../components/desktop/button.md)
 - [Dialog](../components/desktop/dialog.md)
@@ -167,7 +167,7 @@ export const createReadOnlyTable = (records: Record[]) => {
 
 ### Adjust the style of the search box and search result dialog
 
-Kintone UI Component has provided [Custom CSS functionality](../getting-started/custom-css.md) since v1.15.0. By specifying the Custom CSS properties of each component, you can safely change the width and height of components without DOM manipulation.
+Kintone UI Component has provided [Custom CSS functionality](../getting-started/custom-css.md). By specifying the Custom CSS properties of each component, you can safely change the width and height of components without DOM manipulation.
 
 In this article, we will adjust the CSS of the Dialog and Text components.
 

@@ -168,7 +168,7 @@ export const createReadOnlyTable = (records: Record[]) => {
 
 ### 検索ボックスと検索結果ダイアログのスタイル調整
 
-kintone UI Component は、v1.15.0 から [Custom CSS](../getting-started/custom-css.md) の機能を提供しました。各コンポーネントの Custom CSS のプロパティを指定することで、コンポーネントの幅や高さなどを DOM操作することなく安全に変更することできます。
+kintone UI Component は、[Custom CSS](../getting-started/custom-css.md) の機能を提供しています。各コンポーネントの Custom CSS のプロパティを指定することで、コンポーネントの幅や高さなどを DOM操作することなく安全に変更することできます。
 
 今回は、Dialog コンポーネントと Text コンポーネントの CSS を調整します。
 
