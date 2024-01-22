@@ -6,7 +6,7 @@ sidebar_label: Search box customization with TypeScript
 
 ## 概要
 
-[以前紹介した検索ボックスの作り方](../../guides/search-box-customization.md)を kintone UI Component の Dialog コンポーネントを使い TypeScript で実装する方法を説明します。
+[以前紹介した検索ボックスの作り方](../guides/search-box-customization.md)を kintone UI Component の Dialog コンポーネントを使い TypeScript で実装する方法を説明します。
 
 ## 使用するコンポーネント
 
@@ -29,7 +29,7 @@ sidebar_label: Search box customization with TypeScript
 
 ## TypeScript 環境の構築と実装
 
-TypeScript の開発環境の構築方法は、[Usage with TypeScript](../../getting-started/usage-with-typescript.md) をご覧ください。
+TypeScript の開発環境の構築方法は、[Usage with TypeScript](../getting-started/usage-with-typescript.md) をご覧ください。
 
 ### 検索ボックスの表示
 
@@ -74,7 +74,7 @@ ButtonProps や TextProps にマウスをホバーすると、プロパティを
 
 ### 検索結果ダイアログの表示
 
-[以前の検索ボックスの作り方](../../guides/search-box-customization.md)では、検索結果を表示するために、
+[以前の検索ボックスの作り方](../guides/search-box-customization.md)では、検索結果を表示するために、
 kintone アプリの絞り込み機能の URL にクエリ文字列を埋め込んでいます。<br/>
 具体的な箇所は次のコードの `'&q=f6054049%20like%20"'` の部分です。<br/>
 この方法は推奨されない実装方法なので、今回は Dialog コンポーネントと ReadOnlyTable コンポーネントを使って検索結果を表示します。

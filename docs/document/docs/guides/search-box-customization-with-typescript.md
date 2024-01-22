@@ -6,7 +6,7 @@ sidebar_label: Search box customization with TypeScript
 
 ## Overview
 
-This section describes how to develop the [Search box customization previously introduced](../../guides/search-box-customization.md) using the Dialog component of Kintone UI Component with TypeScript.
+This section describes how to develop the [Search box customization previously introduced](../guides/search-box-customization.md) using the Dialog component of Kintone UI Component with TypeScript.
 
 ## Components to use
 
@@ -29,7 +29,7 @@ The complete image of the search box and the search result dialog is as follows:
 
 ## Build and implement a TypeScript development environment
 
-For instructions on how to set up a TypeScript development environment, check [Usage with TypeScript](../../getting-started/usage-with-typescript.md).
+For instructions on how to set up a TypeScript development environment, check [Usage with TypeScript](../getting-started/usage-with-typescript.md).
 
 ### Display of the search box
 
@@ -74,7 +74,7 @@ Hover and mouse over ButtonProps or TextProps to see their properties.
 
 ### Display of the search result dialog
 
-In the [previous method of creating a search box](../../guides/search-box-customization.md), a query string is embedded in the URL of the Kintone app's filter function in order to display search results.<br/>
+In the [previous method of creating a search box](../guides/search-box-customization.md), a query string is embedded in the URL of the Kintone app's filter function in order to display search results.<br/>
 The specific part is `'&q=f6054049%20like%20"'` in the following code.<br/>
 Since this is not a recommended implementation method, we will use the Dialog and ReadOnlyTable component to display the search results.
 
