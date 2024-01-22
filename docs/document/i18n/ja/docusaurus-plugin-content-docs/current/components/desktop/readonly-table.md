@@ -151,3 +151,4 @@ space.appendChild(readOnlyTable);
 
 - [Table and ReadOnlyTable customization](../../guides/table-readonly-table-customization.md)
 - [Tabs customization](../../guides/tabs-customization.md)
+- [Search box customization with TypeScript](../../guides/search-box-customization-with-typescript.md)
