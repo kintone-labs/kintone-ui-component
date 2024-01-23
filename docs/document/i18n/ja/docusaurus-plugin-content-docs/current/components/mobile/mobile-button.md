@@ -60,20 +60,15 @@ MobileButton(options)<br/>
 
 コンポーネントのスタイルを変更するために使用できるプロパティの一覧です。
 #### Property
-| Name |
-| :--- |
-| --kuc-mobile-button-background-color |
-| --kuc-mobile-button-background-color-active |
-| --kuc-mobile-button-background-color-focus |
-| --kuc-mobile-button-font-size |
-| --kuc-mobile-button-height |
-| --kuc-mobile-button-text-color |
-| --kuc-mobile-button-width |
-
-:::caution
-Safariでは、クリックされたボタンがフォーカスを得られないため、'--kuc-mobile-button-background-color-focus' は機能しません。<br/>
-詳しくは、この [クリックとフォーカス](https://developer.mozilla.org/ja/docs/Web/HTML/Element/button#%E3%82%AF%E3%83%AA%E3%83%83%E3%82%AF%E3%81%A8%E3%83%95%E3%82%A9%E3%83%BC%E3%82%AB%E3%82%B9) の記事をご覧ください！
-:::
+| Name | Description |
+| :--- | :--- |
+| --kuc-mobile-button-background-color | |
+| --kuc-mobile-button-background-color-active | |
+| --kuc-mobile-button-background-color-focus | Safariでは、クリックされたボタンがフォーカスを得られないため、このプロパティは機能しません。<br/>詳しくは、この [クリックとフォーカス](https://developer.mozilla.org/ja/docs/Web/HTML/Element/button#%E3%82%AF%E3%83%AA%E3%83%83%E3%82%AF%E3%81%A8%E3%83%95%E3%82%A9%E3%83%BC%E3%82%AB%E3%82%B9) の記事をご覧ください！ |
+| --kuc-mobile-button-font-size | |
+| --kuc-mobile-button-height | |
+| --kuc-mobile-button-text-color | |
+| --kuc-mobile-button-width | |
 
 ---
 

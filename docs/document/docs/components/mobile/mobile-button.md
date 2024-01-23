@@ -60,20 +60,15 @@ Please check [Custom CSS feature guide](../../getting-started/custom-css.md) at 
 
 Here is a list of properties that can be used for modifying component style:
 #### Property
-| Name |
-| :--- |
-| --kuc-mobile-button-background-color |
-| --kuc-mobile-button-background-color-active |
-| --kuc-mobile-button-background-color-focus |
-| --kuc-mobile-button-font-size |
-| --kuc-mobile-button-height |
-| --kuc-mobile-button-text-color |
-| --kuc-mobile-button-width |
-
-:::caution
-The '--kuc-mobile-button-background-color-focus' won't take effect in Safari because the clicked buttons don't get focus.<br/>
-Please read this [clicking and focus](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#clicking_and_focus) article for more information!
-:::
+| Name | Description |
+| :--- | :--- |
+| --kuc-mobile-button-background-color | |
+| --kuc-mobile-button-background-color-active | |
+| --kuc-mobile-button-background-color-focus | This property won't take effect in Safari because the clicked buttons don't get focus.<br/>Please read this [clicking and focus](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#clicking_and_focus) article for more information! |
+| --kuc-mobile-button-font-size | |
+| --kuc-mobile-button-height | |
+| --kuc-mobile-button-text-color | |
+| --kuc-mobile-button-width | |
 
 ---
 
