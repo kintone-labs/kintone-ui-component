@@ -30,7 +30,7 @@ Here is a list of properties that can be used for modifying the component:
 | disabled | boolean | false | Enable/Disable the component | |
 | requiredIcon | boolean | false | Show/Hide the required icon | |
 | visible | boolean | true | Show/Hide the component | |
-| files | Array<[File](#file)\> | [] | List of files | You can specify [File object](https://developer.mozilla.org/en-US/docs/Web/API/File) or object contains `name` and `size`<br/>Will result an error if the value of `files` is not an array |
+| files | Array\<[File](#file)\> | [] | List of files | You can specify [File object](https://developer.mozilla.org/en-US/docs/Web/API/File) or object contains `name` and `size`<br/>Will result an error if the value of `files` is not an array |
 
 :::info
 *1: The text of "Browse" button and "Drag & drop zone" will be changed according to the `language` property.
@@ -49,7 +49,7 @@ Here is a list of events that can be specified:
 
 | Name | Type | Description | Remark |
 | :--- | :--- | :--- | :--- |
-| change | function | Event handler when the files have been changed | It will pass the event object as the argument<br/>You can receive the following values in event.detail <li>add-file (Triggered if add any file)<ul><li>event.detail.type: "add-file"</li><li>event.detail.oldFiles: Files before add</li><li>event.detail.files: Files after add</li><li>event.detail.fileIndex: Index number of the added file (Type: Array<number\>)<ul><li>You can get the added file by "event.detail.files[event.detail.fileIndex[x]]"</li></ul></li></ul></li><li>remove-file (Triggered if remove any file)<ul><li>event.detail.type: "remove-file"</li><li>event.detail.oldFiles: Files before remove</li><li>event.detail.files: Files after remove</li><li>event.detail.fileIndex: Index number of the removed file (Type: Array<number\>)<ul><li>You can get the removed file by "event.detail.oldFiles[event.detail.fileIndex[x]]"</li></ul></li></ul></li> |
+| change | function | Event handler when the files have been changed | It will pass the event object as the argument<br/>You can receive the following values in event.detail <li>add-file (Triggered if add any file)<ul><li>event.detail.type: "add-file"</li><li>event.detail.oldFiles: Files before add</li><li>event.detail.files: Files after add</li><li>event.detail.fileIndex: Index number of the added file (Type: Array\<number\>)<ul><li>You can get the added file by "event.detail.files[event.detail.fileIndex[x]]"</li></ul></li></ul></li><li>remove-file (Triggered if remove any file)<ul><li>event.detail.type: "remove-file"</li><li>event.detail.oldFiles: Files before remove</li><li>event.detail.files: Files after remove</li><li>event.detail.fileIndex: Index number of the removed file (Type: Array\<number\>)<ul><li>You can get the removed file by "event.detail.oldFiles[event.detail.fileIndex[x]]"</li></ul></li></ul></li> |
 
 ### Constructor
 
@@ -59,7 +59,7 @@ Here is a list of available constructors:
 #### Parameter
 | Name | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
-| options  | object | {} | Object that includes component properties |  |
+| options  | object | \{\} | Object that includes component properties |  |
 
 ### Custom CSS
 :::tip

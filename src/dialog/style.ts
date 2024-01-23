@@ -113,6 +113,10 @@ export const DIALOG_CSS = `
     word-break: normal;
   }
 
+  .kuc-dialog__dialog__footer[hidden] {
+    display: none;
+  }
+
   .kuc-dialog__mask {
     position: fixed;
     top: 0;

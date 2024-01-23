@@ -46,7 +46,7 @@ MobileButton(options)<br/>
 
 | Name | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
-| options | object | {} | コンポーネントのプロパティを含むオブジェクト | |
+| options | object | \{\} | コンポーネントのプロパティを含むオブジェクト | |
 
 ---
 

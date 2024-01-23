@@ -24,11 +24,11 @@ Here is a list of properties that can be used for modifying the component:
 | id | string | ""  | Component id name | |
 | label | string | ""  | Label for the component | Label will not be displayed if unspecified or left empty |
 | visible | boolean | true | Show/Hide the component | |
-| columns | Array<Columns\> | []  | Array of data to be displayed in the table header | Will result an error if the value for columns is not an array |
+| columns | Array\<Columns\> | []  | Array of data to be displayed in the table header | Will result an error if the value for columns is not an array |
 | Columns.header | Object | Null | Table header object | |
 | Columns.header.text | String | Null | Text to be displayed in the table header | |
 | Columns.visible | Boolean | Null | Show/Hide the column | |
-| data | Array<Array<string\>\> | []  | Two-dimensional array of data to be displayed on table body | Will result an error if the data is not an array |
+| data | Array\<Array\<string\>\> | []  | Two-dimensional array of data to be displayed on table body | Will result an error if the data is not an array |
 
 ### Constructor
 
@@ -38,7 +38,7 @@ Here is a list of available constructors:
 #### Parameter
 | Name | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
-| options | object | {} | Object that includes component properties |  |
+| options | object | \{\} | Object that includes component properties |  |
 
 ---
 ## Sample Code

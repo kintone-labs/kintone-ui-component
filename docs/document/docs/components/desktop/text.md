@@ -53,7 +53,7 @@ Here is a list of available constructors:
 #### Parameter
 | Name | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
-| options  | object | {} | Object that includes component properties |  |
+| options  | object | \{\} | Object that includes component properties |  |
 
 ### Custom CSS
 :::tip
@@ -118,4 +118,5 @@ text.addEventListener('input', event => {
 ## Related Articles
 
 - [Search box customization](../../guides/search-box-customization.md)
+- [Search box customization with TypeScript](../../guides/search-box-customization-with-typescript.md)
 - [Table and ReadOnlyTable customization](../../guides/table-readonly-table-customization.md)
