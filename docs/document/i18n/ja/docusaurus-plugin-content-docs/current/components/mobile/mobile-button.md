@@ -71,7 +71,8 @@ MobileButton(options)<br/>
 | --kuc-mobile-button-width |
 
 :::caution
-[Safariでは '--kuc-mobile-button-background-color-focus' は効果がありません](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#clicking_and_focus)。
+Safariでは、クリックされたボタンがフォーカスを得られないため、'--kuc-mobile-button-background-color-focus'は機能しません。<br/>
+詳しくは、この[クリックとフォーカス](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#clicking_and_focus)の記事をご覧ください！
 :::
 
 ---
