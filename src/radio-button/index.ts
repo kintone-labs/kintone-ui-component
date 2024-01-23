@@ -1,4 +1,4 @@
-import { html, PropertyValueMap, PropertyValues, svg } from "lit";
+import { html, PropertyValues, svg } from "lit";
 import { property, queryAll } from "lit/decorators.js";
 
 import { ERROR_MESSAGE } from "../base/constant";
