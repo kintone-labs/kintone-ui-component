@@ -31,10 +31,10 @@ Here is a list of properties that can be used for modifying the component:
 | disabled | boolean | false | Enable/Disable the component | |
 | requiredIcon | boolean | false | Show/Hide the required icon | |
 | visible | boolean | true | Show/Hide the component | |
-| items | Array<Item\> | []  | List of options to display | Will result an error if the value of items is not an array |
+| items | Array\<Item\> | []  | List of options to display | Will result an error if the value of items is not an array |
 | Item.label | string | null | Text label for each option | If `Item.label` is unspecified, the value of Item.value is displayed on the UI |
 | Item.value | string | null | Value of each option | Will result an error if there is duplicated value in Item.value |
-| value | Array<string\> | []  | Selected value | Will result an error if the value of items is not an array<br/>Will result an error if there is duplicated value in an array<br/>No option will be selected if the value is unspecified |
+| value | Array\<string\> | []  | Selected value | Will result an error if the value of items is not an Array\<br/>Will result an error if there is duplicated value in an Array\<br/>No option will be selected if the value is unspecified |
 
 ### Event
 
@@ -53,7 +53,7 @@ Here is a list of available constructors:
 
 | Name | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
-| options | object | {} | Object that includes component properties | |
+| options | object | \{\} | Object that includes component properties | |
 
 ---
 

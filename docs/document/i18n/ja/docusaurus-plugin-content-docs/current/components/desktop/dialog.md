@@ -28,6 +28,7 @@ import { DialogComponent } from "@site/static/js/samples/desktop/dialog.js"
 | content *1 | string/HTMLElement | "" | Content の DOM | HTML が記載された string を指定した場合、自動的に HTML に変換してそのまま表示される |
 | footer *1 | string/HTMLElement | "" | Footer の DOM | HTML が記載された string を指定した場合、自動的に HTML に変換してそのまま表示される |
 | container | HTMLElement | document.body | コンポーネントを追加する対象の要素 | デフォルトではトップレベルのドキュメントオブジェクトのボディを使うので、ほとんどの場合は document.body となる<br/>container が HTMLElement 以外の場合、エラーを出力する |
+| footerVisible | boolean | true | Footer の表示/非表示設定 | |
 
 :::caution
 *1: kintone UI Component はこのプロパティの値を内部的にサニタイズしていません。ユーザー入力を受け付けるような実装でこのプロパティを使用する場合は、開発者自身で XSS 対策をしてください。
@@ -49,7 +50,7 @@ Dialog(options)<br/>
 #### Parameter
 | Name | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
-| options | object | {} | コンポーネントのプロパティを含むオブジェクト | |
+| options | object | \{\} | コンポーネントのプロパティを含むオブジェクト | |
 
 ---
 ### Method
@@ -126,7 +127,8 @@ const dialog = new Kuc.Dialog({
   content: '<div>This is Content</div>',
   footer: divEl,
   icon: 'info',
-  container: document.body
+  container: document.body,
+  footerVisible: true
 });
 
 dialog.addEventListener('close', event => {
@@ -142,3 +144,4 @@ dialog.close();
 ## Related Articles
 
 - [Format setting plug-in](../../guides/format-setting-plugin.md)
+- [Search box customization with TypeScript](../../guides/search-box-customization-with-typescript.md)

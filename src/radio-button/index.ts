@@ -1,5 +1,5 @@
 import { html, PropertyValues, svg } from "lit";
-import { property } from "lit/decorators.js";
+import { property, queryAll } from "lit/decorators.js";
 
 import { ERROR_MESSAGE } from "../base/constant";
 import { visiblePropConverter } from "../base/converter";
@@ -57,6 +57,9 @@ let exportRadioButton;
     @property({ type: Array }) items: RadioButtonItem[] = [];
 
     private _GUID: string;
+
+    @queryAll(".kuc-radio-button__group__select-menu__item__input")
+    private _inputEls!: HTMLInputElement[];
 
     constructor(props?: RadioButtonProps) {
       super();
@@ -278,6 +281,13 @@ let exportRadioButton;
           ></kuc-base-error>
         </div>
       `;
+    }
+
+    updated() {
+      this._inputEls.forEach((inputEl: HTMLInputElement, idx) => {
+        inputEl.checked =
+          this.value === inputEl.value && idx === this.selectedIndex;
+      });
     }
 
     private _getSelectedIndex() {

@@ -160,7 +160,7 @@ button.addEventListener('click', () => {
 ```
 必須項目の値の有無をチェックしたあと、レコードを登録します。<br/>
 
-画面上で入力された必須項目の値は、<コンポーネントの変数名.value> で取得できます。<br/>
+画面上で入力された必須項目の値は、\<コンポーネントの変数名.value\> で取得できます。<br/>
 今回のカスタマイズでは、radiobutton.value、checkbox.value、dropdown.value で各コンポーネントに入力された値を取得しています。
 
 登録に成功したら、Notification コンポーネントでメッセージを表示しています。

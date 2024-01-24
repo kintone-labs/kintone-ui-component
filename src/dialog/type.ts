@@ -8,6 +8,7 @@ export declare type DialogProps = {
   content?: string | HTMLElement;
   footer?: string | HTMLElement;
   container?: HTMLElement;
+  footerVisible?: boolean;
 };
 
 export declare class Dialog extends KucBase {
@@ -16,6 +17,7 @@ export declare class Dialog extends KucBase {
   content: string | HTMLElement;
   footer: string | HTMLElement;
   container: HTMLElement;
+  footerVisible: boolean;
   constructor(props?: DialogProps);
   update(changedProperties: PropertyValues): void;
   open(): void;

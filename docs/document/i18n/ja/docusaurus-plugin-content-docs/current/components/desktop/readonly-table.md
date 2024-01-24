@@ -28,8 +28,8 @@ import { ReadOnlyTableComponent } from "@site/static/js/samples/desktop/readonly
 | rowsPerPage | number | 5 | ページごとの行数 | 小数点以下を指定した場合は、最も近い整数に丸められる<br/>rowsPerPage が正の整数以外の場合、エラーを出力する|
 | pagination | boolean | true | ページネーションの表示/非表示設定 | false を指定した場合、ページネーションは非表示になり全ての行が表示される<br/>true を指定した場合、ページネーションは表示され rowsPerPage に指定された行数のみがページごとに表示される |
 | visible | boolean | true | コンポーネントの表示/非表示設定 | |
-| columns | Array<[Column](#column)\> | []  | コンポーネントの列データ | columns が配列以外の場合、エラーを出力する |
-| data *1 | Array<object\> | []  | コンポーネントの行データ | data が配列以外の場合、エラーを出力する |
+| columns | Array\<[Column](#column)\> | []  | コンポーネントの列データ | columns が配列以外の場合、エラーを出力する |
+| data *1 | Array\<object\> | []  | コンポーネントの行データ | data が配列以外の場合、エラーを出力する |
 
 :::caution
 *1: kintone UI Component はこのプロパティの値を内部的にサニタイズしていません。ユーザー入力を受け付けるような実装でこのプロパティを使用する場合は、開発者自身で XSS 対策をしてください。
@@ -50,7 +50,7 @@ ReadOnlyTable(options)<br/>
 #### Parameter
 | Name | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
-| options | object | {} | コンポーネントのプロパティを含むオブジェクト |  |
+| options | object | \{\} | コンポーネントのプロパティを含むオブジェクト |  |
 
 ### Custom CSS
 :::tip
@@ -65,7 +65,7 @@ ReadOnlyTable(options)<br/>
 | --kuc-readonly-table-header-color | |
 | --kuc-readonly-table-header-font-size | |
 | --kuc-readonly-table-header-height | |
-| --kuc-readonly-table-header-{index}-width | <li>このプロパティを使用すると、インデックス値に基づいて特定のテーブル列の幅を設定できる</li><li>例えば、`--kuc-readonly-table-header-0-width` を使用して、最初のカラムの幅を設定できる</li><li>インデックス値は `0` から始まることに注意</li> |
+| --kuc-readonly-table-header-\{index\}-width | <li>このプロパティを使用すると、インデックス値に基づいて特定のテーブル列の幅を設定できる</li><li>例えば、`--kuc-readonly-table-header-0-width` を使用して、最初のカラムの幅を設定できる</li><li>インデックス値は `0` から始まることに注意</li> |
 | --kuc-readonly-table-header-width | <li>このプロパティを使用すると、テーブル内のすべての列の幅を設定できる</li><li>単一のカラムに対して特定の幅を設定する必要がある場合は、`--kuc-readonly-table-header-{index}-width` プロパティを利用する</li><li>伸縮する要素を子コンポーネントとして追加したい場合は、`--kuc-readonly-table-header-width: auto` を設定することで、この動作を維持できる場合がある</li> |
 
 ---
@@ -151,3 +151,4 @@ space.appendChild(readOnlyTable);
 
 - [Table and ReadOnlyTable customization](../../guides/table-readonly-table-customization.md)
 - [Tabs customization](../../guides/tabs-customization.md)
+- [Search box customization with TypeScript](../../guides/search-box-customization-with-typescript.md)

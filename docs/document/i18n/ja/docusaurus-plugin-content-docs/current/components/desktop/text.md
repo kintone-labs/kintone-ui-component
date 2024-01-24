@@ -53,7 +53,7 @@ Text(options)<br/>
 #### Parameter
 | Name | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
-| options  | object | {} | コンポーネントのプロパティを含むオブジェクト | |
+| options  | object | \{\} | コンポーネントのプロパティを含むオブジェクト | |
 
 ### Custom CSS
 :::tip
@@ -117,4 +117,5 @@ text.addEventListener('input', event => {
 ## Related Articles
 
 - [Search box customization](../../guides/search-box-customization.md)
+- [Search box customization with TypeScript](../../guides/search-box-customization-with-typescript.md)
 - [Table and ReadOnlyTable customization](../../guides/table-readonly-table-customization.md)

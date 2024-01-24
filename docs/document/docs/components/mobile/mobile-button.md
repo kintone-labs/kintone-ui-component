@@ -51,7 +51,24 @@ Here is a list of available constructors:
 
 | Name | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
-| options | object | {} | Object that includes component properties |  |
+| options | object | \{\} | Object that includes component properties |  |
+
+### Custom CSS
+:::tip
+Please check [Custom CSS feature guide](../../getting-started/custom-css.md) at first.
+:::
+
+Here is a list of properties that can be used for modifying component style:
+#### Property
+| Name | Description |
+| :--- | :--- |
+| --kuc-mobile-button-background-color | |
+| --kuc-mobile-button-background-color-active | |
+| --kuc-mobile-button-background-color-focus | This property won't take effect in Safari because the clicked buttons don't get focus.<br/>Please read this [clicking and focus](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#clicking_and_focus) article for more information! |
+| --kuc-mobile-button-font-size | |
+| --kuc-mobile-button-height | |
+| --kuc-mobile-button-text-color | |
+| --kuc-mobile-button-width | |
 
 ---
 
