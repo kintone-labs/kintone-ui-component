@@ -64,6 +64,11 @@ const config = {
         googleTagManager: {
           containerId: 'GTM-5N49D3',
         },
+        sitemap: {
+          changefreq: 'weekly',
+          priority: 0.5,
+          filename: 'sitemap.xml',
+        },
       }),
     ],
   ],
