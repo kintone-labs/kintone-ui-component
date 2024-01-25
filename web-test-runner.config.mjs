@@ -1,6 +1,9 @@
 import { chromeLauncher, defaultReporter } from "@web/test-runner";
 export default {
-  nodeResolve: { mainFields: ["module", "main", "browser"] },
+  nodeResolve: {
+    mainFields: ["module", "main", "browser"],
+    exportConditions: ["production"],
+  },
   files: "./unit_test/**/test/*.test.js",
   coverage: true,
   reporters: [
@@ -14,9 +17,11 @@ export default {
       lines: 90,
     },
   },
-  browsers: [chromeLauncher({
-    launchOptions: {
-      headless: true,
-    },
-  })],
+  browsers: [
+    chromeLauncher({
+      launchOptions: {
+        headless: true,
+      },
+    }),
+  ],
 };
