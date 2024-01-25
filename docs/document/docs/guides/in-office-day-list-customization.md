@@ -19,7 +19,7 @@ We assume the following scenario:
 - [MultiChoice](../components/desktop/multichoice.md)
 - [Table](../components/desktop/table.md)
 - [Text](../components/desktop/text.md)
-- [Tooltip](../components/desktop/tooltip.md#%23%23%23%23Property)
+- [Tooltip](../components/desktop/tooltip.md)
 
 ## What you will need to have ready
 
@@ -35,7 +35,7 @@ You can see how to upload a file in the [Quick Start](../getting-started/quick-s
 Create a Basic FieldGroup with a label "KUC team" and the Text component as its content.
 
 ```javascript
-  const fieldGroup = new Kuc.FieldGroup({
+  const kucTeamFieldGroup = new Kuc.FieldGroup({
     label: 'KUC team',
     content: new Kuc.Text({text: 'This is a FieldGroup'})
   });
@@ -44,9 +44,9 @@ Create a Basic FieldGroup with a label "KUC team" and the Text component as its 
 Create a Tooltip component with the tooltip message "Office day info" for the FieldGroup and associated them.
 
 ```javascript
-  const tooltip = new Kuc.Tooltip({
+  const kucTeamTooltip = new Kuc.Tooltip({
     title: 'Office day info',
-    content: fieldGroup
+    content: kucTeamFieldGroup
   });
 ```
 
@@ -66,7 +66,7 @@ Begin by creating a Tooltip component associated with an HTML button, conveying 
   const tooltipForButton = new Kuc.Tooltip({
     title: 'Submit changes or additions for this entry.',
     container: button,
-    describeChild: false,
+    describeChild: true,
     placement: 'bottom'
   });
 ```
@@ -76,9 +76,27 @@ Create a Table component containing information such as "Name", "In office day",
 
 ```javascript
   const renderName = cellData => {
-    return new Kuc.Text({
-      value: cellData
-    });
+    const input = document.createElement('input');
+      input.type = 'text';
+      input.value = cellData;
+      input.style.cssText = `
+        border: 1px solid #e3e7e8;
+        color: #333333;
+        font-size: 14px;
+        white-space: nowrap;
+        height: 40px;
+        padding: 0 8px;
+        width: 177px;
+        box-sizing: border-box;
+        box-shadow: 2px 2px 4px #f5f5f5 inset, -2px -2px 4px #f5f5f5 inset;
+      `;
+      input.addEventListener('focus', () => {
+        input.style.border = '1px solid #3498db';
+      });
+      input.addEventListener('blur', () => {
+        input.style.border = '1px solid #e3e7e8';
+      });
+      return input;
   };
 
   const renderDay = cellData => {
@@ -144,13 +162,13 @@ Create a Table component containing information such as "Name", "In office day",
       const tooltipForButton = new Kuc.Tooltip({
         title: 'Submit changes or additions for this entry.',
         container: button,
-        describeChild: false,
+        describeChild: true,
         placement: 'bottom'
       });
       return tooltipForButton;
     };
 
-  const table = new Kuc.Table({
+  const kucTeamTable = new Kuc.Table({
     label: 'team info',
     columns: [
       {
@@ -193,9 +211,9 @@ Create a Table component containing information such as "Name", "In office day",
 Create a FieldGroup component with the label "KUC team" and the Table component as its content.
 
 ```javascript
-  const fieldGroup = new Kuc.FieldGroup({
+  const kucTeamFieldGroup = new Kuc.FieldGroup({
     label: 'KUC team',
-    content: table
+    content: kucTeamTable
   });
 ```
 
@@ -203,21 +221,21 @@ Create a FieldGroup component with the label "KUC team" and the Table component 
 Create Tooltip for the FieldGroup and associated them.
 
 ```javascript
-  const tooltipForFieldGroup = new Kuc.Tooltip({
+  const kucTeamTooltip = new Kuc.Tooltip({
     title: 'Office day info',
-    container: fieldGroup,
+    container: kucTeamFieldGroup,
   });
 ```
 
-#### Add Event listener for FieldGroup 
+#### Add Event listener for FieldGroup
 Add event listener for FieldGroup to change the tooltip message when FieldGroup is expanded or collapsed
 
 ```javascript
-   fieldGroup.addEventListener('change', e => {
+   kucTeamFieldGroup.addEventListener('change', e => {
     if (e.detail.expanded) {
-      tooltipForFieldGroup.title = '';
+      kucTeamFieldGroup.title = '';
     } else {
-      tooltipForFieldGroup.title = 'Office day info';
+      kucTeamFieldGroup.title = 'Office day info';
     }
   });
 ```
@@ -227,30 +245,13 @@ Add event listener for FieldGroup to change the tooltip message when FieldGroup 
 
 
 ### Using Two Types of Tooltip
-You may have noticed that when creating a Tooltip for a button, I will introduce a new property `describeChild`.
+You may have noticed that when creating a Tooltip for a button, I will introduce a new property [`describeChild`](../components/desktop/tooltip.md#property).
 This property is set to false by default.<br/>
 You can effectively improve the accessibility and usability of your application with the `describeChild` property.<br/>
-Now, let's enable the [screen reader](https://support.apple.com/en-us/guide/voiceover/vo2682/mac) and try moving the focus to the button to see what the screen reader reads.<br/>
-
-#### Tooltip represents the purpose of the element
-If the Tooltip represents the purpose of the element itself (provides a label for the element it is attached to). You need to set `describeChild` to false.
-```javascript
-  const tooltipForButton = new Kuc.Tooltip({
-    title: 'Submit changes or additions for this entry.',
-    container: button,
-    describeChild: false,
-    placement: 'bottom'
-  });
-```
-
-![render](/img/tooltip_describeChild_false.gif)
-
-In the examples, the screen reader replaces the button's original content "Submit" with the Tooltip's content ("Submit changes or additions for this entry") when the button gains focus.<br/>
-This is because when `describeChild` is false, Tooltip adds [aria-label](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-label) to its child elements (button, FieldGroup), causing the screen reader to read the content of [aria-label](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-label) instead of the original content.<br/>
+Now, let's enable the [screen reader](https://developer.mozilla.org/en-US/docs/Glossary/Screen_reader) and try moving the focus to the button to see what the screen reader reads.<br/>
 
 #### Tooltip represents the description of the element
-If the Tooltip represents the description of the element (provides additional information or a supplementary description about the element it is attached to).
-You need to set `describeChild` to true.
+If the Tooltip represents the description of the element (provides additional information or a supplementary description about the element it is attached to), you need to set `describeChild` to true.
 ```javascript
   const tooltipForButton = new Kuc.Tooltip({
     title: 'Submit changes or additions for this entry.',
@@ -261,9 +262,32 @@ You need to set `describeChild` to true.
 ```
 ![render](/img/tooltip_describeChild_true.gif)
 
-This time, we can see that when `describeChild` is set to true, the screen reader first reads the content of the button itself "Submit" when the button gains focus, then continues to read the Tooltip's title "Submit changes or additions for this entry.".<br/>
+In the examples, we can see that when `describeChild` is set to true, the screen reader first reads the content of the button itself "Submit" when the button gains focus, then continues to read the Tooltip's title "Submit changes or additions for this entry.".<br/>
 This is because when `describeChild` is true, Tooltip adds [aria-describedby](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-describedby) to its child elements (button), causing the screen reader to read the original content first and then continue with the content of [aria-describedby](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-describedby).
 
+#### Tooltip represents the purpose of the element
+If the Tooltip represents the purpose of the element itself (provides a label for the element it is attached to), you need to set `describeChild` to false.<br/>
+Let's take a look at the example below.<br/>
+In the example, we set the Input tag in the Name field of the table, but the Input tag cannot read the word "Name" in the screen reader, so we can use Tooltip to solve this problem.<br/>
+We create a Tooltip for the Input component, set the title of the Tooltip to "Name", and set `describeChild` to false to see what the screen reader reads.<br/>
+```javascript
+const renderName = cellData => {
+  const input = document.createElement('input');
+  ...
+  const tooltipForInput = new Kuc.Tooltip({
+    title: 'Name',
+    container: input,
+    describeChild: false,
+    placement: 'bottom'
+  });
+  return tooltipForInput;
+};
+```
+
+![render](/img/tooltip_describeChild_false.gif)
+
+This time, we can see that when `describeChild` is set to false, the screen reader reads the content of the Tooltip's title "Name" when the input gains focus.<br/>
+This is because when `describeChild` is false, Tooltip adds [aria-label](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-label) to its child elements (input, fieldGroup), causing the screen reader to read the content of [aria-label](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-label).<br/>
 
 :::info
 This article was reviewed by Kintone and Google Chrome as of Feb, 2024.<br/>
