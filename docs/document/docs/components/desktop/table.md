@@ -158,4 +158,5 @@ table.addEventListener('change', event => {
 
 ## Related Articles
 
+- [In-office day list customization](../../guides/in-office-day-list-customization.md)
 - [Table and ReadOnlyTable customization](../../guides/table-readonly-table-customization.md)
