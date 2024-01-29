@@ -110,6 +110,7 @@ button.addEventListener('click', event => {
 ## Related Articles
 
 - [Search box customization](../../guides/search-box-customization.md)
+- [Search box customization with TypeScript](../../guides/search-box-customization-with-typescript.md)
 - [Cleaning check list customization](../../guides/cleaning-check-list-customization.md)
 - [Bulk update customization](../../guides/bulk-update-customization.md)
 - [Format setting plug-in](../../guides/format-setting-plugin.md)
