@@ -9,9 +9,9 @@ This article explains how to utilize and customize the FieldGroup and Tooltip co
 In this context, a Table component within the FieldGroup allows team members to specify which days they will be in the office.<br/>
 
 We assume the following scenario:
-1. Basic Usage for FieldGroup and Tooltip (*FieldGroup and Tooltip*)
-2. Append Table component to FieldGroup content (*FieldGroup*)
-3. Using Two Types of Tooltip (*Tooltip*)
+1. Basic Usage for FieldGroup and Tooltip
+2. Append Table component to FieldGroup content
+3. Using Two Types of Tooltip
 
 ### Components to use
 - [Dropdown](../components/desktop/dropdown.md)
