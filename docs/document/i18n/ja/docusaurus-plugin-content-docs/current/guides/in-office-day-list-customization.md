@@ -6,7 +6,7 @@ sidebar_label: In-office day list customization
 
 ## 概要
 
-今回は FieldGroup と Tooltip コンポーネントの活用とカスタマイズ方法について、In-Office Day List（出社日リスト）を作成することで説明します。<br/>
+今回は FieldGroup と Tooltip コンポーネントの活用とカスタマイズ方法について、In-Office Day List（出社日リスト）を題材に説明します。<br/>
 このカスタマイズでは、FieldGroup 内に配置した Table コンポーネントでチームメンバーの出社日を確認できるリストを作成します。<br/>
 
 以下のシナリオを想定しています。
