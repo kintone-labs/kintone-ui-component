@@ -307,7 +307,7 @@ const renderName = cellData => {
 
 ![render](/img/tooltip_describeChild_false.gif)
 
-今回は `describeChild` をfalseに設定した場合、入力にフォーカスが当たったときににスクリーンリーダーは Tooltip のタイトル　"Name" の内容を読み取ります。<br/>
+今回 describeChild を false に設定すると、input にフォーカスが当たったときにスクリーンリーダーは Tooltip のタイトル "Name" の内容を読み取ります。<br/>
 これは `describeChild` がfalseの場合、Tooltip は [aria-label](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-label) を子要素 (input, fieldGroup) に追加し、スクリーンリーダーは [aria-label](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-label) の内容を読み取るからです。<br/>
 
 :::info
