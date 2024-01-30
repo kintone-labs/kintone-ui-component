@@ -81,7 +81,7 @@ const tooltipForButton = new Kuc.Tooltip({
 });
 ```
 
-#### Table にDropdown、Text、MultiChoice のコンポーネントと Tooltip が追加されたボタンを配置
+#### Table に Dropdown, Text, MultiChoice のコンポーネントと Tooltip が追加されたボタンを配置
 
 名前("Name")、出社日("In office day")、ロケーション("Location")、メモ("Note")などの情報が入ったテーブルを作成し、Tooltip を追加したボタンも配置します。
 
