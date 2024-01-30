@@ -261,7 +261,7 @@ kucTeamFieldGroup.addEventListener("change", (e) => {
 
 ### Tooltip の２種類のユースケース
 
-ここでは [`describeChild`](../components/desktop/tooltip.md#property) というプロパティーを紹介します。
+ここでは [describeChild](../components/desktop/tooltip.md#property) というプロパティーを紹介します。
 このプロパティーはデフォルトでは false に設定されています。<br/>
 describeChild プロパティの使い方を理解することで、アプリケーションのアクセシビリティとユーザビリティを効果的に向上させることができます。<br/>
 [screen reader](https://developer.mozilla.org/en-US/docs/Glossary/Screen_reader) を有効にして、ボタンへのフォーカスを動かしスクリーンリーダーの読みとりを確認してみましょう。<br/>
