@@ -13,7 +13,7 @@ sidebar_label: In-office day list customization
 
 1. FieldGroup と Tooltip の基本的な使い方
 2. FieldGroup content に Table コンポーネントを追加する
-3. 2 つの種類の Tooltip を利用する
+3. 2種類の Tooltip を利用する
 
 ### 使用するコンポーネント
 
