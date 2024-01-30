@@ -288,7 +288,7 @@ const tooltipForButton = new Kuc.Tooltip({
 
 Tooltip が要素自体の目的を表す（要素のラベルを提供する）場合は、describeChild を false に設定します。<br/>
 例を見てみましょう。<br/>
-この例では、InputタグをテーブルのNameフィールドに設定していますが、Inputタグはスクリーンリーダーで "Name" という単語を読み取ることができません、しかしTooltip を使うことでこの問題を解決することができます。<br/>
+この例では、input タグをテーブルの Name フィールドに設定していますが、input タグはスクリーンリーダーで "Name" という単語を読み取ることができません。しかし Tooltip を使うことでこの問題を解決することができます。<br/>
 InputコンポーネントのTooltipを作成、Tooltip のタイトルを "Name" に設定、`describeChild` をfalseに設定して、スクリーンリーダーが何を読み取るかを確認します。<br/>
 
 ```javascript
