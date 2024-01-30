@@ -284,7 +284,7 @@ const tooltipForButton = new Kuc.Tooltip({
 この例では、describeChild が true の場合、ボタンがフォーカスを得たときにスクリーンリーダーはまずボタン自体のコンテント "Submit" を読み、続けて Tooltip のタイトル "Submit changes or additions for this entry." を読み取ります。
 これはdescribeChild が true にされている場合、Tooltip は [aria-describedby](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-describedby) を子要素(ボタン)に追加し、スクリーンリーダーはまず元のコンテントを読み、そして [aria-describedby](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-describedby) のコンテントへを読み取るからです。
 
-#### Tooltip represents the purpose of the element
+#### Tooltip が要素自体の目的を表す場合
 
 Tooltip が要素自体の目的を表す（要素のラベルを提供する）場合は、describeChild を false に設定します。<br/>
 例を見てみましょう。<br/>
