@@ -266,7 +266,7 @@ kucTeamFieldGroup.addEventListener("change", (e) => {
 describeChild プロパティの使い方を理解することで、アプリケーションのアクセシビリティとユーザビリティを効果的に向上させることができます。<br/>
 [スクリーンリーダー](https://developer.mozilla.org/ja/docs/Glossary/Screen_reader) を有効にして、フォーカスを動かしてスクリーンリーダーの読み取りを確認してみましょう。<br/>
 
-#### Tooltip represents the description of the element
+#### Tooltip が要素の説明を表す場合
 
 Tooltip が要素の説明を表す（要素についての追加情報や補足説明を提供する）場合は、describeChild を true に設定します。
 
