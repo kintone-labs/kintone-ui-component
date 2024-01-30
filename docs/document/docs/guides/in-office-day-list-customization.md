@@ -248,7 +248,7 @@ Add event listener for FieldGroup to change the tooltip message when FieldGroup 
 You may have noticed that when creating a Tooltip for a button, I will introduce a new property [`describeChild`](../components/desktop/tooltip.md#property).
 This property is set to false by default.<br/>
 You can effectively improve the accessibility and usability of your application with the `describeChild` property.<br/>
-Now, let's enable the [screen reader](https://developer.mozilla.org/en-US/docs/Glossary/Screen_reader) and try moving the focus to the button to see what the screen reader reads.<br/>
+Now, let's enable the [screen reader](https://developer.mozilla.org/en-US/docs/Glossary/Screen_reader) and try moving the focus to see what the screen reader reads.<br/>
 
 #### Tooltip represents the description of the element
 If the Tooltip represents the description of the element (provides additional information or a supplementary description about the element it is attached to), you need to set `describeChild` to true.
