@@ -1,0 +1,69 @@
+name: Amplify Document Staging Environment
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  publishMasterCommit:
+    name: Deploying on Amplify Document Staging Environment
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.action == 'closed' && github.event.pull_request.merged == 'true')
+    env:
+      ZIP_FILE_NAME: build_staging
+      BRANCH_NAME: staging
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Install node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Install dependencies on root
+        run: npm ci
+      - name: Build umd file
+        run: npm run build:umd_prod
+      - name: Move umd file
+        run: mv umd/kuc.min.js docs/document/static/js
+      - name: Install dependencies on document
+        run: npm ci
+        working-directory: docs/document
+      - name: Replace kucLink
+        run: sed -i 's|https://unpkg.com/kintone-ui-component/umd/kuc.min.js|/js/kuc.min.js|' docusaurus.config.js
+        working-directory: docs/document
+      - name: Build document
+        run: npm run build
+        working-directory: docs/document
+      - name: Create deployment zip file
+        run: zip -r $ZIP_FILE_NAME *
+        working-directory: docs/document/build
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_DOCUMENT_REGION }}
+      - name: Create Amplify deployment
+        id: create_deployment
+        run: |
+          output=$(aws amplify create-deployment --app-id ${{ secrets.AWS_DOCUMENT_APP_ID }} --branch-name $BRANCH_NAME)
+          echo "job_id=$(echo $output | jq -r '.jobId')" >> $GITHUB_OUTPUT
+          echo "zip_upload_url=$(echo $output | jq -r '.zipUploadUrl')" >> $GITHUB_OUTPUT
+      - name: Upload deployment zip file
+        run: |
+          curl \
+            -X PUT \
+            -H "Content-Type: application/zip" \
+            --upload-file "$ZIP_FILE_NAME".zip \
+            "${{ steps.create_deployment.outputs.zip_upload_url }}"
+        working-directory: docs/document/build
+      - name: Start Amplify deployment
+        run: |
+          aws amplify start-deployment \
+            --app-id ${{ secrets.AWS_DOCUMENT_APP_ID }} \
+            --branch-name $BRANCH_NAME \
+            --job-id ${{ steps.create_deployment.outputs.job_id }}
