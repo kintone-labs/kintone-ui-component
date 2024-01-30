@@ -65,7 +65,7 @@ const tooltip = new Kuc.Tooltip({
 
 kintone の標準機能では FieldGroup 内にテーブルを持つことはできませんが、kintone UI Component を使うことで FieldGroup を開いた際にテーブルを表示することができます。
 
-#### HTML Button に Tooltip を作成
+#### HTML Button に Tooltip を追加
 
 HTML ボタンに対して Tooltip コンポーネント追加し、"Submit changes or additions for this entry." (このエントリーの変更または追加を送信してください) というメッセージを出します。
 
