@@ -67,7 +67,7 @@ kintone の標準機能では FieldGroup 内にテーブルを持つことはで
 
 #### HTML Button に Tooltip を追加
 
-HTML ボタンに対して Tooltip コンポーネント追加し、"Submit changes or additions for this entry." (このエントリーの変更または追加を送信してください) というメッセージを出します。
+HTML ボタンに Tooltip コンポーネントを追加し、"Submit changes or additions for this entry." (この入力の変更または追加してください) というメッセージを出します。
 
 ```javascript
 const button = document.createElement("button");
