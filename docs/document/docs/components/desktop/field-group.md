@@ -84,3 +84,9 @@ fieldGroup.addEventListener('change', event => {
   console.log(event);
 });
 ```
+
+---
+
+## Related Articles
+
+- [In-office day list customization](../../guides/in-office-day-list-customization.md)

@@ -110,3 +110,9 @@ const tooltip = new Kuc.Tooltip({
 });
 space.appendChild(tooltip);
 ```
+
+---
+
+## Related Articles
+
+- [In-office day list customization](../../guides/in-office-day-list-customization.md)

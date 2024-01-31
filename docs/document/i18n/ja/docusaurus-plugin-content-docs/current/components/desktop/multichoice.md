@@ -146,3 +146,4 @@ multiChoice.addEventListener('change', event => {
 ## Related Articles
 
 - [Format setting plug-in](../../guides/format-setting-plugin.md)
+- [In-office day list customization](../../guides/in-office-day-list-customization.md)
