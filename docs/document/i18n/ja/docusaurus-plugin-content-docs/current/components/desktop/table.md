@@ -24,11 +24,17 @@ import { TableComponent } from "@site/static/js/samples/desktop/table.js"
 | className | string | ""  | コンポーネントの class 名 | |
 | id | string | ""  | コンポーネントの id 名 | |
 | label | string | ""  | コンポーネントの説明ラベル | 未指定、あるいは空文字の場合、label は表示されない |
-| actionButton | boolean | true | 行追加/削除ボタンの表示/非表示設定 | |
+| actionButton | boolean/[object](#actionbutton-object) | true | 行追加/削除ボタンの表示/非表示設定 | If set to `true`/`false`, the add/remove buttons are shown/hidden together<br/>If set to the object, the add/remove buttons can be shown/hidden separately |
 | headerVisible | boolean | true | ヘッダーの表示/非表示設定 | |
 | visible | boolean | true | コンポーネントの表示/非表示設定 | |
 | columns | Array\<[Column](#column)\> | []  | コンポーネントの列データ | columns が配列以外の場合、エラーを出力する |
 | data | Array\<object\> | []  | コンポーネントの行データ | data が配列以外の場合、エラーを出力する |
+
+#### actionButton object
+| Name | Type | Default | Description | Remark |
+| :--- | :--- | :--- | :--- | :--- |
+| add | boolean | true | 行追加ボタンの表示/非表示設定 | |
+| remove | boolean | true | 行削除ボタンの表示/非表示設定 | |
 
 #### Column
 | Name | Type | Default | Description | Remark |
