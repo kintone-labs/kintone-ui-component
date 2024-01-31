@@ -1,8 +1,8 @@
 // @ts-check
 // Note: type annotations allow type checking and IDEs autocompletion
 
-const lightCodeTheme = require('prism-react-renderer/themes/palenight');
-const darkCodeTheme = require('prism-react-renderer/themes/palenight');
+const lightCodeTheme = require('prism-react-renderer').themes.palenight;
+const darkCodeTheme = require('prism-react-renderer').themes.palenight;
 const versions = require('./versions.json');
 
 function getLatestVersionName() {
@@ -154,6 +154,7 @@ const config = {
       prism: {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
+        additionalLanguages: ["bash", "diff", "json"],
       },
       colorMode: {
         defaultMode: 'light',

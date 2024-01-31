@@ -29,10 +29,10 @@ import { MultichoiceComponent } from "@site/static/js/samples/desktop/multichoic
 | disabled | boolean | false | コンポーネントの編集可/不可設定 ||
 | requiredIcon | boolean | false | コンポーネントの必須アイコン表示/非表示設定 ||
 | visible | boolean | true | コンポーネントの表示/非表示設定 ||
-| items | Array<Item\> | [] | 表示する選択肢一覧 | items が配列以外の場合、エラーを出力する |
+| items | Array\<Item\> | [] | 表示する選択肢一覧 | items が配列以外の場合、エラーを出力する |
 | Item.label | string | null | 各選択肢のテキスト | Item.label が未指定の場合、UI 上は Item.value の値が表示される |
 | Item.value | string | null | 各選択肢の値 | Item.value の値が重複した場合、エラーを出力する |
-| value | Array<string\> | [] | 選択されている値 | value が配列以外の場合、エラーを出力する<br/>配列内の値が重複した場合、エラーを出力する<br/>value が未指定の場合、何も選択されない |
+| value | Array\<string\> | [] | 選択されている値 | value が配列以外の場合、エラーを出力する<br/>配列内の値が重複した場合、エラーを出力する<br/>value が未指定の場合、何も選択されない |
 
 ### Event
 指定できるイベントの一覧です。
@@ -50,7 +50,7 @@ MultiChoice(options)<br/>
 
 | Name | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
-| options | object | {} | コンポーネントのプロパティを含むオブジェクト | |
+| options | object | \{\} | コンポーネントのプロパティを含むオブジェクト | |
 
 ---
 ## Sample Code

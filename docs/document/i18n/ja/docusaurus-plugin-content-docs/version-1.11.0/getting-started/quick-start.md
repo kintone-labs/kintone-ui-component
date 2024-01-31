@@ -51,7 +51,7 @@ v1.3.2 以前のバージョンを利用する場合は、Kuc をグローバル
 詳しくは、[Version conflicts issue and solution](../guides/version-conflicts-issue-solution) 記事をご確認ください。
 :::
 
-1. kintone UI Component リポジトリ内の[各バージョン Release 欄](https://github.com/kintone-labs/kintone-ui-component/releases)に添付のアーカイブフォルダ（kintone-ui-component-{version}.tgz）を解凍し、以下のファイルを kintone アプリ設定の `JavaScript / CSS でカスタマイズ`にて指定します。
+1. kintone UI Component リポジトリ内の[各バージョン Release 欄](https://github.com/kintone-labs/kintone-ui-component/releases)に添付のアーカイブフォルダ（kintone-ui-component-\{version\}.tgz）を解凍し、以下のファイルを kintone アプリ設定の `JavaScript / CSS でカスタマイズ`にて指定します。
 
 ```bash
 ./umd/kuc.min.js
@@ -91,14 +91,14 @@ kintone.events.on('app.record.index.show', event => {
 CDN を読み込むと、グローバルオブジェクトとして `Kuc` が追加されます。
 
    - 最新版の kintone UI Component を読み込みたい場合
-    ```bash
-    https://unpkg.com/kintone-ui-component/umd/kuc.min.js
-    ```
+     ```bash
+     https://unpkg.com/kintone-ui-component/umd/kuc.min.js
+     ```
 
    - バージョン指定して読み込みたい場合（プロジェクト名の後ろにバージョン番号を指定）
-    ```bash
-    https://unpkg.com/kintone-ui-component@1.0.0/umd/kuc.min.js
-    ```
+     ```bash
+     https://unpkg.com/kintone-ui-component@1.0.0/umd/kuc.min.js
+     ```
 
 2. 以降は上記 UMD と同様。
 

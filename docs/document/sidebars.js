@@ -72,6 +72,7 @@ const sidebars = {
     Guides: [
       "guides/comparison-v0-v1",
       "guides/search-box-customization",
+      "guides/search-box-customization-with-typescript",
       "guides/mobile-timecard-customization",
       "guides/cleaning-check-list-customization",
       "guides/bulk-update-customization",
@@ -80,6 +81,7 @@ const sidebars = {
       "guides/attachment-customization",
       "guides/table-readonly-table-customization",
       "guides/tabs-customization",
+      "guides/in-office-day-list-customization",
     ],
   },
   "release-notes": {

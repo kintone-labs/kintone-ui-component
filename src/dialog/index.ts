@@ -35,6 +35,7 @@ let exportDialog;
     @property() content: string | HTMLElement = "";
     @property() footer: string | HTMLElement = "";
     @property() container: HTMLElement = document.body;
+    @property({ type: Boolean }) footerVisible = true;
 
     @state()
     private _isOpened = false;
@@ -346,7 +347,12 @@ let exportDialog;
               ${this._content}
             </div>
           </div>
-          <div class="kuc-dialog__dialog__footer">${this._footer}</div>
+          <div
+            class="kuc-dialog__dialog__footer"
+            ?hidden="${!this.footerVisible}"
+          >
+            ${this._footer}
+          </div>
         </div>
         <span
           class="kuc-dialog__last-dummy"

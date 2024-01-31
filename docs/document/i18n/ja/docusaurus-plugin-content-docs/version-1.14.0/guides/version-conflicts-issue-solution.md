@@ -22,9 +22,11 @@ KUC パッケージが custom HTML タグ を登録する際、後から読み�
 既に登録されている custom HTML タグを再定義することはできないので、v1.4.0 からは custom HTML タグにバージョン番号を含める対応を入れました。この変更は、CSS スタイルのコンフリクトを解消するためにクラス名にも適用しています。
 
 ![Custom HTML tag の例](/img/version-conflict-html-tag.png)
+
 <center>タグとクラス名にバージョン番号を含める</center>
 
 ![CSS の例](/img/version-conflict-css.png)
+
 <center>コンポーネントの CSS にもバージョン番号が含まれる</center>
 
 加えて、custom HTML タグを定義する前に既に同じものが登録されているかどうかも判定するようにしました。
