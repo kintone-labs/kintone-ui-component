@@ -81,6 +81,7 @@ const sidebars = {
       "guides/attachment-customization",
       "guides/table-readonly-table-customization",
       "guides/tabs-customization",
+      "guides/in-office-day-list-customization",
     ],
   },
   "release-notes": {

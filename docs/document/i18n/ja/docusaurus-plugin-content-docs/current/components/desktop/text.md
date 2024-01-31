@@ -116,6 +116,7 @@ text.addEventListener('input', event => {
 
 ## Related Articles
 
+- [In-office day list customization](../../guides/in-office-day-list-customization.md)
 - [Search box customization](../../guides/search-box-customization.md)
 - [Search box customization with TypeScript](../../guides/search-box-customization-with-typescript.md)
 - [Table and ReadOnlyTable customization](../../guides/table-readonly-table-customization.md)
