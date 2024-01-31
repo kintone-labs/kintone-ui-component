@@ -67,7 +67,7 @@ kintone の標準機能では FieldGroup 内にテーブルを持つことはで
 
 #### HTML Button に Tooltip を追加
 
-HTML ボタンに Tooltip コンポーネントを追加し、"Submit changes or additions for this entry." (この入力の変更または追加してください) というメッセージを出します。
+HTML ボタンに Tooltip コンポーネントを追加し、"Submit changes or additions for this entry." (この入力の変更または追加を送信してください) というメッセージを出します。
 
 ```javascript
 const button = document.createElement("button");
@@ -83,7 +83,7 @@ const tooltipForButton = new Kuc.Tooltip({
 
 #### Table に Dropdown, Text, MultiChoice のコンポーネントと Tooltip が追加されたボタンを配置
 
-名前("Name")、出社日("In office day")、ロケーション("Location")、メモ("Note")などの情報が入ったテーブルを作成し、Tooltip を追加したボタンも配置します。
+名前（"Name"）、出社日（"In office day"）、ロケーション（"Location"）、メモ（"Note"）などの情報が入ったテーブルを作成し、Tooltip を追加したボタンも配置します。
 
 ```javascript
 const renderName = (cellData) => {
@@ -282,7 +282,7 @@ const tooltipForButton = new Kuc.Tooltip({
 ![render](/img/tooltip_describeChild_true.gif)
 
 この例では、describeChild が true の場合、ボタンがフォーカスを得たときにスクリーンリーダーはまずボタン自体のコンテンツ "Submit" を読み、続けて Tooltip のタイトル "Submit changes or additions for this entry." を読み取ります。
-これは describeChild が true にされている場合、Tooltip は [aria-describedby](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-describedby) を子要素(ボタン)に追加し、スクリーンリーダーはまず元のコンテンツを読み、そして [aria-describedby](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-describedby) のコンテンツを読み取るからです。
+これは describeChild が true にされている場合、Tooltip は [aria-describedby](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-describedby) を子要素（ボタン）に追加し、スクリーンリーダーはまず元のコンテンツを読み、そして [aria-describedby](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-describedby) のコンテンツを読み取るからです。
 
 #### Tooltip が要素自体の目的を表す場合
 
