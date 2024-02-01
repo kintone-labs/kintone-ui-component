@@ -303,7 +303,7 @@ let exportTable;
       const addRowButton = firstActionsCell.querySelector(
         `.${btnAddRowClassName}`,
       ) as HTMLButtonElement;
-      addRowButton.focus();
+      addRowButton?.focus();
     }
 
     private _toggleRemoveRowButton() {
