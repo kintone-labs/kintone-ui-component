@@ -9,7 +9,7 @@ on:
       - master
 
 jobs:
-  publishMasterCommit:
+  publishOnMasterCommit:
     name: Deploying on Amplify Document Staging Environment
     runs-on: ubuntu-latest
     if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.action == 'closed' && github.event.pull_request.merged == 'true')
