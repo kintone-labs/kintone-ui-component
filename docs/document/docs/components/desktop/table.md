@@ -24,13 +24,13 @@ Here is a list of properties that can be used for modifying the component:
 | className | string | ""  | Component class name | |
 | id | string | "" | Component id name | |
 | label | string | ""  | Label for the component | Label is not displayed if unspecified or empty |
-| actionButton | boolean/[object](#actionbutton-object) | true | Show/Hide the add/remove row button | If set to `true`/`false`, the add/remove buttons are shown/hidden together<br/>If set to the object, the add/remove buttons can be shown/hidden separately |
+| actionButton | boolean/[ActionButton](#actionbutton) | true | Show/Hide the add/remove row button | If set to `true`/`false`, the add/remove buttons are shown/hidden together<br/>If set to the `ActionButton` object, the add/remove buttons can be shown/hidden separately |
 | headerVisible | boolean | true | Show/Hide the header | |
 | visible | boolean | true | Show/Hide the component | |
 | columns | Array\<[Column](#column)\> |  []  | Column data of the component | Will result an error if the value of `columns` is not an array|
 | data | Array\<object\> | []  | Row data of the component | Will result an error if the value of `data` is not an array |
 
-#### actionButton object
+#### ActionButton
 | Name | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
 | add | boolean | true | Show/Hide the add row button | |
