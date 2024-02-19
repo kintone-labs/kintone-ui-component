@@ -1,21 +1,20 @@
 name: execute yamory when pushing to v1
 
-on: 
+on:
   push:
     branches: [master]
-    
+
 jobs:
   check_master:
-    name: execute yamory on master branch 
+    name: execute yamory on master branch
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
     - name: run Yamory
       run: |
         ls -1 -d docs/*/ | xargs -I {} bash -c "$(curl -sSf -L https://localscanner.yamory.io/script/npm)" --  --manifest {}/package.json
-        ls -1 -d docs/document/website/ | xargs -I {} bash -c "$(curl -sSf -L https://localscanner.yamory.io/script/npm)" --  --manifest {}/package.json
         ls -1 -d demos/*/ | xargs -I {} bash -c "$(curl -sSf -L https://localscanner.yamory.io/script/npm)" --  --manifest {}/package.json
-        bash -c "$(curl -sSf -L https://localscanner.yamory.io/script/npm)" 
+        bash -c "$(curl -sSf -L https://localscanner.yamory.io/script/npm)"
       env:
         CI: true
         PROJECT_GROUP_KEY: kintone-ui-component_master

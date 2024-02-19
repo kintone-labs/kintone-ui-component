@@ -47,7 +47,8 @@ let exportTable;
     @property({ type: String }) label = "";
     @property({ type: Array }) columns: TableColumn[] = [];
     @property({ type: Array }) data: T[] = [];
-    @property({ type: Boolean }) actionButton = true;
+    @property() actionButton: boolean | { add?: boolean; remove?: boolean } =
+      true;
     @property({ type: Boolean }) headerVisible = true;
     @property({
       type: Boolean,
@@ -302,7 +303,7 @@ let exportTable;
       const addRowButton = firstActionsCell.querySelector(
         `.${btnAddRowClassName}`,
       ) as HTMLButtonElement;
-      addRowButton.focus();
+      addRowButton?.focus();
     }
 
     private _toggleRemoveRowButton() {
@@ -345,17 +346,44 @@ let exportTable;
     }
 
     private _addActionsCellToNewRow(newRow: HTMLTableRowElement) {
+      const actionButton: { add?: boolean; remove?: boolean } = {
+        add: true,
+        remove: true,
+      };
+      if (typeof this.actionButton === "object") {
+        actionButton.add = Object.prototype.hasOwnProperty.call(
+          this.actionButton,
+          "add",
+        )
+          ? this.actionButton.add
+          : true;
+        actionButton.remove = Object.prototype.hasOwnProperty.call(
+          this.actionButton,
+          "remove",
+        )
+          ? this.actionButton.remove
+          : true;
+      }
+
+      if (!actionButton.add && !actionButton.remove) {
+        return;
+      }
+
       const newCell = newRow.insertCell(this.columns.length);
       newCell.classList.add(cellActionsClassName);
 
-      const btnAddDOM = this._getActionButtonDOM("add", newRow);
-      const btnRemoveDOM = this._getActionButtonDOM("remove", newRow);
+      if (actionButton.add) {
+        const btnAddDOM = this._getActionButtonDOM("add", newRow);
+        newCell.appendChild(btnAddDOM);
+      }
 
-      newCell.appendChild(btnAddDOM);
-      newCell.appendChild(btnRemoveDOM);
+      if (actionButton.remove) {
+        const btnRemoveDOM = this._getActionButtonDOM("remove", newRow);
+        newCell.appendChild(btnRemoveDOM);
 
-      if (this.data.length === 1) {
-        btnRemoveDOM.style.display = "none";
+        if (this.data.length === 1) {
+          btnRemoveDOM.style.display = "none";
+        }
       }
     }
 

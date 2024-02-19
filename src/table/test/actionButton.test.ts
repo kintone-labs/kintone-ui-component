@@ -11,18 +11,21 @@ const data = [
   { name: "Thomas", age: 30 },
 ];
 
+const titleDeleteRow = "Delete this row";
+const titleAddRow = "Add row";
+
 describe("Table", () => {
   describe("actionButton", () => {
-    it("should be display when not assigned in constructor", async () => {
+    it("should be displayed when not assigned in constructor", async () => {
       const container = new Table({ columns: columns, data: data });
       const el = await fixture(container);
       const actionButtonGroup = el.querySelector(
         ".kuc-table__table__body__row__action",
       ) as HTMLTableCellElement;
-      expect(actionButtonGroup.hasAttribute("hidden")).to.equal(false);
+      await expect(actionButtonGroup.hasAttribute("hidden")).to.equal(false);
     });
 
-    it("should be display block when assigned false in constructor", async () => {
+    it("should not be displayed when assigned false in constructor", async () => {
       const container = new Table({
         columns: columns,
         data: data,
@@ -33,10 +36,10 @@ describe("Table", () => {
       const actionButtonGroup = el.querySelector(
         ".kuc-table__table__body__row__action",
       ) as HTMLTableCellElement;
-      expect(actionButtonGroup).to.equal(null);
+      await expect(actionButtonGroup).to.equal(null);
     });
 
-    it("should be display block when changed to true by setter", async () => {
+    it("should be displayed when changed to true by setter", async () => {
       const container = new Table({
         columns: columns,
         data: data,
@@ -47,10 +50,10 @@ describe("Table", () => {
       const actionButtonGroup = el.querySelector(
         ".kuc-table__table__body__row__action",
       ) as HTMLTableCellElement;
-      expect(actionButtonGroup.hasAttribute("hidden")).to.equal(false);
+      await expect(actionButtonGroup.hasAttribute("hidden")).to.equal(false);
     });
 
-    it("should be display none when changed to false by setter", async () => {
+    it("should not be displayed when changed to false by setter", async () => {
       const container = new Table({
         columns: columns,
         data: data,
@@ -61,7 +64,68 @@ describe("Table", () => {
       const actionButtonGroup = el.querySelector(
         ".kuc-table__table__body__row__action",
       ) as HTMLTableCellElement;
-      expect(actionButtonGroup).to.equal(null);
+      await expect(actionButtonGroup).to.equal(null);
+    });
+
+    it("should not be displayed when assigned 'add: false, remove: false' in constructor", async () => {
+      const container = new Table({
+        columns: columns,
+        data: data,
+        actionButton: { add: false, remove: false },
+      });
+      const el = await fixture(container);
+      await elementUpdated(el);
+      const actionButtonGroup = el.querySelector(
+        ".kuc-table__table__body__row__action",
+      ) as HTMLTableCellElement;
+      await expect(actionButtonGroup).to.equal(null);
+    });
+
+    it("should not display 'add' button when assigned 'add: false' in constructor", async () => {
+      const container = new Table({
+        columns: columns,
+        data: data,
+        actionButton: { add: false },
+      });
+      const el = await fixture(container);
+      await elementUpdated(el);
+      const addButton = el.querySelector(
+        ".kuc-table__table__body__row__action-add",
+      ) as HTMLButtonElement;
+      await expect(addButton).to.equal(null);
+      const removeButton = el.querySelector(
+        ".kuc-table__table__body__row__action-remove",
+      ) as HTMLButtonElement;
+      await expect(removeButton.getAttribute("title")).to.equal(titleDeleteRow);
+    });
+
+    it("should not display 'add' button when changed to 'add: false' by setter", async () => {
+      const container = new Table({
+        columns: columns,
+        data: data,
+        actionButton: { add: true },
+      });
+      const el = await fixture(container);
+      await elementUpdated(el);
+      let addButton = el.querySelector(
+        ".kuc-table__table__body__row__action-add",
+      ) as HTMLButtonElement;
+      await expect(addButton.getAttribute("title")).to.equal(titleAddRow);
+      let removeButton = el.querySelector(
+        ".kuc-table__table__body__row__action-remove",
+      ) as HTMLButtonElement;
+      await expect(removeButton.getAttribute("title")).to.equal(titleDeleteRow);
+
+      container.actionButton = { add: false };
+      await elementUpdated(el);
+      addButton = el.querySelector(
+        ".kuc-table__table__body__row__action-add",
+      ) as HTMLButtonElement;
+      await expect(addButton).to.equal(null);
+      removeButton = el.querySelector(
+        ".kuc-table__table__body__row__action-remove",
+      ) as HTMLButtonElement;
+      await expect(removeButton.getAttribute("title")).to.equal(titleDeleteRow);
     });
   });
 });
