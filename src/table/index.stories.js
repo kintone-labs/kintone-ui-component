@@ -18,6 +18,7 @@ export default {
     columns: { name: "columns" },
     headerVisible: { name: "headerVisible" },
     visible: { name: "visible" },
+    actionButton: { name: "actionButton" },
   },
   parameters: {
     actions: {
@@ -180,5 +181,5 @@ Base.args = {
   data: data,
   id: "table-id",
   className: "table-classname",
-  actionButton: true,
+  actionButton: { add: true, remove: true },
 };
