@@ -9,7 +9,6 @@ jobs:
   publishOnMasterRelease:
     name: Deploying on Amplify Document Production Environment
     runs-on: ubuntu-latest
-    if: github.event_name == 'release' && github.event.action == 'released'
     env:
       ZIP_FILE_NAME: build_prod
       BRANCH_NAME: prod
@@ -20,6 +19,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
+          cache: 'npm'
       - name: Install dependencies
         run: npm ci
         working-directory: docs/document

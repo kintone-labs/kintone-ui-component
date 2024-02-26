@@ -4,15 +4,11 @@ on:
   push:
     branches:
       - master
-  pull_request:
-    branches:
-      - master
 
 jobs:
   publishOnMasterCommit:
     name: Deploying on Amplify Document Staging Environment
     runs-on: ubuntu-latest
-    if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.action == 'closed' && github.event.pull_request.merged == 'true')
     env:
       ZIP_FILE_NAME: build_staging
       BRANCH_NAME: staging
@@ -23,6 +19,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
+          cache: 'npm'
       - name: Install dependencies on root
         run: npm ci
       - name: Build umd file
