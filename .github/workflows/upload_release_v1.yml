@@ -8,13 +8,13 @@ jobs:
     name: Upload integrity and package to release
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - name: Install node
-      uses: actions/setup-node@v3
+      uses: actions/setup-node@v4
       with:
         node-version: 20
     - name: Cache dependencies
-      uses: actions/cache@v3
+      uses: actions/cache@v4
       with:
         path: ~/.npm
         key: npm-${{ hashFiles('package-lock.json') }}
@@ -34,7 +34,7 @@ jobs:
       id: generate_binary
       uses: ./.github/actions/generate_binary_file
     - name: Upload integrity artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: v${{ steps.check_version.outputs.version }}-integrity
         path: ./${{ steps.generate_binary.outputs.integrity }}
