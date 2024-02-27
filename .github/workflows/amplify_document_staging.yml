@@ -9,6 +9,9 @@ jobs:
   publishOnMasterCommit:
     name: Deploying on Amplify Document Staging Environment
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
     env:
       ZIP_FILE_NAME: build_staging
       BRANCH_NAME: staging

@@ -9,6 +9,9 @@ jobs:
   publishOnMasterRelease:
     name: Deploying on Amplify Document Production Environment
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
     env:
       ZIP_FILE_NAME: build_prod
       BRANCH_NAME: prod
@@ -22,7 +25,7 @@ jobs:
         with:
           node-version: 20
           cache: 'npm'
-      - name: Install dependencies
+      - name: Install dependencies on document
         run: npm ci
         working-directory: docs/document
       - name: Build document
