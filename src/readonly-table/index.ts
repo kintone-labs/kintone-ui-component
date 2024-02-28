@@ -121,7 +121,7 @@ let exportReadOnlyTable;
             </table>
             <kuc-base-pagination
               .pagePosition="${this._pagePosition}"
-              .sizePerPage="${this.rowsPerPage}"
+              .rowsPerPage="${this.rowsPerPage}"
               .total="${this.data.length}"
               .visible="${this.pagination}"
               .isPrev="${this._toggleDisplayPreviousButton()}"

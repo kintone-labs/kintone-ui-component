@@ -1,4 +1,4 @@
-import { expect, fixture } from "@open-wc/testing";
+import { elementUpdated, expect, fixture } from "@open-wc/testing";
 
 import { ReadOnlyTable } from "../index";
 
@@ -230,6 +230,40 @@ describe("ReadOnlyTable", () => {
       const container = new ReadOnlyTable();
       container.rowsPerPage = "5";
       fixture(container);
+    });
+
+    it("should display 1 - 5 / 7 in Pagination on first page when not assigned", async () => {
+      const container = new ReadOnlyTable({
+        columns: columns,
+        data: data,
+      });
+      const el = await fixture(container);
+
+      const currentPageNumberEl = el.querySelector(
+        ".kuc-base-pagination__group__pager-current",
+      ) as HTMLElement;
+      await expect(currentPageNumberEl.textContent).to.equal(`1 - 5 / 7`);
+    });
+
+    it("should display 7 - 7 / 7 in Pagination on last page when set 3 ", async () => {
+      const container = new ReadOnlyTable({
+        columns: columns,
+        data: data,
+        rowsPerPage: 3,
+      });
+      const el = await fixture(container);
+
+      const nextEl = el.querySelector(
+        "kuc-base-pagination button.kuc-base-pagination__group__pager-next",
+      ) as HTMLButtonElement;
+      nextEl.click();
+      nextEl.click();
+      await elementUpdated(el);
+
+      const currentPageNumberEl = el.querySelector(
+        ".kuc-base-pagination__group__pager-current",
+      ) as HTMLElement;
+      await expect(currentPageNumberEl.textContent).to.equal(`7 - 7 / 7`);
     });
   });
 });

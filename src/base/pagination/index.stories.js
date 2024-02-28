@@ -5,7 +5,7 @@ export default {
   title: "base/pagination",
   argTypes: {
     pagePosition: { name: "pagePosition" },
-    sizePerPage: { name: "sizePerPage" },
+    rowsPerPage: { name: "rowsPerPage" },
     total: { name: "total" },
     visible: { name: "visible" },
     isNext: { name: "isNext" },
@@ -22,7 +22,7 @@ const Template = (args) => {
   return html`
     <kuc-base-pagination
       .pagePosition="${args.pagePosition}"
-      .sizePerPage="${args.sizePerPage}"
+      .rowsPerPage="${args.rowsPerPage}"
       .total="${args.total}"
       .visible="${args.visible}"
       .isNext="${args.isNext}"
@@ -34,7 +34,7 @@ const Template = (args) => {
 export const Base = Template.bind({});
 Base.args = {
   pagePosition: 1,
-  sizePerPage: 5,
+  rowsPerPage: 5,
   total: 7,
   visible: true,
   isPrev: true,

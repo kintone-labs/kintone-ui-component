@@ -15,7 +15,7 @@ let exportPagination;
 
   class BasePagination extends KucBase {
     @property({ type: Number }) pagePosition = 1;
-    @property({ type: Number }) sizePerPage = 5;
+    @property({ type: Number }) rowsPerPage = 5;
     @property({ type: Number }) total = 1;
     @property({ type: Boolean }) isNext = true;
     @property({ type: Boolean }) isPrev = true;
@@ -34,7 +34,6 @@ let exportPagination;
     private _nextButtonEl!: HTMLButtonElement;
 
     render() {
-      const currentPageInfo = this._createCurrentPageInfo();
       return html`
         <div class="kuc-base-pagination__group" ?hidden="${!this.visible}">
           <button
@@ -50,10 +49,7 @@ let exportPagination;
             @mouseleave="${this._handleMouseLeavePrevButton}"
           >
             ${this._getPrevButtonSvgTemplate()}</button
-          ><span class="kuc-base-pagination__group__pager-current"
-            >${currentPageInfo.firstNum} - ${currentPageInfo.lastNum} /
-            ${this.total}</span
-          ><button
+          >${this._getCurrentPageNumberTemplate()}<button
             title="next"
             class="kuc-base-pagination__group__pager-next${this.isNext
               ? ""
@@ -165,9 +161,16 @@ let exportPagination;
       `;
     }
 
+    private _getCurrentPageNumberTemplate() {
+      const currentPageInfo = this._createCurrentPageInfo();
+      // Do not remove below disable comment. This is for page number display.
+      // eslint-disable-next-line
+      return html`<span class="kuc-base-pagination__group__pager-current">${currentPageInfo.firstNum} - ${currentPageInfo.lastNum} / ${this.total}</span>`;
+    }
+
     private _createCurrentPageInfo() {
-      const firstNum = (this.pagePosition - 1) * this.sizePerPage + 1;
-      let lastNum = this.pagePosition * this.sizePerPage;
+      const firstNum = (this.pagePosition - 1) * this.rowsPerPage + 1;
+      let lastNum = this.pagePosition * this.rowsPerPage;
       lastNum = lastNum > this.total ? this.total : lastNum;
       return { firstNum, lastNum };
     }
