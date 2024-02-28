@@ -39,6 +39,7 @@ jobs:
         with:
           role-to-assume: ${{ secrets.AWS_OIDC_ROLE_ARN }}
           aws-region: ${{ secrets.AWS_DOCUMENT_REGION }}
+          mask-aws-account-id: true
       - name: Create Amplify deployment
         id: create_deployment
         run: |
