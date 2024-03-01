@@ -163,9 +163,10 @@ let exportPagination;
 
     private _getCurrentPageNumberTemplate() {
       const currentPageInfo = this._createCurrentPageInfo();
-      // Do not remove below disable comment. This is for page number display.
-      // eslint-disable-next-line
-      return html`<span class="kuc-base-pagination__group__pager-current">${currentPageInfo.firstNum} - ${currentPageInfo.lastNum} / ${this.total}</span>`;
+      const currentPageNumber = `${currentPageInfo.firstNum} - ${currentPageInfo.lastNum} / ${this.total}`;
+      return html`<span class="kuc-base-pagination__group__pager-current"
+        >${currentPageNumber}</span
+      >`;
     }
 
     private _createCurrentPageInfo() {
