@@ -15,11 +15,11 @@ jobs:
     if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.action == 'closed' && github.event.pull_request.merged == 'true')
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
       - name: Install node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 20
       - name: Install dependencies
