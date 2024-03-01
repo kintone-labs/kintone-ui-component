@@ -8,13 +8,13 @@ jobs:
     name: Prepare for the release and trigger upload workflow
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - name: Install node
-      uses: actions/setup-node@v3
+      uses: actions/setup-node@v4
       with:
         node-version: 20
     - name: Cache dependencies
-      uses: actions/cache@v3
+      uses: actions/cache@v4
       with:
         path: ~/.npm
         key: npm-${{ hashFiles('package-lock.json') }}
@@ -31,7 +31,7 @@ jobs:
     - name: Run unit test
       run: npm test
     - name: Trigger run upload release workflows
-      uses: peter-evans/repository-dispatch@v2
+      uses: peter-evans/repository-dispatch@v3
       with:
         token: ${{secrets.WORKFLOW_TOKEN}}
         event-type: release_dispatch_v1
