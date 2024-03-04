@@ -3,7 +3,7 @@ kuc-text,
 kuc-text *,
 kuc-text:lang(en),
 kuc-text:lang(en) * {
-  font-family: "HelveticaNeueW02-45Ligh", Arial,
+  font-family: Arial,
     "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
 }
 kuc-text:lang(ja),

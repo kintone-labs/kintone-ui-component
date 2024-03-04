@@ -3,7 +3,7 @@ export const TABS_CSS = `
   kuc-tabs *,
   kuc-tabs:lang(en),
   kuc-tabs:lang(en) * {
-    font-family: "HelveticaNeueW02-45Ligh", Arial,
+    font-family: Arial,
       "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
   }
   kuc-tabs:lang(ja),

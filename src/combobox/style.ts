@@ -3,7 +3,7 @@ export const COMBOBOX_CSS = `
   kuc-combobox *,
   kuc-combobox:lang(en),
   kuc-combobox:lang(en) * {
-    font-family: "HelveticaNeueW02-45Ligh", Arial,
+    font-family: Arial,
       "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
   }
   kuc-combobox:lang(ja),
@@ -123,7 +123,7 @@ export const COMBOBOX_CSS = `
     white-space: nowrap;
   }
   .kuc-combobox__group__select-menu__item:lang(en) b {
-    font-family: HelveticaNeueW02-65Medi,Arial,"Hiragino Kaku Gothic ProN",Meiryo,sans-serif;
+    font-family: Arial,"Hiragino Kaku Gothic ProN",Meiryo,sans-serif;
   }
   .kuc-combobox__group__select-menu__item:lang(en) b,
   .kuc-combobox__group__select-menu__item:lang(ja) b,

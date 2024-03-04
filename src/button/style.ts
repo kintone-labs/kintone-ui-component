@@ -3,7 +3,7 @@ export const BUTTON_CSS = `
   kuc-button *,
   kuc-button:lang(en),
   kuc-button:lang(en) * {
-    font-family: "HelveticaNeueW02-45Ligh", Arial, "Hiragino Kaku Gothic ProN",
+    font-family: Arial, "Hiragino Kaku Gothic ProN",
       Meiryo, sans-serif;
   }
   kuc-button:lang(ja),

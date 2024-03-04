@@ -3,7 +3,7 @@ export const BASE_ERROR_CSS = `
   kuc-base-error *,
   kuc-base-error:lang(en),
   kuc-base-error:lang(en) * {
-    font-family: "HelveticaNeueW02-45Ligh", Arial,
+    font-family: Arial,
       "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
   }
   kuc-base-error:lang(ja),

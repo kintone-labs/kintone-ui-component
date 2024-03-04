@@ -3,7 +3,7 @@ kuc-base-datetime-calendar-body,
 kuc-base-datetime-calendar-body *,
 kuc-base-datetime-calendar-body:lang(en),
 kuc-base-datetime-calendar-body:lang(en) * {
-  font-family: "HelveticaNeueW02-45Ligh", Arial,
+  font-family: Arial,
     "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
 }
 kuc-base-datetime-calendar-body:lang(ja),

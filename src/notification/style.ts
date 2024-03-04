@@ -3,7 +3,7 @@ export const NOTIFICATION_CSS = `
   kuc-notification *,
   kuc-notification:lang(en),
   kuc-notification:lang(en) * {
-    font-family: "HelveticaNeueW02-65Medi", Arial,
+    font-family: Arial,
       "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
   }
   kuc-notification:lang(ja),
