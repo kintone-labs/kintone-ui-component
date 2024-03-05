@@ -9,11 +9,15 @@ export const PAGINATION_CSS = `
     border: none;
     background-color: transparent;
     visibility: visible;
+    height: 23px;
+    vertical-align: middle;
   }
   .kuc-base-pagination__group__pager-next {
     border: none;
     background-color: transparent;
     visibility: visible;
+    height: 23px;
+    vertical-align: middle;
   }
   .kuc-base-pagination__group__pager-next:hover svg path,
   .kuc-base-pagination__group__pager-prev:hover svg path,
@@ -36,5 +40,13 @@ export const PAGINATION_CSS = `
   }
   .kuc-base-pagination__group__pager-disable {
     visibility: hidden;
+  }
+  .kuc-base-pagination__group__pager-current {
+    display: inline-block;
+    height: 23px;
+    line-height: 23px;
+    vertical-align: middle;
+    font-size: 14px;
+    color: #333333;
   }
 `;
