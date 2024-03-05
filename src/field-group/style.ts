@@ -1,8 +1,7 @@
 export const FIELD_GROUP_CSS = `
   kuc-field-group .kuc-field-group__group__toggle .kuc-base-label__text,
   kuc-field-group:lang(en) .kuc-field-group__group__toggle .kuc-base-label__text {
-    font-family: Arial,
-      "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+    font-family: sans-serif;
   }
   kuc-field-group:lang(ja) .kuc-field-group__group__toggle .kuc-base-label__text {
     font-family: "メイリオ", "Hiragino Kaku Gothic ProN", Meiryo,

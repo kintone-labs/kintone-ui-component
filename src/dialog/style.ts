@@ -3,8 +3,7 @@ export const DIALOG_CSS = `
   kuc-dialog *,
   kuc-dialog:lang(en),
   kuc-dialog:lang(en) * {
-    font-family: Arial,
-      "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+    font-family: sans-serif;
   }
   kuc-dialog:lang(ja),
   kuc-dialog:lang(ja) * {

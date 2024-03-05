@@ -3,8 +3,7 @@ kuc-base-datetime-calendar-footer,
 kuc-base-datetime-calendar-footer *,
 kuc-base-datetime-calendar-footer:lang(en),
 kuc-base-datetime-calendar-footer:lang(en) * {
-  font-family: Arial,
-    "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+  font-family: sans-serif;
 }
 kuc-base-datetime-calendar-footer:lang(ja),
 kuc-base-datetime-calendar-footer:lang(ja) * {

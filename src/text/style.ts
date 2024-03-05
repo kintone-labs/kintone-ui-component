@@ -3,8 +3,7 @@ kuc-text,
 kuc-text *,
 kuc-text:lang(en),
 kuc-text:lang(en) * {
-  font-family: Arial,
-    "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+  font-family: sans-serif;
 }
 kuc-text:lang(ja),
 kuc-text:lang(ja) * {

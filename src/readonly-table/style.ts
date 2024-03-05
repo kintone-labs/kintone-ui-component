@@ -3,8 +3,7 @@ export const READ_ONLY_TABLE_CSS = `
   kuc-readonly-table  *,
   kuc-readonly-table:lang(en),
   kuc-readonly-table:lang(en) * {
-      font-family: Arial,
-      "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+    font-family: sans-serif;
   }
   kuc-readonly-table:lang(ja),
   kuc-readonly-table:lang(ja) * {

@@ -3,8 +3,7 @@ export const CHECKBOX_CSS = `
   kuc-checkbox *,
   kuc-checkbox:lang(en),
   kuc-checkbox:lang(en) * {
-    font-family: Arial,
-      "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+    font-family: sans-serif;
   }
   kuc-checkbox:lang(ja),
   kuc-checkbox:lang(ja) * {

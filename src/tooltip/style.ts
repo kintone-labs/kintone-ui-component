@@ -3,8 +3,7 @@ export const TOOLTIP_CSS = `
   kuc-tooltip *,
   kuc-tooltip:lang(en),
   kuc-tooltip:lang(en) * {
-    font-family: Arial,
-      "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+    font-family: sans-serif;
   }
   kuc-tooltip:lang(ja),
   kuc-tooltip:lang(ja) * {

@@ -3,8 +3,7 @@ kuc-base-datetime-listbox,
 kuc-base-datetime-listbox *,
 kuc-base-datetime-listbox:lang(en),
 kuc-base-datetime-listbox:lang(en) * {
-  font-family: Arial,
-    "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+  font-family: sans-serif;
 }
 kuc-base-datetime-listbox:lang(ja),
 kuc-base-datetime-listbox:lang(ja) * {

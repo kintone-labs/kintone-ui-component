@@ -3,8 +3,7 @@ export const TEXTAREA_CSS = `
   kuc-textarea *,
   kuc-textarea:lang(en),
   kuc-textarea:lang(en) * {
-    font-family: Arial,
-      "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+    font-family: sans-serif;
   }
   kuc-textarea:lang(ja),
   kuc-textarea:lang(ja) * {

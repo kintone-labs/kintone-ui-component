@@ -3,8 +3,7 @@ export const TABLE_CSS = `
     kuc-table *,
     kuc-table:lang(en),
     kuc-table:lang(en) * {
-        font-family: Arial,
-        "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+        font-family: sans-serif;
     }
     kuc-table:lang(ja),
     kuc-table:lang(ja) * {

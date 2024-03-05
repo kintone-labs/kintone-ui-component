@@ -3,8 +3,7 @@ kuc-date-picker,
 kuc-date-picker *,
 kuc-date-picker:lang(en),
 kuc-date-picker:lang(en) * {
-  font-family: Arial,
-    "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+  font-family: sans-serif;
 }
 kuc-date-picker:lang(ja),
 kuc-date-picker:lang(ja) * {
