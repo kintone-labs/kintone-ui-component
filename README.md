@@ -9,7 +9,7 @@
 <p align="center">
 kintone UI Component is UI Component for kintone customization.<br />
 It supports you to develop kintone customization and kintone plugin.<br />
-<strong>The document page is <a href="https://kintone-ui-component.netlify.app" rel="noopener" target="_blank">here. </a></strong>
+<strong>The document page is <a href="https://ui-component.kintone.dev" rel="noopener" target="_blank">here. </a></strong>
 </p>
 
 <p align="center">
@@ -87,7 +87,7 @@ text.addEventListener("change", event => {
 > You may still use `Kuc` as a global variable but **note that it may be conflicting when adding two or more `kuc.min.js` files** on Kintone customization or plug-in. In this case, the `Kuc` object refers to the last loaded `kuc.min.js` file.<br>
 > In case that there is only one `kuc.min.js` file in the Kintone system or there is no problem with using last loaded `kuc.min.js` file, you can use Kuc object. Please remove `const Kuc = Kucs['1.x.x'];` line.
 > When using a version before v1.4.0, please use `Kuc` as a global variable but **note that it may be conflicting when adding two or more `kuc.min.js` files** on Kintone customization or plug-in.<br>
-> Please visit [Quick Start](https://kintone-ui-component.netlify.app/docs/getting-started/quick-start#installation) and [Version conflicts issue and solution](https://kintone-ui-component.netlify.app/docs/guides/version-conflicts-issue-solution) for more information!
+> Please visit [Quick Start](https://ui-component.kintone.dev/docs/getting-started/quick-start#installation) and [Version conflicts issue and solution](https://ui-component.kintone.dev/docs/guides/version-conflicts-issue-solution) for more information!
 
 ## Browser Support
 
@@ -115,8 +115,8 @@ text.addEventListener("change", event => {
 There are differences in specifications and interfaces between v0 and v1.<br />
 Please be sure to verify enough when you updating.<br />
 For more details, please refer to the articles below.
-- [The difference of the way to code between v0 and v1](https://kintone-ui-component.netlify.app/docs/guides/comparison-v0-v1)
-- [v1.0.0 Release Notes](https://kintone-ui-component.netlify.app/docs/releases/release-notes-v1.0.0)
+- [The difference of the way to code between v0 and v1](https://ui-component.kintone.dev/docs/guides/comparison-v0-v1)
+- [v1.0.0 Release Notes](https://ui-component.kintone.dev/docs/releases/release-notes-v1.0.0)
 
 > About the React version provided in v0, we haven't supported it in v1 now.
 

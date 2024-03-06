@@ -1,4 +1,4 @@
-# [Website](https://kintone-ui-component.netlify.app/)
+# [Website](https://ui-component.kintone.dev/)
 [![Netlify Status](https://api.netlify.com/api/v1/badges/25994a27-19a5-485c-8628-3372bd214533/deploy-status)](https://app.netlify.com/sites/kintone-ui-component/deploys)
 
 This is the website project for kintone ui component powered by [Docusaurus](https://docusaurus.io/) and [Netlify](https://www.netlify.com/).<br>
