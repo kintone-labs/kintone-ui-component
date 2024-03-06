@@ -60,4 +60,15 @@ jobs:
             --app-id ${{ secrets.AWS_DOCUMENT_APP_ID }} \
             --branch-name $BRANCH_NAME \
             --job-id ${{ steps.create_deployment.outputs.job_id }}
-      # TODO: Algolia crawler creation and recrawl
+      - name: Sleep for 30s
+        run: sleep 30
+      - name: Algolia crawler creation and recrawl
+        uses: algolia/algoliasearch-crawler-github-actions@v1
+        id: crawler_push
+        with:
+          crawler-user-id: ${{ secrets.CRAWLER_USER_ID }}
+          crawler-api-key: ${{ secrets.CRAWLER_API_KEY }}
+          algolia-app-id: ${{ secrets.ALGOLIA_APP_ID }}
+          algolia-api-key: ${{ secrets.ALGOLIA_API_KEY }}
+          crawler-name: "kintone"
+          site-url: "https://ui-component.kintone.dev"
