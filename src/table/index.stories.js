@@ -5,6 +5,7 @@ import { MultiChoice } from "../multichoice";
 import { RadioButton } from "../radio-button";
 import { TextArea } from "../textarea";
 import { TimePicker } from "../time-picker";
+import { Tooltip } from "../tooltip";
 
 import { Table } from "./index.ts";
 
@@ -102,6 +103,10 @@ const renderMultiChoice = (cellData) => {
 };
 
 const Template = (args) => {
+  args.columns[0].title = new Tooltip({
+    title: "Please select a user",
+    container: "Name",
+  });
   const table = new Table({ ...args });
   table.addEventListener("change", (event) => {
     console.log(event, "event");
