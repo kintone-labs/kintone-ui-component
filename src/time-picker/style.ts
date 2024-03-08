@@ -3,8 +3,7 @@ kuc-time-picker,
 kuc-time-picker *,
 kuc-time-picker:lang(en),
 kuc-time-picker:lang(en) * {
-  font-family: "HelveticaNeueW02-45Ligh", Arial,
-    "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+  font-family: sans-serif;
 }
 kuc-time-picker:lang(ja),
 kuc-time-picker:lang(ja) * {

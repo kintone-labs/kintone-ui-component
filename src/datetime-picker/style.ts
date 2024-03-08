@@ -3,8 +3,7 @@ kuc-datetime-picker,
 kuc-datetime-picker *,
 kuc-datetime-picker:lang(en),
 kuc-datetime-picker:lang(en) * {
-  font-family: "HelveticaNeueW02-45Ligh", Arial,
-    "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+  font-family: sans-serif;
 }
 kuc-datetime-picker:lang(ja),
 kuc-datetime-picker:lang(ja) * {

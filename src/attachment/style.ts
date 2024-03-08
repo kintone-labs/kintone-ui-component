@@ -3,8 +3,7 @@ export const ATTACHMENT_CSS = `
   kuc-attachment *,
   kuc-attachment:lang(en),
   kuc-attachment:lang(en) * {
-    font-family: "HelveticaNeueW02-45Ligh", Arial,
-        "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+    font-family: sans-serif;
   }
   kuc-attachment:lang(ja),
   kuc-attachment:lang(ja) * {

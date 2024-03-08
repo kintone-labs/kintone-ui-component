@@ -3,8 +3,7 @@ export const BASE_LABEL_CSS = `
   kuc-base-label *,
   kuc-base-label:lang(en),
   kuc-base-label:lang(en) * {
-      font-family: "HelveticaNeueW02-45Ligh", Arial,
-      "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+      font-family: sans-serif;
   }
   kuc-base-label:lang(ja),
   kuc-base-label:lang(ja) * {
