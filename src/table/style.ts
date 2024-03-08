@@ -45,7 +45,6 @@ export const TABLE_CSS = `
     }
     .kuc-table__table__header__cell {
         box-sizing: border-box;
-        overflow: auto;
         font-size: var(--kuc-table-header-font-size, 12px);
         font-weight: 400;
         background-color: var(--kuc-table-header-background-color, #3498db);
@@ -53,7 +52,11 @@ export const TABLE_CSS = `
         height: var(--kuc-table-header-height, 40px);
         padding: 4px 8px;
         text-align: left;
-        white-space: nowrap;
+        white-space: normal;
+    }
+    .kuc-table__table__header__cell-title {
+        overflow-wrap: break-word;
+        display: flex;
     }
     .kuc-table__table__header__cell[hidden] {
         display: none;
