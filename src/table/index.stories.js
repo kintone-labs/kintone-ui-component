@@ -105,7 +105,7 @@ const renderMultiChoice = (cellData) => {
 const Template = (args) => {
   args.columns[0].title = new Tooltip({
     title: "Please select a user",
-    container: "Name",
+    container: "Name column (Dropdown component)",
   });
   const table = new Table({ ...args });
   table.addEventListener("change", (event) => {
