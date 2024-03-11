@@ -24,9 +24,10 @@ import { DialogComponent } from "@site/static/js/samples/desktop/dialog.js"
 | Name | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
 | icon | string | "" | content 領域左上に表示するアイコン | 以下を指定できる:<li>"info" : ![info](/img/icon-info.png)</li><li>"success" : ![success](/img/icon-success.png)</li><li>"error" : ![error](/img/icon-error.png)</li><li>"warning" : ![warning](/img/icon-warning.png)</li><li>"question" : ![question](/img/icon-question.png)</li><li>"" : アイコンなし</li> |
-| title | string | "" | Header のタイトル | |
+| title | string | "" | Header のタイトル | header が未指定の場合、title が表示される<br/>その他の場合、title は無視される |
 | content *1 | string/HTMLElement | "" | Content の DOM | HTML が記載された string を指定した場合、自動的に HTML に変換してそのまま表示される |
 | footer *1 | string/HTMLElement | "" | Footer の DOM | HTML が記載された string を指定した場合、自動的に HTML に変換してそのまま表示される |
+| header *1 | string/HTMLElement | ""  | Header の DOM | HTML が記載された string を指定した場合、自動的に HTML に変換してそのまま表示される |
 | container | HTMLElement | document.body | コンポーネントを追加する対象の要素 | デフォルトではトップレベルのドキュメントオブジェクトのボディを使うので、ほとんどの場合は document.body となる<br/>container が HTMLElement 以外の場合、エラーを出力する |
 | footerVisible | boolean | true | Footer の表示/非表示設定 | |
 
@@ -126,6 +127,7 @@ const dialog = new Kuc.Dialog({
   title: 'Title',
   content: '<div>This is Content</div>',
   footer: divEl,
+  header: '<div>This is Header</div>',
   icon: 'info',
   container: document.body,
   footerVisible: true
