@@ -59,32 +59,38 @@ describe("Table", () => {
     it("should be set header when assigned columns without title prop on constructor", async () => {
       const container = new Table({ data: data, columns: columnsWithoutTitle });
       const el = await fixture(container);
-      const columnsEl = el.querySelectorAll(".kuc-table__table__header__cell");
+      const columnsEl = el.querySelectorAll(
+        ".kuc-table__table__header__cell .kuc-table__table__header__cell-title",
+      );
 
       expect(columnsEl.length).to.equal(2);
-      expect((columnsEl[0] as HTMLTableCellElement).innerText).to.equal("");
-      expect((columnsEl[1] as HTMLTableCellElement).innerText).to.equal("");
+      expect((columnsEl[0] as HTMLDivElement).innerText).to.equal("");
+      expect((columnsEl[1] as HTMLDivElement).innerText).to.equal("");
     });
 
     it("should be set header when assigned columns without title prop by setter", async () => {
       const container = new Table();
       container.columns = columnsWithoutTitle;
       const el = await fixture(container);
-      const columnsEl = el.querySelectorAll(".kuc-table__table__header th");
+      const columnsEl = el.querySelectorAll(
+        ".kuc-table__table__header th .kuc-table__table__header__cell-title",
+      );
 
       expect(columnsEl.length).to.equal(2);
-      expect((columnsEl[0] as HTMLTableCellElement).innerText).to.equal("");
-      expect((columnsEl[1] as HTMLTableCellElement).innerText).to.equal("");
+      expect((columnsEl[0] as HTMLDivElement).innerText).to.equal("");
+      expect((columnsEl[1] as HTMLDivElement).innerText).to.equal("");
     });
 
     it("should be set header when assigned columns without render props on constructor", async () => {
       const container = new Table({ columns: columns });
       const el = await fixture(container);
-      const columnsEl = el.querySelectorAll(".kuc-table__table__header th");
+      const columnsEl = el.querySelectorAll(
+        ".kuc-table__table__header th .kuc-table__table__header__cell-title",
+      );
 
       expect(columnsEl.length).to.equal(2);
-      expect((columnsEl[0] as HTMLTableCellElement).innerText).to.equal("Name");
-      expect((columnsEl[1] as HTMLTableCellElement).innerText).to.equal("Age");
+      expect((columnsEl[0] as HTMLDivElement).innerText).to.equal("Name");
+      expect((columnsEl[1] as HTMLDivElement).innerText).to.equal("Age");
     });
 
     it("should be set header when assigned columns with render function on constructor", async () => {
@@ -127,16 +133,16 @@ describe("Table", () => {
       div.appendChild(btnChangeColumns);
 
       const el = await fixture(div);
-      const columnsEl = el.querySelectorAll(".kuc-table__table__header th");
+      const columnsEl = el.querySelectorAll(
+        ".kuc-table__table__header th .kuc-table__table__header__cell-title",
+      );
       btnChangeColumns.click();
 
       await elementUpdated(el);
 
       expect(columnsEl.length).to.equal(2);
-      expect((columnsEl[0] as HTMLTableCellElement).innerText).to.equal("City");
-      expect((columnsEl[1] as HTMLTableCellElement).innerText).to.equal(
-        "Country",
-      );
+      expect((columnsEl[0] as HTMLDivElement).innerText).to.equal("City");
+      expect((columnsEl[1] as HTMLDivElement).innerText).to.equal("Country");
     });
 
     it("should be throw error when assigned null to columns", (done) => {
@@ -191,6 +197,23 @@ describe("Table", () => {
 
       const container = new Table({ columns: columnsDuplicationField });
       fixture(container);
+    });
+
+    it("should be set header when assigned columns with HTML title prop", async () => {
+      const container = new Table({
+        columns: [
+          { field: "name", title: "<button id='name_button'>Name</button>" },
+        ],
+      });
+      const el = await fixture(container);
+      const columnsEl = el.querySelectorAll(
+        ".kuc-table__table__header th .kuc-table__table__header__cell-title",
+      );
+
+      expect(columnsEl.length).to.equal(1);
+      expect((columnsEl[0] as HTMLDivElement).children[0].id).to.equal(
+        "name_button",
+      );
     });
   });
 });

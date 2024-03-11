@@ -57,12 +57,14 @@ export const TABLE_CSS = `
     .kuc-table__table__header__cell-title {
         overflow-wrap: break-word;
         display: flex;
+        align-items: center;
     }
     .kuc-table__table__header__cell[hidden] {
         display: none;
     }
     .kuc-table__table__header__cell .kuc-base-label__required-icon {
         font-size: var(--kuc-table-header-font-size, 20px);
+        align-self: flex-start;
     }
     .kuc-table__table__body__row__cell-data {
         box-sizing: border-box;
@@ -119,12 +121,5 @@ export const TABLE_CSS = `
     }
     .kuc-table__table .kuc-table__table__label--no-column {
         overflow-wrap: break-word;
-    }
-    .kuc-table__table__header__cell {
-      scrollbar-width: none; /* Firefox */
-    }
-    .kuc-table__table__header__cell::-webkit-scrollbar {
-      width: 0; /* Safari and Chrome */
-      display: none
     }
 `;
