@@ -1,0 +1,74 @@
+name: Amplify Document Production Environment
+
+on:
+  release:
+    types:
+      - released
+
+jobs:
+  publishOnMasterRelease:
+    name: Deploying on Amplify Document Production Environment
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+    env:
+      ZIP_FILE_NAME: build_prod
+      BRANCH_NAME: prod
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Install node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+      - name: Install dependencies on document
+        run: npm ci
+        working-directory: docs/document
+      - name: Build document
+        run: npm run build
+        working-directory: docs/document
+      - name: Create deployment zip file
+        run: zip -r $ZIP_FILE_NAME *
+        working-directory: docs/document/build
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.AWS_OIDC_ROLE_ARN }}
+          aws-region: ${{ secrets.AWS_DOCUMENT_REGION }}
+          mask-aws-account-id: true
+      - name: Create Amplify deployment
+        id: create_deployment
+        run: |
+          output=$(aws amplify create-deployment --app-id ${{ secrets.AWS_DOCUMENT_APP_ID }} --branch-name $BRANCH_NAME)
+          echo "job_id=$(echo $output | jq -r '.jobId')" >> $GITHUB_OUTPUT
+          echo "zip_upload_url=$(echo $output | jq -r '.zipUploadUrl')" >> $GITHUB_OUTPUT
+      - name: Upload deployment zip file
+        run: |
+          curl \
+            -X PUT \
+            -H "Content-Type: application/zip" \
+            --upload-file "$ZIP_FILE_NAME".zip \
+            "${{ steps.create_deployment.outputs.zip_upload_url }}"
+        working-directory: docs/document/build
+      - name: Start Amplify deployment
+        run: |
+          aws amplify start-deployment \
+            --app-id ${{ secrets.AWS_DOCUMENT_APP_ID }} \
+            --branch-name $BRANCH_NAME \
+            --job-id ${{ steps.create_deployment.outputs.job_id }}
+      - name: Sleep for 30s
+        run: sleep 30
+      - name: Algolia crawler creation and recrawl
+        uses: algolia/algoliasearch-crawler-github-actions@v1
+        id: crawler_push
+        with:
+          crawler-user-id: ${{ secrets.CRAWLER_USER_ID }}
+          crawler-api-key: ${{ secrets.CRAWLER_API_KEY }}
+          algolia-app-id: ${{ secrets.ALGOLIA_APP_ID }}
+          algolia-api-key: ${{ secrets.ALGOLIA_API_KEY }}
+          crawler-name: "kintone"
+          site-url: "https://ui-component.kintone.dev"

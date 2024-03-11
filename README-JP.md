@@ -9,7 +9,7 @@
 
 <p align="center">
 kintone UI Component は、kintone カスタマイズ、プラグインのUI 開発を支援するための UI Component ライブラリです。<br />
-<strong>ドキュメントページは<a href="https://kintone-ui-component.netlify.app/ja/" rel="noopener" target="_blank">こちら</a>をご確認ください。</strong>
+<strong>ドキュメントページは<a href="https://ui-component.kintone.dev/ja/" rel="noopener" target="_blank">こちら</a>をご確認ください。</strong>
 </p>
 
 <p align="center">
@@ -86,7 +86,7 @@ text.addEventListener("change", event => {
 > グローバルオブジェクトとして Kuc を使うこともできますが、2つ以上の kuc.min.js を kintone カスタマイズやプラグインに読み込む場合はバージョンコンフリクトが起きる可能性があるのでご注意ください。この際、Kuc オブジェクトは最後に読み込まれた kuc.min.js を参照します。<br>
 > システム上に kuc.min.js が 1つしかない、もしくは最後に読み込まれた kuc.min.js の利用で問題ない場合は、Kuc オブジェクトを利用いただいて問題ありません。以下の `const Kuc = Kucs['1.x.x'];` の行を削除してください。<br>
 > v1.3.2 以前のバージョンを利用する場合は、Kuc をグローバルオブジェクトとして使ってください。2つ以上の kuc.min.js を kintone カスタマイズやプラグインに追加すると、バージョンコンフリクト問題が起きるのでご注意ください。
-> 詳しくは、[Quick Start](https://kintone-ui-component.netlify.app/ja/docs/getting-started/quick-start#installation) と [Version conflicts issue and solution](https://kintone-ui-component.netlify.app/ja/docs/guides/version-conflicts-issue-solution) 記事をご確認ください。
+> 詳しくは、[Quick Start](https://ui-component.kintone.dev/ja/docs/getting-started/quick-start#installation) と [Version conflicts issue and solution](https://ui-component.kintone.dev/ja/docs/guides/version-conflicts-issue-solution) 記事をご確認ください。
 
 ## ブラウザサポート
 
@@ -113,8 +113,8 @@ text.addEventListener("change", event => {
 ## 移行ガイド
 v0 と v1 の仕様とインターフェースには違いがあるので、更新時には十分な確認をしてください。<br />
 詳細は下記の記事をご参照ください。
-- [A commentary on the difference between v0 and v1](https://kintone-ui-component.netlify.app/ja/docs/guides/comparison-v0-v1)
-- [v1.0.0 Release Notes](https://kintone-ui-component.netlify.app/ja/docs/releases/release-notes-v1.0.0)
+- [A commentary on the difference between v0 and v1](https://ui-component.kintone.dev/ja/docs/guides/comparison-v0-v1)
+- [v1.0.0 Release Notes](https://ui-component.kintone.dev/ja/docs/releases/release-notes-v1.0.0)
 
 > v0 で提供していた React 版については、現在 v1 では対応を見送っています。
 
