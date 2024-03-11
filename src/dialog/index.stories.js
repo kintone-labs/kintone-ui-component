@@ -28,13 +28,13 @@ const template = (args) => {
     dialog.open();
   });
   const closeButton = createButton("CLOSE", () => {
-    dialog.header = "";
+    dialog.close();
   });
   const buttonFullScreen = createButton("full screen mode", () => {
     document.getElementById("root").requestFullscreen();
   });
   const buttonSetRoot = createButton("Set Root element", () => {
-    dialog.container = frame;
+    dialog.container = rootElement;
   });
   const buttonSetBody = createButton("Set Body element", () => {
     dialog.container = bodyElement;
@@ -59,9 +59,6 @@ const template = (args) => {
   const buttonGetter = createButton("GETTER", () => {
     console.log("container value:", dialog.container);
   });
-  const frame = document.createElement("div");
-  frame.style.width = "100%";
-  frame.style.height = "100%";
 
   root.appendChild(openButton);
   root.appendChild(closeButton);
@@ -73,7 +70,6 @@ const template = (args) => {
   root.appendChild(buttonSetNonExistELement);
   root.appendChild(buttonInvalidValue);
   root.appendChild(buttonGetter);
-  root.appendChild(frame);
 
   return root;
 };
@@ -94,7 +90,7 @@ Base.args = {
   title: "Title",
   content: "Content with Icon",
   footer: "Footer",
-  header: "<div>123</div>",
+  header: "<div>Header</div>",
   icon: "success",
   container: rootElement,
   footerVisible: true,
