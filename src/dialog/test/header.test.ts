@@ -11,11 +11,11 @@ describe("Dialog", () => {
       container.open();
       await elementUpdated(container);
 
-      const footerEl = container.querySelector(
+      const headerEl = container.querySelector(
         ".kuc-dialog__dialog__header__title",
       ) as HTMLDivElement;
-      expect(footerEl.childElementCount).to.equal(0);
-      expect(footerEl.textContent?.trim()).to.equal("title");
+      expect(headerEl.childElementCount).to.equal(0);
+      expect(headerEl.textContent?.trim()).to.equal("title");
     });
 
     it('should be "header" when assgined string on constructor', async () => {
