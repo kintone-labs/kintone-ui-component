@@ -34,6 +34,7 @@ let exportDialog;
     @property({ type: String }) title = "";
     @property() content: string | HTMLElement = "";
     @property() footer: string | HTMLElement = "";
+    @property() header: string | HTMLElement = "";
     @property() container: HTMLElement = document.body;
     @property({ type: Boolean }) footerVisible = true;
 
@@ -52,6 +53,8 @@ let exportDialog;
       | HTMLElement
       | DirectiveResult<typeof UnsafeHTMLDirective> = "";
     private _footer: HTMLElement | DirectiveResult<typeof UnsafeHTMLDirective> =
+      "";
+    private _header: HTMLElement | DirectiveResult<typeof UnsafeHTMLDirective> =
       "";
 
     constructor(props?: DialogProps) {
@@ -266,6 +269,11 @@ let exportDialog;
       if (changedProperties.has("footer")) {
         this._footer = unsafeHTMLConverter(this.footer);
       }
+      if (changedProperties.has("header") || changedProperties.has("title")) {
+        this._header = this.header
+          ? unsafeHTMLConverter(this.header)
+          : this.title;
+      }
       super.update(changedProperties);
     }
 
@@ -328,7 +336,7 @@ let exportDialog;
               class="kuc-dialog__dialog__header__title"
               id="${this._GUID}-title"
             >
-              ${this.title}
+              ${this._header}
             </h2>
             <button
               class="kuc-dialog__dialog__header__close-button"

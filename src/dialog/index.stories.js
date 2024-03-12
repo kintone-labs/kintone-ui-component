@@ -5,6 +5,7 @@ export default {
     title: { name: "title" },
     content: { name: "content" },
     footer: { name: "footer" },
+    header: { name: "header" },
     icon: {
       name: "icon",
       options: ["success", "info", "error", "warning", "question"],
@@ -89,6 +90,7 @@ Base.args = {
   title: "Title",
   content: "Content with Icon",
   footer: "Footer",
+  header: "<div>Header</div>",
   icon: "success",
   container: rootElement,
   footerVisible: true,
