@@ -40,7 +40,7 @@ import { TableComponent } from "@site/static/js/samples/desktop/table.js"
 | Name | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
 | field | string | null | 列のキー項目<br/>※必須かつ一意の値 | data オブジェクトのキー項目になる<br/>そのキーに関連づけられた値が列に表示される<br/>field が columns 内で重複もしくは未指定の場合、エラーを出力する |
-| title | string/HTMLElement | ""  | 列のヘッダー名 | HTML が記載された string を指定した場合、自動的に HTML に変換してそのまま表示される |
+| title *1 | string/HTMLElement | ""  | 列のヘッダー名 | HTML が記載された string を指定した場合、自動的に HTML に変換してそのまま表示される |
 | requiredIcon | boolean | false  | コンポーネントの必須アイコン表示/非表示設定 | |
 | visible | boolean |  true  | 列の表示/非表示設定 | |
 | render *1 | function<br/>`function(cellData, rowData, rowIndex) {}` | null | セルの描画関数 | DOM を戻り値にする<br/>以下の3つのパラメーターを使って関数に情報を加えることができる<br/><ul><li>cellData は現在表示されているセルの値</li><li>rowData は現在表示されている行の値</li><li>rowIndex は現在表示されている行番号</li></ul><br/>render 関数が未指定の場合、セルはデフォルトのテキストで表示される |
