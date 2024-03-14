@@ -40,7 +40,7 @@ Here is a list of properties that can be used for modifying the component:
 | Name | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
 | field | string | null  | Key of the column<br/>*`Required` and `Unique` | It represents the key of the `data` object<br/>The value associated with that key will be rendered in the column<br/>Will result an error if the `field` is duplicated in `columns` or not specified |
-| title | string | ""  | 	Header name of the column | |
+| title *1 | string/HTMLElement | ""  | Header name of the column | If a string with HTML is set, it will be automatically converted to HTML and displayed as it is |
 | requiredIcon | boolean | false  | Show/Hide the required icon | |
 | visible | boolean |  true  | Show/Hide the column | |
 | render *1 | function <br/>`function(cellData, rowData, rowIndex) {}` | null | Renderer of the cell | The return value should be a DOM<br/>Following 3 params provide more information for the function<br/><ul><li>`cellData` is the data of the current cell rendered</li><li>`rowData` is the data of the current row rendered</li><li>`rowIndex` is the index number of the current row rendered</li></ul><br/>If `render` function is not specified, the cell will display with the default text |
@@ -120,7 +120,10 @@ const table = new Kuc.Table({
   label: 'Table',
   columns: [
     {
-      title: 'Name',
+      title: new Kuc.Tooltip({
+        title: 'Please select a user',
+        container: 'Name'
+      }),
       field: 'name',
       render: renderName
     },

@@ -2,7 +2,7 @@ import { html, PropertyValues } from "lit";
 import { property, query } from "lit/decorators.js";
 
 import { ERROR_MESSAGE } from "../base/constant";
-import { visiblePropConverter } from "../base/converter";
+import { unsafeHTMLConverter, visiblePropConverter } from "../base/converter";
 import {
   createStyleOnHeader,
   dispatchCustomEvent,
@@ -152,12 +152,15 @@ let exportTable;
           class="kuc-table__table__header__cell"
           ?hidden="${column.visible === false}"
           style="width: ${customWidth}; min-width: ${customWidth}; max-width: ${customWidth}"
-        ><!--
-        -->${column.title || ""}<!--
+        >
+          <div class="kuc-table__table__header__cell-title">
+            ${column.title ? unsafeHTMLConverter(column.title) : ""}<!--
         --><span
-            class="kuc-base-label__required-icon"
-            ?hidden="${!column.requiredIcon}"
-          >*</span
+              class="kuc-base-label__required-icon"
+              ?hidden="${!column.requiredIcon}"
+              >*</span
+            >
+          </div>
         </th>
       `;
     }

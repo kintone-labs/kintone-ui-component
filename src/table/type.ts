@@ -4,7 +4,7 @@ import { KucBase } from "../base/kuc-base";
 
 export declare type TableColumn = {
   field: string;
-  title?: string;
+  title?: string | HTMLElement;
   requiredIcon?: boolean;
   visible?: boolean;
   render?: Render;
