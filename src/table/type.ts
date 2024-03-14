@@ -4,7 +4,7 @@ import { KucBase } from "../base/kuc-base";
 
 export declare type TableColumn = {
   field: string;
-  title?: string;
+  title?: string | HTMLElement;
   requiredIcon?: boolean;
   visible?: boolean;
   render?: Render;
@@ -22,7 +22,7 @@ export declare type TableProps<T extends object = object> = {
   label?: string;
   data?: T[];
   columns?: TableColumn[];
-  actionButton?: boolean;
+  actionButton?: boolean | { add?: boolean; remove?: boolean };
   headerVisible?: boolean;
   visible?: boolean;
 };
@@ -41,7 +41,7 @@ export declare class Table<T extends object = object> extends KucBase {
   label: string;
   columns: TableColumn[];
   data: T[];
-  actionButton: boolean;
+  actionButton: boolean | { add?: boolean; remove?: boolean };
   headerVisible: boolean;
   visible: boolean;
   constructor(props?: TableProps<T>);

@@ -24,11 +24,14 @@ export const TableComponent = () =>  {
         });
         return dropdown;
       };
-    
+
       const table = new Kuc.Table({
         columns: [
           {
-            title: "Name",
+            title: new Kuc.Tooltip({
+              title: "Please select a user",
+              container: "Name",
+            }),
             field: "name",
             render: renderName,
           },

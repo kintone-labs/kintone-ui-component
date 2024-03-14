@@ -4,6 +4,9 @@ import "./index.ts";
 export default {
   title: "base/pagination",
   argTypes: {
+    pagePosition: { name: "pagePosition" },
+    rowsPerPage: { name: "rowsPerPage" },
+    total: { name: "total" },
     visible: { name: "visible" },
     isNext: { name: "isNext" },
     isPrev: { name: "isPrev" },
@@ -18,6 +21,9 @@ export default {
 const Template = (args) => {
   return html`
     <kuc-base-pagination
+      .pagePosition="${args.pagePosition}"
+      .rowsPerPage="${args.rowsPerPage}"
+      .total="${args.total}"
       .visible="${args.visible}"
       .isNext="${args.isNext}"
       .isPrev="${args.isPrev}"
@@ -27,6 +33,9 @@ const Template = (args) => {
 
 export const Base = Template.bind({});
 Base.args = {
+  pagePosition: 1,
+  rowsPerPage: 5,
+  total: 7,
   visible: true,
   isPrev: true,
   isNext: true,

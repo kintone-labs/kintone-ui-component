@@ -1,7 +1,6 @@
-# [Website](https://kintone-ui-component.netlify.app/)
-[![Netlify Status](https://api.netlify.com/api/v1/badges/25994a27-19a5-485c-8628-3372bd214533/deploy-status)](https://app.netlify.com/sites/kintone-ui-component/deploys)
+# [Website](https://ui-component.kintone.dev/)
 
-This is the website project for kintone ui component powered by [Docusaurus](https://docusaurus.io/) and [Netlify](https://www.netlify.com/).<br>
+This is the website project for kintone ui component powered by [Docusaurus](https://docusaurus.io/) and [Amplify](https://aws.amazon.com/amplify/).<br>
 You can try and develop by following steps.
 
 ## Install and Run Locally
@@ -33,7 +32,7 @@ npm run start-ja
 
 4. Open `http://localhost:3000/` or `http://localhost:3000/ja/` to open the site in your browser.
 
-For more information about installation, click [here](https://docusaurus.io/docs/2.x/installation).
+For more information about installation, click [here](https://docusaurus.io/docs/installation).
 
 ## Add content
 
@@ -85,7 +84,7 @@ const sidebars = {
 module.exports = sidebars;
 ```
 
-For more information about docs page, click [here](https://docusaurus.io/docs/2.x/create-doc).
+For more information about docs page, click [here](https://docusaurus.io/docs/create-doc).
 
 ### Add item to the navigation bar
 
@@ -121,7 +120,7 @@ module.exports = {
 };
 ```
 
-For more information about navigation, click [here](https://docusaurus.io/docs/2.x/api/themes/configuration#navbar-items).
+For more information about navigation, click [here](https://docusaurus.io/docs/api/themes/configuration#navbar-items).
 
 ### Add custom page
 
@@ -146,7 +145,7 @@ module.exports = {
 };
 ```
 
-For more information about custom page, click [here](https://docusaurus.io/docs/2.x/creating-pages).
+For more information about custom page, click [here](https://docusaurus.io/docs/creating-pages).
 
 ## Build
 
@@ -167,20 +166,18 @@ npm run build
 npm run serve
 ```
 
-For more information about build, click [here](https://docusaurus.io/docs/2.x/deployment).
+For more information about build, click [here](https://docusaurus.io/docs/deployment).
 
 2. Because versioning is used, access the link with `next` to see the documents you added or modified.<br>
 ex. `http://localhost:3000/docs/next/components/desktop/button` <br>
 `http://localhost:3000/ja/docs/next/components/desktop/button`
 
-For more information about versioning, click [here](https://docusaurus.io/docs/2.x/versioning).
+For more information about versioning, click [here](https://docusaurus.io/docs/versioning).
 
 ## Hosting
 
-We host the website using [Netlify](https://www.netlify.com/).<br>
+We host the website using [Amplify](https://aws.amazon.com/amplify/).<br>
 It will detect the commit to the master branch and automatically build and deploy.
-
-For more information about hosting, click [here](https://docusaurus.io/docs/2.x/deployment#deploying-to-netlify).
 
 ## Full Documentation
 

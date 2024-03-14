@@ -22,7 +22,7 @@ const config = {
     },
   ],
   tagline: 'It will support your UI customization project.',
-  url: 'https://kintone-ui-component.netlify.app',
+  url: 'https://ui-component.kintone.dev',
   baseUrl: '/',
   onBrokenLinks: 'warn', // throw
   onBrokenMarkdownLinks: 'warn',

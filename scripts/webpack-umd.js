@@ -53,6 +53,10 @@ const main = async () => {
       data = replaceAllByPattern(data, classNamePattern, classNameVersion);
       data += `(_=>{window.Kuc=window.Kucs["${packageJSON.version}"];})();`;
       fs.writeFileSync(path.resolve(__dirname, "../umd/kuc.min.js"), data);
+
+      // replace the LICENSE file
+      const licenseContent = fs.readFileSync(path.resolve(__dirname, "../LICENSE")).toString();
+      fs.writeFileSync(path.resolve(__dirname, "../umd/kuc.min.js.LICENSE.txt"), licenseContent);
     }
   });
 };

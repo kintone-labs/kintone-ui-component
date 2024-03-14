@@ -14,6 +14,9 @@ let exportPagination;
   }
 
   class BasePagination extends KucBase {
+    @property({ type: Number }) pagePosition = 1;
+    @property({ type: Number }) rowsPerPage = 5;
+    @property({ type: Number }) total = 1;
     @property({ type: Boolean }) isNext = true;
     @property({ type: Boolean }) isPrev = true;
     @property({
@@ -46,7 +49,7 @@ let exportPagination;
             @mouseleave="${this._handleMouseLeavePrevButton}"
           >
             ${this._getPrevButtonSvgTemplate()}</button
-          ><button
+          >${this._getCurrentPageNumberTemplate()}<button
             title="next"
             class="kuc-base-pagination__group__pager-next${this.isNext
               ? ""
@@ -156,6 +159,21 @@ let exportPagination;
         />
       </svg>
       `;
+    }
+
+    private _getCurrentPageNumberTemplate() {
+      const currentPageInfo = this._createCurrentPageInfo();
+      const currentPageNumber = `${currentPageInfo.firstNum} - ${currentPageInfo.lastNum} / ${this.total}`;
+      return html`<span class="kuc-base-pagination__group__pager-current"
+        >${currentPageNumber}</span
+      >`;
+    }
+
+    private _createCurrentPageInfo() {
+      const firstNum = (this.pagePosition - 1) * this.rowsPerPage + 1;
+      let lastNum = this.pagePosition * this.rowsPerPage;
+      lastNum = lastNum > this.total ? this.total : lastNum;
+      return { firstNum, lastNum };
     }
   }
   window.customElements.define("kuc-base-pagination", BasePagination);
