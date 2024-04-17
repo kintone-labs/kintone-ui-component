@@ -17,9 +17,10 @@ It supports you to develop kintone customization and kintone plugin.<br />
 </p>
 
 - [Installation](#installation)
-  - [UMD](#umd)
-  - [CDN](#cdn)
+  - [Use with downloading kuc.min.js file](#use-with-downloading-kucminjs-file)
   - [npm](#npm)
+  - [CDN](#cdn)
+  
 - [Usage](#usage)
 - [Browser Support](#browser-support)
 - [v0 Usage](#v0-usage)
@@ -29,35 +30,34 @@ It supports you to develop kintone customization and kintone plugin.<br />
 - [License](#license)
 
 ## Installation
-kintone UI Component is available as UMD, CDN and npm package.
+Kintone UI Component is available as the downloaded `kuc.min.js` file, a npm package, or a CDN.
 
-### UMD
+### Use with downloading kuc.min.js file
 Please use `kuc.min.js` downloaded from [releases page](https://github.com/kintone-labs/kintone-ui-component/releases).
 ```
 ./umd/kuc.min.js
 ```
+### npm
+Please install and use `kintone-ui-component` with npm.
+```bash
+npm install kintone-ui-component
+```
 
 ### CDN
 Please use these CDN link.
-
-- If you want to load the latest version of kintone UI Component:
-  ```
-  https://unpkg.com/kintone-ui-component/umd/kuc.min.js
-  ```
 
 - If you want to specify the version and load it (specify the version number after the project name):
   ```
   https://unpkg.com/kintone-ui-component@1.0.0/umd/kuc.min.js
   ```
 
-> unpkg is not supported by Cybozu. We recommend you to use it for verification.<br />
-> In a production environment, please use UMD to avoid the possible effects of unpkg technical obstacle and glitches.
+- If you want to load the latest version of kintone UI Component:
+  ```
+  https://unpkg.com/kintone-ui-component/umd/kuc.min.js
+  ```
 
-### npm
-Please install and use `kintone-ui-component` with npm.
-```bash
-npm install kintone-ui-component
-```
+> unpkg is not supported by Cybozu. We recommend you to use it for verification.<br />
+> In a production environment, it is advisable to use a specific version by downloading the kuc.min.js fill to avoid the possible effects of unpkg technical obstacle and glitches.
 
 ## Usage
 
