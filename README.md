@@ -57,7 +57,7 @@ Please use these CDN link.
   ```
 
 > unpkg is not supported by Cybozu. We recommend you to use it for verification.<br />
-> In a production environment, it is advisable to use a specific version by downloading the kuc.min.js fill to avoid the possible effects of unpkg technical obstacle and glitches.
+> In a production environment, it is advisable to use a specific version by downloading the kuc.min.js file to avoid the possible effects of unpkg technical obstacle and glitches.
 
 ## Usage
 

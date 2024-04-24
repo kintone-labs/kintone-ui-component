@@ -29,7 +29,7 @@ kintone UI Component は、kintone カスタマイズ、プラグインのUI 開
 - [ライセンス](#ライセンス)
 
 ## インストール
-Kintone UI Component は、ダウンロードした kuc.min.js ファイル、npm パッケージ、または CDN として利用可能です。
+kintone UI Component は、ダウンロードした kuc.min.js ファイル、npm パッケージ、または CDN として利用可能です。
 
 ### kuc.min.js をダウンロードして利用する
 [各バージョン Release 欄](https://github.com/kintone-labs/kintone-ui-component/releases)の添付のアーカイブフォルダを解凍し、`kuc.min.js`を使用してください。
