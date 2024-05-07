@@ -188,7 +188,7 @@ Once the CDN is being imported to the app, you will have access to the global ob
 
 :::caution
 unpkg is not a CDN service provided by Cybozu. It is recommended that you use this for verification.<br/>
-In the production environment, you can [download the `kuc.min.js`](#use-with-downloading-kucminjs-file) from GitHub and use it to avoid any failures and problems related to unpkg.
+In the production environment, you can [download the `kuc.min.js` file](#use-with-downloading-kucminjs-file) from GitHub and use it to avoid any failures and problems related to unpkg.
 :::
 
 ## Browser support status
