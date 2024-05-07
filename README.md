@@ -56,8 +56,8 @@ Please use these CDN link.
   https://unpkg.com/kintone-ui-component/umd/kuc.min.js
   ```
 
-> unpkg is not supported by Cybozu. We recommend you to use it for verification.<br />
-> In a production environment, it is advisable to use a specific version by downloading the kuc.min.js file to avoid the possible effects of unpkg technical obstacle and glitches.
+> unpkg is not a CDN service provided by Cybozu. It is recommended that you use this for verification.<br/>
+> In the production environment, you can [download the `kuc.min.js` file](#use-with-downloading-kucminjs-file) from GitHub and use it to avoid any failures and problems related to unpkg.
 
 ## Usage
 

@@ -56,8 +56,8 @@ npm install kintone-ui-component
   https://unpkg.com/kintone-ui-component/umd/kuc.min.js
   ```
 
-> unpkg はサイボウズが提供している CDN サービスではありません。検証用として利用することをお勧めします。<br />
-> 本番環境では、unpkg の障害や不具合による影響を避けるため、特定のバージョンの kuc.min.js ファイルをダウンロードして使用することをお勧めします。
+> unpkg はサイボウズが提供している CDN サービスではありません。検証用としてお使いいただくことをお勧めします。<br/>
+> 本番環境では、unpkg の障害や不具合による影響を避けるため、GitHub から [kuc.min.js ファイルをダウンロード](#kucminjs-をダウンロードして利用する)してご利用ください。
 
 ## 使い方
 
