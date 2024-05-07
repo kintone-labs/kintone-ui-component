@@ -17,9 +17,9 @@ kintone UI Component は、kintone カスタマイズ、プラグインのUI 開
 </p>
 
 - [インストール](#インストール)
-  - [UMD](#umd)
-  - [CDN](#cdn)
+  - [kuc.min.js をダウンロードして利用する](#kucminjs-をダウンロードして利用する)
   - [npm](#npm)
+  - [CDN](#cdn)
 - [使い方](#使い方)
 - [ブラウザサポート](#ブラウザサポート)
 - [v0の使い方](#v0の使い方)
@@ -29,35 +29,35 @@ kintone UI Component は、kintone カスタマイズ、プラグインのUI 開
 - [ライセンス](#ライセンス)
 
 ## インストール
-kintone UI Component は UMD, CDN, npm パッケージから使用可能です。
+kintone UI Component は、ダウンロードした kuc.min.js ファイル、npm パッケージ、または CDN として利用可能です。
 
-### UMD
+### kuc.min.js をダウンロードして利用する
 [各バージョン Release 欄](https://github.com/kintone-labs/kintone-ui-component/releases)の添付のアーカイブフォルダを解凍し、`kuc.min.js`を使用してください。
 ```
 ./umd/kuc.min.js
 ```
-
-### CDN
-こちらの CDN をご利用ください。
-
-- 最新版の kintone UI Component を読み込みたい場合
-  ```
-  https://unpkg.com/kintone-ui-component/umd/kuc.min.js
-  ```
-
-- バージョン指定して読み込みたい場合（プロジェクト名の後ろにバージョン番号を指定）
-  ```
-  https://unpkg.com/kintone-ui-component@1.0.0/umd/kuc.min.js
-  ```
-
-> unpkg はサイボウズが提供している CDN サービスではありません。検証用として利用することをお勧めします。<br />
-> 本番環境では、unpkg の障害や不具合による影響を避けるため、UMD の kuc.min.js をご利用ください。
 
 ### npm
 npm で `kintone-ui-component` をインストールしてご利用ください。
 ```bash
 npm install kintone-ui-component
 ```
+
+### CDN
+こちらの CDN をご利用ください。
+
+- バージョン指定して読み込みたい場合（プロジェクト名の後ろにバージョン番号を指定）
+  ```
+  https://unpkg.com/kintone-ui-component@1.0.0/umd/kuc.min.js
+  ```
+
+- 最新版の kintone UI Component を読み込みたい場合
+  ```
+  https://unpkg.com/kintone-ui-component/umd/kuc.min.js
+  ```
+
+> unpkg はサイボウズが提供している CDN サービスではありません。検証用としてお使いいただくことをお勧めします。<br/>
+> 本番環境では、unpkg の障害や不具合による影響を避けるため、GitHub から [kuc.min.js ファイルをダウンロード](#kucminjs-をダウンロードして利用する)してご利用ください。
 
 ## 使い方
 

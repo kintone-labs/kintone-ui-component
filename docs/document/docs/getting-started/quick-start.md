@@ -27,7 +27,7 @@ You do not need to set up any fields in this app.
 
 ## Installation
 
-Kintone UI Component supports installation via a UMD, a CDN, or a npm package.<br/>
+Kintone UI Component supports installation via downloading the `kuc.min.js` file, a npm package, or a CDN.<br/>
 You can choose to import or implement the library according to the environment such as the browser environment or Node.js environment.<br/>
 In this article, we will show you how to install and implement using each approach.
 
@@ -39,7 +39,7 @@ See the Components section in the sidebar for more details on each component.<br
 (Additional components will be added in order.)
 :::
 
-### Use the UMD
+### Use with downloading kuc.min.js file
 
 :::tip
 When using a version on and after v1.4.0, please use `Kucs["1.x.x"]` instead of Kuc and specify your expected version (ex. `new Kucs["1.4.0"].Button()`).<br/>
@@ -84,31 +84,6 @@ kintone.events.on('app.record.index.show', event => {
 3. To apply the customization, upload `index.js` file to the `JavaScript and CSS Customization` inside the Kintone app settings. ([Customizing an App with JavaScript and CSS](https://get.kintone.help/k/en/user/app_settings/js_customize.html))
 
 ![button customize](/img/button_customize.png)
-
-### Use the CDN
-:::tip
-See the guidance and sample code at [Use UMD](#use-the-umd) section.
-:::
-
-1. Add the following CDN URL into the `JavaScript and CSS Customization` of a deployed Kintone app. ([Customizing an App with JavaScript and CSS](https://get.kintone.help/k/en/user/app_settings/js_customize.html))<br/>
-Once the CDN is being imported to the app, you will have access to the global object of `Kuc`.
-
-   - For the latest version of Kintone UI Component:
-     ```bash
-     https://unpkg.com/kintone-ui-component/umd/kuc.min.js
-     ```
-
-   - If you want to import a particular version, specify the version number after the project name.
-     ```bash
-     https://unpkg.com/kintone-ui-component@1.0.0/umd/kuc.min.js
-     ```
-
-2. The following is the same as the UMD.
-
-:::tip
-unpkg is not a CDN service provided by Cybozu. It is recommended that you use this for verification.<br/>
-In the production environment, you can use the `kuc.min.js` of the UMD to avoid any failures and problems related to unpkg.
-:::
 
 ### Use the npm package
 
@@ -190,6 +165,31 @@ Output Result：
 6. Upload the bundled file created in the previous step to the `JavaScript and CSS Customization` option inside Kintone app settings. ([Customizing an App with JavaScript and CSS](https://get.kintone.help/k/en/user/app_settings/js_customize.html))
 
 ![button customize](/img/button_customize.png)
+
+### Use the CDN
+:::tip
+See the guidance and sample code at [Use with downloading kuc.min.js file](#use-with-downloading-kucminjs-file) section.
+:::
+
+1. Add the following CDN URL into the `JavaScript and CSS Customization` of a deployed Kintone app. ([Customizing an App with JavaScript and CSS](https://get.kintone.help/k/en/user/app_settings/js_customize.html))<br/>
+Once the CDN is being imported to the app, you will have access to the global object of `Kuc`.
+
+   - If you want to import a particular version, specify the version number after the project name.
+     ```bash
+     https://unpkg.com/kintone-ui-component@1.0.0/umd/kuc.min.js
+     ```
+
+   - For the latest version of Kintone UI Component:
+     ```bash
+     https://unpkg.com/kintone-ui-component/umd/kuc.min.js
+     ```
+
+2. The implementation details and steps provided below are aligned with those described in the "Use with downloading kuc.min.js file" section.
+
+:::caution
+unpkg is not a CDN service provided by Cybozu. It is recommended that you use this for verification.<br/>
+In the production environment, you can [download the `kuc.min.js` file](#use-with-downloading-kucminjs-file) from GitHub and use it to avoid any failures and problems related to unpkg.
+:::
 
 ## Browser support status
 

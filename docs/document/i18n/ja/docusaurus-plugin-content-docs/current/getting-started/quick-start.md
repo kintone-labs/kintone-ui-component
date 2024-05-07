@@ -27,7 +27,7 @@ kintone UI Component は、kintone カスタマイズやプラグインの UI �
 
 ## 導入と実装方法
 
-kintone UI Component では UMD と CDN と npm パッケージを用意しています。<br/>
+kintone UI Component では `kuc.min.js`ファイルのダウンロード と npm と CDN パッケージを用意しています。<br/>
 ブラウザ環境や Node.js 環境など開発環境に合わせていずれかを選択して読み込み、実装してください。<br/>
 本記事では、それぞれの導入・実装方法を紹介します。
 
@@ -40,7 +40,7 @@ kintone UI Component では UMD と CDN と npm パッケージを用意して�
 （順次対応コンポーネントも追加予定です。）
 :::
 
-### UMD を利用する
+### kuc.min.js をダウンロードして利用する
 
 :::tip
 v1.4.0 以降のバージョンを利用する場合は、コンポーネントを呼び出す際に Kuc オブジェクトの代わりに Kucs["1.x.x"] を使ってバージョンを指定してください。（ex. `new Kucs["1.4.0"].Button()`）<br/>
@@ -81,31 +81,6 @@ kintone.events.on('app.record.index.show', event => {
 3. `index.js` を kintone アプリ設定の `JavaScript /CSS でカスタマイズ`にアップロードしてカスタマイズを適用します。（[JavaSriptやCSSでアプリをカスタマイズする](https://jp.cybozu.help/k/ja/user/app_settings/js_customize.html)）
 
 ![button customize](/img/button_customize.png)
-
-### CDN を利用する
-:::tip
-[UMD を利用する](#umd-を利用する) セクションの説明とサンプルコードをご確認ください。
-:::
-
-1. 以下の CDN URL を、作成した kintone アプリ設定の `JavaScript /CSS でカスタマイズ`にて指定します。（[JavaSriptやCSSでアプリをカスタマイズする](https://get.kintone.help/k/ja/user/app_settings/js_customize.html)）<br/>
-CDN を読み込むと、グローバルオブジェクトとして `Kuc` が追加されます。
-
-   - 最新版の kintone UI Component を読み込みたい場合
-     ```bash
-     https://unpkg.com/kintone-ui-component/umd/kuc.min.js
-     ```
-
-   - バージョン指定して読み込みたい場合（プロジェクト名の後ろにバージョン番号を指定）
-     ```bash
-     https://unpkg.com/kintone-ui-component@1.0.0/umd/kuc.min.js
-     ```
-
-2. 以降は上記 UMD と同様。
-
-:::tip
-unpkg はサイボウズが提供している CDN サービスではありません。検証用としてお使いいただくことをお勧めします。<br/>
-本番環境では、unpkg の障害や不具合による影響を避けるため、UMD の `kuc.min.js` をご利用ください。
-:::
 
 ### npm パッケージを利用する
 
@@ -187,6 +162,31 @@ npm run build:webpack
 6. 上記でバンドルしたファイルを、作成した kintone アプリ設定の `JavaScript /CSS でカスタマイズ`にアップロードしてカスタマイズを適用します。（[JavaSriptやCSSでアプリをカスタマイズする](https://jp.cybozu.help/k/ja/user/app_settings/js_customize.html)）
 
 ![button customize](/img/button_customize.png)
+
+### CDN を利用する
+:::tip
+[kuc.min.jsファイルをダウンロードして使用する](#kucminjs-をダウンロードして利用する) セクションの説明とサンプルコードをご確認ください。
+:::
+
+1. 以下の CDN URL を、作成した kintone アプリ設定の `JavaScript /CSS でカスタマイズ`にて指定します。（[JavaSriptやCSSでアプリをカスタマイズする](https://get.kintone.help/k/ja/user/app_settings/js_customize.html)）<br/>
+CDN を読み込むと、グローバルオブジェクトとして `Kuc` が追加されます。
+
+   - バージョン指定して読み込みたい場合（プロジェクト名の後ろにバージョン番号を指定）
+     ```bash
+     https://unpkg.com/kintone-ui-component@1.0.0/umd/kuc.min.js
+     ```
+  
+   - 最新版の kintone UI Component を読み込みたい場合
+     ```bash
+     https://unpkg.com/kintone-ui-component/umd/kuc.min.js
+     ```
+
+2. 以降は上記 kuc.min.jsファイルをダウンロードして使用する と同様。
+
+:::caution
+unpkg はサイボウズが提供している CDN サービスではありません。検証用としてお使いいただくことをお勧めします。<br/>
+本番環境では、unpkg の障害や不具合による影響を避けるため、GitHub から [kuc.min.js ファイルをダウンロード](#kucminjs-をダウンロードして利用する)してご利用ください。
+:::
 
 ## ブラウザ対応状況
 
