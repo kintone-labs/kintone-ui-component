@@ -1,4 +1,4 @@
-# default license judgement file(for devdependency) 
+# default license judgement file(for devdependency)
 ---
 
 # GNU General Public License（GPL）
@@ -128,6 +128,12 @@
     :why: Licensed confirmed
     :versions: []
     :when: 2014-02-04 07:41:00.000000000 Z
+- - :permit
+  - BSD
+  - :who:
+    :why: Licensed confirmed https://bozuman.cybozu.com/k/8979/show#record=10
+    :versions: []
+    :when: 2024-05-13 05:56:21.000000000 Z
 
 # Apache License 2.0（ASL）
 - - :permit
@@ -230,3 +236,27 @@
     :why: Licensed confirmed
     :versions: []
     :when: 2020-10-08 11:20:00.000000000 Z
+
+# CC0
+# https://bozuman.cybozu.com/k/8979/show#record=28
+- - :permit
+  - "CC0 1.0 Universal"
+  - :who:
+    :why: Licensed confirmed
+    :versions: []
+    :when: 2024-05-13 05:56:21.000000000 Z
+
+# Creative Commons Attribution（CC BY）
+# https://bozuman.cybozu.com/k/8979/show#record=29
+- - :permit
+  - CC-BY-3.0
+  - :who:
+    :why: Licensed confirmed
+    :versions: []
+    :when: 2024-05-13 05:56:21.000000000 Z
+- - :permit
+  - CC-BY-4.0
+  - :who:
+    :why: Licensed confirmed
+    :versions: []
+    :when: 2024-05-13 05:56:21.000000000 Z
