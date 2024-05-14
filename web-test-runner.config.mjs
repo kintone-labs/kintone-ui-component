@@ -19,8 +19,10 @@ export default {
   },
   browsers: [
     chromeLauncher({
-      launchOptions: {
-        headless: true,
+      createPage: async ({ context }) => {
+        const page = await (await context.browser().createBrowserContext()).newPage();
+        await page.bringToFront();
+        return page;
       },
     }),
   ],
