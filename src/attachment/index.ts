@@ -139,14 +139,13 @@ let exportAttachment;
           </div>
           <ul
             class="kuc-attachment__group__files__display-area${this._isDraging ? " kuc-attachment__group__files__not-droppable--dragenter" : ""}"
-            ?hidden="${this._isDraging}"
           >
           ${this.files.map((item, number) =>
             this._getAttachmentItemTemplate(item, number),
           )}
           </ul>
           <div class="kuc-attachment__group__files__browse-button${this._isDraging ? " kuc-attachment__group__files__not-droppable--dragenter" : ""}"
-          ?hidden="${this._isDraging || this.disabled}">
+          ?hidden="${this.disabled}">
             <span class="kuc-attachment__group__files__browse-button__text">${
               this._locale.ATTACHMENT_BROWSE
             }</span>
