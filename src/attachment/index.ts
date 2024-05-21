@@ -61,6 +61,7 @@ let exportAttachment;
     @state()
     private _isDraging = false;
 
+    private _dragEnterCounter = 0;
     private _locale = this._getLocale();
 
     @query(".kuc-attachment__group__files")
@@ -126,10 +127,10 @@ let exportAttachment;
           @dragenter="${this._handleDragEnter}"
           @dragover="${this._handleDragOver}"
           @dragleave="${this._handleDragLeave}"
+          @drop="${this._handleDragDrop}"
         >
           <div
             class="kuc-attachment__group__files__droppable"
-            @drop="${this._handleDragDrop}"
             ?hidden="${!this._isDraging}"
           >
           <div class="kuc-attachment__group__files__droppable__text">${
@@ -137,15 +138,14 @@ let exportAttachment;
           }</div>
           </div>
           <ul
-            class="kuc-attachment__group__files__display-area"
-            ?hidden="${this._isDraging}"
+            class="kuc-attachment__group__files__display-area${this._isDraging ? " kuc-attachment__group__files__not-droppable--dragenter" : ""}"
           >
           ${this.files.map((item, number) =>
             this._getAttachmentItemTemplate(item, number),
           )}
           </ul>
-          <div class="kuc-attachment__group__files__browse-button"
-          ?hidden="${this._isDraging || this.disabled}">
+          <div class="kuc-attachment__group__files__browse-button${this._isDraging ? " kuc-attachment__group__files__not-droppable--dragenter" : ""}"
+          ?hidden="${this.disabled}">
             <span class="kuc-attachment__group__files__browse-button__text">${
               this._locale.ATTACHMENT_BROWSE
             }</span>
@@ -298,36 +298,23 @@ let exportAttachment;
 
     private _handleDragEnter(event: DragEvent) {
       if (this.disabled) return;
-      if (
-        !this._isDraging &&
-        event.target instanceof HTMLElement &&
-        event.target.closest(".kuc-attachment__group__files") &&
-        this._isFileOrDirectoryDrag(event)
-      ) {
+      this._dragEnterCounter++;
+      if (this._dragEnterCounter === 1 && this._isFileOrDirectoryDrag(event)) {
         event.preventDefault();
-        this._showDroppableArea();
+        const DRAG_TEXT_BORDER_WIDTH = 2;
+        const FILES_BORDER_WIDTH = 1;
+        this._groupFilesEl.style.height =
+          this._groupFilesEl.getBoundingClientRect().height + "px";
+        this._dragTextEl.style.width =
+          this._groupFilesEl.getBoundingClientRect().width -
+          FILES_BORDER_WIDTH * 2 +
+          "px";
+        this._dragTextEl.style.height =
+          this._groupFilesEl.getBoundingClientRect().height -
+          (FILES_BORDER_WIDTH + DRAG_TEXT_BORDER_WIDTH) * 2 +
+          "px";
+        this._isDraging = true;
       }
-    }
-
-    private _showDroppableArea() {
-      const DRAG_TEXT_BORDER_WIDTH = 2;
-      const FILES_BORDER_WIDTH = 1;
-      this._groupFilesEl.style.height =
-        this._groupFilesEl.getBoundingClientRect().height + "px";
-      this._dragTextEl.style.width =
-        this._groupFilesEl.getBoundingClientRect().width -
-        FILES_BORDER_WIDTH * 2 +
-        "px";
-      this._dragTextEl.style.height =
-        this._groupFilesEl.getBoundingClientRect().height -
-        (FILES_BORDER_WIDTH + DRAG_TEXT_BORDER_WIDTH) * 2 +
-        "px";
-      this._isDraging = true;
-    }
-
-    private _hiddenDroppableArea() {
-      this._groupFilesEl.style.height = "var(--kuc-attachment-height, auto)";
-      this._isDraging = false;
     }
 
     private _handleDragOver(event: DragEvent) {
@@ -339,12 +326,12 @@ let exportAttachment;
     }
 
     private _handleDragDrop(event: DragEvent) {
-      if (this.disabled) return;
+      if (this.disabled || !this._isDraging) return;
       event.preventDefault();
+      this._handleDragLeave();
       if (this._isFileDrop(event)) {
         this._addFiles(event);
       }
-      this._hiddenDroppableArea();
     }
 
     private _isFileDrop(event: DragEvent) {
@@ -363,13 +350,13 @@ let exportAttachment;
       return true;
     }
 
-    private _handleDragLeave(event: DragEvent) {
+    private _handleDragLeave() {
       if (this.disabled) return;
-      if (
-        event.target instanceof HTMLElement &&
-        event.target.closest(".kuc-attachment__group__files__droppable")
-      ) {
-        this._hiddenDroppableArea();
+      this._dragEnterCounter--;
+
+      if (this._dragEnterCounter === 0) {
+        this._groupFilesEl.style.height = "var(--kuc-attachment-height, auto)";
+        this._isDraging = false;
       }
     }
 

@@ -70,7 +70,7 @@ export const ATTACHMENT_CSS = `
     text-decoration: none;
   }
   .kuc-attachment__group__files__browse-button[hidden]{
-    display: none
+    display: none;
   }
   .kuc-attachment__group__files__browse-button:focus-within {
     border: 1px solid #3498db;
@@ -206,5 +206,8 @@ export const ATTACHMENT_CSS = `
   }
   .kuc-attachment__group__files__browse-message[hidden] {
     display: none;
+  }
+  .kuc-attachment__group__files__not-droppable--dragenter {
+    visibility: hidden;
   }
 `;
