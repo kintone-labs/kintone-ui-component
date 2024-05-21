@@ -326,7 +326,7 @@ let exportAttachment;
     }
 
     private _handleDragDrop(event: DragEvent) {
-      if (this.disabled) return;
+      if (this.disabled || !this._isDraging) return;
       event.preventDefault();
       this._handleDragLeave();
       if (this._isFileDrop(event)) {
