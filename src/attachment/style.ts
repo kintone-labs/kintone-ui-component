@@ -70,7 +70,7 @@ export const ATTACHMENT_CSS = `
     text-decoration: none;
   }
   .kuc-attachment__group__files__browse-button[hidden]{
-    visibility: hidden;
+    display: none;
   }
   .kuc-attachment__group__files__browse-button:focus-within {
     border: 1px solid #3498db;
