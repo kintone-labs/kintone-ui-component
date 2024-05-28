@@ -122,4 +122,4 @@ tabs.addEventListener('change', event => {
 ---
 
 ## Related Articles
-- [Tabs customization](../../guides/tabs-customization)
+- [Tabs customization](../../guides/tabs-customization.md)
