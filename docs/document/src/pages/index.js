@@ -81,12 +81,12 @@ function HomepagePolicy () {
           <div className="title">Support Policy</div>
           <div className="github-infomation">
             kintone UI Component の仕様については、テクニカルサポートへお問い合わせいただけます。<br/>
-            <a href="https://jp.cybozu.help/k/ja/trouble_shooting/general/support_inquiry.html" target="_blank" rel="noreferrer"> サポートへのお問い合わせ方法</a>
+            <a href="https://www.cybozu.com/jp/inquiry/tel/index.html" target="_blank" rel="noreferrer"> サポートへのお問い合わせ方法</a>
             をご確認の上、お問合せください。
           </div>
           <div className="github-infomation">
-            ご質問やご要望などございましたら、<a href="https://github.com/kintone-labs/kintone-ui-component/issues">GitHub Issue</a> に登録してください。<br/> 
-            ご質問については、以下のコミュニティを活用いただくこともできます。有志のメンバーによって運営されています。<br/> 
+            ご質問やご要望などございましたら、<a href="https://github.com/kintone-labs/kintone-ui-component/issues">GitHub Issue</a> に登録してください。<br/>
+            ご質問については、以下のコミュニティを活用いただくこともできます。有志のメンバーによって運営されています。<br/>
           <ul>
             <li><a href="https://forum.kintone.dev/c/general/1" target="_blank" rel="noreferrer">kintone developer forum (English site)</a></li>
             <li><a href="https://community.cybozu.dev/c/kintone/5" target="_blank" rel="noreferrer">cybozu developer community (Japanese site)</a></li>
