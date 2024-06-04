@@ -11,7 +11,7 @@ New components and features, document updates, security updates, and maintenance
 
 :::info
 Note that in this version, there is backward compatible big change with coding way and components' tags and class names for resolving version conflicts issue.<br/>
-For more details, please check the [Version conflicts issue and solution](../guides/version-conflicts-issue-solution) and the new [Quick Start](../getting-started/quick-start) article.
+For more details, please check the [Version conflicts issue and solution](../guides/version-conflicts-issue-solution.md) and the new [Quick Start](../getting-started/quick-start.md) article.
 :::
 
 ## Update details

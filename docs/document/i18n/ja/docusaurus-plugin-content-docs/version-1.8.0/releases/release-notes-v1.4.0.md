@@ -11,7 +11,7 @@ sidebar_label: v1.4.0 Release Notes
 
 :::info
 このバージョンでは、バージョンコンフリクトの問題を解決するためにコーディング方法・コンポーネントタグとクラス名において後方互換のある大きな変更があるのでご注意ください。
-詳しくは [Version conflicts issue and solution](../guides/version-conflicts-issue-solution) と新しい [Quick Start](../getting-started/quick-start) 記事をご確認ください。
+詳しくは [Version conflicts issue and solution](../guides/version-conflicts-issue-solution.md) と新しい [Quick Start](../getting-started/quick-start.md) 記事をご確認ください。
 :::
 ## アップデート内容
 ### 新コンポーネント

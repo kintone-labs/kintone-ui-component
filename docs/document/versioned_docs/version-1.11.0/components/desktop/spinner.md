@@ -79,7 +79,7 @@ Here is a list of properties that can be used for modifying component style:
 ## Sample Code
 
 :::tip
-Please check the [package installation](../../getting-started/quick-start#installation) method first.
+Please check the [package installation](../../getting-started/quick-start.md#installation) method first.
 :::
 
 Here is a sample code when all parameters are specified:
