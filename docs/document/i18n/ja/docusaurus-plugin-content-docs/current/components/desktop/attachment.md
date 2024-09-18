@@ -25,7 +25,7 @@ import { AttachmentComponent } from "@site/static/js/samples/desktop/attachment.
 | error | string | ""  | エラーに表示するテキスト | 未指定、あるいは空文字の場合、error は表示されない |
 | id | string | ""  | コンポーネントの id 名 | |
 | label | string | ""  | コンポーネントの説明ラベル | 未指定、あるいは空文字の場合、label は表示されない |
-| language *1 | string | "auto"  | 	言語設定 | 指定できるオプション: "auto", "en", "ja", "zh", "zh-TW"<br/>"auto" を指定した場合、HTML の lang 設定に従う（lang 設定が "en"/"zh"/"zh-TW"/"ja" 以外の場合は、言語設定が "en" になる） |
+| language *1 | string | "auto"  | 	言語設定 | 指定できるオプション: "auto", "en", "ja", "zh", "zh-TW", "es"<br/>"auto" を指定した場合、HTML の lang 設定に従う（lang 設定が "en"/"ja"/"zh"/"zh-TW"/"es" 以外の場合は、言語設定が "en" になる） |
 | message | string | ""  | コンポーネントに表示するメッセージ（file type/size の制限事項など） | |
 | disabled | boolean | false | コンポーネントの選択可/不可設定 | |
 | requiredIcon | boolean | false | コンポーネントの必須アイコン表示/非表示設定 | |

@@ -41,5 +41,14 @@ describe("Attachment", () => {
       ) as HTMLSpanElement;
       expect(inputDateEl.textContent).to.equal("選擇檔案");
     });
+    it("should be change to es language when assigned by setter", async () => {
+      const container = new Attachment({ language: "en" });
+      container.language = "es";
+      const el = await fixture(container);
+      const inputDateEl = el.querySelector(
+        ".kuc-attachment__group__files__browse-button__text",
+      ) as HTMLSpanElement;
+      expect(inputDateEl.textContent).to.equal("Examinar");
+    });
   });
 });

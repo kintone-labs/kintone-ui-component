@@ -25,7 +25,7 @@ Here is a list of properties that can be used for modifying the component:
 | error | string | ""  | Text to be displayed in error | Error will not be displayed if unspecified or left empty |
 | id | string | ""  | Component id name | |
 | label | string | ""  | Label for the component | Label will not be displayed if unspecified or left empty |
-| language *1 | string | "auto"  | Language setting | Available options: "auto", "en", "ja", "zh", "zh-TW"<br/>If setting "auto", it will be according to the HTML lang setting (If the lang setting is other than "en"/"zh"/"zh-TW"/"ja", the language setting will be "en") |
+| language *1 | string | "auto"  | Language setting | Available options: "auto", "en", "ja", "zh", "zh-TW", "es"<br/>If setting "auto", it will be according to the HTML lang setting (If the lang setting is other than "en"/"ja"/"zh"/"zh-TW"/"es", the language setting will be "en") |
 | message | string | ""  | Message to display in the component (ex. file type/size restriction) | |
 | disabled | boolean | false | Enable/Disable the component | |
 | requiredIcon | boolean | false | Show/Hide the required icon | |
