@@ -6,7 +6,7 @@ import {
   MAX_MINUTES,
   TIME_SUFFIX,
 } from "../resource/constant";
-import { en, ja, zh, zh_TW } from "../resource/locale";
+import { en, es, ja, zh, zh_TW } from "../resource/locale";
 
 export type WeekDate = {
   attr: string;
@@ -313,6 +313,8 @@ export const getLocale = (language: string) => {
       return ja;
     case "zh-TW":
       return zh_TW;
+    case "es":
+      return es;
     default:
       return en;
   }
