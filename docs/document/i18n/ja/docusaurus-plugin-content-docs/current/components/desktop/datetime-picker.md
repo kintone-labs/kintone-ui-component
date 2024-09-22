@@ -26,7 +26,7 @@ import { DateTimePickerComponent } from "@site/static/js/samples/desktop/datetim
 | error | string | ""  | エラーに表示するテキスト | 未指定、あるいは空文字の場合、error は表示されない |
 | id | string | ""  | コンポーネントの id 名 | |
 | label | string | ""  | コンポーネントの説明ラベル | 未指定、あるいは空文字の場合、label は表示されない |
-| language *1 | string | "auto"  | 言語設定 | 指定できるオプション: "auto", "en", "ja", "zh", "zh-TW"<br/>"auto" を指定した場合、HTML の lang 設定に従う（lang 設定が "en"/"zh"/"zh-TW"/"ja" 以外の場合は、言語設定が "en" になる） |
+| language *1 | string | "auto"  | 言語設定 | 指定できるオプション: "auto", "en", "ja", "zh", "zh-TW", "es"<br/>"auto" を指定した場合、HTML の lang 設定に従う（lang 設定が "en"/"ja"/"zh"/"zh-TW"/"es" 以外の場合は、言語設定が "en" になる） |
 | max | string | "" | 時刻リストの終了時間設定 | フォーマットは HH:MM<br/>時刻リストは、max に指定した時刻まで表示されて、それ以降は表示されない<br/>以下の時間も指定できる（内部的に HH:MM に変換される）:<li>5:30</li><li>05:3</li><li>5:3</li>時間や分が 1文字の場合、0 が先頭に補完される<br/>不正なフォーマットや値や min 時刻が max 時刻よりも大きい値の場合、エラーを出力する |
 | min | string | "" | 時刻リストの開始時間設定 | フォーマットは HH:MM<br/>時刻リストは、min に指定した時刻から表示されて、それ以前は表示されない<br/>以下の時間も指定できる（内部的に HH:MM に変換される）:<li>5:30</li><li>05:3</li><li>5:3</li>時間や分が 1文字の場合、0 が先頭に補完される<br/>不正なフォーマットや値や min 時刻が max 時刻よりも大きい値の場合、エラーを出力する |
 | value | string | ""  | 表示するテキスト | フォーマットは YYYY-MM-DDTHH:MM:SS<br/>以下の日時も指定できる（内部的に YYYY-MM-DDTHH:MM:SS に変換される）:<li>2021</li><li>2021T01</li><li>2021-06</li><li>2021-12-12</li><li>2021-12-12T01</li><li>2021-12-12T01:01</li>日や月の記載がない場合、01 で補完される<br/>時間や分や秒の記載がない場合、00 で補完される<br/>不正なフォーマットや値や min/max プロパティで指定した有効な時刻の範囲を超える値を指定した場合、エラーを出力する |
@@ -39,7 +39,7 @@ import { DateTimePickerComponent } from "@site/static/js/samples/desktop/datetim
 :::info
 *1: 表示される日付のフォーマットは、language プロパティの設定に応じて以下のように自動的に切り替わる。
 - "en" の場合: MM/DD/YYYY
-- "ja", "zh", "zh-TW" の場合: YYYY-MM-DD
+- "ja", "zh", "zh-TW", "es" の場合: YYYY-MM-DD
 :::
 
 ### Event
