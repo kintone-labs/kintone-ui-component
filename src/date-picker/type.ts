@@ -15,7 +15,7 @@ export declare type DatePickerProps = {
   disabled?: boolean;
   requiredIcon?: boolean;
   visible?: boolean;
-  language?: "ja" | "en" | "zh" | "zh-TW" | "auto";
+  language?: "ja" | "en" | "zh" | "zh-TW" | "es" | "auto";
   value?: string;
 };
 export declare class DatePicker extends KucBase {

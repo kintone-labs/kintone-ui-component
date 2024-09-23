@@ -26,7 +26,7 @@ import { MobileTimePickerComponent } from "@site/static/js/samples/mobile/time-p
 | error | string | ""  | エラーに表示するテキスト | 未指定、あるいは空文字の場合、error は表示されない |
 | id | string | ""  | コンポーネントの id 名 | |
 | label | string | ""  | コンポーネントの説明ラベル | 未指定、あるいは空文字の場合、label は表示されない |
-| language | string | "auto"  | 言語設定 | 指定できるオプション: "auto", "en", "ja", "zh", "zh-TW"<br/>"auto" を指定した場合、HTML の lang 設定に従う（lang 設定が "en"/"zh"/"zh-TW"/"ja" 以外の場合は、言語設定が "en" になる） |
+| language | string | "auto"  | 言語設定 | 指定できるオプション: "auto", "en", "ja", "zh", "zh-TW", "es"<br/>"auto" を指定した場合、HTML の lang 設定に従う（lang 設定が "en"/"ja"/"zh"/"zh-TW"/"es" 以外の場合は、言語設定が "en" になる） |
 | value | string | ""  | 表示するテキスト | フォーマットは HH:MM<br/>以下の時間も指定できる（内部的に HH:MM に変換される）:<li>5:30</li><li>05:3</li><li>5:3</li>時間や分が 1文字の場合、0 が先頭に補完される<br/>不正なフォーマットや値を指定した場合、エラーを出力する |
 | disabled | boolean | false | コンポーネントの選択可/不可設定 | |
 | hour12 | boolean | false | 時刻表記の設定 (12時間表記/24時間表記) デフォルトは 24時間表記 | 指定できるオプション:<br/>true: 12時間表記<br/>false: 24時間表記 |
