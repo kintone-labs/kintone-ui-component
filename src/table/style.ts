@@ -5,6 +5,10 @@ export const TABLE_CSS = `
     kuc-table:lang(en) * {
         font-family: sans-serif;
     }
+    kuc-table:lang(es),
+    kuc-table:lang(es) * {
+        font-family: sans-serif;
+    }
     kuc-table:lang(ja),
     kuc-table:lang(ja) * {
         font-family: "メイリオ", "Hiragino Kaku Gothic ProN", Meiryo,

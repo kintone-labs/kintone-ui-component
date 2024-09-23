@@ -5,6 +5,10 @@ export const BASE_LABEL_CSS = `
   kuc-base-label:lang(en) * {
       font-family: sans-serif;
   }
+  kuc-base-label:lang(es),
+  kuc-base-label:lang(es) * {
+      font-family: sans-serif;
+  }
   kuc-base-label:lang(ja),
   kuc-base-label:lang(ja) * {
       font-family: "メイリオ", "Hiragino Kaku Gothic ProN", Meiryo,

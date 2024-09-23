@@ -5,6 +5,10 @@ kuc-text:lang(en),
 kuc-text:lang(en) * {
   font-family: sans-serif;
 }
+kuc-text:lang(es),
+kuc-text:lang(es) * {
+  font-family: sans-serif;
+}
 kuc-text:lang(ja),
 kuc-text:lang(ja) * {
   font-family: "メイリオ", "Hiragino Kaku Gothic ProN", Meiryo,
