@@ -26,7 +26,7 @@ Here is a list of properties that can be used for modifying the component:
 | error | string | ""  | Text to be displayed in error | Error will not be displayed if unspecified or left empty |
 | id | string | ""  | Component id name | |
 | label | string | ""  | Label for the component | Label will not be displayed if unspecified or left empty |
-| language *1 | string | "auto"  | Language setting | Available options: "auto", "en", "ja", "zh", "zh-TW"<br/>If setting "auto", it will be according to the HTML lang setting (If the lang setting is other than "en"/"zh"/"zh-TW"/"ja", the language setting will be "en") |
+| language *1 | string | "auto"  | Language setting | Available options: "auto", "en", "ja", "zh", "zh-TW", "es"<br/>If setting "auto", it will be according to the HTML lang setting (If the lang setting is other than "en"/"ja"/"zh"/"zh-TW"/"es", the language setting will be "en") |
 | value | string | ""  | Text to be displayed | Format is YYYY-MM-DDTHH:MM:SS<br/>The below date and time can be used (it will be converted to YYYY-MM-DDTHH:MM:SS internally):<li>2021</li><li>2021T01</li><li>2021-06</li><li>2021-12-12</li><li>2021-12-12T01</li><li>2021-12-12T01:01</li>If the date and/or month is ignored, it will be supplemented with 01<br/>If the hour, minute, and/or second is ignored, it will be supplemented with 00<br/>Will result an error if setting invalid format or value |
 | disabled | boolean | false | Enable/Disable the component | |
 | hour12 | boolean | false | Setting of the clock display (12-hour clock/24-hour clock) Default is 24-hour clock | Available options:<br/>true: 12-hour clock<br/>false: 24-hour clock |
@@ -36,7 +36,7 @@ Here is a list of properties that can be used for modifying the component:
 :::info
  *1: The displayed date format is automatically switched depending on the `language` property setting as follows:
  - "en": MM/DD/YYYY
- - "ja", "zh", "zh-TW": YYYY-MM-DD
+ - "ja", "zh", "zh-TW", "es": YYYY-MM-DD
 :::
 
 ### Event

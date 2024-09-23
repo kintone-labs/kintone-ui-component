@@ -18,6 +18,10 @@ kuc-base-mobile-datetime-calendar-footer:lang(zh-TW) * {
     Hei,"Heiti SC","Lucida Grande","Lucida Sans Unicode",Arial,
     Verdana,sans-serif
 }
+kuc-base-mobile-datetime-calendar-footer:lang(es),
+kuc-base-mobile-datetime-calendar-footer:lang(es) * {
+    font-family: sans-serif;
+}
 .kuc-base-mobile-datetime-calendar-footer__group {
     display: flex;
     justify-content: space-between;

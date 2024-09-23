@@ -18,6 +18,10 @@ kuc-mobile-datetime-picker:lang(zh-TW) * {
     Hei,"Heiti SC","Lucida Grande","Lucida Sans Unicode",Arial,
     Verdana,sans-serif
 }
+kuc-mobile-datetime-picker:lang(es),
+kuc-mobile-datetime-picker:lang(es) * {
+    font-family: sans-serif;
+}
 kuc-mobile-datetime-picker {
 font-size: 13px;
 color: #333333;
