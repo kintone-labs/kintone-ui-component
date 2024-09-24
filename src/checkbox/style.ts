@@ -117,4 +117,5 @@ export const CHECKBOX_CSS = `
     white-space: nowrap;
     min-height: 24px;
     line-height: 1.2;
-  }`;
+  }
+  `;
