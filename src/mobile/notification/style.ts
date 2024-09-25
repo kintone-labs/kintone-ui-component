@@ -11,7 +11,10 @@ export const MOBILE_NOTIFICATION_CSS = `
     top: -100px;
     left: 0;
   }
-
+  kuc-mobile-notification:lang(es),
+  kuc-mobile-notification:lang(es) * {
+    font-family: sans-serif;
+  }
   kuc-mobile-notification:lang(zh),
   kuc-mobile-notification:lang(zh) * {
     font-family: "微软雅黑", "Microsoft YaHei", "新宋体", NSimSun, STHeiti,
