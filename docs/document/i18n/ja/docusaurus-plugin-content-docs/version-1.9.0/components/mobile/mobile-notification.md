@@ -8,7 +8,7 @@ sidebar_label: MobileNotification
 
 MobileNotification は、ポップアップの通知を表示します。
 
-import { MobileNotificationComponent } from "@site/static/js/samples/mobile/notification.js"
+import { MobileNotificationComponent } from "@site/static/js/samples/mobile/notification.jsx"
 
 <MobileNotificationComponent />
 

@@ -8,7 +8,7 @@ sidebar_label: MobileNotification
 
 The MobileNotification component allows the user to display pop-up notifications.
 
-import { MobileNotificationComponent } from "@site/static/js/samples/mobile/notification.js"
+import { MobileNotificationComponent } from "@site/static/js/samples/mobile/notification.jsx"
 
 <MobileNotificationComponent />
 

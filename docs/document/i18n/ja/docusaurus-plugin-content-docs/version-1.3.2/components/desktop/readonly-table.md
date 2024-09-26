@@ -8,7 +8,7 @@ sidebar_label: ReadOnlyTable
 
 ReadOnlyTable は、kintone 詳細画面の読み取りテーブルを表示します。
 
-import { ReadOnlyTableComponent } from "@site/static/js/samples/desktop/readonly-table.js"
+import { ReadOnlyTableComponent } from "@site/static/js/samples/desktop/readonly-table.jsx"
 
 <ReadOnlyTableComponent />
 

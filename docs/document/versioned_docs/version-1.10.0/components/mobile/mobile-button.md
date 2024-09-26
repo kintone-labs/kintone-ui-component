@@ -8,7 +8,7 @@ sidebar_label: MobileButton
 
 The MobileButton component allows the user to create and displays buttons.
 
-import { MobileButtonComponent } from "@site/static/js/samples/mobile/button.js"
+import { MobileButtonComponent } from "@site/static/js/samples/mobile/button.jsx"
 
 <MobileButtonComponent />
 

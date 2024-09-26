@@ -8,7 +8,7 @@ sidebar_label: Text
 
 The Text component allows the user to display a single line text element.
 
-import { TextComponent } from "@site/static/js/samples/desktop/text.js"
+import { TextComponent } from "@site/static/js/samples/desktop/text.jsx"
 
 <TextComponent />
 

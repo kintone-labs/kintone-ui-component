@@ -8,7 +8,7 @@ sidebar_label: MobileTimePicker
 
 MobileTimePicker は入力エリアと時間選択用のリストを表示します。
 
-import { MobileTimePickerComponent } from "@site/static/js/samples/mobile/time-picker.js"
+import { MobileTimePickerComponent } from "@site/static/js/samples/mobile/time-picker.jsx"
 
 <MobileTimePickerComponent />
 

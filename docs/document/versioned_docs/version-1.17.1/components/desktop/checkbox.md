@@ -8,7 +8,7 @@ sidebar_label: Checkbox
 
 The Checkbox component displays a checkbox element for multiple selections.
 
-import { CheckboxComponent } from "@site/static/js/samples/desktop/checkbox.js"
+import { CheckboxComponent } from "@site/static/js/samples/desktop/checkbox.jsx"
 
 <CheckboxComponent />
 

@@ -8,7 +8,7 @@ sidebar_label: MobileRadioButton
 
 MobileRadioButton は、複数選択肢の中から一つの値を選択することができます。
 
-import { MobileRadioButtonComponent } from "@site/static/js/samples/mobile/radio-button.js"
+import { MobileRadioButtonComponent } from "@site/static/js/samples/mobile/radio-button.jsx"
 
 <MobileRadioButtonComponent />
 

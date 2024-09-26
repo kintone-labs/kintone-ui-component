@@ -8,7 +8,7 @@ sidebar_label: MobileCheckbox
 
 The MobileCheckbox component displays a checkbox element for multiple selections.
 
-import { MobileCheckboxComponent } from "@site/static/js/samples/mobile/checkbox.js"
+import { MobileCheckboxComponent } from "@site/static/js/samples/mobile/checkbox.jsx"
 
 <MobileCheckboxComponent />
 

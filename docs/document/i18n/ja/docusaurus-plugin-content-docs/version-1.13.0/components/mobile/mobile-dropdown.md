@@ -8,7 +8,7 @@ sidebar_label: MobileDropdown
 
 MobileDropdown は複数選択肢の中から一つの値を選択することができます。
 
-import { MobileDropdownComponent } from "@site/static/js/samples/mobile/dropdown.js"
+import { MobileDropdownComponent } from "@site/static/js/samples/mobile/dropdown.jsx"
 
 <MobileDropdownComponent />
 

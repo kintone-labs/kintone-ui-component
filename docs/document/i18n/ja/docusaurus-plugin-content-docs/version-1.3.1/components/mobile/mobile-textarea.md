@@ -8,7 +8,7 @@ sidebar_label: MobileTextArea
 
 MobileTextArea は、複数行のテキストを表示します。
 
-import { MobileTextAreaComponent } from "@site/static/js/samples/mobile/textarea.js"
+import { MobileTextAreaComponent } from "@site/static/js/samples/mobile/textarea.jsx"
 
 <MobileTextAreaComponent />
 
