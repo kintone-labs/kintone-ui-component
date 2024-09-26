@@ -116,8 +116,8 @@ export const zh_TW = {
     { text: "周五", abbr: "周五" },
     { text: "周六", abbr: "周六" },
   ],
-  INVALID_FORMAT: "日期格式不正確。",
-  INVALID_TIME_FORMAT: "時間格式不正確。",
+  INVALID_FORMAT: "日期格式錯誤。",
+  INVALID_TIME_FORMAT: "時間格式錯誤。",
   CALENDAR_FOOTER_TEXT: { none: "清空", today: "今天", close: "關閉" },
   TIME_IS_OUT_OF_VALID_RANGE: "時間超出有效範圍。",
 };
