@@ -10,6 +10,8 @@ import {
 import { en, es, ja, zh, zh_TW } from "../base/attachment/resource/locale";
 import { ERROR_MESSAGE } from "../base/constant";
 import { languagePropConverter, visiblePropConverter } from "../base/converter";
+import "../base/error";
+import "../base/label";
 import {
   createStyleOnHeader,
   dispatchCustomEvent,

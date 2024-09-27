@@ -20,6 +20,11 @@ import {
   validateProps,
 } from "../../base/validator";
 
+import "../../base/datetime/mobile-date";
+import "../../base/datetime/mobile-time";
+import "../../base/mobile-error";
+import "../../base/mobile-label";
+
 import { MOBILE_DATETIME_PICKER_CSS } from "./style";
 import {
   MobileDateTimePickerChangeEventDetail,
