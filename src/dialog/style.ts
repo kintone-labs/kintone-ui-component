@@ -5,6 +5,10 @@ export const DIALOG_CSS = `
   kuc-dialog:lang(en) * {
     font-family: sans-serif;
   }
+  kuc-dialog:lang(es),
+  kuc-dialog:lang(es) * {
+    font-family: sans-serif;
+  }
   kuc-dialog:lang(ja),
   kuc-dialog:lang(ja) * {
     font-family: "メイリオ", "Hiragino Kaku Gothic ProN", Meiryo,

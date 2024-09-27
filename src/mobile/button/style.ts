@@ -5,6 +5,10 @@ export const MOBILE_BUTTON_CSS = `
       "ヒラギノ角ゴ ProN W3", "ＭＳ Ｐゴシック", "Lucida Grande",
       "Lucida Sans Unicode", Arial, Verdana, sans-serif;
   }
+  kuc-mobile-button:lang(es),
+  kuc-mobile-button:lang(es) * {
+    font-family: sans-serif;
+  }
   kuc-mobile-button:lang(zh),
   kuc-mobile-button:lang(zh) * {
     font-family: "微软雅黑", "Microsoft YaHei", "新宋体", NSimSun, STHeiti,

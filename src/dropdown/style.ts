@@ -5,6 +5,10 @@ export const DROPDOWN_CSS = `
   kuc-dropdown:lang(en) * {
     font-family: sans-serif;
   }
+  kuc-dropdown:lang(es),
+  kuc-dropdown:lang(es) * {
+    font-family: sans-serif;
+  }
   kuc-dropdown:lang(ja),
   kuc-dropdown:lang(ja) * {
     font-family: "メイリオ", "Hiragino Kaku Gothic ProN", Meiryo,

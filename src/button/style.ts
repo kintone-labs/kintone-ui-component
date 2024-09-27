@@ -5,6 +5,10 @@ export const BUTTON_CSS = `
   kuc-button:lang(en) * {
     font-family: sans-serif;
   }
+  kuc-button:lang(es),
+  kuc-button:lang(es) * {
+    font-family: sans-serif;
+  }
   kuc-button:lang(ja),
   kuc-button:lang(ja) * {
     font-family: "メイリオ", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;

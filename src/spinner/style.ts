@@ -5,6 +5,10 @@ export const SPINNER_CSS = `
   kuc-spinner:lang(en) * {
     font-family: sans-serif;
   }
+  kuc-spinner:lang(es),
+  kuc-spinner:lang(es) * {
+    font-family: sans-serif;
+  }
   kuc-spinner:lang(ja),
   kuc-spinner:lang(ja) * {
     font-family: "メイリオ", "Hiragino Kaku Gothic ProN", Meiryo,
