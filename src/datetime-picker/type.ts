@@ -13,7 +13,7 @@ export declare type DateTimePickerProps = {
   error?: string;
   id?: string;
   label?: string;
-  language?: "ja" | "en" | "zh" | "zh-TW" | "auto";
+  language?: "ja" | "en" | "zh" | "zh-TW" | "es" | "auto";
   max?: string;
   min?: string;
   value?: string;

@@ -13,11 +13,11 @@ export const visiblePropConverter = {
 
 export const languagePropConverter = {
   fromAttribute: (value: string | null) => {
-    const langs = ["en", "ja", "zh", "zh-TW"];
+    const langs = ["en", "ja", "zh", "zh-TW", "es"];
     return !value || langs.indexOf(value) === -1;
   },
   toAttribute: (value: string) => {
-    const langs = ["en", "ja", "zh", "zh-TW"];
+    const langs = ["en", "ja", "zh", "zh-TW", "es"];
     if (langs.indexOf(value) !== -1) return value;
     if (langs.indexOf(document.documentElement.lang) !== -1) {
       return document.documentElement.lang;

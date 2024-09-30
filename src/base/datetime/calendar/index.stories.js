@@ -6,7 +6,7 @@ export default {
   argTypes: {
     language: {
       name: "language",
-      options: ["en", "ja", "zh", "zh-TW"],
+      options: ["en", "ja", "zh", "zh-TW", "es"],
       control: { type: "select" },
     },
     value: {

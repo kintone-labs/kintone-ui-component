@@ -5,6 +5,10 @@ export const BASE_ERROR_CSS = `
   kuc-base-error:lang(en) * {
     font-family: sans-serif;
   }
+  kuc-base-error:lang(es),
+  kuc-base-error:lang(es) * {
+    font-family: sans-serif;
+  }
   kuc-base-error:lang(ja),
   kuc-base-error:lang(ja) * {
     font-family: "メイリオ", "Hiragino Kaku Gothic ProN", Meiryo,

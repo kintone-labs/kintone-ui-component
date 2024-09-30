@@ -5,6 +5,10 @@ export const TABS_CSS = `
   kuc-tabs:lang(en) * {
     font-family: sans-serif;
   }
+  kuc-tabs:lang(es),
+  kuc-tabs:lang(es) * {
+    font-family: sans-serif;
+  }
   kuc-tabs:lang(ja),
   kuc-tabs:lang(ja) * {
     font-family: "メイリオ", "Hiragino Kaku Gothic ProN", Meiryo,

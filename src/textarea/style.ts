@@ -5,6 +5,10 @@ export const TEXTAREA_CSS = `
   kuc-textarea:lang(en) * {
     font-family: sans-serif;
   }
+  kuc-textarea:lang(es),
+  kuc-textarea:lang(es) * {
+    font-family: sans-serif;
+  }
   kuc-textarea:lang(ja),
   kuc-textarea:lang(ja) * {
     font-family: "メイリオ", "Hiragino Kaku Gothic ProN", Meiryo,

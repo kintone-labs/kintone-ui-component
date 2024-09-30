@@ -57,5 +57,18 @@ describe("BaseDateTimeCalendarFooter", () => {
       expect(buttonTodayEl.innerText).to.equal("今天");
       expect(buttonNoneEl.innerText).to.equal("清空");
     });
+    it("should be 'Hoy' and 'Ninguno' when assigning language prop with 'es'", async () => {
+      const container = new BaseDateTimeCalendarFooter();
+      container.language = "es";
+      const el = await fixture(container);
+      const buttonTodayEl = el.querySelector(
+        ".kuc-base-datetime-calendar-footer__group__button--today",
+      ) as HTMLButtonElement;
+      const buttonNoneEl = el.querySelector(
+        ".kuc-base-datetime-calendar-footer__group__button--none",
+      ) as HTMLButtonElement;
+      expect(buttonTodayEl.innerText).to.equal("Hoy");
+      expect(buttonNoneEl.innerText).to.equal("Ninguno");
+    });
   });
 });

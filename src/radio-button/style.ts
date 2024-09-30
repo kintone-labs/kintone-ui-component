@@ -5,6 +5,10 @@ export const RADIOBUTTON_CSS = `
   kuc-radio-button:lang(en) * {
     font-family: sans-serif;
   }
+  kuc-radio-button:lang(es),
+  kuc-radio-button:lang(es) * {
+    font-family: sans-serif;
+  }
   kuc-radio-button:lang(ja),
   kuc-radio-button:lang(ja) * {
     font-family: "メイリオ", "Hiragino Kaku Gothic ProN", Meiryo,

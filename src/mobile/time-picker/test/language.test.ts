@@ -64,7 +64,7 @@ describe("MobileTimePicker", () => {
       expect(container.value).to.equal(undefined);
     });
 
-    it('should be replaced by "時間格式不正確。" when assign "zh-TW" to language and select a invalid value', async () => {
+    it('should be replaced by "時間格式錯誤。" when assign "zh-TW" to language and select a invalid value', async () => {
       const container = new MobileTimePicker({
         error: "error-message",
         language: "zh-TW",
@@ -80,7 +80,27 @@ describe("MobileTimePicker", () => {
       selectMinuteEl.value = "35";
       selectMinuteEl.dispatchEvent(new Event("change", { bubbles: true }));
       await elementUpdated(container);
-      expect(errorEl.innerText).to.equal("時間格式不正確。");
+      expect(errorEl.innerText).to.equal("時間格式錯誤。");
+      expect(container.value).to.equal(undefined);
+    });
+
+    it('should be replaced by "Formato no válido." when assign "es" to language and select a invalid value', async () => {
+      const container = new MobileTimePicker({
+        error: "error-message",
+        language: "es",
+      });
+      const el = await fixture(container);
+      const errorEl = el.querySelector(
+        ".kuc-base-mobile-error__error",
+      ) as HTMLDivElement;
+      expect(errorEl.innerText).to.equal("error-message");
+      const selectMinuteEl = el.querySelector(
+        ".kuc-base-mobile-time__group__minutes",
+      ) as HTMLSelectElement;
+      selectMinuteEl.value = "35";
+      selectMinuteEl.dispatchEvent(new Event("change", { bubbles: true }));
+      await elementUpdated(container);
+      expect(errorEl.innerText).to.equal("Formato no válido.");
       expect(container.value).to.equal(undefined);
     });
   });

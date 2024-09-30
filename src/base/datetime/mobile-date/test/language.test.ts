@@ -27,7 +27,7 @@ describe("BaseMobileDate", () => {
       expect(inputEl.value).to.equal("2022-02-14");
     });
 
-    it("should be 'zh' when assigned by setter", async () => {
+    it("should be 'zh-TW' when assigned by setter", async () => {
       const container = new BaseMobileDate();
       container.value = "2022-02-14";
       container.language = "zh-TW";
@@ -43,6 +43,18 @@ describe("BaseMobileDate", () => {
       const container = new BaseMobileDate();
       container.value = "2022-02-14";
       container.language = "ja";
+      const el = await fixture(container);
+      const inputEl = el.querySelector(
+        ".kuc-mobile-base-date__group__input",
+      ) as HTMLInputElement;
+
+      expect(inputEl.value).to.equal("2022-02-14");
+    });
+
+    it("should be 'es' when assigned by setter", async () => {
+      const container = new BaseMobileDate();
+      container.value = "2022-02-14";
+      container.language = "es";
       const el = await fixture(container);
       const inputEl = el.querySelector(
         ".kuc-mobile-base-date__group__input",

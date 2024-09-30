@@ -5,6 +5,10 @@ export const CHECKBOX_CSS = `
   kuc-checkbox:lang(en) * {
     font-family: sans-serif;
   }
+  kuc-checkbox:lang(es),
+  kuc-checkbox:lang(es) * {
+    font-family: sans-serif;
+  }
   kuc-checkbox:lang(ja),
   kuc-checkbox:lang(ja) * {
     font-family: "メイリオ", "Hiragino Kaku Gothic ProN", Meiryo,
@@ -113,4 +117,5 @@ export const CHECKBOX_CSS = `
     white-space: nowrap;
     min-height: 24px;
     line-height: 1.2;
-  }`;
+  }
+  `;

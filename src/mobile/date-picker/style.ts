@@ -18,6 +18,10 @@ kuc-mobile-date-picker:lang(zh-TW) * {
     Hei,"Heiti SC","Lucida Grande","Lucida Sans Unicode",Arial,
     Verdana,sans-serif
 }
+kuc-mobile-date-picker:lang(es),
+kuc-mobile-date-picker:lang(es) * {
+    font-family: sans-serif;
+}
 kuc-mobile-date-picker {
   font-size: 13px;
   color: #333333;

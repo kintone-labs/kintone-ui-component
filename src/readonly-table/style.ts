@@ -5,6 +5,10 @@ export const READ_ONLY_TABLE_CSS = `
   kuc-readonly-table:lang(en) * {
     font-family: sans-serif;
   }
+  kuc-readonly-table:lang(es),
+  kuc-readonly-table:lang(es) * {
+    font-family: sans-serif;
+  }
   kuc-readonly-table:lang(ja),
   kuc-readonly-table:lang(ja) * {
       font-family: "メイリオ", "Hiragino Kaku Gothic ProN", Meiryo,

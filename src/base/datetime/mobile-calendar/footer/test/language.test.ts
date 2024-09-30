@@ -73,5 +73,22 @@ describe("BaseMobileDateTimeCalendarFooter", () => {
       expect(buttonNoneEl.innerText).to.equal("清空");
       expect(buttonCloseEl.innerText).to.equal("關閉");
     });
+    it("should be 'Hoy' and 'Ninguno' and 'Cerrar' when assigning language prop with 'es'", async () => {
+      const container = new BaseMobileDateTimeCalendarFooter();
+      container.language = "es";
+      const el = await fixture(container);
+      const buttonTodayEl = el.querySelector(
+        ".kuc-base-mobile-datetime-calendar-footer__group__button--today",
+      ) as HTMLButtonElement;
+      const buttonNoneEl = el.querySelector(
+        ".kuc-base-mobile-datetime-calendar-footer__group__button--none",
+      ) as HTMLButtonElement;
+      const buttonCloseEl = el.querySelector(
+        ".kuc-base-mobile-datetime-calendar-footer__group__button--close",
+      ) as HTMLButtonElement;
+      expect(buttonTodayEl.innerText).to.equal("Hoy");
+      expect(buttonNoneEl.innerText).to.equal("Ninguno");
+      expect(buttonCloseEl.innerText).to.equal("Cerrar");
+    });
   });
 });

@@ -108,5 +108,34 @@ describe("TimePicker", () => {
 
       expect(errorEl.innerText).to.equal("時間超出有效範圍。");
     });
+
+    it("should be change to es language when assigned by setter", async () => {
+      const container = new TimePicker({
+        value: "10:00",
+        min: "9:00",
+        max: "10:00",
+        language: "ja",
+      });
+      container.language = "es";
+      const el = await fixture(container);
+      const inputHourEl = el.querySelector(
+        ".kuc-base-time__group__hours",
+      ) as HTMLInputElement;
+      document.documentElement.setAttribute("lang", "en");
+
+      inputHourEl.click();
+      inputHourEl.dispatchEvent(
+        new KeyboardEvent("keydown", { key: "ArrowUp", bubbles: true }),
+      );
+      await elementUpdated(el);
+
+      const errorEl = el.querySelector(
+        ".kuc-base-error__error",
+      ) as HTMLDivElement;
+
+      expect(errorEl.innerText).to.equal(
+        "La hora está fuera del rango válido.",
+      );
+    });
   });
 });

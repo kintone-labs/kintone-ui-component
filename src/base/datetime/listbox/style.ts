@@ -20,6 +20,10 @@ kuc-base-datetime-listbox:lang(zh-TW) * {
   font-family: "微軟正黑體","Microsoft JhengHei","新宋体",NSimSun,STHeiti,
     Hei,"Heiti SC"
 }
+kuc-base-datetime-listbox:lang(es),
+kuc-base-datetime-listbox:lang(es) * {
+  font-family: sans-serif;
+}
 .kuc-base-datetime-listbox__listbox {
   position: absolute;
   z-index: 2000;

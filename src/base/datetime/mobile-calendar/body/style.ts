@@ -20,6 +20,11 @@ kuc-base-mobile-datetime-calendar-body:lang(zh-TW) * {
     Verdana,sans-serif
 }
 
+kuc-base-mobile-datetime-calendar-body:lang(es),
+kuc-base-mobile-datetime-calendar-body:lang(es) * {
+    font-family: sans-serif;
+}
+
 .kuc-base-mobile-datetime-calendar-body__table,
 .kuc-base-mobile-datetime-calendar-body__table tr {
     border-collapse: separate;
