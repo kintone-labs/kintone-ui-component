@@ -8,7 +8,7 @@ sidebar_label: TimePicker
 
 The TimePicker component allows the user to display a input area and time selection listbox.
 
-import { TimePickerComponent } from "@site/static/js/samples/desktop/time-picker.js"
+import { TimePickerComponent } from "@site/static/js/samples/desktop/time-picker.jsx"
 
 <TimePickerComponent />
 

@@ -8,7 +8,7 @@ sidebar_label: Checkbox
 
 Checkbox は、複数選択のチェックボックスを表示します。
 
-import { CheckboxComponent } from "@site/static/js/samples/desktop/checkbox.js"
+import { CheckboxComponent } from "@site/static/js/samples/desktop/checkbox.jsx"
 
 <CheckboxComponent />
 

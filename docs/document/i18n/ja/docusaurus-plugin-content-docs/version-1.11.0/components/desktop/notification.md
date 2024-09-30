@@ -8,7 +8,7 @@ sidebar_label: Notification
 
 Notification は、ポップアップの通知を表示します。
 
-import { NotificationComponent } from "@site/static/js/samples/desktop/notification.js"
+import { NotificationComponent } from "@site/static/js/samples/desktop/notification.jsx"
 
 <NotificationComponent />
 

@@ -8,7 +8,7 @@ sidebar_label: MobileMultiChoice
 
 MobileMultiChoice は、複数選択肢の中から複数の値を選択することができます。
 
-import { MobilMultichoiceComponent } from "@site/static/js/samples/mobile/multichoice.js"
+import { MobilMultichoiceComponent } from "@site/static/js/samples/mobile/multichoice.jsx"
 
 <MobilMultichoiceComponent />
 

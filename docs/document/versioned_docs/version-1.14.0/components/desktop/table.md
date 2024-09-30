@@ -7,7 +7,7 @@ sidebar_label: Table
 ## Overview
 The Table component allows the user to display an editable table.
 
-import { TableComponent } from "@site/static/js/samples/desktop/table.js"
+import { TableComponent } from "@site/static/js/samples/desktop/table.jsx"
 
 <TableComponent />
 

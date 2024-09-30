@@ -8,7 +8,7 @@ sidebar_label: MultiChoice
 
 MultiChoice は、複数選択肢の中から複数の値を選択することができます。
 
-import { MultichoiceComponent } from "@site/static/js/samples/desktop/multichoice.js"
+import { MultichoiceComponent } from "@site/static/js/samples/desktop/multichoice.jsx"
 
 <MultichoiceComponent />
 

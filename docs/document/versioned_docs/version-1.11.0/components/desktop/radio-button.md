@@ -8,7 +8,7 @@ sidebar_label: RadioButton
 
 The RadioButton component allows the user to select one out of several options.
 
-import { RadioButtonComponent } from "@site/static/js/samples/desktop/radio-button.js"
+import { RadioButtonComponent } from "@site/static/js/samples/desktop/radio-button.jsx"
 
 <RadioButtonComponent />
 

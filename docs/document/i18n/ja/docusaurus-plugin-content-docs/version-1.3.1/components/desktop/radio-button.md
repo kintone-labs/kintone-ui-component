@@ -8,7 +8,7 @@ sidebar_label: RadioButton
 
 RadioButton は、複数選択肢の中から一つの値を選択することができます。
 
-import { RadioButtonComponent } from "@site/static/js/samples/desktop/radio-button.js"
+import { RadioButtonComponent } from "@site/static/js/samples/desktop/radio-button.jsx"
 
 <RadioButtonComponent />
 

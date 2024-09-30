@@ -8,7 +8,7 @@ sidebar_label: Combobox
 
 The Combobox component allows the user to find an item among many choices.
 
-import { ComboboxComponent } from "@site/static/js/samples/desktop/combobox.js"
+import { ComboboxComponent } from "@site/static/js/samples/desktop/combobox.jsx"
 
 <ComboboxComponent />
 

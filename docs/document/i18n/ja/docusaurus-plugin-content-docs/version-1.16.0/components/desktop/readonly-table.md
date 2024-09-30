@@ -8,7 +8,7 @@ sidebar_label: ReadOnlyTable
 
 ReadOnlyTable は読み取り専用のテーブルを表示します。
 
-import { ReadOnlyTableComponent } from "@site/static/js/samples/desktop/readonly-table.js"
+import { ReadOnlyTableComponent } from "@site/static/js/samples/desktop/readonly-table.jsx"
 
 <ReadOnlyTableComponent />
 

@@ -8,7 +8,7 @@ sidebar_label: MobileDatePicker
 
 MobileDatePicker は入力エリアと日付選択用のカレンダーを表示します。
 
-import { MobileDatePickerComponent } from "@site/static/js/samples/mobile/date-picker.js"
+import { MobileDatePickerComponent } from "@site/static/js/samples/mobile/date-picker.jsx"
 
 <MobileDatePickerComponent />
 

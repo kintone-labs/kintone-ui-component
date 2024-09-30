@@ -8,7 +8,7 @@ sidebar_label: MobileCheckbox
 
 MobileCheckbox は、複数選択のチェックボックスを表示します。
 
-import { MobileCheckboxComponent } from "@site/static/js/samples/mobile/checkbox.js"
+import { MobileCheckboxComponent } from "@site/static/js/samples/mobile/checkbox.jsx"
 
 <MobileCheckboxComponent />
 

@@ -8,7 +8,7 @@ sidebar_label: Attachment
 
 The Attachment component allows the user to upload files by selecting or dragging.
 
-import { AttachmentComponent } from "@site/static/js/samples/desktop/attachment.js"
+import { AttachmentComponent } from "@site/static/js/samples/desktop/attachment.jsx"
 
 <AttachmentComponent />
 

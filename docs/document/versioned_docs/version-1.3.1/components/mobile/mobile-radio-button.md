@@ -8,7 +8,7 @@ sidebar_label: MobileRadioButton
 
 The MobileRadioButton component allows the user to select one out of several options.
 
-import { MobileRadioButtonComponent } from "@site/static/js/samples/mobile/radio-button.js"
+import { MobileRadioButtonComponent } from "@site/static/js/samples/mobile/radio-button.jsx"
 
 <MobileRadioButtonComponent />
 

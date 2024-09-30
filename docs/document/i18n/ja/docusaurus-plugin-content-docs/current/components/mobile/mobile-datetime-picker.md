@@ -8,7 +8,7 @@ sidebar_label: MobileDateTimePicker
 
 MobileDateTimePicker は日付と時間それぞれの入力エリアと選択肢を表示します。
 
-import { MobileDateTimePickerComponent } from "@site/static/js/samples/mobile/datetime-picker.js"
+import { MobileDateTimePickerComponent } from "@site/static/js/samples/mobile/datetime-picker.jsx"
 
 <MobileDateTimePickerComponent />
 

@@ -8,7 +8,7 @@ sidebar_label: Spinner
 
 Spinner は、ローディングスピナーを表示します。
 
-import { SpinnerComponent } from "@site/static/js/samples/desktop/spinner.js"
+import { SpinnerComponent } from "@site/static/js/samples/desktop/spinner.jsx"
 
 <SpinnerComponent />
 

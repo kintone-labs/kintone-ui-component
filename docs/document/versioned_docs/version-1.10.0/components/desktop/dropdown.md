@@ -8,7 +8,7 @@ sidebar_label: Dropdown
 
 The Dropdown component allows the user to select one out of several options.
 
-import { DropdownComponent } from "@site/static/js/samples/desktop/dropdown.js"
+import { DropdownComponent } from "@site/static/js/samples/desktop/dropdown.jsx"
 
 <DropdownComponent />
 

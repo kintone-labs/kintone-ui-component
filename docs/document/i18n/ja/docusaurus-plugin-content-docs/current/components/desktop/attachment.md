@@ -8,7 +8,7 @@ sidebar_label: Attachment
 
 Attachment は選択もしくはドラッグ&ドロップでファイルをアップロードすることができます。
 
-import { AttachmentComponent } from "@site/static/js/samples/desktop/attachment.js"
+import { AttachmentComponent } from "@site/static/js/samples/desktop/attachment.jsx"
 
 <AttachmentComponent />
 

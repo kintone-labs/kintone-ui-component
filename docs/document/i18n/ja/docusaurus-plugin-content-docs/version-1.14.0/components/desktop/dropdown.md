@@ -8,7 +8,7 @@ sidebar_label: Dropdown
 
 Dropdown は複数選択肢の中から一つの値を選択することができます。
 
-import { DropdownComponent } from "@site/static/js/samples/desktop/dropdown.js"
+import { DropdownComponent } from "@site/static/js/samples/desktop/dropdown.jsx"
 
 <DropdownComponent />
 
