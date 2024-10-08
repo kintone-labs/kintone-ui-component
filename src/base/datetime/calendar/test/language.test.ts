@@ -120,7 +120,7 @@ describe("BaseDateTimeCalendar", () => {
         "KUC-BASE-DATETIME-HEADER-MONTH",
       );
       expect(yearEl.textContent).to.contain("年");
-      expect(bodyWeekDayEl.innerText).to.equal("周日");
+      expect(bodyWeekDayEl.innerText).to.equal("週日");
       expect(footerButtonTodayEl.innerText).to.equal("今天");
       expect(footerButtonNoneEl.innerText).to.equal("清空");
     });
@@ -149,7 +149,7 @@ describe("BaseDateTimeCalendar", () => {
       expect(headerCenterEl.children[1].tagName).to.equal(
         "KUC-BASE-DATETIME-HEADER-YEAR",
       );
-      expect(bodyWeekDayEl.innerText).to.equal("SUN");
+      expect(bodyWeekDayEl.innerText).to.equal("Do.");
       expect(footerButtonTodayEl.innerText).to.equal("Hoy");
       expect(footerButtonNoneEl.innerText).to.equal("Ninguno");
     });

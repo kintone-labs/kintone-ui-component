@@ -53,14 +53,14 @@ describe("BaseDateTimeCalendarBody", () => {
       expect(item.innerText).to.equal("周日");
     });
 
-    it('The first day of the week in Spanish is "SUN" when not assigning language prop', async () => {
+    it('The first day of the week in Spanish is "Do." when not assigning language prop', async () => {
       const container = new BaseDateTimeCalendarBody();
       container.language = "es";
       const el = await fixture(container);
       const item = el.querySelector(
         ".kuc-base-datetime-calendar-body__table__header",
       ) as HTMLTableSectionElement;
-      expect(item.innerText).to.equal("SUN");
+      expect(item.innerText).to.equal("Do.");
     });
   });
 });
