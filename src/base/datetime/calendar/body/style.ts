@@ -45,6 +45,9 @@ kuc-base-datetime-calendar-body:lang(es) * {
 :lang(ja) th.kuc-base-datetime-calendar-body__table__header {
   font-weight: 700;
 }
+:lang(es) th.kuc-base-datetime-calendar-body__table__header {
+  text-transform: revert;
+}
 .kuc-base-datetime-calendar-body__table__date--selected,
 .kuc-base-datetime-calendar-body__table__date,
 .kuc-base-datetime-calendar-body__table__header {
