@@ -20,6 +20,10 @@ kuc-datetime-picker:lang(zh-TW) * {
   font-family: "微軟正黑體","Microsoft JhengHei","新宋体",NSimSun,STHeiti,
     Hei,"Heiti SC"
 }
+kuc-datetime-picker:lang(es),
+kuc-datetime-picker:lang(es) * {
+  font-family: sans-serif;
+}
 kuc-datetime-picker {
   font-size: 14px;
   display: inline-table;

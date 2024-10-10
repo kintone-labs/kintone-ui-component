@@ -17,3 +17,8 @@ export const zh_TW = {
   ATTACHMENT_BROWSE: "選擇檔案",
   ATTACHMENT_DRAG_DROP_ZONE: "拖曳檔案到此。",
 };
+
+export const es = {
+  ATTACHMENT_BROWSE: "Examinar",
+  ATTACHMENT_DRAG_DROP_ZONE: "Suelte los archivos aquí.",
+};

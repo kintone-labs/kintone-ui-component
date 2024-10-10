@@ -8,7 +8,7 @@ sidebar_label: DatePicker
 
 DatePicker は入力エリアと日付選択用のカレンダーを表示します。
 
-import { DatePickerComponent } from "@site/static/js/samples/desktop/date-picker.js"
+import { DatePickerComponent } from "@site/static/js/samples/desktop/date-picker.jsx"
 
 <DatePickerComponent />
 

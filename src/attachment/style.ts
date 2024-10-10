@@ -20,6 +20,10 @@ export const ATTACHMENT_CSS = `
     font-family: "微軟正黑體","Microsoft JhengHei","新宋体",NSimSun,STHeiti,
         Hei,"Heiti SC",sans-serif;
   }
+  kuc-attachment:lang(es),
+  kuc-attachment:lang(es) * {
+    font-family: sans-serif;
+  }
   kuc-attachment {
     font-size: 14px;
     display: inline-table;

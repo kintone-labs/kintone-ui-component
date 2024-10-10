@@ -120,9 +120,38 @@ describe("BaseDateTimeCalendar", () => {
         "KUC-BASE-DATETIME-HEADER-MONTH",
       );
       expect(yearEl.textContent).to.contain("年");
-      expect(bodyWeekDayEl.innerText).to.equal("周日");
+      expect(bodyWeekDayEl.innerText).to.equal("週日");
       expect(footerButtonTodayEl.innerText).to.equal("今天");
       expect(footerButtonNoneEl.innerText).to.equal("清空");
+    });
+
+    it("should be 'es' when assigning 'es' by setter", async () => {
+      const container = new BaseDateTimeCalendar();
+      container.language = "es";
+      const el = await fixture(container);
+      const headerCenterEl = el.querySelector(
+        ".kuc-base-datetime-calendar-header__group__center",
+      ) as HTMLSpanElement;
+      const bodyWeekDayEl = el.querySelector(
+        ".kuc-base-datetime-calendar-body__table__header",
+      ) as HTMLTableSectionElement;
+      const footerButtonTodayEl = el.querySelector(
+        ".kuc-base-datetime-calendar-footer__group__button--today",
+      ) as HTMLButtonElement;
+      const footerButtonNoneEl = el.querySelector(
+        ".kuc-base-datetime-calendar-footer__group__button--none",
+      ) as HTMLButtonElement;
+
+      expect(headerCenterEl.childElementCount).to.equal(2);
+      expect(headerCenterEl.children[0].tagName).to.equal(
+        "KUC-BASE-DATETIME-HEADER-MONTH",
+      );
+      expect(headerCenterEl.children[1].tagName).to.equal(
+        "KUC-BASE-DATETIME-HEADER-YEAR",
+      );
+      expect(bodyWeekDayEl.innerText).to.equal("Do.");
+      expect(footerButtonTodayEl.innerText).to.equal("Hoy");
+      expect(footerButtonNoneEl.innerText).to.equal("Ninguno");
     });
   });
 });

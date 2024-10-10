@@ -5,6 +5,10 @@ export const COMBOBOX_CSS = `
   kuc-combobox:lang(en) * {
     font-family: sans-serif;
   }
+  kuc-combobox:lang(es),
+  kuc-combobox:lang(es) * {
+    font-family: sans-serif;
+  }
   kuc-combobox:lang(ja),
   kuc-combobox:lang(ja) * {
     font-family: "メイリオ", "Hiragino Kaku Gothic ProN", Meiryo,

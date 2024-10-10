@@ -6,6 +6,10 @@ export const MOBILE_TEXT_CSS = `
       "ヒラギノ角ゴ ProN W3", "ＭＳ Ｐゴシック", "Lucida Grande",
       "Lucida Sans Unicode", Arial, Verdana, sans-serif;
   }
+  kuc-mobile-text:lang(es),
+  kuc-mobile-text:lang(es) * {
+    font-family: sans-serif;
+  }
   kuc-mobile-text:lang(zh),
   kuc-mobile-text:lang(zh) * {
     font-family: "微软雅黑", "Microsoft YaHei", "新宋体", NSimSun, STHeiti,

@@ -8,7 +8,7 @@ sidebar_label: Text
 
 Text は、単一行のテキストを表示します。
 
-import { TextComponent } from "@site/static/js/samples/desktop/text.js"
+import { TextComponent } from "@site/static/js/samples/desktop/text.jsx"
 
 <TextComponent />
 

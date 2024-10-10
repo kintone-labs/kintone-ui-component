@@ -7,9 +7,11 @@ import {
   ONE_KB,
   ONE_MB,
 } from "../base/attachment/resource/constant";
-import { en, ja, zh, zh_TW } from "../base/attachment/resource/locale";
+import { en, es, ja, zh, zh_TW } from "../base/attachment/resource/locale";
 import { ERROR_MESSAGE } from "../base/constant";
 import { languagePropConverter, visiblePropConverter } from "../base/converter";
+import "../base/error";
+import "../base/label";
 import {
   createStyleOnHeader,
   dispatchCustomEvent,
@@ -242,7 +244,7 @@ let exportAttachment;
       </svg>`;
     }
     private _getLanguage() {
-      const langs = ["en", "ja", "zh", "zh-TW"];
+      const langs = ["en", "ja", "zh", "zh-TW", "es"];
       if (langs.indexOf(this.language) !== -1) return this.language;
 
       if (langs.indexOf(document.documentElement.lang) !== -1)
@@ -262,6 +264,8 @@ let exportAttachment;
           return zh_TW;
         case "ja":
           return ja;
+        case "es":
+          return es;
         default:
           return en;
       }

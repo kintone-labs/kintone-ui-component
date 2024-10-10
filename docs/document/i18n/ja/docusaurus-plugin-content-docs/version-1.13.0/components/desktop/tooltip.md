@@ -8,7 +8,7 @@ sidebar_label: Tooltip
 
 Tooltip は要素にホバーしたりフォーカスしたりする時に、対象となる要素のラベルや短い説明を表示します。
 
-import { TooltipComponent } from "@site/static/js/samples/desktop/tooltip.js"
+import { TooltipComponent } from "@site/static/js/samples/desktop/tooltip.jsx"
 
 <TooltipComponent />
 

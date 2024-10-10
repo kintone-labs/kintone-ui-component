@@ -8,7 +8,7 @@ sidebar_label: MultiChoice
 
 The MultiChoice component allows the user to select multiple values from multiple options.
 
-import { MultichoiceComponent } from "@site/static/js/samples/desktop/multichoice.js"
+import { MultichoiceComponent } from "@site/static/js/samples/desktop/multichoice.jsx"
 
 <MultichoiceComponent />
 

@@ -20,6 +20,10 @@ kuc-base-datetime-calendar-footer:lang(zh-TW) * {
   font-family: "微軟正黑體","Microsoft JhengHei","新宋体",NSimSun,STHeiti,
     Hei,"Heiti SC",sans-serif;
 }
+kuc-base-datetime-calendar-footer:lang(es),
+kuc-base-datetime-calendar-footer:lang(es) * {
+  font-family: sans-serif;
+}
 .kuc-base-datetime-calendar-footer__group {
   display: flex;
   align-items: flex-end;

@@ -7,7 +7,7 @@ sidebar_label: Table
 ## Overview
 Table は編集可能なテーブルを表示します。
 
-import { TableComponent } from "@site/static/js/samples/desktop/table.js"
+import { TableComponent } from "@site/static/js/samples/desktop/table.jsx"
 
 <TableComponent />
 

@@ -20,7 +20,7 @@ export declare type TimePickerProps = {
   requiredIcon?: boolean;
   visible?: boolean;
   timeStep?: number;
-  language?: "ja" | "en" | "zh" | "zh-TW" | "auto";
+  language?: "ja" | "en" | "zh" | "zh-TW" | "es" | "auto";
 };
 export declare class TimePicker extends KucBase {
   className: string;

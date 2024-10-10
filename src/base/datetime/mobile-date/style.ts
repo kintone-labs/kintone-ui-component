@@ -17,6 +17,10 @@ kuc-mobile-base-date:lang(zh-TW) * {
     Hei,"Heiti SC","Lucida Grande","Lucida Sans Unicode",Arial,
     Verdana,sans-serif
 }
+kuc-mobile-base-date:lang(es),
+kuc-mobile-base-date:lang(es) * {
+    font-family: sans-serif;
+}
 .kuc-mobile-base-date__group {
     display: flex;
     align-items: center;

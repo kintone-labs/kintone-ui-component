@@ -9,7 +9,7 @@ sidebar_label: Tooltip
 
 Tooltip component allows the user to display a label or short explanation of the target element when hovering or focusing on the element.
 
-import { TooltipComponent } from "@site/static/js/samples/desktop/tooltip.js"
+import { TooltipComponent } from "@site/static/js/samples/desktop/tooltip.jsx"
 
 <TooltipComponent />
 

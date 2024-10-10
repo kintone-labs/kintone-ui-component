@@ -8,7 +8,7 @@ sidebar_label: Dialog
 
 The Dialog component displays a dialog box.
 
-import { DialogComponent } from "@site/static/js/samples/desktop/dialog.js"
+import { DialogComponent } from "@site/static/js/samples/desktop/dialog.jsx"
 
 <DialogComponent />
 

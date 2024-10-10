@@ -8,7 +8,7 @@ sidebar_label: Tabs
 
 Tabs は、複数のタブを表示し、表示内容を切り替えることができます。
 
-import { TabsComponent } from "@site/static/js/samples/desktop/tabs.js"
+import { TabsComponent } from "@site/static/js/samples/desktop/tabs.jsx"
 
 <TabsComponent />
 

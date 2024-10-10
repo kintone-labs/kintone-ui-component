@@ -15,11 +15,14 @@ kuc-base-datetime-calendar-body:lang(zh) * {
   font-family: "微软雅黑", "Microsoft YaHei", "新宋体", NSimSun, STHeiti,
     Hei, "Heiti SC", sans-serif;
 }
-
 kuc-base-datetime-calendar-body:lang(zh-TW),
 kuc-base-datetime-calendar-body:lang(zh-TW) * {
   font-family: "微軟正黑體","Microsoft JhengHei","新宋体",NSimSun,STHeiti,
     Hei,"Heiti SC",sans-serif;
+}
+kuc-base-datetime-calendar-body:lang(es),
+kuc-base-datetime-calendar-body:lang(es) * {
+  font-family: sans-serif;
 }
 .kuc-base-datetime-calendar-body__table,
 .kuc-base-datetime-calendar-body__table tr {
@@ -41,6 +44,9 @@ kuc-base-datetime-calendar-body:lang(zh-TW) * {
 }
 :lang(ja) th.kuc-base-datetime-calendar-body__table__header {
   font-weight: 700;
+}
+:lang(es) th.kuc-base-datetime-calendar-body__table__header {
+  text-transform: revert;
 }
 .kuc-base-datetime-calendar-body__table__date--selected,
 .kuc-base-datetime-calendar-body__table__date,

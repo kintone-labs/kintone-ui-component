@@ -8,7 +8,7 @@ sidebar_label: TextArea
 
 TextArea は、複数行のテキストを表示します。
 
-import { TextAreaComponent } from "@site/static/js/samples/desktop/textarea.js"
+import { TextAreaComponent } from "@site/static/js/samples/desktop/textarea.jsx"
 
 <TextAreaComponent />
 

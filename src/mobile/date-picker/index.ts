@@ -145,7 +145,7 @@ let exportMobileDatePicker;
     }
 
     private _getLanguage() {
-      const langs = ["en", "ja", "zh", "zh-TW"];
+      const langs = ["en", "ja", "zh", "zh-TW", "es"];
       if (langs.indexOf(this.language) !== -1) return this.language;
       if (langs.indexOf(document.documentElement.lang) !== -1) {
         return document.documentElement.lang;

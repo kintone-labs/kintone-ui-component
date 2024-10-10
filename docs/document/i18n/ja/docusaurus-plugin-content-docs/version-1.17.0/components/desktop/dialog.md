@@ -9,7 +9,7 @@ sidebar_label: Dialog
 
 Dialog は、ダイアログボックスを表示します。
 
-import { DialogComponent } from "@site/static/js/samples/desktop/dialog.js"
+import { DialogComponent } from "@site/static/js/samples/desktop/dialog.jsx"
 
 <DialogComponent />
 

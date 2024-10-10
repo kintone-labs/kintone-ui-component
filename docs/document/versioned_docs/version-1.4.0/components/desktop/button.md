@@ -7,7 +7,7 @@ sidebar_label: Button
 ## Overview
 The Button component allows the user to create and display buttons.
 
-import { ButtonComponent } from "@site/static/js/samples/desktop/button.js"
+import { ButtonComponent } from "@site/static/js/samples/desktop/button.jsx"
 
 <ButtonComponent />
 

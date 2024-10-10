@@ -5,6 +5,10 @@ export const MULTICHOICE_CSS = `
   kuc-multi-choice:lang(en) * {
     font-family: sans-serif;
   }
+  kuc-multi-choice:lang(es),
+  kuc-multi-choice:lang(es) * {
+    font-family: sans-serif;
+  }
   kuc-multi-choice:lang(ja),
   kuc-multi-choice:lang(ja) * {
     font-family: "メイリオ", "Hiragino Kaku Gothic ProN", Meiryo,

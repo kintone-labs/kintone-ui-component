@@ -43,14 +43,14 @@ describe("BaseMobileDateTimeCalendarBody", () => {
       expect(item.innerText).to.equal("日");
     });
 
-    it('The first day of the week in Traditional Chinese is "周日" when not assigning language prop', async () => {
+    it('The first day of the week in Traditional Chinese is "週日" when not assigning language prop', async () => {
       const container = new BaseMobileDateTimeCalendarBody();
       container.language = "zh-TW";
       const el = await fixture(container);
       const item = el.querySelector(
         ".kuc-base-mobile-datetime-calendar-body__table__header",
       ) as HTMLTableSectionElement;
-      expect(item.innerText).to.equal("周日");
+      expect(item.innerText).to.equal("週日");
     });
     it('The first day of the week in Chinese is "周日" when not assigning language prop', async () => {
       const container = new BaseMobileDateTimeCalendarBody();
@@ -60,6 +60,15 @@ describe("BaseMobileDateTimeCalendarBody", () => {
         ".kuc-base-mobile-datetime-calendar-body__table__header",
       ) as HTMLTableSectionElement;
       expect(item.innerText).to.equal("周日");
+    });
+    it('The first day of the week in Spanish is "Do." when not assigning language prop', async () => {
+      const container = new BaseMobileDateTimeCalendarBody();
+      container.language = "es";
+      const el = await fixture(container);
+      const item = el.querySelector(
+        ".kuc-base-mobile-datetime-calendar-body__table__header",
+      ) as HTMLTableSectionElement;
+      expect(item.innerText).to.equal("Do.");
     });
   });
 });

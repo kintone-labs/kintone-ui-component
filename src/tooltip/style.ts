@@ -5,6 +5,10 @@ export const TOOLTIP_CSS = `
   kuc-tooltip:lang(en) * {
     font-family: sans-serif;
   }
+  kuc-tooltip:lang(es),
+  kuc-tooltip:lang(es) * {
+    font-family: sans-serif;
+  }
   kuc-tooltip:lang(ja),
   kuc-tooltip:lang(ja) * {
     font-family: "メイリオ", "Hiragino Kaku Gothic ProN", Meiryo,

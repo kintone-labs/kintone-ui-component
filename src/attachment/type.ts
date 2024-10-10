@@ -15,7 +15,7 @@ export declare type AttachmentProps = {
   requiredIcon?: boolean;
   visible?: boolean;
   files?: FileItem[];
-  language?: "ja" | "en" | "zh" | "zh-TW" | "auto";
+  language?: "ja" | "en" | "zh" | "zh-TW" | "es" | "auto";
 };
 export declare type AttachmentChangeEventDetail = {
   files?: FileItem[];

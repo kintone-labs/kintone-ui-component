@@ -54,5 +54,18 @@ describe("MobileDateTimePicker", () => {
       ) as HTMLInputElement;
       expect(inputDateEl.value).to.equal("2021-12-22");
     });
+
+    it("should be change to es language when assigned by setter", async () => {
+      const container = new MobileDateTimePicker({
+        value: "2021-12-22T09:30:00",
+        language: "en",
+      });
+      container.language = "es";
+      const el = await fixture(container);
+      const inputDateEl = el.querySelector(
+        ".kuc-mobile-base-date__group__input",
+      ) as HTMLInputElement;
+      expect(inputDateEl.value).to.equal("2021-12-22");
+    });
   });
 });

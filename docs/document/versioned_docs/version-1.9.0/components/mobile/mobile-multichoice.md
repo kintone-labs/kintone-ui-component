@@ -8,7 +8,7 @@ sidebar_label: MobileMultiChoice
 
 The MobileMultiChoice component allows the user to select multiple values from multiple options.
 
-import { MobilMultichoiceComponent } from "@site/static/js/samples/mobile/multichoice.js"
+import { MobilMultichoiceComponent } from "@site/static/js/samples/mobile/multichoice.jsx"
 
 <MobilMultichoiceComponent />
 

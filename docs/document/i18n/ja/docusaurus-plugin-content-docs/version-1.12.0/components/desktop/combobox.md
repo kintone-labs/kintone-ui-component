@@ -8,7 +8,7 @@ sidebar_label: Combobox
 
 Combobox は複数選択肢の中から一つの値を検索して選択することができます。
 
-import { ComboboxComponent } from "@site/static/js/samples/desktop/combobox.js"
+import { ComboboxComponent } from "@site/static/js/samples/desktop/combobox.jsx"
 
 <ComboboxComponent />
 

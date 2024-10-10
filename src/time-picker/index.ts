@@ -239,7 +239,7 @@ let exportTimePicker;
     }
 
     private _getLanguage() {
-      const languages = ["en", "ja", "zh", "zh-TW"];
+      const languages = ["en", "ja", "zh", "zh-TW", "es"];
       if (languages.indexOf(this.language) !== -1) return this.language;
 
       if (languages.indexOf(document.documentElement.lang) !== -1)

@@ -8,7 +8,7 @@ sidebar_label: MobileDropdown
 
 The MobileDropdown component allows the user to select one out of several options.
 
-import { MobileDropdownComponent } from "@site/static/js/samples/mobile/dropdown.js"
+import { MobileDropdownComponent } from "@site/static/js/samples/mobile/dropdown.jsx"
 
 <MobileDropdownComponent />
 

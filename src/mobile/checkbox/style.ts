@@ -7,6 +7,10 @@ export const MOBILE_CHECKBOX_CSS = `
       "ヒラギノ角ゴ ProN W3", "ＭＳ Ｐゴシック", "Lucida Grande",
       "Lucida Sans Unicode", Arial, Verdana, sans-serif;
   }
+  kuc-mobile-checkbox:lang(es),
+  kuc-mobile-checkbox:lang(es) * {
+    font-family: sans-serif;
+  }
   kuc-mobile-checkbox:lang(zh),
   kuc-mobile-checkbox:lang(zh) * {
     font-family: "微软雅黑", "Microsoft YaHei", "新宋体", NSimSun, STHeiti,

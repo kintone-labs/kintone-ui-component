@@ -5,6 +5,10 @@ export const NOTIFICATION_CSS = `
   kuc-notification:lang(en) * {
     font-family: sans-serif;
   }
+  kuc-notification:lang(es),
+  kuc-notification:lang(es) * {
+    font-family: sans-serif;
+  }
   kuc-notification:lang(ja),
   kuc-notification:lang(ja) * {
     font-family: "メイリオ", "Hiragino Kaku Gothic ProN", Meiryo,

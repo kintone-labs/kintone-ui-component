@@ -20,6 +20,10 @@ kuc-time-picker:lang(zh-TW) * {
   font-family: "微軟正黑體","Microsoft JhengHei","新宋体",NSimSun,STHeiti,
     Hei,"Heiti SC"
 }
+kuc-time-picker:lang(es),
+kuc-time-picker:lang(es) * {
+  font-family: sans-serif;
+}
 kuc-time-picker {
   font-size: 14px;
   color: var(--kuc-time-picker-input-color, #333333);

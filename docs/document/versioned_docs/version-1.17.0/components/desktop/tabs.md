@@ -8,7 +8,7 @@ sidebar_label: Tabs
 
 The Tabs component allows the user to display multiple tabs that can switch displaying contents.
 
-import { TabsComponent } from "@site/static/js/samples/desktop/tabs.js"
+import { TabsComponent } from "@site/static/js/samples/desktop/tabs.jsx"
 
 <TabsComponent />
 

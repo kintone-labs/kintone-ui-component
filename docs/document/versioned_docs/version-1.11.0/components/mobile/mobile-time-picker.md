@@ -8,7 +8,7 @@ sidebar_label: MobileTimePicker
 
 The MobileTimePicker component allows the user to display a input area and time selection listbox.
 
-import { MobileTimePickerComponent } from "@site/static/js/samples/mobile/time-picker.js"
+import { MobileTimePickerComponent } from "@site/static/js/samples/mobile/time-picker.jsx"
 
 <MobileTimePickerComponent />
 

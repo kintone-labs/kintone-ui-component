@@ -8,7 +8,7 @@ sidebar_label: ReadOnlyTable
 
 The ReadOnlyTable component allows the user to display a read-only mode table.
 
-import { ReadOnlyTableComponent } from "@site/static/js/samples/desktop/readonly-table.js"
+import { ReadOnlyTableComponent } from "@site/static/js/samples/desktop/readonly-table.jsx"
 
 <ReadOnlyTableComponent />
 

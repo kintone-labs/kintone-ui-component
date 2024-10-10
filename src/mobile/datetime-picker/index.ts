@@ -20,6 +20,11 @@ import {
   validateProps,
 } from "../../base/validator";
 
+import "../../base/datetime/mobile-date";
+import "../../base/datetime/mobile-time";
+import "../../base/mobile-error";
+import "../../base/mobile-label";
+
 import { MOBILE_DATETIME_PICKER_CSS } from "./style";
 import {
   MobileDateTimePickerChangeEventDetail,
@@ -282,7 +287,7 @@ let exportMobileDateTimePicker;
     }
 
     private _getLanguage() {
-      const langs = ["en", "ja", "zh", "zh-TW"];
+      const langs = ["en", "ja", "zh", "zh-TW", "es"];
       if (langs.indexOf(this.language) !== -1) return this.language;
 
       if (langs.indexOf(document.documentElement.lang) !== -1)
