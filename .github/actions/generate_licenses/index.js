@@ -76,8 +76,7 @@ if (dependenciesList.length > 0 || devNeedExportDependencies.length > 0) {
   licenseContent += `Licenses for Third-Party Libraries
 
   The following sections contain licensing information for libraries that
-  we have included with the kuc.min.js.
-`;
+  we have included with the kuc.min.js.`;
 }
 
 const formatLicenseContent = (licenseInfo) => {
@@ -94,11 +93,11 @@ const formatLicenseContent = (licenseInfo) => {
 
   return `
 
+
 ${licenseInfo.name}${repository ? `\nrepository: ${repository}` : ""}
 version: ${licenseInfo.version}
 license: ${licenseInfo.license}
-${licenseInfo.licenseText}
-`;
+${licenseInfo.licenseText}`;
 };
 
 dependenciesList.forEach((dependency) => {
