@@ -37,7 +37,7 @@ Base.args = {
   label: "Combobox Label",
   disabled: false,
   requiredIcon: false,
-  placeholder: '',
+  placeholder: "",
   value: "item-2",
   visible: true,
   items: [

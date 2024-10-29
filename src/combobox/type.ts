@@ -18,10 +18,10 @@ export declare type ComboboxProps = {
   error?: string;
   id?: string;
   label?: string;
-  value?: string;
   disabled?: boolean;
   placeholder?: string;
   requiredIcon?: boolean;
+  value?: string;
   visible?: boolean;
   items?: ComboboxItem[];
 };
@@ -31,10 +31,10 @@ export declare class Combobox extends KucBase {
   error: string;
   id: string;
   label: string;
-  value: string;
   disabled: boolean;
   placeholder: string;
   requiredIcon: boolean;
+  value: string;
   visible: boolean;
   items: ComboboxItem[];
   constructor(props?: ComboboxProps);
