@@ -34,10 +34,10 @@ let exportCombobox;
     @property({ type: String }) error = "";
     @property({ type: String, reflect: true, attribute: "id" }) id = "";
     @property({ type: String }) label = "";
-    @property({ type: Boolean }) disabled = false;
     @property({ type: String }) placeholder = "";
-    @property({ type: Boolean }) requiredIcon = false;
     @property({ type: String }) value = "";
+    @property({ type: Boolean }) disabled = false;
+    @property({ type: Boolean }) requiredIcon = false;
     @property({
       type: Boolean,
       attribute: "hidden",

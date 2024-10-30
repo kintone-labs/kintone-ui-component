@@ -28,7 +28,7 @@ Here is a list of properties that can be used for modifying the component:
 | label | string | ""  | Label for the component | Label is not displayed if unspecified or empty |
 | value | string | ""  | Component value | No option will be selected if the value is unspecified<br/>Will result an error if the value is not a string |
 | disabled | boolean | false | Enable/Disable the component | |
-| placeholder | string | '' | Placeholder text displayed in the input field | |
+| placeholder | string | "" | Placeholder text displayed in the input field | |
 | requiredIcon | boolean | false | Show/Hide the required icon | |
 | visible | boolean | true | Show/Hide the component | |
 | items | Array\<[Item](#item)\> | []  | List of options to display | Will result an error if the value of items is not an array |
@@ -106,7 +106,7 @@ const combobox = new Kuc.Combobox({
   id: 'options-id',
   visible: true,
   disabled: false,
-  placeholder: 'Please select a value'
+  placeholder: 'Please select a fruit'
 });
 space.appendChild(combobox);
 
