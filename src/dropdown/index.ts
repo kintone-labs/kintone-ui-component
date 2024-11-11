@@ -625,11 +625,22 @@ let exportDropdown;
     private _setMenuPositionAboveOrBelow() {
       this._menuEl.style.height = "auto";
       this._menuEl.style.bottom = "auto";
-      this._menuEl.style.overflowY = "";
+      this._menuEl.style.overflowY = "scroll";
 
-      const menuHeight = this._menuEl.getBoundingClientRect().height;
+      this._menuEl.style.maxHeight = "none";
+      const menuHeightNoMaxHeight = this._menuEl.getBoundingClientRect().height;
+      this._menuEl.style.maxHeight =
+        "var(--kuc-dropdown-menu-max-height, none)";
+      const menuHeightWithMaxHeight =
+        this._menuEl.getBoundingClientRect().height;
+
       const distanceToggleButton = this._getDistanceToggleButton();
-      if (distanceToggleButton.toBottom >= menuHeight) return;
+      if (distanceToggleButton.toBottom >= menuHeightWithMaxHeight) {
+        if (menuHeightNoMaxHeight === menuHeightWithMaxHeight) {
+          this._menuEl.style.overflowY = "";
+        }
+        return;
+      }
 
       if (distanceToggleButton.toBottom < distanceToggleButton.toTop) {
         // Above
@@ -639,13 +650,16 @@ let exportDropdown;
         this._menuEl.style.bottom = `${
           this._buttonEl.offsetHeight + errorHeight
         }px`;
-        if (distanceToggleButton.toTop >= menuHeight) return;
+        if (distanceToggleButton.toTop >= menuHeightWithMaxHeight) {
+          if (menuHeightNoMaxHeight === menuHeightWithMaxHeight) {
+            this._menuEl.style.overflowY = "";
+          }
+          return;
+        }
         this._menuEl.style.height = `${distanceToggleButton.toTop}px`;
-        this._menuEl.style.overflowY = "scroll";
       } else {
         // Below
         this._menuEl.style.height = `${distanceToggleButton.toBottom}px`;
-        this._menuEl.style.overflowY = "scroll";
       }
     }
 
