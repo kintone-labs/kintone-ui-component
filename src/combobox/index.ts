@@ -81,6 +81,7 @@ let exportCombobox;
     private _disabledItemsEl!: HTMLLIElement[];
 
     private _timeoutID!: number | null;
+    private _previousScrollTop!: number;
 
     private _GUID: string;
 
@@ -98,6 +99,7 @@ let exportCombobox;
       this._GUID = generateGUID();
       const validProps = validateProps(props);
       this._handleClickDocument = this._handleClickDocument.bind(this);
+      this._handleScrollMenu = this._handleScrollMenu.bind(this);
       Object.assign(this, validProps);
     }
 
@@ -217,6 +219,7 @@ let exportCombobox;
 
       await this.updateComplete;
       if (this._selectorVisible) {
+        this._menuEl.addEventListener("scroll", this._handleScrollMenu);
         this._setMenuPosition();
         this._scrollToView();
         if (
@@ -389,6 +392,10 @@ let exportCombobox;
         return;
       }
       this._actionHideMenu();
+    }
+
+    private _handleScrollMenu() {
+      this._previousScrollTop = this._menuEl.scrollTop;
     }
 
     private _handleKeyDownComboboxInput(event: KeyboardEvent) {
@@ -690,7 +697,10 @@ let exportCombobox;
       const ERROR_MARGIN = 16;
       const distanceToggleButton = this._getDistanceToggleButton();
       if (distanceToggleButton.toBottom >= menuHeightWithMaxHeight) {
-        if (menuHeightNoMaxHeight === menuHeightWithMaxHeight) {
+        if (menuHeightNoMaxHeight > menuHeightWithMaxHeight) {
+          this._previousScrollTop &&
+            (this._menuEl.scrollTop = this._previousScrollTop);
+        } else {
           this._menuEl.style.overflowY = "";
         }
         return;
@@ -705,7 +715,10 @@ let exportCombobox;
           this._toggleEl.offsetHeight + errorHeight
         }px`;
         if (distanceToggleButton.toTop >= menuHeightWithMaxHeight) {
-          if (menuHeightNoMaxHeight === menuHeightWithMaxHeight) {
+          if (menuHeightNoMaxHeight > menuHeightWithMaxHeight) {
+            this._previousScrollTop &&
+              (this._menuEl.scrollTop = this._previousScrollTop);
+          } else {
             this._menuEl.style.overflowY = "";
           }
           return;
@@ -715,6 +728,9 @@ let exportCombobox;
         // Below
         this._menuEl.style.height = `${distanceToggleButton.toBottom}px`;
       }
+
+      this._previousScrollTop &&
+        (this._menuEl.scrollTop = this._previousScrollTop);
     }
 
     private _setMenuPositionLeftOrRight() {

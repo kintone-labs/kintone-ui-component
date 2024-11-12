@@ -80,6 +80,7 @@ let exportDropdown;
     private _errorEl!: HTMLDivElement;
 
     private _timeoutID!: number | null;
+    private _previousScrollTop!: number;
 
     private _GUID: string;
 
@@ -93,6 +94,7 @@ let exportDropdown;
       this._GUID = generateGUID();
       const validProps = validateProps(props);
       this._handleClickDocument = this._handleClickDocument.bind(this);
+      this._handleScrollMenu = this._handleScrollMenu.bind(this);
       this._setInitialValue(validProps);
       Object.assign(this, validProps);
     }
@@ -282,6 +284,7 @@ let exportDropdown;
     async updated() {
       await this.updateComplete;
       if (this._selectorVisible) {
+        this._menuEl.addEventListener("scroll", this._handleScrollMenu);
         this._setMenuPosition();
         this._scrollToView();
         setTimeout(() => {
@@ -353,6 +356,10 @@ let exportDropdown;
         return;
       }
       this._actionHideMenu();
+    }
+
+    private _handleScrollMenu() {
+      this._previousScrollTop = this._menuEl.scrollTop;
     }
 
     private _handleKeyDownDropdownToggle(event: KeyboardEvent) {
@@ -636,7 +643,10 @@ let exportDropdown;
 
       const distanceToggleButton = this._getDistanceToggleButton();
       if (distanceToggleButton.toBottom >= menuHeightWithMaxHeight) {
-        if (menuHeightNoMaxHeight === menuHeightWithMaxHeight) {
+        if (menuHeightNoMaxHeight > menuHeightWithMaxHeight) {
+          this._previousScrollTop &&
+            (this._menuEl.scrollTop = this._previousScrollTop);
+        } else {
           this._menuEl.style.overflowY = "";
         }
         return;
@@ -651,7 +661,10 @@ let exportDropdown;
           this._buttonEl.offsetHeight + errorHeight
         }px`;
         if (distanceToggleButton.toTop >= menuHeightWithMaxHeight) {
-          if (menuHeightNoMaxHeight === menuHeightWithMaxHeight) {
+          if (menuHeightNoMaxHeight > menuHeightWithMaxHeight) {
+            this._previousScrollTop &&
+              (this._menuEl.scrollTop = this._previousScrollTop);
+          } else {
             this._menuEl.style.overflowY = "";
           }
           return;
@@ -661,6 +674,9 @@ let exportDropdown;
         // Below
         this._menuEl.style.height = `${distanceToggleButton.toBottom}px`;
       }
+
+      this._previousScrollTop &&
+        (this._menuEl.scrollTop = this._previousScrollTop);
     }
 
     private _setMenuPositionLeftOrRight() {
