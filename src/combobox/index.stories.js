@@ -8,6 +8,7 @@ export default {
     id: { name: "id" },
     label: { name: "label" },
     disabled: { name: "disabled" },
+    placeholder: { name: "placeholder" },
     requiredIcon: { name: "requiredIcon" },
     value: { name: "value" },
     visible: { name: "visible" },
@@ -36,6 +37,7 @@ Base.args = {
   label: "Combobox Label",
   disabled: false,
   requiredIcon: false,
+  placeholder: "",
   value: "item-2",
   visible: true,
   items: [

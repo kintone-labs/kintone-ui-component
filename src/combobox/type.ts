@@ -18,6 +18,7 @@ export declare type ComboboxProps = {
   error?: string;
   id?: string;
   label?: string;
+  placeholder?: string;
   value?: string;
   disabled?: boolean;
   requiredIcon?: boolean;
@@ -30,6 +31,7 @@ export declare class Combobox extends KucBase {
   error: string;
   id: string;
   label: string;
+  placeholder: string;
   value: string;
   disabled: boolean;
   requiredIcon: boolean;

@@ -34,6 +34,7 @@ let exportCombobox;
     @property({ type: String }) error = "";
     @property({ type: String, reflect: true, attribute: "id" }) id = "";
     @property({ type: String }) label = "";
+    @property({ type: String }) placeholder = "";
     @property({ type: String }) value = "";
     @property({ type: Boolean }) disabled = false;
     @property({ type: Boolean }) requiredIcon = false;
@@ -154,6 +155,7 @@ let exportCombobox;
               aria-describedby="${this._GUID}-error"
               aria-expanded="${this._selectorVisible}"
               aria-required="${this.requiredIcon}"
+              placeholder="${this.placeholder}"
               ?disabled="${this.disabled}"
               @change="${this._handleChangeComboboxInput}"
               @input="${this._handleInputComboboxInput}"

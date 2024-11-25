@@ -28,6 +28,7 @@ import { ComboboxComponent } from "@site/static/js/samples/desktop/combobox.jsx"
 | label | string | "" | コンポーネントの説明ラベル | 未指定、あるいは空文字の場合、label は表示されない |
 | value | string | "" | 選択されている値 | value が未指定の場合、何も選択されない<br/>value が文字列以外の場合、エラーを出力する |
 | disabled | boolean | false | コンポーネントの編集可/不可設定 ||
+| placeholder | string | "" | 入力フィールドに表示されるプレースホルダーテキスト | |
 | requiredIcon | boolean | false | コンポーネントの必須アイコン表示/非表示設定 ||
 | visible | boolean | true | コンポーネントの表示/非表示設定 ||
 | items | Array\<[Item](#item)\> | [] | 表示する選択肢一覧 | items が配列以外の場合、エラーを出力する |
@@ -104,7 +105,8 @@ const combobox = new Kuc.Combobox({
   className: 'options-class',
   id: 'options-id',
   visible: true,
-  disabled: false
+  disabled: false,
+  placeholder: 'Please select a fruit'
 });
 space.appendChild(combobox);
 
