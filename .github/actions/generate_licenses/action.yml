@@ -1,0 +1,10 @@
+name: 'Create licenses file'
+description: 'Create licenses file'
+
+outputs:
+  license_file_path:
+    description: 'The file path of the generated LICENSE file'
+
+runs:
+  using: 'node20'
+  main: 'index.js'

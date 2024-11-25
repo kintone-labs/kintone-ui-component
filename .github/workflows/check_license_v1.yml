@@ -1,27 +1,23 @@
 name: Check v1 license
 
 on:
-  push:
-    branches: [master]
   pull_request:
     branches: [master]
-  release:
-    types: [created]
 
 jobs:
-  license_finder:
-    name: Check License On Dependency
+  license_manager:
+    name: Check License
     runs-on: ubuntu-latest
     steps:
-      - name: Set up License Finder
-        run: sudo gem install license_finder
-
       - name: Check out repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - name: Install node
         uses: actions/setup-node@v4
         with:
           node-version: 20
+          cache: 'npm'
       - name: Cache Dependencies
         uses: actions/cache@v4
         with:
@@ -29,32 +25,45 @@ jobs:
           key: npm-${{ hashFiles('package-lock.json') }}
           restore-keys: npm-
 
-      - name: Install Dependencies
-        run: npm ci
-      - name: Check licenses
-        run: license_finder --decisions-file=licensefinder/doc/check-dependency-license.yml
+      - name: Install dependencies
+        run: |
+          npm ci
+          npm install @actions/core @cybozu/license-manager --no-save
 
-  license_finder-dev:
-    name: Check License On Devdependency
-    runs-on: ubuntu-latest
-    steps:
-      - name: Set up License Finder
-        run: sudo gem install license_finder
+      - name: Analyze and extract prod licenses
+        run: |
+          npx license-manager analyze -c ./license-manager/license-manager-prod.config.js
+          npx license-manager extract -c ./license-manager/license-manager-prod.config.js
 
-      - name: Check out repository
-        uses: actions/checkout@v4
-      - name: Install node
-        uses: actions/setup-node@v4
+      - name: Analyze and extract dev licenses
+        run: |
+          npx license-manager analyze -c ./license-manager/license-manager-dev.config.js
+          npx license-manager extract -c ./license-manager/license-manager-dev.config.js
+
+      - name: Generate licenses file
+        id: generate_licenses
+        uses: ./.github/actions/generate_licenses
+      - name: Upload LICENSE
+        uses: actions/upload-artifact@v4
         with:
-          node-version: 20
-      - name: Cache Devdependencies
-        uses: actions/cache@v4
-        with:
-          path: ~/.npm
-          key: npm-${{ hashFiles('package-lock.json') }}
-          restore-keys: npm-
+          name: LICENSE
+          path: ${{ steps.generate_licenses.outputs.license_file_path }}
 
-      - name: Install Dependencies
-        run: npm ci
-      - name: Check dev-licenses
-        run: license_finder --decisions-file=licensefinder/doc/check-devdependency-license.yml
+      - name: Check for modified LICENSE file
+        run: |
+          if git diff --name-only | grep -q 'LICENSE' || git ls-files --others --exclude-standard | grep -q 'LICENSE'; then
+            echo "LICENSE_changed=true" >> $GITHUB_ENV
+          else
+            echo "LICENSE is NOT changed"
+          fi
+
+      - name: Update LICENSE in repository
+        if: env.LICENSE_changed == 'true'
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add LICENSE
+          git commit -m "Update LICENSE file"
+          git push origin HEAD:$GITHUB_HEAD_REF
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
