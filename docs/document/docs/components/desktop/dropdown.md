@@ -89,6 +89,7 @@ Here is a list of properties that can be used for modifying component style:<br/
 | --kuc-dropdown-toggle-color |
 | --kuc-dropdown-menu-color |
 | --kuc-dropdown-menu-color-selected |
+| --kuc-dropdown-menu-max-height |
 
 ---
 ## Sample Code
