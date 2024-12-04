@@ -22,6 +22,8 @@ Here is a list of properties that can be used for modifying the component:
 
 | Name   | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
+| allowScroll | boolean | false | Enable/Disable the tab list scrolling | |
+| allowScrollButtons | boolean | false | Show/Hide the scroll buttons | |
 | className | string | ""  | Component class name | |
 | id | string | ""  | Component id name | |
 | value | string | ""  | Selected value | <li>If the `value` is matched in the `items`, the tab will be displayed even if it’s disabled</li><li>The first visible tab will be displayed in the following cases:<ul><li>If the `value` is not matched in the `items`</li><li>If the `value` is matched in the `items`, but the tab is not visible</li></ul></li><li>Will result an error if the `value` is not string type</li> |
@@ -127,7 +129,9 @@ const tabs = new Kuc.Tabs({
   className: 'options-class',
   id: 'options-id',
   visible: true,
-  borderVisible: true
+  borderVisible: true,
+  allowScroll: true,
+  allowScrollButtons: false
 });
 space.appendChild(tabs);
 

@@ -1,5 +1,5 @@
-import { html, PropertyValues } from "lit";
-import { property, queryAll, state } from "lit/decorators.js";
+import { html, PropertyValues, svg } from "lit";
+import { property, query, queryAll, state } from "lit/decorators.js";
 
 import { ERROR_MESSAGE } from "../base/constant";
 import { unsafeHTMLConverter, visiblePropConverter } from "../base/converter";
@@ -26,6 +26,8 @@ let exportTabs;
     return;
   }
   class KucTabs extends KucBase {
+    @property({ type: Boolean }) allowScroll = false;
+    @property({ type: Boolean }) allowScrollButtons = false;
     @property({ type: String, reflect: true, attribute: "class" }) className =
       "";
     @property({ type: String, reflect: true, attribute: "id" }) id = "";
@@ -42,6 +44,10 @@ let exportTabs;
 
     @queryAll(".kuc-tabs__group__tab-list__tab__button")
     private _tabButtons!: HTMLButtonElement[];
+    @query(".kuc-tabs__group__tab-list-container")
+    private _tabListContainer!: HTMLDivElement;
+    @query(".kuc-tabs__group")
+    private _tabGroup!: HTMLDivElement;
 
     private _GUID: string;
     private _selectedValue: string = "";
@@ -95,15 +101,33 @@ let exportTabs;
     render() {
       return html`
         <div class="kuc-tabs__group">
-          <ul
-            class="kuc-tabs__group__tab-list"
-            role="tablist"
-            @blur="${this._handleBlur}"
-          >
-            ${this.items.map((item, index) =>
-              this._getTabTemplate(item, index),
-            )}
-          </ul>
+          <div class="kuc-tabs__group__tabs-list__root">
+            <div
+              class="kuc-tabs__group__tab-pre-button"
+              @click="${this._handleClickPrevButton}"
+              ?hidden="${!this.allowScroll || !this.allowScrollButtons}"
+            >
+              ${this._getPrevButtonSvgTemplate()}
+            </div>
+            <div class="kuc-tabs__group__tab-list-container">
+              <ul
+                class="kuc-tabs__group__tab-list"
+                role="tablist"
+                @blur="${this._handleBlur}"
+              >
+                ${this.items.map((item, index) =>
+                  this._getTabTemplate(item, index),
+                )}
+              </ul>
+            </div>
+            <div
+              class="kuc-tabs__group__tab-next-button"
+              @click="${this._handleClickNextButton}"
+              ?hidden="${!this.allowScroll || !this.allowScrollButtons}"
+            >
+              ${this._getNextButtonSvgTemplate()}
+            </div>
+          </div>
           <div
             class="kuc-tabs__group__tab-panel"
             ?border-visible="${this.borderVisible}"
@@ -114,6 +138,17 @@ let exportTabs;
           </div>
         </div>
       `;
+    }
+    protected updated() {
+      this._tabGroup.parentElement &&
+        this._tabGroup.parentElement.style.setProperty(
+          "width",
+          this.allowScroll ? "100%" : "auto",
+        );
+      this._tabListContainer.style.setProperty(
+        "overflow-x",
+        this.allowScroll ? "auto" : "visible",
+      );
     }
 
     private _getTabTemplate(item: TabsItem, index: number) {
@@ -155,6 +190,32 @@ let exportTabs;
       >
         ${item.content ? unsafeHTMLConverter(item.content) : ""}
       </div>`;
+    }
+
+    private _getScrollSize() {
+      const containerSize = this._tabListContainer.offsetWidth;
+      let totalSize = 0;
+      this._tabButtons.forEach((tab, i) => {
+        if (totalSize + tab.offsetWidth > containerSize) {
+          // If the first tab is already larger than the container, set the total size to the container size
+          if (i === 0) {
+            totalSize = containerSize;
+          }
+          return;
+        }
+        totalSize += tab.offsetWidth;
+      });
+      return totalSize;
+    }
+
+    private _handleClickPrevButton(event: MouseEvent) {
+      const totalSize = this._getScrollSize();
+      this._tabListContainer.scrollLeft -= totalSize;
+    }
+
+    private _handleClickNextButton(event: MouseEvent) {
+      const totalSize = this._getScrollSize();
+      this._tabListContainer.scrollLeft += totalSize;
     }
 
     private _handleMouseDown(event: Event) {
@@ -263,6 +324,9 @@ let exportTabs;
             ),
           );
           this._tabButtons[this._getCurrentTabIndex(this.value)].focus();
+          this._tabButtons[this._getCurrentTabIndex(this.value)].scrollIntoView(
+            { behavior: "smooth", block: "nearest", inline: "nearest" },
+          );
           break;
         }
         index += increment;
@@ -300,10 +364,49 @@ let exportTabs;
             ),
           );
           this._tabButtons[this._getCurrentTabIndex(this.value)].focus();
+          this._tabButtons[this._getCurrentTabIndex(this.value)].scrollIntoView(
+            { behavior: "smooth", block: "nearest", inline: "nearest" },
+          );
           break;
         }
         index += increment;
       }
+    }
+
+    private _getPrevButtonSvgTemplate() {
+      return svg`
+        <svg
+          width="9"
+          height="15"
+          viewBox="0 0 9 15"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg">
+          <path
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+            d="M1.99061 7.5L9 0.0604158L7.06632 0L0 7.5L7.06632 15L9 14.9396L1.99061 7.5Z"
+            fill="var(--kuc-tabs-tab-color, #888888)"
+          />
+        </svg>
+      `;
+    }
+
+    private _getNextButtonSvgTemplate() {
+      return svg`
+      <svg
+        width="9"
+        height="15"
+        viewBox="0 0 9 15"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg">
+        <path
+          fill-rule="evenodd"
+          clip-rule="evenodd"
+          d="M7.00939 7.5L0 0.0604158L1.93368 0L9 7.5L1.93368 15L0 14.9396L7.00939 7.5Z"
+          fill="var(--kuc-tabs-tab-color, #888888)"
+        />
+      </svg>
+      `;
     }
 
     private _generateEventDetail(newValue: string) {

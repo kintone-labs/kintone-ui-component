@@ -30,12 +30,65 @@ export const TABS_CSS = `
   kuc-tabs[hidden] {
     display: none;
   }
+  .kuc-tabs__group__tabs-list__root {
+    display: flex;
+    padding: 0;
+    align-items: center;
+    padding-top: 16px;
+  }
+  .kuc-tabs__group__tab-pre-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+    border: none;
+    background-color: var(--kuc-tabs-tab-background-color, #d4d7d7);
+    cursor: pointer;
+    height: var(--kuc-tabs-tab-height, 48px);
+    width: 24px;
+    min-width: 24px;
+    margin-right: 1px;
+  }
+  .kuc-tabs__group__tab-pre-button[hidden] {
+    visibility: hidden;
+  }
+  .kuc-tabs__group__tab-next-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+    border: none;
+    background-color: var(--kuc-tabs-tab-background-color, #d4d7d7);
+    cursor: pointer;
+    height: var(--kuc-tabs-tab-height, 48px);
+    width: 24px;
+    min-width: 24px;
+    margin-left: 1px;
+  }
+  .kuc-tabs__group__tab-next-button[hidden] {
+    visibility: hidden;
+  }
+  .kuc-tabs__group__tab-list-container {
+    display: flex;
+    flex-direction: row;
+    padding: 0;
+    overflow-y: hidden;
+  }
   .kuc-tabs__group__tab-list {
     display: flex;
     flex: 1;
-    padding: 16px 16px 0 16px;
     margin: 0;
+    padding: 0px;
     list-style: none;
+  }
+  .kuc-tabs__group__tab-list-container {
+    scrollbar-width: none; /* Firefox */
+  }
+  .kuc-tabs__group__tab-list-container::-webkit-scrollbar {
+    width: 0; /* Safari and Chrome */
+    display: none
   }
   .kuc-tabs__group__tab-list__tab {
     min-height: var(--kuc-tabs-tab-height, 48px);
