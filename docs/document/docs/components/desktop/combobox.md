@@ -76,6 +76,7 @@ Here is a list of properties that can be used for modifying component style:<br/
 | --kuc-combobox-toggle-color |
 | --kuc-combobox-menu-color |
 | --kuc-combobox-menu-color-selected |
+| --kuc-combobox-menu-max-height |
 
 ---
 
