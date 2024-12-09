@@ -11,6 +11,8 @@ import { Tabs } from "./index.ts";
 export default {
   title: "desktop/tabs",
   argTypes: {
+    allowScroll: { name: "allowScroll" },
+    allowScrollButtons: { name: "allowScrollButtons" },
     borderVisible: { name: "borderVisible" },
     className: { name: "className" },
     id: { name: "id" },
@@ -135,11 +137,7 @@ Base.args = {
       visible: true,
       content: `
       
-             
 
-          
-         
-      
       `,
     },
   ],

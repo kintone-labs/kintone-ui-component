@@ -53,6 +53,10 @@ export const TABS_CSS = `
   .kuc-tabs__group__tab-pre-button[hidden] {
     visibility: hidden;
   }
+  .kuc-tabs__group__tab-pre-button[disabled] {
+    background-color: #d7d5d4;
+    cursor: not-allowed;
+  }
   .kuc-tabs__group__tab-next-button {
     display: flex;
     align-items: center;
@@ -69,6 +73,10 @@ export const TABS_CSS = `
   }
   .kuc-tabs__group__tab-next-button[hidden] {
     visibility: hidden;
+  }
+  .kuc-tabs__group__tab-next-button[disabled] {
+    background-color: #d7d5d4;
+    cursor: not-allowed;
   }
   .kuc-tabs__group__tab-list-container {
     display: flex;

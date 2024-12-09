@@ -11,11 +11,11 @@ export declare type TabsItem = {
 };
 
 export declare type TabsProp = {
-  allowScroll?: boolean;
-  allowScrollButtons?: boolean;
   className?: string;
   id?: string;
   value?: string;
+  allowScroll?: boolean;
+  allowScrollButtons?: boolean;
   borderVisible?: boolean;
   visible?: boolean;
   items?: TabsItem[];
@@ -27,11 +27,11 @@ export declare type TabsChangeEventDetail = {
 };
 
 export declare class Tabs extends KucBase {
-  allowScroll: boolean;
-  allowScrollButtons: boolean;
   className: string;
   id: string;
   value: string;
+  allowScroll?: boolean;
+  allowScrollButtons?: boolean;
   borderVisible: boolean;
   visible: boolean;
   items: TabsItem[];

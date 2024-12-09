@@ -22,11 +22,11 @@ Here is a list of properties that can be used for modifying the component:
 
 | Name   | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
-| allowScroll | boolean | false | Enable/Disable the tab list scrolling | |
-| allowScrollButtons | boolean | false | Show/Hide the scroll buttons | |
 | className | string | ""  | Component class name | |
 | id | string | ""  | Component id name | |
 | value | string | ""  | Selected value | <li>If the `value` is matched in the `items`, the tab will be displayed even if it’s disabled</li><li>The first visible tab will be displayed in the following cases:<ul><li>If the `value` is not matched in the `items`</li><li>If the `value` is matched in the `items`, but the tab is not visible</li></ul></li><li>Will result an error if the `value` is not string type</li> |
+| allowScroll | boolean | false | Enable/Disable the tab list scrolling | |
+| allowScrollButtons | boolean | false | Show/Hide the scroll buttons | If allowScroll is false, allowScrollButtons will not work. |
 | borderVisible | boolean | true  | Show/Hide the border surrounding the content | |
 | visible | boolean | true | Show/Hide the component | |
 | items | Array\<[Item](#item)\> | [] | List of tabs to display | Will result an error if the value of `items` is not an array |

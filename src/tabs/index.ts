@@ -26,12 +26,12 @@ let exportTabs;
     return;
   }
   class KucTabs extends KucBase {
-    @property({ type: Boolean }) allowScroll = false;
-    @property({ type: Boolean }) allowScrollButtons = false;
     @property({ type: String, reflect: true, attribute: "class" }) className =
       "";
     @property({ type: String, reflect: true, attribute: "id" }) id = "";
     @property({ type: String }) value = "";
+    @property({ type: Boolean }) allowScroll = false;
+    @property({ type: Boolean }) allowScrollButtons = false;
     @property({ type: Boolean }) borderVisible = true;
     @property({
       type: Boolean,
@@ -48,9 +48,14 @@ let exportTabs;
     private _tabListContainer!: HTMLDivElement;
     @query(".kuc-tabs__group")
     private _tabGroup!: HTMLDivElement;
+    @query(".kuc-tabs__group__tab-pre-button")
+    private _tabPreButton!: HTMLButtonElement;
+    @query(".kuc-tabs__group__tab-next-button")
+    private _tabNextButton!: HTMLButtonElement;
 
     private _GUID: string;
     private _selectedValue: string = "";
+    private _resizeObserver: ResizeObserver | null = null;
 
     @state()
     private _isClick = false;
@@ -102,14 +107,17 @@ let exportTabs;
       return html`
         <div class="kuc-tabs__group">
           <div class="kuc-tabs__group__tabs-list__root">
-            <div
+            <button
               class="kuc-tabs__group__tab-pre-button"
               @click="${this._handleClickPrevButton}"
               ?hidden="${!this.allowScroll || !this.allowScrollButtons}"
             >
               ${this._getPrevButtonSvgTemplate()}
-            </div>
-            <div class="kuc-tabs__group__tab-list-container">
+            </button>
+            <div
+              class="kuc-tabs__group__tab-list-container"
+              @scroll="${this._handleScroll}"
+            >
               <ul
                 class="kuc-tabs__group__tab-list"
                 role="tablist"
@@ -120,13 +128,13 @@ let exportTabs;
                 )}
               </ul>
             </div>
-            <div
+            <button
               class="kuc-tabs__group__tab-next-button"
               @click="${this._handleClickNextButton}"
               ?hidden="${!this.allowScroll || !this.allowScrollButtons}"
             >
               ${this._getNextButtonSvgTemplate()}
-            </div>
+            </button>
           </div>
           <div
             class="kuc-tabs__group__tab-panel"
@@ -149,6 +157,9 @@ let exportTabs;
         "overflow-x",
         this.allowScroll ? "auto" : "visible",
       );
+      if (this.allowScroll && this.allowScrollButtons) {
+        this._updatePreNextButtonState();
+      }
     }
 
     private _getTabTemplate(item: TabsItem, index: number) {
@@ -208,14 +219,62 @@ let exportTabs;
       return totalSize;
     }
 
+    firstUpdated() {
+      window.addEventListener("resize", () => {
+        if (this.allowScroll && this.allowScrollButtons) {
+          this._updatePreNextButtonState();
+        }
+      });
+      this._resizeObserver = new ResizeObserver(() => {
+        if (this.allowScroll && this.allowScrollButtons) {
+          this._updatePreNextButtonState();
+        }
+      });
+      this._resizeObserver.observe(this._tabListContainer);
+    }
+
+    disconnectedCallback() {
+      super.disconnectedCallback();
+      window.removeEventListener("resize", () => {
+        if (this.allowScroll && this.allowScrollButtons) {
+          this._updatePreNextButtonState();
+        }
+      });
+      if (this._resizeObserver) {
+        this._resizeObserver.disconnect();
+        this._resizeObserver = null;
+      }
+    }
+
     private _handleClickPrevButton(event: MouseEvent) {
       const totalSize = this._getScrollSize();
       this._tabListContainer.scrollLeft -= totalSize;
+      this._updatePreNextButtonState();
     }
 
     private _handleClickNextButton(event: MouseEvent) {
       const totalSize = this._getScrollSize();
       this._tabListContainer.scrollLeft += totalSize;
+      this._updatePreNextButtonState();
+    }
+
+    private _handleScroll() {
+      this._updatePreNextButtonState();
+    }
+
+    private _isScrollToLeft() {
+      return this._tabListContainer.scrollLeft === 0;
+    }
+
+    private _isScrollToRight() {
+      const threshold = 2; // To avoid the difference between scrollWidth and scrollLeft
+      const { scrollWidth, scrollLeft, clientWidth } = this._tabListContainer;
+      return Math.abs(scrollWidth - scrollLeft - clientWidth) < threshold;
+    }
+
+    private _updatePreNextButtonState() {
+      this._tabPreButton.disabled = this._isScrollToLeft();
+      this._tabNextButton.disabled = this._isScrollToRight();
     }
 
     private _handleMouseDown(event: Event) {
