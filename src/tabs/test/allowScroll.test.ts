@@ -18,7 +18,7 @@ describe("Tabs", () => {
       expect(container.allowScroll).to.equal(false);
 
       const tabListContainer = el.querySelector(
-        ".kuc-tabs__group__tab-list-container",
+        ".kuc-tabs__group__tabs-container__tab-list-container",
       ) as HTMLDivElement;
       expect(tabListContainer?.style.getPropertyValue("overflow-x")).to.equal(
         "visible",
@@ -38,7 +38,7 @@ describe("Tabs", () => {
       const el = await fixture(container);
 
       const tabListContainer = el.querySelector(
-        ".kuc-tabs__group__tab-list-container",
+        ".kuc-tabs__group__tabs-container__tab-list-container",
       ) as HTMLDivElement;
       expect(tabListContainer?.style.getPropertyValue("overflow-x")).to.equal(
         "auto",
@@ -58,7 +58,7 @@ describe("Tabs", () => {
       await elementUpdated(container);
 
       const tabListContainer = el.querySelector(
-        ".kuc-tabs__group__tab-list-container",
+        ".kuc-tabs__group__tabs-container__tab-list-container",
       ) as HTMLDivElement;
       expect(tabListContainer?.style.getPropertyValue("overflow-x")).to.equal(
         "auto",

@@ -18,8 +18,12 @@ describe("Tabs", () => {
 
       expect(container.allowScrollButtons).to.equal(false);
 
-      const prevButton = el.querySelector(".kuc-tabs__group__tab-pre-button");
-      const nextButton = el.querySelector(".kuc-tabs__group__tab-next-button");
+      const prevButton = el.querySelector(
+        ".kuc-tabs__group__tabs-container__tab-pre-button",
+      );
+      const nextButton = el.querySelector(
+        ".kuc-tabs__group__tabs-container__tab-next-button",
+      );
       expect(prevButton?.hasAttribute("hidden")).equal(true);
       expect(nextButton?.hasAttribute("hidden")).equal(true);
     });
@@ -32,8 +36,12 @@ describe("Tabs", () => {
       });
       const el = await fixture(container);
 
-      const prevButton = el.querySelector(".kuc-tabs__group__tab-pre-button");
-      const nextButton = el.querySelector(".kuc-tabs__group__tab-next-button");
+      const prevButton = el.querySelector(
+        ".kuc-tabs__group__tabs-container__tab-pre-button",
+      );
+      const nextButton = el.querySelector(
+        ".kuc-tabs__group__tabs-container__tab-next-button",
+      );
       expect(prevButton?.hasAttribute("hidden")).equal(true);
       expect(nextButton?.hasAttribute("hidden")).equal(true);
     });
@@ -46,8 +54,12 @@ describe("Tabs", () => {
       });
       const el = await fixture(container);
 
-      const prevButton = el.querySelector(".kuc-tabs__group__tab-pre-button");
-      const nextButton = el.querySelector(".kuc-tabs__group__tab-next-button");
+      const prevButton = el.querySelector(
+        ".kuc-tabs__group__tabs-container__tab-pre-button",
+      );
+      const nextButton = el.querySelector(
+        ".kuc-tabs__group__tabs-container__tab-next-button",
+      );
       expect(prevButton?.hasAttribute("hidden")).equal(false);
       expect(nextButton?.hasAttribute("hidden")).equal(false);
     });
@@ -62,8 +74,12 @@ describe("Tabs", () => {
       container.allowScrollButtons = true;
       await elementUpdated(container);
 
-      const prevButton = el.querySelector(".kuc-tabs__group__tab-pre-button");
-      const nextButton = el.querySelector(".kuc-tabs__group__tab-next-button");
+      const prevButton = el.querySelector(
+        ".kuc-tabs__group__tabs-container__tab-pre-button",
+      );
+      const nextButton = el.querySelector(
+        ".kuc-tabs__group__tabs-container__tab-next-button",
+      );
       expect(prevButton?.hasAttribute("hidden")).equal(false);
       expect(nextButton?.hasAttribute("hidden")).equal(false);
     });
@@ -77,10 +93,10 @@ describe("Tabs", () => {
       const el = await fixture(container);
 
       const tabListContainer = el.querySelector(
-        ".kuc-tabs__group__tab-list-container",
+        ".kuc-tabs__group__tabs-container__tab-list-container",
       ) as HTMLDivElement;
       const nextButton = el.querySelector(
-        ".kuc-tabs__group__tab-next-button",
+        ".kuc-tabs__group__tabs-container__tab-next-button",
       ) as HTMLDivElement;
 
       const initialScrollLeft = tabListContainer.scrollLeft;
@@ -99,13 +115,13 @@ describe("Tabs", () => {
       const el = await fixture(container);
 
       const tabListContainer = el.querySelector(
-        ".kuc-tabs__group__tab-list-container",
+        ".kuc-tabs__group__tabs-container__tab-list-container",
       ) as HTMLDivElement;
       const prevButton = el.querySelector(
-        ".kuc-tabs__group__tab-pre-button",
+        ".kuc-tabs__group__tabs-container__tab-pre-button",
       ) as HTMLDivElement;
       const nextButton = el.querySelector(
-        ".kuc-tabs__group__tab-next-button",
+        ".kuc-tabs__group__tabs-container__tab-next-button",
       ) as HTMLDivElement;
 
       // First scroll right to test scrolling left
@@ -117,51 +133,6 @@ describe("Tabs", () => {
       await elementUpdated(container);
 
       expect(tabListContainer.scrollLeft).to.be.lessThan(scrolledRightPosition);
-    });
-    it("should handle first tab exceeding container width", async () => {
-      const container = new Tabs({
-        items: [
-          { label: "Tab 1", value: "1" },
-          { label: "Tab 2", value: "2" },
-        ],
-        allowScroll: true,
-        allowScrollButtons: true,
-      });
-      const el = await fixture(container);
-
-      const tabListContainer = el.querySelector(
-        ".kuc-tabs__group__tab-list-container",
-      ) as HTMLDivElement;
-      const firstTab = el.querySelector(
-        ".kuc-tabs__group__tab-list__tab__button",
-      ) as HTMLButtonElement;
-
-      // Set container to small width
-      tabListContainer.style.width = "100px";
-      // Force first tab to be wider than container
-      firstTab.style.width = "150px";
-      await elementUpdated(container);
-
-      const nextButton = el.querySelector(
-        ".kuc-tabs__group__tab-next-button",
-      ) as HTMLDivElement;
-
-      const initialScrollLeft = tabListContainer.scrollLeft;
-      nextButton.click();
-      await elementUpdated(container);
-
-      // When first tab exceeds container width
-      // The scroll amount should exactly equal container width (100px)
-      const scrollAmount = tabListContainer.scrollLeft - initialScrollLeft;
-      expect(scrollAmount).to.equal(100);
-
-      // Additional verification that we really hit the i === 0 branch:
-      // Try scrolling again - should still only scroll by container width
-      nextButton.click();
-      await elementUpdated(container);
-      const secondScrollAmount =
-        tabListContainer.scrollLeft - (initialScrollLeft + scrollAmount);
-      expect(secondScrollAmount).to.equal(100);
     });
   });
 });

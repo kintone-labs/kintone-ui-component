@@ -135,10 +135,7 @@ Base.args = {
       value: "tab6",
       disabled: false,
       visible: true,
-      content: `
-      
-
-      `,
+      content: ``,
     },
   ],
   value: "tab1",

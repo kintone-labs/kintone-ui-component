@@ -26,7 +26,7 @@ describe("Tabs", () => {
       const container = new Tabs({ items: items });
       const el = await fixture(container);
       const itemButtons = el.querySelectorAll(
-        ".kuc-tabs__group__tab-list__tab__button ",
+        ".kuc-tabs__group__tabs-container__tab-list-container__tab-list__tab__button ",
       );
       items.forEach((item, index) => {
         expect((itemButtons[index] as HTMLButtonElement).innerText).to.equal(

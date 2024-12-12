@@ -42,15 +42,17 @@ let exportTabs;
     visible = true;
     @property({ type: Array }) items: TabsItem[] = [];
 
-    @queryAll(".kuc-tabs__group__tab-list__tab__button")
+    @queryAll(
+      ".kuc-tabs__group__tabs-container__tab-list-container__tab-list__tab__button",
+    )
     private _tabButtons!: HTMLButtonElement[];
-    @query(".kuc-tabs__group__tab-list-container")
+    @query(".kuc-tabs__group__tabs-container__tab-list-container")
     private _tabListContainer!: HTMLDivElement;
     @query(".kuc-tabs__group")
     private _tabGroup!: HTMLDivElement;
-    @query(".kuc-tabs__group__tab-pre-button")
+    @query(".kuc-tabs__group__tabs-container__tab-pre-button")
     private _tabPreButton!: HTMLButtonElement;
-    @query(".kuc-tabs__group__tab-next-button")
+    @query(".kuc-tabs__group__tabs-container__tab-next-button")
     private _tabNextButton!: HTMLButtonElement;
 
     private _GUID: string;
@@ -106,20 +108,20 @@ let exportTabs;
     render() {
       return html`
         <div class="kuc-tabs__group">
-          <div class="kuc-tabs__group__tabs-list__root">
+          <div class="kuc-tabs__group__tabs-container">
             <button
-              class="kuc-tabs__group__tab-pre-button"
+              class="kuc-tabs__group__tabs-container__tab-pre-button"
               @click="${this._handleClickPrevButton}"
               ?hidden="${!this.allowScroll || !this.allowScrollButtons}"
             >
               ${this._getPrevButtonSvgTemplate()}
             </button>
             <div
-              class="kuc-tabs__group__tab-list-container"
+              class="kuc-tabs__group__tabs-container__tab-list-container"
               @scroll="${this._handleScroll}"
             >
               <ul
-                class="kuc-tabs__group__tab-list"
+                class="kuc-tabs__group__tabs-container__tab-list-container__tab-list"
                 role="tablist"
                 @blur="${this._handleBlur}"
               >
@@ -129,7 +131,7 @@ let exportTabs;
               </ul>
             </div>
             <button
-              class="kuc-tabs__group__tab-next-button"
+              class="kuc-tabs__group__tabs-container__tab-next-button"
               @click="${this._handleClickNextButton}"
               ?hidden="${!this.allowScroll || !this.allowScrollButtons}"
             >
@@ -166,15 +168,16 @@ let exportTabs;
       const isSelected = item.value === this._selectedValue;
       return html`<li
         role="presentation"
-        class="kuc-tabs__group__tab-list__tab"
+        class="kuc-tabs__group__tabs-container__tab-list-container__tab-list__tab"
       >
         <button
           role="tab"
           ?hidden="${item.visible === false}"
           aria-selected="${isSelected}"
           tabindex="${isSelected && !item.disabled ? "0" : "-1"}"
-          class="kuc-tabs__group__tab-list__tab__button ${this._isClick
-            ? "kuc-tabs__group__tab-list__tab__button--click"
+          class="kuc-tabs__group__tabs-container__tab-list-container__tab-list__tab__button ${this
+            ._isClick
+            ? "kuc-tabs__group__tabs-container__tab-list-container__tab-list__tab__button--click"
             : ""}"
           id="${this._GUID}-button-${index}"
           aria-controls="${this._GUID}-tabpanel-${index}"
@@ -203,19 +206,55 @@ let exportTabs;
       </div>`;
     }
 
+    private _getPrevButtonSvgTemplate() {
+      return svg`
+        <svg
+          width="9"
+          height="15"
+          viewBox="0 0 9 15"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg">
+          <path
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+            d="M1.99061 7.5L9 0.0604158L7.06632 0L0 7.5L7.06632 15L9 14.9396L1.99061 7.5Z"
+            fill="var(--kuc-tabs-tab-color, #888888)"
+          />
+        </svg>
+      `;
+    }
+
+    private _getNextButtonSvgTemplate() {
+      return svg`
+      <svg
+        width="9"
+        height="15"
+        viewBox="0 0 9 15"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg">
+        <path
+          fill-rule="evenodd"
+          clip-rule="evenodd"
+          d="M7.00939 7.5L0 0.0604158L1.93368 0L9 7.5L1.93368 15L0 14.9396L7.00939 7.5Z"
+          fill="var(--kuc-tabs-tab-color, #888888)"
+        />
+      </svg>
+      `;
+    }
+
     private _getScrollSize() {
       const containerSize = this._tabListContainer.offsetWidth;
       let totalSize = 0;
-      this._tabButtons.forEach((tab, i) => {
-        if (totalSize + tab.offsetWidth > containerSize) {
-          // If the first tab is already larger than the container, set the total size to the container size
-          if (i === 0) {
-            totalSize = containerSize;
-          }
-          return;
+      if (!this._tabButtons.length) return 0;
+      if (this._tabButtons[0].offsetWidth > containerSize) return containerSize;
+
+      for (const tab of this._tabButtons) {
+        const newSize = totalSize + tab.offsetWidth;
+        if (newSize > containerSize) {
+          break;
         }
-        totalSize += tab.offsetWidth;
-      });
+        totalSize = newSize;
+      }
       return totalSize;
     }
 
@@ -430,42 +469,6 @@ let exportTabs;
         }
         index += increment;
       }
-    }
-
-    private _getPrevButtonSvgTemplate() {
-      return svg`
-        <svg
-          width="9"
-          height="15"
-          viewBox="0 0 9 15"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg">
-          <path
-            fill-rule="evenodd"
-            clip-rule="evenodd"
-            d="M1.99061 7.5L9 0.0604158L7.06632 0L0 7.5L7.06632 15L9 14.9396L1.99061 7.5Z"
-            fill="var(--kuc-tabs-tab-color, #888888)"
-          />
-        </svg>
-      `;
-    }
-
-    private _getNextButtonSvgTemplate() {
-      return svg`
-      <svg
-        width="9"
-        height="15"
-        viewBox="0 0 9 15"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg">
-        <path
-          fill-rule="evenodd"
-          clip-rule="evenodd"
-          d="M7.00939 7.5L0 0.0604158L1.93368 0L9 7.5L1.93368 15L0 14.9396L7.00939 7.5Z"
-          fill="var(--kuc-tabs-tab-color, #888888)"
-        />
-      </svg>
-      `;
     }
 
     private _generateEventDetail(newValue: string) {
