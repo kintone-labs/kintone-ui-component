@@ -215,7 +215,8 @@ let exportTabs;
             fill-rule="evenodd"
             clip-rule="evenodd"
             d="M1.99061 7.5L9 0.0604158L7.06632 0L0 7.5L7.06632 15L9 14.9396L1.99061 7.5Z"
-             fill="${this._isAtStart ? "GrayText" : "#333333"}"
+             fill="#000000"
+             opacity="${this._isAtStart ? 0.2 : 1}"
           />
         </svg>
       `;
@@ -233,7 +234,8 @@ let exportTabs;
           fill-rule="evenodd"
           clip-rule="evenodd"
           d="M7.00939 7.5L0 0.0604158L1.93368 0L9 7.5L1.93368 15L0 14.9396L7.00939 7.5Z"
-          fill="${this._isAtEnd ? "GrayText" : "#333333"}"
+          fill="#000000"
+          opacity="${this._isAtEnd ? 0.2 : 1}"
         />
       </svg>
       `;
