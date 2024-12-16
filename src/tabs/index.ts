@@ -32,8 +32,8 @@ let exportTabs;
       "";
     @property({ type: String, reflect: true, attribute: "id" }) id = "";
     @property({ type: String }) value = "";
-    @property({ type: Boolean }) scrollButtons = false;
     @property({ type: Boolean }) borderVisible = true;
+    @property({ type: Boolean }) scrollButtons = false;
     @property({
       type: Boolean,
       attribute: "hidden",
@@ -157,8 +157,8 @@ let exportTabs;
     protected updated() {
       this._tabGroup.parentElement &&
         this._tabGroup.parentElement.style.setProperty(
-          "width",
-          this.scrollButtons ? "100%" : "auto",
+          "max-width",
+          this.scrollButtons ? "100%" : "",
         );
       this._tabListContainer.style.setProperty(
         "overflow-x",
