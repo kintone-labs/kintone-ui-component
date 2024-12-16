@@ -51,10 +51,6 @@ let exportTabs;
     private _tabListContainer!: HTMLDivElement;
     @query(".kuc-tabs__group")
     private _tabGroup!: HTMLDivElement;
-    @query(".kuc-tabs__group__tabs-container__tab-pre-button")
-    private _tabPreButton!: HTMLButtonElement;
-    @query(".kuc-tabs__group__tabs-container__tab-next-button")
-    private _tabNextButton!: HTMLButtonElement;
 
     private _GUID: string;
     private _selectedValue: string = "";
@@ -118,6 +114,7 @@ let exportTabs;
               class="kuc-tabs__group__tabs-container__tab-pre-button"
               @click="${this._handleClickPrevButton}"
               ?hidden="${!this.scrollButtons}"
+              ?disabled="${this._isAtStart}"
             >
               ${this._getPrevButtonSvgTemplate()}
             </button>
@@ -139,6 +136,7 @@ let exportTabs;
               class="kuc-tabs__group__tabs-container__tab-next-button"
               @click="${this._handleClickNextButton}"
               ?hidden="${!this.scrollButtons}"
+              ?disabled="${this._isAtEnd}"
             >
               ${this._getNextButtonSvgTemplate()}
             </button>
@@ -154,16 +152,10 @@ let exportTabs;
         </div>
       `;
     }
-    protected updated() {
-      this._tabGroup.parentElement &&
-        this._tabGroup.parentElement.style.setProperty(
-          "max-width",
-          this.scrollButtons ? "100%" : "",
-        );
-      this._tabListContainer.style.setProperty(
-        "overflow-x",
-        this.scrollButtons ? "auto" : "visible",
-      );
+    protected updated(changedProperties: PropertyValues) {
+      if (changedProperties.has("scrollButtons")) {
+        this._setScrollStyles();
+      }
       if (this.scrollButtons) {
         this._updatePreNextButtonState();
       }
@@ -275,6 +267,8 @@ let exportTabs;
         }
       });
       this._resizeObserver.observe(this._tabListContainer);
+      this._setScrollStyles();
+      this._scrollToSelectedTab(true);
     }
 
     disconnectedCallback() {
@@ -318,16 +312,25 @@ let exportTabs;
       );
     }
 
+    private _setScrollStyles() {
+      this._tabGroup.parentElement?.style.setProperty(
+        "max-width",
+        this.scrollButtons ? "100%" : "",
+      );
+      this._tabListContainer.style.setProperty(
+        "overflow-x",
+        this.scrollButtons ? "auto" : "visible",
+      );
+    }
+
     private _updatePreNextButtonState() {
       const isAtStart = this._isScrollToLeft();
       const isAtEnd = this._isScrollToRight();
       if (isAtStart !== this._isAtStart) {
         this._isAtStart = isAtStart;
-        this._tabPreButton.disabled = isAtStart;
       }
       if (isAtEnd !== this._isAtEnd) {
         this._isAtEnd = isAtEnd;
-        this._tabNextButton.disabled = isAtEnd;
       }
     }
 
@@ -484,6 +487,25 @@ let exportTabs;
         }
         index += increment;
       }
+    }
+
+    private _scrollToSelectedTab(immediate = false) {
+      if (!this.value || !this._tabButtons.length) return;
+
+      const currentIndex = this._getCurrentTabIndex(this.value);
+      if (currentIndex === -1) return;
+
+      const targetTab = this._tabButtons[currentIndex];
+      if (!targetTab) return;
+
+      if (targetTab.hidden) return;
+      targetTab.scrollIntoView({
+        behavior: immediate ? "auto" : "smooth",
+        block: "nearest",
+        inline: "nearest",
+      });
+
+      this._updatePreNextButtonState();
     }
 
     private _generateEventDetail(newValue: string) {
