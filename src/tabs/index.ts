@@ -25,13 +25,14 @@ let exportTabs;
   if (exportTabs) {
     return;
   }
+  const SCROLL_POSITION_THRESHOLD = 2; // pixels
+
   class KucTabs extends KucBase {
     @property({ type: String, reflect: true, attribute: "class" }) className =
       "";
     @property({ type: String, reflect: true, attribute: "id" }) id = "";
     @property({ type: String }) value = "";
-    @property({ type: Boolean }) allowScroll = false;
-    @property({ type: Boolean }) allowScrollButtons = false;
+    @property({ type: Boolean }) scrollButtons = false;
     @property({ type: Boolean }) borderVisible = true;
     @property({
       type: Boolean,
@@ -61,6 +62,10 @@ let exportTabs;
 
     @state()
     private _isClick = false;
+    @state()
+    private _isAtStart = true;
+    @state()
+    private _isAtEnd = false;
 
     constructor(props?: TabsProp) {
       super();
@@ -112,7 +117,7 @@ let exportTabs;
             <button
               class="kuc-tabs__group__tabs-container__tab-pre-button"
               @click="${this._handleClickPrevButton}"
-              ?hidden="${!this.allowScroll || !this.allowScrollButtons}"
+              ?hidden="${!this.scrollButtons}"
             >
               ${this._getPrevButtonSvgTemplate()}
             </button>
@@ -133,7 +138,7 @@ let exportTabs;
             <button
               class="kuc-tabs__group__tabs-container__tab-next-button"
               @click="${this._handleClickNextButton}"
-              ?hidden="${!this.allowScroll || !this.allowScrollButtons}"
+              ?hidden="${!this.scrollButtons}"
             >
               ${this._getNextButtonSvgTemplate()}
             </button>
@@ -153,13 +158,13 @@ let exportTabs;
       this._tabGroup.parentElement &&
         this._tabGroup.parentElement.style.setProperty(
           "width",
-          this.allowScroll ? "100%" : "auto",
+          this.scrollButtons ? "100%" : "auto",
         );
       this._tabListContainer.style.setProperty(
         "overflow-x",
-        this.allowScroll ? "auto" : "visible",
+        this.scrollButtons ? "auto" : "visible",
       );
-      if (this.allowScroll && this.allowScrollButtons) {
+      if (this.scrollButtons) {
         this._updatePreNextButtonState();
       }
     }
@@ -218,7 +223,7 @@ let exportTabs;
             fill-rule="evenodd"
             clip-rule="evenodd"
             d="M1.99061 7.5L9 0.0604158L7.06632 0L0 7.5L7.06632 15L9 14.9396L1.99061 7.5Z"
-            fill="var(--kuc-tabs-tab-color, #888888)"
+             fill="${this._isAtStart ? "GrayText" : "#333333"}"
           />
         </svg>
       `;
@@ -236,7 +241,7 @@ let exportTabs;
           fill-rule="evenodd"
           clip-rule="evenodd"
           d="M7.00939 7.5L0 0.0604158L1.93368 0L9 7.5L1.93368 15L0 14.9396L7.00939 7.5Z"
-          fill="var(--kuc-tabs-tab-color, #888888)"
+          fill="${this._isAtEnd ? "GrayText" : "#333333"}"
         />
       </svg>
       `;
@@ -260,12 +265,12 @@ let exportTabs;
 
     firstUpdated() {
       window.addEventListener("resize", () => {
-        if (this.allowScroll && this.allowScrollButtons) {
+        if (this.scrollButtons) {
           this._updatePreNextButtonState();
         }
       });
       this._resizeObserver = new ResizeObserver(() => {
-        if (this.allowScroll && this.allowScrollButtons) {
+        if (this.scrollButtons) {
           this._updatePreNextButtonState();
         }
       });
@@ -275,7 +280,7 @@ let exportTabs;
     disconnectedCallback() {
       super.disconnectedCallback();
       window.removeEventListener("resize", () => {
-        if (this.allowScroll && this.allowScrollButtons) {
+        if (this.scrollButtons) {
           this._updatePreNextButtonState();
         }
       });
@@ -306,14 +311,24 @@ let exportTabs;
     }
 
     private _isScrollToRight() {
-      const threshold = 2; // To avoid the difference between scrollWidth and scrollLeft
       const { scrollWidth, scrollLeft, clientWidth } = this._tabListContainer;
-      return Math.abs(scrollWidth - scrollLeft - clientWidth) < threshold;
+      return (
+        Math.abs(scrollWidth - scrollLeft - clientWidth) <
+        SCROLL_POSITION_THRESHOLD
+      );
     }
 
     private _updatePreNextButtonState() {
-      this._tabPreButton.disabled = this._isScrollToLeft();
-      this._tabNextButton.disabled = this._isScrollToRight();
+      const isAtStart = this._isScrollToLeft();
+      const isAtEnd = this._isScrollToRight();
+      if (isAtStart !== this._isAtStart) {
+        this._isAtStart = isAtStart;
+        this._tabPreButton.disabled = isAtStart;
+      }
+      if (isAtEnd !== this._isAtEnd) {
+        this._isAtEnd = isAtEnd;
+        this._tabNextButton.disabled = isAtEnd;
+      }
     }
 
     private _handleMouseDown(event: Event) {

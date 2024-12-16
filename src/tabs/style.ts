@@ -42,8 +42,8 @@ export const TABS_CSS = `
     justify-content: center;
     padding: 0;
     margin: 0;
-    border: none;
-    background-color: var(--kuc-tabs-tab-background-color, #d4d7d7);
+    background-color: white;
+    border: solid 1px #ededed;
     cursor: pointer;
     height: var(--kuc-tabs-tab-height, 48px);
     width: 24px;
@@ -54,7 +54,8 @@ export const TABS_CSS = `
     visibility: hidden;
   }
   .kuc-tabs__group__tabs-container__tab-pre-button[disabled] {
-    background-color: #d7d5d4;
+    border: none;
+    background-color: #d4d7d7;
     cursor: not-allowed;
   }
   .kuc-tabs__group__tabs-container__tab-next-button {
@@ -63,8 +64,8 @@ export const TABS_CSS = `
     justify-content: center;
     padding: 0;
     margin: 0;
-    border: none;
-    background-color: var(--kuc-tabs-tab-background-color, #d4d7d7);
+    border: solid 1px #ededed;
+    background-color: white;
     cursor: pointer;
     height: var(--kuc-tabs-tab-height, 48px);
     width: 24px;
@@ -75,7 +76,8 @@ export const TABS_CSS = `
     visibility: hidden;
   }
   .kuc-tabs__group__tabs-container__tab-next-button[disabled] {
-    background-color: #d7d5d4;
+    border: none;
+    background-color: #d4d7d7;
     cursor: not-allowed;
   }
   .kuc-tabs__group__tabs-container__tab-list-container {

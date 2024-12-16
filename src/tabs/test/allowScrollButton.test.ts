@@ -3,7 +3,7 @@ import { elementUpdated, expect, fixture } from "@open-wc/testing";
 import { Tabs } from "../index";
 
 describe("Tabs", () => {
-  describe("allowScrollButtons", () => {
+  describe("scrollButtons", () => {
     const longItems = [
       { label: "Very Long Tab Label 1", value: "1" },
       { label: "Very Long Tab Label 2", value: "2" },
@@ -12,11 +12,11 @@ describe("Tabs", () => {
       { label: "Very Long Tab Label 5", value: "5" },
     ];
 
-    it("should have default allowScrollButtons property set to false", async () => {
+    it("should have default scrollButtons property set to false", async () => {
       const container = new Tabs({ items: longItems });
       const el = await fixture(container);
 
-      expect(container.allowScrollButtons).to.equal(false);
+      expect(container.scrollButtons).to.equal(false);
 
       const prevButton = el.querySelector(
         ".kuc-tabs__group__tabs-container__tab-pre-button",
@@ -28,50 +28,13 @@ describe("Tabs", () => {
       expect(nextButton?.hasAttribute("hidden")).equal(true);
     });
 
-    it("should not show scroll buttons when only allowScrollButtons is true", async () => {
+    it("should update button visibility when scrollButtons is changed after initialization", async () => {
       const container = new Tabs({
         items: longItems,
-        allowScrollButtons: true,
-        allowScroll: false,
       });
       const el = await fixture(container);
 
-      const prevButton = el.querySelector(
-        ".kuc-tabs__group__tabs-container__tab-pre-button",
-      );
-      const nextButton = el.querySelector(
-        ".kuc-tabs__group__tabs-container__tab-next-button",
-      );
-      expect(prevButton?.hasAttribute("hidden")).equal(true);
-      expect(nextButton?.hasAttribute("hidden")).equal(true);
-    });
-
-    it("should show scroll buttons when both allowScroll and allowScrollButtons are true", async () => {
-      const container = new Tabs({
-        items: longItems,
-        allowScroll: true,
-        allowScrollButtons: true,
-      });
-      const el = await fixture(container);
-
-      const prevButton = el.querySelector(
-        ".kuc-tabs__group__tabs-container__tab-pre-button",
-      );
-      const nextButton = el.querySelector(
-        ".kuc-tabs__group__tabs-container__tab-next-button",
-      );
-      expect(prevButton?.hasAttribute("hidden")).equal(false);
-      expect(nextButton?.hasAttribute("hidden")).equal(false);
-    });
-
-    it("should update button visibility when allowScrollButtons is changed after initialization", async () => {
-      const container = new Tabs({
-        items: longItems,
-        allowScroll: true,
-      });
-      const el = await fixture(container);
-
-      container.allowScrollButtons = true;
+      container.scrollButtons = true;
       await elementUpdated(container);
 
       const prevButton = el.querySelector(
@@ -87,8 +50,7 @@ describe("Tabs", () => {
     it("should scroll right when clicking next button", async () => {
       const container = new Tabs({
         items: longItems,
-        allowScroll: true,
-        allowScrollButtons: true,
+        scrollButtons: true,
       });
       const el = await fixture(container);
 
@@ -109,8 +71,7 @@ describe("Tabs", () => {
     it("should scroll left when clicking prev button", async () => {
       const container = new Tabs({
         items: longItems,
-        allowScroll: true,
-        allowScrollButtons: true,
+        scrollButtons: true,
       });
       const el = await fixture(container);
 

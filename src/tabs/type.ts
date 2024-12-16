@@ -14,8 +14,7 @@ export declare type TabsProp = {
   className?: string;
   id?: string;
   value?: string;
-  allowScroll?: boolean;
-  allowScrollButtons?: boolean;
+  scrollButtons?: boolean;
   borderVisible?: boolean;
   visible?: boolean;
   items?: TabsItem[];
@@ -30,8 +29,7 @@ export declare class Tabs extends KucBase {
   className: string;
   id: string;
   value: string;
-  allowScroll?: boolean;
-  allowScrollButtons?: boolean;
+  scrollButtons?: boolean;
   borderVisible: boolean;
   visible: boolean;
   items: TabsItem[];
