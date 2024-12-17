@@ -115,6 +115,8 @@ let exportTabs;
               @click="${this._handleClickPrevButton}"
               ?hidden="${!this.scrollButtons}"
               ?disabled="${this._isAtStart}"
+              aria-hidden="true"
+              tabindex="-1"
             >
               ${this._getPrevButtonSvgTemplate()}
             </button>
@@ -137,6 +139,8 @@ let exportTabs;
               @click="${this._handleClickNextButton}"
               ?hidden="${!this.scrollButtons}"
               ?disabled="${this._isAtEnd}"
+              aria-hidden="true"
+              tabindex="-1"
             >
               ${this._getNextButtonSvgTemplate()}
             </button>
@@ -215,8 +219,7 @@ let exportTabs;
             fill-rule="evenodd"
             clip-rule="evenodd"
             d="M1.99061 7.5L9 0.0604158L7.06632 0L0 7.5L7.06632 15L9 14.9396L1.99061 7.5Z"
-             fill="#000000"
-             opacity="${this._isAtStart ? 0.2 : 1}"
+            fill="${this._isAtStart ? "GrayText" : "#333333"}"
           />
         </svg>
       `;
@@ -234,8 +237,7 @@ let exportTabs;
           fill-rule="evenodd"
           clip-rule="evenodd"
           d="M7.00939 7.5L0 0.0604158L1.93368 0L9 7.5L1.93368 15L0 14.9396L7.00939 7.5Z"
-          fill="#000000"
-          opacity="${this._isAtEnd ? 0.2 : 1}"
+          fill="${this._isAtEnd ? "GrayText" : "#333333"}"
         />
       </svg>
       `;
