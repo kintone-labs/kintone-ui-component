@@ -42,7 +42,7 @@ export const TABS_CSS = `
     justify-content: center;
     padding: 0;
     margin: 0;
-    background-color: white;
+    background-color: #d4d7d7;
     border: solid 1px #c7cbcb;
     cursor: pointer;
     height: var(--kuc-tabs-tab-height, 48px);
@@ -55,8 +55,6 @@ export const TABS_CSS = `
   }
   .kuc-tabs__group__tabs-container__tab-pre-button[disabled] {
     cursor: not-allowed;
-    background-color: #d4d7d7;
-    border-color: #d4d7d7;
   }
   .kuc-tabs__group__tabs-container__tab-next-button {
     display: flex;
@@ -65,7 +63,7 @@ export const TABS_CSS = `
     padding: 0;
     margin: 0;
     border: solid 1px #c7cbcb;
-    background-color: white;
+    background-color: #d4d7d7;
     cursor: pointer;
     height: var(--kuc-tabs-tab-height, 48px);
     width: 24px;
@@ -77,8 +75,6 @@ export const TABS_CSS = `
   }
   .kuc-tabs__group__tabs-container__tab-next-button[disabled] {
     cursor: not-allowed;
-    background-color: #d4d7d7;
-    border-color: #d4d7d7;
   }
   .kuc-tabs__group__tabs-container__tab-list-container {
     display: flex;
