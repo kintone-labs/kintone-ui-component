@@ -43,7 +43,6 @@ export const TABS_CSS = `
     padding: 0;
     margin: 0;
     background-color: #d4d7d7;
-    border: solid 1px #c7cbcb;
     cursor: pointer;
     height: var(--kuc-tabs-tab-height, 48px);
     width: 24px;
@@ -62,7 +61,6 @@ export const TABS_CSS = `
     justify-content: center;
     padding: 0;
     margin: 0;
-    border: solid 1px #c7cbcb;
     background-color: #d4d7d7;
     cursor: pointer;
     height: var(--kuc-tabs-tab-height, 48px);
