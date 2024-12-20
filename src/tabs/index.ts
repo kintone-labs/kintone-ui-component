@@ -156,12 +156,34 @@ let exportTabs;
         </div>
       `;
     }
+
+    firstUpdated() {
+      window.addEventListener("resize", this._handleResize.bind(this));
+      this._resizeObserver = new ResizeObserver(() => {
+        if (this.scrollButtons) {
+          this._updatePreNextButtonState();
+        }
+      });
+      this._resizeObserver.observe(this._tabListContainer);
+      this._setScrollStyles();
+      this._scrollToSelectedTab(true);
+    }
+
     protected updated(changedProperties: PropertyValues) {
       if (changedProperties.has("scrollButtons")) {
         this._setScrollStyles();
       }
       if (this.scrollButtons) {
         this._updatePreNextButtonState();
+      }
+    }
+
+    disconnectedCallback() {
+      super.disconnectedCallback();
+      window.removeEventListener("resize", this._handleResize.bind(this));
+      if (this._resizeObserver) {
+        this._resizeObserver.disconnect();
+        this._resizeObserver = null;
       }
     }
 
@@ -259,32 +281,9 @@ let exportTabs;
       return totalSize;
     }
 
-    firstUpdated() {
-      window.addEventListener("resize", () => {
-        if (this.scrollButtons) {
-          this._updatePreNextButtonState();
-        }
-      });
-      this._resizeObserver = new ResizeObserver(() => {
-        if (this.scrollButtons) {
-          this._updatePreNextButtonState();
-        }
-      });
-      this._resizeObserver.observe(this._tabListContainer);
-      this._setScrollStyles();
-      this._scrollToSelectedTab(true);
-    }
-
-    disconnectedCallback() {
-      super.disconnectedCallback();
-      window.removeEventListener("resize", () => {
-        if (this.scrollButtons) {
-          this._updatePreNextButtonState();
-        }
-      });
-      if (this._resizeObserver) {
-        this._resizeObserver.disconnect();
-        this._resizeObserver = null;
+    private _handleResize() {
+      if (this.scrollButtons) {
+        this._updatePreNextButtonState();
       }
     }
 

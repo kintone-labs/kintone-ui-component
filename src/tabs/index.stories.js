@@ -136,6 +136,6 @@ Base.args = {
       content: ``,
     },
   ],
-  value: "tab2",
+  value: "tab1",
   visible: true,
 };
