@@ -76,6 +76,7 @@ toggle は、Combobox の入力欄とボタンの領域を示します。
 | --kuc-combobox-toggle-color |
 | --kuc-combobox-menu-color |
 | --kuc-combobox-menu-color-selected |
+| --kuc-combobox-menu-max-height |
 
 ---
 
