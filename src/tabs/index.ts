@@ -265,38 +265,86 @@ let exportTabs;
       `;
     }
 
-    private _getScrollSize() {
-      const containerSize = this._tabListContainer.offsetWidth;
-      let totalSize = 0;
-      if (!this._tabButtons.length) return 0;
-      if (this._tabButtons[0].offsetWidth > containerSize) return containerSize;
+    private _getVisibleTab(
+      direction: "next" | "prev",
+      currentTab: HTMLButtonElement,
+    ) {
+      const tabArray = Array.from(this._tabButtons);
+      const currentIndex = tabArray.indexOf(currentTab);
+      const increment = direction === "next" ? 1 : -1;
+      const endIndex = direction === "next" ? tabArray.length : -1;
 
-      for (const tab of this._tabButtons) {
-        const newSize = totalSize + tab.offsetWidth;
-        if (newSize > containerSize) {
-          break;
+      for (let i = currentIndex + increment; i !== endIndex; i += increment) {
+        if (!tabArray[i].hidden) {
+          return tabArray[i];
         }
-        totalSize = newSize;
       }
-      return totalSize;
+      return null;
+    }
+
+    private _handleTabScroll(direction: "next" | "prev") {
+      const containerRect = this._tabListContainer.getBoundingClientRect();
+      const tabArray = Array.from(this._tabButtons);
+
+      const findMethod =
+        direction === "next"
+          ? (arr: HTMLButtonElement[]) =>
+              arr.reverse().find((tab) => {
+                const rect = tab.getBoundingClientRect();
+                return !(
+                  rect.right <= containerRect.left ||
+                  rect.left >= containerRect.right
+                );
+              })
+          : (arr: HTMLButtonElement[]) =>
+              arr.find((tab) => {
+                const rect = tab.getBoundingClientRect();
+                return !(
+                  rect.right <= containerRect.left ||
+                  rect.left >= containerRect.right
+                );
+              });
+
+      const targetTab = findMethod(tabArray);
+      if (!targetTab) return;
+
+      const tabRect = targetTab.getBoundingClientRect();
+      const threshold =
+        direction === "next"
+          ? tabRect.right > containerRect.right + SCROLL_POSITION_THRESHOLD
+          : tabRect.left < containerRect.left - SCROLL_POSITION_THRESHOLD;
+
+      if (threshold) {
+        targetTab.scrollIntoView({
+          behavior: "smooth",
+          block: "nearest",
+          inline: direction === "next" ? "end" : "start",
+        });
+      } else {
+        const nextTab = this._getVisibleTab(direction, targetTab);
+        if (nextTab) {
+          nextTab.scrollIntoView({
+            behavior: "smooth",
+            block: "nearest",
+            inline: direction === "next" ? "end" : "start",
+          });
+        }
+      }
+      this._updatePreNextButtonState();
+    }
+
+    private _handleClickNextButton(event: MouseEvent) {
+      this._handleTabScroll("next");
+    }
+
+    private _handleClickPrevButton(event: MouseEvent) {
+      this._handleTabScroll("prev");
     }
 
     private _handleResize() {
       if (this.scrollButtons) {
         this._updatePreNextButtonState();
       }
-    }
-
-    private _handleClickPrevButton(event: MouseEvent) {
-      const totalSize = this._getScrollSize();
-      this._tabListContainer.scrollLeft -= totalSize;
-      this._updatePreNextButtonState();
-    }
-
-    private _handleClickNextButton(event: MouseEvent) {
-      const totalSize = this._getScrollSize();
-      this._tabListContainer.scrollLeft += totalSize;
-      this._updatePreNextButtonState();
     }
 
     private _handleScroll() {
