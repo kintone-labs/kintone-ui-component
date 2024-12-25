@@ -68,6 +68,7 @@ let exportTabs;
       this._GUID = generateGUID();
       const validProps = validateProps(props);
       Object.assign(this, validProps);
+      this._handleResize = this._handleResize.bind(this);
     }
 
     shouldUpdate(changedProperties: PropertyValues): boolean {
@@ -158,7 +159,7 @@ let exportTabs;
     }
 
     firstUpdated() {
-      window.addEventListener("resize", this._handleResize.bind(this));
+      window.addEventListener("resize", this._handleResize);
       this._resizeObserver = new ResizeObserver(() => {
         if (this.scrollButtons) {
           this._updatePreNextButtonState();
@@ -180,7 +181,7 @@ let exportTabs;
 
     disconnectedCallback() {
       super.disconnectedCallback();
-      window.removeEventListener("resize", this._handleResize.bind(this));
+      window.removeEventListener("resize", this._handleResize);
       if (this._resizeObserver) {
         this._resizeObserver.disconnect();
         this._resizeObserver = null;
@@ -343,12 +344,12 @@ let exportTabs;
       });
     }
 
-    private _handleClickNextButton(event: MouseEvent) {
-      this._handleTabScroll("next");
-    }
-
     private _handleClickPrevButton(event: MouseEvent) {
       this._handleTabScroll("prev");
+    }
+
+    private _handleClickNextButton(event: MouseEvent) {
+      this._handleTabScroll("next");
     }
 
     private _handleResize() {
