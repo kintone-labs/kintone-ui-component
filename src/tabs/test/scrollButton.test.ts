@@ -57,12 +57,22 @@ describe("Tabs", () => {
       const tabListContainer = el.querySelector(
         ".kuc-tabs__group__tabs-container__tab-list-container",
       ) as HTMLDivElement;
+      tabListContainer.style.width = "300px";
+
       const nextButton = el.querySelector(
         ".kuc-tabs__group__tabs-container__tab-next-button",
-      ) as HTMLDivElement;
+      ) as HTMLButtonElement;
 
+      // Store initial scroll position
       const initialScrollLeft = tabListContainer.scrollLeft;
+
+      // Click next button
       nextButton.click();
+      // Wait for scroll to complete
+      await new Promise((resolve) => setTimeout(resolve, 500));
+      await elementUpdated(container);
+      nextButton.click();
+      await new Promise((resolve) => setTimeout(resolve, 500));
       await elementUpdated(container);
 
       expect(tabListContainer.scrollLeft).to.be.greaterThan(initialScrollLeft);
@@ -78,22 +88,74 @@ describe("Tabs", () => {
       const tabListContainer = el.querySelector(
         ".kuc-tabs__group__tabs-container__tab-list-container",
       ) as HTMLDivElement;
+
       const prevButton = el.querySelector(
         ".kuc-tabs__group__tabs-container__tab-pre-button",
+      ) as HTMLButtonElement;
+
+      // First scroll right to enable prev button
+      tabListContainer.scrollLeft = 100;
+      tabListContainer.dispatchEvent(new Event("scroll"));
+      await elementUpdated(container);
+
+      // Store position before clicking prev
+      const scrollLeftBeforeClick = tabListContainer.scrollLeft;
+
+      // Click prev button
+      prevButton.click();
+
+      // Wait for scroll to complete
+      await new Promise((resolve) => setTimeout(resolve, 100));
+      await elementUpdated(container);
+
+      expect(tabListContainer.scrollLeft).to.be.lessThan(scrollLeftBeforeClick);
+    });
+
+    it("should disable prev button when scrolled to start", async () => {
+      const container = new Tabs({
+        items: longItems,
+        scrollButtons: true,
+      });
+      const el = await fixture(container);
+
+      const tabListContainer = el.querySelector(
+        ".kuc-tabs__group__tabs-container__tab-list-container",
       ) as HTMLDivElement;
+
+      const prevButton = el.querySelector(
+        ".kuc-tabs__group__tabs-container__tab-pre-button",
+      ) as HTMLButtonElement;
+
+      // Scroll to start
+      tabListContainer.scrollLeft = 0;
+      tabListContainer.dispatchEvent(new Event("scroll"));
+      await elementUpdated(container);
+
+      expect(prevButton.disabled).to.equal(true);
+    });
+
+    it("should disabled next button when scrolled to end", async () => {
+      const container = new Tabs({
+        items: longItems,
+        scrollButtons: true,
+      });
+      const el = await fixture(container);
+
+      const tabListContainer = el.querySelector(
+        ".kuc-tabs__group__tabs-container__tab-list-container",
+      ) as HTMLDivElement;
+
       const nextButton = el.querySelector(
         ".kuc-tabs__group__tabs-container__tab-next-button",
-      ) as HTMLDivElement;
+      ) as HTMLButtonElement;
 
-      // First scroll right to test scrolling left
-      nextButton.click();
-      await elementUpdated(container);
-      const scrolledRightPosition = tabListContainer.scrollLeft;
-
-      prevButton.click();
+      // Scroll to end
+      tabListContainer.scrollLeft =
+        tabListContainer.scrollWidth - tabListContainer.clientWidth;
+      tabListContainer.dispatchEvent(new Event("scroll"));
       await elementUpdated(container);
 
-      expect(tabListContainer.scrollLeft).to.be.lessThan(scrolledRightPosition);
+      expect(nextButton).to.have.attribute("disabled");
     });
   });
 });

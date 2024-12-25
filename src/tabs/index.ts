@@ -283,54 +283,64 @@ let exportTabs;
     }
 
     private _handleTabScroll(direction: "next" | "prev") {
+      const targetTab = this._findVisibleTab(direction);
+      if (!targetTab) return;
+
+      const shouldScrollToFullyVisible = this._isTabPartiallyVisible(
+        targetTab,
+        direction,
+      );
+
+      const tabToScroll = shouldScrollToFullyVisible
+        ? targetTab
+        : this._getVisibleTab(direction, targetTab);
+
+      if (tabToScroll) {
+        this._scrollTabIntoView(tabToScroll, direction);
+      }
+
+      this._updatePreNextButtonState();
+    }
+
+    private _findVisibleTab(
+      direction: "next" | "prev",
+    ): HTMLButtonElement | undefined {
       const containerRect = this._tabListContainer.getBoundingClientRect();
       const tabArray = Array.from(this._tabButtons);
 
-      const findMethod =
-        direction === "next"
-          ? (arr: HTMLButtonElement[]) =>
-              arr.reverse().find((tab) => {
-                const rect = tab.getBoundingClientRect();
-                return !(
-                  rect.right <= containerRect.left ||
-                  rect.left >= containerRect.right
-                );
-              })
-          : (arr: HTMLButtonElement[]) =>
-              arr.find((tab) => {
-                const rect = tab.getBoundingClientRect();
-                return !(
-                  rect.right <= containerRect.left ||
-                  rect.left >= containerRect.right
-                );
-              });
+      const isTabVisible = (tab: HTMLButtonElement) => {
+        const rect = tab.getBoundingClientRect();
+        return !(
+          rect.right <= containerRect.left || rect.left >= containerRect.right
+        );
+      };
 
-      const targetTab = findMethod(tabArray);
-      if (!targetTab) return;
+      return direction === "next"
+        ? tabArray.reverse().find(isTabVisible)
+        : tabArray.find(isTabVisible);
+    }
 
-      const tabRect = targetTab.getBoundingClientRect();
-      const threshold =
-        direction === "next"
-          ? tabRect.right > containerRect.right + SCROLL_POSITION_THRESHOLD
-          : tabRect.left < containerRect.left - SCROLL_POSITION_THRESHOLD;
+    private _isTabPartiallyVisible(
+      tab: HTMLButtonElement,
+      direction: "next" | "prev",
+    ): boolean {
+      const containerRect = this._tabListContainer.getBoundingClientRect();
+      const tabRect = tab.getBoundingClientRect();
 
-      if (threshold) {
-        targetTab.scrollIntoView({
-          behavior: "smooth",
-          block: "nearest",
-          inline: direction === "next" ? "end" : "start",
-        });
-      } else {
-        const nextTab = this._getVisibleTab(direction, targetTab);
-        if (nextTab) {
-          nextTab.scrollIntoView({
-            behavior: "smooth",
-            block: "nearest",
-            inline: direction === "next" ? "end" : "start",
-          });
-        }
-      }
-      this._updatePreNextButtonState();
+      return direction === "next"
+        ? tabRect.right > containerRect.right + SCROLL_POSITION_THRESHOLD
+        : tabRect.left < containerRect.left - SCROLL_POSITION_THRESHOLD;
+    }
+
+    private _scrollTabIntoView(
+      tab: HTMLButtonElement,
+      direction: "next" | "prev",
+    ) {
+      tab.scrollIntoView({
+        behavior: "smooth",
+        block: "nearest",
+        inline: direction === "next" ? "end" : "start",
+      });
     }
 
     private _handleClickNextButton(event: MouseEvent) {
