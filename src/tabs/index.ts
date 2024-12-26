@@ -396,10 +396,12 @@ let exportTabs;
     }
 
     private _handleMouseDownPrevButton(event: MouseEvent) {
+      event.preventDefault();
       this._handleTabScroll("prev");
     }
 
     private _handleMouseDownNextButton(event: MouseEvent) {
+      event.preventDefault();
       this._handleTabScroll("next");
     }
 
