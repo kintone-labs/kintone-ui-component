@@ -113,7 +113,7 @@ let exportTabs;
           <div class="kuc-tabs__group__tabs-container">
             <button
               class="kuc-tabs__group__tabs-container__tab-pre-button"
-              @click="${this._handleClickPrevButton}"
+              @mousedown="${this._handleMouseDownPrevButton}"
               ?hidden="${!this.scrollButtons}"
               ?disabled="${this._isAtStart}"
               aria-hidden="true"
@@ -137,7 +137,7 @@ let exportTabs;
             </div>
             <button
               class="kuc-tabs__group__tabs-container__tab-next-button"
-              @click="${this._handleClickNextButton}"
+              @mousedown="${this._handleMouseDownNextButton}"
               ?hidden="${!this.scrollButtons}"
               ?disabled="${this._isAtEnd}"
               aria-hidden="true"
@@ -297,7 +297,10 @@ let exportTabs;
         : this._getVisibleTab(direction, targetTab);
 
       if (tabToScroll) {
-        this._scrollTabIntoView(tabToScroll, direction);
+        this._scrollTab(tabToScroll, {
+          direction,
+          mode: "edge",
+        });
       }
 
       this._updatePreNextButtonState();
@@ -333,22 +336,70 @@ let exportTabs;
         : tabRect.left < containerRect.left - SCROLL_POSITION_THRESHOLD;
     }
 
-    private _scrollTabIntoView(
+    private _calculateScrollPosition(
       tab: HTMLButtonElement,
-      direction: "next" | "prev",
+      options: {
+        direction?: "next" | "prev";
+        mode: "visible" | "edge";
+        immediate?: boolean;
+      },
+    ): number {
+      const { direction, mode } = options;
+      const containerRect = this._tabListContainer.getBoundingClientRect();
+      const tabRect = tab.getBoundingClientRect();
+      let scrollLeft = this._tabListContainer.scrollLeft;
+
+      if (mode === "edge" && direction) {
+        scrollLeft +=
+          direction === "next"
+            ? tabRect.right - containerRect.right
+            : tabRect.left - containerRect.left;
+      } else {
+        const isTabOverflow = tabRect.width > containerRect.width;
+
+        if (isTabOverflow && direction) {
+          scrollLeft +=
+            direction === "next"
+              ? tabRect.left - containerRect.left
+              : tabRect.right - containerRect.right;
+        } else if (tabRect.left < containerRect.left) {
+          scrollLeft += tabRect.left - containerRect.left;
+        } else if (tabRect.right > containerRect.right) {
+          scrollLeft += tabRect.right - containerRect.right;
+        }
+      }
+
+      return Math.max(
+        0,
+        Math.min(
+          scrollLeft,
+          this._tabListContainer.scrollWidth -
+            this._tabListContainer.clientWidth,
+        ),
+      );
+    }
+
+    private _scrollTab(
+      tab: HTMLButtonElement,
+      options: {
+        direction?: "next" | "prev";
+        mode: "visible" | "edge";
+        immediate?: boolean;
+      },
     ) {
-      tab.scrollIntoView({
-        behavior: "smooth",
-        block: "nearest",
-        inline: direction === "next" ? "end" : "start",
+      const scrollLeft = this._calculateScrollPosition(tab, options);
+
+      this._tabListContainer.scrollTo({
+        left: scrollLeft,
+        behavior: options.immediate ? "auto" : "smooth",
       });
     }
 
-    private _handleClickPrevButton(event: MouseEvent) {
+    private _handleMouseDownPrevButton(event: MouseEvent) {
       this._handleTabScroll("prev");
     }
 
-    private _handleClickNextButton(event: MouseEvent) {
+    private _handleMouseDownNextButton(event: MouseEvent) {
       this._handleTabScroll("next");
     }
 
@@ -502,8 +553,11 @@ let exportTabs;
             ),
           );
           this._tabButtons[this._getCurrentTabIndex(this.value)].focus();
-          this._tabButtons[this._getCurrentTabIndex(this.value)].scrollIntoView(
-            { behavior: "smooth", block: "nearest", inline: "nearest" },
+          this._scrollTab(
+            this._tabButtons[this._getCurrentTabIndex(this.value)],
+            {
+              mode: "visible",
+            },
           );
           break;
         }
@@ -542,8 +596,12 @@ let exportTabs;
             ),
           );
           this._tabButtons[this._getCurrentTabIndex(this.value)].focus();
-          this._tabButtons[this._getCurrentTabIndex(this.value)].scrollIntoView(
-            { behavior: "smooth", block: "nearest", inline: "nearest" },
+          this._scrollTab(
+            this._tabButtons[this._getCurrentTabIndex(this.value)],
+            {
+              mode: "visible",
+              direction,
+            },
           );
           break;
         }
@@ -561,10 +619,9 @@ let exportTabs;
       if (!targetTab) return;
 
       if (targetTab.hidden) return;
-      targetTab.scrollIntoView({
-        behavior: immediate ? "auto" : "smooth",
-        block: "nearest",
-        inline: "nearest",
+      this._scrollTab(targetTab, {
+        mode: "visible",
+        immediate,
       });
 
       this._updatePreNextButtonState();

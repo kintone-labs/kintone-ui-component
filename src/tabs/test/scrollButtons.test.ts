@@ -47,7 +47,7 @@ describe("Tabs", () => {
       expect(nextButton?.hasAttribute("hidden")).equal(false);
     });
 
-    it("should scroll right when clicking next button", async () => {
+    it("should scroll right when mousedown next button", async () => {
       const container = new Tabs({
         items: longItems,
         scrollButtons: true,
@@ -66,19 +66,18 @@ describe("Tabs", () => {
       // Store initial scroll position
       const initialScrollLeft = tabListContainer.scrollLeft;
 
-      // Click next button
-      nextButton.click();
+      nextButton.dispatchEvent(new Event("mousedown"));
       // Wait for scroll to complete
       await new Promise((resolve) => setTimeout(resolve, 500));
       await elementUpdated(container);
-      nextButton.click();
+      nextButton.dispatchEvent(new Event("mousedown"));
       await new Promise((resolve) => setTimeout(resolve, 500));
       await elementUpdated(container);
 
       expect(tabListContainer.scrollLeft).to.be.greaterThan(initialScrollLeft);
     });
 
-    it("should scroll left when clicking prev button", async () => {
+    it("should scroll left when mousedown prev button", async () => {
       const container = new Tabs({
         items: longItems,
         scrollButtons: true,
@@ -98,11 +97,10 @@ describe("Tabs", () => {
       tabListContainer.dispatchEvent(new Event("scroll"));
       await elementUpdated(container);
 
-      // Store position before clicking prev
+      // Store position before mousedown prev
       const scrollLeftBeforeClick = tabListContainer.scrollLeft;
 
-      // Click prev button
-      prevButton.click();
+      prevButton.dispatchEvent(new Event("mousedown"));
 
       // Wait for scroll to complete
       await new Promise((resolve) => setTimeout(resolve, 100));
