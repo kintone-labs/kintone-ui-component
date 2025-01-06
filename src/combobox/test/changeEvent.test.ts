@@ -9,7 +9,7 @@ const initItems = [
 ];
 
 describe("Combobox", () => {
-  it("should be triggered when mousedown on the item", async () => {
+  it("should be triggered when click on the item", async () => {
     let triggeredEvent: any = null;
     const container = new Combobox({
       items: initItems,
@@ -30,14 +30,14 @@ describe("Combobox", () => {
     const itemsEl = el.querySelectorAll(
       ".kuc-combobox__group__select-menu__item",
     );
-    (itemsEl[2] as HTMLDivElement).dispatchEvent(new Event("mousedown"));
+    (itemsEl[2] as HTMLDivElement).dispatchEvent(new Event("click"));
 
     expect(triggeredEvent.type).to.equal("change");
     expect(triggeredEvent.detail.value).to.equal(initItems[2].value);
     expect(triggeredEvent.detail.oldValue).to.equal(initItems[1].value);
   });
 
-  it("should not be triggered when mousedown on the item as same as the selected item", async () => {
+  it("should not be triggered when click on the item as same as the selected item", async () => {
     let triggeredEvent: any = null;
     const container = new Combobox({
       items: initItems,
@@ -58,11 +58,11 @@ describe("Combobox", () => {
     const itemsEl = el.querySelectorAll(
       ".kuc-combobox__group__select-menu__item",
     );
-    (itemsEl[1] as HTMLDivElement).dispatchEvent(new Event("mousedown"));
+    (itemsEl[1] as HTMLDivElement).dispatchEvent(new Event("click"));
     expect(triggeredEvent).to.equal(null);
   });
 
-  it("should not be triggered when mousedown on the disabled item", async () => {
+  it("should not be triggered when click on the disabled item", async () => {
     let triggeredEvent: any = null;
     const container = new Combobox({
       items: [
@@ -84,7 +84,7 @@ describe("Combobox", () => {
     const itemsEl = el.querySelectorAll(
       ".kuc-combobox__group__select-menu__item",
     );
-    (itemsEl[3] as HTMLDivElement).dispatchEvent(new Event("mousedown"));
+    (itemsEl[3] as HTMLDivElement).dispatchEvent(new Event("click"));
     expect(triggeredEvent).to.equal(null);
   });
 });
