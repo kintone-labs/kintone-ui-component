@@ -58,16 +58,16 @@ jobs:
           fi
           rm -f licenses-prod.json licenses-dev.json
 
-      - name: Update LICENSE in repository
-        if: env.LICENSE_changed == 'true'
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add LICENSE
-          git commit -m "Update LICENSE file"
-          git push origin HEAD:refs/heads/auto-update-LICENSE
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
+#      - name: Update LICENSE in repository
+#        if: env.LICENSE_changed == 'true'
+#        run: |
+#          git config --global user.name "github-actions[bot]"
+#          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+#          git add LICENSE
+#          git commit -m "Update LICENSE file"
+#          git push origin HEAD:refs/heads/auto-update-LICENSE
+#        env:
+#          GITHUB_TOKEN: ${{ github.token }}
 
       - name: Update LICENSE and Create Pull Request
         if: env.LICENSE_changed == 'true'
@@ -75,6 +75,7 @@ jobs:
         uses: peter-evans/create-pull-request@v7
         with:
           token: ${{ github.token }}
+          commit-message: "Auto Update LICENSE file"
           branch: auto-update-LICENSE
           base: ${{ github.head_ref }}
           title: Auto Update LICENSE file
