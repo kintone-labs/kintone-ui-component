@@ -1,0 +1,762 @@
+[
+  {
+    "name": "@webcomponents/webcomponentsjs",
+    "version": "2.8.0",
+    "publishConfig": {
+      "access": "public"
+    },
+    "description": "Web Components Polyfills",
+    "license": "BSD-3-Clause",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/webcomponents/polyfills.git",
+      "directory": "packages/webcomponentsjs"
+    },
+    "author": "The Polymer Project Authors (https://polymer.github.io/AUTHORS.txt)",
+    "homepage": "https://github.com/webcomponents/polyfills/tree/master/packages/webcomponentsjs",
+    "bugs": "https://github.com/webcomponents/polyfills/issues?q=is%3Aissue+is%3Aopen+label%3A\"Package%3A+webcomponentsjs\"",
+    "main": "webcomponents-bundle.js",
+    "scripts": {
+      "build": "tsc && gulp",
+      "build:watch": "chokidar --initial --follow-symlinks 'src/entrypoints/**/*.js' 'ts_src/**/*.ts' 'node_modules/@webcomponents/**/*.js' -c 'npm run build'",
+      "clean": "gulp clean",
+      "prepack": "npm run build",
+      "regen-package-lock": "rm -rf node_modules package-lock.json; npm install"
+    },
+    "files": [
+      "bundles/**/*",
+      "CHANGELOG.md",
+      "custom-elements-es5-adapter.js",
+      "src/**/*.js",
+      "webcomponents-bundle.d.ts",
+      "webcomponents-bundle.js*",
+      "webcomponents-loader.js"
+    ],
+    "keywords": [
+      "webcomponents",
+      "web-components",
+      "polyfill",
+      "shim"
+    ],
+    "devDependencies": {
+      "@webcomponents/custom-elements": "^1.6.0",
+      "@webcomponents/shadycss": "^1.11.2",
+      "@webcomponents/shadydom": "^1.11.0",
+      "@webcomponents/template": "^1.5.1",
+      "@webcomponents/url": "^0.7.9",
+      "babel-preset-minify": "^0.4.3",
+      "get-own-property-symbols": "^0.9.2",
+      "gulp-concat": "^2.6.1",
+      "promise-polyfill": "^8.0.0"
+    },
+    "_id": "@webcomponents/webcomponentsjs@2.8.0",
+    "pkgid": "@webcomponents/webcomponentsjs@2.8.0",
+    "location": "node_modules/@webcomponents/webcomponentsjs",
+    "path": "/home/runner/work/kintone-ui-component/kintone-ui-component/node_modules/@webcomponents/webcomponentsjs",
+    "realpath": "/home/runner/work/kintone-ui-component/kintone-ui-component/node_modules/@webcomponents/webcomponentsjs",
+    "resolved": "https://registry.npmjs.org/@webcomponents/webcomponentsjs/-/webcomponentsjs-2.8.0.tgz",
+    "from": [
+      ""
+    ],
+    "to": [],
+    "dev": false,
+    "inBundle": false,
+    "deduped": false,
+    "overridden": false,
+    "queryContext": {},
+    "licenseTextPath": "/home/runner/work/kintone-ui-component/kintone-ui-component/node_modules/@webcomponents/webcomponentsjs/LICENSE.md",
+    "licenseText": "# License\n\nEverything in this repo is BSD style license unless otherwise specified.\n\nCopyright (c) 2015 The Polymer Authors. All rights reserved.\n\nRedistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:\n\n* Redistributions of source code must retain the above copyright\nnotice, this list of conditions and the following disclaimer.\n* Redistributions in binary form must reproduce the above\ncopyright notice, this list of conditions and the following disclaimer\nin the documentation and/or other materials provided with the\ndistribution.\n* Neither the name of Google Inc. nor the names of its\ncontributors may be used to endorse or promote products derived from\nthis software without specific prior written permission.\n\nTHIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS \"AS IS\" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."
+  },
+  {
+    "name": "core-js",
+    "version": "3.39.0",
+    "type": "commonjs",
+    "description": "Standard library",
+    "keywords": [
+      "ES3",
+      "ES5",
+      "ES6",
+      "ES7",
+      "ES2015",
+      "ES2016",
+      "ES2017",
+      "ES2018",
+      "ES2019",
+      "ES2020",
+      "ES2021",
+      "ES2022",
+      "ES2023",
+      "ES2024",
+      "ECMAScript 3",
+      "ECMAScript 5",
+      "ECMAScript 6",
+      "ECMAScript 7",
+      "ECMAScript 2015",
+      "ECMAScript 2016",
+      "ECMAScript 2017",
+      "ECMAScript 2018",
+      "ECMAScript 2019",
+      "ECMAScript 2020",
+      "ECMAScript 2021",
+      "ECMAScript 2022",
+      "ECMAScript 2023",
+      "ECMAScript 2024",
+      "Map",
+      "Set",
+      "WeakMap",
+      "WeakSet",
+      "TypedArray",
+      "Promise",
+      "Observable",
+      "Symbol",
+      "Iterator",
+      "AsyncIterator",
+      "URL",
+      "URLSearchParams",
+      "queueMicrotask",
+      "setImmediate",
+      "structuredClone",
+      "polyfill",
+      "ponyfill",
+      "shim"
+    ],
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/zloirock/core-js.git",
+      "directory": "packages/core-js"
+    },
+    "funding": {
+      "type": "opencollective",
+      "url": "https://opencollective.com/core-js"
+    },
+    "license": "MIT",
+    "author": {
+      "name": "Denis Pushkarev",
+      "email": "zloirock@zloirock.ru",
+      "url": "http://zloirock.ru"
+    },
+    "main": "index.js",
+    "scripts": {
+      "postinstall": "node -e \"try{require('./postinstall')}catch(e){}\""
+    },
+    "_id": "core-js@3.39.0",
+    "pkgid": "core-js@3.39.0",
+    "location": "node_modules/core-js",
+    "path": "/home/runner/work/kintone-ui-component/kintone-ui-component/node_modules/core-js",
+    "realpath": "/home/runner/work/kintone-ui-component/kintone-ui-component/node_modules/core-js",
+    "resolved": "https://registry.npmjs.org/core-js/-/core-js-3.39.0.tgz",
+    "from": [
+      "",
+      "node_modules/lazy-universal-dotenv",
+      "node_modules/@storybook/addon-actions",
+      "node_modules/@storybook/addon-a11y",
+      "node_modules/@storybook/addon-viewport",
+      "node_modules/@storybook/addon-controls",
+      "node_modules/@storybook/addons",
+      "node_modules/@storybook/api",
+      "node_modules/@storybook/builder-webpack4",
+      "node_modules/@storybook/builder-webpack5",
+      "node_modules/@storybook/channel-websocket",
+      "node_modules/@storybook/channel-postmessage",
+      "node_modules/@storybook/channels",
+      "node_modules/@storybook/client-api",
+      "node_modules/@storybook/client-logger",
+      "node_modules/@storybook/components",
+      "node_modules/@storybook/core-client",
+      "node_modules/@storybook/core-common",
+      "node_modules/@storybook/core-events",
+      "node_modules/@storybook/core-server",
+      "node_modules/@storybook/csf-tools",
+      "node_modules/@storybook/docs-tools",
+      "node_modules/@storybook/manager-webpack4",
+      "node_modules/@storybook/manager-webpack5",
+      "node_modules/@storybook/node-logger",
+      "node_modules/@storybook/semver",
+      "node_modules/@storybook/preview-web",
+      "node_modules/@storybook/router",
+      "node_modules/@storybook/store",
+      "node_modules/@storybook/telemetry",
+      "node_modules/@storybook/web-components",
+      "node_modules/@storybook/ui",
+      "node_modules/@storybook/theming"
+    ],
+    "to": [],
+    "dev": false,
+    "inBundle": false,
+    "deduped": false,
+    "overridden": false,
+    "queryContext": {},
+    "licenseTextPath": "/home/runner/work/kintone-ui-component/kintone-ui-component/node_modules/core-js/LICENSE",
+    "licenseText": "Copyright (c) 2014-2024 Denis Pushkarev\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in\nall copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN\nTHE SOFTWARE.\n"
+  },
+  {
+    "name": "lit",
+    "version": "3.2.1",
+    "publishConfig": {
+      "access": "public"
+    },
+    "description": "A library for building fast, lightweight web components",
+    "license": "BSD-3-Clause",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/lit/lit.git",
+      "directory": "packages/lit"
+    },
+    "author": "Google LLC",
+    "homepage": "https://lit.dev/",
+    "main": "index.js",
+    "module": "index.js",
+    "type": "module",
+    "exports": {
+      ".": {
+        "types": "./development/index.d.ts",
+        "default": "./index.js"
+      },
+      "./async-directive.js": {
+        "types": "./development/async-directive.d.ts",
+        "default": "./async-directive.js"
+      },
+      "./decorators.js": {
+        "types": "./development/decorators.d.ts",
+        "default": "./decorators.js"
+      },
+      "./decorators/custom-element.js": {
+        "types": "./development/decorators/custom-element.d.ts",
+        "default": "./decorators/custom-element.js"
+      },
+      "./decorators/event-options.js": {
+        "types": "./development/decorators/event-options.d.ts",
+        "default": "./decorators/event-options.js"
+      },
+      "./decorators/property.js": {
+        "types": "./development/decorators/property.d.ts",
+        "default": "./decorators/property.js"
+      },
+      "./decorators/query-all.js": {
+        "types": "./development/decorators/query-all.d.ts",
+        "default": "./decorators/query-all.js"
+      },
+      "./decorators/query-assigned-elements.js": {
+        "types": "./development/decorators/query-assigned-elements.d.ts",
+        "default": "./decorators/query-assigned-elements.js"
+      },
+      "./decorators/query-assigned-nodes.js": {
+        "types": "./development/decorators/query-assigned-nodes.d.ts",
+        "default": "./decorators/query-assigned-nodes.js"
+      },
+      "./decorators/query-async.js": {
+        "types": "./development/decorators/query-async.d.ts",
+        "default": "./decorators/query-async.js"
+      },
+      "./decorators/query.js": {
+        "types": "./development/decorators/query.d.ts",
+        "default": "./decorators/query.js"
+      },
+      "./decorators/state.js": {
+        "types": "./development/decorators/state.d.ts",
+        "default": "./decorators/state.js"
+      },
+      "./directive-helpers.js": {
+        "types": "./development/directive-helpers.d.ts",
+        "default": "./directive-helpers.js"
+      },
+      "./directive.js": {
+        "types": "./development/directive.d.ts",
+        "default": "./directive.js"
+      },
+      "./directives/async-append.js": {
+        "types": "./development/directives/async-append.d.ts",
+        "default": "./directives/async-append.js"
+      },
+      "./directives/async-replace.js": {
+        "types": "./development/directives/async-replace.d.ts",
+        "default": "./directives/async-replace.js"
+      },
+      "./directives/cache.js": {
+        "types": "./development/directives/cache.d.ts",
+        "default": "./directives/cache.js"
+      },
+      "./directives/choose.js": {
+        "types": "./development/directives/choose.d.ts",
+        "default": "./directives/choose.js"
+      },
+      "./directives/class-map.js": {
+        "types": "./development/directives/class-map.d.ts",
+        "default": "./directives/class-map.js"
+      },
+      "./directives/guard.js": {
+        "types": "./development/directives/guard.d.ts",
+        "default": "./directives/guard.js"
+      },
+      "./directives/if-defined.js": {
+        "types": "./development/directives/if-defined.d.ts",
+        "default": "./directives/if-defined.js"
+      },
+      "./directives/join.js": {
+        "types": "./development/directives/join.d.ts",
+        "default": "./directives/join.js"
+      },
+      "./directives/keyed.js": {
+        "types": "./development/directives/keyed.d.ts",
+        "default": "./directives/keyed.js"
+      },
+      "./directives/live.js": {
+        "types": "./development/directives/live.d.ts",
+        "default": "./directives/live.js"
+      },
+      "./directives/map.js": {
+        "types": "./development/directives/map.d.ts",
+        "default": "./directives/map.js"
+      },
+      "./directives/range.js": {
+        "types": "./development/directives/range.d.ts",
+        "default": "./directives/range.js"
+      },
+      "./directives/ref.js": {
+        "types": "./development/directives/ref.d.ts",
+        "default": "./directives/ref.js"
+      },
+      "./directives/repeat.js": {
+        "types": "./development/directives/repeat.d.ts",
+        "default": "./directives/repeat.js"
+      },
+      "./directives/style-map.js": {
+        "types": "./development/directives/style-map.d.ts",
+        "default": "./directives/style-map.js"
+      },
+      "./directives/template-content.js": {
+        "types": "./development/directives/template-content.d.ts",
+        "default": "./directives/template-content.js"
+      },
+      "./directives/unsafe-html.js": {
+        "types": "./development/directives/unsafe-html.d.ts",
+        "default": "./directives/unsafe-html.js"
+      },
+      "./directives/unsafe-mathml.js": {
+        "types": "./development/directives/unsafe-mathml.d.ts",
+        "default": "./directives/unsafe-mathml.js"
+      },
+      "./directives/unsafe-svg.js": {
+        "types": "./development/directives/unsafe-svg.d.ts",
+        "default": "./directives/unsafe-svg.js"
+      },
+      "./directives/until.js": {
+        "types": "./development/directives/until.d.ts",
+        "default": "./directives/until.js"
+      },
+      "./directives/when.js": {
+        "types": "./development/directives/when.d.ts",
+        "default": "./directives/when.js"
+      },
+      "./html.js": {
+        "types": "./development/html.d.ts",
+        "default": "./html.js"
+      },
+      "./polyfill-support.js": {
+        "types": "./development/polyfill-support.d.ts",
+        "default": "./polyfill-support.js"
+      },
+      "./static-html.js": {
+        "types": "./development/static-html.d.ts",
+        "default": "./static-html.js"
+      }
+    },
+    "scripts": {
+      "build": "wireit",
+      "build:ts": "wireit",
+      "build:ts:types": "wireit",
+      "build:rollup": "wireit",
+      "checksize": "wireit",
+      "test": "wireit",
+      "test:dev": "wireit",
+      "test:prod": "wireit",
+      "test:node": "wireit",
+      "test:node-dev": "wireit"
+    },
+    "wireit": {
+      "build": {
+        "dependencies": [
+          "build:rollup",
+          "build:ts",
+          "build:ts:types",
+          "../lit-html:build",
+          "../lit-element:build",
+          "../reactive-element:build"
+        ]
+      },
+      "build:ts": {
+        "#comment": "Note this also builds polyfill-support via a TypeScript project reference.",
+        "command": "tsc --build --pretty",
+        "clean": "if-file-deleted",
+        "dependencies": [
+          "../lit-element:build:ts:types",
+          "../lit-html:build:ts:types",
+          "../reactive-element:build:ts:types"
+        ],
+        "files": [
+          "src/**/*.ts",
+          "tsconfig.json",
+          "tsconfig.polyfill-support.json"
+        ],
+        "output": [
+          "development/**/*.{js,js.map,d.ts,d.ts.map}",
+          "tsconfig.tsbuildinfo",
+          "tsconfig.polyfill-support.tsbuildinfo"
+        ]
+      },
+      "build:ts:types": {
+        "command": "treemirror development . \"**/*.d.ts{,.map}\"",
+        "dependencies": [
+          "../internal-scripts:build",
+          "build:ts"
+        ],
+        "files": [],
+        "output": [
+          "*.d.ts{,.map}",
+          "decorators/*.d.ts{,.map}",
+          "directives/*.d.ts{,.map}"
+        ]
+      },
+      "build:rollup": {
+        "command": "rollup -c",
+        "dependencies": [
+          "build:ts"
+        ],
+        "files": [
+          "rollup.config.js",
+          "../../rollup-common.js",
+          "src/test/*_test.html",
+          "src/test/polyfill-support/*_test.html"
+        ],
+        "output": [
+          "async-directive.js{,.map}",
+          "decorators.js{,.map}",
+          "directive-helpers.js{,.map}",
+          "directive.js{,.map}",
+          "html.js{,.map}",
+          "index.js{,.map}",
+          "polyfill-support.js{,.map}",
+          "static-html.js{,.map}",
+          "decorators/*.js{,.map}",
+          "directives/*.js{,.map}",
+          "test/*_test.html",
+          "development/test/*_test.html",
+          "test/polyfill-support/*_test.html",
+          "development/test/polyfill-support/*_test.html",
+          "lit-core.min.js{,.map}",
+          "lit-all.min.js{,.map}"
+        ]
+      },
+      "checksize": {
+        "command": "rollup -c --environment=CHECKSIZE",
+        "dependencies": [
+          "build:ts"
+        ],
+        "files": [
+          "rollup.config.js",
+          "../../rollup-common.js"
+        ],
+        "output": []
+      },
+      "test": {
+        "dependencies": [
+          "test:dev",
+          "test:prod",
+          "test:node",
+          "test:node-dev"
+        ]
+      },
+      "test:dev": {
+        "#comment": "TODO(aomarks) There is only one lit html test, and it doesn't work",
+        "command": "MODE=dev node ../tests/run-web-tests.js \"development/**/*_test.(js|html)\" --config ../tests/web-test-runner.config.js",
+        "dependencies": [
+          "build:ts",
+          "../tests:build"
+        ],
+        "env": {
+          "BROWSERS": {
+            "external": true
+          }
+        },
+        "files": [],
+        "output": []
+      },
+      "test:prod": {
+        "command": "MODE=prod node ../tests/run-web-tests.js \"development/**/*_test.(js|html)\" --config ../tests/web-test-runner.config.js",
+        "dependencies": [
+          "../lit-element:build:rollup",
+          "../lit-html:build:rollup",
+          "../reactive-element:build:rollup",
+          "build:ts",
+          "build:rollup",
+          "../tests:build"
+        ],
+        "env": {
+          "BROWSERS": {
+            "external": true
+          }
+        },
+        "files": [],
+        "output": []
+      },
+      "test:node": {
+        "command": "node development/test/node-imports.js",
+        "dependencies": [
+          "build:ts",
+          "build:rollup"
+        ],
+        "files": [],
+        "output": []
+      },
+      "test:node-dev": {
+        "command": "node --conditions=development development/test/node-imports.js",
+        "dependencies": [
+          "build:ts",
+          "build:rollup"
+        ],
+        "files": [],
+        "output": []
+      }
+    },
+    "files": [
+      "/async-directive.{d.ts.map,d.ts,js.map,js}",
+      "/decorators.{d.ts.map,d.ts,js.map,js}",
+      "/directive-helpers.{d.ts.map,d.ts,js.map,js}",
+      "/directive.{d.ts.map,d.ts,js.map,js}",
+      "/html.{d.ts.map,d.ts,js.map,js}",
+      "/index.{d.ts.map,d.ts,js.map,js}",
+      "/legacy-decorators.{d.ts.map,d.ts,js.map,js}",
+      "/polyfill-support.{d.ts.map,d.ts,js.map,js}",
+      "/static-html.{d.ts.map,d.ts,js.map,js}",
+      "/decorators/",
+      "/directives/",
+      "/development/",
+      "!/development/test/",
+      "/logo.svg"
+    ],
+    "dependencies": {
+      "@lit/reactive-element": "^2.0.4",
+      "lit-element": "^4.1.0",
+      "lit-html": "^3.2.0"
+    },
+    "devDependencies": {
+      "@lit-internal/scripts": "^1.0.1",
+      "@webcomponents/shadycss": "^1.8.0",
+      "@webcomponents/template": "^1.4.4",
+      "@webcomponents/webcomponentsjs": "^2.8.0",
+      "tslib": "^2.0.3"
+    },
+    "typings": "index.d.ts",
+    "_id": "lit@3.2.1",
+    "pkgid": "lit@3.2.1",
+    "location": "node_modules/lit",
+    "path": "/home/runner/work/kintone-ui-component/kintone-ui-component/node_modules/lit",
+    "realpath": "/home/runner/work/kintone-ui-component/kintone-ui-component/node_modules/lit",
+    "resolved": "https://registry.npmjs.org/lit/-/lit-3.2.1.tgz",
+    "from": [
+      "",
+      "node_modules/@open-wc/scoped-elements",
+      "node_modules/@open-wc/testing-helpers"
+    ],
+    "to": [
+      "node_modules/@lit/reactive-element",
+      "node_modules/lit-element",
+      "node_modules/lit/node_modules/lit-html"
+    ],
+    "dev": false,
+    "inBundle": false,
+    "deduped": false,
+    "overridden": false,
+    "queryContext": {},
+    "licenseTextPath": "/home/runner/work/kintone-ui-component/kintone-ui-component/node_modules/lit/LICENSE",
+    "licenseText": "BSD 3-Clause License\n\nCopyright (c) 2017 Google LLC. All rights reserved.\n\nRedistribution and use in source and binary forms, with or without\nmodification, are permitted provided that the following conditions are met:\n\n1. Redistributions of source code must retain the above copyright notice, this\n   list of conditions and the following disclaimer.\n\n2. Redistributions in binary form must reproduce the above copyright notice,\n   this list of conditions and the following disclaimer in the documentation\n   and/or other materials provided with the distribution.\n\n3. Neither the name of the copyright holder nor the names of its\n   contributors may be used to endorse or promote products derived from\n   this software without specific prior written permission.\n\nTHIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS \"AS IS\"\nAND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE\nIMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE\nDISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE\nFOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL\nDAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR\nSERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER\nCAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,\nOR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE\nOF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."
+  },
+  {
+    "name": "regenerator-runtime",
+    "author": "Ben Newman <bn@cs.stanford.edu>",
+    "description": "Runtime for Regenerator-compiled generator and async functions.",
+    "version": "0.14.1",
+    "main": "runtime.js",
+    "keywords": [
+      "regenerator",
+      "runtime",
+      "generator",
+      "async"
+    ],
+    "sideEffects": true,
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/facebook/regenerator/tree/main/packages/runtime"
+    },
+    "license": "MIT",
+    "_id": "regenerator-runtime@0.14.1",
+    "pkgid": "regenerator-runtime@0.14.1",
+    "location": "node_modules/regenerator-runtime",
+    "path": "/home/runner/work/kintone-ui-component/kintone-ui-component/node_modules/regenerator-runtime",
+    "realpath": "/home/runner/work/kintone-ui-component/kintone-ui-component/node_modules/regenerator-runtime",
+    "resolved": "https://registry.npmjs.org/regenerator-runtime/-/regenerator-runtime-0.14.1.tgz",
+    "from": [
+      "",
+      "node_modules/@babel/runtime"
+    ],
+    "to": [],
+    "dev": false,
+    "inBundle": false,
+    "deduped": false,
+    "overridden": false,
+    "queryContext": {},
+    "licenseTextPath": "/home/runner/work/kintone-ui-component/kintone-ui-component/node_modules/regenerator-runtime/LICENSE",
+    "licenseText": "MIT License\n\nCopyright (c) 2014-present, Facebook, Inc.\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n"
+  },
+  {
+    "name": "uuid",
+    "version": "11.0.3",
+    "description": "RFC9562 UUIDs",
+    "type": "module",
+    "funding": [
+      "https://github.com/sponsors/broofa",
+      "https://github.com/sponsors/ctavan"
+    ],
+    "commitlint": {
+      "extends": [
+        "@commitlint/config-conventional"
+      ]
+    },
+    "keywords": [
+      "uuid",
+      "guid",
+      "rfc4122",
+      "rfc9562"
+    ],
+    "license": "MIT",
+    "bin": {
+      "uuid": "dist/esm/bin/uuid"
+    },
+    "sideEffects": false,
+    "main": "./dist/cjs/index.js",
+    "exports": {
+      ".": {
+        "node": {
+          "import": "./dist/esm/index.js",
+          "require": "./dist/cjs/index.js"
+        },
+        "browser": {
+          "import": "./dist/esm-browser/index.js",
+          "require": "./dist/cjs-browser/index.js"
+        },
+        "default": "./dist/esm-browser/index.js"
+      },
+      "./package.json": "./package.json"
+    },
+    "module": "./dist/esm/index.js",
+    "browser": {
+      "./dist/esm/index.js": "./dist/esm-browser/index.js",
+      "./dist/cjs/index.js": "./dist/cjs-browser/index.js"
+    },
+    "files": [
+      "CHANGELOG.md",
+      "CONTRIBUTING.md",
+      "LICENSE.md",
+      "README.md",
+      "dist"
+    ],
+    "devDependencies": {
+      "@babel/eslint-parser": "7.25.9",
+      "@commitlint/cli": "19.5.0",
+      "@commitlint/config-conventional": "19.5.0",
+      "@eslint/js": "9.13.0",
+      "@types/eslint__js": "8.42.3",
+      "bundlewatch": "0.4.0",
+      "commander": "12.1.0",
+      "eslint": "9.13.0",
+      "eslint-config-prettier": "9.1.0",
+      "eslint-plugin-prettier": "5.2.1",
+      "globals": "15.11.0",
+      "husky": "9.1.6",
+      "jest": "29.7.0",
+      "lint-staged": "15.2.10",
+      "neostandard": "0.11.7",
+      "npm-run-all": "4.1.5",
+      "prettier": "3.3.3",
+      "release-please": "16.14.3",
+      "runmd": "1.3.9",
+      "standard-version": "9.5.0",
+      "typescript": "5.6.3",
+      "typescript-eslint": "8.11.0"
+    },
+    "optionalDevDependencies": {
+      "@wdio/browserstack-service": "9.2.1",
+      "@wdio/cli": "9.2.1",
+      "@wdio/jasmine-framework": "9.2.1",
+      "@wdio/local-runner": "9.2.1",
+      "@wdio/spec-reporter": "9.1.3",
+      "@wdio/static-server-service": "9.1.3"
+    },
+    "scripts": {
+      "build": "./scripts/build.sh",
+      "build:watch": "tsc --watch -p tsconfig.esm.json",
+      "bundlewatch": "npm run pretest:browser && bundlewatch --config bundlewatch.config.json",
+      "docs:diff": "npm run docs && git diff --quiet README.md",
+      "docs": "npm run build && npx runmd --output=README.md README_js.md",
+      "eslint:check": "eslint src/ test/ examples/ *.[jt]s",
+      "eslint:fix": "eslint --fix src/ test/ examples/ *.[jt]s",
+      "examples:browser:rollup:build": "cd examples/browser-rollup && npm install && npm run build",
+      "examples:browser:webpack:build": "cd examples/browser-webpack && npm install && npm run build",
+      "examples:node:commonjs:test": "cd examples/node-commonjs && npm install && npm test",
+      "examples:node:esmodules:test": "cd examples/node-esmodules && npm install && npm test",
+      "examples:node:jest:test": "cd examples/node-jest && npm install && npm test",
+      "lint": "npm run eslint:check && npm run prettier:check",
+      "md": "runmd --watch --output=README.md README_js.md",
+      "prepack": "npm run build",
+      "prepare": "husky",
+      "pretest:benchmark": "npm run build",
+      "pretest:browser": "./scripts/iodd && npm run build && npm-run-all --parallel examples:browser:**",
+      "pretest:node": "npm run build",
+      "pretest": "npm run build",
+      "prettier:check": "prettier --check .",
+      "prettier:fix": "prettier --write .",
+      "release": "standard-version --no-verify",
+      "test:benchmark": "cd examples/benchmark && HUSKY=0 npm install && npm test",
+      "test:browser": "wdio run ./wdio.conf.js",
+      "test:node": "npm-run-all --parallel examples:node:**",
+      "test:pack": "./scripts/testpack.sh",
+      "test:watch": "node --test --enable-source-maps --watch dist/esm/test/*.js",
+      "test": "node --test --enable-source-maps dist/esm/test/*.js"
+    },
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/uuidjs/uuid.git"
+    },
+    "lint-staged": {
+      "*": [
+        "prettier --no-error-on-unmatched-pattern --write"
+      ],
+      "*.{js,jsx}": [
+        "eslint --no-error-on-unmatched-pattern --fix"
+      ]
+    },
+    "standard-version": {
+      "scripts": {
+        "postchangelog": "prettier --write CHANGELOG.md"
+      }
+    },
+    "packageManager": "npm@10.9.0",
+    "_id": "uuid@11.0.3",
+    "pkgid": "uuid@11.0.3",
+    "location": "node_modules/uuid",
+    "path": "/home/runner/work/kintone-ui-component/kintone-ui-component/node_modules/uuid",
+    "realpath": "/home/runner/work/kintone-ui-component/kintone-ui-component/node_modules/uuid",
+    "resolved": "https://registry.npmjs.org/uuid/-/uuid-11.0.3.tgz",
+    "from": [
+      ""
+    ],
+    "to": [],
+    "dev": false,
+    "inBundle": false,
+    "deduped": false,
+    "overridden": false,
+    "queryContext": {},
+    "licenseTextPath": "/home/runner/work/kintone-ui-component/kintone-ui-component/node_modules/uuid/LICENSE.md",
+    "licenseText": "The MIT License (MIT)\n\nCopyright (c) 2010-2020 Robert Kieffer and other contributors\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n"
+  }
+]
