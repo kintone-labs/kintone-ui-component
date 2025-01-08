@@ -54,7 +54,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 
 core-js
 repository: git+https://github.com/zloirock/core-js.git
-version: 3.38.1
+version: 3.39.0
 license: MIT
 Copyright (c) 2014-2024 Denis Pushkarev
 
@@ -80,7 +80,7 @@ THE SOFTWARE.
 
 lit
 repository: https://github.com/lit/lit.git
-version: 3.2.0
+version: 3.2.1
 license: BSD-3-Clause
 BSD 3-Clause License
 
@@ -141,8 +141,8 @@ SOFTWARE.
 
 
 uuid
-repository: git+https://github.com/uuidjs/uuid.git
-version: 10.0.0
+repository: https://github.com/uuidjs/uuid.git
+version: 11.0.3
 license: MIT
 The MIT License (MIT)
 
