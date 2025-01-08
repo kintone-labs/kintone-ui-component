@@ -64,6 +64,22 @@ jobs:
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add LICENSE
           git commit -m "Update LICENSE file"
-          git push origin HEAD:$GITHUB_HEAD_REF
+          git push origin HEAD:refs/heads/auto-update-LICENSE
         env:
           GITHUB_TOKEN: ${{ github.token }}
+
+      - name: Create Pull Request
+        id: create_pr
+        uses: peter-evans/create-pull-request@v7
+        with:
+          token: ${{ github.token }}
+          commit-message: Add changes from feature-branch
+          branch: auto-update-LICENSE
+          base: ${{ github.head_ref }}
+          title: Auto Update LICENSE file
+          body: ''
+
+      - name: Enable Pull Request Automerge
+        run: gh pr merge --merge --auto "${{ steps.create_pr.outputs.pull-request-number }}"
+        env:
+          GH_TOKEN: ${{ github.token }}
