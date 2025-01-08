@@ -76,6 +76,7 @@ jobs:
         with:
           token: ${{ github.token }}
           branch: auto-update-LICENSE
+          base: ${{ github.head_ref }}
           title: Auto Update LICENSE file
           body: ''
 
