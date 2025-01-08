@@ -26,7 +26,7 @@ import { TabsComponent } from "@site/static/js/samples/desktop/tabs.jsx"
 | id | string | "" | コンポーネントの id 名 ||
 | value | string | ""  | 選択されているタブ | <li>items 内に一致する value がある場合、disabled でもそのタブが表示される</li><li>以下の場合は最初の visible タブが表示される<ul><li>items 内に一致する value がない場合</li><li>items 内に一致する value があるが、そのタブが visible ではない場合</li></ul></li><li>value が文字列以外の場合、エラーを出力する</li> |
 | borderVisible | boolean | true  | 表示内容を囲う枠線の表示/非表示設定 | |
-| scrollButtons | boolean | false | スクロールボタンの表示/非表示設定 | true の場合、タブを水平スクロールでき、Scroll Buttons のクリックで移動できる |
+| scrollButtons | boolean | false | スクロールボタンの表示/非表示設定 | scrollButtons が true の場合、タブの横スクロールまたはスクロールボタンのクリックで移動ができる |
 | visible | boolean | true | コンポーネントの表示/非表示設定 | |
 | items | Array\<[Item](#item)\> | [] | 表示するタブのリスト | items が配列以外の場合、エラーを出力する |
 
