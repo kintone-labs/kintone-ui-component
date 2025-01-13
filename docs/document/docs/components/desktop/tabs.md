@@ -30,6 +30,8 @@ Here is a list of properties that can be used for modifying the component:
 | visible | boolean | true | Show/Hide the component | |
 | items | Array\<[Item](#item)\> | [] | List of tabs to display | Will result an error if the value of `items` is not an array |
 
+:::info When `scrollButtons` is true, wrap the Tabs component with a parent div element and set an appropriate max-width property. For example, when using the Tabs component within Header Menu Space Element container, you can set `max-width: 99vw`. :::
+
 #### Item
 
 | Name   | Type | Default | Description | Remark |

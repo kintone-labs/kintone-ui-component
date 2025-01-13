@@ -30,6 +30,8 @@ import { TabsComponent } from "@site/static/js/samples/desktop/tabs.jsx"
 | visible | boolean | true | コンポーネントの表示/非表示設定 | |
 | items | Array\<[Item](#item)\> | [] | 表示するタブのリスト | items が配列以外の場合、エラーを出力する |
 
+:::info `scrollButtons` が true の場合、Tabs コンポーネントを親 div 要素でラップし、適切な max-width プロパティを設定してください。 例えば、Header Menu Space Element コンテナ内で Tabs コンポーネントを使用する場合、`max-width: 99vw` と設定できます。 :::
+
 #### Item
 | Name   | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
