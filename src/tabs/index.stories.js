@@ -11,6 +11,7 @@ import { Tabs } from "./index.ts";
 export default {
   title: "desktop/tabs",
   argTypes: {
+    scrollButtons: { name: "scrollButtons" },
     borderVisible: { name: "borderVisible" },
     className: { name: "className" },
     id: { name: "id" },
@@ -90,6 +91,7 @@ Base.args = {
   borderVisible: true,
   className: "kuc-tabs-class",
   id: "sample-id",
+  scrollButtons: true,
   items: [
     {
       label: "Tab1",
@@ -111,6 +113,27 @@ Base.args = {
       disabled: false,
       visible: true,
       content: thirdContent,
+    },
+    {
+      label: "Tab4",
+      value: "tab4",
+      disabled: false,
+      visible: true,
+      content: "Tab4 Content",
+    },
+    {
+      label: "Tab5",
+      value: "tab5",
+      disabled: false,
+      visible: true,
+      content: "Tab5 Content",
+    },
+    {
+      label: "Tab6",
+      value: "tab6",
+      disabled: false,
+      visible: true,
+      content: ``,
     },
   ],
   value: "tab1",

@@ -28,7 +28,7 @@ describe("Tabs", () => {
       const container = new Tabs({ items: items, value: items[1].value });
       const el = await fixture(container);
       const itemButtons = el.querySelectorAll(
-        ".kuc-tabs__group__tab-list__tab__button",
+        ".kuc-tabs__group__tabs-container__tab-list-container__tab-list__tab__button",
       );
       let tab3FocusTriggerEvent: any = null;
       let tab1FocusTriggerEvent: any = null;
@@ -58,7 +58,7 @@ describe("Tabs", () => {
       const container = new Tabs({ items: items, value: items[0].value });
       const el = await fixture(container);
       const itemButtons = el.querySelectorAll(
-        ".kuc-tabs__group__tab-list__tab__button",
+        ".kuc-tabs__group__tabs-container__tab-list-container__tab-list__tab__button",
       );
       let tab3FocusTriggerEvent: any = null;
       let tab1FocusTriggerEvent: any = null;
@@ -92,7 +92,7 @@ describe("Tabs", () => {
       });
       const el = await fixture(container);
       const itemButtons = el.querySelectorAll(
-        ".kuc-tabs__group__tab-list__tab__button",
+        ".kuc-tabs__group__tabs-container__tab-list-container__tab-list__tab__button",
       );
       let tab1FocusTriggerEvent: any = null;
       itemButtons[1].addEventListener("focus", (event) => {

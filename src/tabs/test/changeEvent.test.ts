@@ -30,7 +30,7 @@ describe("Tabs", () => {
       });
       const el = await fixture(container);
       const itemButtons = el.querySelectorAll(
-        ".kuc-tabs__group__tab-list__tab__button ",
+        ".kuc-tabs__group__tabs-container__tab-list-container__tab-list__tab__button ",
       );
       itemButtons[0].dispatchEvent(new Event("click"));
       itemButtons[1].dispatchEvent(new Event("mousedown"));
@@ -72,7 +72,7 @@ describe("Tabs", () => {
       });
       const el = await fixture(container);
       const itemButtons = el.querySelectorAll(
-        ".kuc-tabs__group__tab-list__tab__button",
+        ".kuc-tabs__group__tabs-container__tab-list-container__tab-list__tab__button",
       );
       itemButtons[0].dispatchEvent(new Event("click"));
       itemButtons[0].dispatchEvent(

@@ -12,9 +12,9 @@
   "license": "ISC",
   "devDependencies": {
     "@cybozu/eslint-config": "^23.0.0",
-    "eslint": "^8.57.0",
-    "prettier": "^3.3.3",
-    "webpack": "^5.95.0",
+    "eslint": "^8.57.1",
+    "prettier": "^3.4.2",
+    "webpack": "^5.97.1",
     "webpack-cli": "^5.1.4"
   }
 }

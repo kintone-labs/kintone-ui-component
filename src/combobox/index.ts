@@ -34,6 +34,7 @@ let exportCombobox;
     @property({ type: String }) error = "";
     @property({ type: String, reflect: true, attribute: "id" }) id = "";
     @property({ type: String }) label = "";
+    @property({ type: String }) placeholder = "";
     @property({ type: String }) value = "";
     @property({ type: Boolean }) disabled = false;
     @property({ type: Boolean }) requiredIcon = false;
@@ -80,6 +81,7 @@ let exportCombobox;
     private _disabledItemsEl!: HTMLLIElement[];
 
     private _timeoutID!: number | null;
+    private _previousScrollTop!: number;
 
     private _GUID: string;
 
@@ -97,6 +99,7 @@ let exportCombobox;
       this._GUID = generateGUID();
       const validProps = validateProps(props);
       this._handleClickDocument = this._handleClickDocument.bind(this);
+      this._handleScrollMenu = this._handleScrollMenu.bind(this);
       Object.assign(this, validProps);
     }
 
@@ -154,6 +157,7 @@ let exportCombobox;
               aria-describedby="${this._GUID}-error"
               aria-expanded="${this._selectorVisible}"
               aria-required="${this.requiredIcon}"
+              placeholder="${this.placeholder}"
               ?disabled="${this.disabled}"
               @change="${this._handleChangeComboboxInput}"
               @input="${this._handleInputComboboxInput}"
@@ -215,6 +219,7 @@ let exportCombobox;
 
       await this.updateComplete;
       if (this._selectorVisible) {
+        this._menuEl.addEventListener("scroll", this._handleScrollMenu);
         this._setMenuPosition();
         this._scrollToView();
         if (
@@ -284,7 +289,7 @@ let exportCombobox;
           aria-selected="${isCheckedItem ? "true" : "false"}"
           value="${item.value !== undefined ? item.value : ""}"
           id="${this._GUID}-menuitem-${index}"
-          @mousedown="${!isDisabled ? this._handleMouseDownComboboxItem : null}"
+          @click="${!isDisabled ? this._handleClickComboboxItem : null}"
           @mouseover="${!isDisabled ? this._handleMouseOverComboboxItem : null}"
         >
           ${this._getComboboxIconSvgTemplate(isCheckedItem, isDisabled)}
@@ -315,7 +320,7 @@ let exportCombobox;
       }`;
     }
 
-    private _handleMouseDownComboboxItem(event: MouseEvent) {
+    private _handleClickComboboxItem(event: MouseEvent) {
       const itemEl = this._getItemElementWhenMouseOverDown(
         event.target as HTMLElement,
       );
@@ -387,6 +392,10 @@ let exportCombobox;
         return;
       }
       this._actionHideMenu();
+    }
+
+    private _handleScrollMenu() {
+      this._previousScrollTop = this._menuEl.scrollTop;
     }
 
     private _handleKeyDownComboboxInput(event: KeyboardEvent) {
@@ -676,12 +685,26 @@ let exportCombobox;
     private _setMenuPositionAboveOrBelow() {
       this._menuEl.style.height = "auto";
       this._menuEl.style.bottom = "auto";
-      this._menuEl.style.overflowY = "";
+      this._menuEl.style.overflowY = "scroll";
+
+      this._menuEl.style.maxHeight = "none";
+      const menuHeightNoMaxHeight = this._menuEl.getBoundingClientRect().height;
+      this._menuEl.style.maxHeight =
+        "var(--kuc-combobox-menu-max-height, none)";
+      const menuHeightWithMaxHeight =
+        this._menuEl.getBoundingClientRect().height;
 
       const ERROR_MARGIN = 16;
-      const menuHeight = this._menuEl.getBoundingClientRect().height;
       const distanceToggleButton = this._getDistanceToggleButton();
-      if (distanceToggleButton.toBottom >= menuHeight) return;
+      if (distanceToggleButton.toBottom >= menuHeightWithMaxHeight) {
+        if (menuHeightNoMaxHeight > menuHeightWithMaxHeight) {
+          this._previousScrollTop &&
+            (this._menuEl.scrollTop = this._previousScrollTop);
+        } else {
+          this._menuEl.style.overflowY = "";
+        }
+        return;
+      }
 
       if (distanceToggleButton.toBottom < distanceToggleButton.toTop) {
         // Above
@@ -691,14 +714,23 @@ let exportCombobox;
         this._menuEl.style.bottom = `${
           this._toggleEl.offsetHeight + errorHeight
         }px`;
-        if (distanceToggleButton.toTop >= menuHeight) return;
+        if (distanceToggleButton.toTop >= menuHeightWithMaxHeight) {
+          if (menuHeightNoMaxHeight > menuHeightWithMaxHeight) {
+            this._previousScrollTop &&
+              (this._menuEl.scrollTop = this._previousScrollTop);
+          } else {
+            this._menuEl.style.overflowY = "";
+          }
+          return;
+        }
         this._menuEl.style.height = `${distanceToggleButton.toTop}px`;
-        this._menuEl.style.overflowY = "scroll";
       } else {
         // Below
         this._menuEl.style.height = `${distanceToggleButton.toBottom}px`;
-        this._menuEl.style.overflowY = "scroll";
       }
+
+      this._previousScrollTop &&
+        (this._menuEl.scrollTop = this._previousScrollTop);
     }
 
     private _setMenuPositionLeftOrRight() {
