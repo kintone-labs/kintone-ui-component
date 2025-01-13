@@ -56,14 +56,42 @@ jobs:
           else
             echo "LICENSE is NOT changed"
           fi
+          rm -f licenses-prod.json licenses-dev.json
 
-      - name: Update LICENSE in repository
+      - name: Create branch for auto update LICENSE
         if: env.LICENSE_changed == 'true'
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add LICENSE
-          git commit -m "Update LICENSE file"
-          git push origin HEAD:$GITHUB_HEAD_REF
+          git push origin HEAD:refs/heads/bot-auto-update-LICENSE_${{ github.run_id }}-${{ github.run_attempt }}
         env:
           GITHUB_TOKEN: ${{ github.token }}
+
+      - name: Create Pull Request
+        if: env.LICENSE_changed == 'true'
+        id: create_pr
+        uses: peter-evans/create-pull-request@v7
+        with:
+          token: ${{ github.token }}
+          commit-message: "Update LICENSE file"
+          committer: github-actions[bot] <github-actions[bot]@users.noreply.github.com>
+          author: github-actions[bot] <github-actions[bot]@users.noreply.github.com>
+          branch: bot-auto-update-LICENSE_${{ github.run_id }}-${{ github.run_attempt }}
+          base: ${{ github.head_ref }}
+          title: Auto Update LICENSE file
+          body: ''
+
+      - name: Auto merge Pull Request
+        if: env.LICENSE_changed == 'true' && steps.create_pr.outputs.pull-request-number
+        run: gh pr merge --merge --auto "${{ steps.create_pr.outputs.pull-request-number }}"
+        env:
+          GH_TOKEN: ${{ github.token }}
+
+      - name: Delete branch for auto update LICENSE
+        if: env.LICENSE_changed == 'true'
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git push origin --delete bot-auto-update-LICENSE_${{ github.run_id }}-${{ github.run_attempt }}
