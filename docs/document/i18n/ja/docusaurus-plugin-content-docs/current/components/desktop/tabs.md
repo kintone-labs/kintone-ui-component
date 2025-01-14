@@ -26,11 +26,13 @@ import { TabsComponent } from "@site/static/js/samples/desktop/tabs.jsx"
 | id | string | "" | コンポーネントの id 名 ||
 | value | string | ""  | 選択されているタブ | <li>items 内に一致する value がある場合、disabled でもそのタブが表示される</li><li>以下の場合は最初の visible タブが表示される<ul><li>items 内に一致する value がない場合</li><li>items 内に一致する value があるが、そのタブが visible ではない場合</li></ul></li><li>value が文字列以外の場合、エラーを出力する</li> |
 | borderVisible | boolean | true  | 表示内容を囲う枠線の表示/非表示設定 | |
-| scrollButtons | boolean | false | スクロールボタンの表示/非表示設定 | scrollButtons が true の場合、タブの横スクロールまたはスクロールボタンのクリックで移動ができる |
+| scrollButtons *1 | boolean | false | スクロールボタンの表示/非表示設定 | scrollButtons が true の場合、タブの横スクロールまたはスクロールボタンのクリックで移動ができる |
 | visible | boolean | true | コンポーネントの表示/非表示設定 | |
 | items | Array\<[Item](#item)\> | [] | 表示するタブのリスト | items が配列以外の場合、エラーを出力する |
 
-:::info `scrollButtons` が true の場合、Tabs コンポーネントを親 div 要素でラップし、適切な max-width プロパティを設定してください。 例えば、Header Menu Space Element コンテナ内で Tabs コンポーネントを使用する場合、`max-width: 99vw` と設定できます。 :::
+:::info
+*1: `scrollButtons` を true に設定する場合、Tabs コンポーネントを親 div 要素でラップし、適切な max-width プロパティを設定してください。 例えば、[メニューの上側の要素](https://cybozu.dev/ja/kintone/docs/js-api/record/get-record-header-menu-element/)内で Tabs コンポーネントを使用する場合、`max-width: 99vw` のように設定します。
+:::
 
 #### Item
 | Name   | Type | Default | Description | Remark |
