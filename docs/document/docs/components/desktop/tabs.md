@@ -31,7 +31,7 @@ Here is a list of properties that can be used for modifying the component:
 | items | Array\<[Item](#item)\> | [] | List of tabs to display | Will result an error if the value of `items` is not an array |
 
 :::info
-*1: When setting `scrollButtons` true, please wrap the Tabs component with a parent div element and set an appropriate max-width property. For example, when using the Tabs component within the [Header Menu Element](https://kintone.dev/en/docs/kintone/js-api/records/get-record-header-menu-element/), you can set like `max-width: 99vw`.
+*1: When setting `scrollButtons` true, please wrap the Tabs component with a parent div element and set an appropriate max-width property. For example, when using the Tabs component within the [Header Menu Element](https://kintone.dev/en/docs/kintone/js-api/records/get-record-header-menu-element/), you can set like `max-width: 100vw`.
 :::
 
 #### Item
