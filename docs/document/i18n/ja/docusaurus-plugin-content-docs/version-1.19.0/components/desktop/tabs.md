@@ -31,7 +31,7 @@ import { TabsComponent } from "@site/static/js/samples/desktop/tabs.jsx"
 | items | Array\<[Item](#item)\> | [] | 表示するタブのリスト | items が配列以外の場合、エラーを出力する |
 
 :::info
-*1: `scrollButtons` を true に設定する場合、Tabs コンポーネントを親 div 要素で括り、適切な max-width プロパティを設定してください。 例えば、[メニューの上側の要素](https://cybozu.dev/ja/kintone/docs/js-api/record/get-record-header-menu-element/)内で Tabs コンポーネントを使用する場合、`max-width: 99vw` のように設定します。
+*1: `scrollButtons` を true に設定する場合、Tabs コンポーネントを親 div 要素で括り、適切な max-width プロパティを設定してください。 例えば、[メニューの上側の要素](https://cybozu.dev/ja/kintone/docs/js-api/record/get-record-header-menu-element/)内で Tabs コンポーネントを使用する場合、`max-width: 100vw` のように設定します。
 :::
 
 #### Item
