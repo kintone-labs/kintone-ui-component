@@ -26,9 +26,9 @@ Here is a list of properties that can be used for modifying the component:
 | error | string | ""  | Text to be displayed in error | Error will not be displayed if unspecified or empty |
 | id | string | ""  | Component id name | |
 | label | string | ""  | Label for the component | Label is not displayed if unspecified or empty |
+| placeholder | string | "" | Placeholder text displayed in the input field | |
 | value | string | ""  | Component value | No option will be selected if the value is unspecified<br/>Will result an error if the value is not a string |
 | disabled | boolean | false | Enable/Disable the component | |
-| placeholder | string | "" | Placeholder text displayed in the input field | |
 | requiredIcon | boolean | false | Show/Hide the required icon | |
 | visible | boolean | true | Show/Hide the component | |
 | items | Array\<[Item](#item)\> | []  | List of options to display | Will result an error if the value of items is not an array |
