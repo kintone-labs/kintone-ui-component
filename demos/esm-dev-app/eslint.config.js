@@ -1,8 +1,2 @@
-const typescriptPrettier = require("@cybozu/eslint-config/flat/presets/typescript-prettier");
-
-module.exports = [
-  ...typescriptPrettier,
-  {
-    files: ["**/*.ts"],
-  },
-];
+const prettier = require("@cybozu/eslint-config/flat/presets/prettier");
+module.exports = [...prettier];
