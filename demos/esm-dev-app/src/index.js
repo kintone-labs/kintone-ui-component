@@ -6,7 +6,7 @@ const button = new Button({
   id: "button-id",
   visible: true,
   text: "text",
-  disabled: false
+  disabled: false,
 });
 root.appendChild(button);
 
@@ -18,6 +18,6 @@ const text = new Text({
   placeholder: "placeholder",
   label: "フルーツ",
   requiredIcon: true,
-  error: "エラーです"
+  error: "エラーです",
 });
 root.appendChild(text);
