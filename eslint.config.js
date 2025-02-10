@@ -6,8 +6,8 @@ module.exports = [
   ...typescriptPrettier,
 
   {
-    files: ["**/*.{js,ts,jsx,tsx}"],
-    ignores:["*.js", ".ts", ".jsx", "!src/**"],
+    files: ["**/*.{js,ts}"],
+    ignores:["*.js", "*.ts", "!src/**"],
     languageOptions: {
       parserOptions: {
         ecmaVersion: "latest",
