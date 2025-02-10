@@ -1,9 +1,9 @@
-const typescriptPrettier = require("@cybozu/eslint-config/flat/presets/typescript-prettier");
+const config = require("@cybozu/eslint-config/flat/presets/typescript-prettier");
 const importPlugin = require("eslint-plugin-import");
 const kucV1Plugin = require("eslint-plugin-kuc-v1");
 
 module.exports = [
-  ...typescriptPrettier,
+  ...config,
 
   {
     files: ["**/*.{js,ts}"],
