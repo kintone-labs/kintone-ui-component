@@ -11,7 +11,7 @@ function getLatestVersionName() {
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'kintone UI Component · Be a smart kintone developer.',
+  title: 'kintone UI Component',
   headTags: [
     {
       tagName: 'meta',
