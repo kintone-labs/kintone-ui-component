@@ -65,10 +65,8 @@
     "webpack-cli": "^5.1.4"
   },
   "dependencies": {
-    "@webcomponents/webcomponentsjs": "^2.8.0",
     "core-js": "^3.39.0",
     "lit": "^3.2.1",
-    "regenerator-runtime": "^0.14.1",
     "uuid": "^11.0.3"
   }
 }
