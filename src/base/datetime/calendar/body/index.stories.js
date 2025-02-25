@@ -1,5 +1,5 @@
 import "./index.ts";
-import { html } from "lit-html";
+import { html } from "lit";
 
 export default {
   title: "base/datetime/calendar/body",

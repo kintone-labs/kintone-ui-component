@@ -1,6 +1,5 @@
 import React from "react";
-import { addons, types } from "@storybook/addons";
-import { useArgs } from "@storybook/api";
+import { addons, types, useArgs } from "@storybook/manager-api";
 
 const buttonStyles = {
   background: "none",

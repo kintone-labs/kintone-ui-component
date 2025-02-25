@@ -1,3 +1,5 @@
+import { withActions } from '@storybook/addon-actions/decorator';
+
 const newViewports = {
   iPhone11ProMax: {
     name: "iPhone 11 Pro Max",
@@ -28,6 +30,9 @@ const newViewports = {
     },
   },
 };
-export const parameters = {
-  viewport: { viewports: newViewports },
-}
+export default {
+  parameters: {
+    viewport: { viewports: newViewports },
+  },
+  decorators: [withActions],
+};

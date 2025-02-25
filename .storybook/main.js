@@ -1,10 +1,7 @@
 const custom = require("../webpack.config");
 
-module.exports = {
+const config = {
   "stories": ["../src/**/*.stories.@(js|jsx|ts|tsx)"],
-  core: {
-    builder: "webpack5",
-  },
   addons: [
     "@storybook/addon-a11y",
     "@storybook/addon-viewport",
@@ -24,5 +21,11 @@ module.exports = {
         rules: custom.module.rules
       }
     };
-  }
+  },
+  framework: {
+    name: "@storybook/web-components-webpack5",
+    options: {}
+  },
 };
+
+export default config;
