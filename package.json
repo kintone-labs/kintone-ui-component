@@ -29,7 +29,7 @@
     "build:umd_dev": "node ./scripts/webpack-umd.js development",
     "build:umd_prod": "node ./scripts/webpack-umd.js production",
     "build:esm": "tsc -p tsconfig.esm.json && node ./scripts/webpack-esm.js",
-    "build:storybook": "storybook build -o ./docs/storybook/",
+    "build-storybook": "storybook build -o ./docs/storybook/",
     "storybook": "storybook dev",
     "test": "rm -rf ./unit_test && tsc -p tsconfig.test.json && web-test-runner",
     "es-lint": "eslint src",
