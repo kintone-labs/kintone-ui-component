@@ -60,10 +60,10 @@ let exportMobileNotification;
     }
 
     private _setAutoCloseTimer() {
+      this._clearAutoCloseTimer();
       if (!Number.isFinite(this.duration) || this.duration < 0) {
         return;
       }
-      this._clearAutoCloseTimer();
       this._timeoutID = window.setTimeout(() => {
         this.close();
       }, this.duration);
