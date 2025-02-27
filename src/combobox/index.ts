@@ -289,7 +289,7 @@ let exportCombobox;
           aria-selected="${isCheckedItem ? "true" : "false"}"
           value="${item.value !== undefined ? item.value : ""}"
           id="${this._GUID}-menuitem-${index}"
-          @mousedown="${!isDisabled ? this._handleMouseDownComboboxItem : null}"
+          @click="${!isDisabled ? this._handleClickComboboxItem : null}"
           @mouseover="${!isDisabled ? this._handleMouseOverComboboxItem : null}"
         >
           ${this._getComboboxIconSvgTemplate(isCheckedItem, isDisabled)}
@@ -320,7 +320,7 @@ let exportCombobox;
       }`;
     }
 
-    private _handleMouseDownComboboxItem(event: MouseEvent) {
+    private _handleClickComboboxItem(event: MouseEvent) {
       const itemEl = this._getItemElementWhenMouseOverDown(
         event.target as HTMLElement,
       );

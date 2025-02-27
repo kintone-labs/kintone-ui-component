@@ -2,7 +2,7 @@ import {
   Dropdown,
   DropdownProps,
   DropdownItem,
-  DropdownChangeEventDetail
+  DropdownChangeEventDetail,
 } from "kintone-ui-component";
 
 const root = document.getElementById("root") as HTMLElement;

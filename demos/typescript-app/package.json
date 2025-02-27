@@ -5,14 +5,15 @@
   "main": "index.js",
   "scripts": {
     "build:dev": "webpack --watch --mode development",
-    "build:prod": "webpack --mode production"
+    "build:prod": "webpack --mode production",
+    "eslint": "eslint src"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@cybozu/eslint-config": "^23.0.0",
-    "eslint": "^8.57.1",
+    "@cybozu/eslint-config": "^24.0.0",
+    "eslint": "^9.19.0",
     "prettier": "^3.4.2",
     "ts-loader": "^9.5.1",
     "typescript": "^5.7.2",
