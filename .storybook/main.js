@@ -7,6 +7,7 @@ const config = {
     "@storybook/addon-viewport",
     "@storybook/addon-controls",
     "@storybook/addon-actions",
+    "@chromatic-com/storybook",
     "./addons/preset.js"
   ],
   webpackFinal: (config) => {
