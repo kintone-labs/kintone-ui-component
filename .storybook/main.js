@@ -1,13 +1,13 @@
 const custom = require("../webpack.config");
 
-const config = {
-  "stories": ["../src/**/*.stories.@(js|jsx|ts|tsx)"],
+const mainConfig = {
+  stories: ["../src/**/*.stories.@(js|jsx|ts|tsx)"],
   addons: [
     "@storybook/addon-a11y",
     "@storybook/addon-viewport",
     "@storybook/addon-controls",
     "@storybook/addon-actions",
-    "./addons/preset.js"
+    "./addons/preset.js",
   ],
   webpackFinal: (config) => {
     return {
@@ -18,14 +18,14 @@ const config = {
       },
       module: {
         ...config.module,
-        rules: custom.module.rules
-      }
+        rules: custom.module.rules,
+      },
     };
   },
   framework: {
     name: "@storybook/web-components-webpack5",
-    options: {}
+    options: {},
   },
 };
 
-export default config;
+export default mainConfig;
