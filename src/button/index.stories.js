@@ -47,7 +47,7 @@ const template = (args) => {
 export const Base = template.bind({});
 Base.args = {
   className: "sample-class",
-  content: "Button",
+  content: "Button - 0",
   disabled: false,
   id: "sample-id",
   type: "normal",
