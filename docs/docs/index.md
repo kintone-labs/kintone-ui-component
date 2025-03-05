@@ -1,6 +1,6 @@
 # Home
 !!! note
-    ⚠️⚠️The maintenance of kintone UI Component v0 ended on 31 December 2023. We recommend migrating to [kintone UI Component v1](https://kintone-ui-component.netlify.app/).⚠️⚠️
+    ⚠️⚠️The maintenance of kintone UI Component v0 ended on 31 December 2023. We recommend migrating to [kintone UI Component v1](https://ui-component.kintone.dev/).⚠️⚠️
 
 ## Quick start
 * [QuickStart Javascript](Getting-Started/QuickStart-Javascript)
