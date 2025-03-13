@@ -4,5 +4,5 @@ outputs:
   integrity:
     description: 'The integrity of file binary'
 runs: 
-  using: 'node16'
+  using: 'node20'
   main: 'index.js'

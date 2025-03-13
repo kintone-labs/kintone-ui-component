@@ -1,7 +1,7 @@
 # Home
 !!! note
     We released kintone UI Component v1.0.0 on 04 March 2021 and now it is the mainstream.
-    If you want to use it, please check [this website](https://kintone-ui-component.netlify.app/).
+    If you want to use it, please check [this website](https://ui-component.kintone.dev/).
 
     We will end the maintenance of kintone UI Component v0 on 31 December 2023. Please check [this announcement](https://github.com/kintone-labs/kintone-ui-component/discussions/1280) for details.
 

@@ -54,3 +54,9 @@
     :why: Because of the MIT License
     :versions: [2.5.2]
     :when: 2023-04-21 14:50:31.098597000 Z
+- - :approve
+  - argparse
+  - :who: 
+    :why: Because of the Python-2.0 License
+    :versions: [2.0.1]
+    :when: 2023-04-21 14:50:31.098597000 Z
