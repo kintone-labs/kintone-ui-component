@@ -21,7 +21,7 @@ const template = (args) => {
     notification.close();
   });
   const buttonFullScreen = createButton("full screen mode", () => {
-    document.getElementById("root").requestFullscreen();
+    document.getElementById("storybook-root").requestFullscreen();
   });
   const buttonSetRoot = createButton("Set Root element", () => {
     notification.container = getRootElement();
@@ -78,7 +78,7 @@ const getBodyElement = () => {
 };
 
 const getRootElement = () => {
-  return document.getElementById("root");
+  return document.getElementById("storybook-root");
 };
 
 export const Base = template.bind({});
