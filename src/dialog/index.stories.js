@@ -31,7 +31,7 @@ const template = (args) => {
     dialog.close();
   });
   const buttonFullScreen = createButton("full screen mode", () => {
-    document.getElementById("root").requestFullscreen();
+    document.getElementById("storybook-root").requestFullscreen();
   });
   const buttonSetRoot = createButton("Set Root element", () => {
     dialog.container = rootElement;
@@ -83,7 +83,7 @@ const createButton = (text, onClick) => {
 
 const nonExistElement = document.createElement("div");
 const bodyElement = document.body;
-const rootElement = document.getElementById("root");
+const rootElement = document.getElementById("storybook-root");
 
 export const Base = template.bind({});
 Base.args = {
