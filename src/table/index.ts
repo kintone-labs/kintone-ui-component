@@ -41,6 +41,8 @@ let exportTable;
     return;
   }
   class KucTable<T extends object = object> extends KucBase {
+    @property({ type: String }) actionButtonPosition: "left" | "right" =
+      "right";
     @property({ type: String, reflect: true, attribute: "class" }) className =
       "";
     @property({ type: String, reflect: true, attribute: "id" }) id = "";
@@ -64,6 +66,12 @@ let exportTable;
     @query(".kuc-table__table__body")
     private _tBody!: HTMLTableSectionElement;
 
+    private _actionButton: { add: boolean; remove: boolean } = {
+      add: true,
+      remove: true,
+    };
+    private _actionButtonPosition: "left" | "right" = "right";
+
     constructor(props?: TableProps<T>) {
       super();
       if (!props) return;
@@ -84,21 +92,17 @@ let exportTable;
     }
 
     protected willUpdate(_changedProperties: PropertyValues): void {
+      if (_changedProperties.has("actionButtonPosition")) {
+        this._actionButtonPosition =
+          this.actionButtonPosition === "left" ? "left" : "right";
+      }
+
+      if (_changedProperties.has("actionButton")) {
+        this._actionButton = this._getActionButtonSettings();
+      }
+
       if (!this._tBody) return;
       this._tBody.innerHTML = "";
-    }
-
-    private _getErrorMessageWhenValidateColumns() {
-      if (!validateArrayType(this.columns)) {
-        return ERROR_MESSAGE.COLUMNS.IS_NOT_ARRAY;
-      }
-      if (!validateFieldRequiredInColumnTable(this.columns)) {
-        return ERROR_MESSAGE.COLUMNS.FIELD_REQUIRED;
-      }
-      if (validateFieldUniqueInColumnTable(this.columns)) {
-        return ERROR_MESSAGE.COLUMNS.FIELD_UNIQUE;
-      }
-      return "";
     }
 
     render() {
@@ -138,10 +142,34 @@ let exportTable;
     private _getTableHeaderTemplate() {
       return html`
         <tr>
+          ${this._actionButtonPosition === "left"
+            ? this._getActionButtonHeaderTemplate()
+            : ""}
           ${this.columns.map((column, index) =>
             this._getColumnHeaderTemplate(column, index),
           )}
+          ${this._actionButtonPosition === "right"
+            ? this._getActionButtonHeaderTemplate()
+            : ""}
         </tr>
+      `;
+    }
+
+    private _getActionButtonHeaderTemplate() {
+      if (
+        !this.data ||
+        this.data.length < 1 ||
+        (!this._actionButton.add && !this._actionButton.remove)
+      )
+        return html``;
+
+      return html`
+        <th
+          class="kuc-table__table__header__cell kuc-table__table__header__cell__action${this
+            ._actionButtonPosition === "left"
+            ? "--left"
+            : "--right"}"
+        ></th>
       `;
     }
 
@@ -173,7 +201,10 @@ let exportTable;
         if (!currentRow) {
           i--;
         } else {
-          actionsCell = currentRow.cells[this.columns.length];
+          actionsCell =
+            currentRow.cells[
+              this._actionButtonPosition === "left" ? 0 : this.columns.length
+            ];
           break;
         }
       }
@@ -201,9 +232,22 @@ let exportTable;
     private _addRowToTable(currentRowIndex: number, defaultRow: any) {
       const newRow = this._tBody.insertRow(currentRowIndex);
       newRow.classList.add(rowClassName);
+
+      if (
+        (this._actionButton.add || this._actionButton.remove) &&
+        this._actionButtonPosition === "left"
+      ) {
+        this._addActionsCellToNewRow(newRow);
+      }
       for (let i = 0; i < this.columns.length; i++) {
         const customWidth = customWidthVariables(i);
-        const newCell = newRow.insertCell(i);
+        const newCell = newRow.insertCell(
+          i +
+            ((this._actionButton.add || this._actionButton.remove) &&
+            this._actionButtonPosition === "left"
+              ? 1
+              : 0),
+        );
         const column = this.columns[i];
         newCell.classList.add(cellClassName);
         newCell.style.width = customWidth;
@@ -222,7 +266,11 @@ let exportTable;
           newCell.innerText = cellTemplate || "";
         }
       }
-      if (!this.actionButton) return;
+      if (
+        (!this._actionButton.add && !this._actionButton.remove) ||
+        this._actionButtonPosition === "left"
+      )
+        return;
       this._addActionsCellToNewRow(newRow);
     }
 
@@ -301,7 +349,7 @@ let exportTable;
 
     private _focusFirstAddRowButton() {
       const firstActionsCell = this._table.rows[1].cells[
-        this.columns.length
+        this._actionButtonPosition === "left" ? 0 : this.columns.length
       ] as HTMLTableCellElement;
       const addRowButton = firstActionsCell.querySelector(
         `.${btnAddRowClassName}`,
@@ -310,17 +358,24 @@ let exportTable;
     }
 
     private _toggleRemoveRowButton() {
-      const firstActionsCell = this._tBody.rows[0]
-        .lastChild as HTMLTableCellElement;
+      const firstActionsCell =
+        this._actionButtonPosition === "left"
+          ? (this._tBody.rows[0].firstChild as HTMLTableCellElement)
+          : (this._tBody.rows[0].lastChild as HTMLTableCellElement);
       const firstRemoveRow = firstActionsCell.lastChild as HTMLButtonElement;
       if (this.data.length === 1) {
         firstRemoveRow.style.display = "none";
         return;
       }
       if (this.data.length === 2) {
-        const secondRemoveRow = this._tBody.rows[1].lastChild
-          ?.lastChild as HTMLButtonElement;
-        firstRemoveRow.style.display = secondRemoveRow.style.display = "block";
+        const secondActionsCell =
+          this._actionButtonPosition === "left"
+            ? (this._tBody.rows[1].firstChild as HTMLTableCellElement)
+            : (this._tBody.rows[1].lastChild as HTMLTableCellElement);
+        const secondRemoveRow =
+          secondActionsCell.lastChild as HTMLButtonElement;
+        firstRemoveRow.style.display = secondRemoveRow.style.display =
+          "inline-block";
       }
     }
 
@@ -349,38 +404,26 @@ let exportTable;
     }
 
     private _addActionsCellToNewRow(newRow: HTMLTableRowElement) {
-      const actionButton: { add?: boolean; remove?: boolean } = {
-        add: true,
-        remove: true,
-      };
-      if (typeof this.actionButton === "object") {
-        actionButton.add = Object.prototype.hasOwnProperty.call(
-          this.actionButton,
-          "add",
-        )
-          ? this.actionButton.add
-          : true;
-        actionButton.remove = Object.prototype.hasOwnProperty.call(
-          this.actionButton,
-          "remove",
-        )
-          ? this.actionButton.remove
-          : true;
-      }
-
-      if (!actionButton.add && !actionButton.remove) {
+      if (!this._actionButton.add && !this._actionButton.remove) {
         return;
       }
 
-      const newCell = newRow.insertCell(this.columns.length);
+      const newCell = newRow.insertCell(
+        this._actionButtonPosition === "left" ? 0 : this.columns.length,
+      );
       newCell.classList.add(cellActionsClassName);
+      if (this._actionButtonPosition === "left") {
+        newCell.classList.add("kuc-table__table__body__row__action--left");
+      } else {
+        newCell.classList.add("kuc-table__table__body__row__action--right");
+      }
 
-      if (actionButton.add) {
+      if (this._actionButton.add) {
         const btnAddDOM = this._getActionButtonDOM("add", newRow);
         newCell.appendChild(btnAddDOM);
       }
 
-      if (actionButton.remove) {
+      if (this._actionButton.remove) {
         const btnRemoveDOM = this._getActionButtonDOM("remove", newRow);
         newCell.appendChild(btnRemoveDOM);
 
@@ -424,12 +467,49 @@ let exportTable;
       return buttonAction;
     }
 
+    private _getActionButtonSettings() {
+      const actionButton: { add: boolean; remove: boolean } = {
+        add: true,
+        remove: true,
+      };
+      if (typeof this.actionButton === "object") {
+        actionButton.add = Object.prototype.hasOwnProperty.call(
+          this.actionButton,
+          "add",
+        )
+          ? !!this.actionButton.add
+          : true;
+        actionButton.remove = Object.prototype.hasOwnProperty.call(
+          this.actionButton,
+          "remove",
+        )
+          ? !!this.actionButton.remove
+          : true;
+      } else if (!this.actionButton) {
+        actionButton.add = actionButton.remove = false;
+      }
+      return actionButton;
+    }
+
     private _getErrorValidateColumnsAndData() {
       const errorColumns = this._getErrorMessageWhenValidateColumns();
       if (errorColumns) return errorColumns;
 
       if (!validateArrayType(this.data)) return ERROR_MESSAGE.DATA.IS_NOT_ARRAY;
 
+      return "";
+    }
+
+    private _getErrorMessageWhenValidateColumns() {
+      if (!validateArrayType(this.columns)) {
+        return ERROR_MESSAGE.COLUMNS.IS_NOT_ARRAY;
+      }
+      if (!validateFieldRequiredInColumnTable(this.columns)) {
+        return ERROR_MESSAGE.COLUMNS.FIELD_REQUIRED;
+      }
+      if (validateFieldUniqueInColumnTable(this.columns)) {
+        return ERROR_MESSAGE.COLUMNS.FIELD_UNIQUE;
+      }
       return "";
     }
 

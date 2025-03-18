@@ -117,7 +117,7 @@ describe("Table", () => {
       (addRowButton[0] as HTMLElement).click();
 
       expect((removeRowButton[2] as HTMLElement).style.display).to.equal(
-        "block",
+        "inline-block",
       );
     });
 
