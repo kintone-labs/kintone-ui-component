@@ -230,7 +230,8 @@ table td li img {
 table[class^="kuc-readonly-table-"] {
   margin-bottom: 0px;
 }
-table th[class$="__table__header__cell"] {
+table th[class$="__table__header__cell"],
+table th[class$="__table__header__cell__action--right"] {
   border: none;
   vertical-align: middle;
 }

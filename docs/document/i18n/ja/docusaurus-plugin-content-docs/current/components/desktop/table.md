@@ -21,6 +21,7 @@ import { TableComponent } from "@site/static/js/samples/desktop/table.jsx"
 
 | Name | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
+| actionButtonPosition | string | "right"  | Position of the fixed action button column | 以下を指定できる<br/>"right" : Right edge<br/>"left" : Left edge |
 | className | string | ""  | コンポーネントの class 名 | |
 | id | string | ""  | コンポーネントの id 名 | |
 | label | string | ""  | コンポーネントの説明ラベル | 未指定、あるいは空文字の場合、label は表示されない |
@@ -83,6 +84,9 @@ Table(options)<br/>
 | --kuc-table-header-height | |
 | --kuc-table-header-\{index\}-width | <li>このプロパティを使用すると、インデックス値に基づいて特定のテーブル列の幅を設定できる</li><li>例えば、`--kuc-table-header-0-width` を使用して、最初のカラムの幅を設定できる</li><li>インデックス値は `0` から始まることに注意</li> |
 | --kuc-table-header-width | <li>このプロパティを使用すると、テーブル内のすべての列の幅を設定できる</li><li>単一のカラムに対して特定の幅を設定する必要がある場合は、`--kuc-table-header-{index}-width` プロパティを利用する</li><li>伸縮する要素を子コンポーネントとして追加したい場合は、`--kuc-table-header-width: auto` を設定することで、この動作を維持できる場合がある</li> |
+| --kuc-table-action-button-background-color | |
+| --kuc-table-action-button-left | <ul><li>This property is used to set the offset of the left edge of the action button column from the left edge of Table's nearest scrolling ancestor</li><li>It works when `actionButtonPosition` is left</li><li>For example, when a child table is set up in a table and `actionButtonPosition` is left for both the child table and the parent table</li><ul><li>You can set the width of the action button column of the parent table to `--kuc-table-action-button-left` in the child table to avoid the problem that the action button columns may overwrite each other</li><li>In general, it is set to 77px if both the add/remove row buttons of the parent table are shown, or 41px if only one of the add/remove row buttons of the parent table is shown</li></ul></ul> |
+| --kuc-table-action-button-right | <ul><li>This property is used to set the offset of the right edge of the action button column from the right edge of Table's nearest scrolling ancestor</li><li>It works when `actionButtonPosition` is right</li><li>For example, when a child table is set up in a table and `actionButtonPosition` is right for both the child table and the parent table</li><ul><li>You can set the width of the action button column of the parent table to `--kuc-table-action-button-right` in the child table to avoid the problem that the action button columns may overwrite each other</li><li>In general, it is set to 77px if both the add/remove row buttons of the parent table are shown, or 41px if only one of the add/remove row buttons of the parent table is shown</li></ul></ul> |
 
 ---
 
@@ -153,7 +157,8 @@ const table = new Kuc.Table({
   id: 'options-id',
   actionButton: true,
   headerVisible: true,
-  visible: true
+  visible: true,
+  actionButtonPosition: 'right'
 });
 
 space.appendChild(table);
