@@ -53,7 +53,7 @@
     "chromatic": "^11.27.0",
     "deepmerge": "^4.3.1",
     "eslint": "^9.22.0",
-    "eslint-import-resolver-typescript": "^4.1.1",
+    "eslint-import-resolver-typescript": "^4.2.1",
     "eslint-plugin-import": "^2.31.0",
     "eslint-plugin-kuc-v1": "file:eslint-plugin-kuc-v1",
     "node-actionlint": "^1.2.2",
