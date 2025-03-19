@@ -472,6 +472,12 @@ let exportTable;
         add: true,
         remove: true,
       };
+
+      if (!this.actionButton) {
+        actionButton.add = actionButton.remove = false;
+        return actionButton;
+      }
+
       if (typeof this.actionButton === "object") {
         actionButton.add = Object.prototype.hasOwnProperty.call(
           this.actionButton,
@@ -485,8 +491,6 @@ let exportTable;
         )
           ? !!this.actionButton.remove
           : true;
-      } else if (!this.actionButton) {
-        actionButton.add = actionButton.remove = false;
       }
       return actionButton;
     }
