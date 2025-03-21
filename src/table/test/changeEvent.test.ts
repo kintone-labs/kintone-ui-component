@@ -90,16 +90,16 @@ describe("Table", () => {
       expect(tableEl.rows.length).to.equal(4);
       expect(container.data.length).to.equal(3);
 
-      (removeRowButton[0] as HTMLButtonElement).click();
+      (removeRowButton[2] as HTMLButtonElement).click();
       expect(triggeredEvent.type).to.equal("change");
       expect(triggeredEvent.detail.oldData.length).to.equal(3);
       expect(triggeredEvent.detail.data.length).to.equal(2);
-      expect(triggeredEvent.detail.rowIndex).to.equal(0);
+      expect(triggeredEvent.detail.rowIndex).to.equal(2);
       expect(triggeredEvent.detail.type).to.equal("remove-row");
       expect(tableEl.rows.length).to.equal(3);
       expect(container.data.length).to.equal(2);
 
-      (removeRowButton[1] as HTMLButtonElement).click();
+      (removeRowButton[0] as HTMLButtonElement).click();
       expect(triggeredEvent.type).to.equal("change");
       expect(triggeredEvent.detail.oldData.length).to.equal(2);
       expect(triggeredEvent.detail.data.length).to.equal(1);
@@ -107,7 +107,7 @@ describe("Table", () => {
       expect(triggeredEvent.detail.type).to.equal("remove-row");
       expect(tableEl.rows.length).to.equal(2);
       expect(container.data.length).to.equal(1);
-      expect((removeRowButton[2] as HTMLElement).style.display).to.equal(
+      expect((removeRowButton[1] as HTMLElement).style.display).to.equal(
         "none",
       );
 
@@ -116,7 +116,7 @@ describe("Table", () => {
       );
       (addRowButton[0] as HTMLElement).click();
 
-      expect((removeRowButton[2] as HTMLElement).style.display).to.equal(
+      expect((removeRowButton[1] as HTMLElement).style.display).to.equal(
         "inline-block",
       );
     });

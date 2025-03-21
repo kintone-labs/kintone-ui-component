@@ -66,6 +66,12 @@ let exportTable;
     @query(".kuc-table__table__body")
     private _tBody!: HTMLTableSectionElement;
 
+    @query(".kuc-table__table__header__cell__action--right")
+    private _actionHeaderCellRight!: HTMLTableCellElement;
+
+    @query(".kuc-table__table__header__cell__action--left")
+    private _actionHeaderCellLeft!: HTMLTableCellElement;
+
     private _actionButton: { add: boolean; remove: boolean } = {
       add: true,
       remove: true,
@@ -365,6 +371,10 @@ let exportTable;
       const firstRemoveRow = firstActionsCell.lastChild as HTMLButtonElement;
       if (this.data.length === 1) {
         firstRemoveRow.style.display = "none";
+        if (!this._actionButton.add) {
+          firstActionsCell.style.display = "none";
+          this._hideActionHeaderCell();
+        }
         return;
       }
       if (this.data.length === 2) {
@@ -376,6 +386,7 @@ let exportTable;
           secondActionsCell.lastChild as HTMLButtonElement;
         firstRemoveRow.style.display = secondRemoveRow.style.display =
           "inline-block";
+        firstActionsCell.style.removeProperty("display");
       }
     }
 
@@ -430,6 +441,14 @@ let exportTable;
         if (this.data.length === 1) {
           btnRemoveDOM.style.display = "none";
         }
+      }
+
+      if (!this._actionButton.add && this.data.length === 1) {
+        this._hideActionHeaderCell();
+        newCell.style.display = "none";
+      } else {
+        this._showActionHeaderCell();
+        newCell.style.removeProperty("display");
       }
     }
 
@@ -524,6 +543,18 @@ let exportTable;
     private _dispatchChangeEvent(_detail: TableChangeEventDetail) {
       const detail: TableChangeEventDetail = _detail;
       dispatchCustomEvent(this, "change", detail);
+    }
+
+    private _hideActionHeaderCell() {
+      this._actionHeaderCellRight &&
+        (this._actionHeaderCellRight.hidden = true);
+      this._actionHeaderCellLeft && (this._actionHeaderCellLeft.hidden = true);
+    }
+
+    private _showActionHeaderCell() {
+      this._actionHeaderCellRight &&
+        (this._actionHeaderCellRight.hidden = false);
+      this._actionHeaderCellLeft && (this._actionHeaderCellLeft.hidden = false);
     }
   }
 
