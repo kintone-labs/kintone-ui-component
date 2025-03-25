@@ -36,7 +36,8 @@ export const TABLE_CSS = `
     line-height: 1;
   }
   .kuc-table__table {
-    border-collapse: collapse;
+    border-collapse: separate;
+    border-spacing: 0;
   }
   .kuc-table__table__header {
     border-width: 0px 1px;
@@ -70,25 +71,55 @@ export const TABLE_CSS = `
     font-size: var(--kuc-table-header-font-size, 20px);
     align-self: flex-start;
   }
+  .kuc-table__table__header__cell__action--right {
+    box-shadow: -2px 0 4px 0 rgba(0, 0, 0, 8%);
+    position: sticky;
+    right: var(--kuc-table-action-button-right, 0px);
+  }
+  .kuc-table__table__header__cell__action--left {
+    box-shadow: 2px 0 4px 0 rgba(0, 0, 0, 8%);
+    position: sticky;
+    left: var(--kuc-table-action-button-left, 0px);
+    z-index: 1;
+  }
   .kuc-table__table__body__row__cell-data {
     box-sizing: border-box;
     overflow-wrap: break-word;
     white-space: normal;
     border-color: #e3e7e8;
     border-style: solid;
-    border-width: 1px;
+    border-width: 0 1px 1px;
     padding: 8px 8px;
     vertical-align: top;
+  }
+  .kuc-table__table__body__row__cell-data:not(.kuc-table__table__body__row__cell-data[hidden])~.kuc-table__table__body__row__cell-data {
+    border-left-width: 0px;
   }
   .kuc-table__table__body__row__cell-data[hidden] {
     display: none;
   }
   .kuc-table__table__body__row__action {
-    display: flex;
-    vertical-align: top;
+    white-space: nowrap;
+    background-color: var(--kuc-table-action-button-background-color, #f5f5f5);
+    vertical-align: middle;
+    position: sticky;
+    border-color: #e3e7e8;
+    border-style: solid;
+    border-width: 0 0 1px;
+  }
+  .kuc-table__table__body__row__action--right {
+    box-shadow: -2px 0 4px 0 rgba(0, 0, 0, 8%);
+    right: var(--kuc-table-action-button-right, 0px);
+    border-right-width: 1px;
+  }
+  .kuc-table__table__body__row__action--left {
+    box-shadow: 2px 0 4px 0 rgba(0, 0, 0, 8%);
+    left: var(--kuc-table-action-button-left, 0px);
+    border-left-width: 1px;
+    z-index: 1;
   }
   .kuc-table__table__body__row__action button {
-    display: flex;
+    display: inline-block;
     align-items: center;
     width: 24px;
     height: 24px;
@@ -101,10 +132,12 @@ export const TABLE_CSS = `
     display: none;
   }
   .kuc-table__table__body__row__action-add {
-    margin-left: 12px;
+    margin-left: 8px;
+    margin-right: 8px;
   }
   .kuc-table__table__body__row__action-remove {
     margin-left: 4px;
+    margin-right: 8px;
   }
   .kuc-table__table__body__row__action-add:focus,
   .kuc-table__table__body__row__action-remove:focus {

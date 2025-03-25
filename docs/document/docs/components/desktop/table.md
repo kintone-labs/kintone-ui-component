@@ -21,6 +21,7 @@ Here is a list of properties that can be used for modifying the component:
 
 | Name | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
+| actionButtonPosition | string | "right" | Position of the fixed add/remove row button column | Available options:<br/>"right" : Right edge of window<br/>"left" : Left edge of window |
 | className | string | ""  | Component class name | |
 | id | string | "" | Component id name | |
 | label | string | ""  | Label for the component | Label is not displayed if unspecified or empty |
@@ -83,6 +84,9 @@ Here is a list of properties that can be used for modifying component style:
 | --kuc-table-header-height | |
 | --kuc-table-header-\{index\}-width | <li>This property allows you to set the width of certain table columns based on their index values</li><li>For example, you can use `--kuc-table-header-0-width` to set the width of the first column</li><li>Note that the index values start from `0`, where `0` corresponds to the first column</li> |
 | --kuc-table-header-width | <li>This property is used to set the width for all columns in a table, it defines a uniform width for every column</li><li>If you need to set a specific width for a single column, you can use `--kuc-table-header-{index}-width` property</li><li>If you want to add the element that will expand/contract as a child component, you may be able to preserve this behavior by setting `--kuc-table-header-width: auto`</li> |
+| --kuc-table-action-button-background-color | |
+| --kuc-table-action-button-left | <ul><li>This property is used to set the offset of the left edge of the add/remove row button column from the left edge of Table's nearest ancestor element that has scrolling mechanism</li><li>It works when `actionButtonPosition` is left</li><li>For example, when a child table is set up in a table and `actionButtonPosition` is left for both the child table and the parent table</li><ul><li>You can set the width of the add/remove row button column of the parent table to `--kuc-table-action-button-left` in the child table to avoid the problem that the add/remove row button columns may overwrite each other</li><li>In general, it is set to 77px if both the add/remove row buttons of the parent table are shown, or 41px if only one of the add/remove row buttons of the parent table is shown</li></ul></ul> |
+| --kuc-table-action-button-right | <ul><li>This property is used to set the offset of the right edge of the add/remove row button column from the right edge of Table's nearest ancestor element that has scrolling mechanism</li><li>It works when `actionButtonPosition` is right</li><li>For example, when a child table is set up in a table and `actionButtonPosition` is right for both the child table and the parent table</li><ul><li>You can set the width of the add/remove row button column of the parent table to `--kuc-table-action-button-right` in the child table to avoid the problem that the add/remove row button columns may overwrite each other</li><li>In general, it is set to 77px if both the add/remove row buttons of the parent table are shown, or 41px if only one of the add/remove row buttons of the parent table is shown</li></ul></ul> |
 
 ---
 
@@ -153,7 +157,8 @@ const table = new Kuc.Table({
   id: 'options-id',
   actionButton: true,
   headerVisible: true,
-  visible: true
+  visible: true,
+  actionButtonPosition: 'right'
 });
 
 space.appendChild(table);

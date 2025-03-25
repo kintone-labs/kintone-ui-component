@@ -17,6 +17,7 @@ export declare type Render = (
 ) => HTMLElement;
 
 export declare type TableProps<T extends object = object> = {
+  actionButtonPosition?: "left" | "right";
   className?: string;
   id?: string;
   label?: string;
@@ -36,6 +37,7 @@ export declare type TableChangeEventDetail<T extends object = object> = {
 };
 
 export declare class Table<T extends object = object> extends KucBase {
+  actionButtonPosition: "left" | "right";
   className: string;
   id: string;
   label: string;
