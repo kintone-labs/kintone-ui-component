@@ -21,11 +21,11 @@ const template = (args) => {
   });
 
   const fullScreenButton = createButton("Fullscreen Mode", () => {
-    document.getElementById("root").requestFullscreen();
+    document.getElementById("storybook-root").requestFullscreen();
   });
 
   const setRootButton = createButton("Set Root element", () => {
-    spinner.container = document.getElementById("root");
+    spinner.container = document.getElementById("storybook-root");
   });
 
   const setBodyButton = createButton("Set Body element", () => {

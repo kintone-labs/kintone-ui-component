@@ -20,6 +20,7 @@ export default {
     headerVisible: { name: "headerVisible" },
     visible: { name: "visible" },
     actionButton: { name: "actionButton" },
+    actionButtonPosition: { name: "actionButtonPosition" },
   },
   parameters: {
     actions: {
@@ -184,4 +185,5 @@ Base.args = {
   id: "table-id",
   className: "table-classname",
   actionButton: { add: true, remove: true },
+  actionButtonPosition: "right",
 };

@@ -127,5 +127,58 @@ describe("Table", () => {
       ) as HTMLButtonElement;
       await expect(removeButton.getAttribute("title")).to.equal(titleDeleteRow);
     });
+
+    it("should not display action button column when there is one row and assigned 'add: false' in constructor", async () => {
+      const container = new Table({
+        columns: columns,
+        data: [{ name: "David", age: 20 }],
+        actionButton: { add: false },
+      });
+      const el = await fixture(container);
+      await elementUpdated(el);
+
+      const removeButton = el.querySelector(
+        ".kuc-table__table__body__row__action-remove",
+      ) as HTMLButtonElement;
+      await expect(removeButton.style.display).to.equal("none");
+
+      const actionHeaderCell = el.querySelector(
+        ".kuc-table__table__header__cell__action--right",
+      ) as HTMLTableCellElement;
+      await expect(actionHeaderCell.hasAttribute("hidden")).to.equal(true);
+
+      const actionButtonCell = el.querySelector(
+        ".kuc-table__table__body__row__action",
+      ) as HTMLTableCellElement;
+      await expect(actionButtonCell.style.display).to.equal("none");
+    });
+
+    it("should not display action button column when there is one row after clicked remove button and assigned 'add: false' in constructor", async () => {
+      const container = new Table({
+        columns: columns,
+        data: data,
+        actionButton: { add: false },
+      });
+      const el = await fixture(container);
+      await elementUpdated(el);
+      const removeRowButtons = el.querySelectorAll(
+        ".kuc-table__table__body__row__action-remove",
+      );
+
+      (removeRowButtons[1] as HTMLButtonElement).click();
+      await expect((removeRowButtons[0] as HTMLElement).style.display).to.equal(
+        "none",
+      );
+
+      const actionHeaderCell = el.querySelector(
+        ".kuc-table__table__header__cell__action--right",
+      ) as HTMLTableCellElement;
+      await expect(actionHeaderCell.hasAttribute("hidden")).to.equal(true);
+
+      const actionButtonCell = el.querySelector(
+        ".kuc-table__table__body__row__action",
+      ) as HTMLTableCellElement;
+      await expect(actionButtonCell.style.display).to.equal("none");
+    });
   });
 });
