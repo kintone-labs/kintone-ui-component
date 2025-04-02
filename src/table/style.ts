@@ -92,7 +92,7 @@ export const TABLE_CSS = `
     padding: 8px 8px;
     vertical-align: top;
   }
-  .kuc-table__table__body>.kuc-table__table__body__row:first-child>.kuc-table__table__body__row__cell-data {
+  .kuc-table__table__body--no-header>.kuc-table__table__body__row:first-child>.kuc-table__table__body__row__cell-data {
     border-top-width: 1px;
   }
   .kuc-table__table__body__row__cell-data:not(.kuc-table__table__body__row__cell-data[hidden])~.kuc-table__table__body__row__cell-data {
@@ -110,7 +110,7 @@ export const TABLE_CSS = `
     border-style: solid;
     border-width: 0 0 1px;
   }
-  .kuc-table__table__body>.kuc-table__table__body__row:first-child>.kuc-table__table__body__row__action {
+  .kuc-table__table__body--no-header>.kuc-table__table__body__row:first-child>.kuc-table__table__body__row__action {
     border-top-width: 1px;
   }
   .kuc-table__table__body__row__action--right {
