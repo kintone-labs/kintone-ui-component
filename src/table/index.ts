@@ -132,7 +132,11 @@ let exportTable;
               >
                 ${this._getTableHeaderTemplate()}
               </thead>
-              <tbody class="kuc-table__table__body"></tbody>
+              <tbody
+                class="kuc-table__table__body${!this.headerVisible
+                  ? " kuc-table__table__body--no-header"
+                  : ""}"
+              ></tbody>
             </table>
           `;
     }
