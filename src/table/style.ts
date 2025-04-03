@@ -92,6 +92,9 @@ export const TABLE_CSS = `
     padding: 8px 8px;
     vertical-align: top;
   }
+  .kuc-table__table__body--no-header>.kuc-table__table__body__row:first-child>.kuc-table__table__body__row__cell-data {
+    border-top-width: 1px;
+  }
   .kuc-table__table__body__row__cell-data:not(.kuc-table__table__body__row__cell-data[hidden])~.kuc-table__table__body__row__cell-data {
     border-left-width: 0px;
   }
@@ -106,6 +109,9 @@ export const TABLE_CSS = `
     border-color: #e3e7e8;
     border-style: solid;
     border-width: 0 0 1px;
+  }
+  .kuc-table__table__body--no-header>.kuc-table__table__body__row:first-child>.kuc-table__table__body__row__action {
+    border-top-width: 1px;
   }
   .kuc-table__table__body__row__action--right {
     box-shadow: -2px 0 4px 0 rgba(0, 0, 0, 8%);
