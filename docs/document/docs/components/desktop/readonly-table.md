@@ -39,8 +39,12 @@ Here is a list of properties that can be used for modifying the component:
 | Name | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
 | field | string | ""  | Key of the column | It represents the key of the `data` object<br/>The value associated with that key will be rendered in the column |
-| title | string | ""  | Header name of the column | |
+| title *1 | string/HTMLElement | ""  | Header name of the column | If a string with HTML is set, it will be automatically converted to HTML and displayed as it is |
 | visible | boolean |  true  | Show/Hide the column | |
+
+:::caution
+*1: [Security] Kintone UI Component does NOT sanitize this property value. It is the developer's responsibility to escape any user input when using this option so that XSS attacks would be prevented.
+:::
 
 ### Constructor
 

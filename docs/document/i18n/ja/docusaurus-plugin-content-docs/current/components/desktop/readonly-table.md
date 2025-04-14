@@ -39,8 +39,12 @@ import { ReadOnlyTableComponent } from "@site/static/js/samples/desktop/readonly
 | Name | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
 | field | string | ""  | 列のキー項目 | data オブジェクトのキー項目になる<br/>そのキーに関連づけられた値が列に表示される |
-| title | string | ""  | 列のヘッダー名 | |
+| title *1 | string/HTMLElement | ""  | 列のヘッダー名 | HTML が記載された string を指定した場合、自動的に HTML に変換してそのまま表示される |
 | visible | boolean |  true  | 列の表示/非表示設定 | |
+
+:::caution
+*1: kintone UI Component はこのプロパティの値を内部的にサニタイズしていません。ユーザー入力を受け付けるような実装でこのプロパティを使用する場合は、開発者自身で XSS 対策をしてください。
+:::
 
 ### Constructor
 
