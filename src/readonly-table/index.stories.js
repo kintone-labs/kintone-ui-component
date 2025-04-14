@@ -1,4 +1,5 @@
 import { Tooltip } from "../tooltip/index.ts";
+
 import { ReadOnlyTable } from "./index.ts";
 
 export default {
