@@ -149,32 +149,18 @@ let exportReadOnlyTable;
 
     private _getColumnsTemplate(column: ReadOnlyTableColumn, index: number) {
       const customWidth = this._customWidthVariables(index);
-      const isHTML =
-        typeof column.title === "string"
-          ? this._containsHTMLElements(column.title)
-          : true;
+      const isHTML = column.title ? this._isHTML(column.title) : false;
       return html`
         <th
-          class="kuc-readonly-table__table__header__cell"
+          class="kuc-readonly-table__table__header__cell${isHTML
+            ? " kuc-readonly-table__table__header__cell--html"
+            : ""}"
           ?hidden="${column.visible === false}"
-          style="width: ${customWidth}; min-width: ${customWidth}; max-width: ${customWidth}; ${!isHTML
-            ? "white-space: nowrap"
-            : "white-space: normal"};
-            ${!isHTML ? "overflow: auto" : ""}"
+          style="width: ${customWidth}; min-width: ${customWidth}; max-width: ${customWidth};"
         >
           ${column.title ? unsafeHTMLConverter(column.title) : ""}
         </th>
       `;
-    }
-
-    private _containsHTMLElements(str: string): boolean {
-      const parser = new DOMParser();
-      const doc = parser.parseFromString(str, "text/html");
-      const body = doc.body;
-      const hasNodeElement = Array.from(body.childNodes).some(
-        (node) => node.nodeType === Node.ELEMENT_NODE,
-      );
-      return hasNodeElement;
     }
 
     private _getDataTemplate(data: any, currentIndex: number) {

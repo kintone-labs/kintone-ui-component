@@ -31,10 +31,6 @@ import { ReadOnlyTableComponent } from "@site/static/js/samples/desktop/readonly
 | columns | Array\<[Column](#column)\> | []  | コンポーネントの列データ | columns が配列以外の場合、エラーを出力する |
 | data *1 | Array\<object\> | []  | コンポーネントの行データ | data が配列以外の場合、エラーを出力する |
 
-:::caution
-*1: kintone UI Component はこのプロパティの値を内部的にサニタイズしていません。ユーザー入力を受け付けるような実装でこのプロパティを使用する場合は、開発者自身で XSS 対策をしてください。
-:::
-
 #### Column
 | Name | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |

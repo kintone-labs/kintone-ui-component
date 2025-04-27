@@ -61,10 +61,16 @@ export const READ_ONLY_TABLE_CSS = `
     height: var(--kuc-readonly-table-header-height, 40px);
     box-sizing: border-box;
     text-align: left;
+    overflow: auto;
+    white-space: nowrap;
     word-wrap: break-word;
     padding: 4px 8px;
     font-weight: 400;
     font-size: var(--kuc-readonly-table-header-font-size, 12px);
+  }
+  .kuc-readonly-table__table__header__cell--html {
+    white-space: normal;
+    overflow: unset;
   }
   .kuc-readonly-table__table__header__cell[hidden] {
     display: none;
