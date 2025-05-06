@@ -68,6 +68,10 @@ export const READ_ONLY_TABLE_CSS = `
     font-weight: 400;
     font-size: var(--kuc-readonly-table-header-font-size, 12px);
   }
+  .kuc-readonly-table__table__header__cell--html {
+    white-space: normal;
+    overflow: unset;
+  }
   .kuc-readonly-table__table__header__cell[hidden] {
     display: none;
   }

@@ -54,6 +54,21 @@ const columnsWithoutVisible = [
   },
 ];
 
+const columnsWithHtmlElement = [
+  {
+    title: "<div>Number</div>",
+    field: "index",
+  },
+  {
+    title: "City",
+    field: "name",
+  },
+  {
+    title: "Country",
+    field: "country",
+  },
+];
+
 describe("ReadOnlyTable", () => {
   describe("Columns", () => {
     it("should be empty when not assigned on constructor", async () => {
@@ -95,6 +110,20 @@ describe("ReadOnlyTable", () => {
       expect(columnsEl[1].textContent?.trim()).to.equal("City");
       expect(columnsEl[2].hasAttribute("hidden")).to.equal(false);
       expect(columnsEl[2].textContent?.trim()).to.equal("Country");
+    });
+
+    it("should not be scroll when assign columns with html element on constructor", async () => {
+      const container = new ReadOnlyTable({ columns: columnsWithHtmlElement });
+      const el = await fixture(container);
+      const columnsEl = el.querySelectorAll(
+        ".kuc-readonly-table__table__header tr th",
+      );
+      expect(columnsEl.length).to.equal(3);
+      const computedFirstStyle = window.getComputedStyle(columnsEl[0]);
+      expect(computedFirstStyle.whiteSpace).to.equal("normal");
+      const computedSecondStyle = window.getComputedStyle(columnsEl[1]);
+      expect(computedSecondStyle.whiteSpace).to.equal("nowrap");
+      expect(computedSecondStyle.overflow).to.equal("auto");
     });
 
     it("should be visible when assign columns with only visible props by setter", async () => {

@@ -1,3 +1,5 @@
+import { Tooltip } from "../tooltip/index.ts";
+
 import { ReadOnlyTable } from "./index.ts";
 
 export default {
@@ -25,6 +27,10 @@ const Template = (args) => {
 };
 
 export const Base = Template.bind({});
+const toolTip = new Tooltip({
+  container: "City Name (Move mouse to me!)",
+  title: "The name of the city",
+});
 Base.args = {
   id: "sample-id",
   className: "sample-class",
@@ -38,7 +44,7 @@ Base.args = {
       field: "index",
     },
     {
-      title: "City",
+      title: toolTip,
       field: "name",
     },
     {
