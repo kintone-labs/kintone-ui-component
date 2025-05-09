@@ -10,7 +10,7 @@ describe("Notification", () => {
       const el = await fixture(container);
       const textEl = el.querySelector(
         ".kuc-notification__notification__title",
-      ) as HTMLButtonElement;
+      ) as HTMLPreElement;
       expect(textEl.innerText).to.equal("");
     });
 
@@ -20,7 +20,7 @@ describe("Notification", () => {
       const el = await fixture(container);
       const textEl = el.querySelector(
         ".kuc-notification__notification__title",
-      ) as HTMLButtonElement;
+      ) as HTMLPreElement;
       expect(textEl.innerText).to.equal("Error occurred!");
     });
 
@@ -31,7 +31,7 @@ describe("Notification", () => {
       const el = await fixture(container);
       const textEl = el.querySelector(
         ".kuc-notification__notification__title",
-      ) as HTMLButtonElement;
+      ) as HTMLPreElement;
       expect(textEl.innerText).to.equal("Error occurred!");
     });
   });

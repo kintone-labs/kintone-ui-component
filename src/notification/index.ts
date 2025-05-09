@@ -2,12 +2,13 @@ import { html, PropertyValues, svg } from "lit";
 import { property, state } from "lit/decorators.js";
 
 import { ERROR_MESSAGE } from "../base/constant";
+import { unsafeHTMLConverter } from "../base/converter";
 import {
   createStyleOnHeader,
   dispatchCustomEvent,
   KucBase,
 } from "../base/kuc-base";
-import { validateProps } from "../base/validator";
+import { isHTMLElement, validateProps } from "../base/validator";
 
 import { NOTIFICATION_CSS } from "./style";
 import { NotificationProps } from "./type";
@@ -26,6 +27,7 @@ let exportNotification;
     @property({ type: String }) type: "info" | "danger" | "success" = "danger";
     @property({ type: Number }) duration = -1;
     @property() container: HTMLElement = document.body;
+    @property() content: string | HTMLElement = "";
 
     @state()
     private _isOpened = false;
@@ -147,6 +149,20 @@ let exportNotification;
     }
 
     render() {
+      const content = (() => {
+        if (this.content) {
+          if (isHTMLElement(this.content)) {
+            return html`<div
+              class="kuc-notification__notification__title--html"
+            >
+              ${unsafeHTMLConverter(this.content)}
+            </div>`;
+          }
+          return this.content;
+        }
+        return this.text;
+      })();
+
       return html`
         <div
           class="kuc-notification__notification kuc-notification__notification--${this
@@ -157,7 +173,7 @@ let exportNotification;
             aria-live="assertive"
             role="${this._isOpened ? "alert" : ""}"
           ><!--
-          -->${this.text}</pre>
+          -->${content}</pre>
           <button
             class="kuc-notification__notification__close-button"
             type="button"

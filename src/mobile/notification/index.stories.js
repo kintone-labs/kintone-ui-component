@@ -4,6 +4,7 @@ export default {
   title: "mobile/notification",
   argTypes: {
     text: { name: "text" },
+    content: { name: "content" },
     duration: { name: "duration" },
     container: { name: "container" },
   },
@@ -85,10 +86,13 @@ export const Base = template.bind({});
 Base.args = {
   text: "Duration 3 seconds",
   duration: 3000,
+  content: "",
 };
 
 export const BaseContainer = template.bind({});
 BaseContainer.args = {
   text: "不正です!!",
   container: document.body,
+  content:
+    'Error occurred!<br>Please click on the <a href="#">link</a> for details.',
 };

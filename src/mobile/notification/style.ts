@@ -71,6 +71,10 @@ export const MOBILE_NOTIFICATION_CSS = `
     white-space: pre-wrap;
   }
 
+  .kuc-mobile-notification__notification__title--html {
+    white-space: normal;
+  }
+
   .kuc-mobile-notification__notification__close-button {
     position: absolute;
     right: 0;
