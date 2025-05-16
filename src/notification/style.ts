@@ -94,7 +94,6 @@ export const NOTIFICATION_CSS = `
     background-color: transparent;
     outline: none;
     border: none;
-    pointer-events: auto;
     cursor: pointer;
     display: flex;
     justify-content: center;
