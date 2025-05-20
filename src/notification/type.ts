@@ -3,6 +3,7 @@ import { KucBase } from "../base/kuc-base";
 export declare type NotificationProps = {
   className?: string;
   text?: string;
+  content?: string | HTMLElement;
   type?: "info" | "danger" | "success";
   duration?: number;
   container?: HTMLElement;
@@ -11,6 +12,7 @@ export declare type NotificationProps = {
 export declare class Notification extends KucBase {
   className: string;
   text: string;
+  content: string | HTMLElement;
   type: "info" | "danger" | "success";
   duration: number;
   container: HTMLElement;
