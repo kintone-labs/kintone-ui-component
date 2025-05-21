@@ -4,6 +4,7 @@ export default {
   title: "desktop/notification",
   argTypes: {
     text: { name: "text" },
+    content: { name: "content" },
     duration: { name: "duration" },
     type: {
       name: "type",
@@ -96,6 +97,8 @@ export const BaseContainer = template.bind({});
 BaseContainer.args = {
   id: "notification-id",
   text: "不正です!!",
+  content:
+    'Error occurred!<br>Please click on the <a href="#">link</a> for details.',
   type: "info",
   container: undefined,
 };

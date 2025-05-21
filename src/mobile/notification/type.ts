@@ -3,6 +3,7 @@ import { KucBase } from "../../base/kuc-base";
 export declare type MobileNotificationProps = {
   className?: string;
   text?: string;
+  content?: string | HTMLElement;
   duration?: number;
   container?: HTMLElement;
 };
@@ -10,6 +11,7 @@ export declare type MobileNotificationProps = {
 export declare class MobileNotification extends KucBase {
   className: string;
   text: string;
+  content: string | HTMLElement;
   duration: number;
   container: HTMLElement;
   constructor(props?: MobileNotificationProps);

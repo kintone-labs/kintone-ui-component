@@ -2,7 +2,7 @@ import { expect, fixture } from "@open-wc/testing";
 
 import { MobileNotification } from "../index";
 
-describe("Notification", () => {
+describe("MobileNotification", () => {
   describe("text", () => {
     it("should be null when not assigning on constructor", async () => {
       const container = new MobileNotification();
@@ -10,7 +10,7 @@ describe("Notification", () => {
       const el = await fixture(container);
       const textEl = el.querySelector(
         ".kuc-mobile-notification__notification__title",
-      ) as HTMLButtonElement;
+      ) as HTMLPreElement;
       expect(textEl.innerText).to.equal("");
     });
 
@@ -20,7 +20,7 @@ describe("Notification", () => {
       const el = await fixture(container);
       const textEl = el.querySelector(
         ".kuc-mobile-notification__notification__title",
-      ) as HTMLButtonElement;
+      ) as HTMLPreElement;
       expect(textEl.innerText).to.equal("Error occurred!");
     });
 
@@ -31,7 +31,7 @@ describe("Notification", () => {
       const el = await fixture(container);
       const textEl = el.querySelector(
         ".kuc-mobile-notification__notification__title",
-      ) as HTMLButtonElement;
+      ) as HTMLPreElement;
       expect(textEl.innerText).to.equal("Error occurred!");
     });
   });
