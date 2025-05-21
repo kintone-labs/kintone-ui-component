@@ -86,6 +86,8 @@ const Kuc = Kucs['1.x.x'];
 
 const mobileNotification = new Kuc.MobileNotification({
   text: 'Error occurred!',
+  content:
+    'Error occurred!<br>Please click the <a href="#">Link</a> for details.',
   className: 'options-class',
   duration: 2000,
   container: document.body
