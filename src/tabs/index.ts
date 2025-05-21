@@ -10,6 +10,7 @@ import {
   KucBase,
 } from "../base/kuc-base";
 import {
+  isHTMLElement,
   validateArrayType,
   validateDuplicatedValues,
   validateProps,
@@ -218,6 +219,15 @@ let exportTabs;
 
     private _getTabContentTemplate(item: TabsItem, index: number) {
       const isSelected = item.value === this._selectedValue;
+      const content = (() => {
+        if (item.content) {
+          if (isHTMLElement(item.content)) {
+            return unsafeHTMLConverter(item.content);
+          }
+          return item.content;
+        }
+        return "";
+      })();
       return html`<div
         class="kuc-tabs__group__tab-panel__content"
         role="tabpanel"
@@ -226,7 +236,7 @@ let exportTabs;
         ?hidden="${!isSelected || item.visible === false}"
         @change="${this._handleChangeEvent}"
       >
-        ${item.content ? unsafeHTMLConverter(item.content) : ""}
+        ${content}
       </div>`;
     }
 

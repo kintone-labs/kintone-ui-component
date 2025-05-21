@@ -1,5 +1,7 @@
-import { html } from "lit";
+import { html, PropertyValues } from "lit";
 import { property } from "lit/decorators.js";
+import { DirectiveResult } from "lit/directive.js";
+import { UnsafeHTMLDirective } from "lit/directives/unsafe-html.js";
 
 import {
   unsafeHTMLConverter,
@@ -10,7 +12,7 @@ import {
   dispatchCustomEvent,
   KucBase,
 } from "../../base/kuc-base";
-import { validateProps } from "../../base/validator";
+import { isHTMLElement, validateProps } from "../../base/validator";
 
 import { MOBILE_BUTTON_CSS } from "./style";
 import { MobileButtonProps } from "./type";
@@ -38,6 +40,10 @@ let exportMobileButton;
     })
     visible = true;
 
+    private _content:
+      | HTMLElement
+      | DirectiveResult<typeof UnsafeHTMLDirective> = "";
+
     constructor(props?: MobileButtonProps) {
       super();
       const validProps = validateProps(props);
@@ -56,6 +62,20 @@ let exportMobileButton;
       return "normal";
     }
 
+    willUpdate(changedProperties: PropertyValues) {
+      if (changedProperties.has("content") || changedProperties.has("text")) {
+        if (this.content) {
+          if (isHTMLElement(this.content)) {
+            this._content = unsafeHTMLConverter(this.content);
+          } else {
+            this._content = this.content;
+          }
+        } else {
+          this._content = this.text;
+        }
+      }
+    }
+
     render() {
       return html`
         <button
@@ -64,7 +84,7 @@ let exportMobileButton;
           ?disabled="${this.disabled}"
           @click="${this._handleClickButton}"
         >
-          ${this.content ? unsafeHTMLConverter(this.content) : this.text}
+          ${this._content}
         </button>
       `;
     }

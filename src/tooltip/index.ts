@@ -5,7 +5,7 @@ import { UnsafeHTMLDirective } from "lit/directives/unsafe-html";
 
 import { unsafeHTMLConverter } from "../base/converter";
 import { createStyleOnHeader, generateGUID, KucBase } from "../base/kuc-base";
-import { validateProps } from "../base/validator";
+import { isHTMLElement, validateProps } from "../base/validator";
 
 import { TOOLTIP_CSS } from "./style";
 import { TooltipPlacement, TooltipProps } from "./type";
@@ -52,7 +52,15 @@ let exportTooltip;
 
     update(changedProperties: PropertyValues) {
       if (changedProperties.has("container")) {
-        this._container = unsafeHTMLConverter(this.container);
+        if (this.container) {
+          if (isHTMLElement(this.container)) {
+            this._container = unsafeHTMLConverter(this.container);
+          } else {
+            this._container = this.container;
+          }
+        } else {
+          this._container = "";
+        }
       }
       super.update(changedProperties);
     }
