@@ -55,6 +55,9 @@ kuc-datetime-picker[hidden] {
   display: flex;
   width: calc(var(--kuc-date-time-picker-date-input-width, 100px) + var(--kuc-date-time-picker-time-input-width, 85px));
 }
+.kuc-datetime-picker__group__inputs--time {
+  position: relative;
+}
 .kuc-datetime-picker__group input[type=text].kuc-base-date__input {
   width: var(--kuc-date-time-picker-date-input-width, 100px);
   height: var(--kuc-date-time-picker-input-height, 40px);
