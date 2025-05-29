@@ -4,7 +4,7 @@ import { KucBase } from "../base/kuc-base";
 
 export declare type ReadOnlyTableColumn = {
   field?: string;
-  title?: string;
+  title?: string | HTMLElement;
   visible?: boolean;
 };
 

@@ -119,3 +119,11 @@ export function validateNumberType(value: number) {
 export function validateArrayType<T>(value: T[]) {
   return Array.isArray(value);
 }
+
+export const isHTMLElement = (element: string | HTMLElement) => {
+  if (element instanceof HTMLElement) return true;
+
+  const div = document.createElement("div");
+  div.innerHTML = element;
+  return div.childElementCount > 0;
+};

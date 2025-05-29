@@ -1,21 +1,26 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from "react";
 
-export const NotificationComponent = () =>  {
+export const NotificationComponent = () => {
   const divEl = useRef();
   useEffect(() => {
-    const notificatonInfo = new Kuc.Notification({text: "Info!", type: "info", className:"notification"});
-    const notificatonSuccess = new Kuc.Notification({text: "Success!", type: "success", className:"notification"});
-    notificatonSuccess.style.paddingTop = "80px";
-    const notificatonError = new Kuc.Notification({text: "Error!", type: "error", className:"notification"});
-    notificatonError.style.paddingTop = "160px";
+    const notificationInfo = new Kuc.Notification({ text: "Info!", type: "info", className: "notification" });
+    const notificationSuccess = new Kuc.Notification({ text: "Success!", type: "success", className: "notification" });
+    notificationSuccess.style.paddingTop = "80px";
+    const notificationError = new Kuc.Notification({
+      text: "Error!",
+      type: "danger",
+      className: "notification",
+      content: "Error occurred!<br>Please click the <a href=\"#\">Link</a> for details.",
+    });
+    notificationError.style.paddingTop = "160px";
 
-    notificatonInfo.open();
-    notificatonSuccess.open();
-    notificatonError.open();
+    notificationInfo.open();
+    notificationSuccess.open();
+    notificationError.open();
 
-    divEl.current.appendChild(notificatonInfo);
-    divEl.current.appendChild(notificatonSuccess);
-    divEl.current.appendChild(notificatonError);
+    divEl.current.appendChild(notificationInfo);
+    divEl.current.appendChild(notificationSuccess);
+    divEl.current.appendChild(notificationError);
   }, []);
 
   return (

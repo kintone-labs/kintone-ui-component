@@ -57,6 +57,7 @@ export const NOTIFICATION_CSS = `
     position: relative;
     display: inline-block;
     text-align: left;
+    pointer-events: auto;
     padding: 16px 56px 16px 24px;
     background-color: var(--kuc-notification-background-color, #e74c3c);
   }
@@ -80,6 +81,10 @@ export const NOTIFICATION_CSS = `
     word-break: break-word;
     white-space: pre-wrap;
   }
+  .kuc-notification__notification__title--html {
+    white-space: normal;
+    max-width: 500px;
+  }
   .kuc-notification__notification__close-button {
     position: absolute;
     top: 4px;
@@ -89,7 +94,6 @@ export const NOTIFICATION_CSS = `
     background-color: transparent;
     outline: none;
     border: none;
-    pointer-events: auto;
     cursor: pointer;
     display: flex;
     justify-content: center;

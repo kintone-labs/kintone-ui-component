@@ -2,12 +2,13 @@ import { html, PropertyValues, svg } from "lit";
 import { property, state } from "lit/decorators.js";
 
 import { ERROR_MESSAGE } from "../../base/constant";
+import { unsafeHTMLConverter } from "../../base/converter";
 import {
   createStyleOnHeader,
   dispatchCustomEvent,
   KucBase,
 } from "../../base/kuc-base";
-import { validateProps } from "../../base/validator";
+import { isHTMLElement, validateProps } from "../../base/validator";
 
 import { MOBILE_NOTIFICATION_CSS } from "./style";
 import { MobileNotificationProps } from "./type";
@@ -27,6 +28,7 @@ let exportMobileNotification;
     @property({ type: String }) text = "";
     @property({ type: Number }) duration = -1;
     @property() container: HTMLElement = document.body;
+    @property() content: string | HTMLElement = "";
 
     @state()
     private _isOpened = false;
@@ -131,13 +133,27 @@ let exportMobileNotification;
     }
 
     render() {
+      const content = (() => {
+        if (this.content) {
+          if (isHTMLElement(this.content)) {
+            return html`<div
+              class="kuc-mobile-notification__notification__title--html"
+            >
+              ${unsafeHTMLConverter(this.content)}
+            </div>`;
+          }
+          return this.content;
+        }
+        return this.text;
+      })();
+
       return html`
         <div class="kuc-mobile-notification__notification">
           <pre
             class="kuc-mobile-notification__notification__title"
             aria-live="assertive"
             role="${this._isOpened ? "alert" : ""}"
-          ><!---->${this.text}</pre>
+          ><!---->${content}</pre>
           <button
             class="kuc-mobile-notification__notification__close-button"
             type="button"

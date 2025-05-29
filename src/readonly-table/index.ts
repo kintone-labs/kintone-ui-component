@@ -5,6 +5,7 @@ import { ERROR_MESSAGE } from "../base/constant";
 import { unsafeHTMLConverter, visiblePropConverter } from "../base/converter";
 import { createStyleOnHeader, KucBase } from "../base/kuc-base";
 import {
+  isHTMLElement,
   validateArrayType,
   validateProps,
   validateRowsPerPage,
@@ -149,13 +150,16 @@ let exportReadOnlyTable;
 
     private _getColumnsTemplate(column: ReadOnlyTableColumn, index: number) {
       const customWidth = this._customWidthVariables(index);
+      const isHTML = column.title ? isHTMLElement(column.title) : false;
       return html`
         <th
-          class="kuc-readonly-table__table__header__cell"
+          class="kuc-readonly-table__table__header__cell${isHTML
+            ? " kuc-readonly-table__table__header__cell--html"
+            : ""}"
           ?hidden="${column.visible === false}"
-          style="width: ${customWidth}; min-width: ${customWidth}; max-width: ${customWidth}"
+          style="width: ${customWidth}; min-width: ${customWidth}; max-width: ${customWidth};"
         >
-          ${column.title || ""}
+          ${column.title ? unsafeHTMLConverter(column.title) : ""}
         </th>
       `;
     }
@@ -169,7 +173,7 @@ let exportReadOnlyTable;
             const visible = this.columns[colIndex].visible ?? true;
             let value = data[currentCol];
 
-            if (this._isHTML(value)) {
+            if (isHTMLElement(value)) {
               value = html`<div
                 class="kuc-readonly-table__table__body__row__cell-data--html"
               >
@@ -210,14 +214,6 @@ let exportReadOnlyTable;
       }
       if (this._toggleDisplayNextButton() === false) return;
       this._pagePosition += 1;
-    }
-
-    private _isHTML(element: string | HTMLElement) {
-      if (element instanceof HTMLElement) return true;
-
-      const div = document.createElement("div");
-      div.innerHTML = element;
-      return div.childElementCount > 0;
     }
   }
   window.customElements.define("kuc-readonly-table", KucReadOnlyTable);
