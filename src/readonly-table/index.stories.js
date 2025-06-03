@@ -27,10 +27,16 @@ const Template = (args) => {
 };
 
 export const Base = Template.bind({});
-const toolTip = new Tooltip({
-  container: "City Name (Move mouse to me!)",
-  title: "The name of the city",
-});
+const toolTip = () => {
+  const div = document.createElement("div");
+  div.appendChild(
+    new Tooltip({
+      container: "City Name (Move mouse to me!)",
+      title: "The name of the city",
+    }),
+  );
+  return div;
+};
 Base.args = {
   id: "sample-id",
   className: "sample-class",
@@ -44,7 +50,7 @@ Base.args = {
       field: "index",
     },
     {
-      title: toolTip,
+      title: toolTip(),
       field: "name",
     },
     {
