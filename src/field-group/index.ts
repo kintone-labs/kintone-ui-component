@@ -10,7 +10,7 @@ import {
   generateGUID,
   KucBase,
 } from "../base/kuc-base";
-import { validateProps } from "../base/validator";
+import { isHTMLElement, validateProps } from "../base/validator";
 
 import { FIELD_GROUP_CSS } from "./style";
 import { FieldGroupChangeEventDetail, FieldGroupProps } from "./type";
@@ -63,7 +63,15 @@ let exportFieldGroup;
 
     update(changedProperties: PropertyValues) {
       if (changedProperties.has("content")) {
-        this._content = unsafeHTMLConverter(this.content);
+        if (this.content) {
+          if (isHTMLElement(this.content)) {
+            this._content = unsafeHTMLConverter(this.content);
+          } else {
+            this._content = this.content;
+          }
+        } else {
+          this._content = "";
+        }
       }
       super.update(changedProperties);
     }

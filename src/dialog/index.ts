@@ -11,7 +11,7 @@ import {
   generateGUID,
   KucBase,
 } from "../base/kuc-base";
-import { validateProps } from "../base/validator";
+import { isHTMLElement, validateProps } from "../base/validator";
 
 import { DIALOG_CSS } from "./style";
 import { DialogProps } from "./type";
@@ -264,15 +264,37 @@ let exportDialog;
 
     update(changedProperties: PropertyValues) {
       if (changedProperties.has("content")) {
-        this._content = unsafeHTMLConverter(this.content);
+        if (this.content) {
+          if (isHTMLElement(this.content)) {
+            this._content = unsafeHTMLConverter(this.content);
+          } else {
+            this._content = this.content;
+          }
+        } else {
+          this._content = "";
+        }
       }
       if (changedProperties.has("footer")) {
-        this._footer = unsafeHTMLConverter(this.footer);
+        if (this.footer) {
+          if (isHTMLElement(this.footer)) {
+            this._footer = unsafeHTMLConverter(this.footer);
+          } else {
+            this._footer = this.footer;
+          }
+        } else {
+          this._footer = "";
+        }
       }
       if (changedProperties.has("header") || changedProperties.has("title")) {
-        this._header = this.header
-          ? unsafeHTMLConverter(this.header)
-          : this.title;
+        if (this.header) {
+          if (isHTMLElement(this.header)) {
+            this._header = unsafeHTMLConverter(this.header);
+          } else {
+            this._header = this.header;
+          }
+        } else {
+          this._header = this.title;
+        }
       }
       super.update(changedProperties);
     }
