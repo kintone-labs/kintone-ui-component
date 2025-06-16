@@ -29,7 +29,7 @@ Licenses for Third-Party Libraries
 
 core-js
 repository: git+https://github.com/zloirock/core-js.git
-version: 3.41.0
+version: 3.42.0
 license: MIT
 Copyright (c) 2014-2025 Denis Pushkarev
 
@@ -54,8 +54,8 @@ THE SOFTWARE.
 
 
 lit
-repository: https://github.com/lit/lit.git
-version: 3.2.1
+repository: git+https://github.com/lit/lit.git
+version: 3.3.0
 license: BSD-3-Clause
 BSD 3-Clause License
 
