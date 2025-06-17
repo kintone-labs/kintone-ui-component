@@ -70,10 +70,10 @@ describe("UserOrgGroupSelect", () => {
       const menuEl = el.querySelector(
         ".kuc-user-org-group-select__group__container__select-area__select-menu",
       ) as HTMLElement;
-      const toggle = el.querySelector(
-        ".kuc-user-org-group-select__group__container__select-area__toggle",
+      const selectAreaEl = el.querySelector(
+        ".kuc-user-org-group-select__group__container__select-area",
       ) as HTMLDivElement;
-      expect(menuEl.style.bottom).to.equal(`${toggle.offsetHeight}px`);
+      expect(menuEl.style.bottom).to.equal(`${selectAreaEl.offsetHeight}px`);
       expect(menuEl.style.height).to.equal("auto");
     });
     it("Show scroll bar when menu display is incomplete above", async () => {
@@ -99,10 +99,10 @@ describe("UserOrgGroupSelect", () => {
       const menuEl = el.querySelector(
         ".kuc-user-org-group-select__group__container__select-area__select-menu",
       ) as HTMLElement;
-      const toggle = el.querySelector(
-        ".kuc-user-org-group-select__group__container__select-area__toggle",
+      const selectAreaEl = el.querySelector(
+        ".kuc-user-org-group-select__group__container__select-area",
       ) as HTMLDivElement;
-      expect(menuEl.style.bottom).to.equal(`${toggle.offsetHeight}px`);
+      expect(menuEl.style.bottom).to.equal(`${selectAreaEl.offsetHeight}px`);
       expect(menuEl.style.overflowY).to.equal("scroll");
     });
   });
