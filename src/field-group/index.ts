@@ -63,14 +63,10 @@ let exportFieldGroup;
 
     update(changedProperties: PropertyValues) {
       if (changedProperties.has("content")) {
-        if (this.content) {
-          if (isHTMLElement(this.content)) {
-            this._content = unsafeHTMLConverter(this.content);
-          } else {
-            this._content = this.content;
-          }
+        if (this.content && isHTMLElement(this.content)) {
+          this._content = unsafeHTMLConverter(this.content);
         } else {
-          this._content = "";
+          this._content = this.content;
         }
       }
       super.update(changedProperties);

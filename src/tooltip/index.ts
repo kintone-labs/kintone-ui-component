@@ -52,14 +52,10 @@ let exportTooltip;
 
     update(changedProperties: PropertyValues) {
       if (changedProperties.has("container")) {
-        if (this.container) {
-          if (isHTMLElement(this.container)) {
-            this._container = unsafeHTMLConverter(this.container);
-          } else {
-            this._container = this.container;
-          }
+        if (this.container && isHTMLElement(this.container)) {
+          this._container = unsafeHTMLConverter(this.container);
         } else {
-          this._container = "";
+          this._container = this.container;
         }
       }
       super.update(changedProperties);

@@ -151,15 +151,6 @@ let exportReadOnlyTable;
     private _getColumnsTemplate(column: ReadOnlyTableColumn, index: number) {
       const customWidth = this._customWidthVariables(index);
       const isHTML = column.title ? isHTMLElement(column.title) : false;
-      const title = (() => {
-        if (column.title) {
-          if (isHTML) {
-            return unsafeHTMLConverter(column.title);
-          }
-          return column.title;
-        }
-        return "";
-      })();
       return html`
         <th
           class="kuc-readonly-table__table__header__cell${isHTML
@@ -168,7 +159,9 @@ let exportReadOnlyTable;
           ?hidden="${column.visible === false}"
           style="width: ${customWidth}; min-width: ${customWidth}; max-width: ${customWidth};"
         >
-          ${title}
+          ${isHTML && column.title
+            ? unsafeHTMLConverter(column.title)
+            : column.title}
         </th>
       `;
     }

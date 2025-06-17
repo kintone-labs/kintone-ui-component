@@ -264,29 +264,25 @@ let exportDialog;
 
     update(changedProperties: PropertyValues) {
       if (changedProperties.has("content")) {
-        if (this.content) {
-          if (isHTMLElement(this.content)) {
-            this._content = unsafeHTMLConverter(this.content);
-          } else {
-            this._content = this.content;
-          }
+        if (this.content && isHTMLElement(this.content)) {
+          this._content = unsafeHTMLConverter(this.content);
         } else {
-          this._content = "";
+          this._content = this.content;
         }
       }
       if (changedProperties.has("footer")) {
-        if (this.footer) {
-          if (isHTMLElement(this.footer)) {
-            this._footer = unsafeHTMLConverter(this.footer);
-          } else {
-            this._footer = this.footer;
-          }
+        if (this.footer && isHTMLElement(this.footer)) {
+          this._footer = unsafeHTMLConverter(this.footer);
         } else {
-          this._footer = "";
+          this._footer = this.footer;
         }
       }
       if (changedProperties.has("header") || changedProperties.has("title")) {
-        if (this.header) {
+        if (
+          this.header !== null &&
+          this.header !== undefined &&
+          this.header !== ""
+        ) {
           if (isHTMLElement(this.header)) {
             this._header = unsafeHTMLConverter(this.header);
           } else {

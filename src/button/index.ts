@@ -65,7 +65,11 @@ let exportButton;
 
     willUpdate(changedProperties: PropertyValues) {
       if (changedProperties.has("content") || changedProperties.has("text")) {
-        if (this.content) {
+        if (
+          this.content !== null &&
+          this.content !== undefined &&
+          this.content !== ""
+        ) {
           if (isHTMLElement(this.content)) {
             this._content = unsafeHTMLConverter(this.content);
           } else {
