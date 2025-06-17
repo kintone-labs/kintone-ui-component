@@ -44,8 +44,7 @@ const template = (args) => {
 };
 export const Base = template.bind({});
 Base.args = {
-  label:
-    "Sample label",
+  label: "Sample label",
   requiredIcon: true,
   items: [
     {

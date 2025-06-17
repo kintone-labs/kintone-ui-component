@@ -6,6 +6,9 @@ export declare type UserOrgGroupSelectChangeEventDetail = {
   oldValue: string[];
   value: string[];
 };
+export declare type UserOrgGroupSelectClickIconEventDetail = {
+  value: string[];
+};
 export declare type UserOrgGroupSelectItem = {
   label?: string;
   value?: string;
@@ -24,7 +27,7 @@ export declare type UserOrgGroupSelectProps = {
   requiredIcon?: boolean;
   visible?: boolean;
   items?: UserOrgGroupSelectItem[];
-  icon?: "" | "user" | "org" | "group";
+  icon?: "user" | "org" | "group";
 };
 
 export declare class UserOrgGroupSelect extends KucBase {

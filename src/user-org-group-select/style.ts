@@ -114,7 +114,7 @@ export const USERORGGROUPSELECT_CSS = `
   .kuc-user-org-group-select__group__container__select-area__select-menu {
     width: 100%;
     padding: 0;
-    border: 1px solid #e3e7e8;
+    border: none;
     box-sizing: border-box;
     background-color: #ffffff;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);

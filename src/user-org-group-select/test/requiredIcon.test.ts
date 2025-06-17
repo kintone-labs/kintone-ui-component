@@ -8,7 +8,7 @@ describe("UserOrgGroupSelect", () => {
       const container = new UserOrgGroupSelect();
       const el = await fixture(container);
       const requiredIconEl = el.querySelector(
-          ".kuc-base-label__required-icon",
+        ".kuc-base-label__required-icon",
       ) as HTMLSpanElement;
       expect(requiredIconEl.hasAttribute("hidden")).to.equal(true);
       const computedStyle = window.getComputedStyle(requiredIconEl);
@@ -19,7 +19,7 @@ describe("UserOrgGroupSelect", () => {
       const container = new UserOrgGroupSelect({ requiredIcon: true });
       const el = await fixture(container);
       const requiredIconEl = el.querySelector(
-          ".kuc-base-label__required-icon",
+        ".kuc-base-label__required-icon",
       ) as HTMLSpanElement;
       expect(requiredIconEl.hasAttribute("hidden")).to.equal(false);
       const computedStyle = window.getComputedStyle(requiredIconEl);
@@ -31,7 +31,7 @@ describe("UserOrgGroupSelect", () => {
       container.requiredIcon = true;
       const el = await fixture(container);
       const requiredIconEl = el.querySelector(
-          ".kuc-base-label__required-icon",
+        ".kuc-base-label__required-icon",
       ) as HTMLSpanElement;
       expect(requiredIconEl.hasAttribute("hidden")).to.equal(false);
       const computedStyle = window.getComputedStyle(requiredIconEl);
@@ -43,11 +43,11 @@ describe("UserOrgGroupSelect", () => {
       container.requiredIcon = false;
       const el = await fixture(container);
       const requiredIconEl = el.querySelector(
-          ".kuc-base-label__required-icon",
-    ) as HTMLSpanElement;
-    expect(requiredIconEl.hasAttribute("hidden")).to.equal(true);
-    const computedStyle = window.getComputedStyle(requiredIconEl);
-    expect(computedStyle.display).to.equal("none");
+        ".kuc-base-label__required-icon",
+      ) as HTMLSpanElement;
+      expect(requiredIconEl.hasAttribute("hidden")).to.equal(true);
+      const computedStyle = window.getComputedStyle(requiredIconEl);
+      expect(computedStyle.display).to.equal("none");
     });
   });
 });
