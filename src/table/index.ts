@@ -9,6 +9,7 @@ import {
   KucBase,
 } from "../base/kuc-base";
 import {
+  isHTMLElement,
   validateArrayType,
   validateFieldRequiredInColumnTable,
   validateFieldUniqueInColumnTable,
@@ -192,7 +193,9 @@ let exportTable;
           style="width: ${customWidth}; min-width: ${customWidth}; max-width: ${customWidth}"
         >
           <div class="kuc-table__table__header__cell-title">
-            ${column.title ? unsafeHTMLConverter(column.title) : ""}<!--
+            ${column.title && isHTMLElement(column.title)
+              ? unsafeHTMLConverter(column.title)
+              : column.title}<!--
         --><span
               class="kuc-base-label__required-icon"
               ?hidden="${!column.requiredIcon}"

@@ -159,7 +159,9 @@ let exportReadOnlyTable;
           ?hidden="${column.visible === false}"
           style="width: ${customWidth}; min-width: ${customWidth}; max-width: ${customWidth};"
         >
-          ${column.title ? unsafeHTMLConverter(column.title) : ""}
+          ${isHTML && column.title
+            ? unsafeHTMLConverter(column.title)
+            : column.title}
         </th>
       `;
     }

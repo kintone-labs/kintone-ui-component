@@ -1,5 +1,7 @@
 import { html, PropertyValues, svg } from "lit";
 import { property, state } from "lit/decorators.js";
+import { DirectiveResult } from "lit/directive";
+import { UnsafeHTMLDirective } from "lit/directives/unsafe-html";
 
 import { ERROR_MESSAGE } from "../../base/constant";
 import { unsafeHTMLConverter } from "../../base/converter";
@@ -34,6 +36,10 @@ let exportMobileNotification;
     private _isOpened = false;
 
     private _timeoutID!: number;
+
+    private _content:
+      | HTMLElement
+      | DirectiveResult<typeof UnsafeHTMLDirective> = "";
 
     constructor(props?: MobileNotificationProps) {
       super();
@@ -128,32 +134,40 @@ let exportMobileNotification;
       return true;
     }
 
+    willUpdate(changedProperties: PropertyValues) {
+      if (changedProperties.has("content") || changedProperties.has("text")) {
+        if (
+          this.content !== null &&
+          this.content !== undefined &&
+          this.content !== ""
+        ) {
+          if (isHTMLElement(this.content)) {
+            this._content = html`<div
+              class="kuc-mobile-notification__notification__title--html"
+            >
+              ${unsafeHTMLConverter(this.content)}
+            </div>`;
+          } else {
+            this._content = this.content;
+          }
+        } else {
+          this._content = this.text;
+        }
+      }
+    }
+
     private _isValidContainerElement() {
       return this.container instanceof HTMLElement;
     }
 
     render() {
-      const content = (() => {
-        if (this.content) {
-          if (isHTMLElement(this.content)) {
-            return html`<div
-              class="kuc-mobile-notification__notification__title--html"
-            >
-              ${unsafeHTMLConverter(this.content)}
-            </div>`;
-          }
-          return this.content;
-        }
-        return this.text;
-      })();
-
       return html`
         <div class="kuc-mobile-notification__notification">
           <pre
             class="kuc-mobile-notification__notification__title"
             aria-live="assertive"
             role="${this._isOpened ? "alert" : ""}"
-          ><!---->${content}</pre>
+          ><!---->${this._content}</pre>
           <button
             class="kuc-mobile-notification__notification__close-button"
             type="button"
