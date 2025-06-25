@@ -556,7 +556,7 @@ let exportUserOrgGroupSelect;
       this._scrollToView();
     }
 
-      private _actionSetActiveDescendant(value?: string) {
+    private _actionSetActiveDescendant(value?: string) {
       if (value !== undefined && this._inputEl !== null) {
         this._inputEl.setAttribute("aria-activedescendant", value);
       }
