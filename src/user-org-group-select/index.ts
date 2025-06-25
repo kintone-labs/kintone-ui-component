@@ -159,7 +159,7 @@ let exportUserOrgGroupSelect;
               >
                 <input
                   class="kuc-user-org-group-select__group__container__select-area__toggle__input"
-                  role="user-org-group-select"
+                  role="combobox"
                   type="text"
                   .value="${this._searchText}"
                   aria-haspopup="listbox"
@@ -184,7 +184,7 @@ let exportUserOrgGroupSelect;
                     class="kuc-user-org-group-select__group__container__select-area__toggle__icon__button"
                     tabindex="-1"
                     type="button"
-                    aria-labelledby="${this._GUID}-label"
+                    aria-label="search"
                     aria-controls="${this._GUID}-listbox"
                     aria-expanded="${this._selectorVisible}"
                     ?disabled="${this.disabled}"
@@ -210,9 +210,7 @@ let exportUserOrgGroupSelect;
               </ul>
               <ul
                 class="kuc-user-org-group-select__group__container__select-area__selected-list"
-                role="listbox"
                 id="${this._GUID}-listbox"
-                aria-labelledby="${this._GUID}-label"
               >
                 ${this.value.map((value, index) =>
                   this._getSelectedItemTemplate(value, index),
@@ -359,7 +357,6 @@ let exportUserOrgGroupSelect;
       return html`
         <li
           class="kuc-user-org-group-select__group__container__select-area__selected-list__item"
-          role="option"
           value="${value}"
           id="${this._GUID}-menuitem-${index}"
         >
@@ -555,7 +552,18 @@ let exportUserOrgGroupSelect;
       selectedItemEl: HTMLLIElement,
     ) {
       this._actionHighlightMenuItem(selectedItemEl);
+      this._actionSetActiveDescendant(selectedItemEl.id);
       this._scrollToView();
+    }
+
+      private _actionSetActiveDescendant(value?: string) {
+      if (value !== undefined && this._inputEl !== null) {
+        this._inputEl.setAttribute("aria-activedescendant", value);
+      }
+    }
+
+    private _actionRemoveActiveDescendant() {
+      this._inputEl.removeAttribute("aria-activedescendant");
     }
 
     private _setMenuPosition() {
@@ -790,6 +798,7 @@ let exportUserOrgGroupSelect;
 
     private _actionHighlightMenuItem(item: HTMLLIElement) {
       this._actionClearAllHighlightMenuItem();
+      item.setAttribute("aria-selected", "true");
       item.classList.add(
         "kuc-user-org-group-select__group__container__select-area__select-menu__item__highlight",
       );
@@ -842,10 +851,12 @@ let exportUserOrgGroupSelect;
 
     private _actionClearAllHighlightMenuItem() {
       this._itemsEl.forEach((itemEl: HTMLLIElement) => {
+        itemEl.setAttribute("aria-selected", "false");
         itemEl.classList.remove(
           "kuc-user-org-group-select__group__container__select-area__select-menu__item__highlight",
         );
       });
+      this._actionRemoveActiveDescendant();
     }
 
     private _handleMouseDownMenu(event: MouseEvent) {
@@ -878,6 +889,7 @@ let exportUserOrgGroupSelect;
 
     private _actionHideMenu() {
       this._selectorVisible = false;
+      this._actionRemoveActiveDescendant();
     }
     private _getPickerSVGTemplateByIcon(icon?: string) {
       if (!icon) return "";
