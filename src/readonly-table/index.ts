@@ -1,4 +1,4 @@
-import { html, PropertyValues } from "lit";
+import { html, PropertyValues, svg } from "lit";
 import { property, state } from "lit/decorators.js";
 
 import { ERROR_MESSAGE } from "../base/constant";
@@ -41,6 +41,9 @@ let exportReadOnlyTable;
     private _pagePosition: number = 1;
     @state()
     private _columnOrder: string[] = [];
+
+    @state() private _sortField: string | null = null;
+    @state() private _sortDirection: "asc" | "desc" | null = null;
 
     constructor(props?: ReadOnlyTableProps<T>) {
       super();
@@ -134,14 +137,85 @@ let exportReadOnlyTable;
     }
 
     private _createDisplayData() {
-      if (!this.pagination) return this.data;
+      let displayData = [...this.data];
+
+      if (this._sortField && this._sortDirection) {
+        displayData = this._sortData(
+          displayData,
+          this._sortField,
+          this._sortDirection,
+        );
+      }
+      if (!this.pagination) return displayData;
+
       const firstRow = (this._pagePosition - 1) * this.rowsPerPage + 1;
       const lastRow = this._pagePosition * this.rowsPerPage;
-      const displayData = this.data.filter(
+
+      return displayData.filter(
         (_element, index: number) =>
           index >= firstRow - 1 && index <= lastRow - 1,
       );
-      return displayData;
+    }
+
+    private _sortData(
+      data: T[],
+      field: string,
+      direction: "asc" | "desc",
+    ): T[] {
+      return [...data].sort((a: any, b: any) => {
+        const valueA = a[field];
+        const valueB = b[field];
+
+        const isAHtml = isHTMLElement(valueA);
+        const isBHtml = isHTMLElement(valueB);
+
+        if (isAHtml && isBHtml) return 0;
+        if (isAHtml) return 1;
+        if (isBHtml) return -1;
+
+        if (valueA == null && valueB == null) return 0;
+        if (valueA == null) return 1;
+        if (valueB == null) return -1;
+
+        if (typeof valueA === "number" && typeof valueB === "number") {
+          return direction === "asc" ? valueA - valueB : valueB - valueA;
+        }
+
+        const dateA = new Date(valueA);
+        const dateB = new Date(valueB);
+        if (!isNaN(dateA.getTime()) && !isNaN(dateB.getTime())) {
+          return direction === "asc"
+            ? dateA.getTime() - dateB.getTime()
+            : dateB.getTime() - dateA.getTime();
+        }
+
+        const strA = String(valueA);
+        const strB = String(valueB);
+
+        const collator = new Intl.Collator(undefined, {
+          numeric: true,
+          sensitivity: "base",
+        });
+        return direction === "asc"
+          ? collator.compare(strA, strB)
+          : collator.compare(strB, strA);
+      });
+    }
+
+    private _handleClickHeader(field: string) {
+      const columnIndex = this._columnOrder.indexOf(field);
+      if (columnIndex < 0) return;
+
+      const column = this.columns[columnIndex];
+      if (!column.sortable) return;
+
+      if (this._sortField === field) {
+        this._sortDirection = this._sortDirection === "asc" ? "desc" : "asc";
+      } else {
+        this._sortField = field;
+        this._sortDirection = "asc";
+      }
+      this._pagePosition = 1;
     }
 
     private _customWidthVariables(index: number) {
@@ -151,19 +225,45 @@ let exportReadOnlyTable;
     private _getColumnsTemplate(column: ReadOnlyTableColumn, index: number) {
       const customWidth = this._customWidthVariables(index);
       const isHTML = column.title ? isHTMLElement(column.title) : false;
+      const field = column.field || "";
+      const isSortable = column.sortable === true;
+      const isSorted = this._sortField === field;
+      const sortClass = isSorted
+        ? `kuc-readonly-table__table__header__cell--sorted-${this._sortDirection}`
+        : "";
+
       return html`
         <th
           class="kuc-readonly-table__table__header__cell${isHTML
             ? " kuc-readonly-table__table__header__cell--html"
-            : ""}"
+            : ""}${isSortable
+            ? " kuc-readonly-table__table__header__cell--sortable"
+            : ""} ${sortClass}"
           ?hidden="${column.visible === false}"
           style="width: ${customWidth}; min-width: ${customWidth}; max-width: ${customWidth};"
+          @click="${isSortable ? () => this._handleClickHeader(field) : null}"
         >
-          ${isHTML && column.title
-            ? unsafeHTMLConverter(column.title)
-            : column.title}
+          ${column.title ? unsafeHTMLConverter(column.title) : ""}
+          ${isSortable && isSorted
+            ? this._getSortSvgIcon(this._sortDirection)
+            : ""}
         </th>
       `;
+    }
+
+    private _getSortSvgIcon(direction: "asc" | "desc" | null) {
+      if (direction === "desc") {
+        return svg`<svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg" style="vertical-align: middle;">
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M6.99996 0H5.99996V10.6011L1.4528 5.78021L0.725342 6.46637L6.57169 12.6647L12.1902 6.45887L11.4489 5.78771L6.99996 10.7017V0Z" fill="white"/>
+        </svg>
+        `;
+      }
+      if (direction === "asc") {
+        return svg`<svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg" style="vertical-align: middle;">
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M6.99996 13H5.99996V2.3989L1.4528 7.21979L0.725342 6.53363L6.57169 0.3353L12.1902 6.54113L11.4489 7.21229L6.99996 2.2983V13Z" fill="white"/>
+</svg>`;
+      }
+      return "";
     }
 
     private _getDataTemplate(data: any, currentIndex: number) {

@@ -102,4 +102,11 @@ export const READ_ONLY_TABLE_CSS = `
   .kuc-readonly-table__table__body__row__cell-data--html {
     white-space: normal;
   }
+  .kuc-readonly-table__table__header__cell--sortable {
+    cursor: pointer;
+    user-select: none;
+  }
+  .kuc-readonly-table__table__header__cell--sortable:hover {
+    background-color: #1d6fa5;
+  }
 `;

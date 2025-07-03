@@ -48,14 +48,17 @@ Base.args = {
     {
       title: "Number",
       field: "index",
+      sortable: true, // Enable sorting for this column
     },
     {
       title: toolTip(),
       field: "name",
+      sortable: true, // Enable sorting for this column
     },
     {
       title: "Country",
       field: "country",
+      sortable: true, // Enable sorting for this column
     },
     {
       title: "Population",
