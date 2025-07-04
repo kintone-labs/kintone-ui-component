@@ -32,7 +32,11 @@ describe("UserOrgGroupSelect", () => {
       expect(selectedItemEl.length).to.equal(0);
     });
     it("should delete selected item when click remove button", async () => {
-      const container = new UserOrgGroupSelect({ items: initItems, value: [initItems[0].value], icon: "org" });
+      const container = new UserOrgGroupSelect({
+        items: initItems,
+        value: [initItems[0].value],
+        icon: "org",
+      });
       const el = await fixture(container);
       const removeButtons = el.querySelectorAll(
         ".kuc-user-org-group-select__group__container__select-area__selected-list__item__remove-icon__button",

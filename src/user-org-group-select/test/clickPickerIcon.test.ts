@@ -16,23 +16,23 @@ const initItems = [
 describe("UserOrgGroup", () => {
   describe("clickPickerIcon", () => {
     it("should be triggered when click on picker icon", async () => {
-        let triggeredEvent: any = null;
-        const container = new UserOrgGroupSelect({
-          items: initItems,
-          label: "Select User/Group/Organization",
-          value: [initItems[0].value],
-          icon: "group",
-        });
-        const el = await fixture(container);
-        const pickerIconButtonEl = el.querySelector(
-          ".kuc-user-org-group-select__group__container__picker__button") as HTMLButtonElement;
-        container.addEventListener("click-picker-icon", (event: any) => {
-            triggeredEvent = event;
-        });
-        pickerIconButtonEl.click();
-        await elementUpdated(container);
-        expect(triggeredEvent.type).to.equal("click-picker-icon");
+      let triggeredEvent: any = null;
+      const container = new UserOrgGroupSelect({
+        items: initItems,
+        label: "Select User/Group/Organization",
+        value: [initItems[0].value],
+        icon: "group",
       });
-
+      const el = await fixture(container);
+      const pickerIconButtonEl = el.querySelector(
+        ".kuc-user-org-group-select__group__container__picker__button",
+      ) as HTMLButtonElement;
+      container.addEventListener("click-picker-icon", (event: any) => {
+        triggeredEvent = event;
+      });
+      pickerIconButtonEl.click();
+      await elementUpdated(container);
+      expect(triggeredEvent.type).to.equal("click-picker-icon");
     });
   });
+});
