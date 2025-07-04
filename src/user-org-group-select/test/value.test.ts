@@ -9,8 +9,8 @@ const initItems = [
   { label: "Group 1", value: "group1", type: "group" },
   { label: "Group 2", value: "group2", type: "group" },
   { label: "Group 3", value: "group3", type: "group" },
-  { label: "Organization 1", value: "org1", type: "organization" },
-  { label: "Organization 2", value: "org2", type: "organization" },
+  { label: "Organization 1", value: "org1", type: "org" },
+  { label: "Organization 2", value: "org2", type: "org" },
 ];
 
 describe("UserOrgGroupSelect", () => {
@@ -26,6 +26,19 @@ describe("UserOrgGroupSelect", () => {
       toggleIconButtonEl.click();
       await elementUpdated(container);
 
+      const selectedItemEl = el.querySelectorAll(
+        ".kuc-user-org-group-select__group__container__select-area__selected-list__item",
+      );
+      expect(selectedItemEl.length).to.equal(0);
+    });
+    it("should delete selected item when click remove button", async () => {
+      const container = new UserOrgGroupSelect({ items: initItems, value: [initItems[0].value], icon: "org" });
+      const el = await fixture(container);
+      const removeButtons = el.querySelectorAll(
+        ".kuc-user-org-group-select__group__container__select-area__selected-list__item__remove-icon__button",
+      );
+      (removeButtons[0] as HTMLButtonElement).click();
+      await elementUpdated(container);
       const selectedItemEl = el.querySelectorAll(
         ".kuc-user-org-group-select__group__container__select-area__selected-list__item",
       );

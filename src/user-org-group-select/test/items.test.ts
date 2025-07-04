@@ -9,8 +9,8 @@ const initItems = [
   { label: "Group 1", value: "group1", type: "group" },
   { label: "Group 2", value: "group2", type: "group" },
   { label: "Group 3", value: "group3", type: "group" },
-  { label: "Organization 1", value: "org1", type: "organization" },
-  { label: "Organization 2", value: "org2", type: "organization" },
+  { label: "Organization 1", value: "org1", type: "org" },
+  { label: "Organization 2", value: "org2", type: "org" },
 ];
 
 const initItemsWithoutLabel = [
@@ -20,8 +20,8 @@ const initItemsWithoutLabel = [
   { value: "group1", type: "group" },
   { value: "group2", type: "group" },
   { value: "group3", type: "group" },
-  { value: "org1", type: "organization" },
-  { value: "org2", type: "organization" },
+  { value: "org1", type: "org" },
+  { value: "org2", type: "org" },
 ];
 
 const replacedItems = [{ label: "User 1", value: "user1", type: "user" }];
