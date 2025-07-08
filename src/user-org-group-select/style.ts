@@ -44,6 +44,11 @@ export const USERORGGROUPSELECT_CSS = `
     width: 100%;
     margin: 0px;
   }
+  .kuc-user-org-group-select__group__label {
+    padding: 4px 0px 8px 0px;
+    display: inline-block;
+    white-space: nowrap;
+  }
   .kuc-user-org-group-select__group__container {
     display: flex;
     flex-direction: row;
