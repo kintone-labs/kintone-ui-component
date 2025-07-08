@@ -24,6 +24,8 @@ export const USERORGGROUPSELECT_CSS = `
     font-family: "微軟正黑體", "Microsoft JhengHei", "新宋体", NSimSun, STHeiti, Hei, "Heiti SC", sans-serif;
   }
   kuc-user-org-group-select {
+    display: inline-table;
+    width: 280px;
     position: relative;
     display: inline-table;
     font-size: 14px;
