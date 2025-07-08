@@ -68,12 +68,36 @@ export const READ_ONLY_TABLE_CSS = `
     font-weight: 400;
     font-size: var(--kuc-readonly-table-header-font-size, 12px);
   }
+  .kuc-readonly-table__table__header__cell:focus-visible {
+    outline: none;
+    color: #1a0dab;
+  }
   .kuc-readonly-table__table__header__cell--html {
     white-space: normal;
     overflow: unset;
   }
   .kuc-readonly-table__table__header__cell[hidden] {
     display: none;
+  }
+  .kuc-readonly-table__table__header__cell__wrapper {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+  }
+  .kuc-readonly-table__table__header__cell__wrapper__title {
+    flex: 1;
+    min-width: 0;
+  }
+  .kuc-readonly-table__table__header__cell__wrapper__title--html {
+    white-space: normal;
+  }
+  .kuc-readonly-table__table__header__cell__wrapper__sort-icon {
+    flex-shrink: 0;
+    margin-left: 4px;
+    display: flex;
+    align-items: center;
+    align-self: center;
   }
   .kuc-readonly-table__table__body {
     vertical-align: top;
@@ -102,11 +126,14 @@ export const READ_ONLY_TABLE_CSS = `
   .kuc-readonly-table__table__body__row__cell-data--html {
     white-space: normal;
   }
-  .kuc-readonly-table__table__header__cell--sortable {
+  .kuc-readonly-table__table__header__cell--sort {
     cursor: pointer;
     user-select: none;
   }
-  .kuc-readonly-table__table__header__cell--sortable:hover {
+  .kuc-readonly-table__table__header__cell--sort:hover {
     background-color: #1d6fa5;
+  }
+  .kuc-readonly-table__table__header__cell--sort:focus-visible .kuc-readonly-table__table__header__cell__wrapper__sort-icon svg path {
+    fill: #1a0dab;
   }
 `;

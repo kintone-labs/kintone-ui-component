@@ -7,7 +7,7 @@ const columns = [
     title: "Number",
     field: "index",
     visible: true,
-    sortable: true,
+    sort: true,
   },
   {
     title: "City",
@@ -255,7 +255,7 @@ describe("ReadOnlyTable", () => {
     container.columns = null;
     fixture(container);
   });
-  it("can be sorted when set sortable true", async () => {
+  it("can be sorted when set sort true", async () => {
     const container = new ReadOnlyTable({
       columns: columns,
       data: data,
@@ -264,14 +264,14 @@ describe("ReadOnlyTable", () => {
     const headerCells = el.querySelectorAll(
       ".kuc-readonly-table__table__header tr th",
     );
-    const sortableCell = headerCells[0] as HTMLElement;
+    const sortCell = headerCells[0] as HTMLElement;
     expect(
-      sortableCell.classList.contains(
-        "kuc-readonly-table__table__header__cell--sortable",
+      sortCell.classList.contains(
+        "kuc-readonly-table__table__header__cell--sort",
       ),
     ).to.equal(true);
 
-    sortableCell.click();
+    sortCell.click();
     await new Promise((resolve) => setTimeout(resolve, 100)); // wait for sorting to complete
 
     const rowsEl = el.querySelectorAll(".kuc-readonly-table__table__body__row");
@@ -280,7 +280,7 @@ describe("ReadOnlyTable", () => {
     expect(rowsEl[0].children[1].textContent?.trim()).to.equal("Tokyo");
     expect(rowsEl[1].children[0].textContent?.trim()).to.equal("2");
     expect(rowsEl[1].children[1].textContent?.trim()).to.equal("Ho Chi Minh");
-    sortableCell.click();
+    sortCell.click();
     await new Promise((resolve) => setTimeout(resolve, 100)); // wait for sorting to complete again
 
     expect(rowsEl[0].children[0].textContent?.trim()).to.equal("2");

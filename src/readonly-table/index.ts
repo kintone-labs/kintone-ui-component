@@ -6,6 +6,7 @@ import { unsafeHTMLConverter, visiblePropConverter } from "../base/converter";
 import { createStyleOnHeader, KucBase } from "../base/kuc-base";
 import {
   isHTMLElement,
+  isValidDate,
   validateArrayType,
   validateProps,
   validateRowsPerPage,
@@ -180,18 +181,18 @@ let exportReadOnlyTable;
         if (typeof valueA === "number" && typeof valueB === "number") {
           return direction === "asc" ? valueA - valueB : valueB - valueA;
         }
-
-        const dateA = new Date(valueA);
-        const dateB = new Date(valueB);
-        if (!isNaN(dateA.getTime()) && !isNaN(dateB.getTime())) {
-          return direction === "asc"
-            ? dateA.getTime() - dateB.getTime()
-            : dateB.getTime() - dateA.getTime();
+        if (isValidDate(valueA) && isValidDate(valueB)) {
+          const dateA = new Date(valueA);
+          const dateB = new Date(valueB);
+          if (!isNaN(dateA.getTime()) && !isNaN(dateB.getTime())) {
+            return direction === "asc"
+              ? dateA.getTime() - dateB.getTime()
+              : dateB.getTime() - dateA.getTime();
+          }
         }
 
         const strA = String(valueA);
         const strB = String(valueB);
-
         const collator = new Intl.Collator(undefined, {
           numeric: true,
           sensitivity: "base",
@@ -203,11 +204,20 @@ let exportReadOnlyTable;
     }
 
     private _handleClickHeader(field: string) {
+      this._sortFields(field);
+    }
+    private _handleKeyDownHeader(event: KeyboardEvent, field: string) {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        this._sortFields(field);
+      }
+    }
+    private _sortFields(field: string) {
       const columnIndex = this._columnOrder.indexOf(field);
       if (columnIndex < 0) return;
 
       const column = this.columns[columnIndex];
-      if (!column.sortable) return;
+      if (!column.sort) return;
 
       if (this._sortField === field) {
         this._sortDirection = this._sortDirection === "asc" ? "desc" : "asc";
@@ -226,7 +236,7 @@ let exportReadOnlyTable;
       const customWidth = this._customWidthVariables(index);
       const isHTML = column.title ? isHTMLElement(column.title) : false;
       const field = column.field || "";
-      const isSortable = column.sortable === true;
+      const isSortable = column.sort === true;
       const isSorted = this._sortField === field;
       const sortClass = isSorted
         ? `kuc-readonly-table__table__header__cell--sorted-${this._sortDirection}`
@@ -237,18 +247,47 @@ let exportReadOnlyTable;
           class="kuc-readonly-table__table__header__cell${isHTML
             ? " kuc-readonly-table__table__header__cell--html"
             : ""}${isSortable
-            ? " kuc-readonly-table__table__header__cell--sortable"
+            ? " kuc-readonly-table__table__header__cell--sort"
             : ""} ${sortClass}"
           ?hidden="${column.visible === false}"
           style="width: ${customWidth}; min-width: ${customWidth}; max-width: ${customWidth};"
           @click="${isSortable ? () => this._handleClickHeader(field) : null}"
+          tabindex="${isSortable ? 0 : -1}"
+          aria-sort="${isSorted
+            ? this._getSortDescription(this._sortDirection)
+            : "none"}"
+          @keydown="${isSortable
+            ? (event: KeyboardEvent) => this._handleKeyDownHeader(event, field)
+            : null}"
         >
-          ${column.title ? unsafeHTMLConverter(column.title) : ""}
-          ${isSortable && isSorted
-            ? this._getSortSvgIcon(this._sortDirection)
-            : ""}
+          <div class="kuc-readonly-table__table__header__cell__wrapper">
+            <div
+              class="kuc-readonly-table__table__header__cell__wrapper__title${isHTML
+                ? " kuc-readonly-table__table__header__cell__wrapper__title--html"
+                : ""}"
+            >
+              ${column.title ? unsafeHTMLConverter(column.title) : ""}
+            </div>
+            ${isSortable && isSorted
+              ? html`<div
+                  class="kuc-readonly-table__table__header__cell__wrapper__sort-icon"
+                >
+                  ${this._getSortSvgIcon(this._sortDirection)}
+                </div>`
+              : ""}
+          </div>
         </th>
       `;
+    }
+
+    private _getSortDescription(direction: "asc" | "desc" | null) {
+      if (direction === "desc") {
+        return "descending";
+      }
+      if (direction === "asc") {
+        return "ascending";
+      }
+      return "none";
     }
 
     private _getSortSvgIcon(direction: "asc" | "desc" | null) {
@@ -260,8 +299,8 @@ let exportReadOnlyTable;
       }
       if (direction === "asc") {
         return svg`<svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg" style="vertical-align: middle;">
-    <path fill-rule="evenodd" clip-rule="evenodd" d="M6.99996 13H5.99996V2.3989L1.4528 7.21979L0.725342 6.53363L6.57169 0.3353L12.1902 6.54113L11.4489 7.21229L6.99996 2.2983V13Z" fill="white"/>
-</svg>`;
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M6.99996 13H5.99996V2.3989L1.4528 7.21979L0.725342 6.53363L6.57169 0.3353L12.1902 6.54113L11.4489 7.21229L6.99996 2.2983V13Z" fill="white"/>
+      </svg>`;
       }
       return "";
     }
