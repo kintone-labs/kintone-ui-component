@@ -301,24 +301,27 @@ let exportUserOrgGroupSelect;
       }
     }
 
-    private _getMatchedItemTemplate(
-      item: UserOrgGroupSelectItem,
-      index: number,
-    ) {
-      const text = item.label === undefined ? item.value : item.label;
-      let newText = html`${text}`;
-      const isDisabled = item.disabled;
-      const trimmedQuery = this._query.trim().toLowerCase();
-      if (trimmedQuery && text) {
-        const startIndex = text.toLowerCase().indexOf(trimmedQuery);
-        const endIndex = startIndex + trimmedQuery.length;
-        newText = html`
-          ${text.slice(0, startIndex)}<b>${text.slice(
-            startIndex,
-            endIndex,
-          )}</b>${text.slice(endIndex)}
-        `;
-      }
+      private _getMatchedItemTemplate(
+        item: UserOrgGroupSelectItem,
+        index: number,
+      ) {
+        const text =
+          item.label === undefined || item.label === null
+            ? item.value
+            : item.label;
+        let newText = html`${text}`;
+        const isDisabled = item.disabled;
+        const trimmedQuery = this._query.trim().toLowerCase();
+        if (trimmedQuery && text) {
+          const startIndex = text.toLowerCase().indexOf(trimmedQuery);
+          const endIndex = startIndex + trimmedQuery.length;
+          newText = html`
+            ${text.slice(0, startIndex)}<b>${text.slice(
+              startIndex,
+              endIndex,
+            )}</b>${text.slice(endIndex)}
+          `;
+        }
 
       return html`
         <li
@@ -353,7 +356,10 @@ let exportUserOrgGroupSelect;
       const selectedItem = this.items.filter((item) => item.value === value)[0];
       if (!selectedItem) return "";
       const disabled = selectedItem?.disabled;
-      const text = selectedItem.label || selectedItem.value || "";
+      const text =
+        selectedItem.label === undefined || selectedItem.label === null
+          ? selectedItem.value
+          : selectedItem.label;
       return html`
         <li
           class="kuc-user-org-group-select__group__container__select-area__selected-list__item"
