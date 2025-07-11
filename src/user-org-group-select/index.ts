@@ -301,27 +301,27 @@ let exportUserOrgGroupSelect;
       }
     }
 
-      private _getMatchedItemTemplate(
-        item: UserOrgGroupSelectItem,
-        index: number,
-      ) {
-        const text =
-          item.label === undefined || item.label === null
-            ? item.value
-            : item.label;
-        let newText = html`${text}`;
-        const isDisabled = item.disabled;
-        const trimmedQuery = this._query.trim().toLowerCase();
-        if (trimmedQuery && text) {
-          const startIndex = text.toLowerCase().indexOf(trimmedQuery);
-          const endIndex = startIndex + trimmedQuery.length;
-          newText = html`
-            ${text.slice(0, startIndex)}<b>${text.slice(
-              startIndex,
-              endIndex,
-            )}</b>${text.slice(endIndex)}
-          `;
-        }
+    private _getMatchedItemTemplate(
+      item: UserOrgGroupSelectItem,
+      index: number,
+    ) {
+      const text =
+        item.label === undefined || item.label === null
+          ? item.value
+          : item.label;
+      let newText = html`${text}`;
+      const isDisabled = item.disabled;
+      const trimmedQuery = this._query.trim().toLowerCase();
+      if (trimmedQuery && text) {
+        const startIndex = text.toLowerCase().indexOf(trimmedQuery);
+        const endIndex = startIndex + trimmedQuery.length;
+        newText = html`
+          ${text.slice(0, startIndex)}<b>${text.slice(
+            startIndex,
+            endIndex,
+          )}</b>${text.slice(endIndex)}
+        `;
+      }
 
       return html`
         <li
