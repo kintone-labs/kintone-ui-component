@@ -36,6 +36,7 @@ import { ReadOnlyTableComponent } from "@site/static/js/samples/desktop/readonly
 | :--- | :--- | :--- | :--- | :--- |
 | field | string | ""  | 列のキー項目 | data オブジェクトのキー項目になる<br/>そのキーに関連づけられた値が列に表示される |
 | title *1 | string/HTMLElement | ""  | 列のヘッダー名 | HTML が記載された string を指定した場合、自動的に HTML に変換してそのまま表示される |
+| sort | boolean | false | 列のソート機能の有効/無効設定 | true を指定した場合、列にソート機能が有効になり、列ヘッダーをクリックすることでソートが行える |
 | visible | boolean |  true  | 列の表示/非表示設定 | |
 
 :::caution
@@ -87,7 +88,8 @@ const readOnlyTable = new Kuc.ReadOnlyTable({
   columns: [
     {
       title: 'Number',
-      field: 'index'
+      field: 'index',
+      sort: true
     },
     {
       title: 'City',
