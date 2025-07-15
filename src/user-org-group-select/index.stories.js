@@ -1,4 +1,3 @@
-import { html } from "lit";
 import { UserOrgGroupSelect } from "./index.ts";
 export default {
   title: "desktop/user-org-group-select",
