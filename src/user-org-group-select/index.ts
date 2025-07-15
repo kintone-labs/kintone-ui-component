@@ -90,11 +90,8 @@ let exportUserOrgGroupSelect;
     )
     private _disabledItemsEl!: HTMLLIElement[];
 
-    @queryAll(
-      ".kuc-user-org-group-select__group__container__select-area__selected-list__item__remove-icon__button",
-    )
-    private _selectedItemButtonsEl!: HTMLLIElement[];
-
+    @state()
+    private _selectedValues: string[] = [];
     @state()
     private _searchText = "";
     @state()
@@ -217,7 +214,7 @@ let exportUserOrgGroupSelect;
                 class="kuc-user-org-group-select__group__container__select-area__selected-list"
                 id="${this._GUID}-listbox"
               >
-                ${this.value?.map((value, index) =>
+                ${this._selectedValues.map((value, index) =>
                   this._getSelectedItemTemplate(value, index),
                 )}
               </ul>
@@ -265,6 +262,7 @@ let exportUserOrgGroupSelect;
     }
 
     firstUpdated() {
+      this._initializeSelectedValues();
       window.addEventListener("resize", () => {
         this._actionResizeScrollWindow();
       });
@@ -284,7 +282,9 @@ let exportUserOrgGroupSelect;
 
     async updated(changedProperties: PropertyValues) {
       super.updated(changedProperties);
-
+      if (changedProperties.has("value")) {
+        this._initializeSelectedValues();
+      }
       await this.updateComplete;
       if (this._selectorVisible) {
         this._menuEl.addEventListener("scroll", this._handleScrollMenu);
@@ -306,6 +306,13 @@ let exportUserOrgGroupSelect;
       }
     }
 
+    private _initializeSelectedValues() {
+      if (Array.isArray(this.value)) {
+        this._selectedValues = this.value.filter((value) =>
+          this.items.some((item) => item.value === value),
+        );
+      }
+    }
     private _getMatchedItemTemplate(
       item: UserOrgGroupSelectItem,
       index: number,
@@ -402,7 +409,6 @@ let exportUserOrgGroupSelect;
               ?disabled="${disabled}"
               aria-label="remove"
               selected-item-index="${index}"
-              selected-item-value="${selectedItem.value}"
               @click="${this._handleClickRemoveSelectedItem}"
             >
               ${this._getRemoveSVGTemplate(disabled)}
@@ -589,8 +595,9 @@ let exportUserOrgGroupSelect;
         button.getAttribute("selected-item-index") || "0",
         10,
       );
-      const newValues = this._getCurrentValues(index);
+      const newValues = this._selectedValues.filter((_, i) => i !== index);
       const oldValue = this.value;
+      this._selectedValues = newValues;
       this.value = newValues;
       const detail: UserOrgGroupSelectChangeEventDetail = {
         oldValue,
@@ -599,27 +606,6 @@ let exportUserOrgGroupSelect;
       dispatchCustomEvent(this, "change", detail);
     }
 
-    private _getCurrentValues(excludeIndex?: number): string[] {
-      if (Array.isArray(this.value)) {
-        return excludeIndex !== undefined
-          ? this.value.filter((_, i) => i !== excludeIndex)
-          : [...this.value];
-      }
-
-      const selectedValues: string[] = [];
-      this._selectedItemButtonsEl.forEach((button, i) => {
-        if (excludeIndex !== undefined && i === excludeIndex) {
-          return;
-        }
-
-        const value = button.getAttribute("selected-item-value");
-        if (value) {
-          selectedValues.push(value);
-        }
-      });
-
-      return selectedValues;
-    }
     private _handleClickToggleButton(event: MouseEvent): void {
       event.preventDefault();
       this._inputEl.focus();
@@ -846,12 +832,14 @@ let exportUserOrgGroupSelect;
     }
 
     private _actionUpdateValue(value: string) {
-      if (this.value?.includes(value)) {
+      if (this._selectedValues.includes(value)) {
         this._resetToggleInputValue();
         return;
       }
-      const oldValue = !this.value ? this.value : [...this.value];
-      this.value = this.value ? [...this.value, value] : [value];
+      const oldValue = this.value;
+      const newValues = [...this._selectedValues, value];
+      this._selectedValues = newValues;
+      this.value = newValues;
       const detail: UserOrgGroupSelectChangeEventDetail = {
         oldValue,
         value: this.value,
