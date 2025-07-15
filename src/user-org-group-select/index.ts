@@ -212,7 +212,7 @@ let exportUserOrgGroupSelect;
                 class="kuc-user-org-group-select__group__container__select-area__selected-list"
                 id="${this._GUID}-listbox"
               >
-                ${this.value.map((value, index) =>
+                ${this.value?.map((value, index) =>
                   this._getSelectedItemTemplate(value, index),
                 )}
               </ul>
@@ -584,7 +584,7 @@ let exportUserOrgGroupSelect;
         )!,
         10,
       );
-      const oldValue = [...this.value];
+      const oldValue = this.value ? [...this.value] : [];
       this.value = this.value.filter((_, i) => i !== index);
       const detail: UserOrgGroupSelectChangeEventDetail = {
         oldValue,
@@ -819,12 +819,12 @@ let exportUserOrgGroupSelect;
     }
 
     private _actionUpdateValue(value: string) {
-      if (this.value.includes(value)) {
+      if (this.value?.includes(value)) {
         this._resetToggleInputValue();
         return;
       }
       const oldValue = !this.value ? this.value : [...this.value];
-      this.value = [...this.value, value];
+      this.value = this.value ? [...this.value, value] : [value];
       const detail: UserOrgGroupSelectChangeEventDetail = {
         oldValue,
         value: this.value,

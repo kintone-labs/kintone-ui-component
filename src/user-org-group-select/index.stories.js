@@ -1,5 +1,5 @@
 import { html } from "lit";
-import "./index.ts";
+import { UserOrgGroupSelect } from "./index.ts";
 export default {
   title: "desktop/user-org-group-select",
   argTypes: {
@@ -22,25 +22,14 @@ export default {
   },
 };
 const template = (args) => {
-  const handleMultiChoiceChange = (event) => {
+  const orgGroupSelect = new UserOrgGroupSelect({ ...args });
+  orgGroupSelect.addEventListener("change", (event) => {
     console.log(event);
-  };
-  return html`
-    <kuc-user-org-group-select
-      .className="${args.className}"
-      .disabled="${args.disabled}"
-      .error="${args.error}"
-      .icon="${args.icon}"
-      .id="${args.id}"
-      .items="${args.items}"
-      .label="${args.label}"
-      .placeholder="${args.placeholder}"
-      .requiredIcon="${args.requiredIcon}"
-      .value="${args.value}"
-      .visible="${args.visible}"
-      @change="${handleMultiChoiceChange}"
-    ></kuc-user-org-group-select>
-  `;
+  });
+  orgGroupSelect.addEventListener("click-picker-icon", (event) => {
+    console.log(event);
+  });
+  return orgGroupSelect;
 };
 export const Base = template.bind({});
 Base.args = {
