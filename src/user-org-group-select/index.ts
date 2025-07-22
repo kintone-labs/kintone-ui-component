@@ -186,6 +186,9 @@ let exportUserOrgGroupSelect;
                     class="kuc-user-org-group-select__group__container__select-area__toggle__icon__button"
                     tabindex="-1"
                     type="button"
+                    aria-label="search"	
+                    aria-controls="${this._GUID}-listbox"	
+                    aria-expanded="${this._selectorVisible}"
                     ?disabled="${this.disabled}"
                     @click="${this._handleClickToggleButton}"
                   >
@@ -223,9 +226,6 @@ let exportUserOrgGroupSelect;
                 class="kuc-user-org-group-select__group__container__picker__button"
                 tabindex="-1"
                 type="button"
-                aria-labelledby="${this._GUID}-label"
-                aria-controls="${this._GUID}-listbox"
-                aria-expanded="${this._selectorVisible}"
                 ?disabled="${this.disabled}"
                 @click="${this._handleClickIconButton}"
               >
