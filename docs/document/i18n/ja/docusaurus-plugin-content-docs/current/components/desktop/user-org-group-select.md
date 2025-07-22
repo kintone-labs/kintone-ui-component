@@ -23,7 +23,7 @@ import { UserOrgGroupSelectComponent } from "@site/static/js/samples/desktop/use
 | :--- | :--- | :--- | :--- | :--- |
 | className | string | ""  | コンポーネントの class 名 | |
 | error | string | "" | エラーに表示するテキスト | 未指定、あるいは空文字の場合、error は表示されない |
-| icon | string | "user" | Picker icon type | The icon property is used to set the main icon displayed on the right side of the toggle part.<br/>Displays different icons based on different values of the icon property.<br/>Available options:<li>"user" : ![user](/img/icon-user.png)</li><li>"org" : ![org](/img/icon-org.png)</li><li>"group" : ![group](/img/icon-group.png)</li><br/>If the value is not specified, the default icon is "user". |
+| icon | string | "user" | Picker icon type | The icon property is used to set the main icon displayed on the right side of the toggle part.<br/>Displays different icons based on different values of the icon property.<br/>Available options:<li>"user" : ![user](/img/icon-user.png)</li><li>"group" : ![group](/img/icon-group.png)</li><li>"org" : ![org](/img/icon-org.png)</li><br/>If the value is not specified, the default icon is "user". |
 | id | string | "" | コンポーネントの id 名 ||
 | label | string | "" | コンポーネントの説明ラベル | 未指定、あるいは空文字の場合、label は表示されない |
 | placeholder | string | "" | 入力フィールドに表示されるプレースホルダーテキスト | |
@@ -40,7 +40,7 @@ Here is a list of properties that can be used for modifying the item:
 | Name   | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
 | label | string | null  | Text label for each option | If `Item.label` is unspecified, the value of `Item.value` is displayed on the UI |
-| type | string | null | Icon type of each item | The Item.type property determines the small icon type displayed for each option in both the dropdown menu and the selected items list.<br/>Displays different icons based on different values of the icon property.<br/>Available options:<li>"user" : ![user](/img/selected-user.png)</li><li>"org" : ![user](/img/selected-org.png)</li><li>"group" : ![group](/img/selected-group.png)</li><li>"" : No icon</li> |
+| type | string | null | Icon type of each item | The Item.type property determines the small icon type displayed for each option in both the dropdown menu and the selected items list.<br/>Displays different icons based on different values of the icon property.<br/>Available options:<li>"user" : ![user](/img/selected-user.png)</li><li>"group" : ![group](/img/selected-group.png)</li><li>"org" : ![user](/img/selected-org.png)</li><li>"" : No icon</li> |
 | value | string | null  | Value of each option | Will result an error if setting duplicated value in `Item.value` |
 | disabled | boolean | false | 各オプションの選択可/不可設定 | |
 
