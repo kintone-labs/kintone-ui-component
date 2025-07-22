@@ -73,7 +73,9 @@ Here is a sample code when all parameters are specified:
 
 ```javascript
 const Kuc = Kucs['1.x.x'];
+
 const space = kintone.app.record.getSpaceElement('space');
+
 const userSelect = new Kuc.UserOrgGroupSelect({
   label: 'User Select',
   items: [
@@ -94,9 +96,11 @@ const userSelect = new Kuc.UserOrgGroupSelect({
   disabled: false
 });
 space.appendChild(userSelect);
+
 userSelect.addEventListener('change', event => {
   console.log(event);
 });
+
 userSelect.addEventListener('click-picker-icon', event => {
   console.log(event);
 });
