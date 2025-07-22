@@ -9,7 +9,7 @@ The UserOrgGroup component allows the user to select user/org/group.
 
 import { UserOrgGroupSelectComponent } from "@site/static/js/samples/desktop/user-org-group-select.jsx"
 
-<TooltipComponent />
+<UserOrgGroupSelectComponent />
 
 ---
 
@@ -73,53 +73,31 @@ UserOrgGroupSelect(options)<br/>
 
 ```javascript
 const Kuc = Kucs['1.x.x'];
-
 const space = kintone.app.record.getSpaceElement('space');
-const userOrgGroup = new Kuc.UserOrgGroup({
-  label: "Sample label",
-  requiredIcon: true,
+const userSelect = new Kuc.UserOrgGroupSelect({
+  label: 'User Select',
   items: [
-    {
-    label: "User A",
-    value: "userA",
-    type: "user",
-    disabled: true,
-    },
-    {
-    label: "User B",
-    value: "userB",
-    type: "user",
-    },
-    {
-    label: "Organization AOrganization AOrsAOrganization",
-    value: "orgA",
-    type: "org",
-    },
-    {
-    label: "Group A",
-    value: "groupA",
-    type: "group",
-    },
-    {
-    label: "User C",
-    value: "userC",
-    type: "user",
-    },
+    { label: 'UserA', value: 'a', type: 'user', disabled: true },
+    { label: 'UserB', value: 'b', type: 'user' },
+    { label: 'UserC', value: 'c', type: 'user' },
+    { label: 'GroupA', value: 'd', type: 'group' },
+    { label: 'OrgA', value: 'e', type: 'org' }
   ],
-  value: ["userB", "orgA", "groupA"],
-  error: "Error occurred!",
-  className: "sample-class",
-  icon: "user",
-  id: "sample-id",
-  placeholder: "Sample placeholder",
+  value: ['a'],
+  requiredIcon: true,
+  error: 'Error occurred!',
+  className: 'options-class',
+  icon: 'user',
+  id: 'options-id',
+  placeholder: 'Please select a user',
   visible: true,
-  disabled: false,
+  disabled: false
 });
-userOrgGroup.addEventListener('change', event => {
+space.appendChild(userSelect);
+userSelect.addEventListener('change', event => {
   console.log(event);
 });
-userOrgGroup.addEventListener('click-picker-icon', event => {
+userSelect.addEventListener('click-picker-icon', event => {
   console.log(event);
 });
-space.appendChild(userOrgGroup);
 ```

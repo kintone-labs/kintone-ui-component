@@ -1,4 +1,4 @@
-export const USERORGGROUPSELECT_CSS = `
+export const USER_ORG_GROUP_SELECT_CSS = `
   kuc-user-org-group-select,
   kuc-user-org-group-select *,
   kuc-user-org-group-select:lang(en),
@@ -120,6 +120,9 @@ export const USERORGGROUPSELECT_CSS = `
     border: none;
     background-color: transparent;
     cursor: pointer;
+  }
+  .kuc-user-org-group-select__group__container__picker__button:disabled {
+    cursor: not-allowed;
   }
   .kuc-user-org-group-select__group__container__select-area__select-menu {
     width: 100%;

@@ -19,6 +19,7 @@ describe("UserOrgGroupSelect", () => {
       const container = new UserOrgGroupSelect({ id: "options-id" });
       const el = await fixture(container);
       container.id = "replace-id";
+      expect(el.id).to.equal("replace-id");
     });
   });
 });

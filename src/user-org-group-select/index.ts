@@ -18,7 +18,7 @@ import {
   validateProps,
 } from "../base/validator";
 
-import { USERORGGROUPSELECT_CSS } from "./style";
+import { USER_ORG_GROUP_SELECT_CSS } from "./style";
 import {
   UserOrgGroupSelectChangeEventDetail,
   UserOrgGroupSelectClickIconEventDetail,
@@ -186,9 +186,6 @@ let exportUserOrgGroupSelect;
                     class="kuc-user-org-group-select__group__container__select-area__toggle__icon__button"
                     tabindex="-1"
                     type="button"
-                    aria-label="search"
-                    aria-controls="${this._GUID}-listbox"
-                    aria-expanded="${this._selectorVisible}"
                     ?disabled="${this.disabled}"
                     @click="${this._handleClickToggleButton}"
                   >
@@ -212,7 +209,6 @@ let exportUserOrgGroupSelect;
               </ul>
               <ul
                 class="kuc-user-org-group-select__group__container__select-area__selected-list"
-                id="${this._GUID}-listbox"
               >
                 ${this._selectedValues.map((value, index) =>
                   this._getSelectedItemTemplate(value, index),
@@ -376,7 +372,7 @@ let exportUserOrgGroupSelect;
         <li
           class="kuc-user-org-group-select__group__container__select-area__selected-list__item"
           value="${value}"
-          id="${this._GUID}-menuitem-${index}"
+          id="${this._GUID}-selected-item-${index}"
         >
           <div
             class="kuc-user-org-group-select__group__container__select-area__selected-list__item__content"
@@ -592,7 +588,7 @@ let exportUserOrgGroupSelect;
     private _handleClickRemoveSelectedItem(event: Event) {
       const button = event.currentTarget as HTMLElement;
       const index = parseInt(
-        button.getAttribute("selected-item-index") || "0",
+        button.getAttribute("selected-item-index") || "-1",
         10,
       );
       const newValues = this._selectedValues.filter((_, i) => i !== index);
@@ -1051,7 +1047,7 @@ let exportUserOrgGroupSelect;
     "kuc-user-org-group-select",
     KucUserOrgGroupSelect,
   );
-  createStyleOnHeader(USERORGGROUPSELECT_CSS);
+  createStyleOnHeader(USER_ORG_GROUP_SELECT_CSS);
   exportUserOrgGroupSelect = KucUserOrgGroupSelect;
 })();
 const UserOrgGroupSelect = exportUserOrgGroupSelect as any;

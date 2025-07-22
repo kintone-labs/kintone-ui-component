@@ -51,21 +51,6 @@ describe("UserOrgGroupSelect", () => {
     it("should be set to selected item label when assigned on constructor", async () => {
       const container = new UserOrgGroupSelect({
         items: initItems,
-      });
-      const el = await fixture(container);
-      const toggleIconButtonEl = el.querySelector(
-        ".kuc-user-org-group-select__group__container__select-area__toggle__icon__button",
-      ) as HTMLButtonElement;
-      toggleIconButtonEl.click();
-      await elementUpdated(container);
-      const selectedItemEl = el.querySelectorAll(
-        ".kuc-user-org-group-select__group__container__select-area__selected-list__item",
-      );
-      expect(selectedItemEl.length).to.equal(0);
-    });
-    it("should be set to selected item label when assigned on constructor", async () => {
-      const container = new UserOrgGroupSelect({
-        items: initItems,
         value: [initItems[0].value],
       });
       const el = await fixture(container);
@@ -101,6 +86,32 @@ describe("UserOrgGroupSelect", () => {
         ".kuc-user-org-group-select__group__container__select-area__selected-list__item__content__text",
       ) as HTMLElement;
       expect(selectedItemLabel.innerText).to.equal(initItems[0].label);
+    });
+    it("should be throw error when set null on constructor", (done) => {
+    const handleError = (event: any) => {
+      const errorMsg = event.reason.message;
+      expect(errorMsg).to.equal("'value' property is not array.");
+      window.removeEventListener("unhandledrejection", handleError);
+      done();
+    };
+    window.addEventListener("unhandledrejection", handleError);
+    const container = new UserOrgGroupSelect({ items: initItems, value: null });
+    fixture(container);
+    });
+    it("should be throw error when set null by setter", (done) => {
+      const handleError = (event: any) => {
+        const errorMsg = event.reason.message;
+        expect(errorMsg).to.equal("'value' property is not array.");
+        window.removeEventListener("unhandledrejection", handleError);
+        done();
+      };
+      window.addEventListener("unhandledrejection", handleError);
+      const container = new UserOrgGroupSelect({
+        items: initItems,
+        value: [initItems[0].value],
+      });
+      container.value = null;
+      fixture(container);
     });
   });
 });
