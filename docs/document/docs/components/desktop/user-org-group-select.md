@@ -40,7 +40,7 @@ Here is a list of properties that can be used for modifying the item:
 | Name   | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
 | label | string | null  | Text label for each option | If `Item.label` is unspecified, the value of `Item.value` is displayed on the UI |
-| type | string | null | Icon type of each item | The Item.type property determines the small icon type displayed for each option in both the dropdown menu and the selected items list.<br/>Displays different icons based on different values of the icon property.<br/>Available options:<li>"user" : ![user](/img/selected-user.png)</li><li>"org" : ![user](/img/selected-org.png)</li><li>"group" : ![group](/img/selected-group.png)</li><br/>If the value is not specified or invalid, no icon will be displayed. |
+| type | string | null | Icon type of each item | The Item.type property determines the small icon type displayed for each option in both the dropdown menu and the selected items list.<br/>Displays different icons based on different values of the icon property.<br/>Available options:<li>"user" : ![user](/img/selected-user.png)</li><li>"org" : ![user](/img/selected-org.png)</li><li>"group" : ![group](/img/selected-group.png)</li><li>"" : No icon</li> |
 | value | string | null  | Value of each option | Will result an error if setting duplicated value in `Item.value` |
 | disabled | boolean | false | Enable/Disable the item | |
 

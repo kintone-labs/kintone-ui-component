@@ -88,15 +88,18 @@ describe("UserOrgGroupSelect", () => {
       expect(selectedItemLabel.innerText).to.equal(initItems[0].label);
     });
     it("should be throw error when set null on constructor", (done) => {
-    const handleError = (event: any) => {
-      const errorMsg = event.reason.message;
-      expect(errorMsg).to.equal("'value' property is not array.");
-      window.removeEventListener("unhandledrejection", handleError);
-      done();
-    };
-    window.addEventListener("unhandledrejection", handleError);
-    const container = new UserOrgGroupSelect({ items: initItems, value: null });
-    fixture(container);
+      const handleError = (event: any) => {
+        const errorMsg = event.reason.message;
+        expect(errorMsg).to.equal("'value' property is not array.");
+        window.removeEventListener("unhandledrejection", handleError);
+        done();
+      };
+      window.addEventListener("unhandledrejection", handleError);
+      const container = new UserOrgGroupSelect({
+        items: initItems,
+        value: null,
+      });
+      fixture(container);
     });
     it("should be throw error when set null by setter", (done) => {
       const handleError = (event: any) => {
