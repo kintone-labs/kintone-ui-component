@@ -1,4 +1,4 @@
-import { aTimeout, elementUpdated, expect, fixture } from "@open-wc/testing";
+import { expect, fixture } from "@open-wc/testing";
 
 import { UserOrgGroupSelect } from "../index";
 const initItems = [

@@ -310,6 +310,10 @@ table th[class$="__table__header__cell__action--right"] {
   outline: revert;
 }
 
+#user-org-group-select li+li {
+  margin-top: 0;
+}
+
 .sample-container#dialog{
   max-width: 700px;
   height: 300px;
