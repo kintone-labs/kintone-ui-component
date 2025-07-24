@@ -291,8 +291,16 @@ let exportDropdown;
         setTimeout(() => {
           document.addEventListener("click", this._handleClickDocument, true);
           this._scrollParent = this._getScrollParent(this._buttonEl);
-          this._scrollParent.removeEventListener("scroll", this._setMenuPosition, true);
-          this._scrollParent.addEventListener("scroll", this._setMenuPosition, true);
+          this._scrollParent.removeEventListener(
+            "scroll",
+            this._setMenuPosition,
+            true,
+          );
+          this._scrollParent.addEventListener(
+            "scroll",
+            this._setMenuPosition,
+            true,
+          );
         }, 1);
       } else {
         setTimeout(() => {
@@ -301,7 +309,11 @@ let exportDropdown;
             this._handleClickDocument,
             true,
           );
-          this._scrollParent.removeEventListener("scroll", this._setMenuPosition, true);
+          this._scrollParent.removeEventListener(
+            "scroll",
+            this._setMenuPosition,
+            true,
+          );
         }, 1);
       }
     }
@@ -453,8 +465,16 @@ let exportDropdown;
       if (!this._menuEl || !this._buttonEl) return;
       this._setMenuPosition();
       this._scrollParent = this._getScrollParent(this._buttonEl);
-      this._scrollParent.removeEventListener("scroll", this._setMenuPosition, true);
-      this._scrollParent.addEventListener("scroll", this._setMenuPosition, true);
+      this._scrollParent.removeEventListener(
+        "scroll",
+        this._setMenuPosition,
+        true,
+      );
+      this._scrollParent.addEventListener(
+        "scroll",
+        this._setMenuPosition,
+        true,
+      );
       if (
         this._selectedItemEl === null ||
         this._selectedItemEl.classList.contains(this._DISABLED_CLASS)
@@ -465,7 +485,11 @@ let exportDropdown;
 
     disconnectedCallback() {
       if (this._scrollParent) {
-        this._scrollParent.removeEventListener("scroll", this._setMenuPosition, true);
+        this._scrollParent.removeEventListener(
+          "scroll",
+          this._setMenuPosition,
+          true,
+        );
       }
       super.disconnectedCallback && super.disconnectedCallback();
     }
@@ -474,7 +498,11 @@ let exportDropdown;
       this._selectorVisible = false;
       this._menuEl.hidePopover();
       if (this._scrollParent) {
-        this._scrollParent.removeEventListener("scroll", this._setMenuPosition, true);
+        this._scrollParent.removeEventListener(
+          "scroll",
+          this._setMenuPosition,
+          true,
+        );
       }
       this._actionRemoveActiveDescendant();
     }
@@ -637,7 +665,10 @@ let exportDropdown;
       const buttonRect = this._buttonEl.getBoundingClientRect();
       const menuHeight = this._menuEl.getBoundingClientRect().height;
       let top = buttonRect.bottom;
-      if (top + menuHeight > window.innerHeight && buttonRect.top > menuHeight) {
+      if (
+        top + menuHeight > window.innerHeight &&
+        buttonRect.top > menuHeight
+      ) {
         top = buttonRect.top - menuHeight;
       }
       this._menuEl.style.top = `${top}px`;
@@ -657,12 +688,15 @@ let exportDropdown;
       }
     }
 
-
     private _setMenuPosition() {
       // If the menu or button element is not available, do not proceed
-      if(!this._menuEl || !this._buttonEl){
+      if (!this._menuEl || !this._buttonEl) {
         if (this._scrollParent) {
-          this._scrollParent.removeEventListener("scroll", this._setMenuPosition, true);
+          this._scrollParent.removeEventListener(
+            "scroll",
+            this._setMenuPosition,
+            true,
+          );
         }
         return;
       }
