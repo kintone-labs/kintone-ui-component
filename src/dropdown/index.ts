@@ -76,9 +76,6 @@ let exportDropdown;
     @queryAll(".kuc-dropdown__group__select-menu__item--disabled")
     private _disabledItemsEl!: HTMLLIElement[];
 
-    @query(".kuc-base-error__error")
-    private _errorEl!: HTMLDivElement;
-
     private _timeoutID!: number | null;
     private _previousScrollTop!: number;
 
@@ -89,12 +86,15 @@ let exportDropdown;
 
     private _hasValueInItems = false;
 
+    private _scrollParent: HTMLElement | Window = window;
+
     constructor(props?: DropdownProps) {
       super();
       this._GUID = generateGUID();
       const validProps = validateProps(props);
       this._handleClickDocument = this._handleClickDocument.bind(this);
       this._handleScrollMenu = this._handleScrollMenu.bind(this);
+      this._setMenuPosition = this._setMenuPosition.bind(this);
       this._setInitialValue(validProps);
       Object.assign(this, validProps);
     }
@@ -250,10 +250,11 @@ let exportDropdown;
             </span>
           </button>
           <ul
+            id="${this._GUID}-popover"
+            popover
             class="kuc-dropdown__group__select-menu"
             role="listbox"
             aria-hidden="${!this._selectorVisible}"
-            ?hidden="${!this._selectorVisible}"
             @mouseleave="${this._handleMouseLeaveMenu}"
             @mousedown="${this._handleMouseDownMenu}"
           >
@@ -289,6 +290,9 @@ let exportDropdown;
         this._scrollToView();
         setTimeout(() => {
           document.addEventListener("click", this._handleClickDocument, true);
+          this._scrollParent = this._getScrollParent(this._buttonEl);
+          this._scrollParent.removeEventListener("scroll", this._setMenuPosition, true);
+          this._scrollParent.addEventListener("scroll", this._setMenuPosition, true);
         }, 1);
       } else {
         setTimeout(() => {
@@ -297,6 +301,7 @@ let exportDropdown;
             this._handleClickDocument,
             true,
           );
+          this._scrollParent.removeEventListener("scroll", this._setMenuPosition, true);
         }, 1);
       }
     }
@@ -444,7 +449,12 @@ let exportDropdown;
       this._buttonEl.focus();
       if (this.items.length === 0) return;
       this._selectorVisible = true;
-
+      this._menuEl.showPopover();
+      if (!this._menuEl || !this._buttonEl) return;
+      this._setMenuPosition();
+      this._scrollParent = this._getScrollParent(this._buttonEl);
+      this._scrollParent.removeEventListener("scroll", this._setMenuPosition, true);
+      this._scrollParent.addEventListener("scroll", this._setMenuPosition, true);
       if (
         this._selectedItemEl === null ||
         this._selectedItemEl.classList.contains(this._DISABLED_CLASS)
@@ -453,9 +463,37 @@ let exportDropdown;
       this._setHighlightAndActiveDescendantMenu(this._selectedItemEl);
     }
 
+    disconnectedCallback() {
+      if (this._scrollParent) {
+        this._scrollParent.removeEventListener("scroll", this._setMenuPosition, true);
+      }
+      super.disconnectedCallback && super.disconnectedCallback();
+    }
+
     private _actionHideMenu() {
       this._selectorVisible = false;
+      this._menuEl.hidePopover();
+      if (this._scrollParent) {
+        this._scrollParent.removeEventListener("scroll", this._setMenuPosition, true);
+      }
       this._actionRemoveActiveDescendant();
+    }
+
+    private _getScrollParent(element: HTMLElement): HTMLElement | Window {
+      let parent: HTMLElement | null = element.parentElement;
+      while (parent) {
+        const style = window.getComputedStyle(parent);
+        const overflowY = style.overflowY;
+        if (
+          overflowY === "auto" ||
+          overflowY === "scroll" ||
+          overflowY === "overlay"
+        ) {
+          return parent;
+        }
+        parent = parent.parentElement;
+      }
+      return window;
     }
 
     private _actionToggleMenu() {
@@ -595,111 +633,45 @@ let exportDropdown;
       this._buttonEl.removeAttribute("aria-activedescendant");
     }
 
-    private _getScrollbarWidthHeight() {
-      const scrollDiv = document.createElement("div");
-      scrollDiv.style.cssText =
-        "overflow: scroll; position: absolute; top: -9999px;";
-      document.body.appendChild(scrollDiv);
-      const scrollbarWidth = scrollDiv.offsetWidth - scrollDiv.clientWidth;
-      const scrollbarHeight = scrollDiv.offsetHeight - scrollDiv.clientHeight;
-      document.body.removeChild(scrollDiv);
-      return { scrollbarWidth, scrollbarHeight };
-    }
-
-    private _getDistanceToggleButton() {
-      const { scrollbarWidth, scrollbarHeight } =
-        this._getScrollbarWidthHeight();
-
-      const isWindowRightScrollbarShow =
-        document.body.scrollHeight > window.innerHeight;
-      const isWindowBottomScrollbarShow =
-        document.body.scrollWidth > window.innerWidth;
-
-      const toTop = this._buttonEl.getBoundingClientRect().top;
-      const toBottom =
-        window.innerHeight -
-        this._buttonEl.getBoundingClientRect().bottom -
-        (isWindowBottomScrollbarShow ? scrollbarHeight : 0);
-      const toLeft = this._buttonEl.getBoundingClientRect().left;
-      const toRight =
-        window.innerWidth -
-        this._buttonEl.getBoundingClientRect().left -
-        (isWindowRightScrollbarShow ? scrollbarWidth : 0);
-
-      return { toTop, toBottom, toLeft, toRight };
-    }
-
     private _setMenuPositionAboveOrBelow() {
-      this._menuEl.style.height = "auto";
-      this._menuEl.style.bottom = "auto";
-      this._menuEl.style.overflowY = "scroll";
-
-      this._menuEl.style.maxHeight = "none";
-      const menuHeightNoMaxHeight = this._menuEl.getBoundingClientRect().height;
-      this._menuEl.style.maxHeight =
-        "var(--kuc-dropdown-menu-max-height, none)";
-      const menuHeightWithMaxHeight =
-        this._menuEl.getBoundingClientRect().height;
-
-      const distanceToggleButton = this._getDistanceToggleButton();
-      if (distanceToggleButton.toBottom >= menuHeightWithMaxHeight) {
-        if (menuHeightNoMaxHeight > menuHeightWithMaxHeight) {
-          this._previousScrollTop &&
-            (this._menuEl.scrollTop = this._previousScrollTop);
-        } else {
-          this._menuEl.style.overflowY = "";
-        }
-        return;
+      const buttonRect = this._buttonEl.getBoundingClientRect();
+      const menuHeight = this._menuEl.getBoundingClientRect().height;
+      let top = buttonRect.bottom;
+      if (top + menuHeight > window.innerHeight && buttonRect.top > menuHeight) {
+        top = buttonRect.top - menuHeight;
       }
-
-      if (distanceToggleButton.toBottom < distanceToggleButton.toTop) {
-        // Above
-        const errorHeight = this._errorEl.offsetHeight
-          ? this._errorEl.offsetHeight + 16
-          : 0;
-        this._menuEl.style.bottom = `${
-          this._buttonEl.offsetHeight + errorHeight
-        }px`;
-        if (distanceToggleButton.toTop >= menuHeightWithMaxHeight) {
-          if (menuHeightNoMaxHeight > menuHeightWithMaxHeight) {
-            this._previousScrollTop &&
-              (this._menuEl.scrollTop = this._previousScrollTop);
-          } else {
-            this._menuEl.style.overflowY = "";
-          }
-          return;
-        }
-        this._menuEl.style.height = `${distanceToggleButton.toTop}px`;
-      } else {
-        // Below
-        this._menuEl.style.height = `${distanceToggleButton.toBottom}px`;
-      }
-
-      this._previousScrollTop &&
-        (this._menuEl.scrollTop = this._previousScrollTop);
+      this._menuEl.style.top = `${top}px`;
+      this._menuEl.style.left = `${buttonRect.left}px`;
+      this._menuEl.style.position = "fixed";
     }
 
     private _setMenuPositionLeftOrRight() {
       this._menuEl.style.right = "auto";
-
       const menuWidth = this._menuEl.getBoundingClientRect().width;
-      const distanceToggleButton = this._getDistanceToggleButton();
-      if (
-        // Right
-        distanceToggleButton.toRight >= menuWidth ||
-        distanceToggleButton.toLeft < menuWidth ||
-        distanceToggleButton.toRight < 0
-      )
-        return;
-
-      // Left
-      const right = this._buttonEl.offsetWidth - distanceToggleButton.toRight;
-      this._menuEl.style.right = right > 0 ? `${right}px` : "0px";
+      const buttonRect = this._buttonEl.getBoundingClientRect();
+      const toRight = window.innerWidth - buttonRect.left;
+      const toLeft = buttonRect.left;
+      if (toRight < menuWidth && toLeft > menuWidth) {
+        this._menuEl.style.left = "auto";
+        this._menuEl.style.right = `${window.innerWidth - buttonRect.right}px`;
+      }
     }
 
+
     private _setMenuPosition() {
+      // If the menu or button element is not available, do not proceed
+      if(!this._menuEl || !this._buttonEl){
+        if (this._scrollParent) {
+          this._scrollParent.removeEventListener("scroll", this._setMenuPosition, true);
+        }
+        return;
+      }
       this._setMenuPositionAboveOrBelow();
       this._setMenuPositionLeftOrRight();
+      // restore previous scroll position
+      if (this._menuEl && this._previousScrollTop) {
+        this._menuEl.scrollTop = this._previousScrollTop;
+      }
     }
 
     private _scrollToView() {
