@@ -5,7 +5,7 @@ sidebar_label: UserOrgGroupSelect
 ---
 
 ## Overview
-The UserOrgGroup component allows the user to select user/org/group.
+UserOrgGroup は ユーザー/組織/グループの選択をすることができます。
 
 import { UserOrgGroupSelectComponent } from "@site/static/js/samples/desktop/user-org-group-select.jsx"
 
@@ -23,35 +23,33 @@ import { UserOrgGroupSelectComponent } from "@site/static/js/samples/desktop/use
 | :--- | :--- | :--- | :--- | :--- |
 | className | string | ""  | コンポーネントの class 名 | |
 | error | string | "" | エラーに表示するテキスト | 未指定、あるいは空文字の場合、error は表示されない |
-| icon | string | "user" | Picker icon type | The icon property is used to set the main icon displayed on the right side of the toggle part.<br/>Displays different icons based on different values of the icon property.<br/>Available options:<li>"user" : ![user](/img/icon-user.png)</li><li>"org" : ![org](/img/icon-org.png)</li><li>"group" : ![group](/img/icon-group.png)</li><br/>If the value is not specified, the default icon is "user". |
+| icon | string | "user" | 選択アイコン | icon プロパティを使用してトグル部分の右側に表示されるメインアイコンを設定します。<br/>icon プロパティの値に応じてアイコンが表示されます。<br/>指定できるオプション:<li>"user" : ![user](/img/icon-user.png)</li><li>"org" : ![org](/img/icon-org.png)</li><li>"group" : ![group](/img/icon-group.png)</li><br/>指定しない場合は"user"となる。 |
 | id | string | "" | コンポーネントの id 名 ||
 | label | string | "" | コンポーネントの説明ラベル | 未指定、あるいは空文字の場合、label は表示されない |
 | placeholder | string | "" | 入力フィールドに表示されるプレースホルダーテキスト | |
 | disabled | boolean | false | コンポーネントの編集可/不可設定 | |
 | requiredIcon | boolean | false | コンポーネントの必須アイコン表示/非表示設定 | |
 | visible | boolean | true | コンポーネントの表示/非表示設定 | |
-| items | Array\<[Item](#item)\> | []  | List of options to display | Will result an error if the value of items is not an array |
-| value |  Array\<string\> | [] | Value of the selected item | No option will be selected if the `value` are unspecified<br/>Will result an error if the value is not an array |
+| items | Array\<[Item](#item)\> | []  | 表示する選択肢一覧 | items が配列以外の場合、エラーを出力する |
+| value |  Array\<string\> | [] | 選択されている値 | value が未指定の場合、何も選択されない<br/>value が配列以外の場合、エラーを出力する |
 
 ### Item
 
-Here is a list of properties that can be used for modifying the item:
-
 | Name   | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
-| label | string | null  | Text label for each option | If `Item.label` is unspecified, the value of `Item.value` is displayed on the UI |
-| type | string | null | Icon type of each item | The Item.type property determines the small icon type displayed for each option in both the dropdown menu and the selected items list.<br/>Displays different icons based on different values of the icon property.<br/>Available options:<li>"user" : ![user](/img/selected-user.png)</li><li>"org" : ![org](/img/selected-org.png)</li><li>"group" : ![group](/img/selected-group.png)</li><li>"" : No icon</li> |
-| value | string | null  | Value of each option | Will result an error if setting duplicated value in `Item.value` |
+| label | string | null  | 各選択肢のテキスト | Item.label が未指定の場合、UI 上は Item.value の値が表示される |
+| type | string | null | 各選択肢のアイコン | Item.typeプロパティは、ドロップダウンメニューと選択された項目の一覧の各オプションにそれぞれ表示される小さなアイコンの種類を決定します<br/>プロパティの値に応じてアイコンが表示されます。<br/>指定できるオプション:<li>"user" : ![user](/img/selected-user.png)</li><li>"org" : ![org](/img/selected-org.png)</li><li>"group" : ![group](/img/selected-group.png)</li><li>"" : アイコンなし</li> |
+| value | string | null  | 各選択肢の値 | Item.value に重複した値を指定した場合、エラーを出力する |
 | disabled | boolean | false | 各オプションの選択可/不可設定 | |
 
 ### Event
 
-Here is a list of events that can be specified:
+指定できるイベントの一覧です。
 
 | Name | Type | Description | Remark |
 | :--- | :--- | :--- | :--- |
 | change | function | 値が変更された時のイベントハンドラ | 引数には Event の event オブジェクトをとる<br/><br/>event.detail で以下の値を受け取ることができる<br/>event.detail.oldValue : 変更前の value の値<br/>event.detail.value : 変更後の value の値 |
-| click-picker-icon | function | Event handler when the picker icon is clicked | It will pass the event object as the argument |
+| click-picker-icon | function | 選択アイコンがクリックされた時のイベントハンドラ | 引数には Event の event オブジェクトをとる |
 
 ### Constructor
 
