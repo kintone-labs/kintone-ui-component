@@ -6,12 +6,6 @@ export default {
   },
   files: "./unit_test/**/test/*.test.js",
   coverage: true,
-  testsFinishTimeout: 300000,
-  testFramework: {
-    config: {
-      timeout: 30000,
-    },
-  },
   reporters: [
     defaultReporter({ reportTestResults: true, reportTestProgress: true }),
   ],
