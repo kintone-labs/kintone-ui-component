@@ -298,7 +298,10 @@ let exportDropdown;
           );
           this._scrollParent.addEventListener(
             "scroll",
-            this._setMenuPosition,
+            (event) => {
+              if (event.target === this._menuEl) return;
+              this._setMenuPosition();
+            },
             true,
           );
         }, 1);
@@ -472,7 +475,10 @@ let exportDropdown;
       );
       this._scrollParent.addEventListener(
         "scroll",
-        this._setMenuPosition,
+        (event) => {
+          if (event.target === this._menuEl) return;
+          this._setMenuPosition();
+        },
         true,
       );
       if (
@@ -661,30 +667,48 @@ let exportDropdown;
       this._buttonEl.removeAttribute("aria-activedescendant");
     }
 
-    private _setMenuPositionAboveOrBelow() {
-      const buttonRect = this._buttonEl.getBoundingClientRect();
-      const menuHeight = this._menuEl.getBoundingClientRect().height;
-      let top = buttonRect.bottom;
-      if (
-        top + menuHeight > window.innerHeight &&
-        buttonRect.top > menuHeight
-      ) {
+    private _setMenuPositionAboveOrBelow(
+      menuEl: HTMLUListElement,
+      buttonEl: HTMLButtonElement,
+    ) {
+      const buttonRect = buttonEl.getBoundingClientRect();
+      const spaceAbove = buttonRect.top;
+      const spaceBelow = window.innerHeight - buttonRect.bottom;
+      menuEl.style.maxHeight = "none";
+      const menuHeight = menuEl.getBoundingClientRect().height;
+      let top, maxHeight;
+      if (spaceBelow >= menuHeight) {
+        top = buttonRect.bottom;
+        maxHeight = spaceBelow;
+      } else if (spaceAbove >= menuHeight) {
         top = buttonRect.top - menuHeight;
+        maxHeight = spaceAbove;
+      } else if (spaceBelow >= spaceAbove) {
+        top = buttonRect.bottom;
+        maxHeight = spaceBelow;
+      } else {
+        top = 0;
+        maxHeight = spaceAbove;
       }
-      this._menuEl.style.top = `${top}px`;
-      this._menuEl.style.left = `${buttonRect.left}px`;
-      this._menuEl.style.position = "fixed";
+      menuEl.style.position = "fixed";
+      menuEl.style.left = `${buttonRect.left}px`;
+      menuEl.style.top = `${top}px`;
+      menuEl.style.maxHeight = `${maxHeight}px`;
+      menuEl.style.overflowY = "auto";
     }
 
-    private _setMenuPositionLeftOrRight() {
-      this._menuEl.style.right = "auto";
-      const menuWidth = this._menuEl.getBoundingClientRect().width;
-      const buttonRect = this._buttonEl.getBoundingClientRect();
+    private _setMenuPositionLeftOrRight(
+      menuEl: HTMLUListElement,
+      buttonEl: HTMLButtonElement,
+    ) {
+      menuEl.style.right = "auto";
+      const menuWidth = menuEl.getBoundingClientRect().width;
+      const buttonRect = buttonEl.getBoundingClientRect();
       const toRight = window.innerWidth - buttonRect.left;
       const toLeft = buttonRect.left;
       if (toRight < menuWidth && toLeft > menuWidth) {
-        this._menuEl.style.left = "auto";
-        this._menuEl.style.right = `${window.innerWidth - buttonRect.right}px`;
+        menuEl.style.left = "auto";
+        menuEl.style.right = `${window.innerWidth - buttonRect.right}px`;
       }
     }
 
@@ -700,8 +724,8 @@ let exportDropdown;
         }
         return;
       }
-      this._setMenuPositionAboveOrBelow();
-      this._setMenuPositionLeftOrRight();
+      this._setMenuPositionAboveOrBelow(this._menuEl, this._buttonEl);
+      this._setMenuPositionLeftOrRight(this._menuEl, this._buttonEl);
       // restore previous scroll position
       if (this._menuEl && this._previousScrollTop) {
         this._menuEl.scrollTop = this._previousScrollTop;
