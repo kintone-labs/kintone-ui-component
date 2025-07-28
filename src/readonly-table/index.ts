@@ -271,7 +271,7 @@ let exportReadOnlyTable;
                 ? " kuc-readonly-table__table__header__cell__wrapper__title--html"
                 : ""}"
             >
-              ${isHTML && column.title ? unsafeHTMLConverter(column.title) : ""}
+              ${isHTML ? unsafeHTMLConverter(column.title!) : (column.title ?? "")}
             </div>
             ${isSortable && isSorted
               ? html`<div
