@@ -70,7 +70,7 @@ export const READ_ONLY_TABLE_CSS = `
   }
   .kuc-readonly-table__table__header__cell:focus-visible {
     outline: 1px solid #3498db;
-    background-color: var(--kuc-readonly-table-header-background-color, #1d6fa5);
+    background-color: var(--kuc-readonly-table-header-background-color-focus, #1d6fa5);
   }
   .kuc-readonly-table__table__header__cell--html {
     white-space: normal;
@@ -131,6 +131,6 @@ export const READ_ONLY_TABLE_CSS = `
     user-select: none;
   }
   .kuc-readonly-table__table__header__cell--sort:hover {
-    background-color: #1d6fa5;
+    background-color: var(--kuc-readonly-table-header-background-color-hover, #1d6fa5);
   }
 `;
