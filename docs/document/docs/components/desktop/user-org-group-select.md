@@ -31,11 +31,9 @@ Here is a list of properties that can be used for modifying the component:
 | requiredIcon | boolean | false | Show/Hide the required icon | |
 | visible | boolean | true | Show/Hide the component | |
 | items | Array\<[Item](#item)\> | []  | List of options to display | Will result an error if the value of items is not an array |
-| value |  Array\<string\> | [] | Value of the selected item | No option will be selected if the `value` are unspecified<br/>Will result an error if the value is not an array |
+| value |  Array\<string\> | [] | Selected value | No option will be selected if the `value` are unspecified<br/>Will result an error if the value is not an array |
 
 ### Item
-
-Here is a list of properties that can be used for modifying the item:
 
 | Name   | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
