@@ -72,16 +72,16 @@ const columnsWithHtmlElement = [
 
 const data = [
   {
-    index: "1",
-    name: "Tokyo",
-    country: "Japan",
-    population: "14,000,000",
-  },
-  {
     index: "2",
     name: "Ho Chi Minh",
     country: "Vietnam",
     population: "9,000,000",
+  },
+  {
+    index: "1",
+    name: "Tokyo",
+    country: "Japan",
+    population: "14,000,000",
   },
 ];
 
