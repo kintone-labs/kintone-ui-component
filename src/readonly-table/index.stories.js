@@ -79,7 +79,7 @@ Base.args = {
       link: '<a href="https://en.wikipedia.org/wiki/C%E1%BA%A7n_Th%C6%A1" target="_blank">Vietnam: Cần Thơ</a>',
     },
     {
-      index: true,
+      index: "1",
       name: "Ho Chi Minh",
       country: "Vietnam",
       population: "8,993,000",
