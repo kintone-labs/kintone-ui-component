@@ -69,7 +69,7 @@ export const READ_ONLY_TABLE_CSS = `
     font-size: var(--kuc-readonly-table-header-font-size, 12px);
   }
   .kuc-readonly-table__table__header__cell:focus-visible {
-    outline: 1px solid #3498db;
+    outline: none;
     background-color: var(--kuc-readonly-table-header-background-color-focus, #1d6fa5);
   }
   .kuc-readonly-table__table__header__cell--html {
