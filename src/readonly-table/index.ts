@@ -181,7 +181,12 @@ let exportReadOnlyTable;
         if (typeof valueA === "number" && typeof valueB === "number") {
           return direction === "asc" ? valueA - valueB : valueB - valueA;
         }
-        if (isValidDate(valueA) && isValidDate(valueB)) {
+        if (
+          typeof valueA === "string" &&
+          typeof valueB === "string" &&
+          isValidDate(valueA) &&
+          isValidDate(valueB)
+        ) {
           const dateA = new Date(valueA);
           const dateB = new Date(valueB);
           if (!isNaN(dateA.getTime()) && !isNaN(dateB.getTime())) {
@@ -266,7 +271,7 @@ let exportReadOnlyTable;
                 ? " kuc-readonly-table__table__header__cell__wrapper__title--html"
                 : ""}"
             >
-              ${column.title ? unsafeHTMLConverter(column.title) : ""}
+              ${isHTML && column.title ? unsafeHTMLConverter(column.title) : ""}
             </div>
             ${isSortable && isSorted
               ? html`<div

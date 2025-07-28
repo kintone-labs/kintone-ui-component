@@ -69,8 +69,8 @@ export const READ_ONLY_TABLE_CSS = `
     font-size: var(--kuc-readonly-table-header-font-size, 12px);
   }
   .kuc-readonly-table__table__header__cell:focus-visible {
-    outline: none;
-    color: #1a0dab;
+    outline: 1px solid #3498db;
+    background-color: var(--kuc-readonly-table-header-background-color, #1d6fa5);
   }
   .kuc-readonly-table__table__header__cell--html {
     white-space: normal;
@@ -132,8 +132,5 @@ export const READ_ONLY_TABLE_CSS = `
   }
   .kuc-readonly-table__table__header__cell--sort:hover {
     background-color: #1d6fa5;
-  }
-  .kuc-readonly-table__table__header__cell--sort:focus-visible .kuc-readonly-table__table__header__cell__wrapper__sort-icon svg path {
-    fill: #1a0dab;
   }
 `;
