@@ -43,6 +43,14 @@ export const READ_ONLY_TABLE_CSS = `
     border-color: var(--kuc-readonly-table-header-background-color, #3498db);
     border-style: solid;
   }
+  .kuc-readonly-table__table__header:has(.kuc-readonly-table__table__header__cell:first-child:focus-visible),
+  .kuc-readonly-table__table__header:has(.kuc-readonly-table__table__header__cell:last-child:focus-visible) {
+    border-color: var(--kuc-readonly-table-header-background-color-focus, #1d6fa5);
+  }
+  .kuc-readonly-table__table__header:has(.kuc-readonly-table__table__header__cell:first-child:hover),
+  .kuc-readonly-table__table__header:has(.kuc-readonly-table__table__header__cell:last-child:hover) {
+    border-color: var(--kuc-readonly-table-header-background-color-hover, #1d6fa5);
+  }
   .kuc-readonly-table__table__label {
     text-align: left;
     white-space: normal;
