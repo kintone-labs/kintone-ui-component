@@ -144,7 +144,7 @@ export const READ_ONLY_TABLE_CSS = `
   .kuc-readonly-table__table__header__cell--sort:hover {
     background-color: var(--kuc-readonly-table-header-background-color-hover, #1d6fa5);
   }
-  .kuc-readonly-table__table__header__cell:focus-visible {
+  .kuc-readonly-table__table__header__cell--sort:focus-visible {
     outline: none;
     background-color: var(--kuc-readonly-table-header-background-color-focus, #1d6fa5);
   }
