@@ -23,7 +23,7 @@ import { UserOrgGroupSelectComponent } from "@site/static/js/samples/desktop/use
 | :--- | :--- | :--- | :--- | :--- |
 | className | string | ""  | コンポーネントの class 名 | |
 | error | string | "" | エラーに表示するテキスト | 未指定、あるいは空文字の場合、error は表示されない |
-| icon | string | "user" | 選択アイコン | icon プロパティを使用してトグル部分の右側に表示されるメインアイコンを設定します。<br/>icon プロパティの値に応じてアイコンが表示されます。<br/>指定できるオプション:<li>"user" : ![user](/img/icon-user.png)</li><li>"org" : ![org](/img/icon-org.png)</li><li>"group" : ![group](/img/icon-group.png)</li><br/>指定しない場合は"user"となる。 |
+| icon | string | "user" | 選択アイコン | icon プロパティを使用してトグル部分の右側に表示されるメインアイコンを設定します。<br/>icon プロパティの値に応じてアイコンが表示されます。<br/>指定できるオプション:<li>Invalid value : No icon will be displayed</li><li>"user" : ![user](/img/icon-user.png)</li><li>"org" : ![org](/img/icon-org.png)</li><li>"group" : ![group](/img/icon-group.png)</li><br/>If the value is `""`/`undefined`/`null`, 指定しない場合は"user"となる。 |
 | id | string | "" | コンポーネントの id 名 ||
 | label | string | "" | コンポーネントの説明ラベル | 未指定、あるいは空文字の場合、label は表示されない |
 | placeholder | string | "" | 入力フィールドに表示されるプレースホルダーテキスト | |
@@ -38,7 +38,7 @@ import { UserOrgGroupSelectComponent } from "@site/static/js/samples/desktop/use
 | Name   | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
 | label | string | null  | 各選択肢のテキスト | Item.label が未指定の場合、UI 上は Item.value の値が表示される |
-| type | string | null | 各選択肢のアイコン | Item.typeプロパティは、ドロップダウンメニューと選択された項目の一覧の各オプションにそれぞれ表示される小さなアイコンの種類を決定します<br/>プロパティの値に応じてアイコンが表示されます。<br/>指定できるオプション:<li>"user" : ![user](/img/selected-user.png)</li><li>"org" : ![org](/img/selected-org.png)</li><li>"group" : ![group](/img/selected-group.png)</li><li>"" : アイコンなし</li> |
+| type | string | null | 各選択肢のアイコン | Item.typeプロパティは、ドロップダウンメニューと選択された項目の一覧の各オプションにそれぞれ表示される小さなアイコンの種類を決定します<br/>プロパティの値に応じてアイコンが表示されます。<br/>指定できるオプション:<li>"user" : ![user](/img/selected-user.png)</li><li>"org" : ![org](/img/selected-org.png)</li><li>"group" : ![group](/img/selected-group.png)</li><li>Not set / Invalid value : アイコンなし</li> |
 | value | string | null  | 各選択肢の値 | Item.value に重複した値を指定した場合、エラーを出力する |
 | disabled | boolean | false | 各オプションの選択可/不可設定 | |
 
