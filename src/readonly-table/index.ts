@@ -249,7 +249,7 @@ let exportReadOnlyTable;
       const isFirstVisible = index === visibleIndexes[0];
       const isLastVisible = index === visibleIndexes[visibleIndexes.length - 1];
       const sortClass = isSorted
-        ? `kuc-readonly-table__table__header__cell--sorted-${this._sortDirection}`
+        ? ` kuc-readonly-table__table__header__cell--sorted-${this._sortDirection}`
         : "";
 
       return html`
@@ -258,10 +258,10 @@ let exportReadOnlyTable;
             ? " kuc-readonly-table__table__header__cell--html"
             : ""}${isSortable
             ? " kuc-readonly-table__table__header__cell--sort"
-            : ""} ${sortClass} ${isFirstVisible
-            ? "kuc-readonly-table__table__header__cell--first-visible"
-            : ""} ${isLastVisible
-            ? "kuc-readonly-table__table__header__cell--last-visible"
+            : ""}${sortClass}${isFirstVisible
+            ? " kuc-readonly-table__table__header__cell--first-visible"
+            : ""}${isLastVisible
+            ? " kuc-readonly-table__table__header__cell--last-visible"
             : ""}"
           ?hidden="${column.visible === false}"
           style="width: ${customWidth}; min-width: ${customWidth}; max-width: ${customWidth};"
