@@ -243,6 +243,11 @@ let exportReadOnlyTable;
       const field = column.field || "";
       const isSortable = column.sort === true;
       const isSorted = this._sortField === field;
+      const visibleIndexes = this.columns
+        .map((col, i) => (col.visible !== false ? i : -1))
+        .filter((i) => i !== -1);
+      const isFirstVisible = index === visibleIndexes[0];
+      const isLastVisible = index === visibleIndexes[visibleIndexes.length - 1];
       const sortClass = isSorted
         ? `kuc-readonly-table__table__header__cell--sorted-${this._sortDirection}`
         : "";
@@ -253,7 +258,14 @@ let exportReadOnlyTable;
             ? " kuc-readonly-table__table__header__cell--html"
             : ""}${isSortable
             ? " kuc-readonly-table__table__header__cell--sort"
-            : ""} ${sortClass}"
+            : ""} ${sortClass}
+            ${isFirstVisible
+            ? "kuc-readonly-table__table__header__cell--first-visible"
+            : ""}
+            ${isLastVisible
+            ? "kuc-readonly-table__table__header__cell--last-visible"
+            : ""}
+            "
           ?hidden="${column.visible === false}"
           style="width: ${customWidth}; min-width: ${customWidth}; max-width: ${customWidth};"
           @click="${isSortable ? () => this._handleClickHeader(field) : null}"

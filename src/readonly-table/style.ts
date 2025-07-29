@@ -43,13 +43,17 @@ export const READ_ONLY_TABLE_CSS = `
     border-color: var(--kuc-readonly-table-header-background-color, #3498db);
     border-style: solid;
   }
-  .kuc-readonly-table__table__header:has(.kuc-readonly-table__table__header__cell--sort:first-child:focus-visible),
-  .kuc-readonly-table__table__header:has(.kuc-readonly-table__table__header__cell--sort:last-child:focus-visible) {
-    border-color: var(--kuc-readonly-table-header-background-color-focus, #1d6fa5);
+  .kuc-readonly-table__table__header__cell--sort.kuc-readonly-table__table__header__cell--first-visible:focus-visible {
+    border-left: 1px solid var(--kuc-readonly-table-header-background-color-focus, #1d6fa5);
   }
-  .kuc-readonly-table__table__header:has(.kuc-readonly-table__table__header__cell--sort:first-child:hover),
-  .kuc-readonly-table__table__header:has(.kuc-readonly-table__table__header__cell--sort:last-child:hover) {
-    border-color: var(--kuc-readonly-table-header-background-color-hover, #1d6fa5);
+  .kuc-readonly-table__table__header__cell--sort.kuc-readonly-table__table__header__cell--last-visible:focus-visible {
+    border-right: 1px solid var(--kuc-readonly-table-header-background-color-focus, #1d6fa5);
+  }
+  .kuc-readonly-table__table__header__cell--sort.kuc-readonly-table__table__header__cell--first-visible:hover {
+    border-left: 1px solid var(--kuc-readonly-table-header-background-color-hover, #1d6fa5);
+  }
+  .kuc-readonly-table__table__header__cell--sort.kuc-readonly-table__table__header__cell--last-visible:hover {
+    border-right: 1px solid var(--kuc-readonly-table-header-background-color-hover, #1d6fa5);
   }
   .kuc-readonly-table__table__body tr:first-child td {
     border-top-width: 0px;
@@ -78,10 +82,6 @@ export const READ_ONLY_TABLE_CSS = `
     padding: 4px 8px;
     font-weight: 400;
     font-size: var(--kuc-readonly-table-header-font-size, 12px);
-  }
-  .kuc-readonly-table__table__header__cell:focus-visible {
-    outline: none;
-    background-color: var(--kuc-readonly-table-header-background-color-focus, #1d6fa5);
   }
   .kuc-readonly-table__table__header__cell--html {
     white-space: normal;
@@ -143,5 +143,9 @@ export const READ_ONLY_TABLE_CSS = `
   }
   .kuc-readonly-table__table__header__cell--sort:hover {
     background-color: var(--kuc-readonly-table-header-background-color-hover, #1d6fa5);
+  }
+  .kuc-readonly-table__table__header__cell:focus-visible {
+    outline: none;
+    background-color: var(--kuc-readonly-table-header-background-color-focus, #1d6fa5);
   }
 `;
