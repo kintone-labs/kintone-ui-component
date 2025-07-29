@@ -55,7 +55,7 @@ export const READ_ONLY_TABLE_CSS = `
   .kuc-readonly-table__table__header__cell--sort.kuc-readonly-table__table__header__cell--last-visible:hover {
     border-right: 1px solid var(--kuc-readonly-table-header-background-color-hover, #1d6fa5);
   }
-  .kuc-readonly-table__table__body tr:first-child td {
+  .kuc-readonly-table__table__body>.kuc-readonly-table__table__body__row:first-child>.kuc-readonly-table__table__body__row__cell-data {
     border-top-width: 0px;
   }
   .kuc-readonly-table__table__label {

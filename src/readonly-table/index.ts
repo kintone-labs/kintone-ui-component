@@ -258,14 +258,11 @@ let exportReadOnlyTable;
             ? " kuc-readonly-table__table__header__cell--html"
             : ""}${isSortable
             ? " kuc-readonly-table__table__header__cell--sort"
-            : ""} ${sortClass}
-            ${isFirstVisible
+            : ""} ${sortClass} ${isFirstVisible
             ? "kuc-readonly-table__table__header__cell--first-visible"
-            : ""}
-            ${isLastVisible
+            : ""} ${isLastVisible
             ? "kuc-readonly-table__table__header__cell--last-visible"
-            : ""}
-            "
+            : ""}"
           ?hidden="${column.visible === false}"
           style="width: ${customWidth}; min-width: ${customWidth}; max-width: ${customWidth};"
           @click="${isSortable ? () => this._handleClickHeader(field) : null}"
