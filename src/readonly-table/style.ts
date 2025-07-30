@@ -43,17 +43,17 @@ export const READ_ONLY_TABLE_CSS = `
     border-color: var(--kuc-readonly-table-header-background-color, #3498db);
     border-style: solid;
   }
-  .kuc-readonly-table__table__header__cell--sort.kuc-readonly-table__table__header__cell--first-visible:focus-visible {
-    border-left: 1px solid var(--kuc-readonly-table-header-background-color-focus, #1d6fa5);
-  }
-  .kuc-readonly-table__table__header__cell--sort.kuc-readonly-table__table__header__cell--last-visible:focus-visible {
-    border-right: 1px solid var(--kuc-readonly-table-header-background-color-focus, #1d6fa5);
-  }
   .kuc-readonly-table__table__header__cell--sort.kuc-readonly-table__table__header__cell--first-visible:hover {
     border-left: 1px solid var(--kuc-readonly-table-header-background-color-hover, #1d6fa5);
   }
   .kuc-readonly-table__table__header__cell--sort.kuc-readonly-table__table__header__cell--last-visible:hover {
     border-right: 1px solid var(--kuc-readonly-table-header-background-color-hover, #1d6fa5);
+  }
+  .kuc-readonly-table__table__header__cell--sort.kuc-readonly-table__table__header__cell--first-visible:focus-visible {
+    border-left: 1px solid var(--kuc-readonly-table-header-background-color-focus, #1d6fa5);
+  }
+  .kuc-readonly-table__table__header__cell--sort.kuc-readonly-table__table__header__cell--last-visible:focus-visible {
+    border-right: 1px solid var(--kuc-readonly-table-header-background-color-focus, #1d6fa5);
   }
   .kuc-readonly-table__table__header__cell--sorted-asc.kuc-readonly-table__table__header__cell--first-visible,
   .kuc-readonly-table__table__header__cell--sorted-desc.kuc-readonly-table__table__header__cell--first-visible {
