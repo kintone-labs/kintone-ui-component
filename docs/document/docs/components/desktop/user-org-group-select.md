@@ -23,7 +23,7 @@ Here is a list of properties that can be used for modifying the component:
 | :--- | :--- | :--- | :--- | :--- |
 | className | string | ""  | Component class name | |
 | error | string | ""  | Text to be displayed in error | Error will not be displayed if unspecified or empty |
-| icon | string | "user" | Picker icon type | The icon property is used to set the main icon displayed on the right side of the toggle part.<br/>Displays different icons based on different values of the icon property.<br/>Available options:<li>Invalid value : No icon will be displayed</li><li>"user" : ![user](/img/icon-user.png)</li><li>"org" : ![org](/img/icon-org.png)</li><li>"group" : ![group](/img/icon-group.png)</li><br/>If the value is `""`/`undefined`/`null`, the default icon is "user". |
+| icon | string | "user" | Picker icon type | The icon property is used to set the main icon displayed on the right side of the toggle part.<br/>Displays different icons based on different values of the icon property.<br/>Available options:<li>"user" : ![user](/img/icon-user.png)</li><li>"org" : ![org](/img/icon-org.png)</li><li>"group" : ![group](/img/icon-group.png)</li><li>Not set / Invalid value : No icon will be displayed</li> |
 | id | string | ""  | Component id name | |
 | label | string | ""  | Label for the component | Label is not displayed if unspecified or empty |
 | placeholder | string | "" | Placeholder text displayed in the input field | |

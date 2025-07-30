@@ -23,7 +23,7 @@ import { UserOrgGroupSelectComponent } from "@site/static/js/samples/desktop/use
 | :--- | :--- | :--- | :--- | :--- |
 | className | string | ""  | コンポーネントの class 名 | |
 | error | string | "" | エラーに表示するテキスト | 未指定、あるいは空文字の場合、error は表示されない |
-| icon | string | "user" | 選択アイコン | icon プロパティを使用してトグル部分の右側に表示されるメインアイコンを設定します。<br/>icon プロパティの値に応じてアイコンが表示されます。<br/>指定できるオプション:<li>Invalid value : No icon will be displayed</li><li>"user" : ![user](/img/icon-user.png)</li><li>"org" : ![org](/img/icon-org.png)</li><li>"group" : ![group](/img/icon-group.png)</li><br/>If the value is `""`/`undefined`/`null`, 指定しない場合は"user"となる。 |
+| icon | string | "user" | 選択アイコン | icon プロパティを使用してトグル部分の右側に表示されるメインアイコンを設定します。<br/>icon プロパティの値に応じてアイコンが表示されます。<br/>指定できるオプション:<li>"user" : ![user](/img/icon-user.png)</li><li>"org" : ![org](/img/icon-org.png)</li><li>"group" : ![group](/img/icon-group.png)</li><li>Not set / Invalid value : No icon will be displayed</li> |
 | id | string | "" | コンポーネントの id 名 ||
 | label | string | "" | コンポーネントの説明ラベル | 未指定、あるいは空文字の場合、label は表示されない |
 | placeholder | string | "" | 入力フィールドに表示されるプレースホルダーテキスト | |
