@@ -14,7 +14,7 @@ const initItems = [
 
 describe("UserOrgGroupSelect", () => {
   describe("icon", () => {
-    it("should be displayed picker icon when set icon to org", async () => {
+    it("should be displayed picker icon when set icon to org on constructor", async () => {
       const container = new UserOrgGroupSelect({
         items: initItems,
         icon: "org",
@@ -35,6 +35,17 @@ describe("UserOrgGroupSelect", () => {
         ".kuc-user-org-group-select__group__container__picker",
       ) as HTMLButtonElement;
       expect(pickerIconEl.hasAttribute("hidden")).to.equal(true);
+    });
+    it("should not be displayed picker icon when set icon to user by setter", async () => {
+      const container = new UserOrgGroupSelect({
+        items: initItems,
+      });
+      container.icon = "user";
+      const el = await fixture(container);
+      const pickerIconEl = el.querySelector(
+        ".kuc-user-org-group-select__group__container__picker",
+      ) as HTMLButtonElement;
+      expect(pickerIconEl.hasAttribute("hidden")).to.equal(false);
     });
   });
 });

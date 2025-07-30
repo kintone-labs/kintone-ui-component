@@ -40,7 +40,7 @@ let exportUserOrgGroupSelect;
     @property({ type: String, reflect: true, attribute: "class" }) className =
       "";
     @property({ type: String }) error = "";
-    @property({ type: String }) icon: "user" | "org" | "group" = "user";
+    @property({ type: String }) icon: "" | "user" | "org" | "group" = "";
     @property({ type: String, reflect: true, attribute: "id" }) id = "";
     @property({ type: String }) label = "";
     @property({ type: String }) placeholder = "";
@@ -250,9 +250,6 @@ let exportUserOrgGroupSelect;
         this.icon === "group"
       ) {
         return this.icon;
-      }
-      if (this.icon === "" || this.icon === undefined || this.icon === null) {
-        return "user";
       }
       return undefined;
     }

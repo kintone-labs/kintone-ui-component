@@ -41,7 +41,7 @@ export declare class UserOrgGroupSelect extends KucBase {
   requiredIcon: boolean;
   visible: boolean;
   items: UserOrgGroupSelectItem[];
-  icon: "user" | "org" | "group";
+  icon: "" | "user" | "org" | "group";
   constructor(props?: UserOrgGroupSelectProps);
   shouldUpdate(changedProperties: PropertyValues): boolean;
   willUpdate(changedProperties: PropertyValues): void;
