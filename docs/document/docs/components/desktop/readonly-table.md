@@ -65,6 +65,7 @@ Here is a list of properties that can be used for modifying component style:
 | --kuc-readonly-table-header-background-color | |
 | --kuc-readonly-table-header-background-color-focus | Applies only to columns with `sort: true` |
 | --kuc-readonly-table-header-background-color-hover | Applies only to columns with `sort: true` |
+| --kuc-readonly-table-header-background-color-sorted | Applies only to columns with `sort: true` |
 | --kuc-readonly-table-header-color | |
 | --kuc-readonly-table-header-font-size | |
 | --kuc-readonly-table-header-height | |

@@ -65,6 +65,7 @@ ReadOnlyTable(options)<br/>
 | --kuc-readonly-table-header-background-color | |
 | --kuc-readonly-table-header-background-color-focus | `sort: true` の列のみ有効 |
 | --kuc-readonly-table-header-background-color-hover | `sort: true` の列のみ有効 |
+| --kuc-readonly-table-header-background-color-sorted | `sort: true` の列のみ有効 |
 | --kuc-readonly-table-header-color | |
 | --kuc-readonly-table-header-font-size | |
 | --kuc-readonly-table-header-height | |

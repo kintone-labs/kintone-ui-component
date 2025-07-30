@@ -55,6 +55,14 @@ export const READ_ONLY_TABLE_CSS = `
   .kuc-readonly-table__table__header__cell--sort.kuc-readonly-table__table__header__cell--last-visible:hover {
     border-right: 1px solid var(--kuc-readonly-table-header-background-color-hover, #1d6fa5);
   }
+  .kuc-readonly-table__table__header__cell--sorted-asc.kuc-readonly-table__table__header__cell--first-visible,
+  .kuc-readonly-table__table__header__cell--sorted-desc.kuc-readonly-table__table__header__cell--first-visible {
+    border-left: 1px solid var(--kuc-readonly-table-header-background-color-sorted, #1d6fa5);
+  }
+  .kuc-readonly-table__table__header__cell--sorted-asc.kuc-readonly-table__table__header__cell--last-visible,
+  .kuc-readonly-table__table__header__cell--sorted-desc.kuc-readonly-table__table__header__cell--last-visible {
+    border-right: 1px solid var(--kuc-readonly-table-header-background-color-sorted, #1d6fa5);
+  }
   .kuc-readonly-table__table__label {
     text-align: left;
     white-space: normal;
@@ -147,5 +155,9 @@ export const READ_ONLY_TABLE_CSS = `
   .kuc-readonly-table__table__header__cell--sort:focus-visible {
     outline: none;
     background-color: var(--kuc-readonly-table-header-background-color-focus, #1d6fa5);
+  }
+  .kuc-readonly-table__table__header__cell--sorted-asc,
+  .kuc-readonly-table__table__header__cell--sorted-desc {
+    background-color: var(--kuc-readonly-table-header-background-color-sorted, #1d6fa5);
   }
 `;
