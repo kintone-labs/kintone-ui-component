@@ -5,7 +5,7 @@ sidebar_label: UserOrgGroupSelect
 ---
 
 ## Overview
-The UserOrgGroup component allows the user to select user/org/group.
+The UserOrgGroupSelect component allows the user to select user, organization, and group.
 
 import { UserOrgGroupSelectComponent } from "@site/static/js/samples/desktop/user-org-group-select.jsx"
 
@@ -40,7 +40,7 @@ Here is a list of properties that can be used for modifying the component:
 | label | string | null  | Text label for each option | If `Item.label` is unspecified, the value of `Item.value` is displayed on the UI |
 | type | string | null | Icon type of each item | The Item.type property determines the small icon type displayed for each option in both the dropdown menu and the selected items list.<br/>Displays different icons based on different values of the icon property.<br/>Available options:<li>"user" : ![user](/img/selected-user.png)</li><li>"org" : ![org](/img/selected-org.png)</li><li>"group" : ![group](/img/selected-group.png)</li><li>Not set / Invalid value : No icon will be displayed</li> |
 | value | string | null  | Value of each option | Will result an error if setting duplicated value in `Item.value` |
-| disabled | boolean | false | Enable/Disable the item | |
+| disabled | boolean | false | Enable/Disable each option | |
 
 ### Event
 
@@ -75,21 +75,23 @@ const Kuc = Kucs['1.x.x'];
 const space = kintone.app.record.getSpaceElement('space');
 
 const userSelect = new Kuc.UserOrgGroupSelect({
-  label: 'User Select',
+  label: 'Assignees',
   items: [
-    { label: 'UserA', value: 'a', type: 'user', disabled: true },
-    { label: 'UserB', value: 'b', type: 'user' },
-    { label: 'UserC', value: 'c', type: 'user' },
-    { label: 'GroupA', value: 'd', type: 'group' },
-    { label: 'OrgA', value: 'e', type: 'org' }
+    { label: 'Alice Johnson', value: 'alice1', type: 'user', disabled: true },
+    { label: 'Bob Smith', value: 'bob2', type: 'user' },
+    { label: 'Charlie Lee', value: 'charlie3', type: 'user' },
+    { label: 'Sales Team', value: 'salesteam', type: 'group' },
+    { label: 'Engineering Team', value: 'engineeringteam', type: 'group' },
+    { label: 'Acme Corporation', value: 'acmecorp', type: 'org' },
+    { label: 'New York Office', value: 'nyoffice', type: 'org' }
   ],
-  value: ['a'],
+  value: ['alice1'],
   requiredIcon: true,
   error: 'Error occurred!',
   className: 'options-class',
   icon: 'user',
   id: 'options-id',
-  placeholder: 'Please select a user',
+  placeholder: 'Please select a assignees',
   visible: true,
   disabled: false
 });
