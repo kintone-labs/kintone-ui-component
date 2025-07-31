@@ -23,7 +23,7 @@ import { UserOrgGroupSelectComponent } from "@site/static/js/samples/desktop/use
 | :--- | :--- | :--- | :--- | :--- |
 | className | string | ""  | コンポーネントの class 名 | |
 | error | string | "" | エラーに表示するテキスト | 未指定、あるいは空文字の場合、error は表示されない |
-| icon | string | "user" | 選択アイコン | icon プロパティを使用してトグル部分の右側に表示されるメインアイコンを設定します。<br/>icon プロパティの値に応じてアイコンが表示されます。<br/>指定できるオプション:<li>"user" : ![user](/img/icon-user.png)</li><li>"org" : ![org](/img/icon-org.png)</li><li>"group" : ![group](/img/icon-group.png)</li><li>Not set / Invalid value : No icon will be displayed</li> |
+| icon | string | "" | 選択アイコン | `icon` を使用して入力欄部分の右側に表示されるメインアイコンを設定する<br/>icon の値に応じてアイコンが表示される<br/>指定できるオプション:<li>"user" : ![user](/img/icon-user.png)</li><li>"org" : ![org](/img/icon-org.png)</li><li>"group" : ![group](/img/icon-group.png)</li><li>Not set / Invalid value : No icon will be displayed</li> |
 | id | string | "" | コンポーネントの id 名 ||
 | label | string | "" | コンポーネントの説明ラベル | 未指定、あるいは空文字の場合、label は表示されない |
 | placeholder | string | "" | 入力フィールドに表示されるプレースホルダーテキスト | |
@@ -38,7 +38,7 @@ import { UserOrgGroupSelectComponent } from "@site/static/js/samples/desktop/use
 | Name   | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
 | label | string | null  | 各選択肢のテキスト | Item.label が未指定の場合、UI 上は Item.value の値が表示される |
-| type | string | null | 各選択肢のアイコン | Item.typeプロパティは、ドロップダウンメニューと選択された項目の一覧の各オプションにそれぞれ表示される小さなアイコンの種類を決定します<br/>プロパティの値に応じてアイコンが表示されます。<br/>指定できるオプション:<li>"user" : ![user](/img/selected-user.png)</li><li>"org" : ![org](/img/selected-org.png)</li><li>"group" : ![group](/img/selected-group.png)</li><li>Not set / Invalid value : アイコンなし</li> |
+| type | string | null | 各選択肢のアイコン | Item.type は、選択肢一覧と選択された項目の一覧の各オプションにそれぞれ表示される小さなアイコンの種類を指す<br/>Item.type の値に応じてアイコンが表示される<br/>指定できるオプション:<li>"user" : ![user](/img/selected-user.png)</li><li>"org" : ![org](/img/selected-org.png)</li><li>"group" : ![group](/img/selected-group.png)</li><li>"" : アイコンなし</li> |
 | value | string | null  | 各選択肢の値 | Item.value に重複した値を指定した場合、エラーを出力する |
 | disabled | boolean | false | 各オプションの選択可/不可設定 | |
 
@@ -77,13 +77,16 @@ const space = kintone.app.record.getSpaceElement('space');
 const userSelect = new Kuc.UserOrgGroupSelect({
   label: 'Assignees',
   items: [
-    { label: 'Alice Johnson', value: 'alice1', type: 'user', disabled: true },
-    { label: 'Bob Smith', value: 'bob2', type: 'user' },
-    { label: 'Charlie Lee', value: 'charlie3', type: 'user' },
-    { label: 'Sales Team', value: 'salesteam', type: 'group' },
-    { label: 'Engineering Team', value: 'engineeringteam', type: 'group' },
-    { label: 'Acme Corporation', value: 'acmecorp', type: 'org' },
-    { label: 'New York Office', value: 'nyoffice', type: 'org' }
+    { label: 'Alice Johnson', value: 'alice1', type: 'user', disabled: false },
+    { label: 'Bob Smith', value: 'bob2', type: 'user', disabled: false },
+    { label: 'Charlie Lee', value: 'charlie3', type: 'user', disabled: false },
+    { label: 'Marketing Group', value: 'marketinggroup', type: 'group', disabled: false },
+    { label: 'Sales Team', value: 'salesteam', type: 'group', disabled: false },
+    { label: 'Engineering Team', value: 'engineeringteam', type: 'group', disabled: false },
+    { label: 'Acme Corporation', value: 'acmecorp', type: 'org', disabled: false },
+    { label: 'New York Office', value: 'nyoffice', type: 'org', disabled: false },
+    { label: 'Acme Corporation', value: 'acmecorp', type: 'org', disabled: false },
+    { label: 'New York Office', value: 'nyoffice', type: 'org', disabled: false }
   ],
   value: ['alice1'],
   requiredIcon: true,
@@ -91,7 +94,7 @@ const userSelect = new Kuc.UserOrgGroupSelect({
   className: 'options-class',
   icon: 'user',
   id: 'options-id',
-  placeholder: 'Please select a assignees',
+  placeholder: 'Please select assignees',
   visible: true,
   disabled: false
 });

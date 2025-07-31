@@ -230,7 +230,7 @@ export const USER_ORG_GROUP_SELECT_CSS = `
     outline: none;
   }
  .kuc-user-org-group-select__group__container__select-area__selected-list__item__content__text{
-    margin-left: 8px;
+    padding-left: 8px;
     font-size: 14px;
     line-height: 1;
     align-content: center;

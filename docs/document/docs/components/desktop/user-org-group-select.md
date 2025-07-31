@@ -23,7 +23,7 @@ Here is a list of properties that can be used for modifying the component:
 | :--- | :--- | :--- | :--- | :--- |
 | className | string | ""  | Component class name | |
 | error | string | ""  | Text to be displayed in error | Error will not be displayed if unspecified or empty |
-| icon | string | "user" | Picker icon type | The icon property is used to set the main icon displayed on the right side of the toggle part.<br/>Displays different icons based on different values of the icon property.<br/>Available options:<li>"user" : ![user](/img/icon-user.png)</li><li>"org" : ![org](/img/icon-org.png)</li><li>"group" : ![group](/img/icon-group.png)</li><li>Not set / Invalid value : No icon will be displayed</li> |
+| icon | string | "" | Picker icon type | `icon` is used to set the main icon displayed on the right side of the toggle part.<br/>Displays different icons based on different values of `icon`.<br/>Available options:<li>"user" : ![user](/img/icon-user.png)</li><li>"org" : ![org](/img/icon-org.png)</li><li>"group" : ![group](/img/icon-group.png)</li><li>"" : No icon</li> |
 | id | string | ""  | Component id name | |
 | label | string | ""  | Label for the component | Label is not displayed if unspecified or empty |
 | placeholder | string | "" | Placeholder text displayed in the input field | |
@@ -38,7 +38,7 @@ Here is a list of properties that can be used for modifying the component:
 | Name   | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
 | label | string | null  | Text label for each option | If `Item.label` is unspecified, the value of `Item.value` is displayed on the UI |
-| type | string | null | Icon type of each item | The Item.type property determines the small icon type displayed for each option in both the dropdown menu and the selected items list.<br/>Displays different icons based on different values of the icon property.<br/>Available options:<li>"user" : ![user](/img/selected-user.png)</li><li>"org" : ![org](/img/selected-org.png)</li><li>"group" : ![group](/img/selected-group.png)</li><li>Not set / Invalid value : No icon will be displayed</li> |
+| type | string | null | Icon type of each item | `Item.type` determines the small icon type displayed for each option in both the toggle menu and the selected items list.<br/>Displays different icons based on different values of the `Item.type`.<br/>Available options:<li>"user" : ![user](/img/selected-user.png)</li><li>"org" : ![org](/img/selected-org.png)</li><li>"group" : ![group](/img/selected-group.png)</li><li>"" : No ico</li> |
 | value | string | null  | Value of each option | Will result an error if setting duplicated value in `Item.value` |
 | disabled | boolean | false | Enable/Disable each option | |
 
@@ -77,13 +77,16 @@ const space = kintone.app.record.getSpaceElement('space');
 const userSelect = new Kuc.UserOrgGroupSelect({
   label: 'Assignees',
   items: [
-    { label: 'Alice Johnson', value: 'alice1', type: 'user', disabled: true },
-    { label: 'Bob Smith', value: 'bob2', type: 'user' },
-    { label: 'Charlie Lee', value: 'charlie3', type: 'user' },
-    { label: 'Sales Team', value: 'salesteam', type: 'group' },
-    { label: 'Engineering Team', value: 'engineeringteam', type: 'group' },
-    { label: 'Acme Corporation', value: 'acmecorp', type: 'org' },
-    { label: 'New York Office', value: 'nyoffice', type: 'org' }
+    { label: 'Alice Johnson', value: 'alice1', type: 'user', disabled: false },
+    { label: 'Bob Smith', value: 'bob2', type: 'user', disabled: false },
+    { label: 'Charlie Lee', value: 'charlie3', type: 'user', disabled: false },
+    { label: 'Marketing Group', value: 'marketinggroup', type: 'group', disabled: false },
+    { label: 'Sales Team', value: 'salesteam', type: 'group', disabled: false },
+    { label: 'Engineering Team', value: 'engineeringteam', type: 'group', disabled: false },
+    { label: 'Acme Corporation', value: 'acmecorp', type: 'org', disabled: false },
+    { label: 'New York Office', value: 'nyoffice', type: 'org', disabled: false },
+    { label: 'Acme Corporation', value: 'acmecorp', type: 'org', disabled: false },
+    { label: 'New York Office', value: 'nyoffice', type: 'org', disabled: false }
   ],
   value: ['alice1'],
   requiredIcon: true,
@@ -91,7 +94,7 @@ const userSelect = new Kuc.UserOrgGroupSelect({
   className: 'options-class',
   icon: 'user',
   id: 'options-id',
-  placeholder: 'Please select a assignees',
+  placeholder: 'Please select assignees',
   visible: true,
   disabled: false
 });
