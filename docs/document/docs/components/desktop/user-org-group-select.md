@@ -85,8 +85,6 @@ const userSelect = new Kuc.UserOrgGroupSelect({
     { label: 'Engineering Team', value: 'engineeringteam', type: 'group', disabled: false },
     { label: 'Acme Corporation', value: 'acmecorp', type: 'org', disabled: false },
     { label: 'New York Office', value: 'nyoffice', type: 'org', disabled: false },
-    { label: 'Acme Corporation', value: 'acmecorp', type: 'org', disabled: false },
-    { label: 'New York Office', value: 'nyoffice', type: 'org', disabled: false }
   ],
   value: ['alice1'],
   requiredIcon: true,
