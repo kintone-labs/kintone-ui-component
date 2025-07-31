@@ -38,7 +38,7 @@ import { UserOrgGroupSelectComponent } from "@site/static/js/samples/desktop/use
 | Name   | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
 | label | string | null  | 各選択肢のテキスト | Item.label が未指定の場合、UI 上は Item.value の値が表示される |
-| type | string | null | 各選択肢のアイコン | Item.type は、選択肢一覧と選択された項目の一覧の各オプションにそれぞれ表示される小さなアイコンの種類を指す<br/>Item.type の値に応じてアイコンが表示される<br/>指定できるオプション:<li>"user" : ![user](/img/selected-user.png)</li><li>"org" : ![org](/img/selected-org.png)</li><li>"group" : ![group](/img/selected-group.png)</li><li>"" : アイコンなし</li> |
+| type | string | "" | 各選択肢のアイコン | Item.type は、選択肢一覧と選択された項目の一覧の各オプションにそれぞれ表示される小さなアイコンの種類を指す<br/>Item.type の値に応じてアイコンが表示される<br/>指定できるオプション:<li>"user" : ![user](/img/selected-user.png)</li><li>"org" : ![org](/img/selected-org.png)</li><li>"group" : ![group](/img/selected-group.png)</li><li>"" : アイコンなし</li> |
 | value | string | null  | 各選択肢の値 | Item.value に重複した値を指定した場合、エラーを出力する |
 | disabled | boolean | false | 各オプションの選択可/不可設定 | |
 
