@@ -6,13 +6,16 @@ export const UserOrgGroupSelectComponent = () => {
     const userOrgGroupSelect = new Kuc.UserOrgGroupSelect({
       label: 'Assignees',
       items: [
-        { label: 'Alice Johnson', value: 'alice1', type: 'user', disabled: true },
-        { label: 'Bob Smith', value: 'bob2', type: 'user' },
-        { label: 'Charlie Lee', value: 'charlie3', type: 'user' },
-        { label: 'Sales Team', value: 'salesteam', type: 'group' },
-        { label: 'Engineering Team', value: 'engineeringteam', type: 'group' },
-        { label: 'Acme Corporation', value: 'acmecorp', type: 'org' },
-        { label: 'New York Office', value: 'nyoffice', type: 'org' }
+        { label: 'Alice Johnson', value: 'alice1', type: 'user', disabled: false },
+        { label: 'Bob Smith', value: 'bob2', type: 'user', disabled: false },
+        { label: 'Charlie Lee', value: 'charlie3', type: 'user', disabled: false },
+        { label: 'Marketing Group', value: 'marketinggroup', type: 'group', disabled: false },
+        { label: 'Sales Team', value: 'salesteam', type: 'group', disabled: false },
+        { label: 'Engineering Team', value: 'engineeringteam', type: 'group', disabled: false },
+        { label: 'Acme Corporation', value: 'acmecorp', type: 'org', disabled: false },
+        { label: 'New York Office', value: 'nyoffice', type: 'org', disabled: false },
+        { label: 'Acme Corporation', value: 'acmecorp', type: 'org', disabled: false },
+        { label: 'New York Office', value: 'nyoffice', type: 'org', disabled: false }
       ],
       value: ['alice1'],
       requiredIcon: true,
@@ -20,7 +23,7 @@ export const UserOrgGroupSelectComponent = () => {
       className: 'options-class',
       icon: 'user',
       id: 'options-id',
-      placeholder: 'Please select a assignees',
+      placeholder: 'Please select assignees',
       visible: true,
       disabled: false
     });
