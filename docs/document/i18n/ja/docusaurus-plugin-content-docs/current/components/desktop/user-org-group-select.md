@@ -89,7 +89,7 @@ const userSelect = new Kuc.UserOrgGroupSelect({
   value: ['alice', 'marketing-group', 'acme-corp'],
   requiredIcon: true,
   error: 'Error occurred!',
-  className: 'sample-class',
+  className: 'options-class',
   icon: 'user',
   id: 'sample-id',
   placeholder: 'Please select assignees',
