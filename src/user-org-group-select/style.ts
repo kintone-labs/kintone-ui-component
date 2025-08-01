@@ -220,9 +220,6 @@ export const USER_ORG_GROUP_SELECT_CSS = `
     flex: 0;
     flex-shrink: 0;
   }
-  .kuc-user-org-group-select__group__container__select-area__selected-list__item__remove-icon__button--disabled {
-    cursor: not-allowed;
-  }
   .kuc-user-org-group-select__group__container__select-area__selected-list__item__remove-icon__button:focus-within {
     border: 1px solid #3498db;
   }

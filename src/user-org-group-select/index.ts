@@ -395,16 +395,13 @@ let exportUserOrgGroupSelect;
             ?hidden="${this.disabled}"
           >
             <button
-              class="kuc-user-org-group-select__group__container__select-area__selected-list__item__remove-icon__button ${disabled
-                ? "kuc-user-org-group-select__group__container__select-area__selected-list__item__remove-icon__button--disabled"
-                : ""}"
+              class="kuc-user-org-group-select__group__container__select-area__selected-list__item__remove-icon__button"
               type="button"
-              ?disabled="${disabled}"
               aria-label="remove"
               selected-item-index="${index}"
               @click="${this._handleClickRemoveSelectedItem}"
             >
-              ${this._getRemoveSVGTemplate(disabled)}
+              ${this._getRemoveSVGTemplate()}
             </button>
           </div>
         </li>
@@ -971,11 +968,11 @@ let exportUserOrgGroupSelect;
           <path fill-rule="evenodd" clip-rule="evenodd" d="M15.1034 16.5176C11.5697 19.3478 6.3971 19.125 3.12139 15.8493C-0.393328 12.3346 -0.393328 6.63611 3.12139 3.12139C6.63611 -0.393328 12.3346 -0.393328 15.8493 3.12139C18.878 6.15005 19.2968 10.8002 17.1058 14.2774L23.6275 20.7991L21.5062 22.9204L15.1034 16.5176ZM13.728 5.24271C16.0711 7.58586 16.0711 11.3848 13.728 13.728C11.3848 16.0711 7.58586 16.0711 5.24271 13.728C2.89957 11.3848 2.89957 7.58586 5.24271 5.24271C7.58586 2.89957 11.3848 2.89957 13.728 5.24271Z" fill="#888888"/>
         </svg>`;
     }
-    private _getRemoveSVGTemplate(disabled: boolean = false) {
+    private _getRemoveSVGTemplate() {
       return svg`
       <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
         <g clip-path="url(#clip0_11108_7852)">
-          <path fill-rule="evenodd" clip-rule="evenodd" d="M4.8999 5.96056L0.930232 1.99089L0.399902 1.46056L1.46056 0.399902L1.99089 0.930232L5.96056 4.8999L9.93023 0.930232L10.4606 0.399902L11.5212 1.46056L10.9909 1.99089L7.02122 5.96056L10.9909 9.93023L11.5212 10.4606L10.4606 11.5212L9.93023 10.9909L5.96056 7.02122L1.99089 10.9909L1.46056 11.5212L0.399902 10.4606L0.930233 9.93023L4.8999 5.96056Z" fill="${disabled ? "#888888" : "#3498db"}"/>
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M4.8999 5.96056L0.930232 1.99089L0.399902 1.46056L1.46056 0.399902L1.99089 0.930232L5.96056 4.8999L9.93023 0.930232L10.4606 0.399902L11.5212 1.46056L10.9909 1.99089L7.02122 5.96056L10.9909 9.93023L11.5212 10.4606L10.4606 11.5212L9.93023 10.9909L5.96056 7.02122L1.99089 10.9909L1.46056 11.5212L0.399902 10.4606L0.930233 9.93023L4.8999 5.96056Z" fill="#3498db"/>
         </g>
         <defs>
           <clipPath>
