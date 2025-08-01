@@ -18,9 +18,9 @@ export const UserOrgGroupSelectComponent = () => {
       value: ['alice', 'marketing-group', 'acme-corp'],
       requiredIcon: true,
       error: 'Error occurred!',
-      className: 'options-class',
+      className: 'sample-class',
       icon: 'user',
-      id: 'options-id',
+      id: 'sample-id',
       placeholder: 'Please select assignees',
       visible: true,
       disabled: false

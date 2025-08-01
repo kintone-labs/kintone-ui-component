@@ -310,8 +310,12 @@ table th[class$="__table__header__cell__action--right"] {
   outline: revert;
 }
 
-#user-org-group-select li+li {
+#user-org-group-select ul[class$="__group__container__select-area__select-menu"] li+li {
   margin-top: 0;
+}
+
+#user-org-group-select ul[class$="__group__container__select-area__selected-list"] li+li {
+  margin-top: 8px;
 }
 
 .sample-container#dialog{

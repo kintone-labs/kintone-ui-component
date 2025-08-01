@@ -13,7 +13,7 @@ export declare type UserOrgGroupSelectItem = {
   label?: string;
   value?: string;
   disabled?: boolean;
-  type?: "user" | "org" | "group";
+  type?: "" | "user" | "org" | "group";
 };
 
 export declare type UserOrgGroupSelectProps = {
@@ -27,7 +27,7 @@ export declare type UserOrgGroupSelectProps = {
   requiredIcon?: boolean;
   visible?: boolean;
   items?: UserOrgGroupSelectItem[];
-  icon?: "user" | "org" | "group";
+  icon?: "" | "user" | "org" | "group";
 };
 
 export declare class UserOrgGroupSelect extends KucBase {

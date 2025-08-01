@@ -32,42 +32,24 @@ const template = (args) => {
 };
 export const Base = template.bind({});
 Base.args = {
-  label: "Sample label",
-  requiredIcon: true,
-  items: [
-    {
-      label: "User A",
-      value: "userA",
-      type: "user",
-      disabled: true,
-    },
-    {
-      label: "User B",
-      value: "userB",
-      type: "user",
-    },
-    {
-      label: "Organization AOrganization AOrsAOrganization",
-      value: "orgA",
-      type: "org",
-    },
-    {
-      label: "Group A",
-      value: "groupA",
-      type: "group",
-    },
-    {
-      label: "User C",
-      value: "userC",
-      type: "user",
-    },
-  ],
-  value: ["item-1", "orgA", "groupA"],
-  error: "Error occurred!",
-  className: "sample-class",
-  icon: "user",
-  id: "sample-id",
-  placeholder: "Sample placeholder",
-  visible: true,
-  disabled: false,
+  label: 'Assignees',
+      items: [
+        { label: 'Alice Johnson (Senior Project Manager, International Business Development Department, Tokyo Headquarters)', value: 'alice', type: 'user', disabled: false },
+        { label: 'Bob Smith', value: 'bob', type: 'user', disabled: true },
+        { label: 'Charlie Lee', value: 'charlie', type: 'user', disabled: true },
+        { label: 'Marketing Group', value: 'marketing-group', type: 'group', disabled: true },
+        { label: 'Sales Team', value: 'sales-team', type: 'group', disabled: false },
+        { label: 'Engineering Team', value: 'engineering-team', type: 'group', disabled: false },
+        { label: 'Acme Corporation', value: 'acme-corp', type: 'org', disabled: false },
+        { label: 'New York Office', value: 'ny-office', type: 'org', disabled: false },
+      ],
+      value: ['alice', 'marketing-group', 'acme-corp'],
+      requiredIcon: true,
+      error: 'Error occurred!',
+      className: 'sample-class',
+      icon: 'user',
+      id: 'sample-id',
+      placeholder: 'Please select assignees',
+      visible: true,
+      disabled: false
 };
