@@ -91,7 +91,7 @@ const userSelect = new Kuc.UserOrgGroupSelect({
   error: 'Error occurred!',
   className: 'options-class',
   icon: 'user',
-  id: 'sample-id',
+  id: 'options-id',
   placeholder: 'Please select assignees',
   visible: true,
   disabled: false
