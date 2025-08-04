@@ -48,14 +48,17 @@ Base.args = {
     {
       title: "Number",
       field: "index",
+      sort: true, // Enable sorting for this column
     },
     {
       title: toolTip(),
       field: "name",
+      sort: true, // Enable sorting for this column
     },
     {
       title: "Country",
       field: "country",
+      sort: true, // Enable sorting for this column
     },
     {
       title: "Population",
@@ -64,6 +67,7 @@ Base.args = {
     {
       title: "Link",
       field: "link",
+      sort: false, // Disable sorting for this column
     },
   ],
   data: [
