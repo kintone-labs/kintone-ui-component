@@ -36,6 +36,7 @@ Here is a list of properties that can be used for modifying the component:
 | :--- | :--- | :--- | :--- | :--- |
 | field | string | ""  | Key of the column | It represents the key of the `data` object<br/>The value associated with that key will be rendered in the column |
 | title *1 | string/HTMLElement | ""  | Header name of the column | If a string with HTML is set, it will be automatically converted to HTML and displayed as it is |
+| sort | boolean | false | Enable/Disable sorting for the column | When set to true, the column will display a sort indicator and allow users to sort by clicking on the column header. |
 | visible | boolean |  true  | Show/Hide the column | |
 
 :::caution
@@ -62,6 +63,9 @@ Here is a list of properties that can be used for modifying component style:
 | Name | Description |
 | :--- | :--- |
 | --kuc-readonly-table-header-background-color | |
+| --kuc-readonly-table-header-background-color-focus | Applies only to columns with `sort: true` |
+| --kuc-readonly-table-header-background-color-hover | Applies only to columns with `sort: true` |
+| --kuc-readonly-table-header-background-color-sorted | Applies only to columns with `sort: true` |
 | --kuc-readonly-table-header-color | |
 | --kuc-readonly-table-header-font-size | |
 | --kuc-readonly-table-header-height | |
@@ -87,7 +91,8 @@ const readOnlyTable = new Kuc.ReadOnlyTable({
   columns: [
     {
       title: 'Number',
-      field: 'index'
+      field: 'index',
+      sort: true
     },
     {
       title: 'City',
