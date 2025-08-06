@@ -10,6 +10,7 @@ import {
   KucBase,
 } from "../base/kuc-base";
 import {
+  isHTMLElement,
   validateArrayType,
   validateDuplicatedValues,
   validateProps,
@@ -226,7 +227,9 @@ let exportTabs;
         ?hidden="${!isSelected || item.visible === false}"
         @change="${this._handleChangeEvent}"
       >
-        ${item.content ? unsafeHTMLConverter(item.content) : ""}
+        ${item.content && isHTMLElement(item.content)
+          ? unsafeHTMLConverter(item.content)
+          : item.content}
       </div>`;
     }
 
