@@ -211,10 +211,12 @@ table td li img {
   display: inline;
 }
 
-#table tr{
+#table tr,
+#readonly-table tr {
   border-top: 0;
 }
-#table thead tr {
+#table thead tr,
+#readonly-table thead tr {
   border-bottom: unset;
 }
 #table tr[class$="__table__body__row"]{
@@ -231,7 +233,13 @@ table[class^="kuc-readonly-table-"] {
   margin-bottom: 0px;
 }
 table th[class$="__table__header__cell"],
-table th[class$="__table__header__cell__action--right"] {
+table th[class$="__table__header__cell__action--right"],
+table th[class$="__table__header__cell--html"],
+table th[class$="__table__header__cell--sort"],
+table th[class$="__table__header__cell--sorted-asc"],
+table th[class$="__table__header__cell--sorted-desc"],
+table th[class$="__table__header__cell--first-visible"],
+table th[class$="__table__header__cell--last-visible"] {
   border: none;
   vertical-align: middle;
 }
