@@ -96,7 +96,8 @@ const readOnlyTable = new Kuc.ReadOnlyTable({
     },
     {
       title: 'City',
-      field: 'name'
+      field: 'name',
+      sort: true
     },
     {
       title: 'Country',
