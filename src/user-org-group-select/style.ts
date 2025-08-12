@@ -158,6 +158,7 @@ export const USER_ORG_GROUP_SELECT_CSS = `
     flex-direction: row;
   }
   .kuc-user-org-group-select__group__container__select-area__select-menu__item__icon {
+    min-width: 48px;
     width: 48px;
     height: 48px;
     display: flex;
