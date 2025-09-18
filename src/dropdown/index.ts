@@ -256,6 +256,7 @@ let exportDropdown;
             class="kuc-dropdown__group__select-menu"
             role="listbox"
             aria-hidden="${!this._selectorVisible}"
+            ?hidden="${!this._selectorVisible}"
             @mouseleave="${this._handleMouseLeaveMenu}"
             @mousedown="${this._handleMouseDownMenu}"
           >
