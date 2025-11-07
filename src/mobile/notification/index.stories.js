@@ -5,6 +5,8 @@ export default {
   argTypes: {
     text: { name: "text" },
     content: { name: "content" },
+    className: { name: "className" },
+    id: { name: "id" },
     duration: { name: "duration" },
     container: { name: "container" },
   },
@@ -87,6 +89,8 @@ Base.args = {
   text: "Duration 3 seconds",
   duration: 3000,
   content: "",
+  className: "options-class",
+  id: "options-id",
 };
 
 export const BaseContainer = template.bind({});

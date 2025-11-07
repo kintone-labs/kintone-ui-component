@@ -43,6 +43,15 @@ Please install and use `kintone-ui-component` with npm.
 npm install kintone-ui-component
 ```
 
+> **Note**: You can also use other package managers:
+> ```bash
+> # pnpm
+> pnpm add kintone-ui-component
+>
+> # yarn
+> yarn add kintone-ui-component
+> ```
+
 ### CDN
 Please use these CDN link.
 

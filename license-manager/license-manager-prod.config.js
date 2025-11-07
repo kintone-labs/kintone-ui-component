@@ -18,15 +18,17 @@ const OVERRIDE_LICENSES = {};
 const OVERRIDE_LICENSES_TEXT = {};
 
 const config = {
+  packageManager: "pnpm",
   analyze: {
-    query: ":root > .prod", // license-manager uses npm query to search packages.
+    query: ":root .prod", // license-manager uses npm query to search packages.
     allowLicenses: OSS_LICENSE, // If any package is found for which this option is not specified, analyze command will output errors.
     allowPackages: [], // Packages specified with this option are allowed regardless of the license.
   },
   extract: {
-    query: ":root > .prod",
+    query: ":root .prod",
     format: "json",
     output: "licenses-prod.json",
+    excludePackages: ["@lit-labs/ssr-dom-shim"],
   },
   overrideLicense: (dep) => {
     for (const packageName of Object.keys(OVERRIDE_LICENSES)) {

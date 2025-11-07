@@ -3,9 +3,11 @@ export default {
   title: "desktop/dialog",
   argTypes: {
     title: { name: "title" },
+    header: { name: "header" },
     content: { name: "content" },
     footer: { name: "footer" },
-    header: { name: "header" },
+    className: { name: "className" },
+    id: { name: "id" },
     icon: {
       name: "icon",
       options: ["success", "info", "error", "warning", "question"],
@@ -88,9 +90,11 @@ const rootElement = document.getElementById("storybook-root");
 export const Base = template.bind({});
 Base.args = {
   title: "Title",
+  header: "<div>Header</div>",
   content: "Content with Icon",
   footer: "Footer",
-  header: "<div>Header</div>",
+  className: "options-class",
+  id: "options-id",
   icon: "success",
   container: rootElement,
   footerVisible: true,

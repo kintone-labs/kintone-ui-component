@@ -160,6 +160,12 @@ let exportCheckbox;
       menuEl.removeAttribute("focused");
     }
 
+    private _handleKeyDownInput(event: KeyboardEvent) {
+      if (event.key === "Enter") {
+        event.preventDefault();
+      }
+    }
+
     private _getCheckboxIconSvgTemplate(disabled: boolean, checked: boolean) {
       return svg`
     <svg
@@ -229,6 +235,7 @@ let exportCheckbox;
             @change="${this._handleChangeInput}"
             @focus="${this._handleFocusInput}"
             @blur="${this._handleBlurInput}"
+            @keydown="${this._handleKeyDownInput}"
           />
           <label
             for="${this._GUID}-item-${index}"

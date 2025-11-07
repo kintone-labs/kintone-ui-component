@@ -81,6 +81,12 @@ let exportText;
       dispatchCustomEvent(this, "input", detail);
     }
 
+    private _handleKeyDownInput(event: KeyboardEvent) {
+      if (event.key === "Enter") {
+        event.preventDefault();
+      }
+    }
+
     render() {
       return html`
         <div class="kuc-text__group">
@@ -116,6 +122,7 @@ let exportText;
                 @focus="${this._handleFocusInput}"
                 @change="${this._handleChangeInput}"
                 @input="${this._handleInputText}"
+                @keydown="${this._handleKeyDownInput}"
                 ?disabled="${this.disabled}"
               />
             </div>

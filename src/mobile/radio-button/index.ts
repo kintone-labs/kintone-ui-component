@@ -102,6 +102,12 @@ let exportMobileRadioButton;
       dispatchCustomEvent(this, "change", detail);
     }
 
+    private _handleKeyDownInput(event: KeyboardEvent) {
+      if (event.key === "Enter") {
+        event.preventDefault();
+      }
+    }
+
     private _getRadioIconSvgTemplate(disabled: boolean, checked: boolean) {
       return svg`
       <svg
@@ -161,6 +167,7 @@ let exportMobileRadioButton;
             aria-required="${this.requiredIcon}"
             ?disabled="${this.disabled || item.disabled}"
             @change="${this._handleChangeInput}"
+            @keydown="${this._handleKeyDownInput}"
           />
           <label
             class="kuc-mobile-radio-button__group__select-menu__item__label"

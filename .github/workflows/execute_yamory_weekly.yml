@@ -15,9 +15,9 @@ jobs:
           ref: master
     - name: run Yamory
       run: |
-        ls -1 -d docs/*/ | xargs -I {} bash -c "$(curl -sSf -L https://localscanner.yamory.io/script/npm)" --  --manifest {}/package.json
-        ls -1 -d demos/*/ | xargs -I {} bash -c "$(curl -sSf -L https://localscanner.yamory.io/script/npm)" --  --manifest {}/package.json
-        bash -c "$(curl -sSf -L https://localscanner.yamory.io/script/npm)"
+        ls -1 -d docs/*/ | xargs -I {} bash -c "$(curl -sSf -L https://localscanner.yamory.io/script/pnpm)" --  --manifest {}/package.json
+        ls -1 -d demos/*/ | xargs -I {} bash -c "$(curl -sSf -L https://localscanner.yamory.io/script/pnpm)" --  --manifest {}/package.json
+        bash -c "$(curl -sSf -L https://localscanner.yamory.io/script/pnpm)"
       env:
         CI: true
         PROJECT_GROUP_KEY: kintone-ui-component_master

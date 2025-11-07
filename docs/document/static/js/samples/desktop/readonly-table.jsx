@@ -10,10 +10,12 @@ export const ReadOnlyTableComponent = () =>  {
           {
             title: "Number",
             field: "index",
+            sort: true,
           },
           {
             title: "City",
             field: "name",
+            sort: true,
           },
           {
             title: "Country",

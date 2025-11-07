@@ -114,6 +114,7 @@ let exportTabs;
           <div class="kuc-tabs__group__tabs-container">
             <button
               class="kuc-tabs__group__tabs-container__tab-pre-button"
+              type="button"
               @mousedown="${this._handleMouseDownPrevButton}"
               ?hidden="${!this.scrollButtons}"
               ?disabled="${this._isAtStart}"
@@ -138,6 +139,7 @@ let exportTabs;
             </div>
             <button
               class="kuc-tabs__group__tabs-container__tab-next-button"
+              type="button"
               @mousedown="${this._handleMouseDownNextButton}"
               ?hidden="${!this.scrollButtons}"
               ?disabled="${this._isAtEnd}"
@@ -197,6 +199,7 @@ let exportTabs;
       >
         <button
           role="tab"
+          type="button"
           ?hidden="${item.visible === false}"
           aria-selected="${isSelected}"
           tabindex="${isSelected && !item.disabled ? "0" : "-1"}"

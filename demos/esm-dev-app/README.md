@@ -4,17 +4,17 @@ This is the demo for running ui-component's ESModule.
 ## Getting Started
 1. set up `kintone-ui-component` package
 ```bash
-$ npm run build:esm
-$ npm link
+$ pnpm run build:esm
+$ pnpm link
 ```
-> Note: Please run `npm run build:esm` and `npm link` at the root directory.
+> Note: Please run the build and link at the repo root.
 
 2. set up this demo project
 ```bash
-$ npm ci
-$ npm link kintone-ui-component
+$ pnpm install --frozen-lockfile
+$ pnpm link kintone-ui-component
 ```
-> Note: Please run `npm link` after running `npm install` at the demos/esm-dev-app directory.
+> Note: Run link after installing dependencies in `demos/esm-dev-app`.
 
 3. write code
 
@@ -31,20 +31,21 @@ const text = new Text();
 
 Please run the build command and build ./dist/main.js.
 ```bash
-$ npm run build:prod
-or
-$ npm run build:dev
+$ pnpm run build:prod
+# or
+$ pnpm run build:dev
 ```
-> Note: Please run `npm run build` at the demos/esm-dev-app directory.
+> Note: Run the build in the `demos/esm-dev-app` directory.
 
 5. check demo
 
 Please open ./dist/index.html on your browser and check the demo project.
 
-6. unlink package
+6. remove package
 
-Please unlink the package after the demo.
+Please remove the package after the demo.
 ```bash
-$ npm unlink kintone-ui-component
+$ pnpm remove kintone-ui-component
 ```
-> Note: Please run `npm unlink` at the demos/esm-dev-app directory.
+
+> Note: Run remove in the `demos/esm-dev-app` directory.

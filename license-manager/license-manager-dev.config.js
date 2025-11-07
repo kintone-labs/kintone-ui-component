@@ -49,33 +49,61 @@ const OSS_LICENSE = [
   "BlueOak-1.0.0", // https://bozuman.cybozu.com/k/8979/show#record=48
   "OLDAP-2.8", // https://bozuman.cybozu.com/k/8979/show#record=50
   "Unicode-3.0", // https://bozuman.cybozu.com/k/8979/show#record=51
+  "(MIT OR CC0-1.0)", // Selecting "CC0-1.0"
 ];
 
 const OVERRIDE_LICENSES = {
-  "eslint-plugin-kuc-v1@1.0.0": "MIT",
+  "eslint-plugin-kuc-v1": "MIT",
+  "only@0.0.2": "MIT", // https://www.npmjs.com/package/only
 };
 
 const OVERRIDE_LICENSES_TEXT = {};
 
 const config = {
+  packageManager: "pnpm",
   analyze: {
-    query: ":root > .dev", // license-manager uses npm query to search packages.
+    query: ":root *", // license-manager uses npm query to search packages.
     allowLicenses: OSS_LICENSE, // If any package is found for which this option is not specified, analyze command will output errors.
-    allowPackages: [], // Packages specified with this option are allowed regardless of the license.
+    allowPackages: [
+      "argparse", // https://bozuman.cybozu.com/k/36070/show#record=349,
+    ], // Packages specified with this option are allowed regardless of the license.
   },
   extract: {
-    query: ":root > .dev",
+    query: ":root *",
     format: "json",
     output: "licenses-dev.json",
     excludePackages: [
       "eslint-plugin-kuc-v1",
-      "@web/test-runner",
-      "@storybook/addon-a11y",
-      "@storybook/addon-actions",
-      "@storybook/addon-controls",
-      "@storybook/addon-viewport",
-      "@storybook/web-components",
-      "@storybook/web-components-webpack5",
+      /^@storybook/,
+      /^@esbuild/,
+      /^@open-wc/,
+      /^@pkgr/,
+      /^@rollup/,
+      /^@types/,
+      /^@unrs/,
+      /^@web/,
+      /^@puppeteer/,
+      /^@lit-labs/,
+      "cache-content-type",
+      "constants-browserify",
+      "degenerator",
+      "imurmurhash",
+      "is-module",
+      "keyv",
+      "koa-compose",
+      "koa-static",
+      "language-tags",
+      "natural-compare",
+      "netmask",
+      "unrs-resolver",
+      "doctrine",
+      "puppeteer-core",
+      "boolbase",
+      "esrecurse",
+      "glob-to-regexp",
+      "only",
+      "language-subtag-registry",
+      "storybook",
     ],
   },
   overrideLicense: (dep) => {

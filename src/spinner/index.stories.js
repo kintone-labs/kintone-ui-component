@@ -4,8 +4,10 @@ export default {
   title: "desktop/spinner",
   argTypes: {
     text: { name: "text" },
+    className: { name: "className" },
+    id: { name: "id" },
+    container: { name: "container" },
   },
-  container: { name: "container" },
 };
 
 const template = (args) => {
@@ -79,4 +81,9 @@ const createButton = (text, onClick) => {
 };
 
 export const Base = template.bind({});
-Base.args = { text: "now loading...", container: undefined };
+Base.args = {
+  text: "now loading...",
+  className: "options-class",
+  id: "options-id",
+  container: undefined,
+};

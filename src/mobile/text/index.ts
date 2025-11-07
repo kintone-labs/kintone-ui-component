@@ -84,6 +84,12 @@ let exportMobileText;
       dispatchCustomEvent(this, "input", detail);
     }
 
+    private _handleKeyDownInput(event: KeyboardEvent) {
+      if (event.key === "Enter") {
+        event.preventDefault();
+      }
+    }
+
     render() {
       return html`
         <label
@@ -116,6 +122,7 @@ let exportMobileText;
             @focus="${this._handleFocusInput}"
             @change="${this._handleChangeInput}"
             @input="${this._handleInputText}"
+            @keydown="${this._handleKeyDownInput}"
           />
           <span
             class="kuc-mobile-text__input-form__suffix"

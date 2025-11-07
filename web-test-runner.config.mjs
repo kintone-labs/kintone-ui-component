@@ -10,6 +10,7 @@ export default {
     defaultReporter({ reportTestResults: true, reportTestProgress: true }),
   ],
   coverageConfig: {
+    include: ["unit_test/**/*.js"],
     threshold: {
       statements: 90,
       branches: 90,

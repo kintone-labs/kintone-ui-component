@@ -13,6 +13,8 @@ export default {
         type: "select",
       },
     },
+    className: { name: "className" },
+    id: { name: "id" },
     container: { name: "container" },
   },
 };
@@ -95,7 +97,8 @@ const getRootElement = () => {
 
 export const BaseContainer = template.bind({});
 BaseContainer.args = {
-  id: "notification-id",
+  className: "options-class",
+  id: "options-id",
   text: "不正です!!",
   content:
     'Error occurred!<br>Please click on the <a href="#">link</a> for details.',
@@ -104,7 +107,7 @@ BaseContainer.args = {
 };
 export const BaseBody = template.bind({});
 BaseBody.args = {
-  id: "notification-id",
+  id: "options-id",
   text: "Duration 3 seconds",
   type: "info",
   duration: 3000,

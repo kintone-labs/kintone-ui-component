@@ -140,6 +140,7 @@ export class BaseTime extends KucBase {
         ${this._getSuffixTemplate()}
       </div>
       <button
+        type="button"
         aria-haspopup="listbox"
         aria-expanded="${this._listBoxVisible}"
         class="kuc-base-time__assistive-text"

@@ -476,6 +476,7 @@ let exportTable;
       const buttonAction = document.createElement("button");
       buttonAction.classList.add(className);
       buttonAction.setAttribute("title", title);
+      buttonAction.type = "button";
       buttonAction.appendChild(svgEl);
       buttonAction.addEventListener("click", () => {
         const errorMessage = this._getErrorValidateColumnsAndData();

@@ -20,6 +20,7 @@ export * from "./text";
 export * from "./textarea";
 export * from "./time-picker";
 export * from "./tooltip";
+export * from "./user-org-group-select";
 
 export * from "./mobile/button";
 export * from "./mobile/checkbox";

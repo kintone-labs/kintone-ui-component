@@ -3,7 +3,9 @@ import { PropertyValues } from "lit";
 import { KucBase } from "../base/kuc-base";
 
 export declare type DialogProps = {
+  className?: string;
   icon?: "" | "info" | "success" | "error" | "warning" | "question";
+  id?: string;
   title?: string;
   content?: string | HTMLElement;
   footer?: string | HTMLElement;
@@ -13,7 +15,9 @@ export declare type DialogProps = {
 };
 
 export declare class Dialog extends KucBase {
+  className: string;
   icon: "" | "info" | "success" | "error" | "warning" | "question";
+  id: string;
   title: string;
   content: string | HTMLElement;
   footer: string | HTMLElement;

@@ -24,6 +24,8 @@ let exportDialog;
   }
 
   class KucDialog extends KucBase {
+    @property({ type: String, reflect: true, attribute: "class" }) className =
+      "";
     @property({ type: String }) icon:
       | ""
       | "info"
@@ -31,6 +33,7 @@ let exportDialog;
       | "error"
       | "warning"
       | "question" = "";
+    @property({ type: String, reflect: true, attribute: "id" }) id = "";
     @property({ type: String }) title = "";
     @property() content: string | HTMLElement = "";
     @property() footer: string | HTMLElement = "";

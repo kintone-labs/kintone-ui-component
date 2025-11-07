@@ -195,6 +195,7 @@ let exportAttachment;
           >
             <button
               class="kuc-attachment__group__files__display-area__item__remove-button__container__button"
+              type="button"
               aria-label="Cancel File"
               data-file-index="${index}"
               @click="${this._handleClickFileRemove}"

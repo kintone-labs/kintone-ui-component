@@ -20,25 +20,38 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
       - name: Install node
         uses: actions/setup-node@v4
         with:
-          node-version: 20
-          cache: 'npm'
+          node-version: 22
+          cache: 'pnpm'
+      - name: Get pnpm store directory
+        id: pnpm-store
+        run: echo "PNPM_STORE_PATH=$(pnpm store path)" >> $GITHUB_ENV
+      - name: Cache dependencies
+        uses: actions/cache@v4
+        with:
+          path: ${{ env.PNPM_STORE_PATH }}
+          key: pnpm-${{ hashFiles('pnpm-lock.yaml') }}
+          restore-keys: pnpm-
       - name: Install dependencies on root
-        run: npm ci
+        run: pnpm install --frozen-lockfile
       - name: Build umd file
-        run: npm run build:umd_prod
+        run: pnpm run build:umd_prod
       - name: Move umd file
         run: mv umd/kuc.min.js docs/document/static/js
       - name: Install dependencies on document
-        run: npm ci
+        run: pnpm install --frozen-lockfile
         working-directory: docs/document
       - name: Replace kucLink
         run: sed -i 's|https://unpkg.com/kintone-ui-component/umd/kuc.min.js|/js/kuc.min.js|' docusaurus.config.js
         working-directory: docs/document
       - name: Build document
-        run: npm run build
+        run: pnpm run build
         working-directory: docs/document
       - name: Create deployment zip file
         run: zip -r $ZIP_FILE_NAME *

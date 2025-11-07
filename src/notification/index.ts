@@ -25,6 +25,7 @@ let exportNotification;
   class KucNotification extends KucBase {
     @property({ type: String, reflect: true, attribute: "class" }) className =
       "";
+    @property({ type: String, reflect: true, attribute: "id" }) id = "";
     @property({ type: String }) text = "";
     @property({ type: String }) type: "info" | "danger" | "success" = "danger";
     @property({ type: Number }) duration = -1;

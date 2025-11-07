@@ -108,6 +108,7 @@ export class BaseMobileTime extends KucBase {
           aria-describedby="${this.guid}-error"
           ?disabled="${this.disabled}"
           @change="${this._handleChangeHours}"
+          @keydown="${this._handleKeyDown}"
         >
           <option value selected></option>
           ${this._getOptionsHourTemplate()}
@@ -119,6 +120,7 @@ export class BaseMobileTime extends KucBase {
           aria-describedby="${this.guid}-error"
           ?disabled="${this.disabled}"
           @change="${this._handleChangeMinutes}"
+          @keydown="${this._handleKeyDown}"
         >
           <option value selected></option>
           ${this._getOptionsMinuteTemplate()}
@@ -180,6 +182,12 @@ export class BaseMobileTime extends KucBase {
     const newTime = this._getTimeValueString();
     this.value = newTime;
     this._dispatchEventTimeChange(newTime, oldTime);
+  }
+
+  private _handleKeyDown(event: KeyboardEvent) {
+    if (event.key === "Enter") {
+      event.preventDefault();
+    }
   }
 
   private _getTimeValueString() {

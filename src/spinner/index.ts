@@ -17,6 +17,9 @@ let exportSpinner;
   }
 
   class KucSpinner extends KucBase {
+    @property({ type: String, reflect: true, attribute: "class" }) className =
+      "";
+    @property({ type: String, reflect: true, attribute: "id" }) id = "";
     @property({ type: String }) text = "";
     @property() container: HTMLElement = document.body;
 

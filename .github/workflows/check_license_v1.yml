@@ -13,32 +13,40 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
       - name: Install node
         uses: actions/setup-node@v4
         with:
-          node-version: 20
-          cache: 'npm'
+          node-version: 22
+          cache: 'pnpm'
+      - name: Get pnpm store directory
+        id: pnpm-store
+        run: echo "PNPM_STORE_PATH=$(pnpm store path)" >> $GITHUB_ENV
       - name: Cache Dependencies
         uses: actions/cache@v4
         with:
-          path: ~/.npm
-          key: npm-${{ hashFiles('package-lock.json') }}
-          restore-keys: npm-
+          path: ${{ env.PNPM_STORE_PATH }}
+          key: pnpm-${{ hashFiles('pnpm-lock.yaml') }}
+          restore-keys: pnpm-
 
       - name: Install dependencies
         run: |
-          npm ci
-          npm install @actions/core @cybozu/license-manager --no-save
+          pnpm install --frozen-lockfile
+          pnpm add @actions/core @cybozu/license-manager --save-dev
+          git checkout package.json pnpm-lock.yaml
 
       - name: Analyze and extract prod licenses
         run: |
-          npx license-manager analyze -c ./license-manager/license-manager-prod.config.js
-          npx license-manager extract -c ./license-manager/license-manager-prod.config.js
+          pnpm license-manager analyze -c ./license-manager/license-manager-prod.config.js
+          pnpm license-manager extract -c ./license-manager/license-manager-prod.config.js
 
       - name: Analyze and extract dev licenses
         run: |
-          npx license-manager analyze -c ./license-manager/license-manager-dev.config.js
-          npx license-manager extract -c ./license-manager/license-manager-dev.config.js
+          pnpm license-manager analyze -c ./license-manager/license-manager-dev.config.js
+          pnpm license-manager extract -c ./license-manager/license-manager-dev.config.js
 
       - name: Generate licenses file
         id: generate_licenses

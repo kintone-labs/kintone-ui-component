@@ -43,6 +43,15 @@ npm で `kintone-ui-component` をインストールしてご利用ください�
 npm install kintone-ui-component
 ```
 
+> **注記**: 他のパッケージマネージャーもご利用いただけます：
+> ```bash
+> # pnpm
+> pnpm add kintone-ui-component
+>
+> # yarn
+> yarn add kintone-ui-component
+> ```
+
 ### CDN
 こちらの CDN をご利用ください。
 

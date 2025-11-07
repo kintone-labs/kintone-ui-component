@@ -64,6 +64,7 @@ export class BaseDateTimeHeaderMonth extends KucBase {
     return html`
       <button
         class="kuc-base-datetime-header-month__toggle"
+        type="button"
         aria-haspopup="listbox"
         aria-expanded="${this._listBoxVisible}"
         tabindex="${this._listBoxVisible ? "-1" : "0"}"

@@ -48,5 +48,5 @@ export declare class Table<T extends object = object> extends KucBase {
   visible: boolean;
   constructor(props?: TableProps<T>);
   update(changedProperties: PropertyValues): void;
-  render(): import("lit-html").TemplateResult<1>;
+  render(): import("lit").TemplateResult<1>;
 }

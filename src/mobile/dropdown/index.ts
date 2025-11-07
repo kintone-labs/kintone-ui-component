@@ -91,6 +91,12 @@ let exportMobileDropdown;
       dispatchCustomEvent(this, "change", detail);
     }
 
+    private _handleKeyDownInput(event: KeyboardEvent) {
+      if (event.key === "Enter") {
+        event.preventDefault();
+      }
+    }
+
     shouldUpdate(changedProperties: PropertyValues): boolean {
       if (changedProperties.has("items")) {
         if (!validateArrayType(this.items)) {
@@ -217,6 +223,7 @@ let exportMobileDropdown;
               aria-invalid="${this.error !== ""}"
               ?disabled="${this.disabled}"
               @change="${this._handleChangeInput}"
+              @keydown="${this._handleKeyDownInput}"
             >
               ${this.items.map((item, index) =>
                 this._getItemTemplate(item, index),

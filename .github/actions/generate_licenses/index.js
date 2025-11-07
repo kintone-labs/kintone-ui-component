@@ -1,7 +1,8 @@
-const core = require("@actions/core");
 const fs = require("fs");
 const path = require("path");
-const { isMatchPackage } = require("@cybozu/license-manager");
+
+const core = require("@actions/core");
+const { isMatchName, isMatchPackage } = require("@cybozu/license-manager");
 
 const workingDirectory = path.resolve("./");
 const productLicenseFile = path.resolve("./license-manager/product-license");
@@ -32,7 +33,10 @@ license: ${licenseInfo.license}
 ${licenseInfo.licenseText}`;
 };
 
-const generateProdLicenseContent = (packagePath, extractedProdLicenseFilePath) => {
+const generateProdLicenseContent = (
+  packagePath,
+  extractedProdLicenseFilePath,
+) => {
   let packageInfo = {};
   try {
     packageInfo = JSON.parse(fs.readFileSync(packagePath).toString());
@@ -70,7 +74,25 @@ const generateProdLicenseContent = (packagePath, extractedProdLicenseFilePath) =
   return prodLicenseContent;
 };
 
-const generateDevLicenseContent = (licenseManagerDevConfigPath, extractedDevLicenseFilePath) => {
+const generateDevLicenseContent = (
+  packagePath,
+  licenseManagerDevConfigPath,
+  extractedDevLicenseFilePath,
+) => {
+  let packageInfo = {};
+  try {
+    packageInfo = JSON.parse(fs.readFileSync(packagePath).toString());
+  } catch (error) {
+    core.setFailed(error.message);
+  }
+
+  let devDependenciesList;
+  try {
+    devDependenciesList = Object.keys(packageInfo.devDependencies);
+  } catch (_) {
+    devDependenciesList = [];
+  }
+
   let devLicensesInfo = [];
   try {
     devLicensesInfo = JSON.parse(
@@ -85,6 +107,12 @@ const generateDevLicenseContent = (licenseManagerDevConfigPath, extractedDevLice
   if (devConfig.analyze && devConfig.analyze.allowPackages) {
     const devAllowPackages = devConfig.analyze.allowPackages;
     devAllowPackages.forEach((devAllowPackage) => {
+      const isDevDependency = devDependenciesList.some((devDependency) => {
+        return isMatchName({ name: devDependency }, devAllowPackage);
+      });
+      if (!isDevDependency) {
+        return;
+      }
       for (let i = 0; i < devLicensesInfo.length; i++) {
         const licenseInfo = devLicensesInfo[i];
         if (isMatchPackage(licenseInfo, devAllowPackage)) {
@@ -105,8 +133,15 @@ try {
   licenseContent = "";
 }
 
-const prodLicenseContent = generateProdLicenseContent(packagePath, extractedProdLicenseFilePath);
-const devLicenseContent = generateDevLicenseContent(licenseManagerDevConfigPath, extractedDevLicenseFilePath);
+const prodLicenseContent = generateProdLicenseContent(
+  packagePath,
+  extractedProdLicenseFilePath,
+);
+const devLicenseContent = generateDevLicenseContent(
+  packagePath,
+  licenseManagerDevConfigPath,
+  extractedDevLicenseFilePath,
+);
 
 if (prodLicenseContent || devLicenseContent) {
   licenseContent += licenseContent ? "\n\n\n" : "";

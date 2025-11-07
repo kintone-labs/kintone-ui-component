@@ -27,6 +27,7 @@ let exportMobileNotification;
   class KucMobileNotification extends KucBase {
     @property({ type: String, reflect: true, attribute: "class" }) className =
       "";
+    @property({ type: String, reflect: true, attribute: "id" }) id = "";
     @property({ type: String }) text = "";
     @property({ type: Number }) duration = -1;
     @property() container: HTMLElement = document.body;

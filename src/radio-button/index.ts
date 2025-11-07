@@ -160,6 +160,12 @@ let exportRadioButton;
       menuEl.removeAttribute("focused");
     }
 
+    private _handleKeyDownInput(event: KeyboardEvent) {
+      if (event.key === "Enter") {
+        event.preventDefault();
+      }
+    }
+
     private _getRadioIconSvgTemplate(
       disabled: boolean | undefined,
       checked: boolean,
@@ -221,6 +227,7 @@ let exportRadioButton;
             @change="${this._handleChangeInput}"
             @focus="${this._handleFocusInput}"
             @blur="${this._handleBlurInput}"
+            @keydown="${this._handleKeyDownInput}"
           />
           <label
             class="kuc-radio-button__group__select-menu__item__label"

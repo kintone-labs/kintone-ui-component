@@ -104,6 +104,12 @@ let exportMobileMultiChoice;
       dispatchCustomEvent(this, "change", detail);
     }
 
+    private _handleKeyDownInput(event: KeyboardEvent) {
+      if (event.key === "Enter") {
+        event.preventDefault();
+      }
+    }
+
     shouldUpdate(changedProperties: PropertyValues): boolean {
       if (changedProperties.has("items")) {
         if (!validateArrayType(this.items)) {
@@ -255,6 +261,7 @@ let exportMobileMultiChoice;
               ?disabled="${this.disabled}"
               multiple
               @change="${this._handleChangeInput}"
+              @keydown="${this._handleKeyDownInput}"
             >
               ${this.items.map((item, index) =>
                 this._getItemTemplate(item, index),

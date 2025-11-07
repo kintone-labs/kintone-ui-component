@@ -180,6 +180,12 @@ export class BaseMobileDateTimeCalendarHeader extends KucBase {
     this._dispatchCalendarHeaderChangeEvent();
   }
 
+  private _handleKeyDownDropdown(event: KeyboardEvent) {
+    if (event.key === "Enter") {
+      event.preventDefault();
+    }
+  }
+
   private _handleClickCalendarPrevMonthBtn(event: MouseEvent) {
     event.stopPropagation();
     const monthSelected = this.month;
@@ -245,6 +251,7 @@ export class BaseMobileDateTimeCalendarHeader extends KucBase {
         <select
           class="kuc-base-mobile-datetime-calendar-header__group__center__month__select"
           @change="${this._handleChangeMonthDropdown}"
+          @keydown="${this._handleKeyDownDropdown}"
         >
           ${this._getOptionsMonthTemplate()}
         </select>
@@ -260,6 +267,7 @@ export class BaseMobileDateTimeCalendarHeader extends KucBase {
         <select
           class="kuc-base-mobile-datetime-calendar-header__group__center__year__select"
           @change="${this._handleChangeYearDropdown}"
+          @keydown="${this._handleKeyDownDropdown}"
         >
           ${this._getOptionsYearTemplate()}
         </select>

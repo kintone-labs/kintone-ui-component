@@ -7,6 +7,7 @@ const columns = [
     title: "Number",
     field: "index",
     visible: true,
+    sort: true,
   },
   {
     title: "City",
@@ -66,6 +67,21 @@ const columnsWithHtmlElement = [
   {
     title: "Country",
     field: "country",
+  },
+];
+
+const data = [
+  {
+    index: "2",
+    name: "Ho Chi Minh",
+    country: "Vietnam",
+    population: "9,000,000",
+  },
+  {
+    index: "1",
+    name: "Tokyo",
+    country: "Japan",
+    population: "14,000,000",
   },
 ];
 
@@ -238,5 +254,38 @@ describe("ReadOnlyTable", () => {
     const container = new ReadOnlyTable({});
     container.columns = null;
     fixture(container);
+  });
+  it("can be sorted when set sort true", async () => {
+    const container = new ReadOnlyTable({
+      columns: columns,
+      data: data,
+    });
+    const el = await fixture(container);
+    const headerCells = el.querySelectorAll(
+      ".kuc-readonly-table__table__header tr th",
+    );
+    const sortCell = headerCells[0] as HTMLElement;
+    expect(
+      sortCell.classList.contains(
+        "kuc-readonly-table__table__header__cell--sort",
+      ),
+    ).to.equal(true);
+
+    sortCell.click();
+    await new Promise((resolve) => setTimeout(resolve, 100)); // wait for sorting to complete
+
+    const rowsEl = el.querySelectorAll(".kuc-readonly-table__table__body__row");
+    expect(rowsEl.length).to.equal(2);
+    expect(rowsEl[0].children[0].textContent?.trim()).to.equal("1");
+    expect(rowsEl[0].children[1].textContent?.trim()).to.equal("Tokyo");
+    expect(rowsEl[1].children[0].textContent?.trim()).to.equal("2");
+    expect(rowsEl[1].children[1].textContent?.trim()).to.equal("Ho Chi Minh");
+    sortCell.click();
+    await new Promise((resolve) => setTimeout(resolve, 100)); // wait for sorting to complete again
+
+    expect(rowsEl[0].children[0].textContent?.trim()).to.equal("2");
+    expect(rowsEl[0].children[1].textContent?.trim()).to.equal("Ho Chi Minh");
+    expect(rowsEl[1].children[0].textContent?.trim()).to.equal("1");
+    expect(rowsEl[1].children[1].textContent?.trim()).to.equal("Tokyo");
   });
 });

@@ -4,17 +4,17 @@ This is the demo for running ui-component's ESModule using TypeScript.
 ## Getting Started
 1. set up `kintone-ui-component` package
 ```bash
-$ npm run build:esm
-$ npm link
+$ pnpm run build:esm
+$ pnpm link
 ```
-> Note: Please run `npm run build:esm` and `npm link` at the root directory.
+> Note: Please run the build and link at the repo root.
 
 2. set up this typescript-demo project
 ```bash
-$ npm ci
-$ npm link kintone-ui-component
+$ pnpm install --frozen-lockfile
+$ pnpm link kintone-ui-component  
 ```
-> Note: Please run `npm link` after running `npm install` at the demos/typescript-app directory.
+> Note: Run link after installing dependencies in `demos/typescript-app`.
 
 3. write code
 
@@ -59,18 +59,19 @@ root.appendChild(dropdown);
 
 Please run the build command and build ./dist/main.js.
 ```bash
-$ npm run build:dev
+$ pnpm run build:dev
 ```
-> Note: Please run `npm run build:dev` at the demos/typescript-app directory.
+> Note: Run the build in the `demos/typescript-app` directory.
 
 5. check demo
 
 Please open ./dist/index.html on your browser and check the demo project.
 
-6. unlink package
+6. remove package
 
-Please unlink the package after the demo.
+Please remove the package after the demo.
 ```bash
-$ npm unlink kintone-ui-component
+$ pnpm remove kintone-ui-component
 ```
-> Note: Please run `npm unlink` at the demos/typescript-app directory.
+
+> Note: Run remove in the `demos/typescript-app` directory.

@@ -11,23 +11,23 @@ You can try and develop by following steps.
 cd kintone-ui-component
 ```
 
-2. Go into the document portion of the project and install the npm dependencies.
+2. Go into the document portion of the project and install the pnpm dependencies.
 
 ```sh
 cd docs/document/
-npm ci
+pnpm install --frozen-lockfile
 ```
 
 3. Start the development server locally.
 
 - English version
 ```sh
-npm run start
+pnpm run start
 ```
 
 - Japanese version
 ```sh
-npm run start-ja
+pnpm run start-ja
 ```
 
 4. Open `http://localhost:3000/` or `http://localhost:3000/ja/` to open the site in your browser.
@@ -153,7 +153,7 @@ For more information about custom page, click [here](https://docusaurus.io/docs/
 
 ```sh
 cd docs/document/
-npm run build
+pnpm run build
 ```
 
 2. Confirm that a `build/` directory containing all documents and .html of other pages is generated in the `docs/document/` directory.
@@ -163,7 +163,7 @@ npm run build
 1. Execute `serve` command to test your build locally.
 
 ```sh
-npm run serve
+pnpm run serve
 ```
 
 For more information about build, click [here](https://docusaurus.io/docs/deployment).
