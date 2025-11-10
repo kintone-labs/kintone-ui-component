@@ -67,7 +67,6 @@ export class BaseMobileDate extends KucBase {
           aria-required="${this.required}"
           ?disabled="${this.disabled}"
           @click="${this._handleClickOpenCalendar}"
-          @keydown="${this._handleKeyDownInput}"
         />
         <button
           type="button"
@@ -120,12 +119,6 @@ export class BaseMobileDate extends KucBase {
     }
     this._calendarValue = this._getNewCalendarValue(this._inputValue || "");
     this._openCalendar();
-  }
-
-  private _handleKeyDownInput(event: KeyboardEvent) {
-    if (event.key === "Enter") {
-      event.preventDefault();
-    }
   }
 
   private _updateValueProp() {

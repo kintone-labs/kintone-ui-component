@@ -113,12 +113,6 @@ let exportMobileCheckbox;
       dispatchCustomEvent(this, "change", detail);
     }
 
-    private _handleKeyDownInput(event: KeyboardEvent) {
-      if (event.key === "Enter") {
-        event.preventDefault();
-      }
-    }
-
     private _getCheckboxIconSvgTemplate(checked: boolean) {
       return svg`
        <svg
@@ -177,7 +171,6 @@ let exportMobileCheckbox;
             aria-invalid="${this.error !== ""}"
             ?disabled="${item.disabled || this.disabled}"
             @change="${this._handleChangeInput}"
-            @keydown="${this._handleKeyDownInput}"
           />
           <div class="kuc-mobile-checkbox__group__select-menu__item__label">
             ${this._getCheckboxIconSvgTemplate(isCheckedItem)}${item.label ===

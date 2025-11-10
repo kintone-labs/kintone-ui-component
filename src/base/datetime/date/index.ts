@@ -199,7 +199,6 @@ export class BaseDate extends KucBase {
   }
 
   private _handleKeyDownInput(event: KeyboardEvent) {
-    if (event.key === "Enter") event.preventDefault();
     if (event.key !== "Escape") return;
     this._closeCalendar();
   }
