@@ -20,6 +20,7 @@ export class BaseDateTimeListBox extends KucBase {
   @property({ type: Array }) items: BaseDateTimeListBoxItem[] = [];
   @property({ type: Number }) maxHeight = 300;
   @property({ type: Boolean }) doFocus = true;
+  private _isPopover = false;
 
   @query(".kuc-base-datetime-listbox__listbox")
   private _listBoxEl!: HTMLLIElement;
@@ -68,9 +69,27 @@ export class BaseDateTimeListBox extends KucBase {
     return this._highlightItemEl;
   }
 
+  public showPopover() {
+    this._isPopover = true;
+    this.requestUpdate();
+    if (this._listBoxEl) {
+      this._listBoxEl.showPopover();
+    }
+  }
+
+  public hidePopover() {
+    this._isPopover = false;
+    if (this._listBoxEl) {
+      this._listBoxEl.hidePopover();
+    }
+    this.requestUpdate();
+  }
+
   render() {
     return html`
       <ul
+        popover="manual"
+        ;
         style="max-height: ${this.maxHeight}px;"
         class="kuc-base-datetime-listbox__listbox"
         role="listbox"
@@ -168,6 +187,7 @@ export class BaseDateTimeListBox extends KucBase {
   }
 
   private _setListBoxPosition() {
+    if (this._isPopover) return;
     const listBoxHeight = this._listBoxEl.getBoundingClientRect().height;
     const parentElement = this._listBoxEl.parentElement;
     if (!parentElement || !this.parentElement) return;

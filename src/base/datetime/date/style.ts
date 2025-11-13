@@ -32,11 +32,19 @@ input.kuc-base-date__input:disabled {
   cursor: not-allowed;
 }
 .kuc-base-date__calendar {
-  position: absolute;
-  z-index: 2000;
+  padding: 0;
+  border: none;
   background-color: #ffffff;
   text-align: center;
   box-sizing: border-box;
+  box-shadow: 0 0 8px 2px rgb(0 0 0 / 10%);
+}
+.kuc-base-date__calendar[popover] {
+  position: fixed;
+  z-index: 2000;
+  overflow-y: auto;
+  right: auto;
+  bottom: auto;
 }
 .kuc-base-date__assistive-text {
   clip: rect(1px, 1px, 1px, 1px);

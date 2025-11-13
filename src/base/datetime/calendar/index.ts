@@ -7,21 +7,19 @@ import {
   KucBase,
 } from "../../kuc-base";
 import { BaseDateTimeListBox } from "../listbox";
-import { calculateDistanceInput, getTodayStringByLocale } from "../utils";
+import { getTodayStringByLocale } from "../utils";
 
+import { BaseDateTimeCalendarBody } from "./body";
 import { BaseDateTimeHeaderMonth } from "./header/dropdown/month";
 import { BaseDateTimeHeaderYear } from "./header/dropdown/year";
 import "./header";
-import "./body";
 import "./footer";
 import { CALENDAR_CSS } from "./style";
+export { BaseDateTimeCalendarBody } from "./body";
 
 export class BaseDateTimeCalendar extends KucBase {
   @property({ type: String, attribute: "lang", reflect: true }) language = "en";
   @property({ type: String, reflect: true }) value = "";
-
-  @query(".kuc-base-datetime-calendar__group")
-  private _baseCalendarGroupEl!: HTMLDivElement;
 
   @query(".kuc-base-datetime-calendar-header__month")
   private _monthEl!: BaseDateTimeHeaderMonth;
@@ -31,7 +29,6 @@ export class BaseDateTimeCalendar extends KucBase {
 
   @query(".kuc-base-datetime-header-month__listbox")
   private _listBoxMonthEl!: BaseDateTimeListBox;
-
   @query(".kuc-base-datetime-header-year__listbox")
   private _listBoxYearEl!: BaseDateTimeListBox;
 
@@ -75,10 +72,17 @@ export class BaseDateTimeCalendar extends KucBase {
 
   async updated(changedProperties: PropertyValues) {
     await this.updateComplete;
-    this._calculateBodyCalendarPosition();
     super.updated(changedProperties);
   }
 
+  public focusActiveDate() {
+    const calendarBody = this.querySelector(
+      "kuc-base-datetime-calendar-body",
+    ) as BaseDateTimeCalendarBody;
+    if (calendarBody) {
+      calendarBody.focusActiveDate();
+    }
+  }
   private _handleKeyDownCalendarGroup(event: KeyboardEvent) {
     if (event.key !== "Escape") return;
     event.preventDefault();
@@ -90,81 +94,6 @@ export class BaseDateTimeCalendar extends KucBase {
     event.stopPropagation();
     if (this._listBoxMonthEl) this._monthEl.closeListBox();
     if (this._listBoxYearEl) this._yearEl.closeListBox();
-  }
-
-  private _calculateBodyCalendarPosition() {
-    const { inputToBottom, inputToTop, inputToRight, inputToLeft } =
-      calculateDistanceInput(this);
-    const calendarHeight =
-      this._baseCalendarGroupEl.getBoundingClientRect().height;
-
-    if (inputToBottom >= calendarHeight) {
-      this._calculateCalendarPosition(inputToRight, inputToLeft, "bottom");
-      return;
-    }
-    if (inputToTop < 0 || inputToBottom > inputToTop) {
-      this._calculateCalendarPosition(inputToRight, inputToLeft, "bottom");
-      return;
-    }
-    this._calculateCalendarPosition(inputToRight, inputToLeft, "top");
-  }
-
-  private _calculateCalendarPosition(
-    inputToRight: number,
-    inputToLeft: number,
-    type: string,
-  ) {
-    if (!this.parentElement) return;
-    const input = this.parentElement.getElementsByClassName(
-      "kuc-base-date__input",
-    )[0];
-    const calendarWidth = 336;
-    const inputHeight = input.getBoundingClientRect().height;
-    const inputWidth = input.getBoundingClientRect().width;
-    if (inputToRight < calendarWidth && inputToRight < inputToLeft) {
-      const parentWidth = this.parentElement.getBoundingClientRect().width;
-      const top = type === "bottom" ? inputHeight : "auto";
-      const bottom = type === "bottom" ? "auto" : inputHeight;
-      const right = parentWidth > inputWidth ? parentWidth - inputWidth : 0;
-
-      this._setCalendarPosition({
-        top,
-        bottom,
-        right,
-      });
-      return;
-    }
-    const top = type === "bottom" ? inputHeight : "auto";
-    const bottom = type === "bottom" ? "auto" : inputHeight;
-    const left = 0;
-    this._setCalendarPosition({
-      bottom,
-      top,
-      left,
-    });
-  }
-
-  private _setCalendarPosition({
-    top = "auto",
-    left = "auto",
-    right = "auto",
-    bottom = "auto",
-  }: {
-    top?: number | string;
-    left?: number | string;
-    right?: number | string;
-    bottom?: number | string;
-  }) {
-    const baseDatetimeCalendarEl = this._baseCalendarGroupEl.parentElement;
-    if (!this.parentElement || !baseDatetimeCalendarEl) return;
-
-    this.parentElement.style.position = "relative";
-    baseDatetimeCalendarEl.style.bottom =
-      bottom === "auto" ? bottom : bottom + "px";
-    baseDatetimeCalendarEl.style.top = top === "auto" ? top : top + "px";
-    baseDatetimeCalendarEl.style.left = left === "auto" ? left : left + "px";
-    baseDatetimeCalendarEl.style.right =
-      right === "auto" ? right : right + "px";
   }
 
   private _handleCalendarHeaderChange(event: CustomEvent) {

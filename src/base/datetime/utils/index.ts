@@ -402,7 +402,6 @@ export function setListBoxPosition(_this: HTMLElement, position: string) {
       : listBoxYearHeight;
   const paddingListBox = 18;
   const parentHeight = _this.parentElement.getBoundingClientRect().height;
-
   ulEl.style.maxHeight = listBoxHeight + "px";
   _this.parentElement.style.position = "relative";
   if (inputToBottom >= listBoxHeight) {
@@ -423,6 +422,104 @@ export function setListBoxPosition(_this: HTMLElement, position: string) {
   ulEl.style.height = inputToTop - paddingListBox + "px";
   ulEl.style.top = "auto";
   ulEl.style.bottom = _this.parentElement.getBoundingClientRect().height + "px";
+}
+
+export const positionListBox = (
+  options: {
+    anchorEl?: HTMLElement;
+    popoverEl?: HTMLElement;
+    popoverWidth?: number;
+    popoverHeight?: number;
+  } = {},
+) => {
+  const { anchorEl, popoverEl } = options;
+  if (!popoverEl || !anchorEl) return;
+  let { popoverWidth, popoverHeight } = options;
+  if (!popoverWidth || !popoverHeight) {
+    const measurePopoverResult = measureEl(popoverEl);
+    popoverWidth = popoverWidth || measurePopoverResult.width;
+    popoverHeight = popoverHeight || measurePopoverResult.height;
+  }
+  if (!popoverWidth || !popoverHeight) return;
+  const toggleRect = anchorEl.getBoundingClientRect();
+  const spaceAbove = toggleRect.top;
+  const spaceBelow = window.innerHeight - toggleRect.bottom;
+  let top: number;
+  let maxHeight: number;
+  // vertical
+  if (spaceBelow >= popoverHeight) {
+    top = toggleRect.bottom;
+    maxHeight = popoverHeight;
+  } else if (spaceAbove >= popoverHeight) {
+    top = toggleRect.top - popoverHeight;
+    maxHeight = popoverHeight;
+  } else if (spaceBelow >= spaceAbove) {
+    top = toggleRect.bottom;
+    maxHeight = spaceBelow;
+  } else {
+    maxHeight = spaceAbove;
+    const visibleHeight = Math.min(popoverHeight || maxHeight, maxHeight);
+    top = Math.max(0, toggleRect.top - visibleHeight);
+  }
+
+  // horizon
+  let left = toggleRect.left;
+  // left = Math.max(0, Math.min(left, window.innerWidth - listBoxWidth));
+  if (left > window.innerWidth - popoverWidth) {
+    const spaceRight = window.innerWidth - toggleRect.left;
+    const spaceLeft = toggleRect.right;
+    if (spaceRight < spaceLeft) {
+      left = toggleRect.right - popoverWidth;
+    }
+  }
+  popoverEl.style.position = "fixed";
+  popoverEl.style.left = `${left}px`;
+  popoverEl.style.top = `${top}px`;
+  popoverEl.style.right = "auto";
+  popoverEl.style.bottom = "auto";
+
+  popoverEl.style.maxHeight = `${Math.floor(maxHeight)}px`;
+  popoverEl.style.overflow = "auto";
+};
+
+function measureEl(popoverEl: any) {
+  if (!popoverEl) return { width: 0, height: 0 };
+  const prevPos = popoverEl.style.position;
+  const prevLeft = popoverEl.style.left;
+  const prevTop = popoverEl.style.top;
+  const prevMaxH = popoverEl.style.maxHeight;
+
+  popoverEl.style.position = "fixed";
+  popoverEl.style.left = "-9999px";
+  popoverEl.style.top = "-9999px";
+  popoverEl.style.maxHeight = "none";
+
+  const rect = popoverEl.getBoundingClientRect();
+  const width = rect.width || 0;
+  const height = rect.height || 0;
+
+  popoverEl.style.position = prevPos;
+  popoverEl.style.left = prevLeft;
+  popoverEl.style.top = prevTop;
+  popoverEl.style.maxHeight = prevMaxH;
+  return { width, height };
+}
+export function getScrollableAncestors(el: Element): Array<Window | Element> {
+  const targets: Array<Window | Element> = [];
+  let node: Element | null = el.parentElement;
+  const overflowRegex = /(auto|scroll|overlay)/;
+  while (node && node !== document.body && node !== document.documentElement) {
+    const style = getComputedStyle(node);
+    const isScrollable =
+      overflowRegex.test(style.overflowY) ||
+      overflowRegex.test(style.overflowX);
+    if (isScrollable) {
+      targets.push(node);
+    }
+    node = node.parentElement;
+  }
+  targets.push(window);
+  return targets;
 }
 
 export const calculateDistanceInput = (_this: HTMLElement) => {

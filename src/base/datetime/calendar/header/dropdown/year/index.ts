@@ -9,13 +9,12 @@ import {
 } from "../../../../../kuc-base";
 import { BaseDateTimeListBoxItem } from "../../../../listbox";
 import {
-  calculateDistanceInput,
+  getScrollableAncestors,
   getToggleIconSvgTemplate,
-  setListBoxPosition,
+  positionListBox,
 } from "../../../../utils";
 
 import { CALENDAR_HEADER_YEAR_CSS } from "./style";
-
 export class BaseDateTimeHeaderYear extends KucBase {
   @property({ type: Number }) year = new Date().getFullYear();
   @property({ type: String }) postfix = "";
@@ -28,20 +27,20 @@ export class BaseDateTimeHeaderYear extends KucBase {
   @query(".kuc-base-datetime-header-year__toggle")
   private _toggleEl!: HTMLButtonElement;
 
-  constructor() {
-    super();
-    this._handleScrollDocument = this._handleScrollDocument.bind(this);
-  }
+  @query(".kuc-base-datetime-header-year__listbox")
+  private _listBoxEl!: any;
+
+  private _defaultListBoxWidth = 280;
+  private _defaultListBoxHeight = 300;
+  private _listboxSelector = ".kuc-base-datetime-listbox__listbox";
+  private _scrollTargets: Array<Window | Element> = [];
 
   connectedCallback() {
     super.connectedCallback();
-    setTimeout(() => {
-      document.addEventListener("scroll", this._handleScrollDocument);
-    }, 1);
   }
 
   disconnectedCallback() {
-    document.removeEventListener("scroll", this._handleScrollDocument);
+    this._detachScrollListeners();
     super.disconnectedCallback();
   }
 
@@ -82,24 +81,51 @@ export class BaseDateTimeHeaderYear extends KucBase {
 
   async updated(changedProperties: PropertyValues) {
     await this.updateComplete;
-    if (changedProperties.has("_listBoxVisible") && this._listBoxVisible) {
-      this._handleScrollDocument();
-    }
     super.update(changedProperties);
+  }
+
+  private _attachScrollListeners() {
+    this._detachScrollListeners();
+    this._scrollTargets = getScrollableAncestors(this._toggleEl);
+    for (const targetEl of this._scrollTargets) {
+      targetEl.addEventListener("scroll", this._boundOnScrollAndResize, {
+        passive: true,
+      });
+    }
+    window.addEventListener("resize", this._boundOnScrollAndResize, {
+      passive: true,
+    });
+  }
+
+  private _boundOnScrollAndResize = () =>
+    positionListBox({
+      anchorEl: this._toggleEl,
+      popoverEl: this.querySelector(this._listboxSelector) as HTMLElement,
+      popoverWidth: this._defaultListBoxWidth,
+      popoverHeight: this._defaultListBoxHeight,
+    });
+
+  private _detachScrollListeners() {
+    for (const targetEl of this._scrollTargets) {
+      targetEl.removeEventListener(
+        "scroll",
+        this._boundOnScrollAndResize as EventListener,
+      );
+    }
+    this._scrollTargets = [];
+    window.removeEventListener(
+      "resize",
+      this._boundOnScrollAndResize as EventListener,
+    );
   }
 
   public closeListBox() {
     this._listBoxVisible = false;
-    this._toggleEl.focus();
-  }
-
-  private _handleScrollDocument() {
-    const distance = calculateDistanceInput(this);
-    if (distance.inputToBottom >= distance.inputToTop) {
-      setListBoxPosition(this, "bottom");
-      return;
+    if (this._listBoxEl) {
+      this._listBoxEl.hidePopover();
     }
-    setListBoxPosition(this, "top");
+    this._detachScrollListeners();
+    this._toggleEl?.focus();
   }
 
   private _getListBoxTemplate() {
@@ -120,8 +146,7 @@ export class BaseDateTimeHeaderYear extends KucBase {
   }
 
   private _handleFocusOutListBox() {
-    this._listBoxVisible = false;
-    this._toggleEl.focus();
+    this.closeListBox();
   }
 
   private _handleListBoxEscape() {
@@ -173,8 +198,19 @@ export class BaseDateTimeHeaderYear extends KucBase {
     dispatchCustomEvent(this, "kuc:year-dropdown-change", detail);
   }
 
-  private _openListBox() {
+  private async _openListBox() {
     this._listBoxVisible = true;
+    await this.updateComplete;
+    if (this._listBoxEl) {
+      this._listBoxEl.showPopover();
+      positionListBox({
+        anchorEl: this._toggleEl,
+        popoverEl: this.querySelector(this._listboxSelector) as HTMLElement,
+        popoverWidth: this._defaultListBoxWidth,
+        popoverHeight: this._defaultListBoxHeight,
+      });
+      this._attachScrollListeners();
+    }
   }
 
   private _getYearOptions() {

@@ -42,20 +42,17 @@ export class BaseDateTimeCalendarBody extends KucBase {
 
   constructor() {
     super();
-    this._handleClickDocument = this._handleClickDocument.bind(this);
     this._handleKeyDownDocument = this._handleKeyDownDocument.bind(this);
   }
 
   connectedCallback() {
     super.connectedCallback();
     setTimeout(() => {
-      document.addEventListener("click", this._handleClickDocument);
       document.addEventListener("keydown", this._handleKeyDownDocument);
     }, 1);
   }
 
   disconnectedCallback() {
-    document.removeEventListener("click", this._handleClickDocument);
     document.removeEventListener("keydown", this._handleKeyDownDocument);
     super.disconnectedCallback();
   }
@@ -85,13 +82,15 @@ export class BaseDateTimeCalendarBody extends KucBase {
 
   updated(changedProperties: PropertyValues) {
     if (changedProperties.has("value")) {
-      this._focusDateEl();
+      this.focusActiveDate();
     }
     super.update(changedProperties);
   }
 
-  private _handleClickDocument() {
-    dispatchCustomEvent(this, "kuc:calendar-body-blur", {});
+  public focusActiveDate() {
+    if (this._focusedItem) {
+      this._focusedItem.focus({ preventScroll: true });
+    }
   }
 
   private _handleKeyDownDocument(event: KeyboardEvent) {
@@ -313,11 +312,6 @@ export class BaseDateTimeCalendarBody extends KucBase {
         })}
       </tbody>
     `;
-  }
-
-  private _focusDateEl() {
-    if (!this._focusedItem) return;
-    this._focusedItem.focus({ preventScroll: true });
   }
 }
 
