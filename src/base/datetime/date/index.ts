@@ -61,7 +61,7 @@ export class BaseDate extends KucBase {
   private _calendarNaturalHeight = 0;
   private _scrollTargets: Array<Window | Element> = [];
 
-  private readonly _DEBOUNCE_DELAY = 200;
+  private _DEBOUNCE_DELAY = 200;
 
   private _schedulePositionOnScroll = () => {
     if (!this._dateTimeCalendarVisible) return;
@@ -351,7 +351,7 @@ export class BaseDate extends KucBase {
       10,
     );
 
-    if (currentMaxWidth != newMaxWidth) {
+    if (currentMaxWidth !== newMaxWidth) {
       this._calendarEl.style.maxWidth = `${newMaxWidth}px`;
     }
   };

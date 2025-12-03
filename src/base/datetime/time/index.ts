@@ -19,7 +19,10 @@ import {
   formatTimeValueToInputValue,
   generateTimeOptions,
   getLocale,
+  getScrollableAncestors,
+  measureEl,
   padStart,
+  setListBoxPosition,
   timeCompare,
 } from "../utils";
 
@@ -83,6 +86,23 @@ export class BaseTime extends KucBase {
   @query(".kuc-base-time__group")
   private _inputGroupEl!: HTMLInputElement;
 
+  @query(".kuc-base-time__group__listbox")
+  private _listboxEl!: any;
+
+  private _scrollTargets: Array<Window | Element> = [];
+
+  private _listBoxHeight = 0;
+  @query(".kuc-base-datetime-listbox__listbox")
+  private _listBoxUl!: HTMLUListElement;
+
+  private _resizeDebounceTimer: number | null = null;
+
+  private _DEBOUNCE_DELAY = 200;
+
+  disconnectedCallback(): void {
+    this._detachListeners();
+    super.disconnectedCallback();
+  }
   update(changedProperties: PropertyValues) {
     if (
       changedProperties.has("hour12") ||
@@ -551,16 +571,72 @@ export class BaseTime extends KucBase {
     return `${timeStr} ${suffix}`;
   }
 
-  private _openListBox() {
+  private async _openListBox() {
     if (this._listBoxVisible) return;
-
     this._doFocusListBox = false;
     this._listBoxVisible = true;
+    await this.updateComplete;
+    if (!this._listboxEl) return;
+    this._listboxEl.showPopover();
+    if (!this._listBoxHeight) {
+      const measureResult = measureEl(this._listBoxUl);
+      this._listBoxHeight = measureResult.height;
+    }
+    setListBoxPosition({
+      anchorEl: this._inputGroupEl,
+      popoverEl: this._listBoxUl,
+      popoverHeight: this._listBoxHeight,
+    });
+    this._attachListeners();
   }
+
+  private _schedulePositionOnResize = () => {
+    if (!this._listBoxVisible) return;
+    if (this._resizeDebounceTimer !== null) {
+      window.clearTimeout(this._resizeDebounceTimer);
+    }
+
+    this._resizeDebounceTimer = window.setTimeout(() => {
+      this._resizeDebounceTimer = null;
+      setListBoxPosition({
+        anchorEl: this._inputGroupEl,
+        popoverEl: this._listBoxUl,
+        popoverHeight: this._listBoxHeight,
+      });
+    }, this._DEBOUNCE_DELAY);
+  };
+
+  private _attachListeners() {
+    this._detachListeners();
+    this._scrollTargets = getScrollableAncestors(this._inputGroupEl);
+    for (const targetEl of this._scrollTargets) {
+      targetEl.addEventListener("scroll", this._boundOnScroll, {
+        passive: true,
+      });
+    }
+    window.addEventListener("resize", this._schedulePositionOnResize);
+  }
+  private _detachListeners() {
+    for (const targetEl of this._scrollTargets) {
+      targetEl.removeEventListener("scroll", this._boundOnScroll);
+    }
+    this._scrollTargets = [];
+    window.removeEventListener("resize", this._schedulePositionOnResize);
+  }
+  private _boundOnScroll = () =>
+    setListBoxPosition({
+      anchorEl: this._inputGroupEl,
+      popoverEl: this._listBoxUl,
+      popoverHeight: this._listBoxHeight,
+    });
 
   private _closeListBox() {
     this._doFocusListBox = false;
     this._listBoxVisible = false;
+    if (this._listboxEl) {
+      this._listboxEl.hidePopover();
+    }
+    this._detachListeners();
   }
 
   private _getColonTemplate() {
