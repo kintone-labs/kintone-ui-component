@@ -72,16 +72,12 @@ export class BaseDateTimeListBox extends KucBase {
   public showPopover() {
     this._isPopover = true;
     this.requestUpdate();
-    if (this._listBoxEl) {
-      this._listBoxEl.showPopover();
-    }
+    this._listBoxEl?.showPopover();
   }
 
   public hidePopover() {
     this._isPopover = false;
-    if (this._listBoxEl) {
-      this._listBoxEl.hidePopover();
-    }
+    this._listBoxEl?.hidePopover();
     this.requestUpdate();
   }
 
@@ -89,7 +85,6 @@ export class BaseDateTimeListBox extends KucBase {
     return html`
       <ul
         popover="manual"
-        ;
         style="max-height: ${this.maxHeight}px;"
         class="kuc-base-datetime-listbox__listbox"
         role="listbox"

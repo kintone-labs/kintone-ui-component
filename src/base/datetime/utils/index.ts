@@ -386,61 +386,17 @@ export const getLeftArrowIconSvgTemplate = () => {
     </svg>`;
 };
 
-export function setListBoxPosition(_this: HTMLElement, position: string) {
-  const ulEl = _this.querySelector(
-    ".kuc-base-datetime-listbox__listbox",
-  ) as HTMLUListElement;
-  const distance = calculateDistanceInput(_this);
-  if (!_this.parentElement || !ulEl || !distance) return;
-
-  const { inputToBottom, inputToTop } = distance;
-  const listBoxMonthHeight = 360;
-  const listBoxYearHeight = 300;
-  const listBoxHeight =
-    _this.tagName.toLowerCase() === "kuc-base-datetime-header-month"
-      ? listBoxMonthHeight
-      : listBoxYearHeight;
-  const paddingListBox = 18;
-  const parentHeight = _this.parentElement.getBoundingClientRect().height;
-  ulEl.style.maxHeight = listBoxHeight + "px";
-  _this.parentElement.style.position = "relative";
-  if (inputToBottom >= listBoxHeight) {
-    ulEl.style.height = listBoxHeight + "px";
-    if (position === "bottom") {
-      ulEl.style.top = parentHeight + "px";
-      return;
-    }
-    ulEl.style.bottom = parentHeight + "px";
-    return;
-  }
-
-  if (position === "bottom") {
-    ulEl.style.top = parentHeight + "px";
-    ulEl.style.height = inputToBottom - paddingListBox + "px";
-    return;
-  }
-  ulEl.style.height = inputToTop - paddingListBox + "px";
-  ulEl.style.top = "auto";
-  ulEl.style.bottom = _this.parentElement.getBoundingClientRect().height + "px";
-}
-
-export const positionListBox = (
+export const setListBoxPosition = (
   options: {
     anchorEl?: HTMLElement;
     popoverEl?: HTMLElement;
-    popoverWidth?: number;
     popoverHeight?: number;
   } = {},
 ) => {
   const { anchorEl, popoverEl } = options;
   if (!popoverEl || !anchorEl) return;
-  let { popoverWidth, popoverHeight } = options;
-  if (!popoverWidth || !popoverHeight) {
-    const measurePopoverResult = measureEl(popoverEl);
-    popoverWidth = popoverWidth || measurePopoverResult.width;
-    popoverHeight = popoverHeight || measurePopoverResult.height;
-  }
-  if (!popoverWidth || !popoverHeight) return;
+  let { popoverHeight } = options;
+  if (!popoverHeight) return;
   const toggleRect = anchorEl.getBoundingClientRect();
   const spaceAbove = toggleRect.top;
   const spaceBelow = window.innerHeight - toggleRect.bottom;
@@ -464,25 +420,15 @@ export const positionListBox = (
 
   // horizon
   let left = toggleRect.left;
-  // left = Math.max(0, Math.min(left, window.innerWidth - listBoxWidth));
-  if (left > window.innerWidth - popoverWidth) {
-    const spaceRight = window.innerWidth - toggleRect.left;
-    const spaceLeft = toggleRect.right;
-    if (spaceRight < spaceLeft) {
-      left = toggleRect.right - popoverWidth;
-    }
-  }
-  popoverEl.style.position = "fixed";
+
   popoverEl.style.left = `${left}px`;
   popoverEl.style.top = `${top}px`;
-  popoverEl.style.right = "auto";
-  popoverEl.style.bottom = "auto";
 
   popoverEl.style.maxHeight = `${Math.floor(maxHeight)}px`;
-  popoverEl.style.overflow = "auto";
+  popoverEl.style.overflowY = "auto";
 };
 
-function measureEl(popoverEl: any) {
+export function measureEl(popoverEl: any) {
   if (!popoverEl) return { width: 0, height: 0 };
   const prevPos = popoverEl.style.position;
   const prevLeft = popoverEl.style.left;

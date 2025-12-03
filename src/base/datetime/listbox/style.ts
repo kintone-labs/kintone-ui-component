@@ -25,7 +25,6 @@ kuc-base-datetime-listbox:lang(es) * {
   font-family: sans-serif;
 }
 .kuc-base-datetime-listbox__listbox[popover] {
-  min-width: 280px;
   margin: 0;
   padding: 8px 0;
   box-sizing: border-box;
@@ -44,6 +43,7 @@ kuc-base-datetime-listbox:lang(es) * {
   display: block;
   box-sizing: border-box;
   width: 100%;
+  min-width: 135px;
   padding: 8px 16px 8px 25px;
   color: #333333;
   cursor: pointer;

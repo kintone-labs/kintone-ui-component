@@ -12,7 +12,8 @@ import {
   getLocale,
   getScrollableAncestors,
   getToggleIconSvgTemplate,
-  positionListBox,
+  measureEl,
+  setListBoxPosition,
 } from "../../../../utils";
 
 import { CALENDAR_HEADER_MONTH_CSS } from "./style";
@@ -34,18 +35,15 @@ export class BaseDateTimeHeaderMonth extends KucBase {
   @query(".kuc-base-datetime-header-month__listbox")
   private _listBoxEl!: any;
 
+  @query(".kuc-base-datetime-listbox__listbox")
+  private _listBoxUl!: HTMLUListElement;
+
   private _scrollTargets: Array<Window | Element> = [];
 
-  private _defaultListBoxWidth = 280;
-  private _defaultListBoxHeight = 360;
-  private _listboxSelector = ".kuc-base-datetime-listbox__listbox";
-
-  connectedCallback() {
-    super.connectedCallback();
-  }
+  private _listBoxHeight = 0;
 
   disconnectedCallback() {
-    this._detachScrollListeners();
+    this._detachListeners();
     super.disconnectedCallback();
   }
 
@@ -89,43 +87,44 @@ export class BaseDateTimeHeaderMonth extends KucBase {
     super.update(changedProperties);
   }
 
-  private _attachScrollListeners() {
-    this._detachScrollListeners();
+  public repositionListBox() { 
+    if (!this._listBoxVisible || !this._listBoxEl ) return; 
+    setListBoxPosition({
+      anchorEl: this._toggleEl,
+      popoverEl: this._listBoxUl,
+      popoverHeight: this._listBoxHeight,
+    });
+  } 
+
+  private _attachListeners() {
+    this._detachListeners();
     this._scrollTargets = getScrollableAncestors(this._toggleEl);
     for (const targetEl of this._scrollTargets) {
       targetEl.addEventListener("scroll", this._boundOnScrollAndResize, {
         passive: true,
       });
     }
-    window.addEventListener("resize", this._boundOnScrollAndResize, {
-      passive: true,
-    });
   }
 
   private _boundOnScrollAndResize = () =>
-    positionListBox({
+    setListBoxPosition({
       anchorEl: this._toggleEl,
-      popoverEl: this.querySelector(this._listboxSelector) as HTMLElement,
-      popoverWidth: this._defaultListBoxWidth,
-      popoverHeight: this._defaultListBoxHeight,
+      popoverEl: this._listBoxUl,
+      popoverHeight: this._listBoxHeight,
     });
 
-  private _detachScrollListeners() {
+  private _detachListeners() {
     for (const targetEl of this._scrollTargets) {
       targetEl.removeEventListener("scroll", this._boundOnScrollAndResize);
     }
     this._scrollTargets = [];
-    window.removeEventListener(
-      "resize",
-      this._boundOnScrollAndResize as EventListener,
-    );
   }
   public closeListBox() {
-    this._listBoxVisible = false;
     if (this._listBoxEl) {
       this._listBoxEl.hidePopover();
     }
-    this._detachScrollListeners();
+    this._listBoxVisible = false;
+    this._detachListeners();
     this._toggleEl?.focus();
   }
 
@@ -209,13 +208,16 @@ export class BaseDateTimeHeaderMonth extends KucBase {
     await this.updateComplete;
     if (this._listBoxEl) {
       this._listBoxEl.showPopover();
-      positionListBox({
+      if(!this._listBoxHeight){
+        const measureResult = measureEl(this._listBoxUl);
+        this._listBoxHeight = measureResult.height;
+      }
+      setListBoxPosition({
         anchorEl: this._toggleEl,
-        popoverEl: this.querySelector(this._listboxSelector) as HTMLElement,
-        popoverWidth: this._defaultListBoxWidth,
-        popoverHeight: this._defaultListBoxHeight,
+        popoverEl: this._listBoxUl,
+        popoverHeight: this._listBoxHeight,
       });
-      this._attachScrollListeners();
+      this._attachListeners();
     }
   }
 

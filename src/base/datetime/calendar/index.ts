@@ -83,6 +83,11 @@ export class BaseDateTimeCalendar extends KucBase {
       calendarBody.focusActiveDate();
     }
   }
+
+  public repositionHeaderListboxes() { 
+    this._monthEl?.repositionListBox(); 
+    this._yearEl?.repositionListBox(); 
+  }
   private _handleKeyDownCalendarGroup(event: KeyboardEvent) {
     if (event.key !== "Escape") return;
     event.preventDefault();

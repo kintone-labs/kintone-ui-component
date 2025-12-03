@@ -17,6 +17,7 @@ import {
   getScrollableAncestors,
   getTodayStringByLocale,
   isValidDateFormat,
+  measureEl,
 } from "../utils";
 
 import { BASE_DATE_CSS } from "./style";
@@ -56,7 +57,7 @@ export class BaseDate extends KucBase {
 
   private _resizeDebounceTimer: number | null = null;
   private _scrollRAF = 0;
-  private _calendarWidth = 0;
+  private _calendarNaturalWidth = 0;
   private _calendarNaturalHeight = 0;
   private _scrollTargets: Array<Window | Element> = [];
 
@@ -80,6 +81,7 @@ export class BaseDate extends KucBase {
     this._resizeDebounceTimer = window.setTimeout(() => {
       this._resizeDebounceTimer = null;
       this._positionCalendar();
+      this._calendarEl?.repositionHeaderListboxes();
     }, this._DEBOUNCE_DELAY);
   };
 
@@ -99,8 +101,6 @@ export class BaseDate extends KucBase {
   }
 
   disconnectedCallback() {
-    this._detachScrollListeners();
-
     if (this._scrollRAF) {
       cancelAnimationFrame(this._scrollRAF);
       this._scrollRAF = 0;
@@ -110,14 +110,7 @@ export class BaseDate extends KucBase {
       window.clearTimeout(this._resizeDebounceTimer);
       this._resizeDebounceTimer = null;
     }
-
-    window.removeEventListener(
-      "resize",
-      this._schedulePositionOnResize as EventListener,
-    );
-    document.removeEventListener("pointerdown", this._onDocPointerDown, {
-      capture: true,
-    } as any);
+    this._detachListeners();
     super.disconnectedCallback();
   }
 
@@ -251,7 +244,7 @@ export class BaseDate extends KucBase {
     this._closeCalendar();
   }
 
-  private _onDocPointerDown = (event: PointerEvent) => {
+  private _onDocClick = (event: PointerEvent) => {
     const path = event.composedPath();
     const inCalendar = this._calendarEl && path.includes(this._calendarEl);
     const inInput = path.includes(this._dateInput);
@@ -274,14 +267,7 @@ export class BaseDate extends KucBase {
       this._resizeDebounceTimer = null;
     }
 
-    this._detachScrollListeners();
-    window.removeEventListener(
-      "resize",
-      this._schedulePositionOnResize as EventListener,
-    );
-    document.removeEventListener("click", this._onDocPointerDown, {
-      capture: true,
-    } as any);
+    this._detachListeners();
   }
 
   private async _openCalendar() {
@@ -289,49 +275,22 @@ export class BaseDate extends KucBase {
     if (this._calendarEl) {
       await this.updateComplete;
       this._calendarEl.showPopover();
-      this._measureCalendarIfNeeded();
+      if(!this._calendarNaturalWidth || !this._calendarNaturalHeight){
+        const measureResult = measureEl(this._calendarEl);
+        this._calendarNaturalWidth = measureResult.width;
+        this._calendarNaturalHeight = measureResult.height;
+      }
       this._positionCalendar();
-      this._attachScrollListeners();
-      window.addEventListener(
-        "resize",
-        this._schedulePositionOnResize as EventListener,
-      );
-      document.addEventListener("click", this._onDocPointerDown, {
-        capture: true,
-      });
+      this._attachListeners();
       this._calendarEl.focusActiveDate();
     }
-  }
-
-  private _measureCalendarIfNeeded() {
-    if (!this._calendarEl) return;
-    if (this._calendarWidth && this._calendarNaturalHeight) return;
-
-    const prevPos = this._calendarEl.style.position;
-    const prevLeft = this._calendarEl.style.left;
-    const prevTop = this._calendarEl.style.top;
-    const prevMaxH = this._calendarEl.style.maxHeight;
-
-    this._calendarEl.style.position = "fixed";
-    this._calendarEl.style.left = "-9999px";
-    this._calendarEl.style.top = "-9999px";
-    this._calendarEl.style.maxHeight = "none";
-
-    const rect = this._calendarEl.getBoundingClientRect();
-    this._calendarWidth = rect.width || 336;
-    this._calendarNaturalHeight = rect.height || 0;
-
-    this._calendarEl.style.position = prevPos;
-    this._calendarEl.style.left = prevLeft;
-    this._calendarEl.style.top = prevTop;
-    this._calendarEl.style.maxHeight = prevMaxH;
   }
 
   private _positionCalendar = () => {
     if (!this._calendarEl || !this._dateInput) return;
 
     const inputRect = this._dateInput.getBoundingClientRect();
-    const calWidth = this._calendarWidth || 336;
+    const calWidth = this._calendarNaturalWidth || 336;
     const calHeight = this._calendarNaturalHeight || 0;
 
     const spaceAbove = inputRect.top;
@@ -357,17 +316,26 @@ export class BaseDate extends KucBase {
 
     // horizontal
     let left = inputRect.left;
+    let maxWidth = calWidth;
     if (left > window.innerWidth - calWidth) {
       const spaceRight = window.innerWidth - inputRect.left;
       const spaceLeft = inputRect.right;
       if (spaceRight < spaceLeft) {
-        left = inputRect.right - calWidth;
+        if(spaceLeft < calWidth){
+          left = 0;
+          maxWidth = spaceLeft;
+        }else {
+          left = inputRect.right - calWidth;
+          maxWidth = calWidth;
+        }
+       
+      }else{
+        maxWidth = spaceRight;
       }
     }
     this._calendarEl.style.left = `${Math.floor(left)}px`;
     this._calendarEl.style.top = `${Math.floor(top)}px`;
 
-    // Force overflow reset when maxHeight changes
     const newMaxHeight = Math.floor(maxHeight);
     const currentMaxHeight = parseInt(
       this._calendarEl.style.maxHeight || "0",
@@ -377,10 +345,20 @@ export class BaseDate extends KucBase {
     if (currentMaxHeight !== newMaxHeight) {
       this._calendarEl.style.maxHeight = `${newMaxHeight}px`;
     }
+
+    const newMaxWidth = Math.floor(maxWidth);
+    const currentMaxWidth = parseInt(
+      this._calendarEl.style.maxWidth || "0",
+      10,
+    );
+
+    if(currentMaxWidth != newMaxWidth){
+      this._calendarEl.style.maxWidth = `${newMaxWidth}px`
+    }
   };
 
-  private _attachScrollListeners() {
-    this._detachScrollListeners();
+  private _attachListeners() {
+    this._detachListeners();
     this._scrollTargets = getScrollableAncestors(this._dateInput);
     for (const targetEl of this._scrollTargets) {
       targetEl.addEventListener(
@@ -389,9 +367,13 @@ export class BaseDate extends KucBase {
         { passive: true },
       );
     }
+    window.addEventListener("resize", this._schedulePositionOnResize);
+    document.addEventListener("click", this._onDocClick, {
+        capture: true,
+      });
   }
 
-  private _detachScrollListeners() {
+  private _detachListeners() {
     for (const targetEl of this._scrollTargets) {
       targetEl.removeEventListener(
         "scroll",
@@ -399,6 +381,10 @@ export class BaseDate extends KucBase {
       );
     }
     this._scrollTargets = [];
+    window.removeEventListener("resize", this._schedulePositionOnResize);
+    document.removeEventListener("click", this._onDocClick, {
+      capture: true,
+    } as any);
   }
 
   private _handleShiftTabCalendarPrevMonth() {
