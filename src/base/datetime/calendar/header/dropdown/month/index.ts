@@ -87,14 +87,14 @@ export class BaseDateTimeHeaderMonth extends KucBase {
     super.update(changedProperties);
   }
 
-  public repositionListBox() { 
-    if (!this._listBoxVisible || !this._listBoxEl ) return; 
+  public repositionListBox() {
+    if (!this._listBoxVisible || !this._listBoxEl) return;
     setListBoxPosition({
       anchorEl: this._toggleEl,
       popoverEl: this._listBoxUl,
       popoverHeight: this._listBoxHeight,
     });
-  } 
+  }
 
   private _attachListeners() {
     this._detachListeners();
@@ -208,7 +208,7 @@ export class BaseDateTimeHeaderMonth extends KucBase {
     await this.updateComplete;
     if (this._listBoxEl) {
       this._listBoxEl.showPopover();
-      if(!this._listBoxHeight){
+      if (!this._listBoxHeight) {
         const measureResult = measureEl(this._listBoxUl);
         this._listBoxHeight = measureResult.height;
       }

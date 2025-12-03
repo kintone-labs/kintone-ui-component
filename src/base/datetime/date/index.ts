@@ -275,7 +275,7 @@ export class BaseDate extends KucBase {
     if (this._calendarEl) {
       await this.updateComplete;
       this._calendarEl.showPopover();
-      if(!this._calendarNaturalWidth || !this._calendarNaturalHeight){
+      if (!this._calendarNaturalWidth || !this._calendarNaturalHeight) {
         const measureResult = measureEl(this._calendarEl);
         this._calendarNaturalWidth = measureResult.width;
         this._calendarNaturalHeight = measureResult.height;
@@ -321,15 +321,14 @@ export class BaseDate extends KucBase {
       const spaceRight = window.innerWidth - inputRect.left;
       const spaceLeft = inputRect.right;
       if (spaceRight < spaceLeft) {
-        if(spaceLeft < calWidth){
+        if (spaceLeft < calWidth) {
           left = 0;
           maxWidth = spaceLeft;
-        }else {
+        } else {
           left = inputRect.right - calWidth;
           maxWidth = calWidth;
         }
-       
-      }else{
+      } else {
         maxWidth = spaceRight;
       }
     }
@@ -352,8 +351,8 @@ export class BaseDate extends KucBase {
       10,
     );
 
-    if(currentMaxWidth != newMaxWidth){
-      this._calendarEl.style.maxWidth = `${newMaxWidth}px`
+    if (currentMaxWidth != newMaxWidth) {
+      this._calendarEl.style.maxWidth = `${newMaxWidth}px`;
     }
   };
 
@@ -369,8 +368,8 @@ export class BaseDate extends KucBase {
     }
     window.addEventListener("resize", this._schedulePositionOnResize);
     document.addEventListener("click", this._onDocClick, {
-        capture: true,
-      });
+      capture: true,
+    });
   }
 
   private _detachListeners() {

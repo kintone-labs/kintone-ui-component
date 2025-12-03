@@ -31,7 +31,7 @@ export class BaseDateTimeHeaderYear extends KucBase {
   @query(".kuc-base-datetime-header-year__listbox")
   private _listBoxEl!: any;
 
-   @query(".kuc-base-datetime-listbox__listbox")
+  @query(".kuc-base-datetime-listbox__listbox")
   private _listBoxUl!: HTMLUListElement;
 
   private _listBoxHeight = 0;
@@ -82,14 +82,14 @@ export class BaseDateTimeHeaderYear extends KucBase {
     super.update(changedProperties);
   }
 
-  public repositionListBox() { 
-    if (!this._listBoxVisible || !this._listBoxEl ) return; 
+  public repositionListBox() {
+    if (!this._listBoxVisible || !this._listBoxEl) return;
     setListBoxPosition({
       anchorEl: this._toggleEl,
       popoverEl: this._listBoxUl,
       popoverHeight: this._listBoxHeight,
     });
-  } 
+  }
 
   private _attachListeners() {
     this._detachListeners();
@@ -202,7 +202,7 @@ export class BaseDateTimeHeaderYear extends KucBase {
     await this.updateComplete;
     if (this._listBoxEl) {
       this._listBoxEl.showPopover();
-      if(!this._listBoxHeight){
+      if (!this._listBoxHeight) {
         const measureResult = measureEl(this._listBoxUl);
         this._listBoxHeight = measureResult.height;
       }

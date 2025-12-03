@@ -395,7 +395,7 @@ export const setListBoxPosition = (
 ) => {
   const { anchorEl, popoverEl } = options;
   if (!popoverEl || !anchorEl) return;
-  let { popoverHeight } = options;
+  const { popoverHeight } = options;
   if (!popoverHeight) return;
   const toggleRect = anchorEl.getBoundingClientRect();
   const spaceAbove = toggleRect.top;
@@ -419,7 +419,7 @@ export const setListBoxPosition = (
   }
 
   // horizon
-  let left = toggleRect.left;
+  const left = toggleRect.left;
 
   popoverEl.style.left = `${left}px`;
   popoverEl.style.top = `${top}px`;
