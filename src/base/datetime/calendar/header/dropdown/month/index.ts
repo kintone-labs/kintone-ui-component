@@ -12,7 +12,6 @@ import {
   getLocale,
   getScrollableAncestors,
   getToggleIconSvgTemplate,
-  measureEl,
   setListBoxPosition,
 } from "../../../../utils";
 
@@ -40,7 +39,7 @@ export class BaseDateTimeHeaderMonth extends KucBase {
 
   private _scrollTargets: Array<Window | Element> = [];
 
-  private _listBoxHeight = 0;
+  private _listBoxMaxHeight = 360;
 
   disconnectedCallback() {
     this._detachListeners();
@@ -92,7 +91,7 @@ export class BaseDateTimeHeaderMonth extends KucBase {
     setListBoxPosition({
       anchorEl: this._toggleEl,
       popoverEl: this._listBoxUl,
-      popoverHeight: this._listBoxHeight,
+      popoverHeight: this._listBoxMaxHeight,
     });
   }
 
@@ -110,7 +109,7 @@ export class BaseDateTimeHeaderMonth extends KucBase {
     setListBoxPosition({
       anchorEl: this._toggleEl,
       popoverEl: this._listBoxUl,
-      popoverHeight: this._listBoxHeight,
+      popoverHeight: this._listBoxMaxHeight,
     });
 
   private _detachListeners() {
@@ -208,14 +207,10 @@ export class BaseDateTimeHeaderMonth extends KucBase {
     await this.updateComplete;
     if (this._listBoxEl) {
       this._listBoxEl.showPopover();
-      if (!this._listBoxHeight) {
-        const measureResult = measureEl(this._listBoxUl);
-        this._listBoxHeight = measureResult.height;
-      }
       setListBoxPosition({
         anchorEl: this._toggleEl,
         popoverEl: this._listBoxUl,
-        popoverHeight: this._listBoxHeight,
+        popoverHeight: this._listBoxMaxHeight,
       });
       this._attachListeners();
     }

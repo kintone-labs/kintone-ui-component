@@ -20,7 +20,6 @@ import {
   generateTimeOptions,
   getLocale,
   getScrollableAncestors,
-  measureEl,
   padStart,
   setListBoxPosition,
   timeCompare,
@@ -91,7 +90,7 @@ export class BaseTime extends KucBase {
 
   private _scrollTargets: Array<Window | Element> = [];
 
-  private _listBoxHeight = 0;
+  private _listBoxMaxHeight = 165;
   @query(".kuc-base-datetime-listbox__listbox")
   private _listBoxUl!: HTMLUListElement;
 
@@ -578,14 +577,10 @@ export class BaseTime extends KucBase {
     await this.updateComplete;
     if (!this._listboxEl) return;
     this._listboxEl.showPopover();
-    if (!this._listBoxHeight) {
-      const measureResult = measureEl(this._listBoxUl);
-      this._listBoxHeight = measureResult.height;
-    }
     setListBoxPosition({
       anchorEl: this._inputGroupEl,
       popoverEl: this._listBoxUl,
-      popoverHeight: this._listBoxHeight,
+      popoverHeight: this._listBoxMaxHeight,
     });
     this._attachListeners();
   }
@@ -601,7 +596,7 @@ export class BaseTime extends KucBase {
       setListBoxPosition({
         anchorEl: this._inputGroupEl,
         popoverEl: this._listBoxUl,
-        popoverHeight: this._listBoxHeight,
+        popoverHeight: this._listBoxMaxHeight,
       });
     }, this._DEBOUNCE_DELAY);
   };
@@ -627,15 +622,13 @@ export class BaseTime extends KucBase {
     setListBoxPosition({
       anchorEl: this._inputGroupEl,
       popoverEl: this._listBoxUl,
-      popoverHeight: this._listBoxHeight,
+      popoverHeight: this._listBoxMaxHeight,
     });
 
   private _closeListBox() {
     this._doFocusListBox = false;
     this._listBoxVisible = false;
-    if (this._listboxEl) {
-      this._listboxEl.hidePopover();
-    }
+    this._listboxEl?.hidePopover();
     this._detachListeners();
   }
 
@@ -668,7 +661,6 @@ export class BaseTime extends KucBase {
     return this._listBoxVisible
       ? html`
           <kuc-base-datetime-listbox
-            maxHeight="165"
             aria-hidden="${!this._listBoxVisible}"
             class="kuc-base-time__group__listbox"
             .items="${this._listBoxItems || []}"
