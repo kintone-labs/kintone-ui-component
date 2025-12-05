@@ -691,6 +691,14 @@ let exportDropdown;
         top = 0;
         maxHeight = spaceAbove;
       }
+      const customMaxHeight = parseFloat(
+        getComputedStyle(menuEl).getPropertyValue(
+          "--kuc-dropdown-menu-max-height",
+        ),
+      );
+      if (customMaxHeight && maxHeight > customMaxHeight) {
+        maxHeight = customMaxHeight;
+      }
       menuEl.style.position = "fixed";
       menuEl.style.left = `${buttonRect.left}px`;
       menuEl.style.top = `${top}px`;
