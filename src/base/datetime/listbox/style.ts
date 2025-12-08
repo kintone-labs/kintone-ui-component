@@ -43,7 +43,7 @@ kuc-base-datetime-listbox:lang(es) * {
   display: block;
   box-sizing: border-box;
   width: 100%;
-  min-width: 135px;
+  min-width: 130px;
   padding: 8px 16px 8px 25px;
   color: #333333;
   cursor: pointer;
