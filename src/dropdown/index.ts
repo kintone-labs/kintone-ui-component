@@ -86,7 +86,7 @@ let exportDropdown;
 
     private _hasValueInItems = false;
 
-    private _scrollParent: HTMLElement | Window = window;
+    private _scrollTargets: Array<Window | Element> = [];
 
     constructor(props?: DropdownProps) {
       super();
@@ -94,8 +94,8 @@ let exportDropdown;
       const validProps = validateProps(props);
       this._handleClickDocument = this._handleClickDocument.bind(this);
       this._handleScrollMenu = this._handleScrollMenu.bind(this);
-      this._handleScrollParent = this._handleScrollParent.bind(this);
       this._setMenuPosition = this._setMenuPosition.bind(this);
+      this._actionResizeScrollWindow = this._actionResizeScrollWindow.bind(this);
       this._setInitialValue(validProps);
       Object.assign(this, validProps);
     }
@@ -252,11 +252,10 @@ let exportDropdown;
           </button>
           <ul
             id="${this._GUID}-popover"
-            popover
+            popover="manual"
             class="kuc-dropdown__group__select-menu"
             role="listbox"
             aria-hidden="${!this._selectorVisible}"
-            ?hidden="${!this._selectorVisible}"
             @mouseleave="${this._handleMouseLeaveMenu}"
             @mousedown="${this._handleMouseDownMenu}"
           >
@@ -274,49 +273,11 @@ let exportDropdown;
       `;
     }
 
-    firstUpdated() {
-      window.addEventListener("resize", () => {
-        this._actionResizeScrollWindow();
-      });
-
-      window.addEventListener("scroll", () => {
-        this._actionResizeScrollWindow();
-      });
-    }
-
     async updated() {
       await this.updateComplete;
       if (this._selectorVisible) {
         this._menuEl.addEventListener("scroll", this._handleScrollMenu);
-        this._setMenuPosition();
         this._scrollToView();
-        setTimeout(() => {
-          document.addEventListener("click", this._handleClickDocument, true);
-          this._scrollParent = this._getScrollParent(this._buttonEl);
-          this._scrollParent.removeEventListener(
-            "scroll",
-            this._handleScrollParent,
-            true,
-          );
-          this._scrollParent.addEventListener(
-            "scroll",
-            this._handleScrollParent,
-            true,
-          );
-        }, 1);
-      } else {
-        setTimeout(() => {
-          document.removeEventListener(
-            "click",
-            this._handleClickDocument,
-            true,
-          );
-          this._scrollParent.removeEventListener(
-            "scroll",
-            this._handleScrollParent,
-            true,
-          );
-        }, 1);
       }
     }
 
@@ -466,17 +427,7 @@ let exportDropdown;
       this._menuEl.showPopover();
       if (!this._menuEl || !this._buttonEl) return;
       this._setMenuPosition();
-      this._scrollParent = this._getScrollParent(this._buttonEl);
-      this._scrollParent.removeEventListener(
-        "scroll",
-        this._handleScrollParent,
-        true,
-      );
-      this._scrollParent.addEventListener(
-        "scroll",
-        this._handleScrollParent,
-        true,
-      );
+      this._attachListeners();
       if (
         this._selectedItemEl === null ||
         this._selectedItemEl.classList.contains(this._DISABLED_CLASS)
@@ -485,50 +436,57 @@ let exportDropdown;
       this._setHighlightAndActiveDescendantMenu(this._selectedItemEl);
     }
 
-    disconnectedCallback() {
-      if (this._scrollParent) {
-        this._scrollParent.removeEventListener(
-          "scroll",
-          this._handleScrollParent,
-          true,
-        );
+    private _attachListeners() {
+      this._detachListeners();
+      this._scrollTargets = this._getScrollableAncestors(this._buttonEl);
+      for (const targetEl of this._scrollTargets) {
+        targetEl.addEventListener("scroll", this._setMenuPosition, true);
       }
-      super.disconnectedCallback && super.disconnectedCallback();
+      window.addEventListener("resize", this._actionResizeScrollWindow);
+      document.addEventListener("click", this._handleClickDocument, true);
     }
 
-    private _handleScrollParent = (event: Event) => {
-      if (event.target === this._menuEl) return;
-      this._setMenuPosition();
-    };
+    private _detachListeners() {
+      for (const targetEl of this._scrollTargets) {
+        targetEl.removeEventListener("scroll", this._setMenuPosition);
+      }
+      this._scrollTargets = [];
+      window.removeEventListener("resize", this._actionResizeScrollWindow);
+      document.removeEventListener("click", this._handleClickDocument, true);
+    }
+
+    disconnectedCallback() {
+      this._detachListeners();
+      super.disconnectedCallback && super.disconnectedCallback();
+    }
 
     private _actionHideMenu() {
       this._selectorVisible = false;
       this._menuEl.hidePopover();
-      if (this._scrollParent) {
-        this._scrollParent.removeEventListener(
-          "scroll",
-          this._handleScrollParent,
-          true,
-        );
-      }
+      this._detachListeners();
       this._actionRemoveActiveDescendant();
     }
 
-    private _getScrollParent(element: HTMLElement): HTMLElement | Window {
-      let parent: HTMLElement | null = element.parentElement;
-      while (parent) {
-        const style = window.getComputedStyle(parent);
-        const overflowY = style.overflowY;
-        if (
-          overflowY === "auto" ||
-          overflowY === "scroll" ||
-          overflowY === "overlay"
-        ) {
-          return parent;
+    private _getScrollableAncestors(el: Element): Array<Window | Element> {
+      const targets: Array<Window | Element> = [];
+      let node: Element | null = el.parentElement;
+      const overflowRegex = /(auto|scroll|overlay)/;
+      while (
+        node &&
+        node !== document.body &&
+        node !== document.documentElement
+      ) {
+        const style = getComputedStyle(node);
+        const isScrollable =
+          overflowRegex.test(style.overflowY) ||
+          overflowRegex.test(style.overflowX);
+        if (isScrollable) {
+          targets.push(node);
         }
-        parent = parent.parentElement;
+        node = node.parentElement;
       }
-      return window;
+      targets.push(window);
+      return targets;
     }
 
     private _actionToggleMenu() {
@@ -724,13 +682,7 @@ let exportDropdown;
     private _setMenuPosition() {
       // If the menu or button element is not available, do not proceed
       if (!this._menuEl || !this._buttonEl) {
-        if (this._scrollParent) {
-          this._scrollParent.removeEventListener(
-            "scroll",
-            this._handleScrollParent,
-            true,
-          );
-        }
+        this._detachListeners();
         return;
       }
       this._setMenuPositionAboveOrBelow(this._menuEl, this._buttonEl);
