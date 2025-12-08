@@ -95,7 +95,8 @@ let exportDropdown;
       this._handleClickDocument = this._handleClickDocument.bind(this);
       this._handleScrollMenu = this._handleScrollMenu.bind(this);
       this._setMenuPosition = this._setMenuPosition.bind(this);
-      this._actionResizeScrollWindow = this._actionResizeScrollWindow.bind(this);
+      this._actionResizeScrollWindow =
+        this._actionResizeScrollWindow.bind(this);
       this._setInitialValue(validProps);
       Object.assign(this, validProps);
     }
