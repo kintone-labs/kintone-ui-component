@@ -64,8 +64,7 @@ export class BaseDate extends KucBase {
   private _DEBOUNCE_DELAY = 200;
 
   private _schedulePositionOnScroll = () => {
-    if (!this._dateTimeCalendarVisible) return;
-    if (this._scrollRAF) return;
+    if (!this._dateTimeCalendarVisible || this._scrollRAF) return;
     this._scrollRAF = requestAnimationFrame(() => {
       this._scrollRAF = 0;
       this._positionCalendar();
