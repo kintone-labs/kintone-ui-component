@@ -584,7 +584,7 @@ export class BaseTime extends KucBase {
       anchorEl: this._inputGroupEl,
       popoverEl: this._listBoxUl,
       popoverHeight: this._listBoxMaxHeight,
-      popoverWidth: this._listBoxMaxWidth
+      popoverWidth: this._listBoxMaxWidth,
     });
     this._attachListeners();
   }
@@ -601,7 +601,7 @@ export class BaseTime extends KucBase {
         anchorEl: this._inputGroupEl,
         popoverEl: this._listBoxUl,
         popoverHeight: this._listBoxMaxHeight,
-        popoverWidth: this._listBoxMaxWidth
+        popoverWidth: this._listBoxMaxWidth,
       });
     }, this._DEBOUNCE_DELAY);
   };
@@ -628,7 +628,7 @@ export class BaseTime extends KucBase {
       anchorEl: this._inputGroupEl,
       popoverEl: this._listBoxUl,
       popoverHeight: this._listBoxMaxHeight,
-      popoverWidth: this._listBoxMaxWidth
+      popoverWidth: this._listBoxMaxWidth,
     });
 
   private _closeListBox() {

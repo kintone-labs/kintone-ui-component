@@ -421,8 +421,7 @@ export const setListBoxPosition = (
 
   // horizon
   let left = toggleRect.left;
-      console.log(left);
-  if(popoverWidth){
+  if (popoverWidth) {
     if (left > window.innerWidth - popoverWidth) {
       const spaceRight = window.innerWidth - toggleRect.left;
       const spaceLeft = toggleRect.right;
