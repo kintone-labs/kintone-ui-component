@@ -20,6 +20,7 @@ import {
   generateTimeOptions,
   getLocale,
   getScrollableAncestors,
+  measureEl,
   padStart,
   setListBoxPosition,
   timeCompare,
@@ -91,6 +92,7 @@ export class BaseTime extends KucBase {
   private _scrollTargets: Array<Window | Element> = [];
 
   private _listBoxMaxHeight = 165;
+  private _listBoxMaxWidth = 0;
   @query(".kuc-base-datetime-listbox__listbox")
   private _listBoxUl!: HTMLUListElement;
 
@@ -577,10 +579,12 @@ export class BaseTime extends KucBase {
     await this.updateComplete;
     if (!this._listboxEl) return;
     this._listboxEl.showPopover();
+    this._listBoxMaxWidth = measureEl(this._listBoxUl).width;
     setListBoxPosition({
       anchorEl: this._inputGroupEl,
       popoverEl: this._listBoxUl,
       popoverHeight: this._listBoxMaxHeight,
+      popoverWidth: this._listBoxMaxWidth
     });
     this._attachListeners();
   }
@@ -597,6 +601,7 @@ export class BaseTime extends KucBase {
         anchorEl: this._inputGroupEl,
         popoverEl: this._listBoxUl,
         popoverHeight: this._listBoxMaxHeight,
+        popoverWidth: this._listBoxMaxWidth
       });
     }, this._DEBOUNCE_DELAY);
   };
@@ -623,6 +628,7 @@ export class BaseTime extends KucBase {
       anchorEl: this._inputGroupEl,
       popoverEl: this._listBoxUl,
       popoverHeight: this._listBoxMaxHeight,
+      popoverWidth: this._listBoxMaxWidth
     });
 
   private _closeListBox() {

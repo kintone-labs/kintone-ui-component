@@ -297,20 +297,10 @@ export class BaseDate extends KucBase {
 
     // vertical
     let top: number;
-    let maxHeight: number;
-    if (spaceBelow >= calHeight) {
-      top = inputRect.bottom;
-      maxHeight = calHeight;
-    } else if (spaceAbove >= calHeight) {
+    let maxHeight = calHeight;
+    top = inputRect.bottom;
+    if(spaceBelow < spaceAbove){
       top = inputRect.top - calHeight;
-      maxHeight = calHeight;
-    } else if (spaceBelow >= spaceAbove) {
-      top = inputRect.bottom;
-      maxHeight = spaceBelow;
-    } else {
-      maxHeight = spaceAbove;
-      const visibleHeight = Math.min(calHeight || maxHeight, maxHeight);
-      top = Math.max(0, inputRect.top - visibleHeight);
     }
 
     // horizontal
@@ -320,15 +310,7 @@ export class BaseDate extends KucBase {
       const spaceRight = window.innerWidth - inputRect.left;
       const spaceLeft = inputRect.right;
       if (spaceRight < spaceLeft) {
-        if (spaceLeft < calWidth) {
-          left = 0;
-          maxWidth = spaceLeft;
-        } else {
-          left = inputRect.right - calWidth;
-          maxWidth = calWidth;
-        }
-      } else {
-        maxWidth = spaceRight;
+        left = inputRect.right - calWidth;
       }
     }
     this._calendarEl.style.left = `${Math.floor(left)}px`;

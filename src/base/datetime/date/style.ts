@@ -42,7 +42,6 @@ input.kuc-base-date__input:disabled {
 .kuc-base-date__calendar[popover] {
   position: fixed;
   z-index: 2000;
-  overflow-y: auto;
   right: auto;
   bottom: auto;
 }

@@ -391,11 +391,12 @@ export const setListBoxPosition = (
     anchorEl?: HTMLElement;
     popoverEl?: HTMLElement;
     popoverHeight?: number;
+    popoverWidth?: number;
   } = {},
 ) => {
   const { anchorEl, popoverEl } = options;
   if (!popoverEl || !anchorEl) return;
-  const { popoverHeight } = options;
+  const { popoverHeight, popoverWidth } = options;
   if (!popoverHeight) return;
   const toggleRect = anchorEl.getBoundingClientRect();
   const spaceAbove = toggleRect.top;
@@ -419,7 +420,17 @@ export const setListBoxPosition = (
   }
 
   // horizon
-  const left = toggleRect.left;
+  let left = toggleRect.left;
+      console.log(left);
+  if(popoverWidth){
+    if (left > window.innerWidth - popoverWidth) {
+      const spaceRight = window.innerWidth - toggleRect.left;
+      const spaceLeft = toggleRect.right;
+      if (spaceRight < spaceLeft) {
+        left = toggleRect.right - popoverWidth;
+      }
+    }
+  }
 
   popoverEl.style.left = `${left}px`;
   popoverEl.style.top = `${top}px`;
