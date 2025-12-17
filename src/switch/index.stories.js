@@ -1,4 +1,5 @@
-import { Switch } from "./index.ts";
+import { html } from "lit";
+import "./index.ts";
 
 export default {
   title: "desktop/switch",
@@ -30,10 +31,21 @@ const template = (args) => {
   const handleChange = (event) => {
     console.log(event);
   };
-  const kucSwitch = new Switch({ ...args });
-  kucSwitch.addEventListener("change", handleChange);
 
-  return kucSwitch;
+  return html`
+    <kuc-switch
+      .className="${args.className}"
+      .id="${args.id}"
+      .label="${args.label}"
+      .labelPlacement="${args.labelPlacement}"
+      .textOff="${args.textOff}"
+      .textOn="${args.textOn}"
+      .checked="${args.checked}"
+      .disabled="${args.disabled}"
+      .visible="${args.visible}"
+      @change="${handleChange}"
+    ></kuc-switch>
+  `;
 };
 
 export const Base = template.bind({});

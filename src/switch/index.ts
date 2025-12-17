@@ -1,5 +1,5 @@
-import { html, PropertyValues } from "lit";
-import { property, query, state } from "lit/decorators.js";
+import { html } from "lit";
+import { property, query } from "lit/decorators.js";
 
 import { visiblePropConverter } from "../base/converter";
 import {
@@ -8,10 +8,13 @@ import {
   generateGUID,
   KucBase,
 } from "../base/kuc-base";
+import { BaseLabel } from "../base/label";
 import { validateProps } from "../base/validator";
 
 import { SWITCH_CSS } from "./style";
 import { SwitchLabelPlacement, SwitchProps } from "./type";
+
+export { BaseLabel };
 
 let exportSwitch;
 
@@ -42,10 +45,14 @@ let exportSwitch;
     @query(".kuc-switch__group__switch__input")
     private _switchInputEl!: HTMLInputElement;
 
-    @state()
-    private _checked = false;
-
     private _GUID: string;
+
+    private _validLabelPlacement: SwitchLabelPlacement[] = [
+      "top",
+      "bottom",
+      "left",
+      "right",
+    ];
 
     constructor(props?: SwitchProps) {
       super();
@@ -54,49 +61,60 @@ let exportSwitch;
       Object.assign(this, validProps);
     }
 
-    willUpdate(changedProperties: PropertyValues): void {
-      if (changedProperties.has("checked")) {
-        this._checked = !!this.checked;
-      }
-    }
-
     render() {
       return html`
         <div
           class="kuc-switch__group kuc-switch__group--${this._getLabelPlacement()}"
         >
           <label
-            class="kuc-switch__group__label"
+            class="kuc-switch__group__label${this.disabled
+              ? " kuc-switch__group__label--disabled"
+              : ""}"
             id="${this._GUID}-label"
             ?hidden="${!this.label}"
             for="${this._GUID}-input"
           >
-            <kuc-base-label .text="${this.label}" />
+            <kuc-base-label .text="${this.label}"></kuc-base-label>
           </label>
-          <label class="kuc-switch__group__switch">
+          <div class="kuc-switch__group__switch">
             <input
               class="kuc-switch__group__switch__input"
               id="${this._GUID}-input"
               type="checkbox"
               role="switch"
               aria-labelledby="${this._GUID}-label"
-              .checked="${this._checked}"
+              aria-describedby="${this._GUID}-text-${this.checked
+                ? "on"
+                : "off"}"
+              .checked="${this.checked}"
               ?disabled="${this.disabled}"
               @change="${this._handleChangeInput}"
-              @focus="${this._handleFocusInput}"
-              @blur="${this._handleBlurInput}"
             />
-            <span class="kuc-switch__group__switch__slider">
-              <span class="kuc-switch__group__switch__slider__text">
-                ${this._checked ? this.textOn : this.textOff}
-              </span>
-            </span>
-          </label>
+            <label
+              class="kuc-switch__group__switch__slider"
+              for="${this._GUID}-input"
+            >
+              <span
+                id="${this._GUID}-text-on"
+                class="kuc-switch__group__switch__slider__text kuc-switch__group__switch__slider__text--on"
+                >${this.textOn}</span
+              >
+              <span
+                id="${this._GUID}-text-off"
+                class="kuc-switch__group__switch__slider__text kuc-switch__group__switch__slider__text--off"
+                >${this.textOff}</span
+              >
+            </label>
+            <label
+              class="kuc-switch__group__switch__handle"
+              for="${this._GUID}-input"
+            ></label>
+          </div>
         </div>
       `;
     }
 
-    private _handleChangeInput(event: MouseEvent | KeyboardEvent) {
+    private _handleChangeInput(event: Event) {
       event.stopPropagation();
       const inputEl = event.target as HTMLInputElement;
       this.checked = inputEl.checked;
@@ -104,28 +122,8 @@ let exportSwitch;
       dispatchCustomEvent(this, "change", detail);
     }
 
-    private _handleFocusInput(event: MouseEvent | KeyboardEvent) {
-      event.stopPropagation();
-      const inputEl = event.target as HTMLInputElement;
-      const switchEl = inputEl.parentNode as HTMLDivElement;
-      switchEl.setAttribute("focused", "");
-    }
-
-    private _handleBlurInput(event: MouseEvent | KeyboardEvent) {
-      event.stopPropagation();
-      const inputEl = event.target as HTMLInputElement;
-      const switchEl = inputEl.parentNode as HTMLDivElement;
-      switchEl.removeAttribute("focused");
-    }
-
     private _getLabelPlacement() {
-      const labelPlacement: SwitchLabelPlacement[] = [
-        "top",
-        "bottom",
-        "left",
-        "right",
-      ];
-      return labelPlacement.includes(this.labelPlacement)
+      return this._validLabelPlacement.includes(this.labelPlacement)
         ? this.labelPlacement
         : "left";
     }
