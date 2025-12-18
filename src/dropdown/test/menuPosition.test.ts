@@ -71,8 +71,14 @@ describe("Dropdown", () => {
       });
       const el = await fixture(container);
 
+      window.resizeTo(800, 600);
+      document.body.style.height = "2000px";
+      document.body.appendChild(el);
       (el as HTMLElement).style.position = "fixed";
-      (el as HTMLElement).style.bottom = "20px";
+      (el as HTMLElement).style.bottom = "10px";
+
+      window.scrollTo(0, window.innerHeight - 100);
+
       document.body.appendChild(el);
 
       const toggle = el.querySelector(

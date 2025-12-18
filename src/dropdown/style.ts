@@ -99,9 +99,7 @@ export const DROPDOWN_CSS = `
     background-color: #ffffff;
     list-style: none;
     box-sizing: border-box;
-  }
-  .kuc-dropdown__group__select-menu[hidden] {
-    display: none;
+    border: none;
   }
   .kuc-dropdown__group__select-menu__item {
     padding: 8px 16px 8px 24px;

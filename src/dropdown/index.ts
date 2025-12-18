@@ -446,7 +446,9 @@ let exportDropdown;
       }
       this._menuEl.addEventListener("scroll", this._handleScrollMenu);
       window.addEventListener("resize", this._actionResizeScrollWindow);
-      document.addEventListener("click", this._handleClickDocument, true);
+      document.addEventListener("click", this._handleClickDocument, {
+        capture: true,
+      });
     }
 
     private _detachListeners() {
@@ -458,7 +460,9 @@ let exportDropdown;
         this._menuEl.removeEventListener("scroll", this._handleScrollMenu);
       }
       window.removeEventListener("resize", this._actionResizeScrollWindow);
-      document.removeEventListener("click", this._handleClickDocument, true);
+      document.removeEventListener("click", this._handleClickDocument, {
+        capture: true,
+      });
     }
 
     disconnectedCallback() {
