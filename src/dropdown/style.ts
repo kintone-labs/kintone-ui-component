@@ -99,7 +99,6 @@ export const DROPDOWN_CSS = `
     background-color: #ffffff;
     list-style: none;
     box-sizing: border-box;
-    border: 1px solid #e3e7e8;
   }
   .kuc-dropdown__group__select-menu[hidden] {
     display: none;
