@@ -116,7 +116,7 @@ export const SWITCH_CSS = `
 
   .kuc-switch__group__switch__slider {
     position: relative;
-    transition: padding-left 0.4s ease-in-out, padding-right 0.4s ease-in-out;
+    transition: all 0.4s ease-in-out;
     border-radius: calc(var(--kuc-switch-slider-height, 32px) / 2);
     display: inline-block;
     cursor: pointer;
@@ -148,7 +148,7 @@ export const SWITCH_CSS = `
 
   .kuc-switch__group__switch__slider__text {
     font-size: 14px;
-    transition: margin-left 0.4s ease-in-out, margin-right 0.4s ease-in-out;
+    transition: all 0.4s ease-in-out;
     pointer-events: none;
     white-space: nowrap;
     text-align: center;
