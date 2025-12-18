@@ -122,16 +122,16 @@ export const SWITCH_CSS = `
     cursor: pointer;
     border: none;
     overflow: hidden;
-    min-width: 22px;
+    min-width: 16px;
     background-color: #b5b5b5;
-    padding-left: calc(var(--kuc-switch-slider-height, 32px) - 2px);
-    padding-right: calc(var(--kuc-switch-slider-height, 32px) / 2 - 2px);
+    padding-left: var(--kuc-switch-slider-height, 32px);
+    padding-right: 10px;
   }
 
   .kuc-switch__group__switch__input:checked ~ .kuc-switch__group__switch__slider {
     background-color: #3498db;
-    padding-left: calc(var(--kuc-switch-slider-height, 32px) / 2 - 2px);
-    padding-right: calc(var(--kuc-switch-slider-height, 32px) - 2px);
+    padding-left: 10px;
+    padding-right: var(--kuc-switch-slider-height, 32px);
   }
 
   .kuc-switch__group__switch__input:focus-visible ~ .kuc-switch__group__switch__slider {
