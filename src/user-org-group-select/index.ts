@@ -66,8 +66,7 @@ let exportUserOrgGroupSelect;
     private _inputEl!: HTMLInputElement;
     @query(".kuc-user-org-group-select__group__container__select-area__toggle")
     private _toggleEl!: HTMLDivElement;
-    @query(".kuc-user-org-group-select__group__container__select-area")
-    private _selectAreaEl!: HTMLDivElement;
+
     @query(
       ".kuc-user-org-group-select__group__container__select-area__select-menu",
     )
@@ -107,7 +106,7 @@ let exportUserOrgGroupSelect;
     private _GUID: string;
     private _SMALL_ICON_SIZE = 24;
     private _LARGE_ICON_SIZE = 48;
-    private _scrollParent: HTMLElement | Window = window;
+    private _scrollTargets: Array<Window | Element> = [];
 
     constructor(props?: UserOrgGroupSelectProps) {
       super();
@@ -115,7 +114,6 @@ let exportUserOrgGroupSelect;
       const validProps = validateProps(props);
       this._handleClickDocument = this._handleClickDocument.bind(this);
       this._handleScrollMenu = this._handleScrollMenu.bind(this);
-      this._handleScrollParent = this._handleScrollParent.bind(this);
       this._setMenuPosition = this._setMenuPosition.bind(this);
       this._actionResizeScrollWindow = this._actionResizeScrollWindow.bind(this);
       Object.assign(this, validProps);
@@ -203,7 +201,7 @@ let exportUserOrgGroupSelect;
               </div>
               <ul
                 id="${this._GUID}-listbox"
-                popover
+                popover="manual"
                 class="kuc-user-org-group-select__group__container__select-area__select-menu"
                 role="listbox"
                 aria-labelledby="${this._GUID}-label"
@@ -260,23 +258,9 @@ let exportUserOrgGroupSelect;
       return undefined;
     }
 
-    firstUpdated() {
-      this._initializeSelectedValues();
-      window.addEventListener("resize", this._actionResizeScrollWindow);
-      window.addEventListener("scroll", this._actionResizeScrollWindow);
-    }
-
     disconnectedCallback() {
-      window.removeEventListener("resize", this._actionResizeScrollWindow);
-      window.removeEventListener("scroll", this._actionResizeScrollWindow);
-      if (this._scrollParent) {
-        this._scrollParent.removeEventListener(
-          "scroll",
-          this._handleScrollParent,
-          true,
-        );
-      }
-      super.disconnectedCallback && super.disconnectedCallback();
+      this._detachListeners();
+      super.disconnectedCallback();
     }
 
     private _actionResizeScrollWindow() {
@@ -289,43 +273,12 @@ let exportUserOrgGroupSelect;
 
     async updated(changedProperties: PropertyValues) {
       super.updated(changedProperties);
-      if (changedProperties.has("value")) {
+      if (changedProperties.has("value") || changedProperties.has("items")) {
         this._initializeSelectedValues();
       }
       await this.updateComplete;
       if (this._selectorVisible) {
-        this._menuEl.addEventListener("scroll", this._handleScrollMenu);
-        this._setMenuPosition();
-        this._scrollToView();
         this._actionClearAllHighlightMenuItem();
-
-        setTimeout(() => {
-          document.addEventListener("click", this._handleClickDocument, true);
-          this._scrollParent = this._getScrollParent(this._toggleEl);
-          this._scrollParent.removeEventListener(
-            "scroll",
-            this._handleScrollParent,
-            true,
-          );
-          this._scrollParent.addEventListener(
-            "scroll",
-            this._handleScrollParent,
-            true,
-          );
-        }, 1);
-      } else {
-        setTimeout(() => {
-          document.removeEventListener(
-            "click",
-            this._handleClickDocument,
-            true,
-          );
-          this._scrollParent.removeEventListener(
-            "scroll",
-            this._handleScrollParent,
-            true,
-          );
-        }, 1);
       }
     }
 
@@ -796,17 +749,7 @@ let exportUserOrgGroupSelect;
       this._menuEl.showPopover();
       if (!this._menuEl || !this._toggleEl) return;
       this._setMenuPosition();
-      this._scrollParent = this._getScrollParent(this._toggleEl);
-      this._scrollParent.removeEventListener(
-        "scroll",
-        this._handleScrollParent,
-        true,
-      );
-      this._scrollParent.addEventListener(
-        "scroll",
-        this._handleScrollParent,
-        true,
-      );
+      this._attachListeners();
     }
 
     private _handleMouseOverUserOrgGroupItem(event: Event) {
@@ -910,38 +853,53 @@ let exportUserOrgGroupSelect;
       this._previousScrollTop = this._menuEl.scrollTop;
     }
 
-    private _handleScrollParent = (event: Event) => {
-      if (event.target === this._menuEl) return;
-      this._setMenuPosition();
-    };
-
-    private _getScrollParent(element: HTMLElement): HTMLElement | Window {
-      let parent: HTMLElement | null = element.parentElement;
-      while (parent) {
-        const style = window.getComputedStyle(parent);
-        const overflowY = style.overflowY;
-        if (
-          overflowY === "auto" ||
-          overflowY === "scroll" ||
-          overflowY === "overlay"
-        ) {
-          return parent;
-        }
-        parent = parent.parentElement;
+    private _attachListeners() {
+      this._detachListeners();
+      this._scrollTargets = this._getScrollableAncestors(this._toggleEl);
+      for (const targetEl of this._scrollTargets) {
+        targetEl.addEventListener("scroll", this._setMenuPosition, { passive: true });
       }
-      return window;
+      this._menuEl.addEventListener("scroll", this._handleScrollMenu);
+      window.addEventListener("resize", this._actionResizeScrollWindow);
+      document.addEventListener("click", this._handleClickDocument, true);
+    }
+
+    private _detachListeners() {
+      for (const targetEl of this._scrollTargets) {
+        targetEl.removeEventListener("scroll", this._setMenuPosition);
+      }
+      this._scrollTargets = [];
+      this._menuEl?.removeEventListener("scroll", this._handleScrollMenu);
+      window.removeEventListener("resize", this._actionResizeScrollWindow);
+      document.removeEventListener("click", this._handleClickDocument, true);
+    }
+
+    private _getScrollableAncestors(el: Element): Array<Window | Element> {
+      const targets: Array<Window | Element> = [];
+      let node: Element | null = el.parentElement;
+      const overflowRegex = /(auto|scroll|overlay)/;
+      while (
+        node &&
+        node !== document.body &&
+        node !== document.documentElement
+      ) {
+        const style = getComputedStyle(node);
+        const isScrollable =
+          overflowRegex.test(style.overflowY) ||
+          overflowRegex.test(style.overflowX);
+        if (isScrollable) {
+          targets.push(node);
+        }
+        node = node.parentElement;
+      }
+      targets.push(window);
+      return targets;
     }
 
     private _actionHideMenu() {
       this._selectorVisible = false;
       this._menuEl.hidePopover();
-      if (this._scrollParent) {
-        this._scrollParent.removeEventListener(
-          "scroll",
-          this._handleScrollParent,
-          true,
-        );
-      }
+      this._detachListeners();
       this._actionRemoveActiveDescendant();
     }
     private _getPickerSVGTemplateByIcon(icon?: string) {
