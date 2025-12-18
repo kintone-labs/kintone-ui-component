@@ -93,6 +93,7 @@ export const DROPDOWN_CSS = `
   }
   .kuc-dropdown__group__select-menu {
     min-width: 280px;
+    position: fixed;
     margin: 0;
     padding: 8px 0;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
@@ -100,6 +101,7 @@ export const DROPDOWN_CSS = `
     list-style: none;
     box-sizing: border-box;
     border: 1px solid #e3e7e8;
+    overflow-y: auto;
   }
   .kuc-dropdown__group__select-menu[hidden] {
     display: none;

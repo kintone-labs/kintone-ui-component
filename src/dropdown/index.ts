@@ -277,7 +277,6 @@ let exportDropdown;
     async updated() {
       await this.updateComplete;
       if (this._selectorVisible) {
-        this._menuEl.addEventListener("scroll", this._handleScrollMenu);
         this._scrollToView();
       }
     }
@@ -441,8 +440,11 @@ let exportDropdown;
       this._detachListeners();
       this._scrollTargets = this._getScrollableAncestors(this._buttonEl);
       for (const targetEl of this._scrollTargets) {
-        targetEl.addEventListener("scroll", this._setMenuPosition, true);
+        targetEl.addEventListener("scroll", this._setMenuPosition, {
+          passive: true,
+        });
       }
+      this._menuEl.addEventListener("scroll", this._handleScrollMenu);
       window.addEventListener("resize", this._actionResizeScrollWindow);
       document.addEventListener("click", this._handleClickDocument, true);
     }
@@ -452,6 +454,7 @@ let exportDropdown;
         targetEl.removeEventListener("scroll", this._setMenuPosition);
       }
       this._scrollTargets = [];
+      this._menuEl.removeEventListener("scroll", this._handleScrollMenu);
       window.removeEventListener("resize", this._actionResizeScrollWindow);
       document.removeEventListener("click", this._handleClickDocument, true);
     }
@@ -658,11 +661,9 @@ let exportDropdown;
       if (customMaxHeight && maxHeight > customMaxHeight) {
         maxHeight = customMaxHeight;
       }
-      menuEl.style.position = "fixed";
       menuEl.style.left = `${buttonRect.left}px`;
       menuEl.style.top = `${top}px`;
       menuEl.style.maxHeight = `${maxHeight}px`;
-      menuEl.style.overflowY = "auto";
     }
 
     private _setMenuPositionLeftOrRight(
