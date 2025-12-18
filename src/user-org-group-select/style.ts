@@ -143,9 +143,6 @@ export const USER_ORG_GROUP_SELECT_CSS = `
     margin: 0;
     list-style: none;
   }
-  .kuc-user-org-group-select__group__container__select-area__select-menu[hidden] {
-    display: none;
-  }
   .kuc-user-org-group-select__group__container__select-area__select-menu__item {
    border-bottom: 1px solid #e3e7e8;
    display: flex;

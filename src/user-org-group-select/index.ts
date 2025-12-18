@@ -115,7 +115,8 @@ let exportUserOrgGroupSelect;
       this._handleClickDocument = this._handleClickDocument.bind(this);
       this._handleScrollMenu = this._handleScrollMenu.bind(this);
       this._setMenuPosition = this._setMenuPosition.bind(this);
-      this._actionResizeScrollWindow = this._actionResizeScrollWindow.bind(this);
+      this._actionResizeScrollWindow =
+        this._actionResizeScrollWindow.bind(this);
       Object.assign(this, validProps);
     }
 
@@ -206,7 +207,6 @@ let exportUserOrgGroupSelect;
                 role="listbox"
                 aria-labelledby="${this._GUID}-label"
                 aria-hidden="${!this._selectorVisible}"
-                ?hidden="${!this._selectorVisible}"
                 @mouseleave="${this._handleMouseLeaveMenu}"
                 @mousedown="${this._handleMouseDownMenu}"
               >
@@ -273,10 +273,10 @@ let exportUserOrgGroupSelect;
 
     async updated(changedProperties: PropertyValues) {
       super.updated(changedProperties);
+      await this.updateComplete;
       if (changedProperties.has("value") || changedProperties.has("items")) {
         this._initializeSelectedValues();
       }
-      await this.updateComplete;
       if (this._selectorVisible) {
         this._actionClearAllHighlightMenuItem();
       }
@@ -857,11 +857,15 @@ let exportUserOrgGroupSelect;
       this._detachListeners();
       this._scrollTargets = this._getScrollableAncestors(this._toggleEl);
       for (const targetEl of this._scrollTargets) {
-        targetEl.addEventListener("scroll", this._setMenuPosition, { passive: true });
+        targetEl.addEventListener("scroll", this._setMenuPosition, {
+          passive: true,
+        });
       }
       this._menuEl.addEventListener("scroll", this._handleScrollMenu);
       window.addEventListener("resize", this._actionResizeScrollWindow);
-      document.addEventListener("click", this._handleClickDocument, true);
+      document.addEventListener("click", this._handleClickDocument, {
+        capture: true,
+      });
     }
 
     private _detachListeners() {
@@ -871,7 +875,9 @@ let exportUserOrgGroupSelect;
       this._scrollTargets = [];
       this._menuEl?.removeEventListener("scroll", this._handleScrollMenu);
       window.removeEventListener("resize", this._actionResizeScrollWindow);
-      document.removeEventListener("click", this._handleClickDocument, true);
+      document.removeEventListener("click", this._handleClickDocument, {
+        capture: true,
+      });
     }
 
     private _getScrollableAncestors(el: Element): Array<Window | Element> {

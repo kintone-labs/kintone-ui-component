@@ -1,4 +1,4 @@
-import { elementUpdated, expect, fixture } from "@open-wc/testing";
+import { aTimeout, elementUpdated, expect, fixture } from "@open-wc/testing";
 
 import { UserOrgGroupSelect } from "../index";
 
@@ -41,10 +41,18 @@ describe("UserOrgGroupSelect", () => {
         items: [
           ...initItems,
           ...initItems.map((item) => {
-            return { label: item.label, value: item.value + "_0", type: item.type };
+            return {
+              label: item.label,
+              value: item.value + "_0",
+              type: item.type,
+            };
           }),
           ...initItems.map((item) => {
-            return { label: item.label, value: item.value + "_1", type: item.type };
+            return {
+              label: item.label,
+              value: item.value + "_1",
+              type: item.type,
+            };
           }),
         ],
         value: [initItems[0].value],
@@ -84,8 +92,14 @@ describe("UserOrgGroupSelect", () => {
       });
       const el = await fixture(container);
 
+      window.resizeTo(800, 600);
+      document.body.style.height = "2000px";
+      document.body.appendChild(el);
       (el as HTMLElement).style.position = "fixed";
-      (el as HTMLElement).style.bottom = "20px";
+      (el as HTMLElement).style.bottom = "10px";
+
+      window.scrollTo(0, window.innerHeight - 100);
+
       document.body.appendChild(el);
 
       const toggleIconButtonEl = el.querySelector(
@@ -100,11 +114,12 @@ describe("UserOrgGroupSelect", () => {
       const menuEl = el.querySelector(
         ".kuc-user-org-group-select__group__container__select-area__select-menu",
       ) as HTMLElement;
-
+      await aTimeout(10);
       expect(menuEl.style.position).to.equal("fixed");
       const toggleRect = toggleEl.getBoundingClientRect();
       const menuTop = parseInt(menuEl.style.top, 10);
-
+      console.log(menuTop);
+      console.log(toggleRect.top);
       expect(menuTop).to.be.lessThan(toggleRect.top);
 
       document.body.removeChild(el);
