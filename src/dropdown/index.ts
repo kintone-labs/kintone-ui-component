@@ -454,7 +454,9 @@ let exportDropdown;
         targetEl.removeEventListener("scroll", this._setMenuPosition);
       }
       this._scrollTargets = [];
-      this._menuEl.removeEventListener("scroll", this._handleScrollMenu);
+      if (this._menuEl) {
+        this._menuEl.removeEventListener("scroll", this._handleScrollMenu);
+      }
       window.removeEventListener("resize", this._actionResizeScrollWindow);
       document.removeEventListener("click", this._handleClickDocument, true);
     }
@@ -661,9 +663,11 @@ let exportDropdown;
       if (customMaxHeight && maxHeight > customMaxHeight) {
         maxHeight = customMaxHeight;
       }
+      menuEl.style.position = "fixed";
       menuEl.style.left = `${buttonRect.left}px`;
       menuEl.style.top = `${top}px`;
       menuEl.style.maxHeight = `${maxHeight}px`;
+      menuEl.style.overflowY = "auto";
     }
 
     private _setMenuPositionLeftOrRight(
