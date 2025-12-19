@@ -569,8 +569,11 @@ describe("UserOrgGroupSelect", () => {
       const toggleInputEl = el.querySelector(
         ".kuc-user-org-group-select__group__container__select-area__toggle__input",
       ) as HTMLInputElement;
+
+      toggleInputEl.value = "1";
       toggleInputEl.dispatchEvent(new InputEvent("input", { data: "1" }));
       await elementUpdated(container);
+
       const menuEl = el.querySelector(
         ".kuc-user-org-group-select__group__container__select-area__select-menu",
       ) as HTMLElement;

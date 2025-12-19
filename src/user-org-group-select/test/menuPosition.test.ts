@@ -118,8 +118,6 @@ describe("UserOrgGroupSelect", () => {
       expect(menuEl.style.position).to.equal("fixed");
       const toggleRect = toggleEl.getBoundingClientRect();
       const menuTop = parseInt(menuEl.style.top, 10);
-      console.log(menuTop);
-      console.log(toggleRect.top);
       expect(menuTop).to.be.lessThan(toggleRect.top);
 
       document.body.removeChild(el);
