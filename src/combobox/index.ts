@@ -93,13 +93,46 @@ let exportCombobox;
 
     private _query = "";
     private _matchingItems: ComboboxItem[] = [];
+    private _scrollTargets: Array<Window | Element> = [];
+
+    private _attachListeners() {
+      this._detachListeners();
+      this._scrollTargets = this._getScrollableAncestors(this._toggleEl);
+      for (const targetEl of this._scrollTargets) {
+        targetEl.addEventListener("scroll", this._setMenuPosition, {
+          passive: true,
+        });
+      }
+      this._menuEl.addEventListener("scroll", this._handleScrollMenu);
+      window.addEventListener("resize", this._actionResizeScrollWindow);
+      document.addEventListener("click", this._handleClickDocument, {
+        capture: true,
+      });
+    }
+
+    private _detachListeners() {
+      for (const targetEl of this._scrollTargets) {
+        targetEl.removeEventListener("scroll", this._setMenuPosition);
+      }
+      this._scrollTargets = [];
+      if (this._menuEl) {
+        this._menuEl.removeEventListener("scroll", this._handleScrollMenu);
+      }
+      window.removeEventListener("resize", this._actionResizeScrollWindow);
+      document.removeEventListener("click", this._handleClickDocument, {
+        capture: true,
+      });
+    }
 
     constructor(props?: ComboboxProps) {
       super();
       this._GUID = generateGUID();
+      this._timeoutID = null;
       const validProps = validateProps(props);
       this._handleClickDocument = this._handleClickDocument.bind(this);
       this._handleScrollMenu = this._handleScrollMenu.bind(this);
+      this._actionResizeScrollWindow =
+        this._actionResizeScrollWindow.bind(this);
       Object.assign(this, validProps);
     }
 
@@ -181,12 +214,12 @@ let exportCombobox;
             </div>
           </div>
           <ul
+            id="${this._GUID}-listbox"
+            popover="manual"
             class="kuc-combobox__group__select-menu"
             role="listbox"
-            id="${this._GUID}-listbox"
             aria-labelledby="${this._GUID}-label"
             aria-hidden="${!this._selectorVisible}"
-            ?hidden="${!this._selectorVisible}"
             @mouseleave="${this._handleMouseLeaveMenu}"
             @mousedown="${this._handleMouseDownMenu}"
           >
@@ -204,23 +237,11 @@ let exportCombobox;
       `;
     }
 
-    firstUpdated() {
-      window.addEventListener("resize", () => {
-        this._actionResizeScrollWindow();
-      });
-
-      window.addEventListener("scroll", () => {
-        this._actionResizeScrollWindow();
-      });
-    }
-
     async updated(changedProperties: PropertyValues) {
       super.updated(changedProperties);
 
       await this.updateComplete;
       if (this._selectorVisible) {
-        this._menuEl.addEventListener("scroll", this._handleScrollMenu);
-        this._setMenuPosition();
         this._scrollToView();
         if (
           this._selectedItemEl === null ||
@@ -230,18 +251,6 @@ let exportCombobox;
         } else {
           this._setHighlightAndActiveDescendantMenu(this._selectedItemEl);
         }
-
-        setTimeout(() => {
-          document.addEventListener("click", this._handleClickDocument, true);
-        }, 1);
-      } else {
-        setTimeout(() => {
-          document.removeEventListener(
-            "click",
-            this._handleClickDocument,
-            true,
-          );
-        }, 1);
       }
     }
 
@@ -482,10 +491,15 @@ let exportCombobox;
 
       this._inputEl.focus();
       this._selectorVisible = true;
+      this._menuEl.showPopover();
+      this._setMenuPosition();
+      this._attachListeners();
     }
 
     private _actionHideMenu() {
       this._selectorVisible = false;
+      this._menuEl.hidePopover();
+      this._detachListeners();
       this._actionRemoveActiveDescendant();
     }
 
@@ -648,112 +662,71 @@ let exportCombobox;
       }
     }
 
-    private _getScrollbarWidthHeight() {
-      const scrollDiv = document.createElement("div");
-      scrollDiv.style.cssText =
-        "overflow: scroll; position: absolute; top: -9999px;";
-      document.body.appendChild(scrollDiv);
-      const scrollbarWidth = scrollDiv.offsetWidth - scrollDiv.clientWidth;
-      const scrollbarHeight = scrollDiv.offsetHeight - scrollDiv.clientHeight;
-      document.body.removeChild(scrollDiv);
-      return { scrollbarWidth, scrollbarHeight };
-    }
-
-    private _getDistanceToggleButton() {
-      const { scrollbarWidth, scrollbarHeight } =
-        this._getScrollbarWidthHeight();
-
-      const isWindowRightScrollbarShow =
-        document.body.scrollHeight > window.innerHeight;
-      const isWindowBottomScrollbarShow =
-        document.body.scrollWidth > window.innerWidth;
-
-      const toTop = this._toggleEl.getBoundingClientRect().top;
-      const toBottom =
-        window.innerHeight -
-        this._toggleEl.getBoundingClientRect().bottom -
-        (isWindowBottomScrollbarShow ? scrollbarHeight : 0);
-      const toLeft = this._toggleEl.getBoundingClientRect().left;
-      const toRight =
-        window.innerWidth -
-        this._toggleEl.getBoundingClientRect().left -
-        (isWindowRightScrollbarShow ? scrollbarWidth : 0);
-
-      return { toTop, toBottom, toLeft, toRight };
-    }
-
-    private _setMenuPositionAboveOrBelow() {
-      this._menuEl.style.height = "auto";
-      this._menuEl.style.bottom = "auto";
-      this._menuEl.style.overflowY = "scroll";
-
-      this._menuEl.style.maxHeight = "none";
-      const menuHeightNoMaxHeight = this._menuEl.getBoundingClientRect().height;
-      this._menuEl.style.maxHeight =
-        "var(--kuc-combobox-menu-max-height, none)";
-      const menuHeightWithMaxHeight =
-        this._menuEl.getBoundingClientRect().height;
-
-      const ERROR_MARGIN = 16;
-      const distanceToggleButton = this._getDistanceToggleButton();
-      if (distanceToggleButton.toBottom >= menuHeightWithMaxHeight) {
-        if (menuHeightNoMaxHeight > menuHeightWithMaxHeight) {
-          this._previousScrollTop &&
-            (this._menuEl.scrollTop = this._previousScrollTop);
-        } else {
-          this._menuEl.style.overflowY = "";
-        }
-        return;
-      }
-
-      if (distanceToggleButton.toBottom < distanceToggleButton.toTop) {
-        // Above
-        const errorHeight = this._errorEl.offsetHeight
-          ? this._errorEl.offsetHeight + ERROR_MARGIN
-          : 0;
-        this._menuEl.style.bottom = `${
-          this._toggleEl.offsetHeight + errorHeight
-        }px`;
-        if (distanceToggleButton.toTop >= menuHeightWithMaxHeight) {
-          if (menuHeightNoMaxHeight > menuHeightWithMaxHeight) {
-            this._previousScrollTop &&
-              (this._menuEl.scrollTop = this._previousScrollTop);
-          } else {
-            this._menuEl.style.overflowY = "";
-          }
-          return;
-        }
-        this._menuEl.style.height = `${distanceToggleButton.toTop}px`;
+    private _setMenuPositionAboveOrBelow(
+      menuEl: HTMLUListElement,
+      toggleEl: HTMLDivElement,
+    ) {
+      const toggleRect = toggleEl.getBoundingClientRect();
+      const spaceAbove = toggleRect.top;
+      const spaceBelow = window.innerHeight - toggleRect.bottom;
+      menuEl.style.maxHeight = "none";
+      const menuHeight = menuEl.getBoundingClientRect().height;
+      let top, maxHeight;
+      if (spaceBelow >= menuHeight) {
+        top = toggleRect.bottom;
+        maxHeight = spaceBelow;
+      } else if (spaceAbove >= menuHeight) {
+        top = toggleRect.top - menuHeight;
+        maxHeight = spaceAbove;
+      } else if (spaceBelow >= spaceAbove) {
+        top = toggleRect.bottom;
+        maxHeight = spaceBelow;
       } else {
-        // Below
-        this._menuEl.style.height = `${distanceToggleButton.toBottom}px`;
+        top = 0;
+        maxHeight = spaceAbove;
       }
-
-      this._previousScrollTop &&
-        (this._menuEl.scrollTop = this._previousScrollTop);
+      const customMaxHeight = parseFloat(
+        getComputedStyle(menuEl).getPropertyValue(
+          "--kuc-dropdown-menu-max-height",
+        ),
+      );
+      if (customMaxHeight && maxHeight > customMaxHeight) {
+        maxHeight = customMaxHeight;
+      }
+      menuEl.style.position = "fixed";
+      menuEl.style.left = `${toggleRect.left}px`;
+      menuEl.style.top = `${top}px`;
+      menuEl.style.maxHeight = `${maxHeight}px`;
+      menuEl.style.overflowY = "auto";
     }
 
-    private _setMenuPositionLeftOrRight() {
-      this._menuEl.style.right = "auto";
-
-      const menuWidth = this._menuEl.getBoundingClientRect().width;
-      const distanceToggleButton = this._getDistanceToggleButton();
-      if (
-        // Right
-        distanceToggleButton.toRight >= menuWidth ||
-        distanceToggleButton.toLeft < menuWidth ||
-        distanceToggleButton.toRight < 0
-      )
-        return;
-
-      // Left
-      const right = this._toggleEl.offsetWidth - distanceToggleButton.toRight;
-      this._menuEl.style.right = right > 0 ? `${right}px` : "0px";
+    private _setMenuPositionLeftOrRight(
+      menuEl: HTMLUListElement,
+      toggleEl: HTMLDivElement,
+    ) {
+      menuEl.style.right = "auto";
+      const menuWidth = menuEl.getBoundingClientRect().width;
+      const buttonRect = toggleEl.getBoundingClientRect();
+      const toRight = window.innerWidth - buttonRect.left;
+      const toLeft = buttonRect.left;
+      if (toRight < menuWidth && toLeft > menuWidth) {
+        menuEl.style.left = "auto";
+        menuEl.style.right = `${window.innerWidth - buttonRect.right}px`;
+      }
     }
 
     private _setMenuPosition() {
-      this._setMenuPositionAboveOrBelow();
-      this._setMenuPositionLeftOrRight();
+      // If the menu or button element is not available, do not proceed
+      if (!this._menuEl || !this._toggleEl) {
+        this._detachListeners();
+        return;
+      }
+      this._setMenuPositionAboveOrBelow(this._menuEl, this._toggleEl);
+      this._setMenuPositionLeftOrRight(this._menuEl, this._toggleEl);
+      // restore previous scroll position
+      if (this._menuEl && this._previousScrollTop) {
+        this._menuEl.scrollTop = this._previousScrollTop;
+      }
     }
 
     private _scrollToView() {
@@ -795,6 +768,28 @@ let exportCombobox;
       this._query = "";
     }
 
+    private _getScrollableAncestors(el: Element): Array<Window | Element> {
+      const targets: Array<Window | Element> = [];
+      let node: Element | null = el.parentElement;
+      const overflowRegex = /(auto|scroll|overlay)/;
+      while (
+        node &&
+        node !== document.body &&
+        node !== document.documentElement
+      ) {
+        const style = getComputedStyle(node);
+        const isScrollable =
+          overflowRegex.test(style.overflowY) ||
+          overflowRegex.test(style.overflowX);
+        if (isScrollable) {
+          targets.push(node);
+        }
+        node = node.parentElement;
+      }
+      targets.push(window);
+      return targets;
+    }
+
     private _getItemElementWhenMouseOverDown(
       eventTarget: HTMLElement,
     ): HTMLLIElement {
@@ -809,6 +804,11 @@ let exportCombobox;
       return this._getItemElementWhenMouseOverDown(
         eventTarget.parentElement as HTMLElement,
       );
+    }
+
+    disconnectedCallback() {
+      this._detachListeners();
+      super.disconnectedCallback && super.disconnectedCallback();
     }
   }
   window.customElements.define("kuc-combobox", KucCombobox);

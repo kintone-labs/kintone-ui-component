@@ -25,14 +25,14 @@ describe("Combobox", () => {
       let menuEl = el.querySelector(
         ".kuc-combobox__group__select-menu",
       ) as HTMLDivElement;
-      expect(menuEl).not.has.attribute("hidden");
+      expect(menuEl.matches(":popover-open")).to.equal(true);
 
       toggleIconButton.click();
       await elementUpdated(container);
       menuEl = el.querySelector(
         ".kuc-combobox__group__select-menu",
       ) as HTMLDivElement;
-      expect(menuEl).has.attribute("hidden");
+      expect(menuEl.matches(":popover-open")).to.equal(false);
     });
 
     it("should hide menu element when clicking document", async () => {
@@ -50,7 +50,7 @@ describe("Combobox", () => {
       let menuEl = el.querySelector(
         ".kuc-combobox__group__select-menu",
       ) as HTMLDivElement;
-      expect(menuEl).not.has.attribute("hidden");
+      expect(menuEl.matches(":popover-open")).to.equal(true);
 
       await aTimeout(10);
       document.body.click();
@@ -58,7 +58,7 @@ describe("Combobox", () => {
       menuEl = el.querySelector(
         ".kuc-combobox__group__select-menu",
       ) as HTMLDivElement;
-      expect(menuEl).has.attribute("hidden");
+      expect(menuEl.matches(":popover-open")).to.equal(false);
     });
 
     it("should not hide menu element when clicking the disabled item", async () => {
@@ -79,7 +79,7 @@ describe("Combobox", () => {
       let menuEl = el.querySelector(
         ".kuc-combobox__group__select-menu",
       ) as HTMLDivElement;
-      expect(menuEl).not.has.attribute("hidden");
+      expect(menuEl.matches(":popover-open")).to.equal(true);
 
       await aTimeout(10);
       const itemsEl = el.querySelectorAll(
@@ -90,7 +90,7 @@ describe("Combobox", () => {
       menuEl = el.querySelector(
         ".kuc-combobox__group__select-menu",
       ) as HTMLDivElement;
-      expect(menuEl).not.has.attribute("hidden");
+      expect(menuEl.matches(":popover-open")).to.equal(true);
     });
 
     it("should be highlight/not highlight when mouseover/mouseleave the item", async () => {
@@ -183,22 +183,22 @@ describe("Combobox", () => {
 
       toggleIconButton.dispatchEvent(new MouseEvent("mouseup"));
       await elementUpdated(el);
-      expect(menuEl.hidden).to.equal(true);
+      expect(menuEl.matches(":popover-open")).to.equal(false);
 
       toggleIconButton.dispatchEvent(new MouseEvent("mousedown"));
       await elementUpdated(el);
-      expect(menuEl.hidden).to.equal(true);
+      expect(menuEl.matches(":popover-open")).to.equal(false);
 
       const toggleInput = el.querySelector(
         ".kuc-combobox__group__toggle__input",
       ) as HTMLInputElement;
       toggleInput.dispatchEvent(new MouseEvent("mouseup"));
       await elementUpdated(el);
-      expect(menuEl.hidden).to.equal(true);
+      expect(menuEl.matches(":popover-open")).to.equal(false);
 
       toggleInput.dispatchEvent(new MouseEvent("mousedown"));
       await elementUpdated(el);
-      expect(menuEl.hidden).to.equal(true);
+      expect(menuEl.matches(":popover-open")).to.equal(false);
     });
 
     it("should open menu when pressing ArrowUp key", async () => {
@@ -216,7 +216,7 @@ describe("Combobox", () => {
         ".kuc-combobox__group__select-menu",
       ) as HTMLUListElement;
 
-      expect(menuEl.hidden).to.equal(false);
+      expect(menuEl.matches(":popover-open")).to.equal(true);
     });
 
     it("should open menu when pressing ArrowDown key", async () => {
@@ -234,7 +234,7 @@ describe("Combobox", () => {
         ".kuc-combobox__group__select-menu",
       ) as HTMLUListElement;
 
-      expect(menuEl.hidden).to.equal(false);
+      expect(menuEl.matches(":popover-open")).to.equal(true);
     });
 
     it("should hide menu when pressing Escape key", async () => {
@@ -252,13 +252,13 @@ describe("Combobox", () => {
         new KeyboardEvent("keydown", { key: "ArrowDown" }),
       );
       await elementUpdated(el);
-      expect(menuEl.hidden).to.equal(false);
+      expect(menuEl.matches(":popover-open")).to.equal(true);
 
       toggleInput.dispatchEvent(
         new KeyboardEvent("keydown", { key: "Escape" }),
       );
       await elementUpdated(el);
-      expect(menuEl.hidden).to.equal(true);
+      expect(menuEl.matches(":popover-open")).to.equal(false);
     });
 
     it('should be highlight prev item when triggered "ArrowUp" keyboard event', async () => {
@@ -617,20 +617,21 @@ describe("Combobox", () => {
     it("should open menu when it can get filter result", async () => {
       const container = new Combobox({
         items: initItems,
-        value: initItems[0].value,
       });
       const el = await fixture(container);
       const toggleInput = el.querySelector(
         ".kuc-combobox__group__toggle__input",
       ) as HTMLInputElement;
+
+      // Simulate user typing "a"
+      toggleInput.value = "a";
       toggleInput.dispatchEvent(new InputEvent("input", { data: "a" }));
-      await fixture(container);
+      await elementUpdated(container);
 
       const menuEl = el.querySelector(
         ".kuc-combobox__group__select-menu",
       ) as HTMLUListElement;
-
-      expect(menuEl.hidden).to.equal(false);
+      expect(menuEl.matches(":popover-open")).to.equal(true);
     });
 
     it('should changed value when pressing "Enter" key', async () => {
@@ -671,11 +672,11 @@ describe("Combobox", () => {
       const menuEl = el.querySelector(
         ".kuc-combobox__group__select-menu",
       ) as HTMLUListElement;
-      expect(menuEl.hidden).to.equal(false);
+      expect(menuEl.matches(":popover-open")).to.equal(true);
 
       toggleInput.dispatchEvent(new KeyboardEvent("keydown", { key: "Tab" }));
       await elementUpdated(el);
-      expect(menuEl.hidden).to.equal(true);
+      expect(menuEl.matches(":popover-open")).to.equal(false);
     });
   });
 });
