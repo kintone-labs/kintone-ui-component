@@ -252,7 +252,7 @@ let exportDropdown;
             </span>
           </button>
           <ul
-            id="${this._GUID}-popover"
+            id="${this._GUID}"
             popover="manual"
             class="kuc-dropdown__group__select-menu"
             role="listbox"
