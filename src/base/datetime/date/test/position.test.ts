@@ -1,4 +1,4 @@
-import { elementUpdated, expect, fixture } from "@open-wc/testing";
+import { aTimeout, elementUpdated, expect, fixture } from "@open-wc/testing";
 
 import { BaseDate } from "../index";
 
@@ -14,7 +14,6 @@ describe("BaseDate", () => {
         ".kuc-base-date__input",
       ) as HTMLInputElement;
 
-      // Open calendar
       inputEl.click();
       await elementUpdated(container);
 
@@ -22,14 +21,11 @@ describe("BaseDate", () => {
         ".kuc-base-date__calendar",
       ) as HTMLElement;
 
-      // Trigger scroll event
       window.dispatchEvent(new Event("scroll"));
 
-      // Wait for requestAnimationFrame
       await new Promise((resolve) => requestAnimationFrame(resolve));
       await elementUpdated(container);
 
-      // Calendar should still be visible and positioned
       const assistiveText = el.querySelector(
         ".kuc-base-date__assistive-text",
       ) as HTMLButtonElement;
@@ -47,7 +43,6 @@ describe("BaseDate", () => {
         ".kuc-base-date__input",
       ) as HTMLInputElement;
 
-      // Open calendar
       inputEl.click();
       await elementUpdated(container);
 
@@ -55,14 +50,11 @@ describe("BaseDate", () => {
         ".kuc-base-date__calendar",
       ) as HTMLElement;
 
-      // Trigger resize event
       window.dispatchEvent(new Event("resize"));
 
-      // Wait for debounce delay (200ms + buffer)
-      await new Promise((resolve) => setTimeout(resolve, 250));
+      await aTimeout(250);
       await elementUpdated(container);
 
-      // Calendar should still be visible and positioned
       const assistiveText = el.querySelector(
         ".kuc-base-date__assistive-text",
       ) as HTMLButtonElement;
@@ -77,13 +69,11 @@ describe("BaseDate", () => {
 
       const el = await fixture(container);
 
-      // Don't open calendar, just trigger scroll
       window.dispatchEvent(new Event("scroll"));
 
       await new Promise((resolve) => requestAnimationFrame(resolve));
       await elementUpdated(container);
 
-      // Calendar should remain closed
       const assistiveText = el.querySelector(
         ".kuc-base-date__assistive-text",
       ) as HTMLButtonElement;
@@ -97,13 +87,11 @@ describe("BaseDate", () => {
 
       const el = await fixture(container);
 
-      // Don't open calendar, just trigger resize
       window.dispatchEvent(new Event("resize"));
 
-      await new Promise((resolve) => setTimeout(resolve, 250));
+      await aTimeout(250);
       await elementUpdated(container);
 
-      // Calendar should remain closed
       const assistiveText = el.querySelector(
         ".kuc-base-date__assistive-text",
       ) as HTMLButtonElement;
@@ -120,21 +108,17 @@ describe("BaseDate", () => {
         ".kuc-base-date__input",
       ) as HTMLInputElement;
 
-      // Open calendar
       inputEl.click();
       await elementUpdated(container);
 
-      // Trigger multiple resize events rapidly
       for (let i = 0; i < 5; i++) {
         window.dispatchEvent(new Event("resize"));
-        await new Promise((resolve) => setTimeout(resolve, 50));
+        await aTimeout(50);
       }
 
-      // Wait for debounce to complete
-      await new Promise((resolve) => setTimeout(resolve, 300));
+      await aTimeout(250);
       await elementUpdated(container);
 
-      // Calendar should still be visible
       const assistiveText = el.querySelector(
         ".kuc-base-date__assistive-text",
       ) as HTMLButtonElement;
@@ -151,20 +135,16 @@ describe("BaseDate", () => {
         ".kuc-base-date__input",
       ) as HTMLInputElement;
 
-      // Open calendar
       inputEl.click();
       await elementUpdated(container);
 
-      // Trigger multiple scroll events rapidly
       for (let i = 0; i < 5; i++) {
         window.dispatchEvent(new Event("scroll"));
       }
 
-      // Wait for RAF
       await new Promise((resolve) => requestAnimationFrame(resolve));
       await elementUpdated(container);
 
-      // Calendar should still be visible
       const assistiveText = el.querySelector(
         ".kuc-base-date__assistive-text",
       ) as HTMLButtonElement;
@@ -181,22 +161,18 @@ describe("BaseDate", () => {
         ".kuc-base-date__input",
       ) as HTMLInputElement;
 
-      // Open calendar
       inputEl.click();
       await elementUpdated(container);
 
-      // Close calendar
       inputEl.click();
       await elementUpdated(container);
 
-      // Trigger events after close - should not cause errors
       window.dispatchEvent(new Event("scroll"));
       window.dispatchEvent(new Event("resize"));
 
-      await new Promise((resolve) => setTimeout(resolve, 300));
+      await aTimeout(250);
       await elementUpdated(container);
 
-      // Calendar should remain closed
       const assistiveText = el.querySelector(
         ".kuc-base-date__assistive-text",
       ) as HTMLButtonElement;
@@ -213,11 +189,9 @@ describe("BaseDate", () => {
         ".kuc-base-date__input",
       ) as HTMLInputElement;
 
-      // Open calendar
       inputEl.click();
       await elementUpdated(container);
 
-      // Remove component from DOM
       el.remove();
 
       let errorThrown = false;
