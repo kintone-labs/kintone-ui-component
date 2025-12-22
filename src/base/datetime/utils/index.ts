@@ -386,43 +386,96 @@ export const getLeftArrowIconSvgTemplate = () => {
     </svg>`;
 };
 
-export function setListBoxPosition(_this: HTMLElement, position: string) {
-  const ulEl = _this.querySelector(
-    ".kuc-base-datetime-listbox__listbox",
-  ) as HTMLUListElement;
-  const distance = calculateDistanceInput(_this);
-  if (!_this.parentElement || !ulEl || !distance) return;
+export const setListBoxPosition = (
+  options: {
+    anchorEl?: HTMLElement;
+    popoverEl?: HTMLElement;
+    popoverHeight?: number;
+    popoverWidth?: number;
+  } = {},
+) => {
+  const { anchorEl, popoverEl } = options;
+  if (!popoverEl || !anchorEl) return;
+  const { popoverHeight, popoverWidth } = options;
+  if (!popoverHeight) return;
+  const toggleRect = anchorEl.getBoundingClientRect();
+  const spaceAbove = toggleRect.top;
+  const spaceBelow = window.innerHeight - toggleRect.bottom;
+  let top: number;
+  let maxHeight: number;
+  // vertical
+  if (spaceBelow >= popoverHeight) {
+    top = toggleRect.bottom;
+    maxHeight = popoverHeight;
+  } else if (spaceAbove >= popoverHeight) {
+    top = toggleRect.top - popoverHeight;
+    maxHeight = popoverHeight;
+  } else if (spaceBelow >= spaceAbove) {
+    top = toggleRect.bottom;
+    maxHeight = spaceBelow;
+  } else {
+    maxHeight = spaceAbove;
+    const visibleHeight = Math.min(popoverHeight || maxHeight, maxHeight);
+    top = Math.max(0, toggleRect.top - visibleHeight);
+  }
 
-  const { inputToBottom, inputToTop } = distance;
-  const listBoxMonthHeight = 360;
-  const listBoxYearHeight = 300;
-  const listBoxHeight =
-    _this.tagName.toLowerCase() === "kuc-base-datetime-header-month"
-      ? listBoxMonthHeight
-      : listBoxYearHeight;
-  const paddingListBox = 18;
-  const parentHeight = _this.parentElement.getBoundingClientRect().height;
-
-  ulEl.style.maxHeight = listBoxHeight + "px";
-  _this.parentElement.style.position = "relative";
-  if (inputToBottom >= listBoxHeight) {
-    ulEl.style.height = listBoxHeight + "px";
-    if (position === "bottom") {
-      ulEl.style.top = parentHeight + "px";
-      return;
+  // horizon
+  let left = toggleRect.left;
+  if (popoverWidth) {
+    if (left > window.innerWidth - popoverWidth) {
+      const spaceRight = window.innerWidth - toggleRect.left;
+      const spaceLeft = toggleRect.right;
+      if (spaceRight < spaceLeft) {
+        left = toggleRect.right - popoverWidth;
+      }
     }
-    ulEl.style.bottom = parentHeight + "px";
-    return;
   }
 
-  if (position === "bottom") {
-    ulEl.style.top = parentHeight + "px";
-    ulEl.style.height = inputToBottom - paddingListBox + "px";
-    return;
+  popoverEl.style.left = `${left}px`;
+  popoverEl.style.top = `${top}px`;
+
+  popoverEl.style.maxHeight = `${Math.floor(maxHeight)}px`;
+  popoverEl.style.overflowY = "auto";
+};
+
+export function measureEl(popoverEl: any) {
+  if (!popoverEl) return { width: 0, height: 0 };
+  const prevPos = popoverEl.style.position;
+  const prevLeft = popoverEl.style.left;
+  const prevTop = popoverEl.style.top;
+  const prevMaxH = popoverEl.style.maxHeight;
+
+  popoverEl.style.position = "fixed";
+  popoverEl.style.left = "-9999px";
+  popoverEl.style.top = "-9999px";
+  popoverEl.style.maxHeight = "none";
+
+  const rect = popoverEl.getBoundingClientRect();
+  const width = rect.width || 0;
+  const height = rect.height || 0;
+
+  popoverEl.style.position = prevPos;
+  popoverEl.style.left = prevLeft;
+  popoverEl.style.top = prevTop;
+  popoverEl.style.maxHeight = prevMaxH;
+  return { width, height };
+}
+export function getScrollableAncestors(el: Element): Array<Window | Element> {
+  const targets: Array<Window | Element> = [];
+  let node: Element | null = el.parentElement;
+  const overflowRegex = /(auto|scroll|overlay)/;
+  while (node && node !== document.body && node !== document.documentElement) {
+    const style = getComputedStyle(node);
+    const isScrollable =
+      overflowRegex.test(style.overflowY) ||
+      overflowRegex.test(style.overflowX);
+    if (isScrollable) {
+      targets.push(node);
+    }
+    node = node.parentElement;
   }
-  ulEl.style.height = inputToTop - paddingListBox + "px";
-  ulEl.style.top = "auto";
-  ulEl.style.bottom = _this.parentElement.getBoundingClientRect().height + "px";
+  targets.push(window);
+  return targets;
 }
 
 export const calculateDistanceInput = (_this: HTMLElement) => {

@@ -63,6 +63,12 @@ input.kuc-mobile-base-date__group__input {
     top: 39px;
     z-index: 1000;
 }
+.kuc-base-mobile-date__calendar[popover] {
+    position: fixed;
+    right: auto;
+    bottom: auto;
+    border: none;
+}
 .kuc-mobile-base-date__group__button {
     position: absolute;
     display: flex;
