@@ -28,7 +28,6 @@ export const SWITCH_CSS = `
     color: #333333;
     vertical-align: top;
     line-height: 1.5;
-    --kuc-switch-slider-height: 32px;
   }
 
   kuc-switch[hidden] {
@@ -39,7 +38,7 @@ export const SWITCH_CSS = `
     border: none;
     padding: 0px;
     height: auto;
-    display: inline-flex;
+    display: flex;
     margin: 0px;
     width: 100%;
     align-items: center;
@@ -67,9 +66,13 @@ export const SWITCH_CSS = `
   }
 
   .kuc-switch__group__label {
-    display: inline-block;
+    display: block;
     white-space: nowrap;
     cursor: pointer;
+  }
+
+  .kuc-switch__group__label[hidden] {
+    display: none;
   }
 
   .kuc-switch__group__label--disabled {
@@ -87,7 +90,7 @@ export const SWITCH_CSS = `
 
   .kuc-switch__group__switch {
     position: relative;
-    display: inline-flex;
+    display: flex;
     align-items: center;
     flex-shrink: 0;
   }
@@ -105,7 +108,7 @@ export const SWITCH_CSS = `
     height: calc(var(--kuc-switch-slider-height, 32px) - 10px);
     left: 5px;
     background-color: #ffffff;
-    transition: left 0.4s ease-in-out;
+    transition: left 0.2s ease-in-out;
     border-radius: 50%;
     cursor: pointer;
   }
@@ -116,9 +119,9 @@ export const SWITCH_CSS = `
 
   .kuc-switch__group__switch__slider {
     position: relative;
-    transition: all 0.4s ease-in-out;
+    transition: background-color 0.2s ease-in-out, padding-left 0.2s ease-in-out, padding-right 0.2s ease-in-out;
     border-radius: calc(var(--kuc-switch-slider-height, 32px) / 2);
-    display: inline-block;
+    display: block;
     cursor: pointer;
     border: none;
     overflow: hidden;
@@ -148,7 +151,8 @@ export const SWITCH_CSS = `
 
   .kuc-switch__group__switch__slider__text {
     font-size: 14px;
-    transition: all 0.4s ease-in-out;
+    color: #ffffff;
+    transition: margin-left 0.2s ease-in-out, margin-right 0.2s ease-in-out;
     pointer-events: none;
     white-space: nowrap;
     text-align: center;
@@ -158,14 +162,12 @@ export const SWITCH_CSS = `
   }
 
   .kuc-switch__group__switch__slider__text--off {
-    color: #666666;
     margin-top: calc(-1 * var(--kuc-switch-slider-height, 32px));
     margin-left: 0;
     margin-right: 0;
   }
 
   .kuc-switch__group__switch__slider__text--on {
-    color: #ffffff;
     margin-left: calc(-100% - var(--kuc-switch-slider-height, 32px));
     margin-right: calc(100% + var(--kuc-switch-slider-height, 32px));
   }

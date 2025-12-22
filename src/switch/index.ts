@@ -25,13 +25,13 @@ let exportSwitch;
   }
 
   class KucSwitch extends KucBase {
+    @property({ type: String }) checkedText = "";
     @property({ type: String, reflect: true, attribute: "class" }) className =
       "";
     @property({ type: String, reflect: true, attribute: "id" }) id = "";
     @property({ type: String }) label = "";
     @property({ type: String }) labelPlacement: SwitchLabelPlacement = "left";
-    @property({ type: String }) textOff = "";
-    @property({ type: String }) textOn = "";
+    @property({ type: String }) unCheckedText = "";
     @property({ type: Boolean }) checked = false;
     @property({ type: Boolean }) disabled = false;
     @property({
@@ -70,11 +70,13 @@ let exportSwitch;
             class="kuc-switch__group__label${this.disabled
               ? " kuc-switch__group__label--disabled"
               : ""}"
-            id="${this._GUID}-label"
             ?hidden="${!this.label}"
             for="${this._GUID}-input"
           >
-            <kuc-base-label .text="${this.label}"></kuc-base-label>
+            <kuc-base-label
+              .text="${this.label}"
+              .guid="${this._GUID}"
+            ></kuc-base-label>
           </label>
           <div class="kuc-switch__group__switch">
             <input
@@ -82,7 +84,7 @@ let exportSwitch;
               id="${this._GUID}-input"
               type="checkbox"
               role="switch"
-              aria-labelledby="${this._GUID}-label"
+              aria-labelledby="${this._GUID}-group"
               aria-describedby="${this._GUID}-text-${this.checked
                 ? "on"
                 : "off"}"
@@ -97,12 +99,12 @@ let exportSwitch;
               <span
                 id="${this._GUID}-text-on"
                 class="kuc-switch__group__switch__slider__text kuc-switch__group__switch__slider__text--on"
-                >${this.textOn}</span
+                >${this.checkedText}</span
               >
               <span
                 id="${this._GUID}-text-off"
                 class="kuc-switch__group__switch__slider__text kuc-switch__group__switch__slider__text--off"
-                >${this.textOff}</span
+                >${this.unCheckedText}</span
               >
             </label>
             <label

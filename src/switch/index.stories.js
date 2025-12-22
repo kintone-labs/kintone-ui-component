@@ -14,8 +14,8 @@ export default {
         type: "select",
       },
     },
-    textOff: { name: "textOff" },
-    textOn: { name: "textOn" },
+    checkedText: { name: "checkedText" },
+    unCheckedText: { name: "unCheckedText" },
     checked: { name: "checked" },
     disabled: { name: "disabled" },
     visible: { name: "visible" },
@@ -38,8 +38,8 @@ const template = (args) => {
       .id="${args.id}"
       .label="${args.label}"
       .labelPlacement="${args.labelPlacement}"
-      .textOff="${args.textOff}"
-      .textOn="${args.textOn}"
+      .checkedText="${args.checkedText}"
+      .unCheckedText="${args.unCheckedText}"
       .checked="${args.checked}"
       .disabled="${args.disabled}"
       .visible="${args.visible}"
@@ -54,8 +54,8 @@ Base.args = {
   id: "sample-id",
   label: "Switch",
   labelPlacement: "left",
-  textOff: "Off",
-  textOn: "On",
+  checkedText: "On",
+  unCheckedText: "Off",
   checked: false,
   disabled: false,
   visible: true,
