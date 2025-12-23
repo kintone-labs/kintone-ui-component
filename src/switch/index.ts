@@ -1,5 +1,5 @@
 import { html } from "lit";
-import { property, query } from "lit/decorators.js";
+import { property } from "lit/decorators.js";
 
 import { visiblePropConverter } from "../base/converter";
 import {
@@ -42,9 +42,6 @@ let exportSwitch;
     })
     visible = true;
 
-    @query(".kuc-switch__group__switch__input")
-    private _switchInputEl!: HTMLInputElement;
-
     private _GUID: string;
 
     private _validLabelPlacement: SwitchLabelPlacement[] = [
@@ -86,24 +83,24 @@ let exportSwitch;
               role="switch"
               aria-labelledby="${this._GUID}-group"
               aria-describedby="${this._GUID}-text-${this.checked
-                ? "on"
-                : "off"}"
+                ? "checked"
+                : "unchecked"}"
               .checked="${this.checked}"
               ?disabled="${this.disabled}"
               @change="${this._handleChangeInput}"
             />
             <label
-              class="kuc-switch__group__switch__slider"
+              class="kuc-switch__group__switch__track"
               for="${this._GUID}-input"
             >
               <span
-                id="${this._GUID}-text-on"
-                class="kuc-switch__group__switch__slider__text kuc-switch__group__switch__slider__text--on"
+                id="${this._GUID}-text-checked"
+                class="kuc-switch__group__switch__track__text kuc-switch__group__switch__track__text--checked"
                 >${this.checkedText}</span
               >
               <span
-                id="${this._GUID}-text-off"
-                class="kuc-switch__group__switch__slider__text kuc-switch__group__switch__slider__text--off"
+                id="${this._GUID}-text-unchecked"
+                class="kuc-switch__group__switch__track__text kuc-switch__group__switch__track__text--unchecked"
                 >${this.unCheckedText}</span
               >
             </label>

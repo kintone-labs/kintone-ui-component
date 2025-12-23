@@ -81,7 +81,7 @@ export const SWITCH_CSS = `
 
   .kuc-switch__group--top .kuc-switch__group__label,
   .kuc-switch__group--bottom .kuc-switch__group__label {
-    padding-left: 4px;
+    padding-left: 3px;
   }
 
   .kuc-switch__group__label .kuc-base-label__text {
@@ -104,9 +104,9 @@ export const SWITCH_CSS = `
 
   .kuc-switch__group__switch__handle {
     position: absolute;
-    width: calc(var(--kuc-switch-slider-height, 32px) - 10px);
-    height: calc(var(--kuc-switch-slider-height, 32px) - 10px);
-    left: 5px;
+    width: calc(var(--kuc-switch-track-height, 28px) - 2 * 4px);
+    height: calc(var(--kuc-switch-track-height, 28px) - 2 * 4px);
+    left: 4px;
     background-color: #ffffff;
     transition: left 0.2s ease-in-out;
     border-radius: 50%;
@@ -114,42 +114,42 @@ export const SWITCH_CSS = `
   }
 
   .kuc-switch__group__switch__input:checked ~ .kuc-switch__group__switch__handle {
-    left: calc(100% - var(--kuc-switch-slider-height, 32px) + 5px);
+    left: calc(100% - var(--kuc-switch-track-height, 28px) + 4px);
   }
 
-  .kuc-switch__group__switch__slider {
+  .kuc-switch__group__switch__track {
     position: relative;
     transition: background-color 0.2s ease-in-out, padding-left 0.2s ease-in-out, padding-right 0.2s ease-in-out;
-    border-radius: calc(var(--kuc-switch-slider-height, 32px) / 2);
+    border-radius: calc(var(--kuc-switch-track-height, 28px) / 2);
     display: block;
     cursor: pointer;
     border: none;
     overflow: hidden;
     min-width: 16px;
     background-color: #b5b5b5;
-    padding-left: var(--kuc-switch-slider-height, 32px);
+    padding-left: var(--kuc-switch-track-height, 28px);
     padding-right: 10px;
   }
 
-  .kuc-switch__group__switch__input:checked ~ .kuc-switch__group__switch__slider {
+  .kuc-switch__group__switch__input:checked ~ .kuc-switch__group__switch__track {
     background-color: #3498db;
     padding-left: 10px;
-    padding-right: var(--kuc-switch-slider-height, 32px);
+    padding-right: var(--kuc-switch-track-height, 28px);
   }
 
-  .kuc-switch__group__switch__input:focus-visible ~ .kuc-switch__group__switch__slider {
+  .kuc-switch__group__switch__input:focus-visible ~ .kuc-switch__group__switch__track {
     outline: 2px solid #3498db;
     outline-offset: 1px;
     transition: outline-offset 0s, outline 0s;
   }
 
-  .kuc-switch__group__switch__input:disabled ~ .kuc-switch__group__switch__slider,
+  .kuc-switch__group__switch__input:disabled ~ .kuc-switch__group__switch__track,
   .kuc-switch__group__switch__input:disabled ~ .kuc-switch__group__switch__handle{
     opacity: 0.5;
     cursor: not-allowed;
   }
 
-  .kuc-switch__group__switch__slider__text {
+  .kuc-switch__group__switch__track__text {
     font-size: 14px;
     color: #ffffff;
     transition: margin-left 0.2s ease-in-out, margin-right 0.2s ease-in-out;
@@ -157,27 +157,27 @@ export const SWITCH_CSS = `
     white-space: nowrap;
     text-align: center;
     display: block;
-    height: var(--kuc-switch-slider-height, 32px);
-    line-height: var(--kuc-switch-slider-height, 32px);
+    height: var(--kuc-switch-track-height, 28px);
+    line-height: var(--kuc-switch-track-height, 28px);
   }
 
-  .kuc-switch__group__switch__slider__text--off {
-    margin-top: calc(-1 * var(--kuc-switch-slider-height, 32px));
+  .kuc-switch__group__switch__track__text--unchecked {
+    margin-top: calc(-1 * var(--kuc-switch-track-height, 28px));
     margin-left: 0;
     margin-right: 0;
   }
 
-  .kuc-switch__group__switch__slider__text--on {
-    margin-left: calc(-100% - var(--kuc-switch-slider-height, 32px));
-    margin-right: calc(100% + var(--kuc-switch-slider-height, 32px));
+  .kuc-switch__group__switch__track__text--checked {
+    margin-left: calc(-100% - var(--kuc-switch-track-height, 28px));
+    margin-right: calc(100% + var(--kuc-switch-track-height, 28px));
   }
 
-  .kuc-switch__group__switch__input:checked ~ .kuc-switch__group__switch__slider .kuc-switch__group__switch__slider__text--off {
-    margin-left: calc(100% + var(--kuc-switch-slider-height, 32px));
-    margin-right: calc(-100% - var(--kuc-switch-slider-height, 32px));
+  .kuc-switch__group__switch__input:checked ~ .kuc-switch__group__switch__track .kuc-switch__group__switch__track__text--unchecked {
+    margin-left: calc(100% + var(--kuc-switch-track-height, 28px));
+    margin-right: calc(-100% - var(--kuc-switch-track-height, 28px));
   }
 
-  .kuc-switch__group__switch__input:checked ~ .kuc-switch__group__switch__slider .kuc-switch__group__switch__slider__text--on {
+  .kuc-switch__group__switch__input:checked ~ .kuc-switch__group__switch__track .kuc-switch__group__switch__track__text--checked {
     margin-left: 0;
     margin-right: 0;
   }

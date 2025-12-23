@@ -50,13 +50,13 @@ const template = (args) => {
 
 export const Base = template.bind({});
 Base.args = {
-  className: "sample-class",
-  id: "sample-id",
   label: "Switch",
   labelPlacement: "left",
-  checkedText: "On",
-  unCheckedText: "Off",
+  checkedText: "ON",
+  unCheckedText: "OFF",
   checked: false,
+  className: "options-class",
+  id: "options-id",
   disabled: false,
   visible: true,
 };

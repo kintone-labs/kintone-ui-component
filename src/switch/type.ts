@@ -1,5 +1,3 @@
-import { PropertyValues } from "lit";
-
 import { KucBase } from "../base/kuc-base";
 
 export declare type SwitchLabelPlacement = "top" | "bottom" | "left" | "right";
@@ -27,7 +25,5 @@ export declare class Switch extends KucBase {
   disabled: boolean;
   visible: boolean;
   constructor(props?: SwitchProps);
-  shouldUpdate(changedProperties: PropertyValues): boolean;
-  willUpdate(changedProperties: PropertyValues): void;
   render(): import("lit").TemplateResult<1>;
 }
