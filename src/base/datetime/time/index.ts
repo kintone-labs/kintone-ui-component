@@ -205,7 +205,7 @@ export class BaseTime extends KucBase {
     event.preventDefault();
     if (this._inputFocusEl) return;
 
-    this._listBoxVisible = false;
+    this._closeListBox();
   }
 
   private _toggleDisabledGroup() {
@@ -284,8 +284,8 @@ export class BaseTime extends KucBase {
     if (this._listBoxVisible) return false;
 
     this._valueForReset = this.value;
+    this._openListBox();
     this._doFocusListBox = true;
-    this._listBoxVisible = true;
     this._inputGroupEl.classList.remove("kuc-base-time__group--focus");
     return true;
   }
