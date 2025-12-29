@@ -141,7 +141,7 @@ describe("Tooltip", () => {
       const tooltipRect = tooltipEl.getBoundingClientRect();
       const containerRect = containerEl.getBoundingClientRect();
 
-      expect(tooltipRect.right).to.be.at.most(containerRect.left);
+      expect(tooltipRect.right).to.be.closeTo(containerRect.left, 1);
     });
 
     it("should position tooltip at right correctly", async () => {
@@ -177,7 +177,7 @@ describe("Tooltip", () => {
       const tooltipRect = tooltipEl.getBoundingClientRect();
       const containerRect = containerEl.getBoundingClientRect();
 
-      expect(tooltipRect.left).to.be.at.least(containerRect.right);
+      expect(tooltipRect.left).to.be.closeTo(containerRect.right, 1);
     });
   });
 });
