@@ -24,9 +24,6 @@ export const TOOLTIP_CSS = `
     font-family: "微軟正黑體","Microsoft JhengHei","新宋体",NSimSun,STHeiti,
       Hei,"Heiti SC",sans-serif;
   }
-  .kuc-tooltip__group__title--hidden {
-    display: none;
-  }
   .kuc-tooltip__group {
     position: relative;
     display: inline-block;
@@ -54,46 +51,16 @@ export const TOOLTIP_CSS = `
     background-color: var(--kuc-tooltip-background-color, #000000);
     font-size: var(--kuc-tooltip-font-size);
     border-radius: 6px;
-    box-shadow: 0 6px 16px 0 rgb(0 0 0 / 8%), 0 3px 6px -4px rgb(0 0 0 / 12%), 0 9px 28px 8px rgb(0 0 0 / 5%);
     box-sizing: border-box;
   }
-  .kuc-tooltip__group__title {
-    position: absolute;
-    top: calc(100% + calc(0.5em * 2));
-    left: 50%;
-    transform: translateX(-50%);
+  .kuc-tooltip__group__title[popover] {
     margin: 0;
+    padding: 0;
+    background-color: transparent;
+    border-width: 0;
     border-radius: 0.25em;
     color: var(--kuc-tooltip-color, #ffffff);
     width: max-content;
-    z-index: 1000;
-  }
-  .kuc-tooltip__group.kuc-tooltip__group--top > .kuc-tooltip__group__title {
-    top: unset;
-    bottom: 100%;
-  }
-  .kuc-tooltip__group.kuc-tooltip__group--bottom > .kuc-tooltip__group__title {
-    width: max-content;
-    top: auto;
-  }
-  .kuc-tooltip__group.kuc-tooltip__group--left > .kuc-tooltip__group__title {
-    width: max-content;
-    height: fit-content;
-    margin: auto 0;
-    right: 100%;
-    left: auto;
-    top: 0;
-    bottom: 0;
-    transform: translateX(0);
-  }
-  .kuc-tooltip__group.kuc-tooltip__group--right > .kuc-tooltip__group__title {
-    width: max-content;
-    height: fit-content;
-    margin: auto 0;
-    left: 100%;
-    top: 0;
-    bottom: 0;
-    transform: translateX(0);
   }
   .kuc-tooltip__group .kuc-tooltip__group__title__wrapper__arrow {
     border: 0.5em solid transparent;
@@ -119,6 +86,12 @@ export const TOOLTIP_CSS = `
     bottom: 0;
     right: 100%;
     left: auto;
+  }
+  .kuc-tooltip__group.kuc-tooltip__group--left > .kuc-tooltip__group__title,
+  .kuc-tooltip__group.kuc-tooltip__group--right > .kuc-tooltip__group__title {
+    width: max-content;
+    height: fit-content;
+    margin: auto 0;
   }
   .kuc-tooltip__group .kuc-tooltip__group__title__wrapper {
     display: flex;
