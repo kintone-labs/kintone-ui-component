@@ -1,5 +1,9 @@
 import { KucBase } from "../base/kuc-base";
 
+export declare type SwitchChangeEventDetail = {
+  checked: boolean;
+};
+
 export declare type SwitchLabelPlacement = "top" | "bottom" | "left" | "right";
 
 export declare type SwitchProps = {

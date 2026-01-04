@@ -12,7 +12,11 @@ import { BaseLabel } from "../base/label";
 import { validateProps } from "../base/validator";
 
 import { SWITCH_CSS } from "./style";
-import { SwitchLabelPlacement, SwitchProps } from "./type";
+import {
+  SwitchChangeEventDetail,
+  SwitchLabelPlacement,
+  SwitchProps,
+} from "./type";
 
 export { BaseLabel };
 
@@ -117,7 +121,7 @@ let exportSwitch;
       event.stopPropagation();
       const inputEl = event.target as HTMLInputElement;
       this.checked = inputEl.checked;
-      const detail = { checked: this.checked };
+      const detail: SwitchChangeEventDetail = { checked: this.checked };
       dispatchCustomEvent(this, "change", detail);
     }
 
