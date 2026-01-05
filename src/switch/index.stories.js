@@ -60,3 +60,16 @@ Base.args = {
   disabled: false,
   visible: true,
 };
+
+export const DefaultValue = template.bind({});
+DefaultValue.args = {
+  label: "",
+  labelPlacement: "left",
+  checkedText: "",
+  unCheckedText: "",
+  checked: false,
+  className: "",
+  id: "",
+  disabled: false,
+  visible: true,
+};

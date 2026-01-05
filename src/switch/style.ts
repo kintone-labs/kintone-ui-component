@@ -125,10 +125,10 @@ export const SWITCH_CSS = `
     cursor: pointer;
     border: none;
     overflow: hidden;
-    min-width: 16px;
     background-color: #b5b5b5;
     padding-left: var(--kuc-switch-track-height, 28px);
     padding-right: 10px;
+    box-sizing: border-box;
   }
 
   .kuc-switch__group__switch__input:checked ~ .kuc-switch__group__switch__track {
@@ -159,6 +159,7 @@ export const SWITCH_CSS = `
     display: block;
     height: var(--kuc-switch-track-height, 28px);
     line-height: var(--kuc-switch-track-height, 28px);
+    min-width: 16px;
   }
 
   .kuc-switch__group__switch__track__text--unchecked {
