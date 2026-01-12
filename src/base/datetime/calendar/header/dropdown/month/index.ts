@@ -39,7 +39,7 @@ export class BaseDateTimeHeaderMonth extends KucBase {
 
   private _scrollTargets: Array<Window | Element> = [];
 
-  private _listBoxMaxHeight = 360;
+  private _listBoxMaxHeight = 378;
 
   disconnectedCallback() {
     this._detachListeners();
