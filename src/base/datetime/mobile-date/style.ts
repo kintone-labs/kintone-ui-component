@@ -68,6 +68,7 @@ input.kuc-mobile-base-date__group__input {
     right: auto;
     bottom: auto;
     border: none;
+    padding: 0;
 }
 .kuc-mobile-base-date__group__button {
     position: absolute;
