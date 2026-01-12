@@ -131,6 +131,7 @@ let exportCombobox;
       const validProps = validateProps(props);
       this._handleClickDocument = this._handleClickDocument.bind(this);
       this._handleScrollMenu = this._handleScrollMenu.bind(this);
+      this._setMenuPosition = this._setMenuPosition.bind(this);
       this._actionResizeScrollWindow =
         this._actionResizeScrollWindow.bind(this);
       Object.assign(this, validProps);
@@ -708,10 +709,16 @@ let exportCombobox;
       const menuWidth = menuEl.getBoundingClientRect().width;
       const buttonRect = toggleEl.getBoundingClientRect();
       const toRight = window.innerWidth - buttonRect.left;
-      const toLeft = buttonRect.left;
-      if (toRight < menuWidth && toLeft > menuWidth) {
+      if (toRight < menuWidth) {
         menuEl.style.left = "auto";
-        menuEl.style.right = `${window.innerWidth - buttonRect.right}px`;
+        if (
+          window.innerWidth < buttonRect.right &&
+          window.innerWidth > buttonRect.left
+        ) {
+          menuEl.style.right = "0px";
+        } else {
+          menuEl.style.right = `${window.innerWidth - buttonRect.right}px`;
+        }
       }
     }
 
