@@ -3,7 +3,7 @@ import { expect, fixture } from "@open-wc/testing";
 import { Switch } from "../index";
 
 describe("Switch", () => {
-  describe("unCheckedText", () => {
+  describe("labelPlacement", () => {
     it("should be display in left when not assigned in constructor", async () => {
       const container = new Switch();
       const el = await fixture(container);

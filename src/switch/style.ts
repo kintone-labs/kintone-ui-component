@@ -144,7 +144,7 @@ export const SWITCH_CSS = `
   }
 
   .kuc-switch__group__switch__input:disabled ~ .kuc-switch__group__switch__track,
-  .kuc-switch__group__switch__input:disabled ~ .kuc-switch__group__switch__handle{
+  .kuc-switch__group__switch__input:disabled ~ .kuc-switch__group__switch__handle {
     opacity: 0.5;
     cursor: not-allowed;
   }
