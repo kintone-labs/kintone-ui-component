@@ -681,10 +681,16 @@ let exportDropdown;
       const menuWidth = menuEl.getBoundingClientRect().width;
       const buttonRect = buttonEl.getBoundingClientRect();
       const toRight = window.innerWidth - buttonRect.left;
-      const toLeft = buttonRect.left;
-      if (toRight < menuWidth && toLeft > menuWidth) {
+      if (toRight < menuWidth) {
         menuEl.style.left = "auto";
-        menuEl.style.right = `${window.innerWidth - buttonRect.right}px`;
+        if (
+          window.innerWidth < buttonRect.right &&
+          window.innerWidth > buttonRect.left
+        ) {
+          menuEl.style.right = "0px";
+        } else {
+          menuEl.style.right = `${window.innerWidth - buttonRect.right}px`;
+        }
       }
     }
 
