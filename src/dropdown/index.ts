@@ -641,35 +641,49 @@ let exportDropdown;
     ) {
       const buttonRect = buttonEl.getBoundingClientRect();
       const spaceAbove = buttonRect.top;
-      const spaceBelow = window.innerHeight - buttonRect.bottom;
+      let viewportHeight = window.innerHeight;
+      if (window.innerHeight > document.documentElement.clientHeight) {
+        viewportHeight = document.documentElement.clientHeight;
+      }
+      const spaceBelow = viewportHeight - buttonRect.bottom;
+
+      menuEl.style.height = "auto";
       menuEl.style.maxHeight = "none";
-      const menuHeight = menuEl.getBoundingClientRect().height;
-      let top, maxHeight;
-      if (spaceBelow >= menuHeight) {
+      menuEl.style.top = "auto";
+      menuEl.style.bottom = "auto";
+      const naturalMenuHeight = menuEl.getBoundingClientRect().height;
+
+      menuEl.style.maxHeight = "var(--kuc-dropdown-menu-max-height, none)";
+      const computedMaxHeight = getComputedStyle(menuEl).maxHeight;
+
+      let customMaxHeight: number | undefined;
+      if (computedMaxHeight && computedMaxHeight !== "none") {
+        customMaxHeight = parseFloat(computedMaxHeight);
+      }
+      const effectiveMenuHeight = customMaxHeight
+        ? Math.min(naturalMenuHeight, customMaxHeight)
+        : naturalMenuHeight;
+
+      let top, bottom, height;
+
+      if (spaceBelow >= effectiveMenuHeight) {
         top = buttonRect.bottom;
-        maxHeight = spaceBelow;
-      } else if (spaceAbove >= menuHeight) {
-        top = buttonRect.top - menuHeight;
-        maxHeight = spaceAbove;
+        height = effectiveMenuHeight;
+      } else if (spaceAbove >= effectiveMenuHeight) {
+        bottom = viewportHeight - buttonRect.top;
+        height = effectiveMenuHeight;
       } else if (spaceBelow >= spaceAbove) {
         top = buttonRect.bottom;
-        maxHeight = spaceBelow;
+        height = spaceBelow;
       } else {
-        top = 0;
-        maxHeight = spaceAbove;
-      }
-      const customMaxHeight = parseFloat(
-        getComputedStyle(menuEl).getPropertyValue(
-          "--kuc-dropdown-menu-max-height",
-        ),
-      );
-      if (customMaxHeight && maxHeight > customMaxHeight) {
-        maxHeight = customMaxHeight;
+        bottom = viewportHeight - buttonRect.top;
+        height = spaceAbove;
       }
       menuEl.style.position = "fixed";
       menuEl.style.left = `${buttonRect.left}px`;
-      menuEl.style.top = `${top}px`;
-      menuEl.style.maxHeight = `${maxHeight}px`;
+      menuEl.style.top = top !== undefined ? `${top}px` : "auto";
+      menuEl.style.bottom = bottom !== undefined ? `${bottom}px` : "auto";
+      menuEl.style.height = `${height}px`;
       menuEl.style.overflowY = "auto";
     }
 
@@ -680,16 +694,20 @@ let exportDropdown;
       menuEl.style.right = "auto";
       const menuWidth = menuEl.getBoundingClientRect().width;
       const buttonRect = buttonEl.getBoundingClientRect();
-      const toRight = window.innerWidth - buttonRect.left;
+      let viewportWidth = window.innerWidth;
+      if (window.innerWidth > document.documentElement.clientWidth) {
+        viewportWidth = document.documentElement.clientWidth;
+      }
+      const toRight = viewportWidth - buttonRect.left;
       if (toRight < menuWidth) {
         menuEl.style.left = "auto";
         if (
-          window.innerWidth < buttonRect.right &&
-          window.innerWidth > buttonRect.left
+          viewportWidth < buttonRect.right &&
+          viewportWidth > buttonRect.left
         ) {
           menuEl.style.right = "0px";
         } else {
-          menuEl.style.right = `${window.innerWidth - buttonRect.right}px`;
+          menuEl.style.right = `${viewportWidth - buttonRect.right}px`;
         }
       }
     }

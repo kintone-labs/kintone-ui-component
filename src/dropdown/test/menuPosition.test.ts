@@ -93,9 +93,10 @@ describe("Dropdown", () => {
 
       expect(menuEl.style.position).to.equal("fixed");
       const toggleRect = toggle.getBoundingClientRect();
-      const menuTop = parseInt(menuEl.style.top, 10);
+      const menuRect = menuEl.getBoundingClientRect();
 
-      expect(menuTop).to.be.lessThan(toggleRect.top);
+      expect(menuRect.bottom).to.be.at.most(toggleRect.top);
+      expect(menuRect.top).to.be.lessThan(toggleRect.top);
 
       document.body.removeChild(el);
     });
@@ -129,8 +130,85 @@ describe("Dropdown", () => {
       expect(menuEl.style.position).to.equal("fixed");
       expect(menuEl.style.overflowY).to.equal("auto");
 
-      const maxHeight = parseInt(menuEl.style.maxHeight, 10);
-      expect(maxHeight).to.be.greaterThan(0);
+      const height = parseInt(menuEl.style.height, 10);
+      expect(height).to.be.greaterThan(0);
+
+      expect(menuEl.style.maxHeight).to.equal(
+        "var(--kuc-dropdown-menu-max-height, none)",
+      );
+
+      document.body.removeChild(el);
+    });
+
+    it("Show menu to the left when there is not enough space on the right", async () => {
+      const container = new Dropdown({
+        items: initItems,
+        value: initItems[0].value,
+      });
+      const el = await fixture(container);
+
+      // Position dropdown near the right edge of viewport
+      (el as HTMLElement).style.position = "fixed";
+      (el as HTMLElement).style.right = "10px";
+      document.body.appendChild(el);
+
+      const toggle = el.querySelector(
+        ".kuc-dropdown__group__toggle",
+      ) as HTMLButtonElement;
+
+      toggle.click();
+      await elementUpdated(container);
+      const menuEl = el.querySelector(
+        ".kuc-dropdown__group__select-menu",
+      ) as HTMLDivElement;
+
+      expect(menuEl.style.position).to.equal("fixed");
+      // Menu should use right positioning when space on right is insufficient
+      expect(menuEl.style.left).to.equal("auto");
+      expect(menuEl.style.right).to.not.equal("auto");
+
+      document.body.removeChild(el);
+    });
+
+    it("Show menu with right:0px when button is partially outside viewport", async () => {
+      const container = new Dropdown({
+        items: initItems,
+        value: initItems[0].value,
+      });
+      const el = await fixture(container);
+
+      // Position dropdown so button extends beyond viewport width
+      (el as HTMLElement).style.position = "fixed";
+      (el as HTMLElement).style.left = `${window.innerWidth - 50}px`;
+      document.body.appendChild(el);
+
+      const toggle = el.querySelector(
+        ".kuc-dropdown__group__toggle",
+      ) as HTMLButtonElement;
+
+      toggle.click();
+      await elementUpdated(container);
+      const menuEl = el.querySelector(
+        ".kuc-dropdown__group__select-menu",
+      ) as HTMLDivElement;
+
+      const buttonRect = toggle.getBoundingClientRect();
+      const viewportWidth =
+        window.innerWidth > document.documentElement.clientWidth
+          ? document.documentElement.clientWidth
+          : window.innerWidth;
+
+      if (
+        viewportWidth < buttonRect.right &&
+        viewportWidth > buttonRect.left
+      ) {
+        // Button is partially outside, menu should be at right edge
+        expect(menuEl.style.right).to.equal("0px");
+      } else {
+        // Button is fully inside, menu should align with button right edge
+        const expectedRight = viewportWidth - buttonRect.right;
+        expect(menuEl.style.right).to.equal(`${expectedRight}px`);
+      }
 
       document.body.removeChild(el);
     });
