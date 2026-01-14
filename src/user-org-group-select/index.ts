@@ -274,7 +274,7 @@ let exportUserOrgGroupSelect;
     async updated(changedProperties: PropertyValues) {
       super.updated(changedProperties);
       await this.updateComplete;
-      if (changedProperties.has("value") || changedProperties.has("items")) {
+      if (changedProperties.has("value")) {
         this._initializeSelectedValues();
       }
       if (this._selectorVisible) {
