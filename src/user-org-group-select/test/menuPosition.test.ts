@@ -117,8 +117,10 @@ describe("UserOrgGroupSelect", () => {
       await aTimeout(10);
       expect(menuEl.style.position).to.equal("fixed");
       const toggleRect = toggleEl.getBoundingClientRect();
-      const menuTop = parseInt(menuEl.style.top, 10);
-      expect(menuTop).to.be.lessThan(toggleRect.top);
+      const menuRect = menuEl.getBoundingClientRect();
+
+      expect(menuRect.bottom).to.be.at.most(toggleRect.top);
+      expect(menuRect.top).to.be.lessThan(toggleRect.top);
 
       document.body.removeChild(el);
     });
@@ -153,8 +155,13 @@ describe("UserOrgGroupSelect", () => {
       expect(menuEl.style.position).to.equal("fixed");
       expect(menuEl.style.overflowY).to.equal("auto");
 
-      const maxHeight = parseInt(menuEl.style.maxHeight, 10);
-      expect(maxHeight).to.be.greaterThan(0);
+      const height = parseInt(menuEl.style.height, 10);
+      expect(height).to.be.greaterThan(0);
+
+      // maxHeight should preserve CSS variable for custom styling
+      expect(menuEl.style.maxHeight).to.equal(
+        "var(--kuc-user-org-group-select-menu-max-height, none)",
+      );
 
       document.body.removeChild(el);
     });

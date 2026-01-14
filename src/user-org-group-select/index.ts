@@ -567,8 +567,10 @@ let exportUserOrgGroupSelect;
     }
 
     private _setMenuPosition() {
-      this._setMenuPositionAboveOrBelow();
-      this._setMenuPositionLeftOrRight();
+      if (!this._menuEl || !this._toggleEl) {
+        return;
+      }
+      this._setMenuPositionAboveOrBelow(this._menuEl, this._toggleEl);
     }
 
     private _handleClickRemoveSelectedItem(event: Event) {
@@ -609,60 +611,62 @@ let exportUserOrgGroupSelect;
       dispatchCustomEvent(this, "click-picker-icon", clickIconEventDetail);
     }
 
-    private _setMenuPositionAboveOrBelow() {
-      const toggleRect = this._toggleEl.getBoundingClientRect();
+    private _setMenuPositionAboveOrBelow(
+      menuEl: HTMLUListElement,
+      toggleEl: HTMLDivElement,
+    ) {
+      const toggleRect = toggleEl.getBoundingClientRect();
       const spaceAbove = toggleRect.top;
-      const spaceBelow = window.innerHeight - toggleRect.bottom;
 
-      this._menuEl.style.maxHeight = "none";
-      const menuHeight = this._menuEl.getBoundingClientRect().height;
+      let viewportHeight = window.innerHeight;
+      if (window.innerHeight > document.documentElement.clientHeight) {
+        viewportHeight = document.documentElement.clientHeight;
+      }
+      const spaceBelow = viewportHeight - toggleRect.bottom;
 
-      let top, maxHeight;
-      if (spaceBelow >= menuHeight) {
+      menuEl.style.height = "auto";
+      menuEl.style.maxHeight = "none";
+      menuEl.style.top = "auto";
+      menuEl.style.bottom = "auto";
+      const naturalMenuHeight = menuEl.getBoundingClientRect().height;
+
+      menuEl.style.maxHeight =
+        "var(--kuc-user-org-group-select-menu-max-height, none)";
+      const computedMaxHeight = getComputedStyle(menuEl).maxHeight;
+
+      let customMaxHeight: number | undefined;
+      if (computedMaxHeight && computedMaxHeight !== "none") {
+        customMaxHeight = parseFloat(computedMaxHeight);
+      }
+      const effectiveMenuHeight = customMaxHeight
+        ? Math.min(naturalMenuHeight, customMaxHeight)
+        : naturalMenuHeight;
+
+      let top, bottom, height;
+
+      if (spaceBelow >= effectiveMenuHeight) {
         top = toggleRect.bottom;
-        maxHeight = spaceBelow;
-      } else if (spaceAbove >= menuHeight) {
-        top = toggleRect.top - menuHeight;
-        maxHeight = spaceAbove;
+        height = effectiveMenuHeight;
+      } else if (spaceAbove >= effectiveMenuHeight) {
+        bottom = viewportHeight - toggleRect.top;
+        height = effectiveMenuHeight;
       } else if (spaceBelow >= spaceAbove) {
         top = toggleRect.bottom;
-        maxHeight = spaceBelow;
+        height = spaceBelow;
       } else {
-        top = 0;
-        maxHeight = spaceAbove;
+        bottom = viewportHeight - toggleRect.top;
+        height = spaceAbove;
       }
+      menuEl.style.position = "fixed";
+      menuEl.style.left = `${toggleRect.left}px`;
+      menuEl.style.top = top !== undefined ? `${top}px` : "auto";
+      menuEl.style.bottom = bottom !== undefined ? `${bottom}px` : "auto";
+      menuEl.style.height = `${height}px`;
+      menuEl.style.overflowY = "auto";
+      menuEl.style.overflowX = "hidden";
 
-      const customMaxHeight = parseFloat(
-        getComputedStyle(this._menuEl).getPropertyValue(
-          "--kuc-user-org-group-select-menu-max-height",
-        ),
-      );
-      if (customMaxHeight && maxHeight > customMaxHeight) {
-        maxHeight = customMaxHeight;
-      }
-
-      this._menuEl.style.position = "fixed";
-      this._menuEl.style.left = `${toggleRect.left}px`;
-      this._menuEl.style.top = `${top}px`;
-      this._menuEl.style.maxHeight = `${maxHeight}px`;
-      this._menuEl.style.overflowY = "auto";
-      this._menuEl.style.overflowX = "hidden";
-
-      // restore previous scroll position
       if (this._menuEl && this._previousScrollTop) {
         this._menuEl.scrollTop = this._previousScrollTop;
-      }
-    }
-
-    private _setMenuPositionLeftOrRight() {
-      this._menuEl.style.right = "auto";
-      const menuWidth = this._menuEl.getBoundingClientRect().width;
-      const toggleRect = this._toggleEl.getBoundingClientRect();
-      const toRight = window.innerWidth - toggleRect.left;
-      const toLeft = toggleRect.left;
-      if (toRight < menuWidth && toLeft > menuWidth) {
-        this._menuEl.style.left = "auto";
-        this._menuEl.style.right = `${window.innerWidth - toggleRect.right}px`;
       }
     }
 
@@ -735,7 +739,7 @@ let exportUserOrgGroupSelect;
       }
     }
 
-    private _actionShowMenu() {
+    private async _actionShowMenu() {
       if (this._query.trim() === "") {
         this._matchingItems = this.items;
       }
@@ -747,6 +751,7 @@ let exportUserOrgGroupSelect;
       this._inputEl.focus();
       this._selectorVisible = true;
       this._menuEl.showPopover();
+      await this.updateComplete;
       if (!this._menuEl || !this._toggleEl) return;
       this._setMenuPosition();
       this._attachListeners();
