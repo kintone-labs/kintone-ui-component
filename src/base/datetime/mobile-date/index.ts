@@ -9,6 +9,7 @@ import {
 } from "../../kuc-base";
 import { BaseMobileDateTimeCalendar } from "../mobile-calendar";
 import {
+  calculateDistanceInput,
   formatInputValueToValue,
   formatValueToInputValue,
   getScrollableAncestors,
@@ -115,25 +116,24 @@ export class BaseMobileDate extends KucBase {
   private _positionCalendar = () => {
     if (!this._calendarEl || !this._inputEl) return;
 
-    const inputRect = this._inputEl.getBoundingClientRect();
-    const calWidth = this._calendarWidth;
+    const {
+      inputToBottom,
+      inputToTop,
+      inputToLeft,
+      inputDateWidth,
+      inputDateHeight,
+    } = calculateDistanceInput(this);
+
     const calHeight = this._calendarHeight;
 
-    const spaceAbove = inputRect.top;
-    const spaceBelow = window.innerHeight - inputRect.bottom;
-
     // vertical
-    let top: number;
-    top = inputRect.bottom + 4; // small gap
-    if (spaceBelow < calHeight && spaceAbove >= calHeight) {
-      top = inputRect.top - calHeight - 4;
+    if (inputToBottom >= inputToTop) {
+      this._calendarEl.style.top = `${inputToTop + inputDateHeight + 7.5}px`;
+    } else {
+      this._calendarEl.style.top = `${inputToTop - calHeight - 2}px`;
     }
-
     // horizontal
-    const left = inputRect.left;
-
-    this._calendarEl.style.left = `${Math.floor(left)}px`;
-    this._calendarEl.style.top = `${Math.floor(top)}px`;
+    this._calendarEl.style.left = `${inputToLeft - inputDateWidth}px`;
   };
 
   private _onDocClick = (event: PointerEvent) => {

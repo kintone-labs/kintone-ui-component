@@ -472,6 +472,8 @@ export const calculateDistanceInput = (_this: HTMLElement) => {
       inputToTop: 0,
       inputToRight: 0,
       inputToLeft: 0,
+      inputDateWidth: 0,
+      inputDateHeight: 0,
     };
   const inputParentElement =
     _this.closest("kuc-base-date") ?? _this.closest("kuc-mobile-base-date");
@@ -482,20 +484,24 @@ export const calculateDistanceInput = (_this: HTMLElement) => {
     (inputParentElement as HTMLElement).getElementsByClassName(
       "kuc-mobile-base-date__group",
     )[0];
-  const inputDateWidth = inputDate.getBoundingClientRect().width;
-  const inputToBottom =
-    window.innerHeight - _this.parentElement.getBoundingClientRect().bottom;
-  const inputToTop = _this.parentElement.getBoundingClientRect().top;
-  const inputToRight =
-    window.innerWidth - _this.parentElement.getBoundingClientRect().left;
-  const inputToLeft =
-    _this.parentElement.getBoundingClientRect().left + inputDateWidth;
+  const {
+    left,
+    top: inputToTop,
+    bottom,
+    width: inputDateWidth,
+    height: inputDateHeight,
+  } = inputDate.getBoundingClientRect();
+  const inputToBottom = window.innerHeight - bottom;
+  const inputToRight = window.innerWidth - left;
+  const inputToLeft = left + inputDateWidth;
 
   return {
     inputToBottom,
     inputToTop,
     inputToRight,
     inputToLeft,
+    inputDateWidth,
+    inputDateHeight,
   };
 };
 
