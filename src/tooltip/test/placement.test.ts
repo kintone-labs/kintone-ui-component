@@ -75,9 +75,6 @@ describe("Tooltip", () => {
     it("should position tooltip at bottom correctly", async () => {
       const button = document.createElement("button") as HTMLButtonElement;
       button.textContent = "Test Button";
-      button.style.position = "fixed";
-      button.style.top = "100px";
-      button.style.left = "100px";
       button.style.width = "100px";
       button.style.height = "40px";
 
@@ -111,9 +108,6 @@ describe("Tooltip", () => {
     it("should position tooltip at left correctly", async () => {
       const button = document.createElement("button") as HTMLButtonElement;
       button.textContent = "Test Button";
-      button.style.position = "fixed";
-      button.style.top = "100px";
-      button.style.left = "200px";
       button.style.width = "100px";
       button.style.height = "40px";
 
@@ -147,9 +141,6 @@ describe("Tooltip", () => {
     it("should position tooltip at right correctly", async () => {
       const button = document.createElement("button") as HTMLButtonElement;
       button.textContent = "Test Button";
-      button.style.position = "fixed";
-      button.style.top = "100px";
-      button.style.left = "100px";
       button.style.width = "100px";
       button.style.height = "40px";
 
