@@ -45,7 +45,7 @@
     "@storybook/addon-controls": "^8.6.15",
     "@storybook/addon-viewport": "^8.6.15",
     "@storybook/web-components": "^8.6.15",
-    "@storybook/web-components-webpack5": "^8.6.14",
+    "@storybook/web-components-webpack5": "^8.6.15",
     "@types/mocha": "^10.0.10",
     "@web/test-runner": "^0.20.2",
     "babel-loader": "^10.0.0",
