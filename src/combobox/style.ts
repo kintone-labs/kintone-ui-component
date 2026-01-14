@@ -109,13 +109,8 @@ export const COMBOBOX_CSS = `
     box-sizing: border-box;
     background-color: #ffffff;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-    position: absolute;
-    z-index: 2000;
     margin: 0;
     list-style: none;
-  }
-  .kuc-combobox__group__select-menu[hidden] {
-    display: none;
   }
   .kuc-combobox__group__select-menu__item {
     font-size: var(--kuc-combobox-font-size, 14px);
