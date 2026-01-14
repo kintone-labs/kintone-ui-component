@@ -198,10 +198,7 @@ describe("Dropdown", () => {
           ? document.documentElement.clientWidth
           : window.innerWidth;
 
-      if (
-        viewportWidth < buttonRect.right &&
-        viewportWidth > buttonRect.left
-      ) {
+      if (viewportWidth < buttonRect.right && viewportWidth > buttonRect.left) {
         // Button is partially outside, menu should be at right edge
         expect(menuEl.style.right).to.equal("0px");
       } else {
