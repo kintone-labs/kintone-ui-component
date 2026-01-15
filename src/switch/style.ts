@@ -141,7 +141,6 @@ export const SWITCH_CSS = `
   .kuc-switch__group__switch__input:focus-visible ~ .kuc-switch__group__switch__track {
     outline: 1px solid #3498db;
     outline-offset: 1px;
-    transition: outline-offset 0s, outline 0s;
   }
 
   .kuc-switch__group__switch__input:disabled ~ .kuc-switch__group__switch__track,
