@@ -399,8 +399,18 @@ export const setListBoxPosition = (
   const { popoverHeight, popoverWidth } = options;
   if (!popoverHeight) return;
   const toggleRect = anchorEl.getBoundingClientRect();
+
+  const viewportHeight =
+    window.innerHeight > document.documentElement.clientHeight
+      ? document.documentElement.clientHeight
+      : window.innerHeight;
+  const viewportWidth =
+    window.innerWidth > document.documentElement.clientWidth
+      ? document.documentElement.clientWidth
+      : window.innerWidth;
+
   const spaceAbove = toggleRect.top;
-  const spaceBelow = window.innerHeight - toggleRect.bottom;
+  const spaceBelow = viewportHeight - toggleRect.bottom;
   let top: number;
   let maxHeight: number;
   // vertical
@@ -420,18 +430,14 @@ export const setListBoxPosition = (
   }
 
   // horizon
-  let left = toggleRect.left;
-  if (popoverWidth) {
-    if (left > window.innerWidth - popoverWidth) {
-      const spaceRight = window.innerWidth - toggleRect.left;
-      const spaceLeft = toggleRect.right;
-      if (spaceRight < spaceLeft) {
-        left = toggleRect.right - popoverWidth;
-      }
-    }
+  const toRight = viewportWidth - toggleRect.left;
+  if (popoverWidth && toRight < popoverWidth) {
+    popoverEl.style.left = "auto";
+    popoverEl.style.right = `${viewportWidth - toggleRect.right}px`;
+  } else {
+    popoverEl.style.left = `${toggleRect.left}px`;
+    popoverEl.style.right = "auto";
   }
-
-  popoverEl.style.left = `${left}px`;
   popoverEl.style.top = `${top}px`;
 
   popoverEl.style.maxHeight = `${Math.floor(maxHeight)}px`;
