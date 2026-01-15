@@ -32,6 +32,7 @@ describe("Combobox", () => {
       ) as HTMLDivElement;
 
       expect(menuEl.style.position).to.equal("fixed");
+      expect(menuEl.style.right).to.equal("auto");
       const toggleRect = toggleEl.getBoundingClientRect();
       expect(parseInt(menuEl.style.top, 10)).to.equal(toggleRect.bottom);
     });
@@ -64,6 +65,7 @@ describe("Combobox", () => {
         ".kuc-combobox__group__select-menu",
       ) as HTMLDivElement;
       expect(menuEl.style.position).to.equal("fixed");
+      expect(menuEl.style.right).to.equal("auto");
       expect(menuEl.style.overflowY).to.equal("auto");
       document.body.removeChild(el);
     });
@@ -102,6 +104,7 @@ describe("Combobox", () => {
       ) as HTMLDivElement;
 
       expect(menuEl.style.position).to.equal("fixed");
+      expect(menuEl.style.right).to.equal("auto");
       const toggleRect = toggle.getBoundingClientRect();
       const menuRect = menuEl.getBoundingClientRect();
 
@@ -138,6 +141,7 @@ describe("Combobox", () => {
       ) as HTMLDivElement;
 
       expect(menuEl.style.position).to.equal("fixed");
+      expect(menuEl.style.right).to.equal("auto");
       expect(menuEl.style.overflowY).to.equal("auto");
 
       const height = parseInt(menuEl.style.height, 10);
@@ -164,6 +168,9 @@ describe("Combobox", () => {
       const toggleIconButton = el.querySelector(
         ".kuc-combobox__group__toggle__icon__button",
       ) as HTMLButtonElement;
+      const toggle = el.querySelector(
+        ".kuc-combobox__group__toggle",
+      ) as HTMLDivElement;
 
       toggleIconButton.click();
       await elementUpdated(container);
@@ -172,13 +179,20 @@ describe("Combobox", () => {
       ) as HTMLDivElement;
 
       expect(menuEl.style.position).to.equal("fixed");
-      expect(menuEl.style.left).to.equal("auto");
-      expect(menuEl.style.right).to.not.equal("auto");
+      // Menu should always use left positioning (right is always auto)
+      expect(menuEl.style.right).to.equal("auto");
+
+      const toggleRect = toggle.getBoundingClientRect();
+      const menuRect = menuEl.getBoundingClientRect();
+
+      // When space on right is insufficient, menu should align its right edge with toggle's right edge
+      expect(menuRect.right).to.be.closeTo(toggleRect.right, 1);
+      expect(menuRect.left).to.be.lessThan(toggleRect.left);
 
       document.body.removeChild(el);
     });
 
-    it("Show menu with right:0px when toggle is partially outside viewport", async () => {
+    it("Show menu aligned to viewport edge when toggle is partially outside viewport", async () => {
       const container = new Combobox({
         items: initItems,
         value: initItems[0].value,
@@ -203,19 +217,22 @@ describe("Combobox", () => {
         ".kuc-combobox__group__select-menu",
       ) as HTMLDivElement;
 
-      const buttonRect = toggle.getBoundingClientRect();
+      const toggleRect = toggle.getBoundingClientRect();
+      const menuRect = menuEl.getBoundingClientRect();
       const viewportWidth =
         window.innerWidth > document.documentElement.clientWidth
           ? document.documentElement.clientWidth
           : window.innerWidth;
 
-      if (viewportWidth < buttonRect.right && viewportWidth > buttonRect.left) {
-        // Toggle is partially outside, menu should be at right edge
-        expect(menuEl.style.right).to.equal("0px");
+      // Menu should always use left positioning (right is always auto)
+      expect(menuEl.style.right).to.equal("auto");
+
+      if (viewportWidth < toggleRect.right && viewportWidth > toggleRect.left) {
+        // Toggle is partially outside, menu's right edge should align with viewport edge
+        expect(menuRect.right).to.be.closeTo(viewportWidth, 1);
       } else {
         // Toggle is fully inside, menu should align with toggle right edge
-        const expectedRight = viewportWidth - buttonRect.right;
-        expect(menuEl.style.right).to.equal(`${expectedRight}px`);
+        expect(menuRect.right).to.be.closeTo(toggleRect.right, 1);
       }
 
       document.body.removeChild(el);
