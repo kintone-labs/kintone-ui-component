@@ -6,7 +6,7 @@ sidebar_label: Switch
 
 ## Overview
 
-The Switch component allows the user to toggle between two states.
+Switch はユーザーが2つの状態の間を切り替えることを可能にします。
 
 import { SwitchComponent } from "@site/static/js/samples/desktop/switch.jsx"
 
@@ -22,15 +22,15 @@ import { SwitchComponent } from "@site/static/js/samples/desktop/switch.jsx"
 
 | Name | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
-| checkedText | string | "" | Text to be displayed when the component state is "checked" | |
-| className | string | "" | コンポーネントの class 名 ||
-| id | string | "" | コンポーネントの id 名 ||
+| checkedText | string | "" | コンポーネントが「チェック」された状態のときに表示されるテキスト | |
+| className | string | "" | コンポーネントの class 名 | |
+| id | string | "" | コンポーネントの id 名 | |
 | label | string | "" | コンポーネントの説明ラベル | 未指定、あるいは空文字の場合、label は表示されない |
-| labelPlacement | string | "left" | The position where the label is displayed | 指定できるオプション: `top`, `left`, `right`, `bottom` |
-| unCheckedText | string | "" | Text to be displayed when the component state is "unchecked" | |
-| checked | boolean | false | Check/Uncheck the component | |
-| disabled | boolean | false | コンポーネントの編集可/不可設定 ||
-| visible | boolean | true | コンポーネントの表示/非表示設定 ||
+| labelPlacement | string | "left" | ラベルの表示位置 | 指定できるオプション: top, left, right, bottom |
+| unCheckedText | string | "" | コンポーネントが「チェック」されていない状態のときに表示されるテキスト | |
+| checked | boolean | false | コンポーネントのチェックあり/チェックなし | |
+| disabled | boolean | false | コンポーネントの編集可/不可設定 | |
+| visible | boolean | true | コンポーネントの表示/非表示設定 | |
 
 ### Event
 
