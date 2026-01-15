@@ -26,7 +26,7 @@ import { SwitchComponent } from "@site/static/js/samples/desktop/switch.jsx"
 | className | string | "" | コンポーネントの class 名 | |
 | id | string | "" | コンポーネントの id 名 | |
 | label | string | "" | コンポーネントの説明ラベル | 未指定、あるいは空文字の場合、label は表示されない |
-| labelPlacement | string | "left" | ラベルの表示位置 | 指定できるオプション: top, left, right, bottom |
+| labelPlacement | string | "left" | ラベルの表示位置 | 指定できるオプション: `top`, `left`, `right`, `bottom` |
 | unCheckedText | string | "" | コンポーネントが「チェック」されていない状態のときに表示されるテキスト | |
 | checked | boolean | false | コンポーネントのチェックあり/チェックなし | |
 | disabled | boolean | false | コンポーネントの編集可/不可設定 | |
