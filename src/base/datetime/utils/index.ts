@@ -431,22 +431,14 @@ export const setListBoxPosition = (
 
   // horizon
   popoverEl.style.right = "auto";
-  let left: number;
+  let left = toggleRect.left;
   if (popoverWidth) {
     const actualPopoverWidth = popoverEl.offsetWidth;
     const toRight = viewportWidth - toggleRect.left;
 
     if (toRight < actualPopoverWidth) {
-      if (viewportWidth < toggleRect.right && viewportWidth > toggleRect.left) {
-        left = viewportWidth - actualPopoverWidth;
-      } else {
-        left = toggleRect.right - actualPopoverWidth;
-      }
-    } else {
-      left = toggleRect.left;
+      left = toggleRect.right - actualPopoverWidth;
     }
-  } else {
-    left = toggleRect.left;
   }
   const leftPx = `${left}px`;
   if (popoverEl.style.left !== leftPx) {
