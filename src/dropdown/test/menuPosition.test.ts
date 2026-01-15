@@ -29,6 +29,7 @@ describe("Dropdown", () => {
       ) as HTMLDivElement;
 
       expect(menuEl.style.position).to.equal("fixed");
+      expect(menuEl.style.right).to.equal("auto");
       const toggleRect = toggle.getBoundingClientRect();
       expect(parseInt(menuEl.style.top, 10)).to.equal(toggleRect.bottom);
     });
@@ -55,6 +56,7 @@ describe("Dropdown", () => {
       ) as HTMLDivElement;
 
       expect(menuEl.style.position).to.equal("fixed");
+      expect(menuEl.style.right).to.equal("auto");
       expect(menuEl.style.overflowY).to.equal("auto");
       document.body.removeChild(el);
     });
@@ -92,6 +94,7 @@ describe("Dropdown", () => {
       ) as HTMLDivElement;
 
       expect(menuEl.style.position).to.equal("fixed");
+      expect(menuEl.style.right).to.equal("auto");
       const toggleRect = toggle.getBoundingClientRect();
       const menuRect = menuEl.getBoundingClientRect();
 
@@ -128,6 +131,7 @@ describe("Dropdown", () => {
       ) as HTMLDivElement;
 
       expect(menuEl.style.position).to.equal("fixed");
+      expect(menuEl.style.right).to.equal("auto");
       expect(menuEl.style.overflowY).to.equal("auto");
 
       const height = parseInt(menuEl.style.height, 10);
@@ -163,14 +167,20 @@ describe("Dropdown", () => {
       ) as HTMLDivElement;
 
       expect(menuEl.style.position).to.equal("fixed");
-      // Menu should use right positioning when space on right is insufficient
-      expect(menuEl.style.left).to.equal("auto");
-      expect(menuEl.style.right).to.not.equal("auto");
+      // Menu should always use left positioning (right is always auto)
+      expect(menuEl.style.right).to.equal("auto");
+
+      const toggleRect = toggle.getBoundingClientRect();
+      const menuRect = menuEl.getBoundingClientRect();
+
+      // When space on right is insufficient, menu should align its right edge with button's right edge
+      expect(menuRect.right).to.be.closeTo(toggleRect.right, 1);
+      expect(menuRect.left).to.be.lessThan(toggleRect.left);
 
       document.body.removeChild(el);
     });
 
-    it("Show menu with right:0px when button is partially outside viewport", async () => {
+    it("Show menu aligned to viewport edge when button is partially outside viewport", async () => {
       const container = new Dropdown({
         items: initItems,
         value: initItems[0].value,
@@ -193,18 +203,21 @@ describe("Dropdown", () => {
       ) as HTMLDivElement;
 
       const buttonRect = toggle.getBoundingClientRect();
+      const menuRect = menuEl.getBoundingClientRect();
       const viewportWidth =
         window.innerWidth > document.documentElement.clientWidth
           ? document.documentElement.clientWidth
           : window.innerWidth;
 
+      // Menu should always use left positioning (right is always auto)
+      expect(menuEl.style.right).to.equal("auto");
+
       if (viewportWidth < buttonRect.right && viewportWidth > buttonRect.left) {
-        // Button is partially outside, menu should be at right edge
-        expect(menuEl.style.right).to.equal("0px");
+        // Button is partially outside, menu's right edge should align with viewport edge
+        expect(menuRect.right).to.be.closeTo(viewportWidth, 1);
       } else {
         // Button is fully inside, menu should align with button right edge
-        const expectedRight = viewportWidth - buttonRect.right;
-        expect(menuEl.style.right).to.equal(`${expectedRight}px`);
+        expect(menuRect.right).to.be.closeTo(buttonRect.right, 1);
       }
 
       document.body.removeChild(el);

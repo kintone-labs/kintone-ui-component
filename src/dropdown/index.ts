@@ -680,7 +680,6 @@ let exportDropdown;
         height = spaceAbove;
       }
       menuEl.style.position = "fixed";
-      menuEl.style.left = `${buttonRect.left}px`;
       menuEl.style.top = top !== undefined ? `${top}px` : "auto";
       menuEl.style.bottom = bottom !== undefined ? `${bottom}px` : "auto";
       menuEl.style.height = `${height}px`;
@@ -692,23 +691,27 @@ let exportDropdown;
       buttonEl: HTMLButtonElement,
     ) {
       menuEl.style.right = "auto";
-      const menuWidth = menuEl.getBoundingClientRect().width;
+      const menuWidth = menuEl.offsetWidth;
       const buttonRect = buttonEl.getBoundingClientRect();
       let viewportWidth = window.innerWidth;
       if (window.innerWidth > document.documentElement.clientWidth) {
         viewportWidth = document.documentElement.clientWidth;
       }
       const toRight = viewportWidth - buttonRect.left;
+      let left = buttonRect.left;
       if (toRight < menuWidth) {
-        menuEl.style.left = "auto";
         if (
           viewportWidth < buttonRect.right &&
           viewportWidth > buttonRect.left
         ) {
-          menuEl.style.right = "0px";
+          left = viewportWidth - menuWidth;
         } else {
-          menuEl.style.right = `${viewportWidth - buttonRect.right}px`;
+          left = buttonRect.right - menuWidth;
         }
+      }
+      const leftPx = `${left}px`;
+      if (menuEl.style.left !== leftPx) {
+        menuEl.style.left = leftPx;
       }
     }
 
