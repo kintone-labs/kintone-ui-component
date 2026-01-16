@@ -664,25 +664,33 @@ let exportDropdown;
         ? Math.min(naturalMenuHeight, customMaxHeight)
         : naturalMenuHeight;
 
-      let top, bottom, height;
+      let top, height;
 
       if (spaceBelow >= effectiveMenuHeight) {
         top = buttonRect.bottom;
         height = effectiveMenuHeight;
       } else if (spaceAbove >= effectiveMenuHeight) {
-        bottom = viewportHeight - buttonRect.top;
+        top = buttonRect.top - effectiveMenuHeight;
         height = effectiveMenuHeight;
       } else if (spaceBelow >= spaceAbove) {
         top = buttonRect.bottom;
         height = spaceBelow;
       } else {
-        bottom = viewportHeight - buttonRect.top;
+        top = buttonRect.top - spaceAbove;
         height = spaceAbove;
       }
       menuEl.style.position = "fixed";
-      menuEl.style.top = top !== undefined ? `${top}px` : "auto";
-      menuEl.style.bottom = bottom !== undefined ? `${bottom}px` : "auto";
-      menuEl.style.height = `${height}px`;
+
+      const topValue = `${top}px`;
+      if (menuEl.style.top !== topValue) {
+        menuEl.style.top = topValue;
+      }
+
+      const heightValue = `${height}px`;
+      if (menuEl.style.height !== heightValue) {
+        menuEl.style.height = heightValue;
+      }
+
       menuEl.style.overflowY = "auto";
     }
 
