@@ -571,6 +571,7 @@ let exportUserOrgGroupSelect;
         return;
       }
       this._setMenuPositionAboveOrBelow(this._menuEl, this._toggleEl);
+      this._setMenuPositionLeftOrRight(this._menuEl, this._toggleEl);
     }
 
     private _handleClickRemoveSelectedItem(event: Event) {
@@ -667,13 +668,33 @@ let exportUserOrgGroupSelect;
       if (menuEl.style.height !== heightValue) {
         menuEl.style.height = heightValue;
       }
-      menuEl.style.left = `${toggleRect.left}px`;
 
       menuEl.style.overflowY = "auto";
       menuEl.style.overflowX = "hidden";
 
       if (this._menuEl && this._previousScrollTop) {
         this._menuEl.scrollTop = this._previousScrollTop;
+      }
+    }
+
+    private _setMenuPositionLeftOrRight(
+      menuEl: HTMLUListElement,
+      toggleEl: HTMLDivElement,
+    ) {
+      menuEl.style.right = "auto";
+      const menuWidth = menuEl.offsetWidth;
+      const buttonRect = toggleEl.getBoundingClientRect();
+      let viewportWidth = window.innerWidth;
+      if (window.innerWidth > document.documentElement.clientWidth) {
+        viewportWidth = document.documentElement.clientWidth;
+      }
+      let left = buttonRect.left;
+      if (viewportWidth < buttonRect.right && viewportWidth > buttonRect.left) {
+        left = viewportWidth - menuWidth;
+      }
+      const leftPx = `${left}px`;
+      if (menuEl.style.left !== leftPx) {
+        menuEl.style.left = leftPx;
       }
     }
 

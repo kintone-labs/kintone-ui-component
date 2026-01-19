@@ -32,6 +32,7 @@ describe("UserOrgGroupSelect", () => {
       ) as HTMLDivElement;
 
       expect(menuEl.style.position).to.equal("fixed");
+      expect(menuEl.style.right).to.equal("auto");
       const toggleRect = toggleEl.getBoundingClientRect();
       expect(parseInt(menuEl.style.top, 10)).to.equal(toggleRect.bottom);
     });
@@ -74,6 +75,7 @@ describe("UserOrgGroupSelect", () => {
       ) as HTMLElement;
 
       expect(menuEl.style.position).to.equal("fixed");
+      expect(menuEl.style.right).to.equal("auto");
       expect(menuEl.style.overflowY).to.equal("auto");
 
       document.body.removeChild(el);
@@ -116,6 +118,7 @@ describe("UserOrgGroupSelect", () => {
       ) as HTMLElement;
       await aTimeout(10);
       expect(menuEl.style.position).to.equal("fixed");
+      expect(menuEl.style.right).to.equal("auto");
       const toggleRect = toggleEl.getBoundingClientRect();
       const menuRect = menuEl.getBoundingClientRect();
 
@@ -153,6 +156,7 @@ describe("UserOrgGroupSelect", () => {
       ) as HTMLElement;
 
       expect(menuEl.style.position).to.equal("fixed");
+      expect(menuEl.style.right).to.equal("auto");
       expect(menuEl.style.overflowY).to.equal("auto");
 
       const height = parseInt(menuEl.style.height, 10);
@@ -162,6 +166,52 @@ describe("UserOrgGroupSelect", () => {
       expect(menuEl.style.maxHeight).to.equal(
         "var(--kuc-user-org-group-select-menu-max-height, none)",
       );
+
+      document.body.removeChild(el);
+    });
+
+    it("Show menu aligned to viewport edge when toggle is partially outside viewport", async () => {
+      const container = new UserOrgGroupSelect({
+        items: initItems,
+        value: [initItems[0].value],
+      });
+      const el = await fixture(container);
+
+      // Position so toggle extends beyond viewport width
+      (el as HTMLElement).style.position = "fixed";
+      (el as HTMLElement).style.left = `${window.innerWidth - 50}px`;
+      document.body.appendChild(el);
+
+      const toggleIconButtonEl = el.querySelector(
+        ".kuc-user-org-group-select__group__container__select-area__toggle__icon__button",
+      ) as HTMLButtonElement;
+      const toggleEl = el.querySelector(
+        ".kuc-user-org-group-select__group__container__select-area__toggle",
+      ) as HTMLDivElement;
+
+      toggleIconButtonEl.click();
+      await elementUpdated(container);
+      const menuEl = el.querySelector(
+        ".kuc-user-org-group-select__group__container__select-area__select-menu",
+      ) as HTMLElement;
+
+      const toggleRect = toggleEl.getBoundingClientRect();
+      const menuRect = menuEl.getBoundingClientRect();
+      const viewportWidth =
+        window.innerWidth > document.documentElement.clientWidth
+          ? document.documentElement.clientWidth
+          : window.innerWidth;
+
+      // Menu should always use left positioning (right is always auto)
+      expect(menuEl.style.right).to.equal("auto");
+
+      if (viewportWidth < toggleRect.right && viewportWidth > toggleRect.left) {
+        // Toggle is partially outside, menu's right edge should align with viewport edge
+        expect(menuRect.right).to.be.closeTo(viewportWidth, 1);
+      } else {
+        // Toggle is fully inside, menu should align with toggle left edge
+        expect(menuRect.left).to.be.closeTo(toggleRect.left, 1);
+      }
 
       document.body.removeChild(el);
     });
