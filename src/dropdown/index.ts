@@ -706,10 +706,7 @@ let exportDropdown;
         viewportWidth = document.documentElement.clientWidth;
       }
       let left = buttonRect.left;
-      if (
-        viewportWidth < buttonRect.right &&
-        viewportWidth > buttonRect.left
-      ) {
+      if (viewportWidth < buttonRect.right && viewportWidth > buttonRect.left) {
         left = viewportWidth - menuWidth;
       }
       const leftPx = `${left}px`;
