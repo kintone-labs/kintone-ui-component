@@ -144,7 +144,7 @@ describe("Dropdown", () => {
       document.body.removeChild(el);
     });
 
-    it("Show menu to the left when there is not enough space on the right", async () => {
+    it("Show menu with left alignment by default", async () => {
       const container = new Dropdown({
         items: initItems,
         value: initItems[0].value,
@@ -173,9 +173,8 @@ describe("Dropdown", () => {
       const toggleRect = toggle.getBoundingClientRect();
       const menuRect = menuEl.getBoundingClientRect();
 
-      // When space on right is insufficient, menu should align its right edge with button's right edge
-      expect(menuRect.right).to.be.closeTo(toggleRect.right, 1);
-      expect(menuRect.left).to.be.lessThan(toggleRect.left);
+      // Menu should align its left edge with button's left edge
+      expect(menuRect.left).to.be.closeTo(toggleRect.left, 1);
 
       document.body.removeChild(el);
     });

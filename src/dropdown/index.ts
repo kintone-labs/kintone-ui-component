@@ -705,17 +705,12 @@ let exportDropdown;
       if (window.innerWidth > document.documentElement.clientWidth) {
         viewportWidth = document.documentElement.clientWidth;
       }
-      const toRight = viewportWidth - buttonRect.left;
       let left = buttonRect.left;
-      if (toRight < menuWidth) {
-        if (
-          viewportWidth < buttonRect.right &&
-          viewportWidth > buttonRect.left
-        ) {
-          left = viewportWidth - menuWidth;
-        } else {
-          left = buttonRect.right - menuWidth;
-        }
+      if (
+        viewportWidth < buttonRect.right &&
+        viewportWidth > buttonRect.left
+      ) {
+        left = viewportWidth - menuWidth;
       }
       const leftPx = `${left}px`;
       if (menuEl.style.left !== leftPx) {
