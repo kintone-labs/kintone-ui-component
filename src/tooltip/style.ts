@@ -51,7 +51,6 @@ export const TOOLTIP_CSS = `
     background-color: var(--kuc-tooltip-background-color, #000000);
     font-size: var(--kuc-tooltip-font-size);
     border-radius: 6px;
-    box-shadow: 0 6px 16px 0 rgb(0 0 0 / 8%), 0 3px 6px -4px rgb(0 0 0 / 12%), 0 9px 28px 8px rgb(0 0 0 / 5%);
     box-sizing: border-box;
   }
   .kuc-tooltip__group__title[popover] {

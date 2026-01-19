@@ -43,6 +43,9 @@ let exportTooltip;
     private _firstChildEl!: HTMLElement;
     private _GUID: string;
     private _globalEscapeBound: KeyBoardFunction;
+    private _setTooltipPositionBound: () => void;
+    private _scrollTargets: Array<Window | Element> = [];
+    private _timeoutID: number | null = null;
 
     constructor(props?: TooltipProps) {
       super();
@@ -50,6 +53,7 @@ let exportTooltip;
       const validProps = validateProps(props);
       Object.assign(this, validProps);
       this._globalEscapeBound = this._globalEscape.bind(this);
+      this._setTooltipPositionBound = this._setTooltipPosition.bind(this);
     }
 
     update(changedProperties: PropertyValues) {
@@ -214,10 +218,56 @@ let exportTooltip;
 
     private _attachGlobalListener() {
       document.addEventListener("keydown", this._globalEscapeBound);
+      this._scrollTargets = this._getScrollableAncestors(this._containerEl);
+      for (const targetEl of this._scrollTargets) {
+        targetEl.addEventListener("scroll", this._handleScroll, {
+          passive: true,
+        });
+      }
     }
 
     private _removeGlobalListener() {
       document.removeEventListener("keydown", this._globalEscapeBound);
+      for (const targetEl of this._scrollTargets) {
+        targetEl.removeEventListener("scroll", this._handleScroll);
+      }
+      this._scrollTargets = [];
+      if (this._timeoutID !== null) {
+        clearTimeout(this._timeoutID);
+        this._timeoutID = null;
+      }
+    }
+
+    private _handleScroll = () => {
+      if (this._timeoutID !== null) {
+        clearTimeout(this._timeoutID);
+      }
+      this._timeoutID = window.setTimeout(() => {
+        this._setTooltipPositionBound();
+        this._timeoutID = null;
+      }, 20);
+    };
+
+    private _getScrollableAncestors(el: Element): Array<Window | Element> {
+      const targets: Array<Window | Element> = [];
+      let node: Element | null = el.parentElement;
+      const overflowRegex = /(auto|scroll|overlay)/;
+      while (
+        node &&
+        node !== document.body &&
+        node !== document.documentElement
+      ) {
+        const style = getComputedStyle(node);
+        const isScrollable =
+          overflowRegex.test(style.overflowY) ||
+          overflowRegex.test(style.overflowX);
+        if (isScrollable) {
+          targets.push(node);
+        }
+        node = node.parentElement;
+      }
+      targets.push(window);
+      return targets;
     }
 
     private _globalEscape(event: KeyboardEvent) {
