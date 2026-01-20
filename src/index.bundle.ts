@@ -14,6 +14,7 @@ export * from "./notification";
 export * from "./radio-button";
 export * from "./readonly-table";
 export * from "./spinner";
+export * from "./switch";
 export * from "./table";
 export * from "./tabs";
 export * from "./text";
