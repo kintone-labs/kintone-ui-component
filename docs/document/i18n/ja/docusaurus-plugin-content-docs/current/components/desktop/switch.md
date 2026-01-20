@@ -6,7 +6,7 @@ sidebar_label: Switch
 
 ## Overview
 
-Switch はユーザーが2つの状態の間を切り替えることを可能にします。
+Switch は2つの状態の間を切り替えることができます。
 
 import { SwitchComponent } from "@site/static/js/samples/desktop/switch.jsx"
 
