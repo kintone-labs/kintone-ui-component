@@ -9,14 +9,13 @@ import {
 } from "../../../../../kuc-base";
 import { BaseDateTimeListBoxItem } from "../../../../listbox";
 import {
-  calculateDistanceInput,
   getLocale,
+  getScrollableAncestors,
   getToggleIconSvgTemplate,
   setListBoxPosition,
 } from "../../../../utils";
 
 import { CALENDAR_HEADER_MONTH_CSS } from "./style";
-
 export class BaseDateTimeHeaderMonth extends KucBase {
   @property({ type: String, attribute: "lang", reflect: true }) language =
     "auto";
@@ -32,20 +31,18 @@ export class BaseDateTimeHeaderMonth extends KucBase {
   @query(".kuc-base-datetime-header-month__toggle")
   private _toggleEl!: HTMLButtonElement;
 
-  constructor() {
-    super();
-    this._handleScrollDocument = this._handleScrollDocument.bind(this);
-  }
+  @query(".kuc-base-datetime-header-month__listbox")
+  private _listBoxEl!: any;
 
-  connectedCallback() {
-    super.connectedCallback();
-    setTimeout(() => {
-      document.addEventListener("scroll", this._handleScrollDocument);
-    }, 1);
-  }
+  @query(".kuc-base-datetime-listbox__listbox")
+  private _listBoxUl!: HTMLUListElement;
+
+  private _scrollTargets: Array<Window | Element> = [];
+
+  private _listBoxMaxHeight = 378;
 
   disconnectedCallback() {
-    document.removeEventListener("scroll", this._handleScrollDocument);
+    this._detachListeners();
     super.disconnectedCallback();
   }
 
@@ -86,24 +83,48 @@ export class BaseDateTimeHeaderMonth extends KucBase {
 
   async updated(changedProperties: PropertyValues) {
     await this.updateComplete;
-    if (changedProperties.has("_listBoxVisible") && this._listBoxVisible) {
-      this._handleScrollDocument();
-    }
     super.update(changedProperties);
   }
 
-  private _handleScrollDocument() {
-    const distance = calculateDistanceInput(this);
-    if (distance.inputToBottom >= distance.inputToTop) {
-      setListBoxPosition(this, "bottom");
-      return;
-    }
-    setListBoxPosition(this, "top");
+  public repositionListBox() {
+    if (!this._listBoxVisible || !this._listBoxEl) return;
+    setListBoxPosition({
+      anchorEl: this._toggleEl,
+      popoverEl: this._listBoxUl,
+      popoverHeight: this._listBoxMaxHeight,
+    });
   }
 
+  private _attachListeners() {
+    this._detachListeners();
+    this._scrollTargets = getScrollableAncestors(this._toggleEl);
+    for (const targetEl of this._scrollTargets) {
+      targetEl.addEventListener("scroll", this._boundOnScrollAndResize, {
+        passive: true,
+      });
+    }
+  }
+
+  private _boundOnScrollAndResize = () =>
+    setListBoxPosition({
+      anchorEl: this._toggleEl,
+      popoverEl: this._listBoxUl,
+      popoverHeight: this._listBoxMaxHeight,
+    });
+
+  private _detachListeners() {
+    for (const targetEl of this._scrollTargets) {
+      targetEl.removeEventListener("scroll", this._boundOnScrollAndResize);
+    }
+    this._scrollTargets = [];
+  }
   public closeListBox() {
+    if (this._listBoxEl) {
+      this._listBoxEl.hidePopover();
+    }
     this._listBoxVisible = false;
-    this._toggleEl.focus();
+    this._detachListeners();
+    this._toggleEl?.focus();
   }
 
   private _getListBoxTemplate() {
@@ -125,8 +146,7 @@ export class BaseDateTimeHeaderMonth extends KucBase {
   }
 
   private _handleFocusOutListBox() {
-    this._listBoxVisible = false;
-    this._toggleEl.focus();
+    this.closeListBox();
   }
 
   private _handleListBoxEscape() {
@@ -182,8 +202,18 @@ export class BaseDateTimeHeaderMonth extends KucBase {
     dispatchCustomEvent(this, "kuc:month-dropdown-change", detail);
   }
 
-  private _openListBox() {
+  private async _openListBox() {
     this._listBoxVisible = true;
+    await this.updateComplete;
+    if (this._listBoxEl) {
+      this._listBoxEl.showPopover();
+      setListBoxPosition({
+        anchorEl: this._toggleEl,
+        popoverEl: this._listBoxUl,
+        popoverHeight: this._listBoxMaxHeight,
+      });
+      this._attachListeners();
+    }
   }
 
   private _getListBoxItems() {
