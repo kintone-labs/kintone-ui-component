@@ -280,11 +280,6 @@ export class BaseMobileDate extends KucBase {
     this._btnToggleEl.focus();
   }
 
-  private _handleCalendarBlurBody(event: Event) {
-    event.preventDefault();
-    this._dateTimeCalendarVisible = false;
-  }
-
   private _dispathDateChangeCustomEvent(newValue?: string) {
     const detail: CustomEventDetail = { value: newValue, oldValue: this.value };
     this.value = newValue;
@@ -307,7 +302,6 @@ export class BaseMobileDate extends KucBase {
           ._handleClickCalendarFooterButtonToday}"
         @kuc:mobile-calendar-footer-click-close="${this
           ._handleClickCalendarFooterButtonClose}"
-        @kuc:mobile-calendar-body-blur="${this._handleCalendarBlurBody}"
       >
       </kuc-base-mobile-datetime-calendar>
     `;
