@@ -19,7 +19,10 @@ import {
   formatTimeValueToInputValue,
   generateTimeOptions,
   getLocale,
+  getScrollableAncestors,
+  measureEl,
   padStart,
+  setListBoxPosition,
   timeCompare,
 } from "../utils";
 
@@ -83,6 +86,24 @@ export class BaseTime extends KucBase {
   @query(".kuc-base-time__group")
   private _inputGroupEl!: HTMLInputElement;
 
+  @query(".kuc-base-time__group__listbox")
+  private _listboxEl!: any;
+
+  private _scrollTargets: Array<Window | Element> = [];
+
+  private _listBoxMaxHeight = 165;
+  private _listBoxMaxWidth = 0;
+  @query(".kuc-base-datetime-listbox__listbox")
+  private _listBoxUl!: HTMLUListElement;
+
+  private _resizeDebounceTimer: number | null = null;
+
+  private _DEBOUNCE_DELAY = 200;
+
+  disconnectedCallback(): void {
+    this._detachListeners();
+    super.disconnectedCallback();
+  }
   update(changedProperties: PropertyValues) {
     if (
       changedProperties.has("hour12") ||
@@ -184,7 +205,7 @@ export class BaseTime extends KucBase {
     event.preventDefault();
     if (this._inputFocusEl) return;
 
-    this._listBoxVisible = false;
+    this._closeListBox();
   }
 
   private _toggleDisabledGroup() {
@@ -263,8 +284,8 @@ export class BaseTime extends KucBase {
     if (this._listBoxVisible) return false;
 
     this._valueForReset = this.value;
+    this._openListBox();
     this._doFocusListBox = true;
-    this._listBoxVisible = true;
     this._inputGroupEl.classList.remove("kuc-base-time__group--focus");
     return true;
   }
@@ -551,16 +572,70 @@ export class BaseTime extends KucBase {
     return `${timeStr} ${suffix}`;
   }
 
-  private _openListBox() {
+  private async _openListBox() {
     if (this._listBoxVisible) return;
-
     this._doFocusListBox = false;
     this._listBoxVisible = true;
+    await this.updateComplete;
+    if (!this._listboxEl) return;
+    this._listboxEl.showPopover();
+    this._listBoxMaxWidth = measureEl(this._listBoxUl).width;
+    setListBoxPosition({
+      anchorEl: this._inputGroupEl,
+      popoverEl: this._listBoxUl,
+      popoverHeight: this._listBoxMaxHeight,
+      popoverWidth: this._listBoxMaxWidth,
+    });
+    this._attachListeners();
   }
+
+  private _schedulePositionOnResize = () => {
+    if (!this._listBoxVisible) return;
+    if (this._resizeDebounceTimer !== null) {
+      window.clearTimeout(this._resizeDebounceTimer);
+    }
+
+    this._resizeDebounceTimer = window.setTimeout(() => {
+      this._resizeDebounceTimer = null;
+      setListBoxPosition({
+        anchorEl: this._inputGroupEl,
+        popoverEl: this._listBoxUl,
+        popoverHeight: this._listBoxMaxHeight,
+        popoverWidth: this._listBoxMaxWidth,
+      });
+    }, this._DEBOUNCE_DELAY);
+  };
+
+  private _attachListeners() {
+    this._detachListeners();
+    this._scrollTargets = getScrollableAncestors(this._inputGroupEl);
+    for (const targetEl of this._scrollTargets) {
+      targetEl.addEventListener("scroll", this._boundOnScroll, {
+        passive: true,
+      });
+    }
+    window.addEventListener("resize", this._schedulePositionOnResize);
+  }
+  private _detachListeners() {
+    for (const targetEl of this._scrollTargets) {
+      targetEl.removeEventListener("scroll", this._boundOnScroll);
+    }
+    this._scrollTargets = [];
+    window.removeEventListener("resize", this._schedulePositionOnResize);
+  }
+  private _boundOnScroll = () =>
+    setListBoxPosition({
+      anchorEl: this._inputGroupEl,
+      popoverEl: this._listBoxUl,
+      popoverHeight: this._listBoxMaxHeight,
+      popoverWidth: this._listBoxMaxWidth,
+    });
 
   private _closeListBox() {
     this._doFocusListBox = false;
     this._listBoxVisible = false;
+    this._listboxEl?.hidePopover();
+    this._detachListeners();
   }
 
   private _getColonTemplate() {
@@ -592,7 +667,6 @@ export class BaseTime extends KucBase {
     return this._listBoxVisible
       ? html`
           <kuc-base-datetime-listbox
-            maxHeight="165"
             aria-hidden="${!this._listBoxVisible}"
             class="kuc-base-time__group__listbox"
             .items="${this._listBoxItems || []}"

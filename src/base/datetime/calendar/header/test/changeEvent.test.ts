@@ -1,5 +1,6 @@
 import { elementUpdated, expect, fixture } from "@open-wc/testing";
 import "../index";
+import "../../../listbox";
 
 describe("BaseDateTimeCalendarHeader", () => {
   describe("kuc:calendar-header-change event", () => {

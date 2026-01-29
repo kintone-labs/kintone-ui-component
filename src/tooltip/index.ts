@@ -1,5 +1,5 @@
 import { html, PropertyValues } from "lit";
-import { property, query, queryAll } from "lit/decorators.js";
+import { property, query } from "lit/decorators.js";
 import { DirectiveResult } from "lit/directive";
 import { UnsafeHTMLDirective } from "lit/directives/unsafe-html";
 
@@ -32,8 +32,10 @@ let exportTooltip;
     private _groupContainerEL!: HTMLDivElement;
     @query(".kuc-tooltip__group__title__wrapper")
     private _titleWrapper!: HTMLDivElement;
-    @queryAll(".kuc-tooltip__group__title")
-    private _tooltips!: HTMLDivElement[];
+    @query(".kuc-tooltip__group__container")
+    private _containerEl!: HTMLDivElement;
+    @query(".kuc-tooltip__group__title")
+    private _titleEl!: HTMLDivElement;
 
     private _container:
       | HTMLElement
@@ -41,6 +43,9 @@ let exportTooltip;
     private _firstChildEl!: HTMLElement;
     private _GUID: string;
     private _globalEscapeBound: KeyBoardFunction;
+    private _setTooltipPositionBound: () => void;
+    private _scrollTargets: Array<Window | Element> = [];
+    private _timeoutID: number | null = null;
 
     constructor(props?: TooltipProps) {
       super();
@@ -48,6 +53,7 @@ let exportTooltip;
       const validProps = validateProps(props);
       Object.assign(this, validProps);
       this._globalEscapeBound = this._globalEscape.bind(this);
+      this._setTooltipPositionBound = this._setTooltipPosition.bind(this);
     }
 
     update(changedProperties: PropertyValues) {
@@ -141,7 +147,8 @@ let exportTooltip;
       return html`
         <div
           id="${this._GUID}-title"
-          class="kuc-tooltip__group__title kuc-tooltip__group__title--hidden"
+          popover="manual"
+          class="kuc-tooltip__group__title"
           role="tooltip"
           @mouseleave="${this._handleMouseLeaveTitle}"
         >
@@ -172,13 +179,26 @@ let exportTooltip;
 
     private _openTooltip() {
       this._updateChildElementAttributes(true);
-      this._showTooltip();
+      const tooltipEl = this.querySelector(
+        ".kuc-tooltip__group__title",
+      ) as HTMLElement;
+      if (tooltipEl) {
+        tooltipEl.showPopover();
+        requestAnimationFrame(() => {
+          this._setTooltipPosition();
+        });
+      }
       this._attachGlobalListener();
     }
 
     private _closeTooltip() {
       this._updateChildElementAttributes(false);
-      this._hideTooltip();
+      const tooltipEl = this.querySelector(
+        ".kuc-tooltip__group__title",
+      ) as HTMLElement;
+      if (tooltipEl) {
+        tooltipEl.hidePopover();
+      }
       this._removeGlobalListener();
     }
 
@@ -196,30 +216,58 @@ let exportTooltip;
       this._firstChildEl.setAttribute("title", this.title);
     }
 
-    private _showTooltip() {
-      if (this._tooltips.length === 0) return;
-      this._tooltips.forEach((tooltip) => {
-        if (tooltip!.id === `${this._GUID}-title`) {
-          tooltip.classList.remove("kuc-tooltip__group__title--hidden");
-        }
-      });
-    }
-
-    private _hideTooltip() {
-      if (this._tooltips.length === 0) return;
-      this._tooltips.forEach((tooltip) => {
-        if (tooltip!.id === `${this._GUID}-title`) {
-          tooltip.classList.add("kuc-tooltip__group__title--hidden");
-        }
-      });
-    }
-
     private _attachGlobalListener() {
       document.addEventListener("keydown", this._globalEscapeBound);
+      this._scrollTargets = this._getScrollableAncestors(this._containerEl);
+      for (const targetEl of this._scrollTargets) {
+        targetEl.addEventListener("scroll", this._handleScroll, {
+          passive: true,
+        });
+      }
     }
 
     private _removeGlobalListener() {
       document.removeEventListener("keydown", this._globalEscapeBound);
+      for (const targetEl of this._scrollTargets) {
+        targetEl.removeEventListener("scroll", this._handleScroll);
+      }
+      this._scrollTargets = [];
+      if (this._timeoutID !== null) {
+        clearTimeout(this._timeoutID);
+        this._timeoutID = null;
+      }
+    }
+
+    private _handleScroll = () => {
+      if (this._timeoutID !== null) {
+        clearTimeout(this._timeoutID);
+      }
+      this._timeoutID = window.setTimeout(() => {
+        this._setTooltipPositionBound();
+        this._timeoutID = null;
+      }, 20);
+    };
+
+    private _getScrollableAncestors(el: Element): Array<Window | Element> {
+      const targets: Array<Window | Element> = [];
+      let node: Element | null = el.parentElement;
+      const overflowRegex = /(auto|scroll|overlay)/;
+      while (
+        node &&
+        node !== document.body &&
+        node !== document.documentElement
+      ) {
+        const style = getComputedStyle(node);
+        const isScrollable =
+          overflowRegex.test(style.overflowY) ||
+          overflowRegex.test(style.overflowX);
+        if (isScrollable) {
+          targets.push(node);
+        }
+        node = node.parentElement;
+      }
+      targets.push(window);
+      return targets;
     }
 
     private _globalEscape(event: KeyboardEvent) {
@@ -232,6 +280,43 @@ let exportTooltip;
       const placement: TooltipPlacement[] = ["top", "bottom", "left", "right"];
       const isOfTypePlacement = placement.includes(this.placement);
       return isOfTypePlacement ? this.placement : "top";
+    }
+
+    private _setTooltipPosition() {
+      if (!this._titleEl || !this._containerEl) return;
+
+      const containerRect = this._containerEl.getBoundingClientRect();
+      const titleRect = this._titleEl.getBoundingClientRect();
+
+      let top: number, left: number;
+
+      switch (this.placement) {
+        case "bottom":
+          top = containerRect.bottom;
+          left =
+            containerRect.left + containerRect.width / 2 - titleRect.width / 2;
+          break;
+        case "left":
+          top =
+            containerRect.top + containerRect.height / 2 - titleRect.height / 2;
+          left = containerRect.left - titleRect.width;
+          break;
+        case "right":
+          top =
+            containerRect.top + containerRect.height / 2 - titleRect.height / 2;
+          left = containerRect.right;
+          break;
+        case "top":
+        default:
+          top = containerRect.top - titleRect.height;
+          left =
+            containerRect.left + containerRect.width / 2 - titleRect.width / 2;
+      }
+
+      this._titleEl.style.position = "fixed";
+      this._titleEl.style.top = `${Math.round(top)}px`;
+      this._titleEl.style.left = `${Math.round(left)}px`;
+      this._titleEl.style.transform = "none";
     }
   }
   window.customElements.define("kuc-tooltip", KucTooltip);
