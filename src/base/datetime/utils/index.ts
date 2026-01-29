@@ -490,46 +490,6 @@ export function getScrollableAncestors(el: Element): Array<Window | Element> {
   return targets;
 }
 
-export function measureEl(popoverEl: any) {
-  if (!popoverEl) return { width: 0, height: 0 };
-  const prevPos = popoverEl.style.position;
-  const prevLeft = popoverEl.style.left;
-  const prevTop = popoverEl.style.top;
-  const prevMaxH = popoverEl.style.maxHeight;
-
-  popoverEl.style.position = "fixed";
-  popoverEl.style.left = "-9999px";
-  popoverEl.style.top = "-9999px";
-  popoverEl.style.maxHeight = "none";
-
-  const rect = popoverEl.getBoundingClientRect();
-  const width = rect.width || 0;
-  const height = rect.height || 0;
-
-  popoverEl.style.position = prevPos;
-  popoverEl.style.left = prevLeft;
-  popoverEl.style.top = prevTop;
-  popoverEl.style.maxHeight = prevMaxH;
-  return { width, height };
-}
-export function getScrollableAncestors(el: Element): Array<Window | Element> {
-  const targets: Array<Window | Element> = [];
-  let node: Element | null = el.parentElement;
-  const overflowRegex = /(auto|scroll|overlay)/;
-  while (node && node !== document.body && node !== document.documentElement) {
-    const style = getComputedStyle(node);
-    const isScrollable =
-      overflowRegex.test(style.overflowY) ||
-      overflowRegex.test(style.overflowX);
-    if (isScrollable) {
-      targets.push(node);
-    }
-    node = node.parentElement;
-  }
-  targets.push(window);
-  return targets;
-}
-
 export const calculateDistanceInput = (_this: HTMLElement) => {
   if (!_this.parentElement)
     return {
