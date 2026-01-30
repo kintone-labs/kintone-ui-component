@@ -94,7 +94,7 @@ describe("Tooltip", () => {
       ) as HTMLElement;
       containerEl.dispatchEvent(new MouseEvent("mouseenter"));
 
-      await new Promise((resolve) => setTimeout(resolve, 10));
+      await new Promise((resolve) => requestAnimationFrame(resolve));
 
       const tooltipEl = el.querySelector(
         ".kuc-tooltip__group__title",
@@ -127,7 +127,7 @@ describe("Tooltip", () => {
       ) as HTMLElement;
       containerEl.dispatchEvent(new MouseEvent("mouseenter"));
 
-      await new Promise((resolve) => setTimeout(resolve, 10));
+      await new Promise((resolve) => requestAnimationFrame(resolve));
 
       const tooltipEl = el.querySelector(
         ".kuc-tooltip__group__title",
@@ -160,7 +160,7 @@ describe("Tooltip", () => {
       ) as HTMLElement;
       containerEl.dispatchEvent(new MouseEvent("mouseenter"));
 
-      await new Promise((resolve) => setTimeout(resolve, 10));
+      await new Promise((resolve) => requestAnimationFrame(resolve));
 
       const tooltipEl = el.querySelector(
         ".kuc-tooltip__group__title",

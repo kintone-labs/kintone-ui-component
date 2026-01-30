@@ -25,14 +25,14 @@ describe("Dropdown", () => {
       let menuEl = el.querySelector(
         ".kuc-dropdown__group__select-menu",
       ) as HTMLDivElement;
-      expect(menuEl).not.has.attribute("hidden");
+      expect(menuEl.matches(":popover-open")).to.equal(true);
 
       toggle.click();
       await elementUpdated(container);
       menuEl = el.querySelector(
         ".kuc-dropdown__group__select-menu",
       ) as HTMLDivElement;
-      expect(menuEl).has.attribute("hidden");
+      expect(menuEl.matches(":popover-open")).to.equal(false);
     });
 
     it("should hide menu element when clicking document", async () => {
@@ -50,7 +50,7 @@ describe("Dropdown", () => {
       let menuEl = el.querySelector(
         ".kuc-dropdown__group__select-menu",
       ) as HTMLDivElement;
-      expect(menuEl).not.has.attribute("hidden");
+      expect(menuEl.matches(":popover-open")).to.equal(true);
 
       await aTimeout(10);
       document.body.click();
@@ -58,7 +58,7 @@ describe("Dropdown", () => {
       menuEl = el.querySelector(
         ".kuc-dropdown__group__select-menu",
       ) as HTMLDivElement;
-      expect(menuEl).has.attribute("hidden");
+      expect(menuEl.matches(":popover-open")).to.equal(false);
     });
 
     it("should not hide menu element when clicking the disabled item", async () => {
@@ -79,7 +79,7 @@ describe("Dropdown", () => {
       let menuEl = el.querySelector(
         ".kuc-dropdown__group__select-menu",
       ) as HTMLDivElement;
-      expect(menuEl).not.has.attribute("hidden");
+      expect(menuEl.matches(":popover-open")).to.equal(true);
 
       await aTimeout(10);
       const itemsEl = el.querySelectorAll(
@@ -90,7 +90,7 @@ describe("Dropdown", () => {
       menuEl = el.querySelector(
         ".kuc-dropdown__group__select-menu",
       ) as HTMLDivElement;
-      expect(menuEl).not.has.attribute("hidden");
+      expect(menuEl.matches(":popover-open")).to.equal(true);
     });
 
     it("should be highlight/not highlight when mouseover/mouseleave the item", async () => {
@@ -181,11 +181,11 @@ describe("Dropdown", () => {
 
       toggleEl.dispatchEvent(new MouseEvent("mouseup"));
       await elementUpdated(el);
-      expect(menuEl.hidden).to.equal(true);
+      expect(menuEl.matches(":popover-open")).to.equal(false);
 
       toggleEl.dispatchEvent(new MouseEvent("mousedown"));
       await elementUpdated(el);
-      expect(menuEl.hidden).to.equal(true);
+      expect(menuEl.matches(":popover-open")).to.equal(false);
     });
 
     it("should open menu when pressing Enter key", async () => {
@@ -201,7 +201,7 @@ describe("Dropdown", () => {
         ".kuc-dropdown__group__select-menu",
       ) as HTMLUListElement;
 
-      expect(menuEl.hidden).to.equal(false);
+      expect(menuEl.matches(":popover-open")).to.equal(true);
     });
 
     it("should open menu when pressing ArrowUp key", async () => {
@@ -217,7 +217,7 @@ describe("Dropdown", () => {
         ".kuc-dropdown__group__select-menu",
       ) as HTMLUListElement;
 
-      expect(menuEl.hidden).to.equal(false);
+      expect(menuEl.matches(":popover-open")).to.equal(true);
     });
 
     it("should open menu when pressing ArrowDown key", async () => {
@@ -235,7 +235,7 @@ describe("Dropdown", () => {
         ".kuc-dropdown__group__select-menu",
       ) as HTMLUListElement;
 
-      expect(menuEl.hidden).to.equal(false);
+      expect(menuEl.matches(":popover-open")).to.equal(true);
     });
 
     it("should hide menu when pressing Escape key", async () => {
@@ -250,11 +250,11 @@ describe("Dropdown", () => {
 
       toggleEl.dispatchEvent(new KeyboardEvent("keydown", { key: "Enter" }));
       await elementUpdated(el);
-      expect(menuEl.hidden).to.equal(false);
+      expect(menuEl.matches(":popover-open")).to.equal(true);
 
       toggleEl.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape" }));
       await elementUpdated(el);
-      expect(menuEl.hidden).to.equal(true);
+      expect(menuEl.matches(":popover-open")).to.equal(false);
     });
 
     it('should be highlight prev item when triggered "ArrowUp" keyboard event', async () => {
@@ -604,7 +604,7 @@ describe("Dropdown", () => {
         ".kuc-dropdown__group__select-menu",
       ) as HTMLUListElement;
 
-      expect(menuEl.hidden).to.equal(false);
+      expect(menuEl.matches(":popover-open")).to.equal(true);
     });
 
     it('should changed value when pressing "Enter" key', async () => {
@@ -642,11 +642,11 @@ describe("Dropdown", () => {
 
       toggleEl.click();
       await elementUpdated(el);
-      expect(menuEl.hidden).to.equal(false);
+      expect(menuEl.matches(":popover-open")).to.equal(true);
 
       toggleEl.dispatchEvent(new KeyboardEvent("keydown", { key: "Tab" }));
       await elementUpdated(el);
-      expect(menuEl.hidden).to.equal(true);
+      expect(menuEl.matches(":popover-open")).to.equal(false);
     });
   });
 });
