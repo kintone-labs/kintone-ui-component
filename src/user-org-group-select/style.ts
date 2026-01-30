@@ -113,6 +113,7 @@ export const USER_ORG_GROUP_SELECT_CSS = `
     border: 1px solid #e3e7e8;
     border-left: none;
     background-color: #eeeeee;
+    box-sizing: content-box;
   }
   .kuc-user-org-group-select__group__container__picker {
     margin-left: 8px;
@@ -133,18 +134,14 @@ export const USER_ORG_GROUP_SELECT_CSS = `
   }
   .kuc-user-org-group-select__group__container__select-area__select-menu {
     width: 100%;
+    max-width: var(--kuc-user-org-group-select-toggle-width, 280px);
     padding: 0;
     border: none;
     box-sizing: border-box;
     background-color: #ffffff;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-    position: absolute;
-    z-index: 2000;
     margin: 0;
     list-style: none;
-  }
-  .kuc-user-org-group-select__group__container__select-area__select-menu[hidden] {
-    display: none;
   }
   .kuc-user-org-group-select__group__container__select-area__select-menu__item {
    border-bottom: 1px solid #e3e7e8;
