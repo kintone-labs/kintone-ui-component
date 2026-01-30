@@ -1,6 +1,8 @@
 import "./index.ts";
 import { html } from "lit";
 
+import { setListBoxPosition } from "../utils/index.ts";
+
 export default {
   title: "base/datetime/listbox",
   argTypes: {
@@ -24,11 +26,23 @@ export default {
     },
   },
 };
-
+let isOpen = false;
+const LISTBOX_MAX_HEIGHT = 360;
 const Template = ({ value, items }) => {
   const _handleClickBtn = () => {
     const _listBoxEl = document.querySelector("kuc-base-datetime-listbox");
-    _listBoxEl.hidden = !_listBoxEl.hidden;
+    isOpen = !isOpen;
+    isOpen ? _listBoxEl.showPopover() : _listBoxEl.hidePopover();
+    const _btn = document.querySelector(".trigger-button");
+    const _listBoxUl = _listBoxEl?.querySelector(
+      ".kuc-base-datetime-listbox__listbox",
+    );
+
+    setListBoxPosition({
+      anchorEl: _btn,
+      popoverEl: _listBoxUl,
+      popoverHeight: LISTBOX_MAX_HEIGHT,
+    });
   };
 
   const _handleKeydownBtn = (event) => {
@@ -73,7 +87,11 @@ const Template = ({ value, items }) => {
   };
 
   return html`
-    <button @click="${_handleClickBtn}" @keydown="${_handleKeydownBtn}">
+    <button
+      @click="${_handleClickBtn}"
+      @keydown="${_handleKeydownBtn}"
+      class="trigger-button"
+    >
       ${value}
     </button>
     <kuc-base-datetime-listbox

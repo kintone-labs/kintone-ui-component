@@ -35,16 +35,13 @@ describe("Dropdown", () => {
     });
 
     it("Show scroll bar when menu display is incomplete below", async () => {
+      await fixture('<div style="height: 200px" />');
+
       const container = new Dropdown({
         items: [...initItems, ...initItems, ...initItems],
         value: initItems[0].value,
       });
       const el = await fixture(container);
-
-      (el as HTMLElement).style.position = "fixed";
-      (el as HTMLElement).style.bottom = "50px";
-      document.body.appendChild(el);
-
       const toggle = el.querySelector(
         ".kuc-dropdown__group__toggle",
       ) as HTMLButtonElement;
@@ -62,14 +59,12 @@ describe("Dropdown", () => {
     });
 
     it("Show menu above when it cannot be completely displayed below", async () => {
-      const manyItems = Array.from({ length: 20 }, (_, i) => ({
-        label: `Option ${i + 1}`,
-        value: `option${i + 1}`,
-      }));
+      await fixture('<div style="height: 500px" />');
 
       const container = new Dropdown({
-        items: manyItems,
-        value: manyItems[0].value,
+        items: initItems,
+        value: initItems[0].value,
+        error: "Error",
       });
       const el = await fixture(container);
 
@@ -105,21 +100,14 @@ describe("Dropdown", () => {
     });
 
     it("Show scroll bar when menu display is incomplete above", async () => {
-      const manyItems = Array.from({ length: 25 }, (_, i) => ({
-        label: `Option ${i + 1}`,
-        value: `option${i + 1}`,
-      }));
+      await fixture('<div style="height: 300px" />');
 
       const container = new Dropdown({
-        items: manyItems,
-        value: manyItems[0].value,
+        items: [...initItems, ...initItems, ...initItems],
+        value: initItems[0].value,
       });
       const el = await fixture(container);
-
-      (el as HTMLElement).style.position = "fixed";
-      (el as HTMLElement).style.top = "60%";
       document.body.appendChild(el);
-
       const toggle = el.querySelector(
         ".kuc-dropdown__group__toggle",
       ) as HTMLButtonElement;

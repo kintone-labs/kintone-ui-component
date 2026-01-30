@@ -12,8 +12,10 @@ import {
   calculateDistanceInput,
   formatInputValueToValue,
   formatValueToInputValue,
+  getScrollableAncestors,
   getTodayStringByLocale,
   isValidDateFormat,
+  measureEl,
 } from "../utils";
 
 import { BASE_MOBILE_DATE_CSS } from "./style";
@@ -42,6 +44,21 @@ export class BaseMobileDate extends KucBase {
   private _calendarValue?: string = "";
   private _inputValue?: string = "";
 
+  private _scrollDebounceTimer: number | null = null;
+  private _scrollRAF = 0;
+  private _scrollTargets: Array<Window | Element> = [];
+
+  private _calendarWidth = 0;
+  private _calendarHeight = 0;
+
+  private _schedulePositionOnScroll = () => {
+    if (!this._dateTimeCalendarVisible || this._scrollRAF) return;
+    this._scrollRAF = requestAnimationFrame(() => {
+      this._scrollRAF = 0;
+      this._positionCalendar();
+    });
+  };
+
   update(changedProperties: PropertyValues) {
     if (changedProperties.has("inputId")) {
       this._GUID = this.inputId;
@@ -50,6 +67,20 @@ export class BaseMobileDate extends KucBase {
       this._updateValueProp();
     }
     super.update(changedProperties);
+  }
+
+  disconnectedCallback() {
+    if (this._scrollRAF) {
+      cancelAnimationFrame(this._scrollRAF);
+      this._scrollRAF = 0;
+    }
+
+    if (this._scrollDebounceTimer !== null) {
+      window.clearTimeout(this._scrollDebounceTimer);
+      this._scrollDebounceTimer = null;
+    }
+    this._detachListeners();
+    super.disconnectedCallback();
   }
 
   render() {
@@ -82,22 +113,63 @@ export class BaseMobileDate extends KucBase {
     `;
   }
 
-  updated(changedProperties: PropertyValues) {
-    if (this._dateTimeCalendarVisible) {
-      this._setCalendarPosition();
+  private _positionCalendar = () => {
+    if (!this._calendarEl || !this._inputEl) return;
+
+    const {
+      inputToBottom,
+      inputToTop,
+      inputToLeft,
+      inputDateWidth,
+      inputDateHeight,
+    } = calculateDistanceInput(this);
+
+    const calHeight = this._calendarHeight;
+
+    // vertical
+    if (inputToBottom >= inputToTop) {
+      this._calendarEl.style.top = `${inputToTop + inputDateHeight + 7.5}px`;
+    } else {
+      this._calendarEl.style.top = `${inputToTop - calHeight - 2}px`;
     }
-    super.updated(changedProperties);
+    // horizontal
+    this._calendarEl.style.left = `${inputToLeft - inputDateWidth}px`;
+  };
+
+  private _onDocClick = (event: PointerEvent) => {
+    const path = event.composedPath();
+    const inCalendar = this._calendarEl && path.includes(this._calendarEl);
+    const inInput = path.includes(this._inputEl);
+    const inButton = path.includes(this._btnToggleEl);
+    if (!inCalendar && !inInput && !inButton) this._closeCalendar();
+  };
+
+  private _attachListeners() {
+    this._detachListeners();
+    this._scrollTargets = getScrollableAncestors(this._inputEl);
+    for (const targetEl of this._scrollTargets) {
+      targetEl.addEventListener(
+        "scroll",
+        this._schedulePositionOnScroll as EventListener,
+        { passive: true },
+      );
+    }
+    document.addEventListener("click", this._onDocClick, {
+      capture: true,
+    });
   }
 
-  private _setCalendarPosition() {
-    const borderWidth = 2;
-    const { inputToBottom, inputToTop } = calculateDistanceInput(this);
-    const inputHeight = this._inputEl.getBoundingClientRect().height;
-
-    if (inputToBottom >= inputToTop) return;
-
-    this._calendarEl.style.bottom = inputHeight + borderWidth + "px";
-    this._calendarEl.style.top = "auto";
+  private _detachListeners() {
+    for (const targetEl of this._scrollTargets) {
+      targetEl.removeEventListener(
+        "scroll",
+        this._schedulePositionOnScroll as EventListener,
+      );
+    }
+    this._scrollTargets = [];
+    document.removeEventListener("click", this._onDocClick, {
+      capture: true,
+    } as any);
   }
 
   private _getGroupClass() {
@@ -146,10 +218,34 @@ export class BaseMobileDate extends KucBase {
 
   private _closeCalendar() {
     this._dateTimeCalendarVisible = false;
+    if (this._calendarEl) {
+      this._calendarEl.hidePopover();
+    }
+
+    if (this._scrollRAF) {
+      cancelAnimationFrame(this._scrollRAF);
+      this._scrollRAF = 0;
+    }
+
+    if (this._scrollDebounceTimer !== null) {
+      window.clearTimeout(this._scrollDebounceTimer);
+      this._scrollDebounceTimer = null;
+    }
+
+    this._detachListeners();
   }
 
-  private _openCalendar() {
+  private async _openCalendar() {
     this._dateTimeCalendarVisible = true;
+    if (this._calendarEl) {
+      await this.updateComplete;
+      this._calendarEl.showPopover();
+      const calendarRect = measureEl(this._calendarEl);
+      this._calendarWidth = calendarRect.width;
+      this._calendarHeight = calendarRect.height;
+      this._positionCalendar();
+      this._attachListeners();
+    }
   }
 
   private _handleClickCalendarClickDate(event: CustomEvent) {
@@ -184,11 +280,6 @@ export class BaseMobileDate extends KucBase {
     this._btnToggleEl.focus();
   }
 
-  private _handleCalendarBlurBody(event: Event) {
-    event.preventDefault();
-    this._dateTimeCalendarVisible = false;
-  }
-
   private _dispathDateChangeCustomEvent(newValue?: string) {
     const detail: CustomEventDetail = { value: newValue, oldValue: this.value };
     this.value = newValue;
@@ -197,26 +288,23 @@ export class BaseMobileDate extends KucBase {
   }
 
   private _getCalendarTemplate() {
-    return this._dateTimeCalendarVisible
-      ? html`
-          <kuc-base-mobile-datetime-calendar
-            class="kuc-base-mobile-date__calendar"
-            .language="${this.language}"
-            .value="${this._calendarValue}"
-            ?hidden="${!this._dateTimeCalendarVisible}"
-            @kuc:mobile-calendar-body-click-date="${this
-              ._handleClickCalendarClickDate}"
-            @kuc:mobile-calendar-footer-click-none="${this
-              ._handleClickCalendarFooterButtonNone}"
-            @kuc:mobile-calendar-footer-click-today="${this
-              ._handleClickCalendarFooterButtonToday}"
-            @kuc:mobile-calendar-footer-click-close="${this
-              ._handleClickCalendarFooterButtonClose}"
-            @kuc:mobile-calendar-body-blur="${this._handleCalendarBlurBody}"
-          >
-          </kuc-base-mobile-datetime-calendar>
-        `
-      : "";
+    return html`
+      <kuc-base-mobile-datetime-calendar
+        class="kuc-base-mobile-date__calendar"
+        .language="${this.language}"
+        .value="${this._calendarValue}"
+        popover="manual"
+        @kuc:mobile-calendar-body-click-date="${this
+          ._handleClickCalendarClickDate}"
+        @kuc:mobile-calendar-footer-click-none="${this
+          ._handleClickCalendarFooterButtonNone}"
+        @kuc:mobile-calendar-footer-click-today="${this
+          ._handleClickCalendarFooterButtonToday}"
+        @kuc:mobile-calendar-footer-click-close="${this
+          ._handleClickCalendarFooterButtonClose}"
+      >
+      </kuc-base-mobile-datetime-calendar>
+    `;
   }
 
   private _getCalendarIconTemplate() {

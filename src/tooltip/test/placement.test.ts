@@ -72,5 +72,103 @@ describe("Tooltip", () => {
         true,
       );
     });
+    it("should position tooltip at bottom correctly", async () => {
+      const button = document.createElement("button") as HTMLButtonElement;
+      button.textContent = "Test Button";
+      button.style.width = "100px";
+      button.style.height = "40px";
+
+      document.body.appendChild(button as HTMLElement);
+
+      const tooltip = new Tooltip({
+        title: "Test tooltip content",
+        container: button,
+        placement: "bottom",
+      });
+
+      const el = (await fixture(tooltip)) as HTMLElement;
+      el.style.position = "relative";
+
+      const containerEl = el.querySelector(
+        ".kuc-tooltip__group__container",
+      ) as HTMLElement;
+      containerEl.dispatchEvent(new MouseEvent("mouseenter"));
+
+      await new Promise((resolve) => setTimeout(resolve, 10));
+
+      const tooltipEl = el.querySelector(
+        ".kuc-tooltip__group__title",
+      ) as HTMLElement;
+      const tooltipRect = tooltipEl.getBoundingClientRect();
+      const containerRect = containerEl.getBoundingClientRect();
+
+      expect(tooltipRect.top).to.be.at.least(containerRect.bottom);
+    });
+
+    it("should position tooltip at left correctly", async () => {
+      const button = document.createElement("button") as HTMLButtonElement;
+      button.textContent = "Test Button";
+      button.style.width = "100px";
+      button.style.height = "40px";
+
+      document.body.appendChild(button as HTMLElement);
+
+      const tooltip = new Tooltip({
+        title: "Test tooltip content",
+        container: button,
+        placement: "left",
+      });
+
+      const el = (await fixture(tooltip)) as HTMLElement;
+      el.style.position = "relative";
+
+      const containerEl = el.querySelector(
+        ".kuc-tooltip__group__container",
+      ) as HTMLElement;
+      containerEl.dispatchEvent(new MouseEvent("mouseenter"));
+
+      await new Promise((resolve) => setTimeout(resolve, 10));
+
+      const tooltipEl = el.querySelector(
+        ".kuc-tooltip__group__title",
+      ) as HTMLElement;
+      const tooltipRect = tooltipEl.getBoundingClientRect();
+      const containerRect = containerEl.getBoundingClientRect();
+
+      expect(tooltipRect.right).to.be.closeTo(containerRect.left, 1);
+    });
+
+    it("should position tooltip at right correctly", async () => {
+      const button = document.createElement("button") as HTMLButtonElement;
+      button.textContent = "Test Button";
+      button.style.width = "100px";
+      button.style.height = "40px";
+
+      document.body.appendChild(button as HTMLElement);
+
+      const tooltip = new Tooltip({
+        title: "Test tooltip content",
+        container: button,
+        placement: "right",
+      });
+
+      const el = (await fixture(tooltip)) as HTMLElement;
+      el.style.position = "relative";
+
+      const containerEl = el.querySelector(
+        ".kuc-tooltip__group__container",
+      ) as HTMLElement;
+      containerEl.dispatchEvent(new MouseEvent("mouseenter"));
+
+      await new Promise((resolve) => setTimeout(resolve, 10));
+
+      const tooltipEl = el.querySelector(
+        ".kuc-tooltip__group__title",
+      ) as HTMLElement;
+      const tooltipRect = tooltipEl.getBoundingClientRect();
+      const containerRect = containerEl.getBoundingClientRect();
+
+      expect(tooltipRect.left).to.be.closeTo(containerRect.right, 1);
+    });
   });
 });

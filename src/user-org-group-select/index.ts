@@ -66,8 +66,7 @@ let exportUserOrgGroupSelect;
     private _inputEl!: HTMLInputElement;
     @query(".kuc-user-org-group-select__group__container__select-area__toggle")
     private _toggleEl!: HTMLDivElement;
-    @query(".kuc-user-org-group-select__group__container__select-area")
-    private _selectAreaEl!: HTMLDivElement;
+
     @query(
       ".kuc-user-org-group-select__group__container__select-area__select-menu",
     )
@@ -107,6 +106,7 @@ let exportUserOrgGroupSelect;
     private _GUID: string;
     private _SMALL_ICON_SIZE = 24;
     private _LARGE_ICON_SIZE = 48;
+    private _scrollTargets: Array<Window | Element> = [];
 
     constructor(props?: UserOrgGroupSelectProps) {
       super();
@@ -114,6 +114,9 @@ let exportUserOrgGroupSelect;
       const validProps = validateProps(props);
       this._handleClickDocument = this._handleClickDocument.bind(this);
       this._handleScrollMenu = this._handleScrollMenu.bind(this);
+      this._setMenuPosition = this._setMenuPosition.bind(this);
+      this._actionResizeScrollWindow =
+        this._actionResizeScrollWindow.bind(this);
       Object.assign(this, validProps);
     }
 
@@ -198,12 +201,12 @@ let exportUserOrgGroupSelect;
                 </div>
               </div>
               <ul
+                id="${this._GUID}-listbox"
+                popover="manual"
                 class="kuc-user-org-group-select__group__container__select-area__select-menu"
                 role="listbox"
-                id="${this._GUID}-listbox"
                 aria-labelledby="${this._GUID}-label"
                 aria-hidden="${!this._selectorVisible}"
-                ?hidden="${!this._selectorVisible}"
                 @mouseleave="${this._handleMouseLeaveMenu}"
                 @mousedown="${this._handleMouseDownMenu}"
               >
@@ -255,15 +258,9 @@ let exportUserOrgGroupSelect;
       return undefined;
     }
 
-    firstUpdated() {
-      this._initializeSelectedValues();
-      window.addEventListener("resize", () => {
-        this._actionResizeScrollWindow();
-      });
-
-      window.addEventListener("scroll", () => {
-        this._actionResizeScrollWindow();
-      });
+    disconnectedCallback() {
+      this._detachListeners();
+      super.disconnectedCallback();
     }
 
     private _actionResizeScrollWindow() {
@@ -276,27 +273,12 @@ let exportUserOrgGroupSelect;
 
     async updated(changedProperties: PropertyValues) {
       super.updated(changedProperties);
+      await this.updateComplete;
       if (changedProperties.has("value")) {
         this._initializeSelectedValues();
       }
-      await this.updateComplete;
       if (this._selectorVisible) {
-        this._menuEl.addEventListener("scroll", this._handleScrollMenu);
-        this._setMenuPosition();
-        this._scrollToView();
         this._actionClearAllHighlightMenuItem();
-
-        setTimeout(() => {
-          document.addEventListener("click", this._handleClickDocument, true);
-        }, 1);
-      } else {
-        setTimeout(() => {
-          document.removeEventListener(
-            "click",
-            this._handleClickDocument,
-            true,
-          );
-        }, 1);
       }
     }
 
@@ -585,8 +567,11 @@ let exportUserOrgGroupSelect;
     }
 
     private _setMenuPosition() {
-      this._setMenuPositionAboveOrBelow();
-      this._setMenuPositionLeftOrRight();
+      if (!this._menuEl || !this._toggleEl) {
+        return;
+      }
+      this._setMenuPositionAboveOrBelow(this._menuEl, this._toggleEl);
+      this._setMenuPositionLeftOrRight(this._menuEl, this._toggleEl);
     }
 
     private _handleClickRemoveSelectedItem(event: Event) {
@@ -627,101 +612,90 @@ let exportUserOrgGroupSelect;
       dispatchCustomEvent(this, "click-picker-icon", clickIconEventDetail);
     }
 
-    private _setMenuPositionAboveOrBelow() {
-      this._menuEl.style.height = "auto";
-      this._menuEl.style.bottom = "auto";
-      this._menuEl.style.overflowY = "scroll";
+    private _setMenuPositionAboveOrBelow(
+      menuEl: HTMLUListElement,
+      toggleEl: HTMLDivElement,
+    ) {
+      const toggleRect = toggleEl.getBoundingClientRect();
+      const spaceAbove = toggleRect.top;
 
-      this._menuEl.style.maxHeight = "none";
-      const menuHeightNoMaxHeight = this._menuEl.getBoundingClientRect().height;
-      this._menuEl.style.maxHeight =
+      let viewportHeight = window.innerHeight;
+      if (window.innerHeight > document.documentElement.clientHeight) {
+        viewportHeight = document.documentElement.clientHeight;
+      }
+      const spaceBelow = viewportHeight - toggleRect.bottom;
+
+      menuEl.style.height = "auto";
+      menuEl.style.maxHeight = "none";
+      menuEl.style.top = "auto";
+      menuEl.style.bottom = "auto";
+      const naturalMenuHeight = menuEl.getBoundingClientRect().height;
+
+      menuEl.style.maxHeight =
         "var(--kuc-user-org-group-select-menu-max-height, none)";
-      const menuHeightWithMaxHeight =
-        this._menuEl.getBoundingClientRect().height;
+      const computedMaxHeight = getComputedStyle(menuEl).maxHeight;
 
-      const distanceToggleButton = this._getDistanceToggleButton();
-      if (distanceToggleButton.toBottom >= menuHeightWithMaxHeight) {
-        if (menuHeightNoMaxHeight > menuHeightWithMaxHeight) {
-          this._previousScrollTop &&
-            (this._menuEl.scrollTop = this._previousScrollTop);
-        } else {
-          this._menuEl.style.overflowY = "";
-        }
-        return;
+      let customMaxHeight: number | undefined;
+      if (computedMaxHeight && computedMaxHeight !== "none") {
+        customMaxHeight = parseFloat(computedMaxHeight);
       }
+      const effectiveMenuHeight = customMaxHeight
+        ? Math.min(naturalMenuHeight, customMaxHeight)
+        : naturalMenuHeight;
 
-      if (distanceToggleButton.toBottom < distanceToggleButton.toTop) {
-        // Above
-        this._menuEl.style.bottom = `${this._selectAreaEl.offsetHeight}px`;
-        if (distanceToggleButton.toTop >= menuHeightWithMaxHeight) {
-          if (menuHeightNoMaxHeight > menuHeightWithMaxHeight) {
-            this._previousScrollTop &&
-              (this._menuEl.scrollTop = this._previousScrollTop);
-          } else {
-            this._menuEl.style.overflowY = "";
-          }
-          return;
-        }
-        this._menuEl.style.height = `${distanceToggleButton.toTop}px`;
+      let top, height;
+
+      if (spaceBelow >= effectiveMenuHeight) {
+        top = toggleRect.bottom;
+        height = effectiveMenuHeight;
+      } else if (spaceAbove >= effectiveMenuHeight) {
+        top = toggleRect.top - effectiveMenuHeight;
+        height = effectiveMenuHeight;
+      } else if (spaceBelow >= spaceAbove) {
+        top = toggleRect.bottom;
+        height = spaceBelow;
       } else {
-        // Below
-        this._menuEl.style.height = `${distanceToggleButton.toBottom}px`;
+        top = toggleRect.top - spaceAbove;
+        height = spaceAbove;
+      }
+      menuEl.style.position = "fixed";
+      const topValue = `${top}px`;
+      if (menuEl.style.top !== topValue) {
+        menuEl.style.top = topValue;
       }
 
-      this._previousScrollTop &&
-        (this._menuEl.scrollTop = this._previousScrollTop);
+      const heightValue = `${height}px`;
+      if (menuEl.style.height !== heightValue) {
+        menuEl.style.height = heightValue;
+      }
+
+      menuEl.style.overflowY = "auto";
+      menuEl.style.overflowX = "hidden";
+
+      if (this._menuEl && this._previousScrollTop) {
+        this._menuEl.scrollTop = this._previousScrollTop;
+      }
     }
 
-    private _setMenuPositionLeftOrRight() {
-      this._menuEl.style.right = "auto";
-
-      const menuWidth = this._menuEl.getBoundingClientRect().width;
-      const distanceToggleButton = this._getDistanceToggleButton();
-      if (
-        // Right
-        distanceToggleButton.toRight >= menuWidth ||
-        distanceToggleButton.toLeft < menuWidth ||
-        distanceToggleButton.toRight < 0
-      )
-        return;
-
-      // Left
-      const right = this._toggleEl.offsetWidth - distanceToggleButton.toRight;
-      this._menuEl.style.right = right > 0 ? `${right}px` : "0px";
-    }
-
-    private _getDistanceToggleButton() {
-      const { scrollbarWidth, scrollbarHeight } =
-        this._getScrollbarWidthHeight();
-
-      const isWindowRightScrollbarShow =
-        document.body.scrollHeight > window.innerHeight;
-      const isWindowBottomScrollbarShow =
-        document.body.scrollWidth > window.innerWidth;
-
-      const toTop = this._toggleEl.getBoundingClientRect().top;
-      const toBottom =
-        window.innerHeight -
-        this._toggleEl.getBoundingClientRect().bottom -
-        (isWindowBottomScrollbarShow ? scrollbarHeight : 0);
-      const toLeft = this._toggleEl.getBoundingClientRect().left;
-      const toRight =
-        window.innerWidth -
-        this._toggleEl.getBoundingClientRect().left -
-        (isWindowRightScrollbarShow ? scrollbarWidth : 0);
-
-      return { toTop, toBottom, toLeft, toRight };
-    }
-
-    private _getScrollbarWidthHeight() {
-      const scrollDiv = document.createElement("div");
-      scrollDiv.style.cssText =
-        "overflow: scroll; position: absolute; top: -9999px;";
-      document.body.appendChild(scrollDiv);
-      const scrollbarWidth = scrollDiv.offsetWidth - scrollDiv.clientWidth;
-      const scrollbarHeight = scrollDiv.offsetHeight - scrollDiv.clientHeight;
-      document.body.removeChild(scrollDiv);
-      return { scrollbarWidth, scrollbarHeight };
+    private _setMenuPositionLeftOrRight(
+      menuEl: HTMLUListElement,
+      toggleEl: HTMLDivElement,
+    ) {
+      menuEl.style.right = "auto";
+      const menuWidth = menuEl.offsetWidth;
+      const buttonRect = toggleEl.getBoundingClientRect();
+      let viewportWidth = window.innerWidth;
+      if (window.innerWidth > document.documentElement.clientWidth) {
+        viewportWidth = document.documentElement.clientWidth;
+      }
+      let left = buttonRect.left;
+      if (viewportWidth < buttonRect.right && viewportWidth > buttonRect.left) {
+        left = viewportWidth - menuWidth;
+      }
+      const leftPx = `${left}px`;
+      if (menuEl.style.left !== leftPx) {
+        menuEl.style.left = leftPx;
+      }
     }
 
     private _scrollToView() {
@@ -793,7 +767,7 @@ let exportUserOrgGroupSelect;
       }
     }
 
-    private _actionShowMenu() {
+    private async _actionShowMenu() {
       if (this._query.trim() === "") {
         this._matchingItems = this.items;
       }
@@ -804,6 +778,11 @@ let exportUserOrgGroupSelect;
 
       this._inputEl.focus();
       this._selectorVisible = true;
+      this._menuEl.showPopover();
+      await this.updateComplete;
+      if (!this._menuEl || !this._toggleEl) return;
+      this._setMenuPosition();
+      this._attachListeners();
     }
 
     private _handleMouseOverUserOrgGroupItem(event: Event) {
@@ -907,8 +886,59 @@ let exportUserOrgGroupSelect;
       this._previousScrollTop = this._menuEl.scrollTop;
     }
 
+    private _attachListeners() {
+      this._detachListeners();
+      this._scrollTargets = this._getScrollableAncestors(this._toggleEl);
+      for (const targetEl of this._scrollTargets) {
+        targetEl.addEventListener("scroll", this._setMenuPosition, {
+          passive: true,
+        });
+      }
+      this._menuEl.addEventListener("scroll", this._handleScrollMenu);
+      window.addEventListener("resize", this._actionResizeScrollWindow);
+      document.addEventListener("click", this._handleClickDocument, {
+        capture: true,
+      });
+    }
+
+    private _detachListeners() {
+      for (const targetEl of this._scrollTargets) {
+        targetEl.removeEventListener("scroll", this._setMenuPosition);
+      }
+      this._scrollTargets = [];
+      this._menuEl?.removeEventListener("scroll", this._handleScrollMenu);
+      window.removeEventListener("resize", this._actionResizeScrollWindow);
+      document.removeEventListener("click", this._handleClickDocument, {
+        capture: true,
+      });
+    }
+
+    private _getScrollableAncestors(el: Element): Array<Window | Element> {
+      const targets: Array<Window | Element> = [];
+      let node: Element | null = el.parentElement;
+      const overflowRegex = /(auto|scroll|overlay)/;
+      while (
+        node &&
+        node !== document.body &&
+        node !== document.documentElement
+      ) {
+        const style = getComputedStyle(node);
+        const isScrollable =
+          overflowRegex.test(style.overflowY) ||
+          overflowRegex.test(style.overflowX);
+        if (isScrollable) {
+          targets.push(node);
+        }
+        node = node.parentElement;
+      }
+      targets.push(window);
+      return targets;
+    }
+
     private _actionHideMenu() {
       this._selectorVisible = false;
+      this._menuEl.hidePopover();
+      this._detachListeners();
       this._actionRemoveActiveDescendant();
     }
     private _getPickerSVGTemplateByIcon(icon?: string) {

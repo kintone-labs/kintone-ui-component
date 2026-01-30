@@ -9,13 +9,12 @@ import {
 } from "../../../../../kuc-base";
 import { BaseDateTimeListBoxItem } from "../../../../listbox";
 import {
-  calculateDistanceInput,
+  getScrollableAncestors,
   getToggleIconSvgTemplate,
   setListBoxPosition,
 } from "../../../../utils";
 
 import { CALENDAR_HEADER_YEAR_CSS } from "./style";
-
 export class BaseDateTimeHeaderYear extends KucBase {
   @property({ type: Number }) year = new Date().getFullYear();
   @property({ type: String }) postfix = "";
@@ -28,20 +27,17 @@ export class BaseDateTimeHeaderYear extends KucBase {
   @query(".kuc-base-datetime-header-year__toggle")
   private _toggleEl!: HTMLButtonElement;
 
-  constructor() {
-    super();
-    this._handleScrollDocument = this._handleScrollDocument.bind(this);
-  }
+  @query(".kuc-base-datetime-header-year__listbox")
+  private _listBoxEl!: any;
 
-  connectedCallback() {
-    super.connectedCallback();
-    setTimeout(() => {
-      document.addEventListener("scroll", this._handleScrollDocument);
-    }, 1);
-  }
+  @query(".kuc-base-datetime-listbox__listbox")
+  private _listBoxUl!: HTMLUListElement;
+
+  private _listBoxMaxHeight = 300;
+  private _scrollTargets: Array<Window | Element> = [];
 
   disconnectedCallback() {
-    document.removeEventListener("scroll", this._handleScrollDocument);
+    this._detachListeners();
     super.disconnectedCallback();
   }
 
@@ -82,24 +78,52 @@ export class BaseDateTimeHeaderYear extends KucBase {
 
   async updated(changedProperties: PropertyValues) {
     await this.updateComplete;
-    if (changedProperties.has("_listBoxVisible") && this._listBoxVisible) {
-      this._handleScrollDocument();
-    }
     super.update(changedProperties);
   }
 
-  public closeListBox() {
-    this._listBoxVisible = false;
-    this._toggleEl.focus();
+  public repositionListBox() {
+    if (!this._listBoxVisible || !this._listBoxEl) return;
+    setListBoxPosition({
+      anchorEl: this._toggleEl,
+      popoverEl: this._listBoxUl,
+      popoverHeight: this._listBoxMaxHeight,
+    });
   }
 
-  private _handleScrollDocument() {
-    const distance = calculateDistanceInput(this);
-    if (distance.inputToBottom >= distance.inputToTop) {
-      setListBoxPosition(this, "bottom");
-      return;
+  private _attachListeners() {
+    this._detachListeners();
+    this._scrollTargets = getScrollableAncestors(this._toggleEl);
+    for (const targetEl of this._scrollTargets) {
+      targetEl.addEventListener("scroll", this._boundOnScrollAndResize, {
+        passive: true,
+      });
     }
-    setListBoxPosition(this, "top");
+  }
+
+  private _boundOnScrollAndResize = () =>
+    setListBoxPosition({
+      anchorEl: this._toggleEl,
+      popoverEl: this._listBoxUl,
+      popoverHeight: this._listBoxMaxHeight,
+    });
+
+  private _detachListeners() {
+    for (const targetEl of this._scrollTargets) {
+      targetEl.removeEventListener(
+        "scroll",
+        this._boundOnScrollAndResize as EventListener,
+      );
+    }
+    this._scrollTargets = [];
+  }
+
+  public closeListBox() {
+    if (this._listBoxEl) {
+      this._listBoxEl.hidePopover();
+    }
+    this._listBoxVisible = false;
+    this._detachListeners();
+    this._toggleEl?.focus();
   }
 
   private _getListBoxTemplate() {
@@ -120,8 +144,7 @@ export class BaseDateTimeHeaderYear extends KucBase {
   }
 
   private _handleFocusOutListBox() {
-    this._listBoxVisible = false;
-    this._toggleEl.focus();
+    this.closeListBox();
   }
 
   private _handleListBoxEscape() {
@@ -173,8 +196,18 @@ export class BaseDateTimeHeaderYear extends KucBase {
     dispatchCustomEvent(this, "kuc:year-dropdown-change", detail);
   }
 
-  private _openListBox() {
+  private async _openListBox() {
     this._listBoxVisible = true;
+    await this.updateComplete;
+    if (this._listBoxEl) {
+      this._listBoxEl.showPopover();
+      setListBoxPosition({
+        anchorEl: this._toggleEl,
+        popoverEl: this._listBoxUl,
+        popoverHeight: this._listBoxMaxHeight,
+      });
+      this._attachListeners();
+    }
   }
 
   private _getYearOptions() {

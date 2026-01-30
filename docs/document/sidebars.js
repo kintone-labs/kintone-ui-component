@@ -40,6 +40,7 @@ const sidebars = {
           "components/desktop/radio-button",
           "components/desktop/readonly-table",
           "components/desktop/spinner",
+          "components/desktop/switch",
           "components/desktop/table",
           "components/desktop/tabs",
           "components/desktop/text",
