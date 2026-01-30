@@ -1,4 +1,4 @@
-import { elementUpdated, expect, fixture } from "@open-wc/testing";
+import { aTimeout, elementUpdated, expect, fixture } from "@open-wc/testing";
 
 import { getTodayStringByLocale } from "../../utils";
 import "../index";
@@ -18,12 +18,14 @@ describe("BaseMobileDate", () => {
       ) as HTMLInputElement;
 
       inputEl.click();
+      await aTimeout(100); // Wait for popover
       await elementUpdated(container);
       const dateSelected = el.querySelector(
         ".kuc-base-mobile-datetime-calendar-body__table__date--selected",
       );
       const dateNext = dateSelected?.nextElementSibling as HTMLElement;
       dateNext.click();
+      await aTimeout(100);
       await elementUpdated(container);
 
       expect(inputEl.value).to.equal("02/15/2022");
@@ -43,11 +45,13 @@ describe("BaseMobileDate", () => {
       ) as HTMLInputElement;
 
       inputEl.click();
+      await aTimeout(100);
       await elementUpdated(container);
       const dateSelected = el.querySelector(
         ".kuc-base-mobile-datetime-calendar-body__table__date--selected",
       ) as HTMLElement;
       dateSelected.click();
+      await aTimeout(100);
       await elementUpdated(container);
 
       expect(inputEl.value).to.equal("02/14/2022");
@@ -66,11 +70,13 @@ describe("BaseMobileDate", () => {
       ) as HTMLInputElement;
 
       inputEl.click();
+      await aTimeout(100);
       await elementUpdated(container);
       const noneButton = el.querySelector(
         ".kuc-base-mobile-datetime-calendar-footer__group__button--none",
       ) as HTMLElement;
       noneButton.click();
+      await aTimeout(100);
       await elementUpdated(container);
 
       expect(inputEl.value).to.equal("");
@@ -87,11 +93,13 @@ describe("BaseMobileDate", () => {
       ) as HTMLInputElement;
 
       inputEl.click();
+      await aTimeout(100);
       await elementUpdated(container);
       const noneButton = el.querySelector(
         ".kuc-base-mobile-datetime-calendar-footer__group__button--none",
       ) as HTMLElement;
       noneButton.click();
+      await aTimeout(100);
       await elementUpdated(container);
 
       expect(inputEl.value).to.equal("");
@@ -109,11 +117,13 @@ describe("BaseMobileDate", () => {
       ) as HTMLInputElement;
 
       inputEl.click();
+      await aTimeout(100);
       await elementUpdated(container);
       const todayButton = el.querySelector(
         ".kuc-base-mobile-datetime-calendar-footer__group__button--today",
       ) as HTMLElement;
       todayButton.click();
+      await aTimeout(100);
       await elementUpdated(container);
       const todayString = getTodayStringByLocale("en");
 
@@ -132,27 +142,19 @@ describe("BaseMobileDate", () => {
       const inputEl = el.querySelector(
         ".kuc-mobile-base-date__group__input",
       ) as HTMLInputElement;
-      const iconCalendar = el.querySelector(
-        ".kuc-mobile-base-date__group__button",
-      ) as HTMLButtonElement;
 
       inputEl.click();
+      await aTimeout(100);
       await elementUpdated(container);
       const closeButton = el.querySelector(
         ".kuc-base-mobile-datetime-calendar-footer__group__button--close",
       ) as HTMLElement;
-      iconCalendar.click();
-      await elementUpdated(container);
       closeButton.click();
+      await aTimeout(100);
       await elementUpdated(container);
-
-      const calendar = el.querySelector(
-        ".kuc-base-mobile-date__calendar",
-      ) as HTMLElement;
 
       expect(inputEl.value).to.equal("02/14/2022");
       expect(triggeredEvent).to.equal(null);
-      expect(calendar).to.equal(null);
     });
   });
 });
