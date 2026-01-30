@@ -76,9 +76,6 @@ let exportDropdown;
     @queryAll(".kuc-dropdown__group__select-menu__item--disabled")
     private _disabledItemsEl!: HTMLLIElement[];
 
-    @query(".kuc-base-error__error")
-    private _errorEl!: HTMLDivElement;
-
     private _timeoutID!: number | null;
     private _previousScrollTop!: number;
 
