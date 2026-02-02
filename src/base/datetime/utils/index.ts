@@ -386,43 +386,108 @@ export const getLeftArrowIconSvgTemplate = () => {
     </svg>`;
 };
 
-export function setListBoxPosition(_this: HTMLElement, position: string) {
-  const ulEl = _this.querySelector(
-    ".kuc-base-datetime-listbox__listbox",
-  ) as HTMLUListElement;
-  const distance = calculateDistanceInput(_this);
-  if (!_this.parentElement || !ulEl || !distance) return;
+export const setListBoxPosition = (
+  options: {
+    anchorEl?: HTMLElement;
+    popoverEl?: HTMLElement;
+    popoverHeight?: number;
+    popoverWidth?: number;
+  } = {},
+) => {
+  const { anchorEl, popoverEl } = options;
+  if (!popoverEl || !anchorEl) return;
+  const { popoverHeight, popoverWidth } = options;
+  if (!popoverHeight) return;
+  const toggleRect = anchorEl.getBoundingClientRect();
 
-  const { inputToBottom, inputToTop } = distance;
-  const listBoxMonthHeight = 360;
-  const listBoxYearHeight = 300;
-  const listBoxHeight =
-    _this.tagName.toLowerCase() === "kuc-base-datetime-header-month"
-      ? listBoxMonthHeight
-      : listBoxYearHeight;
-  const paddingListBox = 18;
-  const parentHeight = _this.parentElement.getBoundingClientRect().height;
+  const viewportHeight =
+    window.innerHeight > document.documentElement.clientHeight
+      ? document.documentElement.clientHeight
+      : window.innerHeight;
+  const viewportWidth =
+    window.innerWidth > document.documentElement.clientWidth
+      ? document.documentElement.clientWidth
+      : window.innerWidth;
 
-  ulEl.style.maxHeight = listBoxHeight + "px";
-  _this.parentElement.style.position = "relative";
-  if (inputToBottom >= listBoxHeight) {
-    ulEl.style.height = listBoxHeight + "px";
-    if (position === "bottom") {
-      ulEl.style.top = parentHeight + "px";
-      return;
+  const spaceAbove = toggleRect.top;
+  const spaceBelow = viewportHeight - toggleRect.bottom;
+  let top: number;
+  let maxHeight: number;
+  // vertical
+  if (spaceBelow >= popoverHeight) {
+    top = toggleRect.bottom;
+    maxHeight = popoverHeight;
+  } else if (spaceAbove >= popoverHeight) {
+    top = toggleRect.top - popoverHeight;
+    maxHeight = popoverHeight;
+  } else if (spaceBelow >= spaceAbove) {
+    top = toggleRect.bottom;
+    maxHeight = spaceBelow;
+  } else {
+    maxHeight = spaceAbove;
+    const visibleHeight = Math.min(popoverHeight || maxHeight, maxHeight);
+    top = Math.max(0, toggleRect.top - visibleHeight);
+  }
+
+  // horizon
+  popoverEl.style.right = "auto";
+  let left = toggleRect.left;
+  if (popoverWidth) {
+    const actualPopoverWidth = popoverEl.offsetWidth;
+    const toRight = viewportWidth - toggleRect.left;
+
+    if (toRight < actualPopoverWidth) {
+      left = toggleRect.right - actualPopoverWidth;
     }
-    ulEl.style.bottom = parentHeight + "px";
-    return;
   }
+  const leftPx = `${left}px`;
+  if (popoverEl.style.left !== leftPx) {
+    popoverEl.style.left = leftPx;
+  }
+  popoverEl.style.top = `${top}px`;
 
-  if (position === "bottom") {
-    ulEl.style.top = parentHeight + "px";
-    ulEl.style.height = inputToBottom - paddingListBox + "px";
-    return;
+  popoverEl.style.maxHeight = `${Math.floor(maxHeight)}px`;
+  popoverEl.style.overflowY = "auto";
+};
+
+export function measureEl(popoverEl: any) {
+  if (!popoverEl) return { width: 0, height: 0 };
+  const prevPos = popoverEl.style.position;
+  const prevLeft = popoverEl.style.left;
+  const prevTop = popoverEl.style.top;
+  const prevMaxH = popoverEl.style.maxHeight;
+
+  popoverEl.style.position = "fixed";
+  popoverEl.style.left = "-9999px";
+  popoverEl.style.top = "-9999px";
+  popoverEl.style.maxHeight = "none";
+
+  const rect = popoverEl.getBoundingClientRect();
+  const width = rect.width || 0;
+  const height = rect.height || 0;
+
+  popoverEl.style.position = prevPos;
+  popoverEl.style.left = prevLeft;
+  popoverEl.style.top = prevTop;
+  popoverEl.style.maxHeight = prevMaxH;
+  return { width, height };
+}
+export function getScrollableAncestors(el: Element): Array<Window | Element> {
+  const targets: Array<Window | Element> = [];
+  let node: Element | null = el.parentElement;
+  const overflowRegex = /(auto|scroll|overlay)/;
+  while (node && node !== document.body && node !== document.documentElement) {
+    const style = getComputedStyle(node);
+    const isScrollable =
+      overflowRegex.test(style.overflowY) ||
+      overflowRegex.test(style.overflowX);
+    if (isScrollable) {
+      targets.push(node);
+    }
+    node = node.parentElement;
   }
-  ulEl.style.height = inputToTop - paddingListBox + "px";
-  ulEl.style.top = "auto";
-  ulEl.style.bottom = _this.parentElement.getBoundingClientRect().height + "px";
+  targets.push(window);
+  return targets;
 }
 
 export const calculateDistanceInput = (_this: HTMLElement) => {
@@ -432,6 +497,8 @@ export const calculateDistanceInput = (_this: HTMLElement) => {
       inputToTop: 0,
       inputToRight: 0,
       inputToLeft: 0,
+      inputDateWidth: 0,
+      inputDateHeight: 0,
     };
   const inputParentElement =
     _this.closest("kuc-base-date") ?? _this.closest("kuc-mobile-base-date");
@@ -442,20 +509,24 @@ export const calculateDistanceInput = (_this: HTMLElement) => {
     (inputParentElement as HTMLElement).getElementsByClassName(
       "kuc-mobile-base-date__group",
     )[0];
-  const inputDateWidth = inputDate.getBoundingClientRect().width;
-  const inputToBottom =
-    window.innerHeight - _this.parentElement.getBoundingClientRect().bottom;
-  const inputToTop = _this.parentElement.getBoundingClientRect().top;
-  const inputToRight =
-    window.innerWidth - _this.parentElement.getBoundingClientRect().left;
-  const inputToLeft =
-    _this.parentElement.getBoundingClientRect().left + inputDateWidth;
+  const {
+    left,
+    top: inputToTop,
+    bottom,
+    width: inputDateWidth,
+    height: inputDateHeight,
+  } = inputDate.getBoundingClientRect();
+  const inputToBottom = window.innerHeight - bottom;
+  const inputToRight = window.innerWidth - left;
+  const inputToLeft = left + inputDateWidth;
 
   return {
     inputToBottom,
     inputToTop,
     inputToRight,
     inputToLeft,
+    inputDateWidth,
+    inputDateHeight,
   };
 };
 

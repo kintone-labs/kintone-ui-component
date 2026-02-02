@@ -24,12 +24,10 @@ kuc-base-datetime-listbox:lang(es),
 kuc-base-datetime-listbox:lang(es) * {
   font-family: sans-serif;
 }
-.kuc-base-datetime-listbox__listbox {
-  position: absolute;
-  z-index: 2000;
-  min-width: 280px;
+.kuc-base-datetime-listbox__listbox[popover] {
   margin: 0;
   padding: 8px 0;
+  box-sizing: border-box;
   border: 1px solid #e3e7e8;
   background-color: #ffffff;
   list-style: none;
@@ -37,12 +35,15 @@ kuc-base-datetime-listbox:lang(es) * {
   overflow-y: auto;
   -webkit-tap-highlight-color: transparent;
   box-shadow: 0 5px 10px rgb(0 0 0 / 10%);
+  position: fixed;
+  z-index: 2000;
 }
 .kuc-base-datetime-listbox__listbox__item {
   position: relative;
   display: block;
   box-sizing: border-box;
   width: 100%;
+  min-width: 130px;
   padding: 8px 16px 8px 25px;
   color: #333333;
   cursor: pointer;

@@ -92,18 +92,14 @@ export const DROPDOWN_CSS = `
     height: 38px;
   }
   .kuc-dropdown__group__select-menu {
-    position: absolute;
     min-width: 280px;
     margin: 0;
     padding: 8px 0;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
     background-color: #ffffff;
-    z-index: 2000;
     list-style: none;
     box-sizing: border-box;
-  }
-  .kuc-dropdown__group__select-menu[hidden] {
-    display: none;
+    border: none;
   }
   .kuc-dropdown__group__select-menu__item {
     padding: 8px 16px 8px 24px;

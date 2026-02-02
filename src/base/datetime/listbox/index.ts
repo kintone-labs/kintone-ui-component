@@ -68,9 +68,20 @@ export class BaseDateTimeListBox extends KucBase {
     return this._highlightItemEl;
   }
 
+  public showPopover() {
+    this.requestUpdate();
+    this._listBoxEl?.showPopover();
+  }
+
+  public hidePopover() {
+    this._listBoxEl?.hidePopover();
+    this.requestUpdate();
+  }
+
   render() {
     return html`
       <ul
+        popover="manual"
         style="max-height: ${this.maxHeight}px;"
         class="kuc-base-datetime-listbox__listbox"
         role="listbox"
@@ -87,7 +98,6 @@ export class BaseDateTimeListBox extends KucBase {
     if (changedProperties.has("value")) {
       this._highlightSelectedItem();
     }
-    this._setListBoxPosition();
     this._scrollToView();
     super.updated(changedProperties);
   }
@@ -165,22 +175,6 @@ export class BaseDateTimeListBox extends KucBase {
     if (!this.doFocus) return;
 
     this._focusHighlightItemEl(false);
-  }
-
-  private _setListBoxPosition() {
-    const listBoxHeight = this._listBoxEl.getBoundingClientRect().height;
-    const parentElement = this._listBoxEl.parentElement;
-    if (!parentElement || !this.parentElement) return;
-    const distanceInputToBottom =
-      window.innerHeight - this.parentElement.getBoundingClientRect().bottom;
-    const parentHeight = this.parentElement.offsetHeight;
-
-    this._listBoxEl.style.bottom = "auto";
-    this._listBoxEl.style.left = "auto";
-    if (distanceInputToBottom >= listBoxHeight) return;
-    this.parentElement.style.position = "relative";
-    this._listBoxEl.style.bottom = parentHeight + "px";
-    this._listBoxEl.style.left = "0px";
   }
 
   private _setHighlightItemEl(itemEl: HTMLLIElement) {
