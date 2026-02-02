@@ -30,7 +30,7 @@ jobs:
     - name: Install dependencies
       run: |
         pnpm install --frozen-lockfile
-        pnpm add @actions/core --save-dev
+        pnpm add @actions/core@2 --save-dev
         git checkout package.json
     - name: Check version
       id: check_version
