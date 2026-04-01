@@ -23,15 +23,15 @@ export default {
   parameters: {
     actions: {
       handles: ["change"],
-    }
+    },
   },
 
   globals: {
     viewport: {
       value: "iPhone11Pro",
-      isRotated: false
-    }
-  }
+      isRotated: false,
+    },
+  },
 };
 const Template = (args) => html`
   <kuc-mobile-time-picker

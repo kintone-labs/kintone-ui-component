@@ -7,8 +7,8 @@ export default {
   globals: {
     viewport: {
       value: "iPhone11Pro",
-      isRotated: false
-    }
+      isRotated: false,
+    },
   },
 };
 

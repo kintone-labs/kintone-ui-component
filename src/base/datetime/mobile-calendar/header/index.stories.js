@@ -16,15 +16,15 @@ export default {
   parameters: {
     actions: {
       handles: ["kuc:mobile-calendar-header-change"],
-    }
+    },
   },
 
   globals: {
     viewport: {
       value: "iPhone11Pro",
-      isRotated: false
-    }
-  }
+      isRotated: false,
+    },
+  },
 };
 
 const Template = ({ language, month, year }) => html`

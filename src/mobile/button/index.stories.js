@@ -22,15 +22,15 @@ export default {
   parameters: {
     actions: {
       handles: ["click"],
-    }
+    },
   },
 
   globals: {
     viewport: {
       value: "iPhone11Pro",
-      isRotated: false
-    }
-  }
+      isRotated: false,
+    },
+  },
 };
 
 const template = (args) => {

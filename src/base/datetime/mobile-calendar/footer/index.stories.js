@@ -19,15 +19,15 @@ export default {
         "kuc:mobile-calendar-footer-click-none",
         "kuc:mobile-calendar-footer-click-close",
       ],
-    }
+    },
   },
 
   globals: {
     viewport: {
       value: "iPhone11Pro",
-      isRotated: false
-    }
-  }
+      isRotated: false,
+    },
+  },
 };
 
 const Template = ({ language }) => {

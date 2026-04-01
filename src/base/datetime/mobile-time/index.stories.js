@@ -8,15 +8,15 @@ export default {
   parameters: {
     actions: {
       handles: ["kuc:base-mobile-time-change"],
-    }
+    },
   },
 
   globals: {
     viewport: {
       value: "iPhone11Pro",
-      isRotated: false
-    }
-  }
+      isRotated: false,
+    },
+  },
 };
 
 const Template = (args) => {

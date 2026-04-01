@@ -18,15 +18,15 @@ export default {
   parameters: {
     actions: {
       handles: ["change", "focus", "input"],
-    }
+    },
   },
 
   globals: {
     viewport: {
       value: "iPhone11Pro",
-      isRotated: false
-    }
-  }
+      isRotated: false,
+    },
+  },
 };
 const template = (args) => {
   const handleMopbileTextAreaChange = (event) => {

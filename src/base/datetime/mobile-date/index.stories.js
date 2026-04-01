@@ -17,15 +17,15 @@ export default {
   parameters: {
     actions: {
       handles: ["kuc:mobile-base-date-change"],
-    }
+    },
   },
 
   globals: {
     viewport: {
       value: "iPhone11Pro",
-      isRotated: false
-    }
-  }
+      isRotated: false,
+    },
+  },
 };
 
 const Template = (args) => {

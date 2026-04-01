@@ -19,15 +19,15 @@ export default {
   parameters: {
     actions: {
       handles: ["change"],
-    }
+    },
   },
 
   globals: {
     viewport: {
       value: "iPhone11Pro",
-      isRotated: false
-    }
-  }
+      isRotated: false,
+    },
+  },
 };
 const template = (args) => {
   const handleMultiChoiceChange = (event) => {
