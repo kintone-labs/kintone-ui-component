@@ -68,7 +68,17 @@ const newViewports = {
 };
 export default {
   decorators: [withEventActions],
+
   parameters: {
-    viewport: { viewports: newViewports, defaultViewport: "reset" },
+    viewport: {
+      options: newViewports
+    },
   },
+
+  initialGlobals: {
+    viewport: {
+      value: "reset",
+      isRotated: false
+    }
+  }
 };

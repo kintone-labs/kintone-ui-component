@@ -4,14 +4,19 @@ import { html } from "lit";
 export default {
   title: "base/datetime/mobile-time",
   argTypes: {},
+
   parameters: {
-    viewport: {
-      defaultViewport: "iPhone11Pro",
-    },
     actions: {
       handles: ["kuc:base-mobile-time-change"],
-    },
+    }
   },
+
+  globals: {
+    viewport: {
+      value: "iPhone11Pro",
+      isRotated: false
+    }
+  }
 };
 
 const Template = (args) => {

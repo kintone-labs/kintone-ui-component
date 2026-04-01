@@ -63,6 +63,9 @@ importers:
       eslint-plugin-kuc-v1:
         specifier: file:eslint-plugin-kuc-v1
         version: file:eslint-plugin-kuc-v1
+      eslint-plugin-storybook:
+        specifier: 10.3.3
+        version: 10.3.3(eslint@9.39.2)(storybook@10.3.3(@testing-library/dom@10.4.0)(prettier@3.8.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(typescript@5.9.3)
       node-actionlint:
         specifier: ^1.2.2
         version: 1.2.2
@@ -2480,6 +2483,12 @@ packages:
     engines: {node: '>=4'}
     peerDependencies:
       eslint: ^3 || ^4 || ^5 || ^6 || ^7 || ^8 || ^9.7
+
+  eslint-plugin-storybook@10.3.3:
+    resolution: {integrity: sha512-jo8wZvKaJlxxrNvf4hCsROJP3CdlpaLiYewAs5Ww+PJxCrLelIi5XVHWOAgBvvr3H9WDKvUw8xuvqPYqAlpkFg==}
+    peerDependencies:
+      eslint: '>=8'
+      storybook: ^10.3.3
 
   eslint-scope@5.1.1:
     resolution: {integrity: sha512-2NxwbF/hZ0KpepYN0cNbo+FN6XoK7GaHlQhgx/hIZl6Va0bF45RQOOwhLIy8lQDbuCiadSLCBnH2CFYquit5bw==}
@@ -7104,6 +7113,15 @@ snapshots:
       semver: 6.3.1
       string.prototype.matchall: 4.0.12
       string.prototype.repeat: 1.0.0
+
+  eslint-plugin-storybook@10.3.3(eslint@9.39.2)(storybook@10.3.3(@testing-library/dom@10.4.0)(prettier@3.8.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(typescript@5.9.3):
+    dependencies:
+      '@typescript-eslint/utils': 8.53.0(eslint@9.39.2)(typescript@5.9.3)
+      eslint: 9.39.2
+      storybook: 10.3.3(@testing-library/dom@10.4.0)(prettier@3.8.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
+    transitivePeerDependencies:
+      - supports-color
+      - typescript
 
   eslint-scope@5.1.1:
     dependencies:

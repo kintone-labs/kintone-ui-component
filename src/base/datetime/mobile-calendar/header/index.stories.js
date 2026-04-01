@@ -4,6 +4,7 @@ import "./index.ts";
 
 export default {
   title: "base/datetime/mobile-calendar/header",
+
   argTypes: {
     language: {
       name: "language",
@@ -11,14 +12,19 @@ export default {
       control: { type: "select" },
     },
   },
+
   parameters: {
-    viewport: {
-      defaultViewport: "iPhone11Pro",
-    },
     actions: {
       handles: ["kuc:mobile-calendar-header-change"],
-    },
+    }
   },
+
+  globals: {
+    viewport: {
+      value: "iPhone11Pro",
+      isRotated: false
+    }
+  }
 };
 
 const Template = ({ language, month, year }) => html`

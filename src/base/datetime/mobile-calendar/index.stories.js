@@ -3,6 +3,7 @@ import { html } from "lit";
 
 export default {
   title: "base/datetime/mobile-calendar",
+
   argTypes: {
     language: {
       name: "language",
@@ -14,10 +15,8 @@ export default {
       control: { type: "text" },
     },
   },
+
   parameters: {
-    viewport: {
-      defaultViewport: "iPhone11Pro",
-    },
     actions: {
       handles: [
         "kuc:mobile-calendar-body-click-date",
@@ -25,8 +24,15 @@ export default {
         "kuc:mobile-calendar-footer-click-today",
         "kuc:mobile-calendar-footer-click-close",
       ],
-    },
+    }
   },
+
+  globals: {
+    viewport: {
+      value: "iPhone11Pro",
+      isRotated: false
+    }
+  }
 };
 
 const Template = ({ language, value }) => {

@@ -3,6 +3,7 @@ import { html } from "lit";
 
 export default {
   title: "base/datetime/mobile-calendar/body",
+
   argTypes: {
     month: {
       name: "month",
@@ -30,14 +31,19 @@ export default {
       },
     },
   },
+
   parameters: {
-    viewport: {
-      defaultViewport: "iPhone11Pro",
-    },
     actions: {
       handles: ["kuc:mobile-calendar-body-click-date"],
-    },
+    }
   },
+
+  globals: {
+    viewport: {
+      value: "iPhone11Pro",
+      isRotated: false
+    }
+  }
 };
 
 const Template = ({ month, year, language, value }) => {

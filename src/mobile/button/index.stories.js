@@ -2,6 +2,7 @@ import { html } from "lit";
 import "./index.ts";
 export default {
   title: "mobile/button",
+
   argTypes: {
     className: { name: "className" },
     content: { name: "content" },
@@ -17,14 +18,19 @@ export default {
     text: { name: "text" },
     visible: { name: "visible" },
   },
+
   parameters: {
-    viewport: {
-      defaultViewport: "iPhone11Pro",
-    },
     actions: {
       handles: ["click"],
-    },
+    }
   },
+
+  globals: {
+    viewport: {
+      value: "iPhone11Pro",
+      isRotated: false
+    }
+  }
 };
 
 const template = (args) => {
