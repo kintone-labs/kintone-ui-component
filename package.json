@@ -7,6 +7,9 @@
     "url": "https://cybozu.co.jp"
   },
   "license": "MIT",
+  "engines": {
+    "node": ">=24.14.1"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/kintone-labs/kintone-ui-component"
