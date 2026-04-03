@@ -3,10 +3,10 @@
   "compilerOptions": {
     "noEmitOnError": true,
     "skipLibCheck": true,
-    "esModuleInterop": false,
     "importHelpers": true,
     "outDir": "./unit_test",
+    "rootDir": "./src",
     "types": ["@types/mocha"]
   },
-  "include": ["./src/**/*.ts"]
+  "include": ["**/*.ts"]
 }
