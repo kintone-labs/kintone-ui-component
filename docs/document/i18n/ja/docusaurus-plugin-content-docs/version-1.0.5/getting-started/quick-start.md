@@ -69,7 +69,7 @@ kintone.events.on('app.record.index.show', event => {
 
 ### CDN を利用する
 
-1. 以下の CDN URL を、作成した kintone アプリ設定の `JavaScript /CSS でカスタマイズ`にて指定します。（[JavaSriptやCSSでアプリをカスタマイズする](https://us.kintone.help/k/ja/user/app_settings/js_customize)）<br/>
+1. 以下の CDN URL を、作成した kintone アプリ設定の `JavaScript /CSS でカスタマイズ`にて指定します。（[JavaSriptやCSSでアプリをカスタマイズする](https://us.kintone.help/k/ja/id/040556)）<br/>
 CDN を読み込むと、グローバルオブジェクトとして `Kuc` が追加されます。
 
    - 最新版の kintone UI Component を読み込みたい場合

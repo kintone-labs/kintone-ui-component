@@ -168,7 +168,7 @@ npm run build:webpack
 [kuc.min.jsファイルをダウンロードして使用する](#kucminjs-をダウンロードして利用する) セクションの説明とサンプルコードをご確認ください。
 :::
 
-1. 以下の CDN URL を、作成した kintone アプリ設定の `JavaScript /CSS でカスタマイズ`にて指定します。（[JavaSriptやCSSでアプリをカスタマイズする](https://us.kintone.help/k/ja/user/app_settings/js_customize)）<br/>
+1. 以下の CDN URL を、作成した kintone アプリ設定の `JavaScript /CSS でカスタマイズ`にて指定します。（[JavaSriptやCSSでアプリをカスタマイズする](https://us.kintone.help/k/ja/id/040556)）<br/>
 CDN を読み込むと、グローバルオブジェクトとして `Kuc` が追加されます。
 
    - バージョン指定して読み込みたい場合（プロジェクト名の後ろにバージョン番号を指定）
