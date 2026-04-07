@@ -2,6 +2,7 @@ import { html } from "lit";
 import "./index.ts";
 export default {
   title: "mobile/time-picker",
+
   argTypes: {
     className: { name: "className" },
     error: { name: "error" },
@@ -18,12 +19,17 @@ export default {
     value: { name: "value" },
     visible: { name: "visible" },
   },
+
   parameters: {
-    viewport: {
-      defaultViewport: "iPhone11Pro",
-    },
     actions: {
       handles: ["change"],
+    },
+  },
+
+  globals: {
+    viewport: {
+      value: "iPhone11Pro",
+      isRotated: false,
     },
   },
 };

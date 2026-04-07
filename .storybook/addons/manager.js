@@ -1,4 +1,4 @@
-import { addons, types, useArgs } from "@storybook/manager-api";
+import { addons, types, useArgs } from "storybook/manager-api";
 import React from "react";
 
 const buttonStyles = {
