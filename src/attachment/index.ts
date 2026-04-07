@@ -20,8 +20,10 @@ import {
 } from "../base/kuc-base";
 import {
   validateArrayType,
+  validateNumberType,
   validatePositiveInteger,
   validateProps,
+  validateValueString,
 } from "../base/validator";
 
 import { ATTACHMENT_CSS } from "./style";
@@ -91,6 +93,18 @@ class KucAttachment extends KucBase {
       !validateArrayType<FileItem>(this.files)
     ) {
       this.throwErrorAfterUpdateComplete(ERROR_MESSAGE.FILES.IS_NOT_ARRAY);
+      return false;
+    }
+    if (changedProperties.has("accept") && !validateValueString(this.accept)) {
+      this.throwErrorAfterUpdateComplete(ERROR_MESSAGE.ACCEPT.IS_NOT_STRING);
+      return false;
+    }
+    if (
+      changedProperties.has("maxFiles") &&
+      this.maxFiles !== undefined &&
+      !validateNumberType(this.maxFiles)
+    ) {
+      this.throwErrorAfterUpdateComplete(ERROR_MESSAGE.MAX_FILES.IS_NOT_NUMBER);
       return false;
     }
     return true;
@@ -388,7 +402,10 @@ class KucAttachment extends KucBase {
       }
 
       if (this._hasMaxFilesLimit()) {
-        const remaining = Math.max(0, this.maxFiles! - this.files.length);
+        const remaining = Math.max(
+          0,
+          this._effectiveMaxFiles() - this.files.length,
+        );
         addedFiles = addedFiles.slice(0, remaining);
       }
 
@@ -440,8 +457,14 @@ class KucAttachment extends KucBase {
     return this.maxFiles !== undefined && this.maxFiles >= 1;
   }
 
+  private _effectiveMaxFiles(): number {
+    return Math.floor(this.maxFiles!);
+  }
+
   private _isMaxFilesReached(): boolean {
-    return this._hasMaxFilesLimit() && this.files.length >= this.maxFiles!;
+    return (
+      this._hasMaxFilesLimit() && this.files.length >= this._effectiveMaxFiles()
+    );
   }
 
   private _getFileSize(size: string | number) {

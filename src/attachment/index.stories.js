@@ -3,6 +3,7 @@ import { Attachment } from "./index.ts";
 export default {
   title: "desktop/attachment",
   argTypes: {
+    accept: { name: "accept" },
     message: { name: "message" },
     className: { name: "className" },
     error: { name: "error" },
@@ -19,6 +20,7 @@ export default {
     files: { name: "files" },
     visible: { name: "visible" },
     disabled: { name: "disabled" },
+    maxFiles: { name: "maxFiles", control: { type: "number" } },
   },
   parameters: {
     actions: {

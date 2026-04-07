@@ -65,7 +65,6 @@ describe("Attachment", () => {
       inputEl.files = list.files;
       inputEl.dispatchEvent(new Event("change"));
       await elementUpdated(container);
-      console.log(triggeredEvent.detail.files.length, "nvh");
       expect(triggeredEvent.detail.files.length).to.equal(1);
       expect(triggeredEvent.detail.files[0].name).to.equal("pic.png");
     });
