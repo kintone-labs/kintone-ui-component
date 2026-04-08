@@ -47,6 +47,6 @@ BaseLanguageEN.args = {
   files: [{ name: "file.txt", size: "150" }],
   visible: true,
   disabled: false,
-  accept: ".png",
+  accept: ".txt,.pdf",
   maxFiles: 5,
 };
