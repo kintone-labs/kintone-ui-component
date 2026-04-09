@@ -47,7 +47,7 @@ describe("Attachment", () => {
       };
       window.addEventListener("unhandledrejection", handleError);
 
-      const container = new Attachment({ files: null as any });
+      const container = new Attachment({ files: null });
       fixture(container);
     });
   });

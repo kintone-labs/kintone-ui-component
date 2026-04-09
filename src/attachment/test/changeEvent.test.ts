@@ -110,7 +110,7 @@ describe("Attachment", () => {
       const container = new Attachment({
         files: [
           { name: "filename.jpg", size: "10737418240" },
-          { name: "", size: "10485760" },
+          { size: "10485760" },
           { name: "icon.jpg", size: "2000" },
         ],
       });
