@@ -31,6 +31,8 @@ Here is a list of properties that can be used for modifying the component:
 | requiredIcon | boolean | false | Show/Hide the required icon | |
 | visible | boolean | true | Show/Hide the component | |
 | files | Array\<[File](#file)\> | [] | List of files | You can specify [File object](https://developer.mozilla.org/en-US/docs/Web/API/File) or object contains `name` and `size`<br/>Will result an error if the value of `files` is not an array |
+| accept | string | "" | File type restriction for the file picker and drag-and-drop | Specify the same format as the HTML [accept attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#accept) (e.g. ".pdf,.txt", "image/\*", "application/pdf").<br/><b>File Types Configuration</b><ul><li>Multiple file types may be specified by separating them with commas (,).</li><li>If not specified or left empty, all file types are accepted.</li><li>This setting applies only to newly added files and does not affect existing files.</li><li>Invalid tokens (those not starting with "." or containing "/") are automatically ignored (refer to [this](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input/file)).</li></ul> |
+| maxFiles | number | | Maximum number of files allowed | <b>File Count Limit</b><ul><li>If not specified, there is no limit on the number of files.</li><li>This setting applies only to newly added files; existing files in files are not removed even if they exceed the limit.<ul><li>If the user selects more files than the remaining slots, only the first N files (up to the limit) will be added and the rest will be silently ignored (For example, if maxFiles is 2 and 1 file is already attached, selecting 2 more files will only add the first one).</li><li>If `maxFiles` is a decimal number (e.g., `2.7`), the fractional part is automatically truncated, and the effective limit becomes the integer part (e.g., `2`).</li></ul></li><li>When the limit is reached:<ul><li>The browse button is hidden.</li><li>Drag-and-drop functionality is disabled.</li></ul></li><li>Invalid values (e.g., negative numbers, 0, or decimal values less than 1) are automatically ignored and treated as <b>unlimited</b>.</li></ul> |
 
 :::info
 *1: The text of "Browse" button and "Drag & drop zone" will be changed according to the `language` property.
@@ -91,6 +93,8 @@ const space = kintone.app.record.getSpaceElement('space');
 
 const attachment = new Kuc.Attachment({
   label: 'Attachment',
+  accept: '.pdf,.txt',
+  maxFiles: 5,
   files: [
     { name: 'file.txt', size: '150' },
     new File(['foo'], 'foo.txt', { type: 'text/plain' })
