@@ -2,6 +2,7 @@ import { html } from "lit";
 import "./index.ts";
 export default {
   title: "mobile/text",
+
   argTypes: {
     className: { name: "className" },
     disabled: { name: "disabled" },
@@ -22,12 +23,17 @@ export default {
     value: { name: "value" },
     visible: { name: "visible" },
   },
+
   parameters: {
-    viewport: {
-      defaultViewport: "iPhone11Pro",
-    },
     actions: {
       handles: ["change", "focus", "input"],
+    },
+  },
+
+  globals: {
+    viewport: {
+      value: "iPhone11Pro",
+      isRotated: false,
     },
   },
 };
