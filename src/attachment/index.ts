@@ -462,6 +462,9 @@ let exportAttachment;
       const mimeType = file.type.toLowerCase();
 
       return tokens.some((token) => {
+        if (token === "*/*") {
+          return true;
+        }
         if (token.startsWith(".")) {
           return fileName.endsWith(token);
         }

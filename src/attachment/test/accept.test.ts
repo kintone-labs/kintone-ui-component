@@ -250,5 +250,27 @@ describe("Attachment", () => {
       expect(triggeredEvent.detail.files.length).to.equal(1);
       expect(triggeredEvent.detail.files[0].name).to.equal("doc.txt");
     });
+
+    it("should accept all files when accept is */*", async () => {
+      let triggeredEvent: any = null;
+      const container = new Attachment({ accept: "*/*" });
+      container.addEventListener("change", (event: any) => {
+        triggeredEvent = event;
+      });
+      const el = await fixture(container);
+      const inputEl = el.querySelector(
+        ".kuc-attachment__group__files__browse-button__input-container__input",
+      ) as HTMLInputElement;
+      const list = new DataTransfer();
+      list.items.add(new File(["content"], "doc.txt", { type: "text/plain" }));
+      list.items.add(new File(["content"], "pic.jpg", { type: "image/jpeg" }));
+      list.items.add(
+        new File(["content"], "doc.pdf", { type: "application/pdf" }),
+      );
+      inputEl.files = list.files;
+      inputEl.dispatchEvent(new Event("change"));
+      await elementUpdated(container);
+      expect(triggeredEvent.detail.files.length).to.equal(3);
+    });
   });
 });
