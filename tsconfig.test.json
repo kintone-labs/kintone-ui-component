@@ -6,6 +6,7 @@
     "esModuleInterop": false,
     "importHelpers": true,
     "outDir": "./unit_test",
+    "skipLibCheck": true,
     "types": ["@types/mocha"]
   },
   "include": ["./src/**/*.ts"]

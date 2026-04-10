@@ -29,4 +29,10 @@ export const ERROR_MESSAGE = {
   CONTAINER: {
     INVALID: "'container' property is not HTMLElement.",
   },
+  ACCEPT: {
+    IS_NOT_STRING: "'accept' property is not string.",
+  },
+  MAX_FILES: {
+    IS_NOT_NUMBER: "'maxFiles' property is not number.",
+  },
 };
