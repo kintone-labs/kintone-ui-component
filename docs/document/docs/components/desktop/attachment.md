@@ -31,7 +31,7 @@ Here is a list of properties that can be used for modifying the component:
 | requiredIcon | boolean | false | Show/Hide the required icon | |
 | visible | boolean | true | Show/Hide the component | |
 | files | Array\<[File](#file)\> | [] | List of files | You can specify [File object](https://developer.mozilla.org/en-US/docs/Web/API/File) or object contains `name` and `size`<br/>Will result an error if the value of `files` is not an array |
-| accept | string | "" | File type restriction for the file picker and drag-and-drop | You can specify the same format as the HTML [accept attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#accept) (e.g. ".pdf,.txt", "image/\*", "application/pdf"). |
+| accept | string | "" | File type restriction | You can specify the same format as the HTML [accept attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#accept) (e.g. ".pdf,.txt", "image/\*", "application/pdf") |
 | maxFiles | number | | Maximum number of files allowed | You can specify the maximum number of files allowed with a positive integer.<br/>If not specified, there is no limit on the number of files. |
 
 :::info

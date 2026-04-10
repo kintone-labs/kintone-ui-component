@@ -31,9 +31,9 @@ import { AttachmentComponent } from "@site/static/js/samples/desktop/attachment.
 | requiredIcon | boolean | false | コンポーネントの必須アイコン表示/非表示設定 | |
 | visible | boolean | true | コンポーネントの表示/非表示設定 | |
 | files | Array\<[File](#file)\> | [] | ファイルリスト | [File object](https://developer.mozilla.org/ja/docs/Web/API/File)もしくは name と size を含むオブジェクトを指定できる<br/>files が配列以外の場合、エラーを出力する |
-| accept | string | "" | File type restriction for the file picker and drag-and-drop | You can specify the same format as the HTML [accept attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#accept) (e.g. ".pdf,.txt", "image/\*", "application/pdf"). |
-| maxFiles | number | | Maximum number of files allowed | You can specify the maximum number of files allowed with a positive integer.<br/>If not specified, there is no limit on the number of files. |
-
+| accept | string | "" | ファイル種別の制限 | HTMLの accept 属性 と同じフォーマットで指定できる (例 ".pdf,.txt", "image/*", "application/pdf") |
+| maxFiles | number | | 添付できるファイルの最大数 | 添付できるファイルの最大数は、正の整数で指定できます
+指定がない場合、ファイル数に制限はありません。|
 :::info
 *1: "参照" ボタンと "ここにファイルをドロップします" のテキストは language プロパティの値に応じて切り替わる.
 :::
