@@ -20,8 +20,10 @@ import {
 } from "../base/kuc-base";
 import {
   validateArrayType,
+  validateNumberType,
   validatePositiveInteger,
   validateProps,
+  validateValueString,
 } from "../base/validator";
 
 import { ATTACHMENT_CSS } from "./style";
@@ -33,7 +35,9 @@ let exportAttachment;
   if (exportAttachment) {
     return;
   }
+
   class KucAttachment extends KucBase {
+    @property({ type: String }) accept = "";
     @property({ type: String, reflect: true, attribute: "class" }) className =
       "";
     @property({ type: String }) error = "";
@@ -57,6 +61,7 @@ let exportAttachment;
       converter: visiblePropConverter,
     })
     visible = true;
+    @property({ type: Number }) maxFiles: number | undefined;
     @property({ type: Array }) files: FileItem[] = [];
 
     private _GUID: string;
@@ -91,6 +96,7 @@ let exportAttachment;
       const validProps = validateProps(props);
       Object.assign(this, validProps);
     }
+
     shouldUpdate(changedProperties: PropertyValues): boolean {
       if (
         changedProperties.has("files") &&
@@ -99,85 +105,115 @@ let exportAttachment;
         this.throwErrorAfterUpdateComplete(ERROR_MESSAGE.FILES.IS_NOT_ARRAY);
         return false;
       }
-      return true;
-    }
-    willUpdate(changedProperties: PropertyValues) {
-      if (changedProperties.has("language")) {
-        this._locale = this._getLocale();
+      if (
+        changedProperties.has("accept") &&
+        !validateValueString(this.accept)
+      ) {
+        this.throwErrorAfterUpdateComplete(ERROR_MESSAGE.ACCEPT.IS_NOT_STRING);
+        return false;
+      }
+      if (
+        changedProperties.has("maxFiles") &&
+        this.maxFiles !== undefined &&
+        !validateNumberType(this.maxFiles)
+      ) {
+        this.throwErrorAfterUpdateComplete(
+          ERROR_MESSAGE.MAX_FILES.IS_NOT_NUMBER,
+        );
+        return false;
       }
       return true;
     }
 
+    willUpdate(changedProperties: PropertyValues) {
+      if (changedProperties.has("language")) {
+        this._locale = this._getLocale();
+      }
+    }
+
     render() {
       return html`
-      <div class="kuc-attachment__group">
-        <label
-          class="kuc-attachment__group__label"
-          ?hidden="${!this.label}"
-          for="${this._GUID}-input"
-          @click="${this._handleClickLabel}"
-        >
-          <kuc-base-label
-            .text="${this.label}"
-            .requiredIcon="${this.requiredIcon}"
-          ></kuc-base-label>
-        </label>
-        <div
-          class="kuc-attachment__group__files ${
-            this.disabled ? " kuc-attachment__group__files--disabled" : ""
-          }"
-          @dragenter="${this._handleDragEnter}"
-          @dragover="${this._handleDragOver}"
-          @dragleave="${this._handleDragLeave}"
-          @drop="${this._handleDragDrop}"
-        >
+        <div class="kuc-attachment__group">
+          <label
+            class="kuc-attachment__group__label"
+            ?hidden="${!this.label}"
+            for="${this._GUID}-input"
+            @click="${this._handleClickLabel}"
+          >
+            <kuc-base-label
+              .text="${this.label}"
+              .requiredIcon="${this.requiredIcon}"
+            ></kuc-base-label>
+          </label>
           <div
-            class="kuc-attachment__group__files__droppable"
-            ?hidden="${!this._isDraging}"
+            class="kuc-attachment__group__files ${this.disabled
+              ? " kuc-attachment__group__files--disabled"
+              : ""}"
+            @dragenter="${this._handleDragEnter}"
+            @dragover="${this._handleDragOver}"
+            @dragleave="${this._handleDragLeave}"
+            @drop="${this._handleDragDrop}"
           >
-          <div class="kuc-attachment__group__files__droppable__text">${
-            this._locale.ATTACHMENT_DRAG_DROP_ZONE
-          }</div>
-          </div>
-          <ul
-            class="kuc-attachment__group__files__display-area${this._isDraging ? " kuc-attachment__group__files__not-droppable--dragenter" : ""}"
-          >
-          ${this.files.map((item, number) =>
-            this._getAttachmentItemTemplate(item, number),
-          )}
-          </ul>
-          <div class="kuc-attachment__group__files__browse-button${this._isDraging ? " kuc-attachment__group__files__not-droppable--dragenter" : ""}"
-          ?hidden="${this.disabled}">
-            <span class="kuc-attachment__group__files__browse-button__text">${
-              this._locale.ATTACHMENT_BROWSE
-            }</span>
-            <div class="kuc-attachment__group__files__browse-button__input-container">
-              <input class="kuc-attachment__group__files__browse-button__input-container__input" type="file" multiple 
-              .id="${this._GUID}-input"
-              aria-required="${this.requiredIcon}"
-              aria-invalid="${this.error}"
-              aria-describedby="${this._GUID}-error"
-              @change="${this._handleChangeFiles}"></input>
+            <div
+              class="kuc-attachment__group__files__droppable"
+              ?hidden="${!this._isDraging}"
+            >
+              <div class="kuc-attachment__group__files__droppable__text">
+                ${this._locale.ATTACHMENT_DRAG_DROP_ZONE}
+              </div>
             </div>
+            <ul
+              class="kuc-attachment__group__files__display-area${this._isDraging
+                ? " kuc-attachment__group__files__not-droppable--dragenter"
+                : ""}"
+            >
+              ${this.files.map((item, number) =>
+                this._getAttachmentItemTemplate(item, number),
+              )}
+            </ul>
+            <div
+              class="kuc-attachment__group__files__browse-button${this
+                ._isDraging
+                ? " kuc-attachment__group__files__not-droppable--dragenter"
+                : ""}"
+              ?hidden="${this.disabled || this._isMaxFilesReached()}"
+            >
+              <span class="kuc-attachment__group__files__browse-button__text"
+                >${this._locale.ATTACHMENT_BROWSE}</span
+              >
+              <div
+                class="kuc-attachment__group__files__browse-button__input-container"
+              >
+                <input
+                  class="kuc-attachment__group__files__browse-button__input-container__input"
+                  type="file"
+                  multiple
+                  .id="${this._GUID}-input"
+                  accept="${this.accept}"
+                  aria-required="${this.requiredIcon}"
+                  aria-invalid="${this.error}"
+                  aria-describedby="${this._GUID}-error"
+                  @change="${this._handleChangeFiles}"
+                />
+              </div>
+            </div>
+            <p
+              class="kuc-attachment__group__files__browse-message${this.disabled
+                ? " kuc-attachment__group__files__browse-message--disabled"
+                : ""}"
+              ?hidden="${!this.message}"
+            >
+              ${this.message}
+            </p>
           </div>
-          <p class="kuc-attachment__group__files__browse-message${
-            this.disabled
-              ? " kuc-attachment__group__files__browse-message--disabled"
-              : ""
-          }"
-            ?hidden="${!this.message}"
-          >
-            ${this.message}
-          </p>
+          <kuc-base-error
+            class="kuc-attachment__error"
+            ?hidden="${!this.error}"
+            .text="${this.error}"
+            .guid="${this._GUID}"
+          ></kuc-base-error>
         </div>
-        <kuc-base-error
-          class="kuc-attachment__error"
-          ?hidden="${!this.error}"
-          .text="${this.error}"
-          .guid="${this._GUID}"
-        ></kuc-base-error>
-      </div>
-    `;
+      `;
     }
 
     private _getAttachmentItemTemplate(item: FileItem, index: number) {
@@ -302,7 +338,7 @@ let exportAttachment;
     }
 
     private _handleDragEnter(event: DragEvent) {
-      if (this.disabled) return;
+      if (this.disabled || this._isMaxFilesReached()) return;
       this._dragEnterCounter++;
       if (this._dragEnterCounter === 1 && this._isFileOrDirectoryDrag(event)) {
         event.preventDefault();
@@ -340,7 +376,6 @@ let exportAttachment;
     }
 
     private _isFileDrop(event: DragEvent) {
-      // handle Chrome, Firefox, Edge, Safari
       if (event.dataTransfer && event.dataTransfer.items) {
         for (let i = 0; i < event.dataTransfer.items.length; i++) {
           if (
@@ -379,6 +414,26 @@ let exportAttachment;
         addedFiles = Object.keys(addedFiles).map((e) => {
           return addedFiles[e];
         });
+
+        if (this.accept) {
+          addedFiles = addedFiles.filter((file: File) =>
+            this._matchesAccept(file),
+          );
+        }
+
+        if (this._hasMaxFilesLimit()) {
+          const remaining = Math.max(
+            0,
+            this._effectiveMaxFiles() - this.files.length,
+          );
+          addedFiles = addedFiles.slice(0, remaining);
+        }
+
+        if (addedFiles.length === 0) {
+          this._inputEl.value = "";
+          return;
+        }
+
         const tempFileList = [...this.files];
         const fileIndex = addedFiles.map((_item: any, index: number) => {
           return tempFileList.length + index;
@@ -394,6 +449,46 @@ let exportAttachment;
         this.requestUpdate();
       }
       this._inputEl.value = "";
+    }
+
+    private _matchesAccept(file: File): boolean {
+      const tokens = this.accept
+        .split(",")
+        .map((t) => t.trim().toLowerCase())
+        .filter((t) => t && (t.startsWith(".") || t.includes("/")));
+      if (tokens.length === 0) return true;
+
+      const fileName = file.name.toLowerCase();
+      const mimeType = file.type.toLowerCase();
+
+      return tokens.some((token) => {
+        if (token === "*/*") {
+          return true;
+        }
+        if (token.startsWith(".")) {
+          return fileName.endsWith(token);
+        }
+        if (token.endsWith("/*")) {
+          const prefix = token.slice(0, -1);
+          return mimeType.startsWith(prefix);
+        }
+        return mimeType === token;
+      });
+    }
+
+    private _hasMaxFilesLimit(): boolean {
+      return this.maxFiles !== undefined && this.maxFiles >= 1;
+    }
+
+    private _effectiveMaxFiles(): number {
+      return Math.floor(this.maxFiles!);
+    }
+
+    private _isMaxFilesReached(): boolean {
+      return (
+        this._hasMaxFilesLimit() &&
+        this.files.length >= this._effectiveMaxFiles()
+      );
     }
 
     private _getFileSize(size: string | number) {
@@ -437,9 +532,11 @@ let exportAttachment;
       return false;
     };
   }
+
   window.customElements.define("kuc-attachment", KucAttachment);
   createStyleOnHeader(ATTACHMENT_CSS);
   exportAttachment = KucAttachment;
 })();
+
 const Attachment = exportAttachment as any;
 export { Attachment };
