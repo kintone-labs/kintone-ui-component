@@ -5,32 +5,27 @@ updates:
     schedule:
       interval: "weekly"
       day: "sunday"
-    open-pull-requests-limit: -1
 
   - package-ecosystem: "npm"
     directory: "/"
-    open-pull-requests-limit: -1
     schedule:
       interval: "weekly"
       day: "sunday"
 
   - package-ecosystem: "npm"
     directory: "/demos/esm-dev-app"
-    open-pull-requests-limit: -1
     schedule:
       interval: "weekly"
       day: "sunday"
 
   - package-ecosystem: "npm"
     directory: "/demos/typescript-app"
-    open-pull-requests-limit: -1
     schedule:
       interval: "weekly"
       day: "sunday"
 
   - package-ecosystem: "npm"
     directory: "/docs/document"
-    open-pull-requests-limit: -1
     schedule:
       interval: "weekly"
       day: "sunday"
