@@ -27,8 +27,8 @@ import { AttachmentComponent } from "@site/static/js/samples/desktop/attachment.
 | id | string | ""  | コンポーネントの id 名 | |
 | label | string | ""  | コンポーネントの説明ラベル | 未指定、あるいは空文字の場合、label は表示されない |
 | language *1 | string | "auto"  | 	言語設定 | 指定できるオプション: "auto", "en", "ja", "zh", "zh-TW", "es"<br/>"auto" を指定した場合、HTML の lang 設定に従う（lang 設定が "en"/"ja"/"zh"/"zh-TW"/"es" 以外の場合は、言語設定が "en" になる） |
-| maxFiles | number | | 添付できるファイルの最大数 | 添付できるファイルの最大数は、正の整数で指定できます 指定がない場合、ファイル数に制限はありません|
 | message | string | ""  | コンポーネントに表示するメッセージ（file type/size の制限事項など） | |
+| maxFiles | number | | 添付できるファイルの最大数 | 添付できるファイルの最大数は、正の整数で指定できる<br>指定がない場合、ファイル数に制限はない|
 | disabled | boolean | false | コンポーネントの選択可/不可設定 | |
 | requiredIcon | boolean | false | コンポーネントの必須アイコン表示/非表示設定 | |
 | visible | boolean | true | コンポーネントの表示/非表示設定 | |

@@ -27,8 +27,8 @@ Here is a list of properties that can be used for modifying the component:
 | id | string | ""  | Component id name | |
 | label | string | ""  | Label for the component | Label will not be displayed if unspecified or left empty |
 | language *1 | string | "auto"  | Language setting | Available options: "auto", "en", "ja", "zh", "zh-TW", "es"<br/>If setting "auto", it will be according to the HTML lang setting (If the lang setting is other than "en"/"ja"/"zh"/"zh-TW"/"es", the language setting will be "en") |
-| maxFiles | number | | Maximum number of files allowed | You can specify the maximum number of files allowed with a positive integer<br/>If not specified, there is no limit on the number of files |
 | message | string | ""  | Message to display in the component (ex. file type/size restriction) | |
+| maxFiles | number | | Maximum number of files allowed | You can specify the maximum number of files allowed with a positive integer<br/>If not specified, there is no limit on the number of files |
 | disabled | boolean | false | Enable/Disable the component | |
 | requiredIcon | boolean | false | Show/Hide the required icon | |
 | visible | boolean | true | Show/Hide the component | |
