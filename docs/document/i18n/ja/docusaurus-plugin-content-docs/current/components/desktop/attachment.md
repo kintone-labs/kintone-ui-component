@@ -21,18 +21,18 @@ import { AttachmentComponent } from "@site/static/js/samples/desktop/attachment.
 
 | Name   | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
+| accept | string | "" | ファイル種別の制限 | HTMLの [accept 属性](https://developer.mozilla.org/ja/docs/Web/HTML/Reference/Elements/input/file#accept) と同じフォーマットで指定できる (例 ".pdf,.txt", "image/\*", "application/pdf") |
 | className | string | ""  | コンポーネントの class 名 | |
 | error | string | ""  | エラーに表示するテキスト | 未指定、あるいは空文字の場合、error は表示されない |
 | id | string | ""  | コンポーネントの id 名 | |
 | label | string | ""  | コンポーネントの説明ラベル | 未指定、あるいは空文字の場合、label は表示されない |
 | language *1 | string | "auto"  | 	言語設定 | 指定できるオプション: "auto", "en", "ja", "zh", "zh-TW", "es"<br/>"auto" を指定した場合、HTML の lang 設定に従う（lang 設定が "en"/"ja"/"zh"/"zh-TW"/"es" 以外の場合は、言語設定が "en" になる） |
+| maxFiles | number | | 添付できるファイルの最大数 | 添付できるファイルの最大数は、正の整数で指定できます 指定がない場合、ファイル数に制限はありません|
 | message | string | ""  | コンポーネントに表示するメッセージ（file type/size の制限事項など） | |
 | disabled | boolean | false | コンポーネントの選択可/不可設定 | |
 | requiredIcon | boolean | false | コンポーネントの必須アイコン表示/非表示設定 | |
 | visible | boolean | true | コンポーネントの表示/非表示設定 | |
 | files | Array\<[File](#file)\> | [] | ファイルリスト | [File object](https://developer.mozilla.org/ja/docs/Web/API/File)もしくは name と size を含むオブジェクトを指定できる<br/>files が配列以外の場合、エラーを出力する |
-| accept | string | "" | ファイル種別の制限 | HTMLの [accept 属性](https://developer.mozilla.org/ja/docs/Web/HTML/Reference/Elements/input/file#accept) と同じフォーマットで指定できる (例 ".pdf,.txt", "image/\*", "application/pdf"). |
-| maxFiles | number | | 添付できるファイルの最大数 | 添付できるファイルの最大数は、正の整数で指定できます 指定がない場合、ファイル数に制限はありません。|
 :::info
 *1: "参照" ボタンと "ここにファイルをドロップします" のテキストは language プロパティの値に応じて切り替わる.
 :::
