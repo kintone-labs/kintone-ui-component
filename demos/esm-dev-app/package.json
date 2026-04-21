@@ -15,7 +15,7 @@
     "@cybozu/eslint-config": "^25.0.1",
     "eslint": "^9.39.4",
     "prettier": "^3.8.3",
-    "webpack": "^5.106.1",
+    "webpack": "^5.106.2",
     "webpack-cli": "^7.0.2"
   },
   "dependencies": {

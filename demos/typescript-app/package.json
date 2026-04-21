@@ -16,8 +16,8 @@
     "eslint": "^9.39.4",
     "prettier": "^3.8.3",
     "ts-loader": "^9.5.7",
-    "typescript": "^6.0.2",
-    "webpack": "^5.106.1",
+    "typescript": "^6.0.3",
+    "webpack": "^5.106.2",
     "webpack-cli": "^7.0.2"
   },
   "dependencies": {
