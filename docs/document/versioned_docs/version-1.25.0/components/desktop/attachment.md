@@ -21,18 +21,18 @@ Here is a list of properties that can be used for modifying the component:
 
 | Name   | Type | Default | Description | Remark |
 | :--- | :--- | :--- | :--- | :--- |
+| accept | string | "" | File type restriction | You can specify the same format as the HTML [accept attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#accept) (e.g. ".pdf,.txt", "image/\*", "application/pdf") |
 | className | string | ""  | Component class name | |
 | error | string | ""  | Text to be displayed in error | Error will not be displayed if unspecified or left empty |
 | id | string | ""  | Component id name | |
 | label | string | ""  | Label for the component | Label will not be displayed if unspecified or left empty |
 | language *1 | string | "auto"  | Language setting | Available options: "auto", "en", "ja", "zh", "zh-TW", "es"<br/>If setting "auto", it will be according to the HTML lang setting (If the lang setting is other than "en"/"ja"/"zh"/"zh-TW"/"es", the language setting will be "en") |
 | message | string | ""  | Message to display in the component (ex. file type/size restriction) | |
+| maxFiles | number | | Maximum number of files allowed | You can specify the maximum number of files allowed with a positive integer<br/>If not specified, there is no limit on the number of files |
 | disabled | boolean | false | Enable/Disable the component | |
 | requiredIcon | boolean | false | Show/Hide the required icon | |
 | visible | boolean | true | Show/Hide the component | |
 | files | Array\<[File](#file)\> | [] | List of files | You can specify [File object](https://developer.mozilla.org/en-US/docs/Web/API/File) or object contains `name` and `size`<br/>Will result an error if the value of `files` is not an array |
-| accept | string | "" | File type restriction | You can specify the same format as the HTML [accept attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#accept) (e.g. ".pdf,.txt", "image/\*", "application/pdf") |
-| maxFiles | number | | Maximum number of files allowed | You can specify the maximum number of files allowed with a positive integer.<br/>If not specified, there is no limit on the number of files. |
 
 :::info
 *1: The text of "Browse" button and "Drag & drop zone" will be changed according to the `language` property.
