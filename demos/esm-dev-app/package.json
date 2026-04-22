@@ -17,8 +17,5 @@
     "prettier": "^3.8.3",
     "webpack": "^5.106.2",
     "webpack-cli": "^7.0.2"
-  },
-  "dependencies": {
-    "kintone-ui-component": "link:../../../Library/pnpm/global/5/node_modules/kintone-ui-component"
   }
 }

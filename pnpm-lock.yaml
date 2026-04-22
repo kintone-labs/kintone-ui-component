@@ -43,7 +43,7 @@ importers:
         specifier: ^0.20.2
         version: 0.20.2
       babel-loader:
-        specifier: ^10.0.0
+        specifier: ^10.1.1
         version: 10.1.1(@babel/core@7.29.0)(webpack@5.106.2)
       chromatic:
         specifier: ^16.3.0
