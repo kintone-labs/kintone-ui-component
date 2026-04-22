@@ -29,6 +29,9 @@ jobs:
         with:
           node-version: 22
           cache: 'pnpm'
+      - uses: flatt-security/setup-takumi-guard-npm@8f53b50568e4466f2d92504f349c05b9ffcb8b59
+        with:
+          bot-id: ${{ vars.TAKUMI_GUARD_BOT_ID }}
       - name: Install dependencies on document
         run: pnpm install --frozen-lockfile
         working-directory: docs/document

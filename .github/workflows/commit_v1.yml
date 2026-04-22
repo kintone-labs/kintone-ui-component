@@ -6,6 +6,9 @@ jobs:
   Run_tests:
     name: Run unit test
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
     steps:
       - uses: actions/checkout@v4
       - name: Install pnpm
@@ -26,6 +29,9 @@ jobs:
           path: ${{ env.PNPM_STORE_PATH }}
           key: pnpm-${{ hashFiles('pnpm-lock.yaml') }}
           restore-keys: pnpm-
+      - uses: flatt-security/setup-takumi-guard-npm@8f53b50568e4466f2d92504f349c05b9ffcb8b59
+        with:
+          bot-id: ${{ vars.TAKUMI_GUARD_BOT_ID }}
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
