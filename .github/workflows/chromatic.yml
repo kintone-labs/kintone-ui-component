@@ -28,9 +28,6 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Test Takumi Guard
-        run: pnpm install @panda-guard/test-malicious
-
       - name: Publish to Chromatic
         uses: chromaui/action@v13
         with:
