@@ -22,9 +22,9 @@ jobs:
         with:
           node-version: 24
           cache: 'pnpm'
+
       - uses: ./.github/actions/setup_takumi_guard_npm
-        with:
-          bot-id: ${{ vars.TAKUMI_GUARD_BOT_ID }}
+
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 

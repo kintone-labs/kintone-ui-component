@@ -26,8 +26,6 @@ jobs:
         node-version: 24
         cache: pnpm
     - uses: ./.github/actions/setup_takumi_guard_npm
-      with:
-        bot-id: ${{ vars.TAKUMI_GUARD_BOT_ID }}
     - name: run Yamory
       run: |
         ls -1 -d docs/*/ | xargs -I {} bash -c "$(curl -sSf -L https://localscanner.yamory.io/script/pnpm)" --  --manifest {}/package.json
