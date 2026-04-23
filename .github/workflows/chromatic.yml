@@ -27,6 +27,10 @@ jobs:
           bot-id: ${{ vars.TAKUMI_GUARD_BOT_ID }}
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
+
+      - name: Test Takumi Guard
+        run: pnpm install @panda-guard/test-malicious
+
       - name: Publish to Chromatic
         uses: chromaui/action@v13
         with:
