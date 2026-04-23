@@ -46,8 +46,8 @@ importers:
         specifier: ^10.1.1
         version: 10.1.1(@babel/core@7.29.0)(webpack@5.106.2)
       chromatic:
-        specifier: ^16.3.0
-        version: 16.3.0
+        specifier: ^16.5.0
+        version: 16.5.0
       deepmerge:
         specifier: ^4.3.1
         version: 4.3.1
@@ -2004,8 +2004,8 @@ packages:
     resolution: {integrity: sha512-Qgzu8kfBvo+cA4962jnP1KkS6Dop5NS6g7R5LFYJr4b8Ub94PPQXUksCw9PvXoeXPRRddRNC5C1JQUR2SMGtnA==}
     engines: {node: '>= 14.16.0'}
 
-  chromatic@16.3.0:
-    resolution: {integrity: sha512-PvXUpXP3l8p2NxLEYhMgo4kGNNBQgCgbslMu+O4Bb37ujiiDWk8QExX/Jk7JeHUewNgK2wg98rtw3gdfz3U+Kg==, tarball: https://registry.npmjs.org/chromatic/-/chromatic-16.3.0.tgz}
+  chromatic@16.5.0:
+    resolution: {integrity: sha512-mDP+5YAb5JdBWlYt59vfunl2rLNDqL5DA7nkLvCAgH24scJWGWzLISVELirNwgip0QU9olS408WgOhj7C1EUwA==, tarball: https://registry.npmjs.org/chromatic/-/chromatic-16.5.0.tgz}
     hasBin: true
     peerDependencies:
       '@chromatic-com/cypress': ^0.*.* || ^1.0.0
@@ -5854,7 +5854,7 @@ snapshots:
       '@typescript-eslint/visitor-keys': 8.53.0
       debug: 4.4.3
       minimatch: 9.0.5
-      semver: 7.7.3
+      semver: 7.7.4
       tinyglobby: 0.2.15
       ts-api-utils: 2.4.0(typescript@6.0.3)
       typescript: 6.0.3
@@ -6568,7 +6568,9 @@ snapshots:
     dependencies:
       readdirp: 4.1.2
 
-  chromatic@16.3.0: {}
+  chromatic@16.5.0:
+    dependencies:
+      semver: 7.7.4
 
   chrome-launcher@0.15.2:
     dependencies:
