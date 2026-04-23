@@ -27,7 +27,7 @@ jobs:
       - name: Install node
         uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: 24
           cache: 'pnpm'
       - name: Get pnpm store directory
         id: pnpm-store
@@ -38,6 +38,9 @@ jobs:
           path: ${{ env.PNPM_STORE_PATH }}
           key: pnpm-${{ hashFiles('pnpm-lock.yaml') }}
           restore-keys: pnpm-
+      - uses: ./.github/actions/setup_takumi_guard_npm
+        with:
+          bot-id: ${{ vars.TAKUMI_GUARD_BOT_ID }}
       - name: Install dependencies on root
         run: pnpm install --frozen-lockfile
       - name: Build umd file

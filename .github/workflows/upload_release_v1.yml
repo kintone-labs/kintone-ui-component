@@ -7,6 +7,9 @@ jobs:
   On_upload:
     name: Upload integrity and package to release
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
     steps:
     - uses: actions/checkout@v4
     - name: Install pnpm
@@ -16,7 +19,7 @@ jobs:
     - name: Install node
       uses: actions/setup-node@v4
       with:
-        node-version: 22
+        node-version: 24
         cache: 'pnpm'
     - name: Get pnpm store directory
       id: pnpm-store
@@ -27,6 +30,9 @@ jobs:
         path: ${{ env.PNPM_STORE_PATH }}
         key: pnpm-${{ hashFiles('pnpm-lock.yaml') }}
         restore-keys: pnpm-
+    - uses: ./.github/actions/setup_takumi_guard_npm
+      with:
+        bot-id: ${{ vars.TAKUMI_GUARD_BOT_ID }}
     - name: Install dependencies
       run: |
         pnpm install --frozen-lockfile
