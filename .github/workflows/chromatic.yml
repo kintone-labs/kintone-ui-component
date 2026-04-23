@@ -20,9 +20,9 @@ jobs:
       - name: Install node
         uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: 24
           cache: 'pnpm'
-      - uses: flatt-security/setup-takumi-guard-npm@8f53b50568e4466f2d92504f349c05b9ffcb8b59
+      - uses: ./.github/actions/setup_takumi_guard_npm
         with:
           bot-id: ${{ vars.TAKUMI_GUARD_BOT_ID }}
       - name: Install dependencies
