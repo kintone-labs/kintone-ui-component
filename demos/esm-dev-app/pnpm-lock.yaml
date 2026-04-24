@@ -7,10 +7,6 @@ settings:
 importers:
 
   .:
-    dependencies:
-      kintone-ui-component:
-        specifier: link:../../../Library/pnpm/global/5/node_modules/kintone-ui-component
-        version: link:../../../Library/pnpm/global/5/node_modules/kintone-ui-component
     devDependencies:
       '@cybozu/eslint-config':
         specifier: ^25.0.1
