@@ -104,6 +104,8 @@ const config = {
       "only",
       "language-subtag-registry",
       "storybook",
+      "@rolldown/binding-linux-x64-gnu",
+      "webpack-cli"
     ],
   },
   overrideLicense: (dep) => {
