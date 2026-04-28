@@ -29,9 +29,10 @@ Licenses for Third-Party Libraries
 
 core-js
 repository: git+https://github.com/zloirock/core-js.git
-version: 3.47.0
+version: 3.49.0
 license: MIT
-Copyright (c) 2014-2025 Denis Pushkarev, 2025 CoreJS Company
+Copyright (c) 2013–2025 Denis Pushkarev (zloirock.ru)
+Copyright (c) 2025–2026 CoreJS Company (core-js.io)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -89,7 +90,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 uuid
 repository: https://github.com/uuidjs/uuid.git
-version: 13.0.0
+version: 14.0.0
 license: MIT
 The MIT License (MIT)
 

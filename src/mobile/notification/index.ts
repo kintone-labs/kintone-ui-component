@@ -1,7 +1,7 @@
 import { html, PropertyValues, svg } from "lit";
 import { property, state } from "lit/decorators.js";
-import { DirectiveResult } from "lit/directive";
-import { UnsafeHTMLDirective } from "lit/directives/unsafe-html";
+import { DirectiveResult } from "lit/directive.js";
+import { UnsafeHTMLDirective } from "lit/directives/unsafe-html.js";
 
 import { ERROR_MESSAGE } from "../../base/constant";
 import { unsafeHTMLConverter } from "../../base/converter";

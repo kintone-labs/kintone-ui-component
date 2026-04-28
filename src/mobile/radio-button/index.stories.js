@@ -2,6 +2,7 @@ import { html } from "lit";
 import "./index.ts";
 export default {
   title: "mobile/radio-button",
+
   argTypes: {
     borderVisible: { name: "borderVisible" },
     className: { name: "className" },
@@ -15,12 +16,17 @@ export default {
     value: { name: "value" },
     visible: { name: "visible" },
   },
+
   parameters: {
-    viewport: {
-      defaultViewport: "iPhone11Pro",
-    },
     actions: {
       handles: ["change"],
+    },
+  },
+
+  globals: {
+    viewport: {
+      value: "iPhone11Pro",
+      isRotated: false,
     },
   },
 };

@@ -1,7 +1,7 @@
 import { html, PropertyValues } from "lit";
 import { property, query } from "lit/decorators.js";
-import { DirectiveResult } from "lit/directive";
-import { UnsafeHTMLDirective } from "lit/directives/unsafe-html";
+import { DirectiveResult } from "lit/directive.js";
+import { UnsafeHTMLDirective } from "lit/directives/unsafe-html.js";
 
 import { unsafeHTMLConverter, visiblePropConverter } from "../base/converter";
 import {

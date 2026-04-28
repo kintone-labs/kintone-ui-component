@@ -3,6 +3,7 @@ import { html } from "lit";
 
 export default {
   title: "mobile/dropdown",
+
   argTypes: {
     className: { name: "className" },
     disabled: { name: "disabled" },
@@ -15,12 +16,17 @@ export default {
     value: { name: "value" },
     visible: { name: "visible" },
   },
+
   parameters: {
-    viewport: {
-      defaultViewport: "iPhone11Pro",
-    },
     actions: {
       handles: ["change"],
+    },
+  },
+
+  globals: {
+    viewport: {
+      value: "iPhone11Pro",
+      isRotated: false,
     },
   },
 };

@@ -3,6 +3,7 @@ import "./index.ts";
 
 export default {
   title: "base/datetime/mobile-calendar/footer",
+
   argTypes: {
     language: {
       name: "language",
@@ -10,16 +11,21 @@ export default {
       control: { type: "select" },
     },
   },
+
   parameters: {
-    viewport: {
-      defaultViewport: "iPhone11Pro",
-    },
     actions: {
       handles: [
         "kuc:mobile-calendar-footer-click-today",
         "kuc:mobile-calendar-footer-click-none",
         "kuc:mobile-calendar-footer-click-close",
       ],
+    },
+  },
+
+  globals: {
+    viewport: {
+      value: "iPhone11Pro",
+      isRotated: false,
     },
   },
 };

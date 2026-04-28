@@ -6,10 +6,12 @@ export declare type FileItem =
   | File
   | { name: string; size: string; [key: string]: any };
 export declare type AttachmentProps = {
+  accept?: string;
   className?: string;
   error?: string;
   id?: string;
   label?: string;
+  maxFiles?: number;
   message?: string;
   disabled?: boolean;
   requiredIcon?: boolean;
@@ -24,11 +26,13 @@ export declare type AttachmentChangeEventDetail = {
   type?: string;
 };
 export declare class Attachment extends KucBase {
+  accept: string;
   className: string;
   error: string;
   id: string;
   label: string;
   language: string;
+  maxFiles: number | undefined;
   message: string;
   disabled: boolean;
   requiredIcon: boolean;

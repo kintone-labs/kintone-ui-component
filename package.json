@@ -1,12 +1,15 @@
 {
   "name": "kintone-ui-component",
-  "version": "1.24.0",
+  "version": "1.25.0",
   "description": "kintone UI Component",
   "author": {
     "name": "Cybozu, Inc.",
     "url": "https://cybozu.co.jp"
   },
   "license": "MIT",
+  "engines": {
+    "node": ">=24.14.1"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/kintone-labs/kintone-ui-component"
@@ -36,37 +39,33 @@
     "actionlint": "node-actionlint"
   },
   "devDependencies": {
-    "@babel/core": "^7.28.6",
+    "@babel/core": "^7.29.0",
     "@babel/preset-env": "^7.28.6",
-    "@cybozu/eslint-config": "^25.0.0",
+    "@cybozu/eslint-config": "^25.0.1",
     "@open-wc/testing": "^4.0.0",
-    "@storybook/addon-a11y": "^8.6.15",
-    "@storybook/addon-actions": "^8.6.15",
-    "@storybook/addon-controls": "^8.6.15",
-    "@storybook/addon-viewport": "^8.6.15",
-    "@storybook/web-components": "^8.6.15",
-    "@storybook/web-components-webpack5": "^8.6.15",
+    "@storybook/addon-a11y": "^10.3.5",
+    "@storybook/web-components-vite": "^10.3.5",
     "@types/mocha": "^10.0.10",
     "@web/test-runner": "^0.20.2",
-    "babel-loader": "^10.0.0",
-    "chromatic": "^13.3.5",
+    "babel-loader": "^10.1.1",
+    "chromatic": "^16.5.0",
     "deepmerge": "^4.3.1",
-    "eslint": "^9.39.2",
+    "eslint": "^9.39.4",
     "eslint-import-resolver-typescript": "^4.4.4",
     "eslint-plugin-import": "^2.32.0",
     "eslint-plugin-kuc-v1": "file:eslint-plugin-kuc-v1",
     "node-actionlint": "^1.2.2",
-    "prettier": "^3.8.0",
-    "storybook": "^8.6.15",
-    "ts-loader": "^9.5.4",
+    "prettier": "^3.8.3",
+    "storybook": "^10.3.5",
+    "ts-loader": "^9.5.7",
     "tslib": "^2.8.1",
-    "typescript": "^5.9.3",
-    "webpack": "^5.104.1",
-    "webpack-cli": "^6.0.1"
+    "typescript": "^6.0.3",
+    "webpack": "^5.106.2",
+    "webpack-cli": "^7.0.2"
   },
   "dependencies": {
-    "core-js": "^3.47.0",
+    "core-js": "^3.49.0",
     "lit": "^3.3.2",
-    "uuid": "^13.0.0"
+    "uuid": "^14.0.0"
   }
 }

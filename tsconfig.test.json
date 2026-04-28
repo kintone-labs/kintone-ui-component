@@ -2,10 +2,11 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "noEmitOnError": true,
-    "esModuleInterop": false,
+    "skipLibCheck": true,
     "importHelpers": true,
     "outDir": "./unit_test",
+    "rootDir": "./src",
     "types": ["@types/mocha"]
   },
-  "include": ["./src/**/*.ts"]
+  "include": ["**/*.ts"]
 }

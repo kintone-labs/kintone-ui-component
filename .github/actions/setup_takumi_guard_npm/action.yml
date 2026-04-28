@@ -1,0 +1,16 @@
+# Wraps the upstream action so the pinned commit SHA is maintained in one file.
+# Upstream: https://github.com/flatt-security/setup-takumi-guard-npm
+name: Setup Takumi Guard npm
+description: Authenticate to the Takumi Guard npm registry (wrapped for single-SHA pin)
+inputs:
+  bot-id:
+    description: 'Bot ID from the Shisho / Takumi Guard management console (optional; see upstream docs)'
+    required: false
+    default: ''
+runs:
+  using: composite
+  steps:
+    - name: flatt-security/setup-takumi-guard-npm
+      uses: flatt-security/setup-takumi-guard-npm@8f53b50568e4466f2d92504f349c05b9ffcb8b59
+      with:
+        bot-id: ${{ inputs.bot-id }}

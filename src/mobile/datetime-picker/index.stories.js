@@ -3,6 +3,7 @@ import { html } from "lit";
 
 export default {
   title: "mobile/datetime-picker",
+
   argTypes: {
     language: {
       name: "language",
@@ -12,12 +13,17 @@ export default {
       },
     },
   },
+
   parameters: {
-    viewport: {
-      defaultViewport: "iPhone11Pro",
-    },
     actions: {
       handles: ["change"],
+    },
+  },
+
+  globals: {
+    viewport: {
+      value: "iPhone11Pro",
+      isRotated: false,
     },
   },
 };

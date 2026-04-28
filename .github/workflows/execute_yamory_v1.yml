@@ -8,8 +8,23 @@ jobs:
   check_master:
     name: execute yamory on master branch
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
+    - name: Install pnpm
+      uses: pnpm/action-setup@v5
+      with:
+        version: 10
+    - name: Install node
+      uses: actions/setup-node@v6
+      with:
+        node-version: 24
+        cache: pnpm
+    - uses: ./.github/actions/setup_takumi_guard_npm
+      with:
+        bot-id: ${{ vars.TAKUMI_GUARD_BOT_ID }}
     - name: run Yamory
       run: |
         ls -1 -d docs/*/ | xargs -I {} bash -c "$(curl -sSf -L https://localscanner.yamory.io/script/pnpm)" --  --manifest {}/package.json

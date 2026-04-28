@@ -4,9 +4,10 @@ import { html } from "lit";
 export default {
   title: "base/mobile-error",
   argTypes: {},
-  parameters: {
+  globals: {
     viewport: {
-      defaultViewport: "iPhone11Pro",
+      value: "iPhone11Pro",
+      isRotated: false,
     },
   },
 };
