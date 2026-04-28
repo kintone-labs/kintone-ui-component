@@ -6,5 +6,5 @@ outputs:
     description: 'The file path of the generated LICENSE file'
 
 runs:
-  using: 'node20'
+  using: 'node24'
   main: 'index.js'
