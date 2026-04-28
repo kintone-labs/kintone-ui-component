@@ -60,7 +60,7 @@ jobs:
         run: zip -r $ZIP_FILE_NAME *
         working-directory: docs/document/build
       - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v4
+        uses: aws-actions/configure-aws-credentials@v6
         with:
           role-to-assume: ${{ secrets.AWS_OIDC_ROLE_ARN }}
           aws-region: ${{ secrets.AWS_DOCUMENT_REGION }}

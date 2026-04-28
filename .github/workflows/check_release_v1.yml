@@ -46,7 +46,7 @@ jobs:
     - name: Run unit test
       run: pnpm test
     - name: Trigger run upload release workflows
-      uses: peter-evans/repository-dispatch@v3
+      uses: peter-evans/repository-dispatch@v4
       with:
         token: ${{secrets.WORKFLOW_TOKEN}}
         event-type: release_dispatch_v1

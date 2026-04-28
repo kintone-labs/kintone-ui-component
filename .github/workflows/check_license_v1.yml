@@ -85,7 +85,7 @@ jobs:
       - name: Create Pull Request
         if: env.LICENSE_changed == 'true'
         id: create_pr
-        uses: peter-evans/create-pull-request@v7
+        uses: peter-evans/create-pull-request@v8
         with:
           token: ${{ github.token }}
           commit-message: "Update LICENSE file"
