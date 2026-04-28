@@ -11,13 +11,13 @@ jobs:
       id-token: write
       contents: read
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Install pnpm
-      uses: pnpm/action-setup@v4
+      uses: pnpm/action-setup@v5
       with:
         version: 10
     - name: Install node
-      uses: actions/setup-node@v4
+      uses: actions/setup-node@v6
       with:
         node-version: 24
         cache: 'pnpm'
@@ -25,7 +25,7 @@ jobs:
       id: pnpm-store
       run: echo "PNPM_STORE_PATH=$(pnpm store path)" >> $GITHUB_ENV
     - name: Cache dependencies
-      uses: actions/cache@v4
+      uses: actions/cache@v5
       with:
         path: ${{ env.PNPM_STORE_PATH }}
         key: pnpm-${{ hashFiles('pnpm-lock.yaml') }}
@@ -46,7 +46,7 @@ jobs:
     - name: Run unit test
       run: pnpm test
     - name: Trigger run upload release workflows
-      uses: peter-evans/repository-dispatch@v3
+      uses: peter-evans/repository-dispatch@v4
       with:
         token: ${{secrets.WORKFLOW_TOKEN}}
         event-type: release_dispatch_v1

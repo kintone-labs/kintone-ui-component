@@ -14,15 +14,15 @@ jobs:
       pull-requests: write
     steps:
       - name: Check out repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           fetch-depth: 0
       - name: Install pnpm
-        uses: pnpm/action-setup@v4
+        uses: pnpm/action-setup@v5
         with:
           version: 10
       - name: Install node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: 24
           cache: 'pnpm'
@@ -30,7 +30,7 @@ jobs:
         id: pnpm-store
         run: echo "PNPM_STORE_PATH=$(pnpm store path)" >> $GITHUB_ENV
       - name: Cache Dependencies
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: ${{ env.PNPM_STORE_PATH }}
           key: pnpm-${{ hashFiles('pnpm-lock.yaml') }}
@@ -59,7 +59,7 @@ jobs:
         id: generate_licenses
         uses: ./.github/actions/generate_licenses
       - name: Upload LICENSE
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: LICENSE
           path: ${{ steps.generate_licenses.outputs.license_file_path }}
@@ -85,7 +85,7 @@ jobs:
       - name: Create Pull Request
         if: env.LICENSE_changed == 'true'
         id: create_pr
-        uses: peter-evans/create-pull-request@v7
+        uses: peter-evans/create-pull-request@v8
         with:
           token: ${{ github.token }}
           commit-message: "Update LICENSE file"
