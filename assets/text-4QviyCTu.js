@@ -1,0 +1,151 @@
+import{n as e}from"./chunk-BneVvdWh.js";import{s as t,t as n}from"./iframe-HX9z8Taj.js";import{a as r,c as i,f as a,i as o,n as s,o as c,r as l,s as u,t as d}from"./decorate-33sGx9Ox.js";import{n as f,o as p}from"./converter-BYYAaneI.js";import{t as m}from"./error-BtvpQcD5.js";import{t as h}from"./label-D4AWTD2g.js";import{f as g,t as _}from"./validator-d05NeqaQ.js";var v,y=e((()=>{v=`
+kuc-text,
+kuc-text *,
+kuc-text:lang(en),
+kuc-text:lang(en) * {
+  font-family: sans-serif;
+}
+kuc-text:lang(es),
+kuc-text:lang(es) * {
+  font-family: sans-serif;
+}
+kuc-text:lang(ja),
+kuc-text:lang(ja) * {
+  font-family: "メイリオ", "Hiragino Kaku Gothic ProN", Meiryo,
+    sans-serif;
+}
+kuc-text:lang(zh),
+kuc-text:lang(zh) * {
+  font-family: "微软雅黑", "Microsoft YaHei", "新宋体", NSimSun, STHeiti,
+    Hei, "Heiti SC", sans-serif;
+}
+kuc-text:lang(zh-TW),
+kuc-text:lang(zh-TW) * {
+  font-family: "微軟正黑體","Microsoft JhengHei","新宋体",NSimSun,STHeiti,
+    Hei,"Heiti SC",sans-serif;
+}
+kuc-text {
+  font-size: 14px;
+  color: #333333;
+  display: inline-table;
+  vertical-align: top;
+  min-width: var(--kuc-text-input-width, 177px);
+  width: var(--kuc-text-input-width, 177px);
+  line-height: 1.5;
+}
+kuc-text[hidden] {
+  display: none;
+}
+.kuc-text__group {
+  border: none;
+  padding: 0px;
+  height: auto;
+  display: inline-block;
+  vertical-align: top;
+  width: 100%;
+  margin: 0px;
+}
+.kuc-text__group__label {
+  display: inline-block;
+  padding: 4px 0px 8px 0px;
+  white-space: nowrap;
+}
+.kuc-text__group__label[hidden] {
+  display: none;
+}
+.kuc-text__group__input-form {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+.kuc-text__group__input-form__prefix-outer__prefix {
+  padding-right: 4px;
+  white-space: nowrap;
+}
+.kuc-text__group__input-form__input-outer {
+  display: flex;
+  min-width: var(--kuc-text-input-width, 26px);
+  width: var(--kuc-text-input-width, 100%);
+}
+input[type="text"].kuc-text__group__input-form__input-outer__input {
+  width: var(--kuc-text-input-width, 100%);
+  height: var(--kuc-text-input-height, 40px);
+  font-size: var(--kuc-text-input-font-size, 14px);
+  color: var(--kuc-text-input-color, #000000);
+  padding: 0 8px;
+  border: 1px solid #e3e7e8;
+  box-sizing: border-box;
+  box-shadow: 2px 2px 4px #f5f5f5 inset, -2px -2px 4px #f5f5f5 inset;
+}
+.kuc-text__group__input-form__input-outer__input[textAlign="left"] {
+  text-align: left;
+}
+.kuc-text__group__input-form__input-outer__input[textAlign="right"] {
+  text-align: right;
+}
+input[type=text].kuc-text__group__input-form__input-outer__input:focus {
+  outline: none;
+  border: 1px solid #3498db;
+}
+input[type=text].kuc-text__group__input-form__input-outer__input:disabled {
+  color: #888888;
+  background-color: #d4d7d7;
+  box-shadow: none;
+  cursor: not-allowed;
+}
+.kuc-text__group__input-form__suffix-outer__suffix {
+  padding-left: 4px;
+  white-space: nowrap;
+}
+`})),b,x,S=e((()=>{n(),i(),f(),m(),u(),h(),_(),y(),s(),(()=>{if(b=window.customElements.get(`kuc-text`),b)return;class e extends l{constructor(e){super(),this.className=``,this.error=``,this.id=``,this.label=``,this.placeholder=``,this.prefix=``,this.suffix=``,this.textAlign=`left`,this.value=``,this.disabled=!1,this.requiredIcon=!1,this.visible=!0,this._GUID=c();let t=g(e);Object.assign(this,t)}_handleFocusInput(e){let t={value:this.value};r(this,`focus`,t)}_handleChangeInput(e){e.stopPropagation();let t=e.target,n={value:``,oldValue:this.value};this.value=t.value,n.value=this.value,r(this,`change`,n)}_handleInputText(e){e.stopPropagation();let t={value:e.target.value,data:e.data};r(this,`input`,t)}render(){return t`
+        <div class="kuc-text__group">
+          <label
+            class="kuc-text__group__label"
+            for="${this._GUID}-label"
+            ?hidden="${!this.label}"
+          >
+            <kuc-base-label
+              .text="${this.label}"
+              .requiredIcon="${this.requiredIcon}"
+            ></kuc-base-label>
+          </label>
+          <div class="kuc-text__group__input-form">
+            <div class="kuc-text__group__input-form__prefix-outer">
+              <span
+                class="kuc-text__group__input-form__prefix-outer__prefix"
+                ?hidden="${!this.prefix}"
+                >${this.prefix}</span
+              >
+            </div>
+            <div class="kuc-text__group__input-form__input-outer">
+              <input
+                class="kuc-text__group__input-form__input-outer__input"
+                id="${this._GUID}-label"
+                placeholder="${this.placeholder}"
+                textAlign="${this.textAlign}"
+                type="text"
+                .value="${this.value}"
+                aria-required="${this.requiredIcon}"
+                aria-invalid="${this.error!==``}"
+                aria-describedby="${this._GUID}-error"
+                @focus="${this._handleFocusInput}"
+                @change="${this._handleChangeInput}"
+                @input="${this._handleInputText}"
+                ?disabled="${this.disabled}"
+              />
+            </div>
+            <div class="kuc-text__group__input-form__suffix-outer">
+              <span
+                class="kuc-text__group__input-form__suffix-outer__suffix"
+                ?hidden="${!this.suffix}"
+                >${this.suffix}</span
+              >
+            </div>
+          </div>
+          <kuc-base-error
+            .text="${this.error}"
+            .guid="${this._GUID}"
+            ?hidden="${!this.error}"
+          ></kuc-base-error>
+        </div>
+      `}}d([a({type:String,reflect:!0,attribute:`class`})],e.prototype,`className`,void 0),d([a({type:String})],e.prototype,`error`,void 0),d([a({type:String,reflect:!0,attribute:`id`})],e.prototype,`id`,void 0),d([a({type:String})],e.prototype,`label`,void 0),d([a({type:String})],e.prototype,`placeholder`,void 0),d([a({type:String})],e.prototype,`prefix`,void 0),d([a({type:String})],e.prototype,`suffix`,void 0),d([a({type:String})],e.prototype,`textAlign`,void 0),d([a({type:String})],e.prototype,`value`,void 0),d([a({type:Boolean})],e.prototype,`disabled`,void 0),d([a({type:Boolean})],e.prototype,`requiredIcon`,void 0),d([a({type:Boolean,attribute:`hidden`,reflect:!0,converter:p})],e.prototype,`visible`,void 0),window.customElements.define(`kuc-text`,e),o(v),b=e})(),x=b}));export{S as n,x as t};

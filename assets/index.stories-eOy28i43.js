@@ -1,0 +1,65 @@
+import{n as e}from"./chunk-BneVvdWh.js";import{s as t,t as n}from"./iframe-HX9z8Taj.js";import{n as r}from"./time-picker-XZuAZLxF.js";var i,a,o,s,c,l;e((()=>{n(),r(),i={title:`desktop/time-picker`,argTypes:{language:{name:`language`,options:[`auto`,`en`,`ja`,`zh`,`zh-TW`,`es`],control:{type:`select`}}},parameters:{actions:{handles:[`change`]}}},a=e=>t`
+  <kuc-time-picker
+    .className="${e.className}"
+    .error="${e.error}"
+    .id="${e.id}"
+    .label="${e.label}"
+    .value="${e.value}"
+    .disabled="${e.disabled}"
+    .hour12="${e.hour12}"
+    .requiredIcon="${e.requiredIcon}"
+    .visible="${e.visible}"
+    .timeStep="${e.timeStep}"
+    .min="${e.min}"
+    .max="${e.max}"
+    .language="${e.language}"
+  ></kuc-time-picker>
+`,o=a.bind({}),o.args={className:`time-picker-class`,error:``,id:`time-picker-id`,label:`Time Picker Label`,value:`13:15`,disabled:!1,hour12:!1,requiredIcon:!1,visible:!0,language:`en`,timeStep:60,min:`00:00`,max:`23:59`},s=a.bind({}),s.args={className:`time-picker-class`,error:``,id:`time-picker-id`,label:`Time Picker Label`,value:`13:15`,disabled:!1,hour12:!0,requiredIcon:!1,visible:!0,language:`en`,timeStep:30,min:`08:00`,max:`20:00`},c=a.bind({}),c.args={className:`time-picker-class`,error:`TimePicker error`,id:`time-picker-id`,label:`Time Picker Label`,value:`13:15`,disabled:!1,hour12:!1,requiredIcon:!1,visible:!0,language:`en`,timeStep:30,min:`00:00`,max:`23:59`},o.parameters={...o.parameters,docs:{...o.parameters?.docs,source:{originalSource:`args => html\`
+  <kuc-time-picker
+    .className="\${args.className}"
+    .error="\${args.error}"
+    .id="\${args.id}"
+    .label="\${args.label}"
+    .value="\${args.value}"
+    .disabled="\${args.disabled}"
+    .hour12="\${args.hour12}"
+    .requiredIcon="\${args.requiredIcon}"
+    .visible="\${args.visible}"
+    .timeStep="\${args.timeStep}"
+    .min="\${args.min}"
+    .max="\${args.max}"
+    .language="\${args.language}"
+  ></kuc-time-picker>
+\``,...o.parameters?.docs?.source}}},s.parameters={...s.parameters,docs:{...s.parameters?.docs,source:{originalSource:`args => html\`
+  <kuc-time-picker
+    .className="\${args.className}"
+    .error="\${args.error}"
+    .id="\${args.id}"
+    .label="\${args.label}"
+    .value="\${args.value}"
+    .disabled="\${args.disabled}"
+    .hour12="\${args.hour12}"
+    .requiredIcon="\${args.requiredIcon}"
+    .visible="\${args.visible}"
+    .timeStep="\${args.timeStep}"
+    .min="\${args.min}"
+    .max="\${args.max}"
+    .language="\${args.language}"
+  ></kuc-time-picker>
+\``,...s.parameters?.docs?.source}}},c.parameters={...c.parameters,docs:{...c.parameters?.docs,source:{originalSource:`args => html\`
+  <kuc-time-picker
+    .className="\${args.className}"
+    .error="\${args.error}"
+    .id="\${args.id}"
+    .label="\${args.label}"
+    .value="\${args.value}"
+    .disabled="\${args.disabled}"
+    .hour12="\${args.hour12}"
+    .requiredIcon="\${args.requiredIcon}"
+    .visible="\${args.visible}"
+    .timeStep="\${args.timeStep}"
+    .min="\${args.min}"
+    .max="\${args.max}"
+    .language="\${args.language}"
+  ></kuc-time-picker>
+\``,...c.parameters?.docs?.source}}},l=[`BaseHour24`,`BaseHour12`,`BaseError`]}))();export{c as BaseError,s as BaseHour12,o as BaseHour24,l as __namedExportsOrder,i as default};
