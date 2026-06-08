@@ -66,6 +66,7 @@
   "dependencies": {
     "core-js": "^3.49.0",
     "lit": "^3.3.2",
+    "underscore": "1.13.8",
     "uuid": "^14.0.0"
   }
 }
