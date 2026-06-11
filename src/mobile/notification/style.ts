@@ -10,6 +10,7 @@ export const MOBILE_NOTIFICATION_CSS = `
     position: relative;
     top: -100px;
     left: 0;
+    z-index: 10000;
   }
   kuc-mobile-notification:lang(es),
   kuc-mobile-notification:lang(es) * {
@@ -49,7 +50,7 @@ export const MOBILE_NOTIFICATION_CSS = `
     background: linear-gradient(#ffda4a, #ffc32c);
     width: 100%;
     min-height: 48px;
-    z-index: 20;
+    position: relative;
     font-size: 12px;
     font-weight: 700;
     line-height: 14px;
