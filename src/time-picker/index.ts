@@ -205,6 +205,7 @@ let exportTimePicker;
             .max="${this._inputMax}"
             .language="${this._getLanguage()}"
             @kuc:base-time-change="${this._handleTimeChange}"
+            @kuc:base-time-change-on-blur="${this._handleTimeChangeOnBlur}"
           >
           </kuc-base-time>
           <kuc-base-error
@@ -236,6 +237,19 @@ let exportTimePicker;
 
       this._inputValue = event.detail.value;
       dispatchCustomEvent(this, "change", detail);
+    }
+
+    // Fired once when focus leaves the component, if the value changed. The live
+    // "change" event has already updated value/error state, so this only reports
+    // the net change (oldValue = value when editing started).
+    private _handleTimeChangeOnBlur(event: CustomEvent) {
+      event.preventDefault();
+      event.stopPropagation();
+      const detail: TimePickerChangeEventDetail = {
+        value: event.detail.error ? undefined : event.detail.value,
+        oldValue: event.detail.oldValue,
+      };
+      dispatchCustomEvent(this, "change-on-blur", detail);
     }
 
     private _getLanguage() {
