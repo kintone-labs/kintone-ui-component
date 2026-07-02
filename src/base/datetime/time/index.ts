@@ -44,6 +44,13 @@ export class BaseTime extends KucBase {
   @property({ type: Boolean }) hour12 = false;
   @property({ type: Number }) timeStep = 30;
 
+  // State for the deferred "change-on-blur" event (fired alongside the live
+  // "change" event, but only once on blur if the value changed).
+  // _hasPendingChange: value changed by user since the last change-on-blur emit.
+  // _blurBaseline: value when the current edit started, used as its oldValue.
+  private _hasPendingChange = false;
+  private _blurBaseline = "";
+
   @state()
   private _listBoxVisible = false;
 
@@ -130,7 +137,11 @@ export class BaseTime extends KucBase {
 
   render() {
     return html`
-      <div class="kuc-base-time__group" @click="${this._handleClickInputGroup}">
+      <div
+        class="kuc-base-time__group"
+        @mousedown="${this._handleMouseDownInputGroup}"
+        @click="${this._handleClickInputGroup}"
+      >
         <input
           type="text"
           class="kuc-base-time__group__hours"
@@ -181,6 +192,21 @@ export class BaseTime extends KucBase {
       this._toggleDisabledGroup();
     }
     super.update(changedProperties);
+  }
+
+  private _handleMouseDownInputGroup(event: MouseEvent) {
+    const target = event.target as HTMLElement;
+    // Clicking a non-input area inside the group (colon, padding) would blur the
+    // focused input with relatedTarget=null. Keep focus on the current input so
+    // blur mode does not emit a premature change; the inputs still focus normally.
+    if (
+      target === this._hoursEl ||
+      target === this._minutesEl ||
+      target === this._suffixEl
+    )
+      return;
+
+    event.preventDefault();
   }
 
   private _handleClickInputGroup(event: Event) {
@@ -271,7 +297,8 @@ export class BaseTime extends KucBase {
     }
   }
 
-  private _handleBlurButton() {
+  private _handleBlurButton(event: FocusEvent) {
+    this._emitDeferredChangeOnBlur(event.relatedTarget);
     this._inputGroupEl.classList.remove("kuc-base-time__group--focus");
   }
 
@@ -344,6 +371,7 @@ export class BaseTime extends KucBase {
     )
       return;
 
+    this._emitDeferredChangeOnBlur(newTarget);
     this._closeListBox();
     this._inputGroupEl.classList.remove("kuc-base-time__group--focus");
   }
@@ -403,7 +431,39 @@ export class BaseTime extends KucBase {
     const newValueProp = formatInputValueToTimeValue(newValue);
     if (oldValueProp === newValueProp) return;
     this.value = newValueProp;
+
+    // Snapshot the pre-edit value once so change-on-blur can report it as the
+    // oldValue when focus finally leaves.
+    if (!this._hasPendingChange) {
+      this._blurBaseline = oldValueProp;
+      this._hasPendingChange = true;
+    }
+
     this._dispatchEventTimeChange(newValueProp, oldValueProp);
+  }
+
+  private _isFocusInsideComponent(target: EventTarget | null) {
+    if (!(target instanceof HTMLElement)) return false;
+
+    return (
+      // any element inside the input group (the 3 inputs + the group's own area)
+      this._inputGroupEl.contains(target) ||
+      target === this._toggleEl ||
+      // focus moving into the open time listbox is still inside the component
+      target === this._listboxEl
+    );
+  }
+
+  private _emitDeferredChangeOnBlur(relatedTarget: EventTarget | null) {
+    if (!this._hasPendingChange) return;
+    if (this._isFocusInsideComponent(relatedTarget)) return;
+
+    this._dispatchEventTimeChange(
+      this.value,
+      this._blurBaseline,
+      "kuc:base-time-change-on-blur",
+    );
+    this._hasPendingChange = false;
   }
 
   private _computeDeleteValue() {
@@ -543,7 +603,13 @@ export class BaseTime extends KucBase {
     }
   }
 
-  private _dispatchEventTimeChange(value: string, oldValue: string) {
+  private _dispatchEventTimeChange(
+    value: string,
+    oldValue: string,
+    eventName:
+      | "kuc:base-time-change"
+      | "kuc:base-time-change-on-blur" = "kuc:base-time-change",
+  ) {
     const detail: CustomEventDetail = {
       value: value,
       oldValue: oldValue,
@@ -553,7 +619,7 @@ export class BaseTime extends KucBase {
       detail.error = this._locale.TIME_IS_OUT_OF_VALID_RANGE;
     }
 
-    dispatchCustomEvent(this, "kuc:base-time-change", detail);
+    dispatchCustomEvent(this, eventName, detail);
   }
 
   private _formatKeyDownValue(
