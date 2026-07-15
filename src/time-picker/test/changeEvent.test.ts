@@ -106,7 +106,7 @@ describe("TimePicker", () => {
     });
   });
 
-  describe("change-on-blur event", () => {
+  describe("blur event", () => {
     const setup = async (value: string, hour12 = false) => {
       const container = new TimePicker();
       container.value = value;
@@ -133,7 +133,7 @@ describe("TimePicker", () => {
       let blurCount = 0;
       let blurDetail: any = null;
       el.addEventListener("change", () => changeCount++);
-      el.addEventListener("change-on-blur", (event: Event) => {
+      el.addEventListener("blur", (event: Event) => {
         blurCount++;
         blurDetail = (event as CustomEvent).detail;
       });
@@ -145,7 +145,7 @@ describe("TimePicker", () => {
       );
       await elementUpdated(el);
 
-      // "change" is live; "change-on-blur" waits for blur
+      // "change" is live; "blur" waits for blur
       expect(changeCount).to.equal(1);
       expect(blurCount).to.equal(0);
       expect(container.value).to.equal("11:30");
@@ -160,10 +160,10 @@ describe("TimePicker", () => {
       expect(blurDetail.oldValue).to.equal("10:30");
     });
 
-    it("does not fire change-on-blur on internal focus moves (sibling input or toggle button)", async () => {
+    it("does not fire blur on internal focus moves (sibling input or toggle button)", async () => {
       const { el } = await setup("10:30");
       let blurCount = 0;
-      el.addEventListener("change-on-blur", () => blurCount++);
+      el.addEventListener("blur", () => blurCount++);
 
       const { hours, minutes, toggle } = getInputs(el);
       hours.dispatchEvent(new Event("focus"));
@@ -183,10 +183,10 @@ describe("TimePicker", () => {
       expect(blurCount).to.equal(0);
     });
 
-    it("does not fire change-on-blur when the value is unchanged (not dirty)", async () => {
+    it("does not fire blur when the value is unchanged (not dirty)", async () => {
       const { el } = await setup("10:30");
       let blurCount = 0;
-      el.addEventListener("change-on-blur", () => blurCount++);
+      el.addEventListener("blur", () => blurCount++);
 
       const { hours } = getInputs(el);
       hours.dispatchEvent(new Event("focus"));
@@ -202,7 +202,7 @@ describe("TimePicker", () => {
       const { el } = await setup("10:30", true);
       let blurCount = 0;
       let blurDetail: any = null;
-      el.addEventListener("change-on-blur", (event: Event) => {
+      el.addEventListener("blur", (event: Event) => {
         blurCount++;
         blurDetail = (event as CustomEvent).detail;
       });
@@ -224,11 +224,11 @@ describe("TimePicker", () => {
       expect(blurDetail.value).to.not.equal("10:30");
     });
 
-    it("selecting from the dropdown defers change-on-blur until blur", async () => {
+    it("selecting from the dropdown defers blur until blur", async () => {
       const { container, el } = await setup("");
       let blurCount = 0;
       let blurDetail: any = null;
-      el.addEventListener("change-on-blur", (event: Event) => {
+      el.addEventListener("blur", (event: Event) => {
         blurCount++;
         blurDetail = (event as CustomEvent).detail;
       });
@@ -246,7 +246,7 @@ describe("TimePicker", () => {
       firstElement.dispatchEvent(new Event("mousedown", { bubbles: true }));
       await elementUpdated(container);
 
-      // dropdown selection fires "change" live, but not "change-on-blur" yet
+      // dropdown selection fires "change" live, but not "blur" yet
       expect(blurCount).to.equal(0);
 
       const { hours } = getInputs(el);
@@ -259,7 +259,7 @@ describe("TimePicker", () => {
       expect(blurDetail.value).to.equal("00:00");
     });
 
-    it("reports an out-of-range value as undefined in change-on-blur", async () => {
+    it("reports an out-of-range value as undefined in blur", async () => {
       const container = new TimePicker();
       container.value = "11:00";
       container.min = "10:00";
@@ -267,7 +267,7 @@ describe("TimePicker", () => {
       const el = await fixture(container);
       let blurCount = 0;
       let blurDetail: any = null;
-      el.addEventListener("change-on-blur", (event: Event) => {
+      el.addEventListener("blur", (event: Event) => {
         blurCount++;
         blurDetail = (event as CustomEvent).detail;
       });
@@ -294,10 +294,10 @@ describe("TimePicker", () => {
       expect(blurDetail.oldValue).to.equal("11:00");
     });
 
-    it("keeps focus (preventDefault) on mousedown of a non-input area, so no change-on-blur fires", async () => {
+    it("keeps focus (preventDefault) on mousedown of a non-input area, so no blur fires", async () => {
       const { el } = await setup("10:30");
       let blurCount = 0;
-      el.addEventListener("change-on-blur", () => blurCount++);
+      el.addEventListener("blur", () => blurCount++);
 
       const { hours } = getInputs(el);
       const colon = el.querySelector(
