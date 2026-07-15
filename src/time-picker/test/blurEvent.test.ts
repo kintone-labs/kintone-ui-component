@@ -95,6 +95,31 @@ describe("TimePicker", () => {
       expect(blurCount).to.equal(0);
     });
 
+    it("does not fire blur when the net value is unchanged (edited then reverted)", async () => {
+      const { el } = await setup("10:30");
+      let blurCount = 0;
+      el.addEventListener("blur", () => blurCount++);
+
+      const { hours } = getInputs(el);
+      hours.dispatchEvent(new Event("focus"));
+      hours.dispatchEvent(
+        new KeyboardEvent("keydown", { key: "ArrowUp", bubbles: true }),
+      );
+      await elementUpdated(el);
+      // revert back to the original value before leaving
+      hours.dispatchEvent(
+        new KeyboardEvent("keydown", { key: "ArrowDown", bubbles: true }),
+      );
+      await elementUpdated(el);
+
+      hours.dispatchEvent(
+        new FocusEvent("blur", { relatedTarget: document.body }),
+      );
+      await elementUpdated(el);
+
+      expect(blurCount).to.equal(0);
+    });
+
     it("selecting from the dropdown defers blur until blur", async () => {
       const { container, el } = await setup("");
       let blurCount = 0;
@@ -128,6 +153,7 @@ describe("TimePicker", () => {
 
       expect(blurCount).to.equal(1);
       expect(blurDetail!.value).to.equal("00:00");
+      expect(blurDetail!.oldValue).to.equal("");
     });
 
     it("reports an out-of-range value as undefined in blur", async () => {
@@ -165,7 +191,7 @@ describe("TimePicker", () => {
       expect(blurDetail!.oldValue).to.equal("11:00");
     });
 
-    it("keeps focus (preventDefault) on mousedown of a non-input area, so no blur fires", async () => {
+    it("calls preventDefault on mousedown of a non-input area, but not on an input", async () => {
       const { el } = await setup("10:30");
 
       const { hours } = getInputs(el);
@@ -194,6 +220,46 @@ describe("TimePicker", () => {
       });
       hours.dispatchEvent(inputEvent);
       expect(inputEvent.defaultPrevented).to.equal(false);
+    });
+
+    it("re-arms after a blur: a second edit fires blur again with a fresh oldValue", async () => {
+      const { el } = await setup("10:30");
+      let blurCount = 0;
+      let blurDetail: TimePickerChangeEventDetail | null = null;
+      el.addEventListener("blur", (event: Event) => {
+        blurCount++;
+        blurDetail = (event as CustomEvent).detail;
+      });
+      const { hours } = getInputs(el);
+
+      // first edit + blur
+      hours.dispatchEvent(new Event("focus"));
+      hours.dispatchEvent(
+        new KeyboardEvent("keydown", { key: "ArrowUp", bubbles: true }),
+      );
+      await elementUpdated(el);
+      hours.dispatchEvent(
+        new FocusEvent("blur", { relatedTarget: document.body }),
+      );
+      await elementUpdated(el);
+      expect(blurCount).to.equal(1);
+      expect(blurDetail!.value).to.equal("11:30");
+      expect(blurDetail!.oldValue).to.equal("10:30");
+
+      // second edit + blur: pending flag was reset, so it fires again and the
+      // baseline is now the value left by the first blur (11:30), not 10:30
+      hours.dispatchEvent(new Event("focus"));
+      hours.dispatchEvent(
+        new KeyboardEvent("keydown", { key: "ArrowUp", bubbles: true }),
+      );
+      await elementUpdated(el);
+      hours.dispatchEvent(
+        new FocusEvent("blur", { relatedTarget: document.body }),
+      );
+      await elementUpdated(el);
+      expect(blurCount).to.equal(2);
+      expect(blurDetail!.value).to.equal("12:30");
+      expect(blurDetail!.oldValue).to.equal("11:30");
     });
   });
 });

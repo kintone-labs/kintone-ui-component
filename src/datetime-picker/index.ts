@@ -431,7 +431,11 @@ let exportDateTimePicker;
         oldValue: this._timeBlurBaseline,
         changedPart: "time",
       };
+      // Reset before the net-zero check so the pending flag never goes stale
+      // (BaseTime always emits on blur; this handler always runs).
       this._hasPendingTimeBlur = false;
+      // Net-zero edit: value returned to where it started, so nothing changed.
+      if (detail.value === detail.oldValue) return;
       dispatchCustomEvent(this, "blur", detail);
     }
 

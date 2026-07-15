@@ -249,6 +249,8 @@ let exportTimePicker;
         value: event.detail.error ? undefined : event.detail.value,
         oldValue: event.detail.oldValue,
       };
+      // Net-zero edit: value returned to where it started, so nothing changed.
+      if (detail.value === detail.oldValue) return;
       dispatchCustomEvent(this, "blur", detail);
     }
 
