@@ -461,7 +461,7 @@ export class BaseTime extends KucBase {
     this._dispatchEventTimeChange(
       this.value,
       this._blurBaseline,
-      "kuc:base-time-change-on-blur",
+      "kuc:base-time-blur",
     );
     this._hasPendingChange = false;
   }
@@ -608,7 +608,7 @@ export class BaseTime extends KucBase {
     oldValue: string,
     eventName:
       | "kuc:base-time-change"
-      | "kuc:base-time-change-on-blur" = "kuc:base-time-change",
+      | "kuc:base-time-blur" = "kuc:base-time-change",
   ) {
     const detail: CustomEventDetail = {
       value: value,
