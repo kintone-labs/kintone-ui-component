@@ -205,7 +205,7 @@ let exportTimePicker;
             .max="${this._inputMax}"
             .language="${this._getLanguage()}"
             @kuc:base-time-change="${this._handleTimeChange}"
-            @kuc:base-time-change-on-blur="${this._handleTimeChangeOnBlur}"
+            @kuc:base-time-blur="${this._handleTimeChangeOnBlur}"
           >
           </kuc-base-time>
           <kuc-base-error
@@ -249,7 +249,7 @@ let exportTimePicker;
         value: event.detail.error ? undefined : event.detail.value,
         oldValue: event.detail.oldValue,
       };
-      dispatchCustomEvent(this, "change-on-blur", detail);
+      dispatchCustomEvent(this, "blur", detail);
     }
 
     private _getLanguage() {

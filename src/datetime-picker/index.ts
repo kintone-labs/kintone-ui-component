@@ -104,6 +104,12 @@ let exportDateTimePicker;
     private _changeDateByUI = false;
     private _changeTimeByUI = false;
 
+    // Deferred "blur" event for the inner time field (mirrors time-picker).
+    // _hasPendingTimeBlur: time changed since the last blur emit.
+    // _timeBlurBaseline: datetime value when the current time edit started.
+    private _hasPendingTimeBlur = false;
+    private _timeBlurBaseline: string | undefined = "";
+
     private _inputMax = "";
     private _inputMin = "";
     private _timeConverted: string = "";
@@ -351,6 +357,7 @@ let exportDateTimePicker;
               .max="${this._inputMax}"
               .language="${this._getLanguage()}"
               @kuc:base-time-change="${this._handleTimeChange}"
+              @kuc:base-time-blur="${this._handleTimeChangeOnBlur}"
             ></kuc-base-time>
           </div>
           <kuc-base-error
@@ -394,6 +401,13 @@ let exportDateTimePicker;
       this._changeTimeByUI = true;
       const newValue = event.detail.value;
 
+      // Snapshot the datetime value once when the time-edit session starts, so
+      // the deferred "blur" event can report it as oldValue.
+      if (!this._hasPendingTimeBlur) {
+        this._timeBlurBaseline = this.value;
+        this._hasPendingTimeBlur = true;
+      }
+
       if (event.detail.error) {
         this._errorInvalidTime = event.detail.error;
         this.error = "";
@@ -402,6 +416,23 @@ let exportDateTimePicker;
       }
 
       this._updateDateTimeValue(newValue, "time");
+    }
+
+    // Fired once when focus leaves the inner time field, if the time changed.
+    // Mirrors time-picker's "blur": the live "change" already updated state, so
+    // this only reports the net change (oldValue = datetime when editing started).
+    private _handleTimeChangeOnBlur(event: CustomEvent) {
+      event.preventDefault();
+      event.stopPropagation();
+      if (!this._hasPendingTimeBlur) return;
+
+      const detail: DateTimePickerChangeEventDetail = {
+        value: this.value,
+        oldValue: this._timeBlurBaseline,
+        changedPart: "time",
+      };
+      this._hasPendingTimeBlur = false;
+      dispatchCustomEvent(this, "blur", detail);
     }
 
     private _updateDateTimeValue(newValue: string, type: "date" | "time") {

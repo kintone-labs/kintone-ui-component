@@ -14,7 +14,7 @@ export default {
   },
   parameters: {
     actions: {
-      handles: ["change", "change-on-blur"],
+      handles: ["change", "blur"],
     },
   },
 };
