@@ -28,7 +28,7 @@ module.exports = {
     }
   },
   create: function(context) {
-    const sourceCode = context.getSourceCode();
+    const sourceCode = context.sourceCode;
 
     function checkNames(propInfos) {
       const group = {};
@@ -102,7 +102,7 @@ module.exports = {
 
         const properties = [];
 
-        const physicalFilename = context.getPhysicalFilename();
+        const physicalFilename = context.physicalFilename;
         const typeFileName = "^.*(type\.ts).*$";
         const regexPath = new RegExp(typeFileName, "i");
         if (regexPath.test(physicalFilename)) { // check type.ts

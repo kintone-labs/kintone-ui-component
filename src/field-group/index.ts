@@ -43,8 +43,7 @@ let exportFieldGroup;
     visible = true;
 
     private _content:
-      | HTMLElement
-      | DirectiveResult<typeof UnsafeHTMLDirective> = "";
+      HTMLElement | DirectiveResult<typeof UnsafeHTMLDirective> = "";
     private _GUID: string;
 
     @query(".kuc-field-group__group")

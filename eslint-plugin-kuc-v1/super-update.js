@@ -2,7 +2,7 @@ module.exports = {
   create: function(context) {
     return {
       ClassDeclaration: function(node) {
-        const physicalFilename = context.getPhysicalFilename();
+        const physicalFilename = context.physicalFilename;
         const ignorePath = "^.*(type.ts).*$";
         const regexPath = new RegExp(ignorePath, "i");
         if (regexPath.test(physicalFilename)) return;
@@ -13,7 +13,7 @@ module.exports = {
         const nodeBody = node.body;
         if (nodeBody.type !== "ClassBody") return;
 
-        const sourceCode = context.getSourceCode();
+        const sourceCode = context.sourceCode;
         const pattern = "super\\.update\\(";
         const regex = new RegExp(pattern);
 

@@ -148,16 +148,20 @@ export class BaseDate extends KucBase {
         .language="${this.language}"
         .value="${this._calendarValue}"
         popover="manual"
-        @kuc:calendar-header-previous-shifttab="${this
-          ._handleShiftTabCalendarPrevMonth}"
+        @kuc:calendar-header-previous-shifttab="${
+          this._handleShiftTabCalendarPrevMonth
+        }"
         @kuc:calendar-body-change-date="${this._handleClickCalendarChangeDate}"
         @kuc:calendar-body-click-date="${this._handleClickCalendarClickDate}"
-        @kuc:calendar-footer-click-none="${this
-          ._handleClickCalendarFooterButtonNone}"
-        @kuc:calendar-footer-tab-none="${this
-          ._handleTabCalendarFooterButtonNone}"
-        @kuc:calendar-footer-click-today="${this
-          ._handleClickCalendarFooterButtonToday}"
+        @kuc:calendar-footer-click-none="${
+          this._handleClickCalendarFooterButtonNone
+        }"
+        @kuc:calendar-footer-tab-none="${
+          this._handleTabCalendarFooterButtonNone
+        }"
+        @kuc:calendar-footer-click-today="${
+          this._handleClickCalendarFooterButtonToday
+        }"
         @kuc:calendar-escape="${this._handleCalendarEscape}"
       >
       </kuc-base-datetime-calendar>

@@ -10,7 +10,7 @@ module.exports = {
         ) {
           for (let i = 0; i < node.quasi.quasis.length; i++) {
             const quasi = node.quasi.quasis[i];
-            const quasiText = context.getSourceCode().getText(quasi);
+            const quasiText = context.sourceCode.getText(quasi);
             if (!regex.test(quasiText)) continue;
             context.report({
               node: quasi,

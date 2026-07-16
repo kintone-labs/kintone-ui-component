@@ -146,9 +146,9 @@ let exportAttachment;
             ></kuc-base-label>
           </label>
           <div
-            class="kuc-attachment__group__files ${this.disabled
-              ? " kuc-attachment__group__files--disabled"
-              : ""}"
+            class="kuc-attachment__group__files ${
+              this.disabled ? " kuc-attachment__group__files--disabled" : ""
+            }"
             @dragenter="${this._handleDragEnter}"
             @dragover="${this._handleDragOver}"
             @dragleave="${this._handleDragLeave}"
@@ -163,19 +163,22 @@ let exportAttachment;
               </div>
             </div>
             <ul
-              class="kuc-attachment__group__files__display-area${this._isDraging
-                ? " kuc-attachment__group__files__not-droppable--dragenter"
-                : ""}"
+              class="kuc-attachment__group__files__display-area${
+                this._isDraging
+                  ? " kuc-attachment__group__files__not-droppable--dragenter"
+                  : ""
+              }"
             >
               ${this.files.map((item, number) =>
                 this._getAttachmentItemTemplate(item, number),
               )}
             </ul>
             <div
-              class="kuc-attachment__group__files__browse-button${this
-                ._isDraging
-                ? " kuc-attachment__group__files__not-droppable--dragenter"
-                : ""}"
+              class="kuc-attachment__group__files__browse-button${
+                this._isDraging
+                  ? " kuc-attachment__group__files__not-droppable--dragenter"
+                  : ""
+              }"
               ?hidden="${this.disabled || this._isMaxFilesReached()}"
             >
               <span class="kuc-attachment__group__files__browse-button__text"
@@ -198,9 +201,11 @@ let exportAttachment;
               </div>
             </div>
             <p
-              class="kuc-attachment__group__files__browse-message${this.disabled
-                ? " kuc-attachment__group__files__browse-message--disabled"
-                : ""}"
+              class="kuc-attachment__group__files__browse-message${
+                this.disabled
+                  ? " kuc-attachment__group__files__browse-message--disabled"
+                  : ""
+              }"
               ?hidden="${!this.message}"
             >
               ${this.message}

@@ -39,8 +39,7 @@ let exportMobileNotification;
     private _timeoutID!: number;
 
     private _content:
-      | HTMLElement
-      | DirectiveResult<typeof UnsafeHTMLDirective> = "";
+      HTMLElement | DirectiveResult<typeof UnsafeHTMLDirective> = "";
 
     constructor(props?: MobileNotificationProps) {
       super();

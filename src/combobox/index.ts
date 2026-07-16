@@ -292,9 +292,9 @@ let exportCombobox;
 
       return html`
         <li
-          class="kuc-combobox__group__select-menu__item ${isDisabled
-            ? this._DISABLED_CLASS
-            : ""}"
+          class="kuc-combobox__group__select-menu__item ${
+            isDisabled ? this._DISABLED_CLASS : ""
+          }"
           role="option"
           aria-selected="${isCheckedItem ? "true" : "false"}"
           value="${item.value !== undefined ? item.value : ""}"

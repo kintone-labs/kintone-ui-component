@@ -2,13 +2,13 @@ module.exports = {
   create: function(context) {
     return {
       ClassDeclaration: function(node) {
-        const physicalFilename = context.getPhysicalFilename();
+        const physicalFilename = context.physicalFilename;
         const ignorePath = "^.*(.stories.js).*$";
         const regexPath = new RegExp(ignorePath, "i");
         if (regexPath.test(physicalFilename)) return;
 
         const superClass = node.superClass.name;
-        const sourceCode = context.getSourceCode().getText();
+        const sourceCode = context.sourceCode.getText();
         const pattern = "new CustomEvent\\(";
         const regex = new RegExp(pattern, "i");
         if (superClass === "KucBase" && regex.test(sourceCode)) {

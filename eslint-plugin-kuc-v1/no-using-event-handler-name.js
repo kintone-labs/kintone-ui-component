@@ -30,7 +30,7 @@ module.exports = {
         const mouseoverHandleRegex = new RegExp(mouseoverHandlePattern);
         const mouseleaveHandleRegex = new RegExp(mouseleaveHandlePattern);
 
-        const sourceCode = context.getSourceCode().getText();
+        const sourceCode = context.sourceCode.getText();
         if (
           !clickHandleRegex.test(sourceCode) &&
           !changeHandleRegex.test(sourceCode) &&
