@@ -156,6 +156,37 @@ describe("TimePicker", () => {
       expect(blurDetail!.oldValue).to.equal("");
     });
 
+    it("REPRO: does not fire blur when focus moves into a listbox item", async () => {
+      const { container, el } = await setup("10:30");
+      let blurCount = 0;
+      el.addEventListener("blur", () => blurCount++);
+
+      const { hours } = getInputs(el);
+      // make a pending edit: 10:30 -> 11:30
+      hours.dispatchEvent(new Event("focus"));
+      hours.dispatchEvent(
+        new KeyboardEvent("keydown", { key: "ArrowUp", bubbles: true }),
+      );
+      await elementUpdated(el);
+
+      // open the listbox and grab a real <li> item
+      const groupInputEl = el.querySelector(
+        ".kuc-base-time__group",
+      ) as HTMLDivElement;
+      groupInputEl.click();
+      await elementUpdated(container);
+      const li = el.querySelector(
+        ".kuc-base-datetime-listbox__listbox__item",
+      ) as HTMLLIElement;
+      expect(li).to.not.equal(null);
+
+      // focus moves from the input into a listbox item = still inside component
+      hours.dispatchEvent(new FocusEvent("blur", { relatedTarget: li }));
+      await elementUpdated(el);
+
+      expect(blurCount).to.equal(0);
+    });
+
     it("reports an out-of-range value as undefined in blur", async () => {
       const container = new TimePicker();
       container.value = "11:00";

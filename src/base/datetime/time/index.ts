@@ -449,8 +449,8 @@ export class BaseTime extends KucBase {
       // any element inside the input group (the 3 inputs + the group's own area)
       this._inputGroupEl.contains(target) ||
       target === this._toggleEl ||
-      // focus moving into the open time listbox is still inside the component
-      target === this._listboxEl
+      // focus moving into the open time listbox (or any of its items) is still inside the component
+      this._listboxEl?.contains(target) === true
     );
   }
 

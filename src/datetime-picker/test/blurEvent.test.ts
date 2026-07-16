@@ -191,6 +191,33 @@ describe("DateTimePicker", () => {
       expect(blurDetail!.changedPart).to.equal("time");
     });
 
+    it("does not fire blur when focus moves into a time listbox item", async () => {
+      const { container, el, hours } = await setup("2022-01-01T10:30:00");
+      let blurCount = 0;
+      el.addEventListener("blur", () => blurCount++);
+
+      // pending time edit: 10:30 -> 11:30
+      editTime(hours);
+      await elementUpdated(el);
+
+      // open the time dropdown and grab a real <li>
+      const groupInputEl = el.querySelector(
+        ".kuc-base-time__group",
+      ) as HTMLDivElement;
+      groupInputEl.click();
+      await elementUpdated(container);
+      const li = el.querySelector(
+        ".kuc-base-datetime-listbox__listbox__item",
+      ) as HTMLLIElement;
+      expect(li).to.not.equal(null);
+
+      // focus moving from the input into a listbox item stays inside the component
+      hours.dispatchEvent(new FocusEvent("blur", { relatedTarget: li }));
+      await elementUpdated(el);
+
+      expect(blurCount).to.equal(0);
+    });
+
     it("fires blur when focus moves from the time field to the date field", async () => {
       const { el, hours } = await setup("2022-01-01T10:30:00");
       let blurCount = 0;
