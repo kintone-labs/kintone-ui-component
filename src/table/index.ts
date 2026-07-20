@@ -134,9 +134,11 @@ let exportTable;
                 ${this._getTableHeaderTemplate()}
               </thead>
               <tbody
-                class="kuc-table__table__body${!this.headerVisible
-                  ? " kuc-table__table__body--no-header"
-                  : ""}"
+                class="kuc-table__table__body${
+                  !this.headerVisible
+                    ? " kuc-table__table__body--no-header"
+                    : ""
+                }"
               ></tbody>
             </table>
           `;
@@ -153,15 +155,19 @@ let exportTable;
     private _getTableHeaderTemplate() {
       return html`
         <tr>
-          ${this._actionButtonPosition === "left"
-            ? this._getActionButtonHeaderTemplate()
-            : ""}
+          ${
+            this._actionButtonPosition === "left"
+              ? this._getActionButtonHeaderTemplate()
+              : ""
+          }
           ${this.columns.map((column, index) =>
             this._getColumnHeaderTemplate(column, index),
           )}
-          ${this._actionButtonPosition === "right"
-            ? this._getActionButtonHeaderTemplate()
-            : ""}
+          ${
+            this._actionButtonPosition === "right"
+              ? this._getActionButtonHeaderTemplate()
+              : ""
+          }
         </tr>
       `;
     }
@@ -176,10 +182,9 @@ let exportTable;
 
       return html`
         <th
-          class="kuc-table__table__header__cell kuc-table__table__header__cell__action${this
-            ._actionButtonPosition === "left"
-            ? "--left"
-            : "--right"}"
+          class="kuc-table__table__header__cell kuc-table__table__header__cell__action${
+            this._actionButtonPosition === "left" ? "--left" : "--right"
+          }"
         ></th>
       `;
     }
@@ -193,9 +198,11 @@ let exportTable;
           style="width: ${customWidth}; min-width: ${customWidth}; max-width: ${customWidth}"
         >
           <div class="kuc-table__table__header__cell-title">
-            ${column.title && isHTMLElement(column.title)
-              ? unsafeHTMLConverter(column.title)
-              : column.title}<!--
+            ${
+              column.title && isHTMLElement(column.title)
+                ? unsafeHTMLConverter(column.title)
+                : column.title
+            }<!--
         --><span
               class="kuc-base-label__required-icon"
               ?hidden="${!column.requiredIcon}"
