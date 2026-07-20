@@ -156,7 +156,7 @@ describe("TimePicker", () => {
       expect(blurDetail!.oldValue).to.equal("");
     });
 
-    it("REPRO: does not fire blur when focus moves into a listbox item", async () => {
+    it("does not fire blur when focus moves into a listbox item", async () => {
       const { container, el } = await setup("10:30");
       let blurCount = 0;
       el.addEventListener("blur", () => blurCount++);
@@ -215,7 +215,7 @@ describe("TimePicker", () => {
       hours.dispatchEvent(
         new FocusEvent("blur", { relatedTarget: document.body }),
       );
-      await new Promise((resolve) => setTimeout(resolve, 0));
+      await elementUpdated(el);
 
       // invalid value is still reported on blur (for validate-on-blur), as undefined
       expect(blurCount).to.equal(1);

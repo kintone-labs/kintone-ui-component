@@ -150,7 +150,7 @@ describe("DateTimePicker", () => {
       await elementUpdated(el);
 
       blur(hours);
-      await new Promise((resolve) => setTimeout(resolve, 0));
+      await elementUpdated(el);
 
       // invalid value is still reported on blur (for validate-on-blur), as undefined
       expect(blurCount).to.equal(1);
