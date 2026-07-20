@@ -1,0 +1,23 @@
+name: 'Setup Node'
+description: 'Install pnpm and Node.js with pnpm cache'
+inputs:
+  node-version:
+    description: 'Node.js version'
+    required: false
+    default: '24.18.0'
+  pnpm-version:
+    description: 'pnpm version'
+    required: false
+    default: '10'
+runs:
+  using: 'composite'
+  steps:
+    - name: Install pnpm
+      uses: pnpm/action-setup@v5
+      with:
+        version: ${{ inputs.pnpm-version }}
+    - name: Install node
+      uses: actions/setup-node@v6
+      with:
+        node-version: ${{ inputs.node-version }}
+        cache: 'pnpm'
