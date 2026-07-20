@@ -38,7 +38,8 @@ let exportTooltip;
     private _titleEl!: HTMLDivElement;
 
     private _container:
-      HTMLElement | DirectiveResult<typeof UnsafeHTMLDirective> = "";
+      | HTMLElement
+      | DirectiveResult<typeof UnsafeHTMLDirective> = "";
     private _firstChildEl!: HTMLElement;
     private _GUID: string;
     private _globalEscapeBound: KeyBoardFunction;

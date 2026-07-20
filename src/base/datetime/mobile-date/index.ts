@@ -294,18 +294,14 @@ export class BaseMobileDate extends KucBase {
         .language="${this.language}"
         .value="${this._calendarValue}"
         popover="manual"
-        @kuc:mobile-calendar-body-click-date="${
-          this._handleClickCalendarClickDate
-        }"
-        @kuc:mobile-calendar-footer-click-none="${
-          this._handleClickCalendarFooterButtonNone
-        }"
-        @kuc:mobile-calendar-footer-click-today="${
-          this._handleClickCalendarFooterButtonToday
-        }"
-        @kuc:mobile-calendar-footer-click-close="${
-          this._handleClickCalendarFooterButtonClose
-        }"
+        @kuc:mobile-calendar-body-click-date="${this
+          ._handleClickCalendarClickDate}"
+        @kuc:mobile-calendar-footer-click-none="${this
+          ._handleClickCalendarFooterButtonNone}"
+        @kuc:mobile-calendar-footer-click-today="${this
+          ._handleClickCalendarFooterButtonToday}"
+        @kuc:mobile-calendar-footer-click-close="${this
+          ._handleClickCalendarFooterButtonClose}"
       >
       </kuc-base-mobile-datetime-calendar>
     `;

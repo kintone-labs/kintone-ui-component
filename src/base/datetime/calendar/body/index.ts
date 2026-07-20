@@ -292,9 +292,9 @@ export class BaseDateTimeCalendarBody extends KucBase {
                 return html`
                   <td
                     role="gridcell"
-                    class="kuc-base-datetime-calendar-body__table__date${
-                      isFocus ? "--selected" : ""
-                    }${this._getDateClass(dateParts, isThisMonth)}"
+                    class="kuc-base-datetime-calendar-body__table__date${isFocus
+                      ? "--selected"
+                      : ""}${this._getDateClass(dateParts, isThisMonth)}"
                     aria-selected="${this.value === weekDate.attr}"
                     tabindex="${isFocus ? "0" : "-1"}"
                     aria-current="${this._isToday(dateParts) ? "date" : false}"

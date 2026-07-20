@@ -3,7 +3,8 @@ import { PropertyValues } from "lit";
 import { KucBase } from "../base/kuc-base";
 
 export declare type FileItem =
-  File | { name: string; size: string; [key: string]: any };
+  | File
+  | { name: string; size: string; [key: string]: any };
 export declare type AttachmentProps = {
   accept?: string;
   className?: string;

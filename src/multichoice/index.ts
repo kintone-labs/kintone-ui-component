@@ -405,24 +405,24 @@ let exportMultiChoice;
       const isDisabledItem = item.disabled || this.disabled;
       return html`
         <div
-          class="kuc-multi-choice__group__menu__item ${
-            isDisabledItem ? this._DISABLED_CLASS : ""
-          }"
+          class="kuc-multi-choice__group__menu__item ${isDisabledItem
+            ? this._DISABLED_CLASS
+            : ""}"
           role="option"
           aria-selected="${isCheckedItem}"
           aria-required="${this.requiredIcon}"
           data-index="${index}"
           value="${item.value !== undefined ? item.value : ""}"
           id="${this._GUID}-menuitem-${index}"
-          @mousedown="${
-            !isDisabledItem ? this._handleMouseDownMultiChoiceItem : null
-          }"
-          @mouseover="${
-            !isDisabledItem ? this._handleMouseOverMultiChoiceItem : null
-          }"
-          @mouseleave="${
-            !isDisabledItem ? this._handleMouseLeaveMultiChoiceItem : null
-          }"
+          @mousedown="${!isDisabledItem
+            ? this._handleMouseDownMultiChoiceItem
+            : null}"
+          @mouseover="${!isDisabledItem
+            ? this._handleMouseOverMultiChoiceItem
+            : null}"
+          @mouseleave="${!isDisabledItem
+            ? this._handleMouseLeaveMultiChoiceItem
+            : null}"
         >
           ${this._getMultiChoiceCheckedIconSvgTemplate(
             isDisabledItem,

@@ -114,9 +114,9 @@ let exportSpinner;
         <div class="kuc-spinner__spinner" aria-live="assertive" role="alert">
           ${this._getSpinnerSvgTemplate()}
           <div
-            class="kuc-spinner__spinner__text${
-              !this.text ? " visually-hidden" : ""
-            }"
+            class="kuc-spinner__spinner__text${!this.text
+              ? " visually-hidden"
+              : ""}"
           >
             ${!this.text ? "now loading…" : this.text}
           </div>

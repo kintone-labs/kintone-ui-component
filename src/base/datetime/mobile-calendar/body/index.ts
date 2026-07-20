@@ -173,9 +173,9 @@ export class BaseMobileDateTimeCalendarBody extends KucBase {
                     tabindex="${isFocus ? 0 : -1}"
                     aria-selected="${this.value === weekDate.attr}"
                     aria-current="${this._isToday(dateParts) ? "date" : false}"
-                    class="kuc-base-mobile-datetime-calendar-body__table__date${
-                      isFocus ? "--selected" : ""
-                    }${this._getDateClass(dateParts, isThisMonth)}"
+                    class="kuc-base-mobile-datetime-calendar-body__table__date${isFocus
+                      ? "--selected"
+                      : ""}${this._getDateClass(dateParts, isThisMonth)}"
                     data-date="${weekDate.attr}"
                     aria-label="${dateParts[2]} ${monthString}"
                     @click="${this._handleClickDate}"

@@ -38,7 +38,8 @@ let exportNotification;
     private _timeoutID!: number;
 
     private _content:
-      HTMLElement | DirectiveResult<typeof UnsafeHTMLDirective> = "";
+      | HTMLElement
+      | DirectiveResult<typeof UnsafeHTMLDirective> = "";
 
     constructor(props?: NotificationProps) {
       super();
@@ -179,9 +180,8 @@ let exportNotification;
     render() {
       return html`
         <div
-          class="kuc-notification__notification kuc-notification__notification--${
-            this.type
-          }"
+          class="kuc-notification__notification kuc-notification__notification--${this
+            .type}"
         >
           <pre
             class="kuc-notification__notification__title"

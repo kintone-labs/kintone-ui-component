@@ -68,9 +68,9 @@ let exportSwitch;
           class="kuc-switch__group kuc-switch__group--${this._getLabelPlacement()}"
         >
           <label
-            class="kuc-switch__group__label${
-              this.disabled ? " kuc-switch__group__label--disabled" : ""
-            }"
+            class="kuc-switch__group__label${this.disabled
+              ? " kuc-switch__group__label--disabled"
+              : ""}"
             ?hidden="${!this.label}"
             for="${this._GUID}-input"
           >
@@ -86,9 +86,9 @@ let exportSwitch;
               type="checkbox"
               role="switch"
               aria-labelledby="${this._GUID}-group"
-              aria-describedby="${this._GUID}-text-${
-                this.checked ? "checked" : "unchecked"
-              }"
+              aria-describedby="${this._GUID}-text-${this.checked
+                ? "checked"
+                : "unchecked"}"
               .checked="${this.checked}"
               ?disabled="${this.disabled}"
               @change="${this._handleChangeInput}"

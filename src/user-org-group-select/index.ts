@@ -313,21 +313,21 @@ let exportUserOrgGroupSelect;
 
       return html`
         <li
-          class="kuc-user-org-group-select__group__container__select-area__select-menu__item ${
-            isDisabled ? this._DISABLED_ITEM_CLASS : ""
-          }"
+          class="kuc-user-org-group-select__group__container__select-area__select-menu__item ${isDisabled
+            ? this._DISABLED_ITEM_CLASS
+            : ""}"
           role="option"
           value="${item.value !== undefined ? item.value : ""}"
           id="${this._GUID}-menuitem-${index}"
           @click="${!isDisabled ? this._handleClickUserOrgGroupItem : null}"
-          @mouseover="${
-            !isDisabled ? this._handleMouseOverUserOrgGroupItem : null
-          }"
+          @mouseover="${!isDisabled
+            ? this._handleMouseOverUserOrgGroupItem
+            : null}"
         >
           <div
-            class="kuc-user-org-group-select__group__container__select-area__select-menu__item__icon ${
-              isDisabled ? this._DISABLED_ICON_CLASS : ""
-            }"
+            class="kuc-user-org-group-select__group__container__select-area__select-menu__item__icon ${isDisabled
+              ? this._DISABLED_ICON_CLASS
+              : ""}"
           >
             ${this._getSvgTemplateByType(item ? item.type : "")}
           </div>
@@ -366,11 +366,9 @@ let exportUserOrgGroupSelect;
               )}
             </div>
             <div
-              class="kuc-user-org-group-select__group__container__select-area__selected-list__item__content__text ${
-                disabled
-                  ? "kuc-user-org-group-select__group__container__select-area__selected-list__item__content__text--disabled"
-                  : ""
-              }"
+              class="kuc-user-org-group-select__group__container__select-area__selected-list__item__content__text ${disabled
+                ? "kuc-user-org-group-select__group__container__select-area__selected-list__item__content__text--disabled"
+                : ""}"
             >
               ${text}
             </div>

@@ -27,7 +27,12 @@ let exportDialog;
     @property({ type: String, reflect: true, attribute: "class" }) className =
       "";
     @property({ type: String }) icon:
-      "" | "info" | "success" | "error" | "warning" | "question" = "";
+      | ""
+      | "info"
+      | "success"
+      | "error"
+      | "warning"
+      | "question" = "";
     @property({ type: String, reflect: true, attribute: "id" }) id = "";
     @property({ type: String }) title = "";
     @property() content: string | HTMLElement = "";
@@ -48,7 +53,8 @@ let exportDialog;
     private _GUID: string;
 
     private _content:
-      HTMLElement | DirectiveResult<typeof UnsafeHTMLDirective> = "";
+      | HTMLElement
+      | DirectiveResult<typeof UnsafeHTMLDirective> = "";
     private _footer: HTMLElement | DirectiveResult<typeof UnsafeHTMLDirective> =
       "";
     private _header: HTMLElement | DirectiveResult<typeof UnsafeHTMLDirective> =

@@ -764,21 +764,21 @@ let exportDropdown;
       const isCheckedItem = this._isCheckedItem(item, index);
       return html`
         <li
-          class="kuc-dropdown__group__select-menu__item ${
-            item.disabled ? this._DISABLED_CLASS : ""
-          }"
+          class="kuc-dropdown__group__select-menu__item ${item.disabled
+            ? this._DISABLED_CLASS
+            : ""}"
           role="option"
           tabindex="${!item.disabled && isCheckedItem ? "0" : "-1"}"
           aria-selected="${isCheckedItem ? "true" : "false"}"
           data-index="${index}"
           value="${item.value !== undefined ? item.value : ""}"
           id="${this._GUID}-menuitem-${index}"
-          @mousedown="${
-            !item.disabled ? this._handleMouseDownDropdownItem : null
-          }"
-          @mouseover="${
-            !item.disabled ? this._handleMouseOverDropdownItem : null
-          }"
+          @mousedown="${!item.disabled
+            ? this._handleMouseDownDropdownItem
+            : null}"
+          @mouseover="${!item.disabled
+            ? this._handleMouseOverDropdownItem
+            : null}"
         >
           ${this._getDropdownIconSvgTemplate(isCheckedItem, !!item.disabled)}
           ${item.label === undefined ? item.value : item.label}

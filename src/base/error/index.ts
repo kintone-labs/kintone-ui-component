@@ -11,30 +11,28 @@ export class BaseError extends KucBase {
 
   render() {
     return html`
-      ${
-        this.ariaLive && this.ariaLive !== ""
-          ? html`
-              <div
-                class="kuc-base-error__error"
-                .id="${this.guid}-error"
-                role="alert"
-                aria-live="${this.ariaLive}"
-                ?hidden="${!this.text}"
-              >
-                ${this.text}
-              </div>
-            `
-          : html`
-              <div
-                class="kuc-base-error__error"
-                .id="${this.guid}-error"
-                role="alert"
-                ?hidden="${!this.text}"
-              >
-                ${this.text}
-              </div>
-            `
-      }
+      ${this.ariaLive && this.ariaLive !== ""
+        ? html`
+            <div
+              class="kuc-base-error__error"
+              .id="${this.guid}-error"
+              role="alert"
+              aria-live="${this.ariaLive}"
+              ?hidden="${!this.text}"
+            >
+              ${this.text}
+            </div>
+          `
+        : html`
+            <div
+              class="kuc-base-error__error"
+              .id="${this.guid}-error"
+              role="alert"
+              ?hidden="${!this.text}"
+            >
+              ${this.text}
+            </div>
+          `}
     `;
   }
 }
