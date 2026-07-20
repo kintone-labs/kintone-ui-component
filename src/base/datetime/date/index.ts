@@ -38,6 +38,9 @@ export class BaseDate extends KucBase {
   @query(".kuc-base-date__calendar")
   private _calendarEl!: BaseDateTimeCalendar;
 
+  @query(".kuc-base-date__assistive-text")
+  private _assistiveBtn!: HTMLButtonElement;
+
   @query(".kuc-base-datetime-calendar-header__group__button--previous-month")
   private _previousMonth!: HTMLButtonElement;
 
@@ -54,6 +57,13 @@ export class BaseDate extends KucBase {
   private _inputValue?: string = "";
 
   private _valueForReset?: string = "";
+
+  // State for the deferred "blur" event (fired alongside the live
+  // "kuc:base-date-change", but only once on blur if the value changed).
+  // _hasPendingChange: value changed by the user since the last blur emit.
+  // _blurBaseline: value when the current edit started, used as its oldValue.
+  private _hasPendingChange = false;
+  private _blurBaseline?: string = "";
 
   private _resizeDebounceTimer: number | null = null;
   private _scrollRAF = 0;
@@ -99,6 +109,14 @@ export class BaseDate extends KucBase {
     super.update(changedProperties);
   }
 
+  connectedCallback() {
+    super.connectedCallback();
+    // Self-listen to arm the deferred blur: the first change of a session sets
+    // the baseline (oldValue) and marks the value dirty.
+    this.addEventListener("kuc:base-date-change", this._handleSelfDateChange);
+    this.addEventListener("focusout", this._handleFocusOut);
+  }
+
   disconnectedCallback() {
     if (this._scrollRAF) {
       cancelAnimationFrame(this._scrollRAF);
@@ -110,7 +128,62 @@ export class BaseDate extends KucBase {
       this._resizeDebounceTimer = null;
     }
     this._detachListeners();
+    this.removeEventListener(
+      "kuc:base-date-change",
+      this._handleSelfDateChange,
+    );
+    this.removeEventListener("focusout", this._handleFocusOut);
     super.disconnectedCallback();
+  }
+
+  private _handleSelfDateChange = (event: Event) => {
+    if (this._hasPendingChange) return;
+    this._blurBaseline = (event as CustomEvent).detail.oldValue;
+    this._hasPendingChange = true;
+  };
+
+  private _handleFocusOut = (event: FocusEvent) => {
+    if (this._isFocusInsideComponent(event.relatedTarget)) return;
+    // While the calendar is open the user is still interacting with the field;
+    // clicking a non-focusable calendar area blurs to null. Defer to _onDocClick
+    // / commit paths instead of firing a premature blur here.
+    if (this._dateTimeCalendarVisible) return;
+    this._emitDeferredBlur();
+  };
+
+  private _isFocusInsideComponent(target: EventTarget | null) {
+    if (!(target instanceof HTMLElement)) return false;
+
+    return (
+      target === this._dateInput ||
+      target === this._assistiveBtn ||
+      // focus into the calendar (its host or any element in its shadow, which is
+      // retargeted to the calendar host) is still inside the component
+      target === this._calendarEl ||
+      this._calendarEl?.contains(target) === true
+    );
+  }
+
+  private _emitDeferredBlur() {
+    if (!this._hasPendingChange) return;
+
+    // Always emit once per dirty session (net-zero is filtered by the pickers,
+    // like the time "blur"), so the consumer's pending flag never goes stale.
+    const detail: CustomEventDetail = {
+      value: this.value,
+      oldValue: this._blurBaseline,
+    };
+    const error = this._getCurrentError();
+    if (error) detail.error = error;
+    this._hasPendingChange = false;
+    dispatchCustomEvent(this, "kuc:base-date-blur", detail);
+  }
+
+  private _getCurrentError() {
+    if (this._inputValue && !isValidDateFormat(this.language, this._inputValue))
+      return this._locale.INVALID_FORMAT;
+
+    return undefined;
   }
 
   render() {
@@ -148,16 +221,20 @@ export class BaseDate extends KucBase {
         .language="${this.language}"
         .value="${this._calendarValue}"
         popover="manual"
-        @kuc:calendar-header-previous-shifttab="${this
-          ._handleShiftTabCalendarPrevMonth}"
+        @kuc:calendar-header-previous-shifttab="${
+          this._handleShiftTabCalendarPrevMonth
+        }"
         @kuc:calendar-body-change-date="${this._handleClickCalendarChangeDate}"
         @kuc:calendar-body-click-date="${this._handleClickCalendarClickDate}"
-        @kuc:calendar-footer-click-none="${this
-          ._handleClickCalendarFooterButtonNone}"
-        @kuc:calendar-footer-tab-none="${this
-          ._handleTabCalendarFooterButtonNone}"
-        @kuc:calendar-footer-click-today="${this
-          ._handleClickCalendarFooterButtonToday}"
+        @kuc:calendar-footer-click-none="${
+          this._handleClickCalendarFooterButtonNone
+        }"
+        @kuc:calendar-footer-tab-none="${
+          this._handleTabCalendarFooterButtonNone
+        }"
+        @kuc:calendar-footer-click-today="${
+          this._handleClickCalendarFooterButtonToday
+        }"
         @kuc:calendar-escape="${this._handleCalendarEscape}"
       >
       </kuc-base-datetime-calendar>
@@ -243,11 +320,19 @@ export class BaseDate extends KucBase {
     this._closeCalendar();
   }
 
-  private _onDocClick = (event: PointerEvent) => {
+  private _onDocClick = (event: MouseEvent) => {
     const path = event.composedPath();
     const inCalendar = this._calendarEl && path.includes(this._calendarEl);
     const inInput = path.includes(this._dateInput);
-    if (!inCalendar && !inInput) this._closeCalendar();
+    if (!inCalendar && !inInput) {
+      this._closeCalendar();
+      // Calendar was open (focus inside it) and the user clicked outside the
+      // whole component: focusout was suppressed by the visibility gate, so emit
+      // the deferred blur here now that focus has genuinely left.
+      if (!this._isFocusInsideComponent(document.activeElement)) {
+        this._emitDeferredBlur();
+      }
+    }
   };
 
   private _closeCalendar() {

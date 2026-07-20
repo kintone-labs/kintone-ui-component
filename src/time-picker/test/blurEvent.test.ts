@@ -187,7 +187,7 @@ describe("TimePicker", () => {
       expect(blurCount).to.equal(0);
     });
 
-    it("reports an out-of-range value as undefined in blur", async () => {
+    it("reports an out-of-range (invalid) value as undefined in blur", async () => {
       const container = new TimePicker();
       container.value = "11:00";
       container.min = "10:00";
@@ -217,6 +217,7 @@ describe("TimePicker", () => {
       );
       await new Promise((resolve) => setTimeout(resolve, 0));
 
+      // invalid value is still reported on blur (for validate-on-blur), as undefined
       expect(blurCount).to.equal(1);
       expect(blurDetail!.value).to.equal(undefined);
       expect(blurDetail!.oldValue).to.equal("11:00");

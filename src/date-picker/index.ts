@@ -126,6 +126,7 @@ let exportDatePicker;
             .required="${this.requiredIcon}"
             .language="${this._getLanguage()}"
             @kuc:base-date-change="${this._handleDateChange}"
+            @kuc:base-date-blur="${this._handleDateChangeOnBlur}"
           >
           </kuc-base-date>
           <kuc-base-error
@@ -177,6 +178,21 @@ let exportDatePicker;
         eventDetail.value = this.value;
       }
       this._dispatchChangeEvent(eventDetail);
+    }
+
+    // Fired once when focus leaves the component, if the value changed. The live
+    // "change" event has already updated value/error state, so this only reports
+    // the net change (oldValue = value when editing started).
+    private _handleDateChangeOnBlur(event: CustomEvent) {
+      event.preventDefault();
+      event.stopPropagation();
+      const detail: DatePickerChangeEventDetail = {
+        value: event.detail.error ? undefined : event.detail.value,
+        oldValue: event.detail.oldValue,
+      };
+      // Net-zero edit: value returned to where it started, so nothing changed.
+      if (detail.value === detail.oldValue) return;
+      dispatchCustomEvent(this, "blur", detail);
     }
 
     private _dispatchChangeEvent(eventDetail: DatePickerChangeEventDetail) {

@@ -122,7 +122,7 @@ describe("DateTimePicker", () => {
       expect(blurCount).to.equal(0);
     });
 
-    it("reports an out-of-range time as undefined in blur", async () => {
+    it("reports an out-of-range (invalid) time as undefined in blur", async () => {
       const container = new DateTimePicker();
       container.value = "2022-01-01T11:00:00";
       container.min = "10:00";
@@ -152,9 +152,11 @@ describe("DateTimePicker", () => {
       blur(hours);
       await new Promise((resolve) => setTimeout(resolve, 0));
 
+      // invalid value is still reported on blur (for validate-on-blur), as undefined
       expect(blurCount).to.equal(1);
       expect(blurDetail!.value).to.equal(undefined);
       expect(blurDetail!.oldValue).to.equal("2022-01-01T11:00:00");
+      expect(blurDetail!.changedPart).to.equal("time");
     });
 
     it("selecting from the dropdown defers blur until blur", async () => {
@@ -270,6 +272,123 @@ describe("DateTimePicker", () => {
       expect(blurCount).to.equal(2);
       expect(blurDetail!.value).to.equal("2022-01-01T12:30:00");
       expect(blurDetail!.oldValue).to.equal("2022-01-01T11:30:00");
+    });
+  });
+
+  describe("blur event (inner date field)", () => {
+    const setup = async (value: string) => {
+      const container = new DateTimePicker({ value, language: "en" });
+      const el = await fixture(container);
+      const input = el.querySelector(
+        ".kuc-base-date__input",
+      ) as HTMLInputElement;
+      const hours = el.querySelector(
+        ".kuc-base-time__group__hours",
+      ) as HTMLInputElement;
+      return { container, el, input, hours };
+    };
+
+    const typeDate = async (
+      input: HTMLInputElement,
+      value: string,
+      el: Element,
+    ) => {
+      input.value = value;
+      input.dispatchEvent(new Event("change", { bubbles: true }));
+      await elementUpdated(el);
+    };
+
+    const blur = async (
+      input: HTMLInputElement,
+      relatedTarget: Element,
+      el: Element,
+    ) => {
+      input.dispatchEvent(
+        new FocusEvent("focusout", { relatedTarget, bubbles: true }),
+      );
+      await elementUpdated(el);
+    };
+
+    it("fires once on date blur with the net datetime; change still fires live", async () => {
+      const { el, input } = await setup("2022-01-01T10:30:00");
+      let changeCount = 0;
+      let blurCount = 0;
+      let blurDetail: DateTimePickerChangeEventDetail | null = null;
+      el.addEventListener("change", () => changeCount++);
+      el.addEventListener("blur", (event: Event) => {
+        blurCount++;
+        blurDetail = (event as CustomEvent).detail;
+      });
+
+      await typeDate(input, "01/02/2022", el);
+      expect(changeCount).to.equal(1);
+      expect(blurCount).to.equal(0);
+
+      await blur(input, document.body, el);
+
+      expect(blurCount).to.equal(1);
+      expect(blurDetail!.value).to.equal("2022-01-02T10:30:00");
+      expect(blurDetail!.oldValue).to.equal("2022-01-01T10:30:00");
+      expect(blurDetail!.changedPart).to.equal("date");
+    });
+
+    it("does not fire blur when the date is unchanged", async () => {
+      const { el, input } = await setup("2022-01-01T10:30:00");
+      let blurCount = 0;
+      el.addEventListener("blur", () => blurCount++);
+
+      await blur(input, document.body, el);
+      expect(blurCount).to.equal(0);
+    });
+
+    it("does not fire blur when the net date is unchanged (edited then reverted)", async () => {
+      const { el, input } = await setup("2022-01-01T10:30:00");
+      let blurCount = 0;
+      el.addEventListener("blur", () => blurCount++);
+
+      await typeDate(input, "01/02/2022", el);
+      await typeDate(input, "01/01/2022", el);
+
+      await blur(input, document.body, el);
+      expect(blurCount).to.equal(0);
+    });
+
+    it("fires date blur when focus moves from the date field to the time field", async () => {
+      const { el, input, hours } = await setup("2022-01-01T10:30:00");
+      let blurCount = 0;
+      let blurDetail: DateTimePickerChangeEventDetail | null = null;
+      el.addEventListener("blur", (event: Event) => {
+        blurCount++;
+        blurDetail = (event as CustomEvent).detail;
+      });
+
+      await typeDate(input, "01/02/2022", el);
+      // Tab from the date input to the time input = leaving the date field
+      await blur(input, hours, el);
+
+      expect(blurCount).to.equal(1);
+      expect(blurDetail!.changedPart).to.equal("date");
+      expect(blurDetail!.value).to.equal("2022-01-02T10:30:00");
+      expect(blurDetail!.oldValue).to.equal("2022-01-01T10:30:00");
+    });
+
+    it("reports an invalid date as undefined in blur (e.g. 'aa' in the year)", async () => {
+      const { el, input } = await setup("2022-01-01T10:30:00");
+      let blurCount = 0;
+      let blurDetail: DateTimePickerChangeEventDetail | null = null;
+      el.addEventListener("blur", (event: Event) => {
+        blurCount++;
+        blurDetail = (event as CustomEvent).detail;
+      });
+
+      await typeDate(input, "01/01/aaaa", el);
+      await blur(input, document.body, el);
+
+      // invalid value is still reported on blur (for validate-on-blur), as undefined
+      expect(blurCount).to.equal(1);
+      expect(blurDetail!.value).to.equal(undefined);
+      expect(blurDetail!.oldValue).to.equal("2022-01-01T10:30:00");
+      expect(blurDetail!.changedPart).to.equal("date");
     });
   });
 });

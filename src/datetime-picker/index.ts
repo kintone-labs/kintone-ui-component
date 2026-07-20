@@ -110,6 +110,12 @@ let exportDateTimePicker;
     private _hasPendingTimeBlur = false;
     private _timeBlurBaseline: string | undefined = "";
 
+    // Deferred "blur" event for the inner date field (mirrors the time one).
+    // _hasPendingDateBlur: date changed since the last blur emit.
+    // _dateBlurBaseline: datetime value when the current date edit started.
+    private _hasPendingDateBlur = false;
+    private _dateBlurBaseline: string | undefined = "";
+
     private _inputMax = "";
     private _inputMin = "";
     private _timeConverted: string = "";
@@ -346,6 +352,7 @@ let exportDateTimePicker;
               .disabled="${this.disabled}"
               inputAriaLabel="date"
               @kuc:base-date-change="${this._handleDateChange}"
+              @kuc:base-date-blur="${this._handleDateChangeOnBlur}"
             ></kuc-base-date
             ><kuc-base-time
               class="kuc-datetime-picker__group__inputs--time"
@@ -384,6 +391,14 @@ let exportDateTimePicker;
       event.stopPropagation();
       event.preventDefault();
       this._changeDateByUI = true;
+
+      // Snapshot the datetime value once when the date-edit session starts, so
+      // the deferred "blur" event can report it as oldValue.
+      if (!this._hasPendingDateBlur) {
+        this._dateBlurBaseline = this.value;
+        this._hasPendingDateBlur = true;
+      }
+
       let newValue = this._dateValue;
       if (event.detail.error) {
         this._errorFormat = event.detail.error;
@@ -434,6 +449,27 @@ let exportDateTimePicker;
       // Reset before the net-zero check so the pending flag never goes stale
       // (BaseTime always emits on blur; this handler always runs).
       this._hasPendingTimeBlur = false;
+      // Net-zero edit: value returned to where it started, so nothing changed.
+      if (detail.value === detail.oldValue) return;
+      dispatchCustomEvent(this, "blur", detail);
+    }
+
+    // Fired once when focus leaves the inner date field, if the date changed.
+    // Mirrors the time "blur": the live "change" already updated state, so this
+    // only reports the net change (oldValue = datetime when editing started).
+    private _handleDateChangeOnBlur(event: CustomEvent) {
+      event.preventDefault();
+      event.stopPropagation();
+      if (!this._hasPendingDateBlur) return;
+
+      const detail: DateTimePickerChangeEventDetail = {
+        value: this.value,
+        oldValue: this._dateBlurBaseline,
+        changedPart: "date",
+      };
+      // Reset before the net-zero check so the pending flag never goes stale
+      // (BaseDate always emits on blur; this handler always runs).
+      this._hasPendingDateBlur = false;
       // Net-zero edit: value returned to where it started, so nothing changed.
       if (detail.value === detail.oldValue) return;
       dispatchCustomEvent(this, "blur", detail);

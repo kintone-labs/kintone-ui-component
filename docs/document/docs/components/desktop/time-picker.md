@@ -42,7 +42,7 @@ Here is a list of events that can be specified:
 
 | Name | Type | Description | Remark |
 | :--- | :--- | :--- | :--- |
-| blur | function | Event handler when the value has been changed and focus leaves the component | Fired only once when focus leaves the component, and only if the value changed since the last time it fired (the `change` event still fires live while editing)<br/><br/>It will pass the event object as the argument<br/><br/>You can receive the following values in event.detail<br/>event.detail.oldValue : Value when editing started<br/>event.detail.value : Value after the change |
+| blur | function | Event handler when the value has been changed and focus leaves the Input (Field to display selected Time) or ListBox (Field to select Time) | It will pass the event object as the argument<br/><br/>You can receive the following values in event.detail<br/>event.detail.oldValue : Value when editing started<br/>event.detail.value : Value after the change |
 | change | function | Event handler when the value has been changed | It will pass the event object as the argument<br/><br/>You can receive the following values in event.detail<br/>event.detail.oldValue : Value before the change<br/>event.detail.value : Value after the change |
 
 ### Constructor

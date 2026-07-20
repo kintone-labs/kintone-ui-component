@@ -152,6 +152,7 @@ export class BaseTime extends KucBase {
           @blur="${this._handleBlurInput}"
           @keydown="${this._handleKeyDownInput}"
           @paste="${this._handlePasteInput}"
+          @change="${this._handleChangeInput}"
           ?disabled="${this.disabled}"
           value="${this._hours}"
         />
@@ -166,6 +167,7 @@ export class BaseTime extends KucBase {
           @blur="${this._handleBlurInput}"
           @keydown="${this._handleKeyDownInput}"
           @paste="${this._handlePasteInput}"
+          @change="${this._handleChangeInput}"
           ?disabled="${this.disabled}"
           value="${this._minutes}"
         />
@@ -392,6 +394,14 @@ export class BaseTime extends KucBase {
     event.preventDefault();
   }
 
+  private _handleChangeInput(event: Event) {
+    // Value changes are driven via keydown; the raw <input>'s native "change"
+    // (e.g. IME-composed text that bypasses the keydown guard) carries no
+    // meaning and must not bubble out and be mistaken for the component's
+    // change event.
+    event.stopPropagation();
+  }
+
   private _handleSupportedKey(event: KeyboardEvent) {
     event.preventDefault();
     const keyCode = event.key;
@@ -607,8 +617,7 @@ export class BaseTime extends KucBase {
     value: string,
     oldValue: string,
     eventName:
-      | "kuc:base-time-change"
-      | "kuc:base-time-blur" = "kuc:base-time-change",
+      "kuc:base-time-change" | "kuc:base-time-blur" = "kuc:base-time-change",
   ) {
     const detail: CustomEventDetail = {
       value: value,
@@ -722,6 +731,7 @@ export class BaseTime extends KucBase {
             @blur="${this._handleBlurInput}"
             @keydown="${this._handleKeyDownInput}"
             @paste="${this._handlePasteInput}"
+            @change="${this._handleChangeInput}"
             ?disabled="${this.disabled}"
             value="${this._suffix}"
           />

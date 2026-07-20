@@ -48,7 +48,7 @@ Here is a list of events that can be specified:
 
 | Name | Type | Description | Remark |
 | :--- | :--- | :--- | :--- |
-| blur | function | Event handler when the time field has been changed and focus leaves it | Fired only once when focus leaves the inner time field, and only if the time changed since the last time it fired (the `change` event still fires live while editing)<br/><br/>It will pass the event object as the argument<br/><br/>You can receive the following values in event.detail<br/>event.detail.oldValue : Value when time editing started<br/>event.detail.value : Value after the change<br/>event.detail.changedPart : always "time" |
+| blur | function | Event handler when the date or time field has been changed and focus leaves the Input (Field to display selected Date or Time), ListBox (Field to select Time) or Calendar (Field to select Date) | It will pass the event object as the argument<br/><br/>You can receive the following values in event.detail<br/>event.detail.oldValue : Value when editing started<br/>event.detail.value : Value after the change<br/>event.detail.changedPart : "date" or "time" which has been changed |
 | change | function | Event handler when the value has been changed | It will pass the event object as the argument<br/><br/>You can receive the following values in event.detail<br/>event.detail.oldValue : Value before the change<br/>event.detail.value : Value after the change<br/>event.detail.changedPart : "date" or "time" which has been changed |
 
 ### Constructor
