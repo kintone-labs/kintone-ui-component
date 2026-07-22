@@ -48,6 +48,7 @@ import { DateTimePickerComponent } from "@site/static/js/samples/desktop/datetim
 
 | Name | Type | Description | Remark |
 | :--- | :--- | :--- | :--- |
+| blur | function | 日付または時刻フィールドが変更され、入力フィールド（選択した日付または時刻を表示するフィールド）、リスト（時刻を選択するフィールド）、またはカレンダー （日付を選択するフィールド）からフォーカスが外れた際のイベントハンドラ | 引数には Event の event オブジェクトをとる<br/><br/>event.detail で以下の値を受け取ることができる<br/>event.detail.oldValue : 編集開始時の値<br/>event.detail.value : 変更後の値<br/>event.detail.changedPart : 変更されたパーツ "date" もしくは "time" |
 | change | function | 値が変更された時のイベントハンドラ | 引数には Event の event オブジェクトをとる<br/><br/>event.detail で以下の値を受け取ることができる<br/>event.detail.oldValue : 変更前の value の値<br/>event.detail.value : 変更後の value の値<br/>event.detail.changedPart : 変更されたパーツ "date" もしくは "time" |
 
 ### Constructor
