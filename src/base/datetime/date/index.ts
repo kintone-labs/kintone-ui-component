@@ -58,11 +58,10 @@ export class BaseDate extends KucBase {
 
   private _valueForReset?: string = "";
 
-  // State for the deferred "blur" event (fired alongside the live
-  // "kuc:base-date-change", but only once on blur if the value changed).
-  // _hasPendingChange: value changed by the user since the last blur emit.
-  // _blurBaseline: value when the current edit started, used as its oldValue.
-  private _hasPendingChange = false;
+  // State for the deferred "blur" event, fired every time focus leaves the
+  // whole component. _hasFocus: focus is currently inside (guards fire-once per
+  // leave). _blurBaseline: value when focus entered, used as oldValue.
+  private _hasFocus = false;
   private _blurBaseline?: string = "";
 
   private _resizeDebounceTimer: number | null = null;
@@ -111,9 +110,7 @@ export class BaseDate extends KucBase {
 
   connectedCallback() {
     super.connectedCallback();
-    // Self-listen to arm the deferred blur: the first change of a session sets
-    // the baseline (oldValue) and marks the value dirty.
-    this.addEventListener("kuc:base-date-change", this._handleSelfDateChange);
+    this.addEventListener("focusin", this._handleFocusIn);
     this.addEventListener("focusout", this._handleFocusOut);
   }
 
@@ -128,18 +125,18 @@ export class BaseDate extends KucBase {
       this._resizeDebounceTimer = null;
     }
     this._detachListeners();
-    this.removeEventListener(
-      "kuc:base-date-change",
-      this._handleSelfDateChange,
-    );
+    this.removeEventListener("focusin", this._handleFocusIn);
     this.removeEventListener("focusout", this._handleFocusOut);
     super.disconnectedCallback();
   }
 
-  private _handleSelfDateChange = (event: Event) => {
-    if (this._hasPendingChange) return;
-    this._blurBaseline = (event as CustomEvent).detail.oldValue;
-    this._hasPendingChange = true;
+  // Focus entered the whole component from outside: snapshot the value as the
+  // blur oldValue and signal wrapping pickers to snapshot their own value.
+  private _handleFocusIn = (event: FocusEvent) => {
+    if (this._isFocusInsideComponent(event.relatedTarget)) return;
+    this._hasFocus = true;
+    this._blurBaseline = this.value;
+    dispatchCustomEvent(this, "kuc:base-date-focusin", {});
   };
 
   private _handleFocusOut = (event: FocusEvent) => {
@@ -165,17 +162,17 @@ export class BaseDate extends KucBase {
   }
 
   private _emitDeferredBlur() {
-    if (!this._hasPendingChange) return;
+    // Fire once per focus session, every time focus leaves (dirty or not).
+    // _hasFocus guards against the focusout + _onDocClick double path.
+    if (!this._hasFocus) return;
+    this._hasFocus = false;
 
-    // Always emit once per dirty session (net-zero is filtered by the pickers,
-    // like the time "blur"), so the consumer's pending flag never goes stale.
     const detail: CustomEventDetail = {
       value: this.value,
       oldValue: this._blurBaseline,
     };
     const error = this._getCurrentError();
     if (error) detail.error = error;
-    this._hasPendingChange = false;
     dispatchCustomEvent(this, "kuc:base-date-blur", detail);
   }
 

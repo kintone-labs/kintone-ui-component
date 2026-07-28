@@ -73,6 +73,11 @@ let exportTimePicker;
 
     private _inputValue = "";
     private _errorInvalid = "";
+
+    // Value (validated; undefined when invalid) at the moment focus entered,
+    // reported as the blur event's oldValue.
+    private _blurBaseline: string | undefined = "";
+
     private _inputMax = "";
     private _inputMin = "";
     private _inputTimeStep = 30;
@@ -206,6 +211,7 @@ let exportTimePicker;
             .language="${this._getLanguage()}"
             @kuc:base-time-change="${this._handleTimeChange}"
             @kuc:base-time-blur="${this._handleTimeChangeOnBlur}"
+            @kuc:base-time-focusin="${this._handleTimeFocusIn}"
           >
           </kuc-base-time>
           <kuc-base-error
@@ -239,18 +245,22 @@ let exportTimePicker;
       dispatchCustomEvent(this, "change", detail);
     }
 
-    // Fired once when focus leaves the component, if the value changed. The live
-    // "change" event has already updated value/error state, so this only reports
-    // the net change (oldValue = value when editing started).
+    // Snapshot our own validated value when focus enters, to report as oldValue.
+    private _handleTimeFocusIn(event: CustomEvent) {
+      event.stopPropagation();
+      this._blurBaseline = this.value;
+    }
+
+    // Fired every time focus leaves the component. The live "change" event has
+    // already updated value/error state; this reports the current value plus
+    // oldValue (the value when focus entered). An invalid value is `undefined`.
     private _handleTimeChangeOnBlur(event: CustomEvent) {
       event.preventDefault();
       event.stopPropagation();
       const detail: TimePickerChangeEventDetail = {
         value: event.detail.error ? undefined : event.detail.value,
-        oldValue: event.detail.oldValue,
+        oldValue: this._blurBaseline,
       };
-      // Net-zero edit: value returned to where it started, so nothing changed.
-      if (detail.value === detail.oldValue) return;
       dispatchCustomEvent(this, "blur", detail);
     }
 

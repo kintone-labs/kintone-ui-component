@@ -104,16 +104,9 @@ let exportDateTimePicker;
     private _changeDateByUI = false;
     private _changeTimeByUI = false;
 
-    // Deferred "blur" event for the inner time field (mirrors time-picker).
-    // _hasPendingTimeBlur: time changed since the last blur emit.
-    // _timeBlurBaseline: datetime value when the current time edit started.
-    private _hasPendingTimeBlur = false;
+    // Datetime value when focus entered each inner field, reported as the
+    // blur event's oldValue (undefined when invalid). Mirrors time/date-picker.
     private _timeBlurBaseline: string | undefined = "";
-
-    // Deferred "blur" event for the inner date field (mirrors the time one).
-    // _hasPendingDateBlur: date changed since the last blur emit.
-    // _dateBlurBaseline: datetime value when the current date edit started.
-    private _hasPendingDateBlur = false;
     private _dateBlurBaseline: string | undefined = "";
 
     private _inputMax = "";
@@ -353,6 +346,7 @@ let exportDateTimePicker;
               inputAriaLabel="date"
               @kuc:base-date-change="${this._handleDateChange}"
               @kuc:base-date-blur="${this._handleDateChangeOnBlur}"
+              @kuc:base-date-focusin="${this._handleDateFocusIn}"
             ></kuc-base-date
             ><kuc-base-time
               class="kuc-datetime-picker__group__inputs--time"
@@ -365,6 +359,7 @@ let exportDateTimePicker;
               .language="${this._getLanguage()}"
               @kuc:base-time-change="${this._handleTimeChange}"
               @kuc:base-time-blur="${this._handleTimeChangeOnBlur}"
+              @kuc:base-time-focusin="${this._handleTimeFocusIn}"
             ></kuc-base-time>
           </div>
           <kuc-base-error
@@ -391,14 +386,6 @@ let exportDateTimePicker;
       event.stopPropagation();
       event.preventDefault();
       this._changeDateByUI = true;
-
-      // Snapshot the datetime value once when the date-edit session starts, so
-      // the deferred "blur" event can report it as oldValue.
-      if (!this._hasPendingDateBlur) {
-        this._dateBlurBaseline = this.value;
-        this._hasPendingDateBlur = true;
-      }
-
       let newValue = this._dateValue;
       if (event.detail.error) {
         this._errorFormat = event.detail.error;
@@ -416,13 +403,6 @@ let exportDateTimePicker;
       this._changeTimeByUI = true;
       const newValue = event.detail.value;
 
-      // Snapshot the datetime value once when the time-edit session starts, so
-      // the deferred "blur" event can report it as oldValue.
-      if (!this._hasPendingTimeBlur) {
-        this._timeBlurBaseline = this.value;
-        this._hasPendingTimeBlur = true;
-      }
-
       if (event.detail.error) {
         this._errorInvalidTime = event.detail.error;
         this.error = "";
@@ -433,45 +413,44 @@ let exportDateTimePicker;
       this._updateDateTimeValue(newValue, "time");
     }
 
-    // Fired once when focus leaves the inner time field, if the time changed.
-    // Mirrors time-picker's "blur": the live "change" already updated state, so
-    // this only reports the net change (oldValue = datetime when editing started).
+    // Snapshot the datetime value when focus enters each inner field, to report
+    // as the blur oldValue (undefined when the datetime is invalid).
+    private _handleTimeFocusIn(event: CustomEvent) {
+      event.stopPropagation();
+      this._timeBlurBaseline = this.value;
+    }
+
+    private _handleDateFocusIn(event: CustomEvent) {
+      event.stopPropagation();
+      this._dateBlurBaseline = this.value;
+    }
+
+    // Fired every time focus leaves the inner time field. The live "change" has
+    // already updated state; this reports the current datetime plus oldValue
+    // (the datetime when focus entered the time field).
     private _handleTimeChangeOnBlur(event: CustomEvent) {
       event.preventDefault();
       event.stopPropagation();
-      if (!this._hasPendingTimeBlur) return;
 
       const detail: DateTimePickerChangeEventDetail = {
         value: this.value,
         oldValue: this._timeBlurBaseline,
         changedPart: "time",
       };
-      // Reset before the net-zero check so the pending flag never goes stale
-      // (BaseTime always emits on blur; this handler always runs).
-      this._hasPendingTimeBlur = false;
-      // Net-zero edit: value returned to where it started, so nothing changed.
-      if (detail.value === detail.oldValue) return;
       dispatchCustomEvent(this, "blur", detail);
     }
 
-    // Fired once when focus leaves the inner date field, if the date changed.
-    // Mirrors the time "blur": the live "change" already updated state, so this
-    // only reports the net change (oldValue = datetime when editing started).
+    // Fired every time focus leaves the inner date field. Mirrors the time one:
+    // reports the current datetime plus oldValue (datetime when focus entered).
     private _handleDateChangeOnBlur(event: CustomEvent) {
       event.preventDefault();
       event.stopPropagation();
-      if (!this._hasPendingDateBlur) return;
 
       const detail: DateTimePickerChangeEventDetail = {
         value: this.value,
         oldValue: this._dateBlurBaseline,
         changedPart: "date",
       };
-      // Reset before the net-zero check so the pending flag never goes stale
-      // (BaseDate always emits on blur; this handler always runs).
-      this._hasPendingDateBlur = false;
-      // Net-zero edit: value returned to where it started, so nothing changed.
-      if (detail.value === detail.oldValue) return;
       dispatchCustomEvent(this, "blur", detail);
     }
 

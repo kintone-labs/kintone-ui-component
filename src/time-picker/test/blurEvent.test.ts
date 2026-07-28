@@ -57,6 +57,27 @@ describe("TimePicker", () => {
       expect(blurDetail!.oldValue).to.equal("10:30");
     });
 
+    it("fires blur every time focus leaves the field, even without an edit", async () => {
+      const { el } = await setup("10:30");
+      let blurCount = 0;
+      let blurDetail: TimePickerChangeEventDetail | null = null;
+      el.addEventListener("blur", (event: Event) => {
+        blurCount++;
+        blurDetail = (event as CustomEvent).detail;
+      });
+
+      const { hours } = getInputs(el);
+      hours.dispatchEvent(new Event("focus"));
+      hours.dispatchEvent(
+        new FocusEvent("blur", { relatedTarget: document.body }),
+      );
+      await elementUpdated(el);
+
+      expect(blurCount).to.equal(1);
+      expect(blurDetail!.value).to.equal("10:30");
+      expect(blurDetail!.oldValue).to.equal("10:30");
+    });
+
     it("does not fire blur on internal focus moves (sibling input or toggle button)", async () => {
       const { el } = await setup("10:30");
       let blurCount = 0;
@@ -80,25 +101,14 @@ describe("TimePicker", () => {
       expect(blurCount).to.equal(0);
     });
 
-    it("does not fire blur when the value is unchanged (not dirty)", async () => {
+    it("still fires blur when the net value is unchanged (edited then reverted)", async () => {
       const { el } = await setup("10:30");
       let blurCount = 0;
-      el.addEventListener("blur", () => blurCount++);
-
-      const { hours } = getInputs(el);
-      hours.dispatchEvent(new Event("focus"));
-      hours.dispatchEvent(
-        new FocusEvent("blur", { relatedTarget: document.body }),
-      );
-      await elementUpdated(el);
-
-      expect(blurCount).to.equal(0);
-    });
-
-    it("does not fire blur when the net value is unchanged (edited then reverted)", async () => {
-      const { el } = await setup("10:30");
-      let blurCount = 0;
-      el.addEventListener("blur", () => blurCount++);
+      let blurDetail: TimePickerChangeEventDetail | null = null;
+      el.addEventListener("blur", (event: Event) => {
+        blurCount++;
+        blurDetail = (event as CustomEvent).detail;
+      });
 
       const { hours } = getInputs(el);
       hours.dispatchEvent(new Event("focus"));
@@ -117,7 +127,10 @@ describe("TimePicker", () => {
       );
       await elementUpdated(el);
 
-      expect(blurCount).to.equal(0);
+      // fires on every leave now; oldValue is the value when focus entered
+      expect(blurCount).to.equal(1);
+      expect(blurDetail!.value).to.equal("10:30");
+      expect(blurDetail!.oldValue).to.equal("10:30");
     });
 
     it("selecting from the dropdown defers blur until blur", async () => {
@@ -221,6 +234,93 @@ describe("TimePicker", () => {
       expect(blurCount).to.equal(1);
       expect(blurDetail!.value).to.equal(undefined);
       expect(blurDetail!.oldValue).to.equal("11:00");
+    });
+
+    it("fires blur again on a second leave; oldValue is undefined when focus entered on an invalid value", async () => {
+      const container = new TimePicker();
+      container.value = "11:00";
+      container.min = "10:00";
+      container.max = "12:00";
+      const el = await fixture(container);
+      let blurCount = 0;
+      let blurDetail: TimePickerChangeEventDetail | null = null;
+      el.addEventListener("blur", (event: Event) => {
+        blurCount++;
+        blurDetail = (event as CustomEvent).detail;
+      });
+
+      const { hours } = getInputs(el);
+      // session 1: 11:00 -> 10:00 -> 09:00 (out of range), then leave
+      hours.dispatchEvent(new Event("focus"));
+      hours.dispatchEvent(
+        new KeyboardEvent("keydown", { key: "ArrowDown", bubbles: true }),
+      );
+      await elementUpdated(el);
+      hours.dispatchEvent(
+        new KeyboardEvent("keydown", { key: "ArrowDown", bubbles: true }),
+      );
+      await elementUpdated(el);
+      hours.dispatchEvent(
+        new FocusEvent("blur", { relatedTarget: document.body }),
+      );
+      await elementUpdated(el);
+      expect(blurCount).to.equal(1);
+      expect(blurDetail!.value).to.equal(undefined);
+      expect(blurDetail!.oldValue).to.equal("11:00");
+
+      // session 2: focus enters while already invalid (09:00) -> 08:00, leave.
+      // fires again; oldValue is undefined because the entered value was invalid.
+      hours.dispatchEvent(new Event("focus"));
+      hours.dispatchEvent(
+        new KeyboardEvent("keydown", { key: "ArrowDown", bubbles: true }),
+      );
+      await elementUpdated(el);
+      hours.dispatchEvent(
+        new FocusEvent("blur", { relatedTarget: document.body }),
+      );
+      await elementUpdated(el);
+      expect(blurCount).to.equal(2);
+      expect(blurDetail!.value).to.equal(undefined);
+      expect(blurDetail!.oldValue).to.equal(undefined);
+    });
+
+    it("fires blur when leaving via the listbox (opened from the toggle button)", async () => {
+      const { el } = await setup("10:30");
+      let blurCount = 0;
+      let blurDetail: TimePickerChangeEventDetail | null = null;
+      el.addEventListener("blur", (event: Event) => {
+        blurCount++;
+        blurDetail = (event as CustomEvent).detail;
+      });
+
+      const { toggle } = getInputs(el);
+      // focus enters via the toggle button, open the listbox and navigate
+      toggle.dispatchEvent(new Event("focus"));
+      toggle.dispatchEvent(
+        new KeyboardEvent("keydown", { key: "ArrowDown", bubbles: true }),
+      );
+      await elementUpdated(el);
+      const listbox = el.querySelector(
+        ".kuc-base-time__group__listbox",
+      ) as HTMLElement;
+      listbox.dispatchEvent(
+        new CustomEvent("kuc:listbox-focus-change", {
+          detail: { value: "11:00" },
+          bubbles: true,
+        }),
+      );
+      await elementUpdated(el);
+      // click outside -> focus leaves the listbox to outside the component
+      listbox.dispatchEvent(
+        new FocusEvent("focusout", {
+          relatedTarget: document.body,
+          bubbles: true,
+        }),
+      );
+      await elementUpdated(el);
+
+      expect(blurCount).to.equal(1);
+      expect(blurDetail!.oldValue).to.equal("10:30");
     });
 
     it("calls preventDefault on mousedown of a non-input area, but not on an input", async () => {
