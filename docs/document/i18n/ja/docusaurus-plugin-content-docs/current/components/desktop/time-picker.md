@@ -42,7 +42,7 @@ import { TimePickerComponent } from "@site/static/js/samples/desktop/time-picker
 
 | Name | Type | Description | Remark |
 | :--- | :--- | :--- | :--- |
-| blur | function | 値が変更され、フォーカスが Input（選択した時刻を表示するフィールド）またはリスト（時刻を選択するフィールド）から離れた際のイベントハンドラ | 引数には Event の event オブジェクトをとる<br/><br/>event.detail で以下の値を受け取ることができる<br/>event.detail.oldValue : 編集開始時の値<br/>event.detail.value : 変更後の値 |
+| blur | function | フォーカスが Input（選択した時刻を表示するフィールド）またはリスト（時刻を選択するフィールド）から離れた際のイベントハンドラ<br/>値が変更されていない場合や無効な場合でも、フォーカスが外れるたびに発火する | 引数には Event の event オブジェクトをとる<br/><br/>event.detail で以下の値を受け取ることができる<br/>event.detail.oldValue : フィールドにフォーカスが移動した時点の値（無効な場合はundefined）<br/>event.detail.value : フォーカスが外れた時点の値（無効な場合はundefined） |
 | change | function | 値が変更された時のイベントハンドラ | 引数には Event の event オブジェクトをとる<br/><br/>event.detail で以下の値を受け取ることができる<br/>event.detail.oldValue : 変更前の value の値<br/>event.detail.value : 変更後の value の値 |
 
 ### Constructor
