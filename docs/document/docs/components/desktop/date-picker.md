@@ -44,7 +44,7 @@ Here is a list of events that can be specified:
 
 | Name | Type | Description | Remark |
 | :--- | :--- | :--- | :--- |
-| blur | function | Event handler when focus leaves the Input (Field to display selected Date) or Calendar (Field to select Date)<br/>It fires on every leave, even if the value did not change or is invalid | It will pass the event object as the argument<br/><br/>You can receive the following values in event.detail<br/>event.detail.oldValue : Value when focus entered the field (undefined if invalid)<br/>event.detail.value : Value when focus leaves (undefined if invalid) |
+| blur | function | Event handler when focus leaves the component | It will pass the event object as the argument<br/><br/>You can receive the following values in event.detail<br/>event.detail.oldValue : Value when focus entered the field<br/>event.detail.value : Value when focus leaves |
 | change | function | Event handler when the value has been changed | It will pass the event object as the argument<br/><br/>You can receive the following values in event.detail<br/>event.detail.oldValue : Value before the change<br/>event.detail.value : Value after the change |
 
 ### Constructor
