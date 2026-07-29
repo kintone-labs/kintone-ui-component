@@ -81,6 +81,100 @@ describe("DatePicker", () => {
       expect(blurCount).to.equal(0);
     });
 
+    it("does not fire blur when focus moves into the calendar body", async () => {
+      const { container, el } = await setup("2021-12-20");
+      let blurCount = 0;
+      el.addEventListener("blur", () => blurCount++);
+
+      const { input } = getParts(el);
+      focusIn(input);
+      await typeValue(input, "12/13/2021", el);
+
+      // open the calendar and grab a real date cell inside it
+      input.click();
+      await elementUpdated(container);
+      await elementUpdated(el);
+      const dateCell = el.querySelector(
+        "kuc-base-datetime-calendar-body .kuc-base-datetime-calendar-body__table__date",
+      ) as HTMLButtonElement;
+      expect(dateCell).to.not.equal(null);
+
+      // the calendar is part of the field, so moving focus into it keeps focus inside
+      await blur(input, dateCell, el);
+      expect(blurCount).to.equal(0);
+    });
+
+    it("fires blur once when the calendar is open and the user clicks outside", async () => {
+      const { container, el } = await setup("2021-12-20");
+      let blurCount = 0;
+      let blurDetail: DatePickerChangeEventDetail | null = null;
+      el.addEventListener("blur", (event: Event) => {
+        blurCount++;
+        blurDetail = (event as CustomEvent).detail;
+      });
+
+      const { input } = getParts(el);
+      // real focus: opening the calendar moves focus for real, and the component
+      // needs a real relatedTarget chain to tell inside from outside
+      input.focus();
+      await typeValue(input, "12/13/2021", el);
+
+      input.click();
+      await elementUpdated(container);
+      await elementUpdated(el);
+      expect(blurCount).to.equal(0);
+
+      // clicking a non-focusable calendar area nulls focus; while the calendar is
+      // open that focusout is suppressed instead of firing a premature blur
+      (document.activeElement as HTMLElement).blur();
+      await elementUpdated(el);
+      expect(blurCount).to.equal(0);
+
+      // clicking outside the whole component closes the calendar and emits the
+      // deferred blur
+      document.body.click();
+      await elementUpdated(el);
+
+      expect(blurCount).to.equal(1);
+      expect(blurDetail!.value).to.equal("2021-12-13");
+      expect(blurDetail!.oldValue).to.equal("2021-12-20");
+    });
+
+    it("fires blur once after Escape closes the calendar and focus then leaves", async () => {
+      const { container, el } = await setup("2021-12-20");
+      let blurCount = 0;
+      let blurDetail: DatePickerChangeEventDetail | null = null;
+      el.addEventListener("blur", (event: Event) => {
+        blurCount++;
+        blurDetail = (event as CustomEvent).detail;
+      });
+
+      const { input } = getParts(el);
+      input.focus();
+      await typeValue(input, "12/13/2021", el);
+
+      input.click();
+      await elementUpdated(container);
+      await elementUpdated(el);
+
+      // Escape inside the calendar closes it and returns focus to the input, so
+      // focus never leaves the field and blur must stay silent
+      const dateCell = el.querySelector(
+        "kuc-base-datetime-calendar-body .kuc-base-datetime-calendar-body__table__date",
+      ) as HTMLButtonElement;
+      dateCell.dispatchEvent(
+        new KeyboardEvent("keydown", { key: "Escape", bubbles: true }),
+      );
+      await elementUpdated(el);
+      expect(blurCount).to.equal(0);
+
+      await blur(input, document.body, el);
+
+      expect(blurCount).to.equal(1);
+      expect(blurDetail!.value).to.equal("2021-12-13");
+      expect(blurDetail!.oldValue).to.equal("2021-12-20");
+    });
+
     it("fires blur every time focus leaves the field, even without an edit", async () => {
       const { el } = await setup("2021-12-20");
       let blurCount = 0;

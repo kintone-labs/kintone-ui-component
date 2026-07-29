@@ -37,23 +37,29 @@ describe("TimePicker", () => {
 
       const { hours } = getInputs(el);
       hours.dispatchEvent(new Event("focus"));
+      // 10:30 -> 11:30 -> 12:30
+      hours.dispatchEvent(
+        new KeyboardEvent("keydown", { key: "ArrowUp", bubbles: true }),
+      );
+      await elementUpdated(el);
       hours.dispatchEvent(
         new KeyboardEvent("keydown", { key: "ArrowUp", bubbles: true }),
       );
       await elementUpdated(el);
 
-      // "change" is live; "blur" waits for blur
-      expect(changeCount).to.equal(1);
+      // "change" is live (once per arrow key); "blur" waits for blur
+      expect(changeCount).to.equal(2);
       expect(blurCount).to.equal(0);
-      expect(container.value).to.equal("11:30");
+      expect(container.value).to.equal("12:30");
 
       hours.dispatchEvent(
         new FocusEvent("blur", { relatedTarget: document.body }),
       );
       await elementUpdated(el);
 
+      // two changes while editing, but only one blur on leaving
       expect(blurCount).to.equal(1);
-      expect(blurDetail!.value).to.equal("11:30");
+      expect(blurDetail!.value).to.equal("12:30");
       expect(blurDetail!.oldValue).to.equal("10:30");
     });
 
