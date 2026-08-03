@@ -12,11 +12,10 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@cybozu/eslint-config": "^25.0.1",
-    "eslint": "^10.7.0",
+    "@cybozu/eslint-config": "^26.0.0",
+    "eslint": "^10.8.0",
     "prettier": "^3.9.6",
-    "typescript-eslint": "^8.65.0",
-    "webpack": "^5.108.4",
-    "webpack-cli": "^7.2.1"
+    "webpack": "^5.109.2",
+    "webpack-cli": "^7.2.2"
   }
 }

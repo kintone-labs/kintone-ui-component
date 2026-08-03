@@ -1,4 +1,4 @@
-/* eslint-disable no-unused-expressions */
+/* eslint-disable @typescript-eslint/no-unused-expressions */
 import { elementUpdated, expect, fixture } from "@open-wc/testing";
 
 import { Combobox } from "../index";

@@ -17,7 +17,6 @@ export const getDisplayingDates = (year: number, month: number) => {
   const dateRanges = getDateRanges(year, month);
   let date = new Date(dateRanges.start);
   let weekDates = [];
-  let count = 0;
   const displayingDates = [];
   while (date <= dateRanges.end) {
     weekDates.push(getDateObj(date));
@@ -28,7 +27,6 @@ export const getDisplayingDates = (year: number, month: number) => {
 
     date.setDate(date.getDate() + 1);
     date = new Date(date);
-    count++;
   }
 
   return displayingDates;

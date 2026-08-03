@@ -198,7 +198,7 @@ describe("BaseMobileDate", () => {
         window.dispatchEvent(new Event("scroll"));
         window.dispatchEvent(new Event("resize"));
         await aTimeout(300);
-      } catch (e) {
+      } catch {
         errorThrown = true;
       }
 

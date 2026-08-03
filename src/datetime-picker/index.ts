@@ -175,8 +175,8 @@ let exportDateTimePicker;
     }
 
     private _checkAndUpdateMaxMinProperty() {
-      let _inputMinTemp = this._inputMin;
-      let _inputMaxTemp = this._inputMax;
+      let _inputMinTemp: string;
+      let _inputMaxTemp: string;
 
       if (this.max === undefined || this.max === "") {
         _inputMaxTemp = MAX_TIME;
