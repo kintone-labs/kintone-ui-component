@@ -27,7 +27,7 @@ describe("Dropdown", () => {
       disabled: false,
     });
 
-    const el = await fixture(container);
+    await fixture(container);
     // TODO:
     // Add expectation
   });

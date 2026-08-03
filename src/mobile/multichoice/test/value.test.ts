@@ -9,7 +9,6 @@ describe("MobileMultiChoice", () => {
       { label: "Orange", value: "orange" },
       { label: "Apple", value: "apple" },
     ];
-    const expectedLabels = ["-----", "Orange", "Apple"];
     const expectedValues = ["-----", "orange", "apple"];
 
     it("should be empty when initializing without props option", async () => {

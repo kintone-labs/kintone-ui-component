@@ -1,4 +1,4 @@
-import { elementUpdated, expect, fixture } from "@open-wc/testing";
+import { elementUpdated, expect } from "@open-wc/testing";
 
 import { Dialog } from "../index";
 

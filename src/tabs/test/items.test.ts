@@ -17,7 +17,6 @@ const items = [
     disabled: true,
   },
 ];
-const noStringValueItems = [{ value: 2 }];
 const duplicatedItems = [{ value: "tab1" }, { value: "tab1" }];
 
 describe("Tabs", () => {

@@ -316,14 +316,13 @@ let exportMobileDateTimePicker;
       event.preventDefault();
       event.stopPropagation();
       this._changeTimeByUI = true;
-      let newValue = this._timeValue;
       if (event.detail.error) {
         this._errorFormat = event.detail.error;
         this.error = "";
       } else {
         this._errorFormat = "";
       }
-      newValue = event.detail.value;
+      const newValue = event.detail.value;
       this._updateDateTimeValue(newValue, "time");
     }
 

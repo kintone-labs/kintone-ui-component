@@ -15,7 +15,6 @@ describe("TextArea", () => {
     });
 
     it("event mousemove", async () => {
-      const container = new TextArea();
       const event = new CustomEvent("mousemove");
       document.dispatchEvent(event);
       // TODO: Update expect() logic
@@ -23,7 +22,6 @@ describe("TextArea", () => {
     });
 
     it("event mouseup", async () => {
-      const container = new TextArea();
       const event = new CustomEvent("mouseup");
       document.dispatchEvent(event);
       // TODO: Update expect() logic

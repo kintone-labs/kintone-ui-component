@@ -90,8 +90,8 @@ let exportTimePicker;
 
     protected shouldUpdate(_changedProperties: PropertyValues): boolean {
       if (_changedProperties.has("max") || _changedProperties.has("min")) {
-        let _inputMinTemp = this._inputMin;
-        let _inputMaxTemp = this._inputMax;
+        let _inputMinTemp: string;
+        let _inputMaxTemp: string;
 
         if (this.max === undefined || this.max === "") {
           _inputMaxTemp = MAX_TIME;

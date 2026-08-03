@@ -170,10 +170,9 @@ export class BaseDateTimeCalendarBody extends KucBase {
   }
 
   private _moveToDate(days: number) {
-    let value = this.value;
     const selectedValue = this._getSelectedValue();
     const { day } = this._separateDateValue(selectedValue);
-    value = `${this._year}-${padStart(this._month)}-${day}`;
+    const value = `${this._year}-${padStart(this._month)}-${day}`;
 
     const date = new Date(`${value || this._getValueItemFocused()}T00:00:00`);
     if (isNaN(date.getTime())) return;
