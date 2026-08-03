@@ -254,43 +254,56 @@ let exportReadOnlyTable;
 
       return html`
         <th
-          class="kuc-readonly-table__table__header__cell${isHTML
-            ? " kuc-readonly-table__table__header__cell--html"
-            : ""}${isSortable
-            ? " kuc-readonly-table__table__header__cell--sort"
-            : ""}${sortClass}${isFirstVisible
-            ? " kuc-readonly-table__table__header__cell--first-visible"
-            : ""}${isLastVisible
-            ? " kuc-readonly-table__table__header__cell--last-visible"
-            : ""}"
+          class="kuc-readonly-table__table__header__cell${
+            isHTML ? " kuc-readonly-table__table__header__cell--html" : ""
+          }${
+            isSortable ? " kuc-readonly-table__table__header__cell--sort" : ""
+          }${sortClass}${
+            isFirstVisible
+              ? " kuc-readonly-table__table__header__cell--first-visible"
+              : ""
+          }${
+            isLastVisible
+              ? " kuc-readonly-table__table__header__cell--last-visible"
+              : ""
+          }"
           ?hidden="${column.visible === false}"
           style="width: ${customWidth}; min-width: ${customWidth}; max-width: ${customWidth};"
           @click="${isSortable ? () => this._handleClickHeader(field) : null}"
           tabindex="${isSortable ? 0 : -1}"
-          aria-sort="${isSorted
-            ? this._getSortDescription(this._sortDirection)
-            : "none"}"
-          @keydown="${isSortable
-            ? (event: KeyboardEvent) => this._handleKeyDownHeader(event, field)
-            : null}"
+          aria-sort="${
+            isSorted ? this._getSortDescription(this._sortDirection) : "none"
+          }"
+          @keydown="${
+            isSortable
+              ? (event: KeyboardEvent) =>
+                  this._handleKeyDownHeader(event, field)
+              : null
+          }"
         >
           <div class="kuc-readonly-table__table__header__cell__wrapper">
             <div
-              class="kuc-readonly-table__table__header__cell__wrapper__title${isHTML
-                ? " kuc-readonly-table__table__header__cell__wrapper__title--html"
-                : ""}"
+              class="kuc-readonly-table__table__header__cell__wrapper__title${
+                isHTML
+                  ? " kuc-readonly-table__table__header__cell__wrapper__title--html"
+                  : ""
+              }"
             >
-              ${isHTML
-                ? unsafeHTMLConverter(column.title!)
-                : (column.title ?? "")}
+              ${
+                isHTML
+                  ? unsafeHTMLConverter(column.title!)
+                  : (column.title ?? "")
+              }
             </div>
-            ${isSortable && isSorted
-              ? html`<div
-                  class="kuc-readonly-table__table__header__cell__wrapper__sort-icon"
-                >
-                  ${this._getSortSvgIcon(this._sortDirection)}
-                </div>`
-              : ""}
+            ${
+              isSortable && isSorted
+                ? html`<div
+                    class="kuc-readonly-table__table__header__cell__wrapper__sort-icon"
+                  >
+                    ${this._getSortSvgIcon(this._sortDirection)}
+                  </div>`
+                : ""
+            }
           </div>
         </th>
       `;

@@ -1,7 +1,7 @@
 module.exports = {
   create: function(context) {
     function checkColorCodes(node) {
-      const sourceCode = context.getSourceCode().getText();
+      const sourceCode = context.sourceCode.getText();
       const pattern = "(?<!url\\()\\#(?![a-f0-9]{6})";
       const regex = new RegExp(pattern, "g");
       if (!regex.test(sourceCode)) return;
@@ -15,7 +15,7 @@ module.exports = {
 
     return {
       VariableDeclaration: function(node) {
-        const physicalFilename = context.getPhysicalFilename();
+        const physicalFilename = context.physicalFilename;
         const styleTsFileName = "^.*(style\.ts).*$";
         const regexPath = new RegExp(styleTsFileName, "i");
         if (!regexPath.test(physicalFilename)) return;

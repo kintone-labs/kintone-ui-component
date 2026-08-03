@@ -4,7 +4,7 @@ module.exports = {
       ClassDeclaration: function(node) {
         const superClass = node.superClass.name;
         if (superClass !== "KucBase") return;
-        const sourceCode = context.getSourceCode().getText();
+        const sourceCode = context.sourceCode.getText();
         const pattern = 'class="(?!(kuc-))';
         const regex = new RegExp(pattern, "g");
         if (!regex.test(sourceCode)) return;

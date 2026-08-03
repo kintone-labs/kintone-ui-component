@@ -41,8 +41,7 @@ let exportMobileButton;
     visible = true;
 
     private _content:
-      | HTMLElement
-      | DirectiveResult<typeof UnsafeHTMLDirective> = "";
+      HTMLElement | DirectiveResult<typeof UnsafeHTMLDirective> = "";
 
     constructor(props?: MobileButtonProps) {
       super();

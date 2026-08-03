@@ -97,9 +97,9 @@ export class BaseMobileTime extends KucBase {
   render() {
     return html`
       <fieldset
-        class="kuc-base-mobile-time__group${this.disabled
-          ? " kuc-base-mobile-time__group--disabled"
-          : ""}${this.required ? " kuc-base-mobile-time__group--required" : ""}"
+        class="kuc-base-mobile-time__group${
+          this.disabled ? " kuc-base-mobile-time__group--disabled" : ""
+        }${this.required ? " kuc-base-mobile-time__group--required" : ""}"
         aria-label="label-text"
       >
         <select

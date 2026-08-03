@@ -154,9 +154,11 @@ let exportMobileCheckbox;
       return html`
         <label
           for="${this._GUID}-item-${index}"
-          class="kuc-mobile-checkbox__group__select-menu__item${item.disabled
-            ? " kuc-mobile-checkbox__group__select-menu__item--disabled"
-            : ""}"
+          class="kuc-mobile-checkbox__group__select-menu__item${
+            item.disabled
+              ? " kuc-mobile-checkbox__group__select-menu__item--disabled"
+              : ""
+          }"
           ?borderVisible="${this.borderVisible}"
         >
           <input
@@ -173,10 +175,9 @@ let exportMobileCheckbox;
             @change="${this._handleChangeInput}"
           />
           <div class="kuc-mobile-checkbox__group__select-menu__item__label">
-            ${this._getCheckboxIconSvgTemplate(isCheckedItem)}${item.label ===
-            undefined
-              ? item.value
-              : item.label}
+            ${this._getCheckboxIconSvgTemplate(isCheckedItem)}${
+              item.label === undefined ? item.value : item.label
+            }
           </div>
         </label>
       `;
@@ -245,9 +246,11 @@ let exportMobileCheckbox;
             ></kuc-base-mobile-label>
           </legend>
           <div
-            class="kuc-mobile-checkbox__group__select-menu ${this.requiredIcon
-              ? "kuc-mobile-checkbox__group__select-menu--required"
-              : ""}"
+            class="kuc-mobile-checkbox__group__select-menu ${
+              this.requiredIcon
+                ? "kuc-mobile-checkbox__group__select-menu--required"
+                : ""
+            }"
             ?borderVisible="${this.borderVisible}"
             ?disabled="${this.disabled}"
           >

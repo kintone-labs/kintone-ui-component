@@ -38,9 +38,9 @@ let exportPagination;
         <div class="kuc-base-pagination__group" ?hidden="${!this.visible}">
           <button
             title="previous"
-            class="kuc-base-pagination__group__pager-prev${this.isPrev
-              ? ""
-              : " kuc-base-pagination__group__pager-disable"}"
+            class="kuc-base-pagination__group__pager-prev${
+              this.isPrev ? "" : " kuc-base-pagination__group__pager-disable"
+            }"
             type="button"
             @click="${this._handleClickPrevButton}"
             @focus="${this._handleFocusPrevButton}"
@@ -51,9 +51,9 @@ let exportPagination;
             ${this._getPrevButtonSvgTemplate()}</button
           >${this._getCurrentPageNumberTemplate()}<button
             title="next"
-            class="kuc-base-pagination__group__pager-next${this.isNext
-              ? ""
-              : " kuc-base-pagination__group__pager-disable"}"
+            class="kuc-base-pagination__group__pager-next${
+              this.isNext ? "" : " kuc-base-pagination__group__pager-disable"
+            }"
             type="button"
             @click="${this._handleClickNextButton}"
             @focus="${this._handleFocusNextButton}"
