@@ -48,7 +48,7 @@ Here is a list of events that can be specified:
 
 | Name | Type | Description | Remark |
 | :--- | :--- | :--- | :--- |
-| blur | function | Event handler when focus leaves Date or Time | It will pass the event object as the argument<br/><br/>You can receive the following values in event.detail<br/>event.detail.oldValue : Value when focus entered the field<br/>event.detail.value : Value when focus leaves<br/>event.detail.changedPart : "date" or "time" of the field that was left |
+| blur | function | Event handler when focus leaves Date or Time part | It will pass the event object as the argument<br/><br/>You can receive the following values in event.detail<br/>event.detail.oldValue : Value when focus entered<br/>event.detail.value : Value when focus leaves<br/>event.detail.changedPart : "date" or "time" of the field that was left |
 | change | function | Event handler when the value has been changed | It will pass the event object as the argument<br/><br/>You can receive the following values in event.detail<br/>event.detail.oldValue : Value before the change<br/>event.detail.value : Value after the change<br/>event.detail.changedPart : "date" or "time" which has been changed |
 
 ### Constructor
