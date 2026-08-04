@@ -104,8 +104,18 @@ const config = {
       "only",
       "language-subtag-registry",
       "storybook",
-      "@rolldown/binding-linux-x64-gnu",
-      "webpack-cli"
+      // Prebuilt native binaries: one package per OS + CPU (-linux-x64-gnu,
+      // -wasm32-wasi, ...), with no license text. Match the whole family, so a
+      // new CI runner does not fail on a different platform name.
+      /^@rolldown\/binding-/,
+      /^@oxc-parser\/binding-/,
+      /^@oxc-resolver\/binding-/,
+      /^@napi-rs\/lzma-/,
+      // Plain JS packages with no per-platform builds, so a fixed name is enough.
+      "@napi-rs/wasm-runtime",
+      "@tybys/wasm-util",
+      "@humanfs/types",
+      "webpack-cli",
     ],
   },
   overrideLicense: (dep) => {
