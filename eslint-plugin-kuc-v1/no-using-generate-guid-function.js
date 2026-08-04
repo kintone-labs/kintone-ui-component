@@ -4,7 +4,7 @@ module.exports = {
       ClassDeclaration: function(node) {
         const superClass = node.superClass.name;
         if (superClass !== "KucBase") return;
-        const sourceCode = context.getSourceCode().getText();
+        const sourceCode = context.sourceCode.getText();
         const pattern =
           '\\s(aria-describedby|aria-describedby|id|name|for)="(?!\\$\\{this\\._GUID\\}-)[^"]+"';
         const regex = new RegExp(pattern, "g");

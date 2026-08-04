@@ -203,10 +203,11 @@ let exportTabs;
           ?hidden="${item.visible === false}"
           aria-selected="${isSelected}"
           tabindex="${isSelected && !item.disabled ? "0" : "-1"}"
-          class="kuc-tabs__group__tabs-container__tab-list-container__tab-list__tab__button ${this
-            ._isClick
-            ? "kuc-tabs__group__tabs-container__tab-list-container__tab-list__tab__button--click"
-            : ""}"
+          class="kuc-tabs__group__tabs-container__tab-list-container__tab-list__tab__button ${
+            this._isClick
+              ? "kuc-tabs__group__tabs-container__tab-list-container__tab-list__tab__button--click"
+              : ""
+          }"
           id="${this._GUID}-button-${index}"
           aria-controls="${this._GUID}-tabpanel-${index}"
           value="${item.value}"
@@ -230,9 +231,11 @@ let exportTabs;
         ?hidden="${!isSelected || item.visible === false}"
         @change="${this._handleChangeEvent}"
       >
-        ${item.content && isHTMLElement(item.content)
-          ? unsafeHTMLConverter(item.content)
-          : item.content}
+        ${
+          item.content && isHTMLElement(item.content)
+            ? unsafeHTMLConverter(item.content)
+            : item.content
+        }
       </div>`;
     }
 

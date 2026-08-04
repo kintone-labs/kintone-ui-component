@@ -44,6 +44,13 @@ export class BaseTime extends KucBase {
   @property({ type: Boolean }) hour12 = false;
   @property({ type: Number }) timeStep = 30;
 
+  // State for the deferred "blur" event, fired every time focus leaves the
+  // whole component. _hasFocus: focus is currently inside (guards fire-once per
+  // leave, incl. the input/button @blur and listbox focusout paths).
+  // _blurBaseline: value when focus entered, used as oldValue.
+  private _hasFocus = false;
+  private _blurBaseline = "";
+
   @state()
   private _listBoxVisible = false;
 
@@ -100,10 +107,22 @@ export class BaseTime extends KucBase {
 
   private _DEBOUNCE_DELAY = 200;
 
+  connectedCallback(): void {
+    super.connectedCallback();
+    // Component-level focusout catches focus leaving via any inner element,
+    // including the listbox items (which the input/button @blur handlers miss).
+    this.addEventListener("focusout", this._handleFocusOut);
+  }
+
   disconnectedCallback(): void {
     this._detachListeners();
+    this.removeEventListener("focusout", this._handleFocusOut);
     super.disconnectedCallback();
   }
+
+  private _handleFocusOut = (event: FocusEvent) => {
+    this._emitDeferredChangeOnBlur(event.relatedTarget);
+  };
   update(changedProperties: PropertyValues) {
     if (
       changedProperties.has("hour12") ||
@@ -130,7 +149,11 @@ export class BaseTime extends KucBase {
 
   render() {
     return html`
-      <div class="kuc-base-time__group" @click="${this._handleClickInputGroup}">
+      <div
+        class="kuc-base-time__group"
+        @mousedown="${this._handleMouseDownInputGroup}"
+        @click="${this._handleClickInputGroup}"
+      >
         <input
           type="text"
           class="kuc-base-time__group__hours"
@@ -141,6 +164,8 @@ export class BaseTime extends KucBase {
           @blur="${this._handleBlurInput}"
           @keydown="${this._handleKeyDownInput}"
           @paste="${this._handlePasteInput}"
+          @change="${this._handleChangeInput}"
+          @input="${this._handleInput}"
           ?disabled="${this.disabled}"
           value="${this._hours}"
         />
@@ -155,6 +180,8 @@ export class BaseTime extends KucBase {
           @blur="${this._handleBlurInput}"
           @keydown="${this._handleKeyDownInput}"
           @paste="${this._handlePasteInput}"
+          @change="${this._handleChangeInput}"
+          @input="${this._handleInput}"
           ?disabled="${this.disabled}"
           value="${this._minutes}"
         />
@@ -181,6 +208,21 @@ export class BaseTime extends KucBase {
       this._toggleDisabledGroup();
     }
     super.update(changedProperties);
+  }
+
+  private _handleMouseDownInputGroup(event: MouseEvent) {
+    const target = event.target as HTMLElement;
+    // Clicking a non-input area inside the group (colon, padding) would blur the
+    // focused input with relatedTarget=null. Keep focus on the current input so
+    // blur mode does not emit a premature change; the inputs still focus normally.
+    if (
+      target === this._hoursEl ||
+      target === this._minutesEl ||
+      target === this._suffixEl
+    )
+      return;
+
+    event.preventDefault();
   }
 
   private _handleClickInputGroup(event: Event) {
@@ -271,12 +313,14 @@ export class BaseTime extends KucBase {
     }
   }
 
-  private _handleBlurButton() {
+  private _handleBlurButton(event: FocusEvent) {
+    this._emitDeferredChangeOnBlur(event.relatedTarget);
     this._inputGroupEl.classList.remove("kuc-base-time__group--focus");
   }
 
-  private _handleFocusButton(event: Event) {
+  private _handleFocusButton(event: FocusEvent) {
     event.stopPropagation();
+    this._captureBlurBaseline(event.relatedTarget);
     this._inputGroupEl.classList.add("kuc-base-time__group--focus");
   }
 
@@ -328,10 +372,23 @@ export class BaseTime extends KucBase {
     this._actionUpdateInputValue(times);
   }
 
-  private _handleFocusInput(event: Event) {
+  private _handleFocusInput(event: FocusEvent) {
     this._inputFocusEl = event.target as HTMLInputElement;
+    this._captureBlurBaseline(event.relatedTarget);
     this._inputFocusEl.select();
     this._inputGroupEl.classList.add("kuc-base-time__group--focus");
+  }
+
+  // Snapshot the value at the moment focus enters the component from outside,
+  // so the deferred "blur" can report it as oldValue. Internal focus moves
+  // (between inputs, or back from the listbox) keep the original baseline.
+  // Also emit a focus-in signal so wrapping pickers can snapshot their own
+  // (validated) value as oldValue.
+  private _captureBlurBaseline(relatedTarget: EventTarget | null) {
+    if (this._isFocusInsideComponent(relatedTarget)) return;
+    this._hasFocus = true;
+    this._blurBaseline = this.value;
+    dispatchCustomEvent(this, "kuc:base-time-focusin", {});
   }
 
   private _handleBlurInput(event: FocusEvent) {
@@ -344,6 +401,7 @@ export class BaseTime extends KucBase {
     )
       return;
 
+    this._emitDeferredChangeOnBlur(newTarget);
     this._closeListBox();
     this._inputGroupEl.classList.remove("kuc-base-time__group--focus");
   }
@@ -362,6 +420,26 @@ export class BaseTime extends KucBase {
 
   private _handlePasteInput(event: ClipboardEvent) {
     event.preventDefault();
+  }
+
+  private _handleChangeInput(event: Event) {
+    // Value changes are driven via keydown; the raw <input>'s native "change"
+    // (e.g. IME-composed text that bypasses the keydown guard) carries no
+    // meaning and must not bubble out and be mistaken for the component's
+    // change event.
+    event.stopPropagation();
+  }
+
+  private _handleInput(event: Event) {
+    // The value is driven entirely by keydown (arrow / number keys, which call
+    // preventDefault). Any text reaching an input by another route — IME
+    // composition, paste, speech-to-text — is rejected by restoring the field's
+    // last valid display value, so e.g. a Vietnamese IME cannot leave "aa" in
+    // the hours field.
+    const target = event.target as HTMLInputElement;
+    if (target === this._hoursEl) target.value = this._hours;
+    else if (target === this._minutesEl) target.value = this._minutes;
+    else if (target === this._suffixEl) target.value = this._suffix;
   }
 
   private _handleSupportedKey(event: KeyboardEvent) {
@@ -404,6 +482,32 @@ export class BaseTime extends KucBase {
     if (oldValueProp === newValueProp) return;
     this.value = newValueProp;
     this._dispatchEventTimeChange(newValueProp, oldValueProp);
+  }
+
+  private _isFocusInsideComponent(target: EventTarget | null) {
+    if (!(target instanceof HTMLElement)) return false;
+
+    return (
+      // any element inside the input group (the 3 inputs + the group's own area)
+      this._inputGroupEl.contains(target) ||
+      target === this._toggleEl ||
+      // focus moving into the open time listbox (or any of its items) is still inside the component
+      this._listboxEl?.contains(target) === true
+    );
+  }
+
+  private _emitDeferredChangeOnBlur(relatedTarget: EventTarget | null) {
+    // Fire once every time focus leaves the whole component (internal moves stay
+    // in). _hasFocus guards the input/button @blur + listbox focusout double path.
+    if (this._isFocusInsideComponent(relatedTarget)) return;
+    if (!this._hasFocus) return;
+    this._hasFocus = false;
+
+    this._dispatchEventTimeChange(
+      this.value,
+      this._blurBaseline,
+      "kuc:base-time-blur",
+    );
   }
 
   private _computeDeleteValue() {
@@ -543,7 +647,12 @@ export class BaseTime extends KucBase {
     }
   }
 
-  private _dispatchEventTimeChange(value: string, oldValue: string) {
+  private _dispatchEventTimeChange(
+    value: string,
+    oldValue: string,
+    eventName:
+      "kuc:base-time-change" | "kuc:base-time-blur" = "kuc:base-time-change",
+  ) {
     const detail: CustomEventDetail = {
       value: value,
       oldValue: oldValue,
@@ -553,7 +662,7 @@ export class BaseTime extends KucBase {
       detail.error = this._locale.TIME_IS_OUT_OF_VALID_RANGE;
     }
 
-    dispatchCustomEvent(this, "kuc:base-time-change", detail);
+    dispatchCustomEvent(this, eventName, detail);
   }
 
   private _formatKeyDownValue(
@@ -656,6 +765,8 @@ export class BaseTime extends KucBase {
             @blur="${this._handleBlurInput}"
             @keydown="${this._handleKeyDownInput}"
             @paste="${this._handlePasteInput}"
+            @change="${this._handleChangeInput}"
+            @input="${this._handleInput}"
             ?disabled="${this.disabled}"
             value="${this._suffix}"
           />

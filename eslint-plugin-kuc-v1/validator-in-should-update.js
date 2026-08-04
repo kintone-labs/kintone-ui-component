@@ -8,7 +8,7 @@ module.exports = {
         const nodeBody = node.body;
         if (nodeBody.type !== "ClassBody") return;
 
-        const sourceCode = context.getSourceCode();
+        const sourceCode = context.sourceCode;
         const baseValidatorPattern = '\\./base/validator"';
         const baseValidatorRegex = new RegExp(baseValidatorPattern);
         if (!baseValidatorRegex.test(sourceCode.getText()))

@@ -72,9 +72,6 @@ describe("DateTimePicker", () => {
     it("should be nothing when lisbox close and pressing Tab key", async () => {
       const container = new DateTimePicker();
       const el = await fixture(container);
-      const timeGroupEl = el.querySelector(
-        ".kuc-base-time__group",
-      ) as HTMLInputElement;
       await elementUpdated(container);
       await elementUpdated(el);
       const assistiveTextEl = el.querySelector(

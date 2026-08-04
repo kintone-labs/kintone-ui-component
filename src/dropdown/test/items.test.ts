@@ -18,8 +18,6 @@ const replacedItems = [
   { label: "-----", value: "-----" },
   { label: "Apple", value: "apple" },
 ];
-const initItemsWithoutValue = [{ label: "-----" }, { label: "orange" }];
-const dupplicatedItems = [{ value: "apple" }, { value: "apple" }];
 
 describe("Dropdown", () => {
   describe("items", () => {

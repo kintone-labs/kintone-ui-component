@@ -4,7 +4,7 @@ module.exports = {
       ClassDeclaration: function(node) {
         const superClass = node.superClass.name;
         if (superClass !== "LitElement") return;
-        const sourceCode = context.getSourceCode().getText();
+        const sourceCode = context.sourceCode.getText();
         const pattern = "public createRenderRoot\\(\\)";
         const regex = new RegExp(pattern, "i");
         if (regex.test(sourceCode)) return;

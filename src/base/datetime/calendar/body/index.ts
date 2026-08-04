@@ -170,10 +170,9 @@ export class BaseDateTimeCalendarBody extends KucBase {
   }
 
   private _moveToDate(days: number) {
-    let value = this.value;
     const selectedValue = this._getSelectedValue();
     const { day } = this._separateDateValue(selectedValue);
-    value = `${this._year}-${padStart(this._month)}-${day}`;
+    const value = `${this._year}-${padStart(this._month)}-${day}`;
 
     const date = new Date(`${value || this._getValueItemFocused()}T00:00:00`);
     if (isNaN(date.getTime())) return;
@@ -292,9 +291,9 @@ export class BaseDateTimeCalendarBody extends KucBase {
                 return html`
                   <td
                     role="gridcell"
-                    class="kuc-base-datetime-calendar-body__table__date${isFocus
-                      ? "--selected"
-                      : ""}${this._getDateClass(dateParts, isThisMonth)}"
+                    class="kuc-base-datetime-calendar-body__table__date${
+                      isFocus ? "--selected" : ""
+                    }${this._getDateClass(dateParts, isThisMonth)}"
                     aria-selected="${this.value === weekDate.attr}"
                     tabindex="${isFocus ? "0" : "-1"}"
                     aria-current="${this._isToday(dateParts) ? "date" : false}"

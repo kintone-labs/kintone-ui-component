@@ -73,6 +73,11 @@ let exportTimePicker;
 
     private _inputValue = "";
     private _errorInvalid = "";
+
+    // Value (validated; undefined when invalid) at the moment focus entered,
+    // reported as the blur event's oldValue.
+    private _blurBaseline: string | undefined = "";
+
     private _inputMax = "";
     private _inputMin = "";
     private _inputTimeStep = 30;
@@ -90,8 +95,8 @@ let exportTimePicker;
 
     protected shouldUpdate(_changedProperties: PropertyValues): boolean {
       if (_changedProperties.has("max") || _changedProperties.has("min")) {
-        let _inputMinTemp = this._inputMin;
-        let _inputMaxTemp = this._inputMax;
+        let _inputMinTemp: string;
+        let _inputMaxTemp: string;
 
         if (this.max === undefined || this.max === "") {
           _inputMaxTemp = MAX_TIME;
@@ -205,6 +210,8 @@ let exportTimePicker;
             .max="${this._inputMax}"
             .language="${this._getLanguage()}"
             @kuc:base-time-change="${this._handleTimeChange}"
+            @kuc:base-time-blur="${this._handleTimeChangeOnBlur}"
+            @kuc:base-time-focusin="${this._handleTimeFocusIn}"
           >
           </kuc-base-time>
           <kuc-base-error
@@ -236,6 +243,25 @@ let exportTimePicker;
 
       this._inputValue = event.detail.value;
       dispatchCustomEvent(this, "change", detail);
+    }
+
+    // Snapshot our own validated value when focus enters, to report as oldValue.
+    private _handleTimeFocusIn(event: CustomEvent) {
+      event.stopPropagation();
+      this._blurBaseline = this.value;
+    }
+
+    // Fired every time focus leaves the component. The live "change" event has
+    // already updated value/error state; this reports the current value plus
+    // oldValue (the value when focus entered). An invalid value is `undefined`.
+    private _handleTimeChangeOnBlur(event: CustomEvent) {
+      event.preventDefault();
+      event.stopPropagation();
+      const detail: TimePickerChangeEventDetail = {
+        value: event.detail.error ? undefined : event.detail.value,
+        oldValue: this._blurBaseline,
+      };
+      dispatchCustomEvent(this, "blur", detail);
     }
 
     private _getLanguage() {

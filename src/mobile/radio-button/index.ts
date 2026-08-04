@@ -145,9 +145,11 @@ let exportMobileRadioButton;
       const isCheckedItem = this._isCheckedItem(item, index);
       return html`
         <div
-          class="kuc-mobile-radio-button__group__select-menu__item${item.disabled
-            ? " kuc-mobile-radio-button__group__select-menu__item--disabled"
-            : ""}"
+          class="kuc-mobile-radio-button__group__select-menu__item${
+            item.disabled
+              ? " kuc-mobile-radio-button__group__select-menu__item--disabled"
+              : ""
+          }"
         >
           <input
             type="radio"

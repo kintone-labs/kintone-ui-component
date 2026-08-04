@@ -19,11 +19,6 @@ const replacedItems = [
   { label: "Item 3", value: "item-3" },
 ];
 
-const dupplicatedItems = [
-  { label: "Item 1", value: "item-1" },
-  { label: "Item 2", value: "item-1" },
-];
-
 describe("MobileCheckbox", () => {
   describe("items", () => {
     it("should not have item when not assigned on constructor", async () => {

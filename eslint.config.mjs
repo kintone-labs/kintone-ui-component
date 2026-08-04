@@ -1,13 +1,12 @@
-const config = require("@cybozu/eslint-config/flat/presets/typescript-prettier");
-const importPlugin = require("eslint-plugin-import");
-const kucV1Plugin = require("eslint-plugin-kuc-v1");
+import config from "@cybozu/eslint-config/presets/typescript-prettier";
+import kucV1Plugin from "eslint-plugin-kuc-v1";
 
-module.exports = [
+export default [
   ...config,
 
   {
     files: ["**/*.{js,ts}"],
-    ignores:["*.js", "*.ts", "!src/**"],
+    ignores: ["*.js", "*.ts", "!src/**"],
     languageOptions: {
       parserOptions: {
         ecmaVersion: "latest",
@@ -16,21 +15,22 @@ module.exports = [
     },
 
     plugins: {
-      "import": importPlugin,
       "kuc-v1": kucV1Plugin
     },
 
     // settings for typescript
     settings: {
-      "import/resolver": {
+      "import-x/resolver": {
         typescript: true,
         node: true
       },
-      "import/extensions": [".js", ".ts", ".jsx", ".tsx"]
+      "import-x/extensions": [".js", ".ts", ".jsx", ".tsx"]
     },
 
     rules: {
       "@typescript-eslint/no-non-null-assertion": "off",
+      // kept off as in @cybozu/eslint-config v25; v26 enables it via tseslint recommended
+      "@typescript-eslint/no-explicit-any": "off",
       "kuc-v1/no-create-render-root-function": "error",
       "kuc-v1/no-using-custom-event": "error",
       "kuc-v1/no-using-generate-guid-function": "error",
@@ -53,7 +53,7 @@ module.exports = [
       ],
       // order imports depend on groups below and alphabetize with import path.
       // import without name such as `import "./index.ts"` can not lint. please put at bottom manually.
-      "import/order": [
+      "import-x/order": [
         "error",
         {
           // sort depend on following group order

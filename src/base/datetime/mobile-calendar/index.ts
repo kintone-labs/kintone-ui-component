@@ -34,8 +34,9 @@ export class BaseMobileDateTimeCalendar extends KucBase {
           .year="${this._year}"
           .month="${this._month}"
           .language="${this.language}"
-          @kuc:mobile-calendar-header-change="${this
-            ._handleCalendarHeaderChange}"
+          @kuc:mobile-calendar-header-change="${
+            this._handleCalendarHeaderChange
+          }"
         ></kuc-base-mobile-datetime-calendar-header>
         <kuc-base-mobile-datetime-calendar-body
           .year="${this._year}"

@@ -199,7 +199,7 @@ describe("BaseDate", () => {
         window.dispatchEvent(new Event("scroll"));
         window.dispatchEvent(new Event("resize"));
         await new Promise((resolve) => setTimeout(resolve, 300));
-      } catch (e) {
+      } catch {
         errorThrown = true;
       }
 
