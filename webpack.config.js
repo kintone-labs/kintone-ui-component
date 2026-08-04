@@ -23,9 +23,13 @@ module.exports = {
                 [
                   "@babel/preset-env",
                   {
-                    targets: {
-                      ie: 11,
-                    },
+                    // Browserslist "defaults" (no IE). Do not lower to ES5:
+                    // Babel 8 mis-compiles lit's ChildPart class (a method with
+                    // the same name as its class), emitting an undeclared `_k`
+                    // and breaking every render of an iterable at runtime.
+                    // ES5 was dead weight anyway: KUC's own .ts is emitted at
+                    // es2018 by ts-loader, so the bundle never ran on IE11.
+                    targets: "defaults",
                   },
                 ],
               ],
