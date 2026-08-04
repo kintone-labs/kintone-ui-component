@@ -104,6 +104,11 @@ let exportDateTimePicker;
     private _changeDateByUI = false;
     private _changeTimeByUI = false;
 
+    // Datetime value when focus entered each inner field, reported as the
+    // blur event's oldValue (undefined when invalid). Mirrors time/date-picker.
+    private _timeBlurBaseline: string | undefined = "";
+    private _dateBlurBaseline: string | undefined = "";
+
     private _inputMax = "";
     private _inputMin = "";
     private _timeConverted: string = "";
@@ -340,6 +345,8 @@ let exportDateTimePicker;
               .disabled="${this.disabled}"
               inputAriaLabel="date"
               @kuc:base-date-change="${this._handleDateChange}"
+              @kuc:base-date-blur="${this._handleDateChangeOnBlur}"
+              @kuc:base-date-focusin="${this._handleDateFocusIn}"
             ></kuc-base-date
             ><kuc-base-time
               class="kuc-datetime-picker__group__inputs--time"
@@ -351,6 +358,8 @@ let exportDateTimePicker;
               .max="${this._inputMax}"
               .language="${this._getLanguage()}"
               @kuc:base-time-change="${this._handleTimeChange}"
+              @kuc:base-time-blur="${this._handleTimeChangeOnBlur}"
+              @kuc:base-time-focusin="${this._handleTimeFocusIn}"
             ></kuc-base-time>
           </div>
           <kuc-base-error
@@ -402,6 +411,47 @@ let exportDateTimePicker;
       }
 
       this._updateDateTimeValue(newValue, "time");
+    }
+
+    // Snapshot the datetime value when focus enters each inner field, to report
+    // as the blur oldValue (undefined when the datetime is invalid).
+    private _handleTimeFocusIn(event: CustomEvent) {
+      event.stopPropagation();
+      this._timeBlurBaseline = this.value;
+    }
+
+    private _handleDateFocusIn(event: CustomEvent) {
+      event.stopPropagation();
+      this._dateBlurBaseline = this.value;
+    }
+
+    // Fired every time focus leaves the inner time field. The live "change" has
+    // already updated state; this reports the current datetime plus oldValue
+    // (the datetime when focus entered the time field).
+    private _handleTimeChangeOnBlur(event: CustomEvent) {
+      event.preventDefault();
+      event.stopPropagation();
+
+      const detail: DateTimePickerChangeEventDetail = {
+        value: this.value,
+        oldValue: this._timeBlurBaseline,
+        changedPart: "time",
+      };
+      dispatchCustomEvent(this, "blur", detail);
+    }
+
+    // Fired every time focus leaves the inner date field. Mirrors the time one:
+    // reports the current datetime plus oldValue (datetime when focus entered).
+    private _handleDateChangeOnBlur(event: CustomEvent) {
+      event.preventDefault();
+      event.stopPropagation();
+
+      const detail: DateTimePickerChangeEventDetail = {
+        value: this.value,
+        oldValue: this._dateBlurBaseline,
+        changedPart: "date",
+      };
+      dispatchCustomEvent(this, "blur", detail);
     }
 
     private _updateDateTimeValue(newValue: string, type: "date" | "time") {
